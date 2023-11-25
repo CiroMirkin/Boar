@@ -70,13 +70,29 @@ Para el **flujo de trabajo** se utilizara Git siguiendo la metodología *Git Flo
 
 ### Comandos
 
-El proyecto usa [Vite](https://vitejs.dev/) como empaquetador.
+El proyecto usa [Vite](https://vitejs.dev/) como empaquetador y [Vitest](https://vitest.dev/guide/) para el testing.
 
 #### Desarrollo:
 
 ```
 npm run dev
 ```
+
+#### Testing: 
+
+Testing por consola:
+
+```
+npm test
+```
+
+Testing por UI:
+
+```
+npm run test-ui
+```
+
+[http://localhost:51204/__vitest__/#/](http://localhost:51204/__vitest__/#/)
 
 #### Despliegue:
 
