@@ -1,5 +1,6 @@
 import { columnModel } from '../models/column'
 import './Board.css'
+import Column from './Column'
 
 interface BoardProps {
     columns: columnModel[]
@@ -11,7 +12,12 @@ function Board({ columns }: BoardProps) {
     <ul className='board'>
         {
             columns.map(column => 
-                <li key={column.id}>{column.title}</li>
+                <Column 
+                key={column.id} 
+                name={column.name} 
+                id={column.id} 
+                taskList={column.taskList} 
+                />
             )
         }
     </ul>
