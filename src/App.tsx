@@ -5,17 +5,26 @@ import { columnModel } from './models/column'
 function App() {
   const columns: columnModel[] = [
     {
-      title: "Pendintes",
+      name: "Pendintes",
       id: "1",
-      taskList: []
+      taskList: [
+        {
+          descriptionText: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio, quisquam.",
+          id: "1"
+        },
+        {
+          descriptionText: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores ad sint repellendus nemo consequatur velit aut.",
+          id: "2"
+        },
+      ]
     },
     {
-      title: "Procesando",
+      name: "Procesando",
       id: "2",
       taskList: []
     },
     {
-      title: "Terminado",
+      name: "Terminado",
       id: "3",
       taskList: []
     },
