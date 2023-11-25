@@ -1,5 +1,6 @@
 import { columnModel } from '../models/column'
 import './Column.css'
+import Task from './Task'
 
 interface ColumnProps extends columnModel {};
 
@@ -11,7 +12,7 @@ function Column({ name, id, taskList }: ColumnProps) {
         <ul className="column__task-list">
             {
                 taskList.map(task => 
-                    <li key={task.id}>{task.descriptionText}</li>    
+                    <Task key={task.id} id={task.id} descriptionText={task.descriptionText} /> 
                 )
             }
         </ul>
