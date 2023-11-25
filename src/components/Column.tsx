@@ -1,4 +1,5 @@
 import { columnModel } from '../models/column'
+import './Column.css'
 
 interface ColumnProps extends columnModel {};
 
