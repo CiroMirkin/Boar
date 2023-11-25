@@ -1,10 +1,24 @@
+import { useState } from 'react'
 import { columnModel } from '../models/column'
 import './Column.css'
 import Task from './Task'
 
-interface ColumnProps extends columnModel {};
+interface ColumnProps extends columnModel {
+  addNewTaskInColumn: Function
+};
 
-function Column({ name, id, taskList }: ColumnProps) {
+function Column({ name, id, taskList, addNewTaskInColumn }: ColumnProps) {
+  const [ newTask, setNewTask ] = useState('')
+
+  const handleClick = () => {
+    if(!!newTask.trim()) {
+      addNewTaskInColumn({
+        descriptionText: newTask,
+        id: crypto.randomUUID()
+      }, id)
+      setNewTask('')
+    }
+  }
 
   return (
     <li className='column' key={id}>
@@ -16,6 +30,10 @@ function Column({ name, id, taskList }: ColumnProps) {
                 )
             }
         </ul>
+        <footer className="column__footer">
+          <input type="text" value={newTask} onChange={(e) => setNewTask(e.target.value)} placeholder='Agregar una nueva tarea...'/>
+          <button onClick={handleClick}>Agregar</button>
+        </footer>
     </li>
   )
 }

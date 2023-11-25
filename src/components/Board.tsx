@@ -3,10 +3,11 @@ import './Board.css'
 import Column from './Column'
 
 interface BoardProps {
-    columns: columnModel[]
+    columns: columnModel[],
+    addNewTaskInColumn: Function
 }
 
-function Board({ columns }: BoardProps) {
+function Board({ columns, addNewTaskInColumn }: BoardProps) {
 
   return (
     <ul className='board'>
@@ -16,6 +17,7 @@ function Board({ columns }: BoardProps) {
                 key={column.id} 
                 name={column.name} 
                 id={column.id} 
+                addNewTaskInColumn={addNewTaskInColumn}
                 taskList={column.taskList} 
                 />
             )
