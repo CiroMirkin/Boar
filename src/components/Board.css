@@ -6,7 +6,7 @@
 
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: flex-start;
     gap: 5px;
 
     list-style: none;
