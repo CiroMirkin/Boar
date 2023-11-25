@@ -1,4 +1,5 @@
 import { taskModel } from '../models/task'
+import './Task.css'
 
 interface ColumnProps extends taskModel {};
 
