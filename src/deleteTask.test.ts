@@ -15,4 +15,33 @@ describe('Eliminar una tarea de la columna correspondiente', () => {
         }])
     })
 
+    test('No se puede eliminar una tarea de una columna vacía', () => {
+        const columns = [{
+            name: "",
+            id: "1",
+            taskList: []
+        }]
+    
+        expect(() => delteTaskThisFromThisColumn("1", "1", columns)).toThrow('No se puede eliminar una tarea de una columna vacía')
+    })
+    
+    test('No se puede eliminar una tarea con un ID en blanco', () => {
+        const columns = [{
+            name: "",
+            id: "1",
+            taskList: []
+        }]
+
+        expect(() => delteTaskThisFromThisColumn("", "1", columns)).toThrow('No se puede eliminar una tarea con un id en blanco')
+    })
+
+    test('No se puede eliminar una tarea de una columna con un ID en blanco', () => {
+        const columns = [{
+            name: "",
+            id: "1",
+            taskList: []
+        }]
+
+        expect(() => delteTaskThisFromThisColumn("1", "", columns)).toThrow('No se puede eliminar una tarea de una columna con un id en blanco')
+    })
 })
