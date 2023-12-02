@@ -1,9 +1,11 @@
 import './App.css'
+import { useState } from 'react'
 import Board from './components/Board'
-import { columnModel } from './models/column'
+import { taskModel } from './models/task'
+import { addTaskToThisColumn } from './addTask'
 
 function App() {
-  const columns: columnModel[] = [
+  const [ columns, setColumns ] = useState([
     {
       name: "Pendintes",
       id: "1",
@@ -11,10 +13,6 @@ function App() {
         {
           descriptionText: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio, quisquam.",
           id: "1"
-        },
-        {
-          descriptionText: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores ad sint repellendus nemo consequatur velit aut.",
-          id: "2"
         },
       ]
     },
@@ -28,11 +26,16 @@ function App() {
       id: "3",
       taskList: []
     },
-  ]
+  ])
+
+  const addNewTaskInColumn = (newTask: taskModel, columnId: string) => {
+    const newColumns = addTaskToThisColumn(columnId, columns, newTask)
+    setColumns(newColumns)
+  }
 
   return (
     <>
-    <Board columns={columns}></Board>
+    <Board columns={columns} addNewTaskInColumn={addNewTaskInColumn}></Board>
     </>
   )
 }

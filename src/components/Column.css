@@ -1,6 +1,12 @@
 .column {
     width: 26rem;
+    min-height: 20rem;
+    height: auto;
     padding: 8px 10px 6px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 
     border: #000 solid .125rem;
     border-radius: 10px;
@@ -16,6 +22,25 @@
     text-align: left;
 }
 .column__task-list {
+    height: auto;
+    min-height: 14rem;
     list-style: none;
     padding: 0;
+}
+.column__footer {
+    width: 100%;
+    padding: .5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.column__footer input {
+    width: 76%;
+    border: #ccc 2px solid;
+    border-radius: 4px 0px 0px 4px;
+}
+.column__footer button {
+    border: #ccc 2px solid;
+    border-left: none;
+    border-radius: 0px 4px 4px 0px;
 }
