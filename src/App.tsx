@@ -29,12 +29,7 @@ function App() {
   ])
 
   const addNewTaskInColumn = (newTask: taskModel, columnId: string) => {
-    const newColumns = columns.map(column => {
-      if(column.id === columnId) {
-        return addTaskToThisColumn(column, newTask)
-      }
-      return column
-    })
+    const newColumns = addTaskToThisColumn(columnId, columns, newTask)
     setColumns(newColumns)
   }
 
