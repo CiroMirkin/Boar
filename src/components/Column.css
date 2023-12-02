@@ -27,3 +27,20 @@
     list-style: none;
     padding: 0;
 }
+.column__footer {
+    width: 100%;
+    padding: .5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.column__footer input {
+    width: 76%;
+    border: #ccc 2px solid;
+    border-radius: 4px 0px 0px 4px;
+}
+.column__footer button {
+    border: #ccc 2px solid;
+    border-left: none;
+    border-radius: 0px 4px 4px 0px;
+}
