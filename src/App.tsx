@@ -1,8 +1,6 @@
 import './App.css'
 import { useState } from 'react'
 import Board from './components/Board'
-import { taskModel } from './models/task'
-import { addTaskToThisColumn } from './addTask'
 
 function App() {
   const [ columns, setColumns ] = useState([
@@ -28,14 +26,9 @@ function App() {
     },
   ])
 
-  const addNewTaskInColumn = (newTask: taskModel, columnId: string) => {
-    const newColumns = addTaskToThisColumn(columnId, columns, newTask)
-    setColumns(newColumns)
-  }
-
   return (
     <>
-    <Board columns={columns} addNewTaskInColumn={addNewTaskInColumn}></Board>
+      <Board columns={columns} setColumns={setColumns} />
     </>
   )
 }

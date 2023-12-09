@@ -1,13 +1,20 @@
 import { columnModel } from '../models/column'
 import './Board.css'
 import Column from './Column'
+import { taskModel } from '../models/task'
+import { addTaskToThisColumn } from '../addTask'
 
 interface BoardProps {
     columns: columnModel[],
-    addNewTaskInColumn: Function
+    setColumns: Function
 }
 
-function Board({ columns, addNewTaskInColumn }: BoardProps) {
+function Board({ columns, setColumns }: BoardProps) {
+
+  const addNewTaskInColumn = (newTask: taskModel, columnId: string) => {
+    const newColumns = addTaskToThisColumn(columnId, columns, newTask)
+    setColumns(newColumns)
+  }
 
   return (
     <ul className='board'>
@@ -17,8 +24,8 @@ function Board({ columns, addNewTaskInColumn }: BoardProps) {
                 key={column.id} 
                 name={column.name} 
                 id={column.id} 
+                taskList={column.taskList}
                 addNewTaskInColumn={addNewTaskInColumn}
-                taskList={column.taskList} 
                 />
             )
         }

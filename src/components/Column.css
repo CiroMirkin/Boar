@@ -21,12 +21,6 @@
     font-weight: 600;
     text-align: left;
 }
-.column__task-list {
-    height: auto;
-    min-height: 14rem;
-    list-style: none;
-    padding: 0;
-}
 .column__footer {
     width: 100%;
     padding: .5rem 0;
