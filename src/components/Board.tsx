@@ -22,8 +22,8 @@ function Board({ columns, setColumns }: BoardProps) {
             columns.map(column => 
                 <Column 
                 key={column.id} 
-                name={column.name} 
                 id={column.id} 
+                name={column.name} 
                 taskList={column.taskList}
                 addNewTaskInColumn={addNewTaskInColumn}
                 />
