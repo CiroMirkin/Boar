@@ -1,0 +1,6 @@
+.column-task-list {
+    height: auto;
+    min-height: 14rem;
+    list-style: none;
+    padding: 0;
+}
