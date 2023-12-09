@@ -1,6 +1,7 @@
 import { columnModel } from '../models/column'
 import './Board.css'
 import Column from './Column'
+import TaskList from './TaskList'
 import { taskModel } from '../models/task'
 import { addTaskToThisColumn } from '../addTask'
 
@@ -21,12 +22,13 @@ function Board({ columns, setColumns }: BoardProps) {
         {
             columns.map(column => 
                 <Column 
-                key={column.id} 
-                id={column.id} 
-                name={column.name} 
-                taskList={column.taskList}
-                addNewTaskInColumn={addNewTaskInColumn}
-                />
+                  key={column.id} 
+                  id={column.id} 
+                  name={column.name} 
+                  addNewTaskInColumn={addNewTaskInColumn}
+                > 
+                  <TaskList taskList={column.taskList}/>
+                </Column>
             )
         }
     </ul>

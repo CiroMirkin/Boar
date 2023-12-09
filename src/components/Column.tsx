@@ -1,13 +1,14 @@
 import { useState } from 'react'
-import { columnModel } from '../models/column'
 import './Column.css'
-import TaskList from './TaskList'
 
-interface ColumnProps extends columnModel {
+interface ColumnProps {
+  id: string,
+  name: string,
+  children: React.ReactNode,
   addNewTaskInColumn: Function,
 };
 
-function Column({ name, id, taskList, addNewTaskInColumn }: ColumnProps) {
+function Column({ name, id, children, addNewTaskInColumn }: ColumnProps) {
   const [ newTask, setNewTask ] = useState('')
 
   const handleClick = () => {
@@ -24,7 +25,7 @@ function Column({ name, id, taskList, addNewTaskInColumn }: ColumnProps) {
     <li className='column' key={id}>
         <h2 className='column__title'>{name}</h2>
           {
-            <TaskList taskList={taskList}/>
+            children
           }
         <footer className="column__footer">
           <input type="text" value={newTask} onChange={(e) => setNewTask(e.target.value)} placeholder='Agregar una nueva tarea...'/>
