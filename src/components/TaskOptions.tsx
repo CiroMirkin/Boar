@@ -2,7 +2,8 @@ import { useState } from 'react'
 import './TaskOptions.css'
 
 interface TaskOptionsProps {
-    taskId: string
+    taskId: string,
+    deleteTask: Function
 }
 
 interface options {
@@ -10,12 +11,12 @@ interface options {
     function: Function
 }
 
-function TaskOptions({ taskId }: TaskOptionsProps) {
+function TaskOptions({ taskId, deleteTask }: TaskOptionsProps) {
     const [ taskOptionsClassName, setTaskOptionsClassName ] = useState('task-options__options--hide')
     const options: options[] = [
         {
-          name: 'Mostrar id por consola', 
-          function: () => console.log("Tarea: ", taskId)
+          name: 'Eliminar', 
+          function: () => deleteTask(taskId)
         }
     ]
 

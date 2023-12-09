@@ -4,6 +4,7 @@ import Column from './Column'
 import TaskList from './TaskList'
 import { taskModel } from '../models/task'
 import { addTaskToThisColumn } from '../addTask'
+import { deleteThisTaskFromThisColumn } from '../deleteTask'
 
 interface BoardProps {
     columns: columnModel[],
@@ -17,6 +18,11 @@ function Board({ columns, setColumns }: BoardProps) {
     setColumns(newColumns)
   }
 
+  const deleteThisTaskInThisColumn = (taskId: string, columnId: string) => {
+    const newColumns = deleteThisTaskFromThisColumn(taskId, columnId, columns)
+    setColumns(newColumns)
+  }
+
   return (
     <ul className='board'>
         {
@@ -27,7 +33,10 @@ function Board({ columns, setColumns }: BoardProps) {
                   name={column.name} 
                   addNewTaskInColumn={addNewTaskInColumn}
                 > 
-                  <TaskList taskList={column.taskList}/>
+                  <TaskList 
+                    taskList={column.taskList} 
+                    deleteTask={(taskId: string) => deleteThisTaskInThisColumn(taskId, column.id)}
+                  />
                 </Column>
             )
         }
