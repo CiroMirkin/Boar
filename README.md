@@ -13,19 +13,18 @@ Ordenadas de mayor a menor prioridad, comenzando por las *fundamentales*.
 
 * Crear tareas.
 * Mover las tareas entre columnas.
-* Editar el contenido de las tareas.
 * Eliminar las tareas.
-* Saber cuantas tareas hay en total.
+* Editar el nombre de las columnas.
 
-### Características de columnas
+### Características secundarias
 
 * Crear nuevas columnas.
-* Editar el nombre de las columnas.
-* Eliminar columnas, siempre debe haber mínimo tres columnas nunca menos.
+* Editar el contenido de las tareas.
+* Eliminar columnas, siempre debe haber mínimo tres columnas, nunca menos.
+* Cambiar el nombre del tablero.
 
 ### Características agregadas
 
-* Cambiar el nombre del tablero.
 * Poder descargar y subir un archivo con la información del tablero.
 
 Como métricas el usuario puede saber:
