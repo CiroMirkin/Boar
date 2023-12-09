@@ -1,25 +1,34 @@
 import { columnModel } from '../models/column'
 import './Board.css'
 import Column from './Column'
+import TaskList from './TaskList'
+import { taskModel } from '../models/task'
+import { addTaskToThisColumn } from '../addTask'
 
 interface BoardProps {
     columns: columnModel[],
-    addNewTaskInColumn: Function
+    setColumns: Function
 }
 
-function Board({ columns, addNewTaskInColumn }: BoardProps) {
+function Board({ columns, setColumns }: BoardProps) {
+
+  const addNewTaskInColumn = (newTask: taskModel, columnId: string) => {
+    const newColumns = addTaskToThisColumn(columnId, columns, newTask)
+    setColumns(newColumns)
+  }
 
   return (
     <ul className='board'>
         {
             columns.map(column => 
                 <Column 
-                key={column.id} 
-                name={column.name} 
-                id={column.id} 
-                addNewTaskInColumn={addNewTaskInColumn}
-                taskList={column.taskList} 
-                />
+                  key={column.id} 
+                  id={column.id} 
+                  name={column.name} 
+                  addNewTaskInColumn={addNewTaskInColumn}
+                > 
+                  <TaskList taskList={column.taskList}/>
+                </Column>
             )
         }
     </ul>
