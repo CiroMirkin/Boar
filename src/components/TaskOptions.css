@@ -1,0 +1,35 @@
+.task-options {
+    width: 100%;
+    margin-top: .2rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+}
+.task-options__btn {
+    box-sizing: border-box;
+    width: 20px;
+    height: 15px;
+    padding: 0;
+    font-weight: 700;
+    font-size: 8px;
+    opacity: .5;
+    border: #ccc 2px solid;
+    border-radius: 5px;
+}
+.task-options__options {
+    width: 100%;
+    margin: 0;
+    list-style: none;
+}
+.task-options__options--hide {
+    height: 0;
+    opacity: 0;
+    padding: 0;
+}
+.task-options__options--show {
+    height: auto;
+    opacity: 1;
+    padding: .6rem .5rem .5rem 0;
+}
