@@ -1,6 +1,6 @@
 import { columnModel } from "./models/column";
 
-export const delteTaskThisFromThisColumn = (taskId: string, columnId: string, columns: columnModel[]): columnModel[] => {
+export const deleteThisTaskFromThisColumn = (taskId: string, columnId: string, columns: columnModel[]): columnModel[] => {
     if(!taskId.trim()) throw new Error('No se puede eliminar una tarea con un id en blanco')
     if(!columnId.trim()) throw new Error('No se puede eliminar una tarea de una columna con un id en blanco')
 

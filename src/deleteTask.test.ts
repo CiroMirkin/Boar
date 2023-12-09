@@ -1,4 +1,4 @@
-import { delteTaskThisFromThisColumn } from "./deleteTask"
+import { deleteThisTaskFromThisColumn } from "./deleteTask"
 
 describe('Eliminar una tarea de la columna correspondiente', () => {
     test('Se puede eliminar una tarea de la columna', () => {
@@ -8,7 +8,7 @@ describe('Eliminar una tarea de la columna correspondiente', () => {
             taskList: [{ descriptionText: "Hacer un cafe americano.", id: "1"}]
         }]
     
-        expect(delteTaskThisFromThisColumn("1", "1", columns)).toEqual([{
+        expect(deleteThisTaskFromThisColumn("1", "1", columns)).toEqual([{
             name: "",
             id: "1",
             taskList: []
@@ -22,7 +22,7 @@ describe('Eliminar una tarea de la columna correspondiente', () => {
             taskList: []
         }]
     
-        expect(() => delteTaskThisFromThisColumn("1", "1", columns)).toThrow('No se puede eliminar una tarea de una columna vacía')
+        expect(() => deleteThisTaskFromThisColumn("1", "1", columns)).toThrow('No se puede eliminar una tarea de una columna vacía')
     })
     
     test('No se puede eliminar una tarea con un ID en blanco', () => {
@@ -32,7 +32,7 @@ describe('Eliminar una tarea de la columna correspondiente', () => {
             taskList: []
         }]
 
-        expect(() => delteTaskThisFromThisColumn("", "1", columns)).toThrow('No se puede eliminar una tarea con un id en blanco')
+        expect(() => deleteThisTaskFromThisColumn("", "1", columns)).toThrow('No se puede eliminar una tarea con un id en blanco')
     })
 
     test('No se puede eliminar una tarea de una columna con un ID en blanco', () => {
@@ -42,6 +42,6 @@ describe('Eliminar una tarea de la columna correspondiente', () => {
             taskList: []
         }]
 
-        expect(() => delteTaskThisFromThisColumn("1", "", columns)).toThrow('No se puede eliminar una tarea de una columna con un id en blanco')
+        expect(() => deleteThisTaskFromThisColumn("1", "", columns)).toThrow('No se puede eliminar una tarea de una columna con un id en blanco')
     })
 })
