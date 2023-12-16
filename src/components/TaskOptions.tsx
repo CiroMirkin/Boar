@@ -3,7 +3,8 @@ import './TaskOptions.css'
 
 interface TaskOptionsProps {
     taskId: string,
-    deleteTask: Function
+    deleteTask: Function,
+    moveTask: Function,
 }
 
 interface options {
@@ -11,13 +12,21 @@ interface options {
     function: Function
 }
 
-function TaskOptions({ taskId, deleteTask }: TaskOptionsProps) {
+function TaskOptions({ taskId, deleteTask, moveTask }: TaskOptionsProps) {
     const [ taskOptionsClassName, setTaskOptionsClassName ] = useState('task-options__options--hide')
     const options: options[] = [
         {
+            name: "Avanzar",
+            function: () => moveTask('next-column', taskId)
+        },
+        {
+            name: "Retroceder",
+            function: () => moveTask('prev-column', taskId)
+        },
+        {
           name: 'Eliminar', 
           function: () => deleteTask(taskId)
-        }
+        },
     ]
 
     const toggleTaskOptions = () => {

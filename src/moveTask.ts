@@ -1,26 +1,28 @@
 import { columnModel } from "./models/column"
 import { taskModel } from "./models/task"
 
-type moveToType = 'next-column' | 'prev-column'
+export type moveToType = 'next-column' | 'prev-column'
 type columnsType = columnModel[]
 
 interface moveTaskParams {
-    task: taskModel,
+    taskId: string,
     to: moveToType,
     columns: columnsType
 }
 
-export const moveTask = ({ task, to, columns }: moveTaskParams): columnsType => {
+export const moveTask = ({ taskId, to, columns }: moveTaskParams): columnsType => {
     let columnIndexOfTheTask = -1;
     let taskIndex: number = 1;
+    let task: taskModel = { descriptionText: "string", id: "string" }
 
     const newColumns = columns.map((column, columnIndex) => {
         column.taskList = column.taskList.filter((taskInColumn, taskInColumnIndex) => {
-            if(taskInColumn.id !== task.id) {
+            if(taskInColumn.id !== taskId) {
                 return taskInColumn
             }
             taskIndex = taskInColumnIndex
             columnIndexOfTheTask = columnIndex
+            task = taskInColumn
         })
         return column
     })
