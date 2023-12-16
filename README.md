@@ -11,9 +11,9 @@ Ordenadas de mayor a menor prioridad, comenzando por las *fundamentales*.
 
 ### Características fundamentales
 
-* Crear tareas.
+* Crear tareas. :white_check_mark:
 * Mover las tareas entre columnas.
-* Eliminar las tareas.
+* Eliminar las tareas. :white_check_mark:
 * Editar el nombre de las columnas.
 
 ### Características secundarias
