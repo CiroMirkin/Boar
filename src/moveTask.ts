@@ -11,9 +11,9 @@ interface moveTaskParams {
 }
 
 export const moveTask = ({ taskId, to, columns }: moveTaskParams): columnsType => {
-    let columnIndexOfTheTask = -1;
-    let taskIndex: number = 1;
-    let task: taskModel = { descriptionText: "string", id: "string" }
+    let columnIndexOfTheTask: number = 0;
+    let taskIndex: number = 0;
+    let task: taskModel = { descriptionText: "", id: "" }
 
     const newColumns = columns.map((column, columnIndex) => {
         column.taskList = column.taskList.filter((taskInColumn, taskInColumnIndex) => {
