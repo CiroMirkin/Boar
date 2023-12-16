@@ -11,26 +11,26 @@ interface moveTaskParams {
 }
 
 export const moveTask = ({ task, to, columns }: moveTaskParams): columnsType => {
-    let indexOfColumnWhereIsTheTask = -1;
+    let columnIndexOfTheTask = -1;
     let taskIndex: number = 1;
+
     const newColumns = columns.map((column, columnIndex) => {
-        const newColumn = column
-        newColumn.taskList = column.taskList.filter((taskInColumn, taskInColumnIndex) => {
+        column.taskList = column.taskList.filter((taskInColumn, taskInColumnIndex) => {
             if(taskInColumn.id !== task.id) {
                 return taskInColumn
             }
             taskIndex = taskInColumnIndex
-            indexOfColumnWhereIsTheTask = columnIndex
+            columnIndexOfTheTask = columnIndex
         })
-        return newColumn
+        return column
     })
 
-    const nextColumnIndex = indexOfColumnWhereIsTheTask + 1
-    const prevColumnIndex = indexOfColumnWhereIsTheTask - 1
-    const columnIndexWhereItWillBeTheTask = (to === 'next-column') ? nextColumnIndex : prevColumnIndex 
-    if(columnIndexWhereItWillBeTheTask < columns.length && columnIndexWhereItWillBeTheTask > -1) {
+    const nextColumnIndex = columnIndexOfTheTask + 1
+    const prevColumnIndex = columnIndexOfTheTask - 1
+    const columnIndexWhereTheTaskWillBe = (to === 'next-column') ? nextColumnIndex : prevColumnIndex 
+    if(columnIndexWhereTheTaskWillBe < columns.length && columnIndexWhereTheTaskWillBe > -1) {
         const numericalParameterOfTheSpliceMethodToInsertAnElementWithoutDeletingElements = 0
-        newColumns[columnIndexWhereItWillBeTheTask].taskList.splice(
+        newColumns[columnIndexWhereTheTaskWillBe].taskList.splice(
             taskIndex, 
             numericalParameterOfTheSpliceMethodToInsertAnElementWithoutDeletingElements, 
             task
@@ -38,7 +38,7 @@ export const moveTask = ({ task, to, columns }: moveTaskParams): columnsType => 
         return newColumns
     } 
     const numericalParameterOfTheSpliceMethodToInsertAnElementWithoutDeletingElements = 0
-    newColumns[indexOfColumnWhereIsTheTask].taskList.splice(
+    newColumns[columnIndexOfTheTask].taskList.splice(
         taskIndex, 
         numericalParameterOfTheSpliceMethodToInsertAnElementWithoutDeletingElements, 
         task
