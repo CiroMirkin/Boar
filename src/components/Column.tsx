@@ -23,7 +23,10 @@ function Column({ name, id, children, addNewTaskInColumn }: ColumnProps) {
 
   return (
     <li className='column' key={id}>
-        <h2 className='column__title'>{name}</h2>
+        <h2 className='column__title'>
+          {name}
+          <button className='column__title-change-name-btn'>Cambiar nombre</button>
+        </h2>
           {
             children
           }
