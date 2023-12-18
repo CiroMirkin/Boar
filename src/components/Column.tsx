@@ -10,6 +10,8 @@ interface ColumnProps {
 
 function Column({ name, id, children, addNewTaskInColumn }: ColumnProps) {
   const [ newTask, setNewTask ] = useState('')
+  const [ columnName, setColumnName ] = useState(name)
+  const [ isTheColumnNameChanging, setIsTheColumnNameChanging ] = useState(false)
 
   const handleClick = () => {
     if(!!newTask.trim()) {
@@ -24,8 +26,12 @@ function Column({ name, id, children, addNewTaskInColumn }: ColumnProps) {
   return (
     <li className='column' key={id}>
         <h2 className='column__title'>
-          {name}
-          <button className='column__title-change-name-btn'>Cambiar nombre</button>
+          { 
+            isTheColumnNameChanging 
+            ? <input type="text" value={columnName} onChange={(e) => setColumnName(e.target.value)}/> 
+            : columnName 
+          }
+          <button className='column__title-change-name-btn' onClick={() => setIsTheColumnNameChanging(!isTheColumnNameChanging)}>Cambiar nombre</button>
         </h2>
           {
             children
