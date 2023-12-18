@@ -14,7 +14,7 @@ Ordenadas de mayor a menor prioridad, comenzando por las *fundamentales*.
 * Crear tareas. :white_check_mark:
 * Mover las tareas entre columnas. :white_check_mark:
 * Eliminar las tareas. :white_check_mark:
-* Editar el nombre de las columnas.
+* Editar el nombre de las columnas. :white_check_mark:
 
 ### Características secundarias
 
