@@ -65,7 +65,7 @@ Para el **FrontEnd** se eligió React en conjunto con TypeScript, esto por. CSS 
 
 Para el **testing** se eligió Vitest y Jest.
 
-Para el **flujo de trabajo** se utilizara Git siguiendo la metodología *Git Flow*, Trello para la gestión de tareas y GitHub para centralizar el código del proyecto.
+Para el **flujo de trabajo** se utilizara Git siguiendo la metodología *ship/show/ask*, Trello para la gestión de tareas y GitHub para centralizar el código del proyecto.
 
 ### Comandos
 
