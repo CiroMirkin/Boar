@@ -7,9 +7,10 @@ interface ColumnProps {
   name: string,
   children: React.ReactNode,
   addNewTaskInColumn: Function,
+  changeColumnName: Function
 };
 
-function Column({ name, id, children, addNewTaskInColumn }: ColumnProps) {
+function Column({ name, id, children, addNewTaskInColumn, changeColumnName }: ColumnProps) {
   const [ newTask, setNewTask ] = useState('')
 
   const handleClick = () => {
@@ -24,7 +25,7 @@ function Column({ name, id, children, addNewTaskInColumn }: ColumnProps) {
 
   return (
     <li className='column' key={id}>
-        <ColumnName name={name} />
+        <ColumnName name={name} columnId={id} changeColumnName={changeColumnName} />
         {
           children
         }
