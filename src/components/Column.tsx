@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './Column.css'
+import ColumnName from './ColumnName'
 
 interface ColumnProps {
   id: string,
@@ -10,8 +11,6 @@ interface ColumnProps {
 
 function Column({ name, id, children, addNewTaskInColumn }: ColumnProps) {
   const [ newTask, setNewTask ] = useState('')
-  const [ columnName, setColumnName ] = useState(name)
-  const [ isTheColumnNameChanging, setIsTheColumnNameChanging ] = useState(false)
 
   const handleClick = () => {
     if(!!newTask.trim()) {
@@ -25,17 +24,10 @@ function Column({ name, id, children, addNewTaskInColumn }: ColumnProps) {
 
   return (
     <li className='column' key={id}>
-        <h2 className='column__title'>
-          { 
-            isTheColumnNameChanging 
-            ? <input type="text" value={columnName} onChange={(e) => setColumnName(e.target.value)}/> 
-            : columnName 
-          }
-          <button className='column__title-change-name-btn' onClick={() => setIsTheColumnNameChanging(!isTheColumnNameChanging)}>Cambiar nombre</button>
-        </h2>
-          {
-            children
-          }
+        <ColumnName name={name} />
+        {
+          children
+        }
         <footer className="column__footer">
           <input type="text" value={newTask} onChange={(e) => setNewTask(e.target.value)} placeholder='Agregar una nueva tarea...'/>
           <button onClick={handleClick}>Agregar</button>
