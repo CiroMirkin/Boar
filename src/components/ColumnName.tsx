@@ -1,4 +1,5 @@
 import { useState } from "react"
+import './ColumnName.css'
 
 interface ColumnNameProps{
     name: string
@@ -9,14 +10,18 @@ function ColumnName({ name }: ColumnNameProps) {
     const [ isTheColumnNameChanging, setIsTheColumnNameChanging ] = useState(false)
 
     return (
-        <h2 className='column__title'>
-          { 
-            isTheColumnNameChanging 
-            ? <input type="text" value={columnName} onChange={(e) => setColumnName(e.target.value)}/> 
-            : columnName 
-          }
-          <button className='column__title-change-name-btn' onClick={() => setIsTheColumnNameChanging(!isTheColumnNameChanging)}>Cambiar nombre</button>
-        </h2>
+        <div className='column-title'>
+            { 
+                isTheColumnNameChanging 
+                ? <input type="text" value={columnName} onChange={(e) => setColumnName(e.target.value)}/> 
+                : <h2>{columnName}</h2> 
+            }
+            <button 
+                className='column-title__change-name-btn' 
+                onClick={() => setIsTheColumnNameChanging(!isTheColumnNameChanging)}
+                style={{color: isTheColumnNameChanging ? "rgba(0, 0, 0, 1)" : "rgba(0, 0, 0, 0.192)"}}
+            >Cambiar nombre</button>
+        </div>
     )
 }
 

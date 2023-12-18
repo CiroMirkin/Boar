@@ -1,0 +1,40 @@
+.column-title {
+    width: 100%;
+    margin: 0 0 10px;
+    padding: 0;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: flex-end;
+    justify-content: space-between;
+
+}
+.column-title h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.7rem;
+    font-weight: 600;
+    text-align: left;
+}
+.column-title input {
+    height: 1.7rem;
+    width: 100%;
+    font-size: 1rem;
+    line-height: 1.2rem;
+}
+.column-title__change-name-btn {
+    width: 100%;
+    padding: 0;
+    padding-inline-start: 10px;
+    
+    font-size: .8rem;
+    line-height: 1rem;
+    text-align: right;
+    color: rgba(0, 0, 0, 0.192);
+    border: none;
+    background: transparent;
+}
+.column-title__change-name-btn:hover {
+    color: rgba(0, 0, 0, 1) !important;
+    text-decoration: underline;
+}

@@ -13,36 +13,6 @@
     background-color: #fff;
     color: #000;
 }
-.column__title {
-    margin: 0 0 10px;
-    padding: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: flex-end;
-    justify-content: space-between;
-    font-size: 1.5rem;
-    line-height: 1.7rem;
-    font-weight: 600;
-    text-align: left;
-}
-.column__title input {
-    height: 1.5rem;
-    width: 100%;
-}
-.column__title-change-name-btn {
-    margin-inline-start: 10px;
-    padding: 0;
-    font-size: .8rem;
-    line-height: 1rem;
-    text-align: right;
-    color: rgba(0, 0, 0, 0.192);
-    border: none;
-    background: transparent;
-}
-.column__title-change-name-btn:hover {
-    color: rgba(0, 0, 0, 1);
-    text-decoration: underline;
-}
 .column__footer {
     width: 100%;
     padding: .5rem 0;
