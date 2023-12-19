@@ -116,4 +116,33 @@ describe('Mover una tarea entre columnas', () => {
             }
         ])
     })
+    
+    test('Las tareas al moverse entre columnas no deberían cambiar su lugar, si en una columna era la primera en la siguiente también sera la primera', () => {
+        const taskId = "1"
+        const columns = [
+            {
+                name: "",
+                id: "1",
+                taskList: [{ descriptionText: "string", id: "1"}]
+            },
+            {
+                name: "",
+                id: "2",
+                taskList: [{ descriptionText: "string", id: "2"}]
+            }
+        ]
+
+        expect(moveTask({ taskId, to: 'next-column', columns})).toEqual([
+            {
+                name: "",
+                id: "1",
+                taskList: []
+            },
+            {
+                name: "",
+                id: "2",
+                taskList: [ { descriptionText: "string", id: "1"}, { descriptionText: "string", id: "2"}]
+            }
+        ])
+    })
 })
