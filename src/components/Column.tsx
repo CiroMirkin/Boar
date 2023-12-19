@@ -13,13 +13,24 @@ interface ColumnProps {
 function Column({ name, id, children, addNewTaskInColumn, changeColumnName }: ColumnProps) {
   const [ newTask, setNewTask ] = useState('')
 
-  const handleClick = () => {
+  const pushNewTaskInColumn = () => {
     if(!!newTask.trim()) {
       addNewTaskInColumn({
         descriptionText: newTask,
         id: crypto.randomUUID()
       }, id)
       setNewTask('')
+    }
+  }
+
+  const handleClick = () => pushNewTaskInColumn()
+
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if(e.key == 'Enter') {
+      const target = e.target as HTMLInputElement;
+      const newTaskText = (target.value).trim()
+      setNewTask(newTaskText)
+      pushNewTaskInColumn()
     }
   }
 
@@ -30,7 +41,13 @@ function Column({ name, id, children, addNewTaskInColumn, changeColumnName }: Co
           children
         }
         <footer className="column__footer">
-          <input type="text" value={newTask} onChange={(e) => setNewTask(e.target.value)} placeholder='Agregar una nueva tarea...'/>
+          <input 
+            type="text" 
+            value={newTask} 
+            onChange={(e) => setNewTask(e.target.value)} 
+            onKeyUp={handleKeyUp}
+            placeholder='Agregar una nueva tarea...'
+          />
           <button onClick={handleClick}>Agregar</button>
         </footer>
     </li>
