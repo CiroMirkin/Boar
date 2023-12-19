@@ -1,6 +1,6 @@
 .task {
     margin-bottom: 1rem;
-    padding: .5rem 0 0 .5rem;
+    padding: 0;
 
     background: #FCFBFC;
     border-radius: 0.25rem;
@@ -9,7 +9,7 @@
 }
 .task__text {
     margin: 0;
-    padding: 0;
+    padding: .5rem 0 0 .5rem;
     padding-right: .5rem;
 
     font-size: 1.1rem;
