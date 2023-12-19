@@ -31,18 +31,18 @@ export const moveTask = ({ taskId, to, columns }: moveTaskParams): columnsType =
     const prevColumnIndex = columnIndexOfTheTask - 1
     const columnIndexWhereTheTaskWillBe = (to === 'next-column') ? nextColumnIndex : prevColumnIndex 
     if(columnIndexWhereTheTaskWillBe < columns.length && columnIndexWhereTheTaskWillBe > -1) {
-        const numericalParameterOfTheSpliceMethodToInsertAnElementWithoutDeletingElements = 0
+        const SpliceMethodParamToInsertAnElementWithoutDeletingElements = 0
         newColumns[columnIndexWhereTheTaskWillBe].taskList.splice(
             taskIndex, 
-            numericalParameterOfTheSpliceMethodToInsertAnElementWithoutDeletingElements, 
+            SpliceMethodParamToInsertAnElementWithoutDeletingElements, 
             task
         )
         return newColumns
     } 
-    const numericalParameterOfTheSpliceMethodToInsertAnElementWithoutDeletingElements = 0
+    const SpliceMethodParamToInsertAnElementWithoutDeletingElements = 0
     newColumns[columnIndexOfTheTask].taskList.splice(
         taskIndex, 
-        numericalParameterOfTheSpliceMethodToInsertAnElementWithoutDeletingElements, 
+        SpliceMethodParamToInsertAnElementWithoutDeletingElements, 
         task
     )
     return newColumns
