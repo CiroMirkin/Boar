@@ -16,12 +16,12 @@ function TaskOptions({ taskId, deleteTask, moveTask }: TaskOptionsProps) {
     const [ taskOptionsClassName, setTaskOptionsClassName ] = useState('task-options__options--hide')
     const options: options[] = [
         {
-            name: "Avanzar",
-            function: () => moveTask('next-column', taskId)
-        },
-        {
             name: "Retroceder",
             function: () => moveTask('prev-column', taskId)
+        },
+        {
+            name: "Avanzar",
+            function: () => moveTask('next-column', taskId)
         },
         {
           name: 'Eliminar', 
