@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './TaskOptions.css'
+import Icon from './Icon'
 
 interface TaskOptionsProps {
     taskId: string,
@@ -36,7 +37,13 @@ function TaskOptions({ taskId, deleteTask, moveTask }: TaskOptionsProps) {
     
     return (
         <footer className='task-options'>
-            <button className='task-options__btn' onClick={toggleTaskOptions} style={{opacity:  showTaskOptions ? "1" : ".5"}}></button>
+            <button 
+                className='task-options__btn' 
+                onClick={toggleTaskOptions} 
+                style={{opacity:  showTaskOptions ? "1" : ".5"}}
+            >
+                <Icon name='three-dots'></Icon>
+            </button>
             <ul className={`task-options__options ${showTaskOptions ? 'task-options__options--show' : 'task-options__options--hide'}`}>
                 {
                     options.map(option => 
