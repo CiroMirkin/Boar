@@ -4,9 +4,8 @@
     padding: 1rem;
     margin: 2rem  0;
 
-    display: flex;
-    justify-content: space-evenly;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
     gap: 5px;
 
     list-style: none;
