@@ -19,7 +19,7 @@ function Board({ columns, setColumns }: BoardProps) {
   const addNewTaskInColumn = (newTask: taskModel, columnId: string) => {
     const newColumns = addTaskToThisColumn(columnId, columns, newTask)
     setColumns(newColumns)
-    toast.success('Tarea nueva creada')
+    toast.success('Tarea creada')
   }
 
   const deleteThisTaskInThisColumn = (taskId: string, columnId: string) => {
