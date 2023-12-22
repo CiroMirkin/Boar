@@ -19,7 +19,7 @@
     background-color: #ccc;
 }
 .task-options__btn:hover {
-    opacity: 1 !important;
+    opacity: 1;
 }
 .task-options__options {
     width: 100%;
@@ -44,10 +44,26 @@
 }
 
 .task-option-btn {
-    padding: 2px 6px;
+    height: auto;
+    padding: 3px 6px 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
     font-size: .8rem;
-    line-height: 1rem;
+    text-align: left;
+    line-height: .9rem;
     background: #FCFBFC;
 	border-radius: 0.25rem;
     border: solid 0.125rem #121212;
+    transition: background-color 500ms ease;
+}
+.task-option-btn > * {
+    display: block;
+}
+.task-option-btn--primary:hover {
+    background-color: #8bd3dd;
+}
+.task-option-btn--danger:hover {
+    background-color: rgba(239, 69, 100, 0.647);
 }

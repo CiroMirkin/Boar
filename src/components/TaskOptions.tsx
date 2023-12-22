@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './TaskOptions.css'
-import Icon from './Icon'
+import Icon, { iconType } from './Icon'
 
 interface TaskOptionsProps {
     taskId: string,
@@ -10,7 +10,9 @@ interface TaskOptionsProps {
 
 interface options {
     name: string,
-    function: Function
+    function: Function,
+    colorClassName: string
+    iconName?: iconType
 }
 
 function TaskOptions({ taskId, deleteTask, moveTask }: TaskOptionsProps) {
@@ -18,15 +20,19 @@ function TaskOptions({ taskId, deleteTask, moveTask }: TaskOptionsProps) {
     const options: options[] = [
         {
             name: "Retroceder",
-            function: () => moveTask('prev-column', taskId)
+            function: () => moveTask('prev-column', taskId),
+            colorClassName: "task-option-btn--primary"
         },
         {
             name: "Avanzar",
-            function: () => moveTask('next-column', taskId)
+            function: () => moveTask('next-column', taskId),
+            colorClassName: "task-option-btn--primary"
         },
         {
           name: 'Eliminar', 
-          function: () => deleteTask(taskId)
+          function: () => deleteTask(taskId),
+          colorClassName: 'task-option-btn--danger',
+          iconName: "trash-fill"
         },
     ]
 
@@ -37,19 +43,16 @@ function TaskOptions({ taskId, deleteTask, moveTask }: TaskOptionsProps) {
     
     return (
         <footer className='task-options'>
-            <button 
-                className='task-options__btn' 
-                onClick={toggleTaskOptions} 
-                style={{opacity:  showTaskOptions ? "1" : ".5"}}
-            >
+            <button className='task-options__btn' onClick={toggleTaskOptions}>
                 <Icon name='three-dots'></Icon>
             </button>
             <ul className={`task-options__options ${showTaskOptions ? 'task-options__options--show' : 'task-options__options--hide'}`}>
                 {
                     options.map(option => 
                         <li key={option.name}>
-                            <button onClick={() => option.function()} className='task-option-btn'>
-                                {option.name}
+                            <button onClick={() => option.function()} className={`task-option-btn ${option.colorClassName}`}>
+                                { option.iconName! && <Icon name={option.iconName}></Icon> }
+                                <span>{option.name}</span>
                             </button>
                         </li>
                     )
