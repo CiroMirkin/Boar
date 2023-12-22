@@ -41,7 +41,7 @@ function TaskOptions({ taskId, deleteTask, moveTask }: TaskOptionsProps) {
                 {
                     options.map(option => 
                         <li key={option.name}>
-                            <button onClick={() => option.function()}>
+                            <button onClick={() => option.function()} className='task-option-btn'>
                                 {option.name}
                             </button>
                         </li>
