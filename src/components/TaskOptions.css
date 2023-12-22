@@ -25,6 +25,7 @@
     width: 100%;
     margin: 0;
     list-style: none;
+    flex-wrap: wrap;
 }
 .task-options__options--hide {
     display: none;
