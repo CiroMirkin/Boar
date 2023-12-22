@@ -1,5 +1,4 @@
 import { addTaskToThisColumn } from "./addTask"
-import { taskModel } from "./models/task"
 
 describe('Agregar una tarea en la columna correspondiente', () => {
     test('Se puede agregar una tarea en la columna', () => {
