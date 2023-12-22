@@ -43,7 +43,7 @@ function TaskOptions({ taskId, deleteTask, moveTask }: TaskOptionsProps) {
     
     return (
         <footer className='task-options'>
-            <button className='task-options__btn' onClick={toggleTaskOptions}>
+            <button className='task-options__btn' onClick={toggleTaskOptions} title='Opciones'>
                 <Icon name='three-dots'></Icon>
             </button>
             <ul className={`task-options__options ${showTaskOptions ? 'task-options__options--show' : 'task-options__options--hide'}`}>
