@@ -1,6 +1,7 @@
 import './App.css'
 import { useState } from 'react'
 import Board from './components/Board'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
   const [ columns, setColumns ] = useState([
@@ -28,6 +29,10 @@ function App() {
 
   return (
     <>
+      <Toaster
+        position="bottom-right"
+        reverseOrder={false}
+      />
       <Board columns={columns} setColumns={setColumns} />
     </>
   )
