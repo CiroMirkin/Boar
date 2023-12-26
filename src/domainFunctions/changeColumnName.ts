@@ -1,4 +1,4 @@
-import { columnModel } from "./models/column"
+import { columnModel } from "../models/column"
 
 interface changeColumnNameParams {
     columnId: string, 

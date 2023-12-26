@@ -1,5 +1,5 @@
-import { columnModel } from "./models/column";
-import { taskModel } from "./models/task";
+import { columnModel } from "../models/column";
+import { taskModel } from "../models/task";
 
 export const addTaskToThisColumn = (columnId: string, columns: columnModel[], task: taskModel): columnModel[] => {
     if(!(task.id).trim()) {

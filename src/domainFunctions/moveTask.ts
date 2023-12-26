@@ -1,5 +1,5 @@
-import { columnModel } from "./models/column"
-import { taskModel } from "./models/task"
+import { columnModel } from "../models/column"
+import { taskModel } from "../models/task"
 
 export type moveToType = 'next-column' | 'prev-column'
 type columnsType = columnModel[]
