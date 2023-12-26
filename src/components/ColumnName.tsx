@@ -32,7 +32,6 @@ function ColumnName({ name, changeColumnName, columnId }: ColumnNameProps) {
             <button 
                 className='column-title__change-name-btn' 
                 onClick={handleClick}
-                style={{color: isTheColumnNameChanging ? "rgba(0, 0, 0, 1)" : "rgba(0, 0, 0, 0.192)"}}
             >
                     <Icon name="pencil-square" />
             </button>

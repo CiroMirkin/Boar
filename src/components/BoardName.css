@@ -29,6 +29,6 @@
     background: transparent;
 }
 .board-name__change-name-btn:hover {
-    opacity: 1 !important;
+    opacity: 1;
     text-decoration: underline;
 }

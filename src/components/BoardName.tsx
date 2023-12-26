@@ -31,7 +31,6 @@ function BoardName({ name, changeName }: BoardNameProps) {
             <button 
                 className='board-name__change-name-btn' 
                 onClick={handleClick}
-                style={{opacity: isTheColumnNameChanging ? "1" : "0.192"}}
             >
                 <Icon name="pencil-square" />
             </button>

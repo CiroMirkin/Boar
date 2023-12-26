@@ -35,6 +35,6 @@
     background: transparent;
 }
 .column-title__change-name-btn:hover {
-    color: rgba(0, 0, 0, 1) !important;
+    color: rgba(0, 0, 0, 1);
     text-decoration: underline;
 }
