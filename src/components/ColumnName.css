@@ -15,12 +15,15 @@
     line-height: 1.7rem;
     font-weight: 600;
     text-align: left;
+    border: 2px solid transparent;
 }
 .column-title input {
-    height: 1.7rem;
     width: 100%;
-    font-size: 1rem;
-    line-height: 1.2rem;
+    height: auto;
+    padding-block: 0;
+    font-size: 1.5rem;
+    line-height: 1.7rem;
+    font-weight: bold;
 }
 .column-title__change-name-btn {
     width: 100%;

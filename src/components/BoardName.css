@@ -7,14 +7,18 @@
     align-items: baseline;
 }
 .board-name-component input {
+    padding-block: 0;
     min-width: 10em;
     font-size: 2rem;
+    line-height: 2.2rem;
+    font-weight: bold;
 }
 .board-name {
     margin: 0;
     font-size: 2rem;
     line-height: 2.2rem;
     font-weight: bold;
+    border: 2px solid transparent;
 }
 .board-name__change-name-btn {
     font-size: .8rem;
