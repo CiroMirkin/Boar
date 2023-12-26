@@ -5,6 +5,8 @@ Aplicación web para gestionar tareas desarrollada con TypeScript y React.
 
 El usuario al entrar en la aplicación verá un tablero con tres columnas que contienen tareas, donde las columnas indican el estado de las tareas.
 
+:dart: Stack: React - TypeScript - Vite - Vitest - Jest - CSS
+
 ## Características
 
 Ordenadas de mayor a menor prioridad, comenzando por las *fundamentales*.
@@ -36,6 +38,8 @@ Como métricas el usuario puede saber:
 
 ### Características a evaluar
 
+* Cambiar el color de las columnas. *(En evaluación)*
+* Cambiar el color de las tareas. *(En evaluación)*
 * Marcar una tarea como terminada. *(En evaluación)*
 * Vaciar un columna, eliminar todas las tareas que contiene. *(En evaluación)*
 * Mover una columna de lugar. *(En evaluación)*
@@ -43,13 +47,9 @@ Como métricas el usuario puede saber:
 
 ## Referencias
 
-Se utilizará [Trello](https://trello.com/es) como referencia para funcionalidades.
+Se utilizará [Trello](https://trello.com/es) como referencia.
 
-![Aparente captura de pantalla de Trello](https://lh3.googleusercontent.com/u/0/drive-viewer/AK7aPaCeOAXU-0eStwRIA1J8rc0EYGAh6SO3vUQ4RmIi22Mo--p96TVOvWFubjeQXexVslcxE2MFcCjfXrKOdBLMG4OPa9X0=w1024-h484)
-
-### Wireframe
-
-![Wireframe de la aplicación]()
+![Captura de pantalla de Trello](https://images.ctfassets.net/rz1oowkt5gyp/4kCNudjaBYj90CGgG7Lict/cbafa67336b2007278f50d99ceabfb22/Boards_2x.png?w=1140&fm=webp)
 
 ### Anteriores intentos de realizar esta aplicación
 
@@ -67,7 +67,7 @@ Para el **testing** se eligió Vitest y Jest.
 
 Para el **flujo de trabajo** se utilizara Git siguiendo la metodología *ship/show/ask*, Trello para la gestión de tareas y GitHub para centralizar el código del proyecto.
 
-### Comandos
+## Comandos
 
 El proyecto usa [Vite](https://vitejs.dev/) como empaquetador y [Vitest](https://vitest.dev/guide/) para el testing.
 
