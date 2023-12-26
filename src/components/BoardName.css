@@ -1,0 +1,30 @@
+.board-name-component {
+    width: 100%;
+    padding-inline-start: 1rem;
+    margin: 2rem 0 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+.board-name-component input {
+    min-width: 10em;
+    font-size: 2rem;
+}
+.board-name {
+    margin: 0;
+    font-size: 2rem;
+    line-height: 2.2rem;
+    font-weight: bold;
+}
+.board-name__change-name-btn {
+    font-size: .8rem;
+    line-height: 1rem;
+    text-align: right;
+    opacity: 0.192;
+    border: none;
+    background: transparent;
+}
+.board-name__change-name-btn:hover {
+    opacity: 1 !important;
+    text-decoration: underline;
+}

@@ -26,6 +26,7 @@ function App() {
       taskList: []
     },
   ])
+  const [ boardName, setBoardName ] = useState("Tablero básico")
 
   return (
     <>
@@ -33,7 +34,7 @@ function App() {
         position="bottom-right"
         reverseOrder={false}
       />
-      <Board name="Tablero básico" columns={columns} setColumns={setColumns} />
+      <Board name={boardName} changeName={setBoardName} columns={columns} setColumns={setColumns} />
     </>
   )
 }

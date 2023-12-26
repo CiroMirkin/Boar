@@ -8,14 +8,16 @@ import { deleteThisTaskFromThisColumn } from '../domainFunctions/deleteTask'
 import { moveTask, moveToType } from '../domainFunctions/moveTask'
 import { changeColumnName } from '../domainFunctions/changeColumnName'
 import toast from 'react-hot-toast'
+import BoardName from './BoardName'
 
 interface BoardProps {
   columns: columnModel[],
   setColumns: Function,
-  name: string
+  name: string,
+  changeName: Function
 }
 
-function Board({ columns, setColumns, name }: BoardProps) {
+function Board({ columns, setColumns, name, changeName }: BoardProps) {
 
   const addNewTaskInColumn = (newTask: taskModel, columnId: string) => {
     const newColumns = addTaskToThisColumn(columnId, columns, newTask)
@@ -41,7 +43,7 @@ function Board({ columns, setColumns, name }: BoardProps) {
 
   return (
     <>
-      <h1 className='board-name'>{name}</h1>
+      <BoardName name={name} changeName={changeName} />
       <ul className='board'>
           {
               columns.map(column => 
