@@ -10,11 +10,12 @@ import { changeColumnName } from '../changeColumnName'
 import toast from 'react-hot-toast'
 
 interface BoardProps {
-    columns: columnModel[],
-    setColumns: Function
+  columns: columnModel[],
+  setColumns: Function,
+  name: string
 }
 
-function Board({ columns, setColumns }: BoardProps) {
+function Board({ columns, setColumns, name }: BoardProps) {
 
   const addNewTaskInColumn = (newTask: taskModel, columnId: string) => {
     const newColumns = addTaskToThisColumn(columnId, columns, newTask)
@@ -39,25 +40,28 @@ function Board({ columns, setColumns }: BoardProps) {
   }
 
   return (
-    <ul className='board'>
-        {
-            columns.map(column => 
-                <Column 
-                  key={column.id} 
-                  id={column.id} 
-                  name={column.name} 
-                  addNewTaskInColumn={addNewTaskInColumn}
-                  changeColumnName={changeColumnNameOfThisColumn}
-                > 
-                  <TaskList 
-                    taskList={column.taskList} 
-                    deleteTask={(taskId: string) => deleteThisTaskInThisColumn(taskId, column.id)}
-                    moveTask={moveATask}
-                  />
-                </Column>
-            )
-        }
-    </ul>
+    <>
+      <h1 className='board-name'>{name}</h1>
+      <ul className='board'>
+          {
+              columns.map(column => 
+                  <Column 
+                    key={column.id} 
+                    id={column.id} 
+                    name={column.name} 
+                    addNewTaskInColumn={addNewTaskInColumn}
+                    changeColumnName={changeColumnNameOfThisColumn}
+                  > 
+                    <TaskList 
+                      taskList={column.taskList} 
+                      deleteTask={(taskId: string) => deleteThisTaskInThisColumn(taskId, column.id)}
+                      moveTask={moveATask}
+                    />
+                  </Column>
+              )
+          }
+      </ul>
+    </>
   )
 }
 

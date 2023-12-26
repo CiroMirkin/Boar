@@ -33,7 +33,7 @@ function App() {
         position="bottom-right"
         reverseOrder={false}
       />
-      <Board columns={columns} setColumns={setColumns} />
+      <Board name="Tablero básico" columns={columns} setColumns={setColumns} />
     </>
   )
 }

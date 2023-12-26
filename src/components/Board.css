@@ -10,3 +10,11 @@
 
     list-style: none;
 }
+
+.board-name {
+    padding-inline-start: 1rem;
+    margin: 2rem 0 0;
+    font-size: 2rem;
+    line-height: 2.2rem;
+    font-weight: bold;
+}
