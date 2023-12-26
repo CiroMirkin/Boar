@@ -12,8 +12,11 @@ function ColumnName({ name, changeColumnName, columnId }: ColumnNameProps) {
     const [ isTheColumnNameChanging, setIsTheColumnNameChanging ] = useState(false)
 
     const handleClick = () => {
-        if(isTheColumnNameChanging) {
+        if(isTheColumnNameChanging && !!columnName.trim()) {
             changeColumnName(columnId, columnName)
+        }
+        if(!columnName.trim()) {
+            setColumnName(name)
         }
         setIsTheColumnNameChanging(!isTheColumnNameChanging)
     }

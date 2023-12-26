@@ -11,8 +11,11 @@ function BoardName({ name, changeName }: BoardNameProps) {
     const [ isTheColumnNameChanging, setIsTheColumnNameChanging ] = useState(false)
 
     const handleClick = () => {
-        if(isTheColumnNameChanging) {
+        if(isTheColumnNameChanging && !!boardName.trim()) {
             changeName(boardName)
+        }
+        if(!boardName.trim()) {
+            setBoardName(name)
         }
         setIsTheColumnNameChanging(!isTheColumnNameChanging)
     }
