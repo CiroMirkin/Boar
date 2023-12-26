@@ -1,5 +1,6 @@
 import { useState } from "react"
 import './BoardName.css'
+import Icon from "./Icon"
 
 interface BoardNameProps {
     name: string,
@@ -31,7 +32,9 @@ function BoardName({ name, changeName }: BoardNameProps) {
                 className='board-name__change-name-btn' 
                 onClick={handleClick}
                 style={{opacity: isTheColumnNameChanging ? "1" : "0.192"}}
-            >Cambiar nombre</button>
+            >
+                <Icon name="pencil-square" />
+            </button>
         </div>
     )
   }

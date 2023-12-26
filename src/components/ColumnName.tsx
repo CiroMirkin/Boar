@@ -1,5 +1,6 @@
 import { useState } from "react"
 import './ColumnName.css'
+import Icon from "./Icon"
 
 interface ColumnNameProps{
     name: string
@@ -32,7 +33,9 @@ function ColumnName({ name, changeColumnName, columnId }: ColumnNameProps) {
                 className='column-title__change-name-btn' 
                 onClick={handleClick}
                 style={{color: isTheColumnNameChanging ? "rgba(0, 0, 0, 1)" : "rgba(0, 0, 0, 0.192)"}}
-            >Cambiar nombre</button>
+            >
+                    <Icon name="pencil-square" />
+            </button>
         </div>
     )
 }

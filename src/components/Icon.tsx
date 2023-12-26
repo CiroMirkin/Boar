@@ -1,4 +1,4 @@
-export type iconType = 'three-dots' | 'trash-fill' | 'caret-right-fill' | 'caret-left-fill'
+export type iconType = 'three-dots' | 'trash-fill' | 'caret-right-fill' | 'caret-left-fill' | 'pencil-square'
 
 interface IconProps {
   name: iconType
