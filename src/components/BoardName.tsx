@@ -31,6 +31,7 @@ function BoardName({ name, changeName }: BoardNameProps) {
             <button 
                 className='board-name__change-name-btn' 
                 onClick={handleClick}
+                title="Editar el nombre del tablero"
             >
                 <Icon name="pencil-square" />
             </button>

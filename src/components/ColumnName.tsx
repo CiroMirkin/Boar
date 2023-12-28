@@ -32,6 +32,7 @@ function ColumnName({ name, changeColumnName, columnId }: ColumnNameProps) {
             <button 
                 className='column-title__change-name-btn' 
                 onClick={handleClick}
+                title="Editar el nombre de la columna"
             >
                     <Icon name="pencil-square" />
             </button>
