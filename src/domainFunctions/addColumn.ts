@@ -8,6 +8,7 @@ export const addColumnAtTheEnd = (columnName: string, columns: columnModel[]): c
         id: increaseTheLastId(),
         taskList: []
     }
-    columns.push(newColumn)
-    return columns
+    const newColumns = [...columns]
+    newColumns.push(newColumn)
+    return newColumns
 }

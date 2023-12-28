@@ -9,6 +9,7 @@ import { moveTask, moveToType } from '../domainFunctions/moveTask'
 import { changeColumnName } from '../domainFunctions/changeColumnName'
 import toast from 'react-hot-toast'
 import BoardName from './BoardName'
+import { addColumnAtTheEnd } from '../domainFunctions/addColumn'
 
 interface BoardProps {
   columns: columnModel[],
@@ -41,6 +42,12 @@ function Board({ columns, setColumns, name, changeName }: BoardProps) {
     setColumns(newColumns)
   }
 
+  const addNewColumnAtTheEndOfTheBoard = () => {
+    const newColumns = addColumnAtTheEnd('Nueva columna', columns)
+    setColumns(newColumns)
+    toast.success('Columna creada')
+  }
+
   return (
     <>
       <BoardName name={name} changeName={changeName} />
@@ -66,7 +73,7 @@ function Board({ columns, setColumns, name, changeName }: BoardProps) {
       </ul>
 
       <footer className='board-footer'>
-        <button className='btn'>Agregar columna</button>
+        <button className='btn' onClick={() => addNewColumnAtTheEndOfTheBoard()}>Agregar columna</button>
       </footer>
     </>
   )
