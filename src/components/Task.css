@@ -2,7 +2,7 @@
     margin-bottom: 1rem;
     padding: 0;
 
-    background: #FCFBFC;
+    background: var(--white-color);
     border-radius: 0.25rem;
     border: solid 0.125rem #000;
     box-shadow: 0.15rem 0.15rem #000;

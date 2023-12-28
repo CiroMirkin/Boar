@@ -20,7 +20,7 @@ Ordenadas de mayor a menor prioridad, comenzando por las *fundamentales*.
 
 ### Características secundarias
 
-* Crear nuevas columnas.
+* Crear nuevas columnas. :white_check_mark:
 * Editar el contenido de las tareas.
 * Eliminar columnas, siempre debe haber mínimo tres columnas, nunca menos.
 * Cambiar el nombre del tablero. :white_check_mark:

@@ -20,10 +20,22 @@ html {
   box-sizing: border-box;
 }
 
+:root {
+  --primary-color: rgb(223,233,238);
+  --warning-color: #ffd48e;
+  --purple-color: rgb(208,186,241);
+  --pink-color: rgb(252,163,220);
+  --success-color: #6a8d8b;
+  --info-color: rgb(136,163,253);
+  --danger-color: rgba(239, 69, 100, 0.647);
+  --white-color: #FCFBFC;
+}
+
 body {
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--primary-color);
 }

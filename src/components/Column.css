@@ -10,7 +10,7 @@
 
     border: #000 solid .125rem;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: var(--white-color);
     color: #000;
 }
 .column__footer {
