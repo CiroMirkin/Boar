@@ -64,7 +64,7 @@ function Board({ columns, setColumns, name, changeName }: BoardProps) {
               )
           }
       </ul>
-      
+
       <footer className='board-footer'>
         <button className='btn'>Agregar columna</button>
       </footer>
