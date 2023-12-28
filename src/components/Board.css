@@ -25,9 +25,9 @@
     border-radius: 0.25rem;
 	border: solid 0.125rem #121212;
 	box-shadow: 0.15rem 0.15rem #121212;
-    background-color: #fff;
+    background-color: var(--white-color);
     transition: background-color 500ms ease;
 }
 .board-footer .btn:hover {
-    background-color: #8bd3dd;
+    background-color: var(--info-color);
 }

@@ -54,7 +54,7 @@
     font-size: .8rem;
     text-align: left;
     line-height: .9rem;
-    background: #FCFBFC;
+    background: var(--white-color);
 	border-radius: 0.25rem;
     border: solid 0.125rem #121212;
     transition: background-color 500ms ease;
@@ -63,8 +63,8 @@
     display: block;
 }
 .task-option-btn--primary:hover {
-    background-color: #8bd3dd;
+    background-color: var(--info-color);
 }
 .task-option-btn--danger:hover {
-    background-color: rgba(239, 69, 100, 0.647);
+    background-color: var(--danger-color);
 }
