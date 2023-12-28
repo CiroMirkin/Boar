@@ -5,7 +5,8 @@ Aplicación web para gestionar tareas desarrollada con TypeScript y React.
 
 El usuario al entrar en la aplicación verá un tablero con tres columnas que contienen tareas, donde las columnas indican el estado de las tareas.
 
-:dart: Stack: React - TypeScript - Vite - Vitest - Jest - CSS
+:dart: **Stack:** <br> 
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=flat-square&logo=typescript&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=flat-square&logo=react&logoColor=%2361DAFB) ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=flat-square&logo=vite&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=flat-square&logo=css3&logoColor=white) ![GIT](https://img.shields.io/badge/Git-fc6d26?style=flat-square&logo=git&logoColor=white)
 
 ## Características
 
