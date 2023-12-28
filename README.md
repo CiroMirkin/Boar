@@ -29,22 +29,22 @@ Ordenadas de mayor a menor prioridad, comenzando por las *fundamentales*.
 ### Características agregadas
 
 * Poder descargar y subir un archivo con la información del tablero.
+* Marcar una tarea como terminada.
+* Ver todas las tareas terminadas, ordenadas de la más reciente a la más antigua.
 
-Como métricas el usuario puede saber:
-
-* Cuantas tareas hay en total.
-* Cuantas tareas hay en cada columna.
-* Cuantas tareas se completaron.
-* Cuantas tareas no se completaron.
+* Métricas:
+    * Cuantas tareas hay en total.
+    * Cuantas tareas hay en cada columna.
+    * Cuantas tareas se terminaron.
+    * Cuantas tareas no se terminaron.
 
 ### Características a evaluar
 
 * Cambiar el color de las columnas. *(En evaluación)*
 * Cambiar el color de las tareas. *(En evaluación)*
-* Marcar una tarea como terminada. *(En evaluación)*
-* Vaciar un columna, eliminar todas las tareas que contiene. *(En evaluación)*
+* Vaciar una columna, eliminar todas las tareas que contiene. *(En evaluación)*
 * Mover una columna de lugar. *(En evaluación)*
-* Cuanto tiempo promedio tarda una tarea en terminarse contando desde el momento en que se crea. *(En evaluación)*
+* Ver cuanto tiempo promedio tarda una tarea en terminarse contando desde el momento en que se crea. *(En evaluación)*
 
 ## Referencias
 
@@ -62,7 +62,7 @@ Si bien la segunda versión es estructuralmente superior al primer intento, no s
 
 ## Desarrollo
 
-Para el **FrontEnd** se eligió React en conjunto con TypeScript, esto por. CSS puro para dar estilos a los componentes y Vite como empaquetador.
+Para el **FrontEnd** se eligió React en conjunto con TypeScript. CSS puro para dar estilos a los componentes y Vite como empaquetador.
 
 Para el **testing** se eligió Vitest y Jest.
 
