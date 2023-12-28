@@ -44,6 +44,7 @@ function Board({ columns, setColumns, name, changeName }: BoardProps) {
   return (
     <>
       <BoardName name={name} changeName={changeName} />
+
       <ul className='board'>
           {
               columns.map(column => 
@@ -63,6 +64,10 @@ function Board({ columns, setColumns, name, changeName }: BoardProps) {
               )
           }
       </ul>
+      
+      <footer className='board-footer'>
+        <button className='btn'>Agregar columna</button>
+      </footer>
     </>
   )
 }

@@ -2,11 +2,32 @@
     width: 100%;
     height: auto;
     padding: 1rem;
-    margin: 2rem  0;
+    margin: 2rem 0 0;
 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
     gap: 5px;
 
     list-style: none;
+}
+
+.board-footer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 1rem .6rem;
+}
+.board-footer .btn {
+    padding-block: 4px;
+    font-size: .8rem;
+    line-height: 1rem;
+    font-weight: 400;
+    border-radius: 0.25rem;
+	border: solid 0.125rem #121212;
+	box-shadow: 0.15rem 0.15rem #121212;
+    background-color: #fff;
+    transition: background-color 500ms ease;
+}
+.board-footer .btn:hover {
+    background-color: #8bd3dd;
 }
