@@ -1,11 +1,15 @@
 import { columnModel } from "../models/column";
 
 export const addColumnAtTheEnd = (columnName: string, columns: columnModel[]): columnModel[] => {
-    const lastColumn = columns.at(-1)
-    const increaseTheLastId = (): string => (Number(lastColumn?.id)+1).toString();
+    const getColumnId = (): string => {
+        const lastColumn = columns.at(-1)
+        const lastColumnId = lastColumn?.id
+        const newColumnId = Number(lastColumnId) + 1
+        return newColumnId.toString()
+    }
     const newColumn = {
         name: columnName,
-        id: increaseTheLastId(),
+        id: getColumnId(),
         taskList: []
     }
     const newColumns = [...columns]
