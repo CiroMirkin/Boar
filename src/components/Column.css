@@ -1,3 +1,8 @@
+#root {
+  --column-background-color: #FCFBFC;
+  --column-font-color: #000;
+}
+
 .column {
     width: auto;
     min-height: 20rem;
@@ -10,8 +15,8 @@
 
     border: #000 solid .125rem;
     border-radius: 10px;
-    background-color: var(--white-color);
-    color: #000;
+    background-color: var(--column-background-color);
+    color: var(--column-font-color);
 }
 .column__footer {
     width: 100%;
