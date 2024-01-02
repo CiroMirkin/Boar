@@ -61,13 +61,7 @@ const config: Config = {
           sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'Docs',
-        },
-        {to: '/blog', label: 'Blog', position: 'left'},
-        {
-          href: 'https://github.com/CiroMirkin/Boar',
-          label: 'GitHub',
-          position: 'right',
-        },
+        }
       ],
     },
     footer: {
@@ -85,10 +79,6 @@ const config: Config = {
         {
           title: 'Más',
           items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
             {
               label: 'GitHub',
               href: 'https://github.com/CiroMirkin/Boar',
