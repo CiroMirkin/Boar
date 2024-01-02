@@ -46,6 +46,13 @@ function ColumnName({ name, changeColumnName, columnId }: ColumnNameProps) {
             >
                 <Icon name="pencil-square" />
             </button>
+            <button
+                className='column-title__change-name-btn'
+                onClick={() => handleClick(columnActions.DELETE)}
+                title="Eliminar columna"
+            >
+                <Icon name="trash-fill" />
+            </button>
         </div>
     )
 }
