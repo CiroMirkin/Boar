@@ -41,4 +41,41 @@ describe('Eliminar una columna del tablero', () => {
             }
         ])
     })
+
+    test('No se debería poder eliminar una columna al haber solo tres columnas', () => {
+        const columns = [
+            {
+                name: "",
+                id: "1",
+                taskList: []
+            },
+            {
+                name: "",
+                id: "2",
+                taskList: []
+            },
+            {
+                name: "",
+                id: "3",
+                taskList: []
+            }
+        ]
+        expect(deleteThisColumnFromColumns({ columnId: "3", columns })).toEqual([
+            {
+                name: "",
+                id: "1",
+                taskList: []
+            },
+            {
+                name: "",
+                id: "2",
+                taskList: []
+            },
+            {
+                name: "",
+                id: "3",
+                taskList: []
+            }
+        ])
+    })
 })

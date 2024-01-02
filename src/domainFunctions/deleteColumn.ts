@@ -6,6 +6,9 @@ interface deleteThisColumnFromColumnsParams {
 }
 
 export const deleteThisColumnFromColumns = ({ columnId, columns }: deleteThisColumnFromColumnsParams): columnModel[] => {
-    const newColumns = [...columns].filter(column => column.id !== columnId)
-    return newColumns
+    if(columns.length > 3) {
+        const newColumns = [...columns].filter(column => column.id !== columnId)
+        return newColumns
+    }
+    return columns
 }
