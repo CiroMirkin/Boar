@@ -68,34 +68,16 @@ Para el **testing** se eligió Vitest y Jest.
 
 Para el **flujo de trabajo** se utilizara Git siguiendo la metodología *ship/show/ask*, Trello para la gestión de tareas y GitHub para centralizar el código del proyecto.
 
-## Comandos
+## Documentación
 
-El proyecto usa [Vite](https://vitejs.dev/) como empaquetador y [Vitest](https://vitest.dev/guide/) para el testing.
+Para leer la documentación del proyecto puedes ejecutar los siguientes comandos:
 
-#### Desarrollo:
-
-```
-npm run dev
+```bash
+cd website
 ```
 
-#### Testing: 
-
-Testing por consola:
-
-```
-npm test
+```bash
+npm run start
 ```
 
-Testing por UI:
-
-```
-npm run test-ui
-```
-
-[http://localhost:51204/__vitest__/#/](http://localhost:51204/__vitest__/#/)
-
-#### Despliegue:
-
-```
-npm run build
-```
+Con `cd website` entraras a al directorio donde esta la documentación y con `npm run start` se creara el sitio con la documentación en [http://localhost:3000/](http://localhost:3000/).
