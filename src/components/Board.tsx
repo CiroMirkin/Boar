@@ -50,9 +50,14 @@ function Board({ columns, setColumns, name, changeName }: BoardProps) {
   }
 
   const deleteColumn = (columnId: string) => {
-    const newColumns = deleteThisColumnFromColumns({ columnId, columns })
-    setColumns(newColumns)
-    toast.success('Columna eliminada')
+    try {
+      const newColumns = deleteThisColumnFromColumns({ columnId, columns })
+      setColumns(newColumns)
+      toast.success('Columna eliminada')
+    }
+    catch(e) {
+      toast.error('Solo hay tres columnas, no se puede eliminar la columna')
+    }
   }
 
   return (
