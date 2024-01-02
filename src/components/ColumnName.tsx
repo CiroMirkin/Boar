@@ -30,7 +30,6 @@ function ColumnName({ name, columnId, changeColumnName, deleteColumn }: ColumnNa
         }
         if(columnAction == columnActions.DELETE) {
             deleteColumn(columnId)
-            console.log('delete')
         }
     }
 
