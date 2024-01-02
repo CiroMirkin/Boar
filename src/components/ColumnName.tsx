@@ -12,14 +12,24 @@ function ColumnName({ name, changeColumnName, columnId }: ColumnNameProps) {
     const [ columnName, setColumnName ] = useState(name)
     const [ isTheColumnNameChanging, setIsTheColumnNameChanging ] = useState(false)
 
-    const handleClick = () => {
-        if(isTheColumnNameChanging && !!columnName.trim()) {
-            changeColumnName(columnId, columnName)
+    enum columnActions {
+        EDIT = 'EDIT',
+        DELETE = 'DELETE'
+    }
+
+    const handleClick = (columnAction: string) => {
+        if(columnAction == columnActions.EDIT) {
+            if(isTheColumnNameChanging && !!columnName.trim()) {
+                changeColumnName(columnId, columnName)
+            }
+            if(!columnName.trim()) {
+                setColumnName(name)
+            }
+            setIsTheColumnNameChanging(!isTheColumnNameChanging)
         }
-        if(!columnName.trim()) {
-            setColumnName(name)
+        if(columnAction == columnActions.DELETE) {
+            console.log('delete')
         }
-        setIsTheColumnNameChanging(!isTheColumnNameChanging)
     }
 
     return (
@@ -31,10 +41,10 @@ function ColumnName({ name, changeColumnName, columnId }: ColumnNameProps) {
             }
             <button 
                 className='column-title__change-name-btn' 
-                onClick={handleClick}
+                onClick={() => handleClick(columnActions.EDIT)}
                 title="Editar el nombre de la columna"
             >
-                    <Icon name="pencil-square" />
+                <Icon name="pencil-square" />
             </button>
         </div>
     )
