@@ -5,10 +5,11 @@ import Icon from "./Icon"
 interface ColumnNameProps{
     name: string
     columnId: string
-    changeColumnName: Function
+    changeColumnName: Function,
+    deleteColumn: Function
 }
 
-function ColumnName({ name, changeColumnName, columnId }: ColumnNameProps) {
+function ColumnName({ name, columnId, changeColumnName, deleteColumn }: ColumnNameProps) {
     const [ columnName, setColumnName ] = useState(name)
     const [ isTheColumnNameChanging, setIsTheColumnNameChanging ] = useState(false)
 
@@ -28,6 +29,7 @@ function ColumnName({ name, changeColumnName, columnId }: ColumnNameProps) {
             setIsTheColumnNameChanging(!isTheColumnNameChanging)
         }
         if(columnAction == columnActions.DELETE) {
+            deleteColumn(columnId)
             console.log('delete')
         }
     }
