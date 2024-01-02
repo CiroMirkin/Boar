@@ -10,6 +10,7 @@ import { changeColumnName } from '../domainFunctions/changeColumnName'
 import toast from 'react-hot-toast'
 import BoardName from './BoardName'
 import { addColumnAtTheEnd } from '../domainFunctions/addColumn'
+import { deleteThisColumnFromColumns } from '../domainFunctions/deleteColumn'
 
 interface BoardProps {
   columns: columnModel[],
@@ -48,6 +49,17 @@ function Board({ columns, setColumns, name, changeName }: BoardProps) {
     toast.success('Columna creada')
   }
 
+  const deleteColumn = (columnId: string) => {
+    try {
+      const newColumns = deleteThisColumnFromColumns({ columnId, columns })
+      setColumns(newColumns)
+      toast.success('Columna eliminada')
+    }
+    catch(e) {
+      toast.error('Solo hay tres columnas, no se puede eliminar la columna')
+    }
+  }
+
   return (
     <>
       <BoardName name={name} changeName={changeName} />
@@ -61,6 +73,7 @@ function Board({ columns, setColumns, name, changeName }: BoardProps) {
                     name={column.name} 
                     addNewTaskInColumn={addNewTaskInColumn}
                     changeColumnName={changeColumnNameOfThisColumn}
+                    deleteColumn={deleteColumn}
                   > 
                     <TaskList 
                       taskList={column.taskList} 

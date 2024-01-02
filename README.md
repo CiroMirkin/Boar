@@ -23,7 +23,7 @@ Ordenadas de mayor a menor prioridad, comenzando por las *fundamentales*.
 
 * Crear nuevas columnas. :white_check_mark:
 * Editar el contenido de las tareas.
-* Eliminar columnas, siempre debe haber mínimo tres columnas, nunca menos.
+* Eliminar columnas, siempre debe haber mínimo tres columnas, nunca menos.  :white_check_mark:
 * Cambiar el nombre del tablero. :white_check_mark:
 
 ### Características agregadas
