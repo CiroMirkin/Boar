@@ -1,8 +1,20 @@
+#root {
+    --task-background-color: #FCFBFC;
+    --task-font-color: #000;
+    
+    --warning-color: #ffd48e;
+    --purple-color: rgb(208,186,241);
+    --pink-color: rgb(252,163,220);
+    --success-color: #6a8d8b;
+    --info-color: rgb(136,163,253);
+    --primary-color: rgb(223,233,238);
+}
+
 .task {
     margin-bottom: 1rem;
     padding: 0;
 
-    background: var(--white-color);
+    background: var(--task-background-color);
     border-radius: 0.25rem;
     border: solid 0.125rem #000;
     box-shadow: 0.15rem 0.15rem #000;
@@ -16,5 +28,5 @@
     line-height: 1.3rem;
     font-weight: 400;
     text-align: left;
-    color: #000;
+    color: var(--task-font-color);
 }
