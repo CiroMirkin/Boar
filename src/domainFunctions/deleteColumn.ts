@@ -10,5 +10,5 @@ export const deleteThisColumnFromColumns = ({ columnId, columns }: deleteThisCol
         const newColumns = [...columns].filter(column => column.id !== columnId)
         return newColumns
     }
-    return columns
+    throw 'No se puede eliminar una columna si hay tres columnas'
 }
