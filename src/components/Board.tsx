@@ -56,7 +56,7 @@ function Board({ columns, setColumns, name, changeName }: BoardProps) {
       toast.success('Columna eliminada')
     }
     catch(e) {
-      toast.error('Solo hay tres columnas, no se puede eliminar la columna')
+      toast.error('Solo hay tres columnas, no se puede eliminar esta columna')
     }
   }
 
