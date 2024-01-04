@@ -1,4 +1,4 @@
-import { editThisTask, getTheColumnIdWhereIsTheTask } from "./editTask"
+import { editThisTask, getTheColumnIndexWhereIsTheTask } from "./editTask"
 
 describe('Editar el contenido de una tarea', () => {
     test('Se deberia poder editar el texto de una tarea', () => {
@@ -16,21 +16,21 @@ describe('Editar el contenido de una tarea', () => {
 })
 
 describe('Funciones complementarias para editar una tarea', () => {
-    test('Se debería retornar el id de la columna donde esta la tarea recibida como parámetro', () => {
+    test('Se debería retornar el index de la columna donde esta la tarea recibida como parámetro', () => {
         const columns = [{
             name: "",
             id: "1",
             taskList: [{ descriptionText: "", id: "1"}]
         }]
-        expect(getTheColumnIdWhereIsTheTask(columns, "1")).toEqual("1")
+        expect(getTheColumnIndexWhereIsTheTask(columns, "1")).toEqual(0)
     })
-    test('Al no encontrarse una tarea se retorna un string vació', () => {
+    test('Al no encontrarse una tarea se retorna -1', () => {
         const columns = [{
             name: "",
             id: "1",
             taskList: [{ descriptionText: "", id: "1"}]
         }]
         
-        expect(getTheColumnIdWhereIsTheTask(columns, "2")).toEqual("")
+        expect(getTheColumnIndexWhereIsTheTask(columns, "2")).toEqual(-1)
     })
 })

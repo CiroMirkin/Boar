@@ -1,13 +1,13 @@
 import { columnModel } from "../models/column";
 import { taskModel } from "../models/task";
 
-export const getTheColumnIdWhereIsTheTask = (columns: columnModel[], taskId: string): string => {
-    let columnId = ''
-    columns.forEach((column: columnModel) => {
+export const getTheColumnIndexWhereIsTheTask = (columns: columnModel[], taskId: string): number => {
+    let columnIndex = -1
+    columns.forEach((column: columnModel, index) => {
         const task = column.taskList.find(task => task.id === taskId)
-        if(task) columnId = column.id
+        if(task) columnIndex = index
     })
-    return columnId
+    return columnIndex
 }
 
 interface editThisTaskParams {
