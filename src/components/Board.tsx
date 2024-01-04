@@ -42,6 +42,7 @@ function Board({ columns, setColumns, name, changeName }: BoardProps) {
   const editTask = (taskId: string, newTaskText: string) => {
     const newColumns = editThisTask({ taskId, columns, newTaskText })
     setColumns(newColumns)
+    toast.success('Tarea editada')
   }
 
   const changeColumnNameOfThisColumn = (columnId: string, newColumnName: string) => {
