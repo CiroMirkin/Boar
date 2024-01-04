@@ -59,6 +59,7 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
         else if(doesTheUserEditTheTask) {
             editTask(taskId, taskText)
             setShowTaskOptions(false)
+            setDoesTheUserEditTheTask(!doesTheUserEditTheTask)
         }
         else setDoesTheUserEditTheTask(!doesTheUserEditTheTask)
     }
