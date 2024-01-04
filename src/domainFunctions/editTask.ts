@@ -1,6 +1,15 @@
 import { columnModel } from "../models/column";
 import { taskModel } from "../models/task";
 
+export const getTheColumnIdWhereIsTheTask = (columns: columnModel[], taskId: string): string => {
+    let columnId = ''
+    columns.forEach((column: columnModel) => {
+        const task = column.taskList.find(task => task.id === taskId)
+        if(task) columnId = column.id
+    })
+    return columnId
+}
+
 interface editThisTaskParams {
     taskId: string,
     newTaskText?: string,
