@@ -17,7 +17,8 @@ interface editThisTaskParams {
 
 export const editThisTask = ({ taskId, newTaskText, columns }: editThisTaskParams): columnModel[] => {
     const columnIndexWhereIsTheTask = getTheColumnIndexWhereIsTheTask(columns, taskId)
-    const doesTheTaskExist = columnIndexWhereIsTheTask >= 0
+    const theMinimumIndexOfAColumn = 0
+    const doesTheTaskExist = columnIndexWhereIsTheTask >= theMinimumIndexOfAColumn
     if(doesTheTaskExist) {
         const newColumns = [...columns]
         newColumns[columnIndexWhereIsTheTask].taskList = newColumns[columnIndexWhereIsTheTask].taskList.map(task => {
