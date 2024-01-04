@@ -8,6 +8,7 @@ interface TaskOptionsProps {
     taskDescription: string
     deleteTask: Function,
     moveTask: Function,
+    editTask: Function
 }
 
 interface options {
@@ -17,7 +18,7 @@ interface options {
     iconName?: iconType
 }
 
-function TaskOptions({ taskId, deleteTask, moveTask, taskDescription }: TaskOptionsProps) {
+function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }: TaskOptionsProps) {
     const [ showTaskOptions, setShowTaskOptions ] = useState(false)
     const [ doesTheUserEditTheTask, setDoesTheUserEditTheTask ] = useState(false)
     const [ taskText, setTaskText ] = useState(taskDescription)
@@ -53,7 +54,7 @@ function TaskOptions({ taskId, deleteTask, moveTask, taskDescription }: TaskOpti
 
     const handleClick = () => {
         if(doesTheUserEditTheTask) {
-            console.log('edit')
+            editTask(taskId, taskText)
         }
         setDoesTheUserEditTheTask(!doesTheUserEditTheTask)
     }

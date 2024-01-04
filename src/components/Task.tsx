@@ -4,14 +4,15 @@ import TaskOptions from './TaskOptions'
 
 interface ColumnProps extends taskModel {
   deleteTask: Function,
-  moveTask: Function
+  moveTask: Function,
+  editTask: Function
 };
 
-function Task({ descriptionText, id, deleteTask, moveTask }: ColumnProps) {
+function Task({ descriptionText, id, deleteTask, moveTask, editTask }: ColumnProps) {
   return (
     <li className='task'>
         <p className="task__text">{descriptionText}</p>
-        <TaskOptions taskId={id} deleteTask={deleteTask} moveTask={moveTask} taskDescription={descriptionText} />
+        <TaskOptions taskId={id} deleteTask={deleteTask} moveTask={moveTask} editTask={editTask} taskDescription={descriptionText} />
     </li>    
   )
 }
