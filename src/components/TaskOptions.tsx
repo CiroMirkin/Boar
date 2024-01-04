@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import './TaskOptions.css'
 import Icon, { iconType } from './Icon'
+import toast from 'react-hot-toast'
 
 interface TaskOptionsProps {
     taskId: string,
+    taskDescription: string
     deleteTask: Function,
     moveTask: Function,
+    editTask: Function
 }
 
 interface options {
@@ -15,8 +18,10 @@ interface options {
     iconName?: iconType
 }
 
-function TaskOptions({ taskId, deleteTask, moveTask }: TaskOptionsProps) {
+function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }: TaskOptionsProps) {
     const [ showTaskOptions, setShowTaskOptions ] = useState(false)
+    const [ doesTheUserEditTheTask, setDoesTheUserEditTheTask ] = useState(false)
+    const [ taskText, setTaskText ] = useState(taskDescription)
     const options: options[] = [
         {
             name: "Retroceder",
@@ -29,6 +34,12 @@ function TaskOptions({ taskId, deleteTask, moveTask }: TaskOptionsProps) {
             colorClassName: "task-option-btn--primary"
         },
         {
+          name: 'Copiar', 
+          function: () => navigator.clipboard.writeText(taskDescription).then(() => toast.success('Tarea copiada al portapapeles')),
+          colorClassName: 'task-option-btn--primary',
+          iconName: 'clipboard2-fill'
+        },
+        {
           name: 'Eliminar', 
           function: () => deleteTask(taskId),
           colorClassName: 'task-option-btn--danger',
@@ -39,6 +50,18 @@ function TaskOptions({ taskId, deleteTask, moveTask }: TaskOptionsProps) {
     const toggleTaskOptions = () => {
         const newShowTaskOptionsValue = !showTaskOptions
         setShowTaskOptions(newShowTaskOptionsValue)
+    }
+
+    const handleClick = () => {
+        if(doesTheUserEditTheTask && !taskText) {
+            toast.error('La tarea esta vacía')
+        }
+        else if(doesTheUserEditTheTask) {
+            editTask(taskId, taskText)
+            setShowTaskOptions(false)
+            setDoesTheUserEditTheTask(!doesTheUserEditTheTask)
+        }
+        else setDoesTheUserEditTheTask(!doesTheUserEditTheTask)
     }
     
     return (
@@ -56,6 +79,30 @@ function TaskOptions({ taskId, deleteTask, moveTask }: TaskOptionsProps) {
                             </button>
                         </li>
                     )
+                }
+                <li>
+                    <button 
+                        onClick={handleClick} 
+                        className='task-option-btn task-option-btn--primary'
+                    >
+                        <Icon name={'pencil-square'}></Icon>
+                        <span>Cambiar texto</span>
+                    </button>
+                </li>
+                {
+                    doesTheUserEditTheTask && 
+                    <li style={{display: 'flex'}}>
+                        <input 
+                            type="text" 
+                            name="Editar descripción de la tarea" 
+                            value={taskText} 
+                            onKeyUp={(e) => e.key == 'Enter' && handleClick()}
+                            onChange={(e) => setTaskText(e.target.value)}
+                        />
+                        <button onClick={handleClick} className='task-option-btn task-option-btn--primary'>
+                            <Icon name={'pencil-square'}></Icon>
+                        </button>
+                    </li>
                 }
             </ul>
         </footer>

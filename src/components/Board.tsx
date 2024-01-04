@@ -11,6 +11,7 @@ import toast from 'react-hot-toast'
 import BoardName from './BoardName'
 import { addColumnAtTheEnd } from '../domainFunctions/addColumn'
 import { deleteThisColumnFromColumns } from '../domainFunctions/deleteColumn'
+import { editThisTask } from '../domainFunctions/editTask'
 
 interface BoardProps {
   columns: columnModel[],
@@ -36,6 +37,12 @@ function Board({ columns, setColumns, name, changeName }: BoardProps) {
   const moveATask = (to: moveToType, taskId: string) => {
     const newColumns = moveTask({to, columns, taskId})
     setColumns(newColumns)
+  }
+
+  const editTask = (taskId: string, newTaskText: string) => {
+    const newColumns = editThisTask({ taskId, columns, newTaskText })
+    setColumns(newColumns)
+    toast.success('Tarea editada')
   }
 
   const changeColumnNameOfThisColumn = (columnId: string, newColumnName: string) => {
@@ -78,6 +85,7 @@ function Board({ columns, setColumns, name, changeName }: BoardProps) {
                     <TaskList 
                       taskList={column.taskList} 
                       deleteTask={(taskId: string) => deleteThisTaskInThisColumn(taskId, column.id)}
+                      editTask={editTask}
                       moveTask={moveATask}
                     />
                   </Column>
