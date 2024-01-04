@@ -22,14 +22,12 @@ export const editThisTask = ({ taskId, newTaskText, columns }: editThisTaskParam
     if(doesTheTaskExist) {
         const newColumns = [...columns]
         newColumns[columnIndexWhereIsTheTask].taskList = newColumns[columnIndexWhereIsTheTask].taskList.map(task => {
-            if(taskId === task.id) {
-                const createTheNewTaskFrom = (task: taskModel): taskModel => ({
-                    id: task.id,
-                    descriptionText: !!newTaskText ? newTaskText : task.descriptionText
-                })
-                return createTheNewTaskFrom(task)
-            }
-            return task
+            return taskId === task.id 
+            ? {
+                id: task.id,
+                descriptionText: !!newTaskText ? newTaskText : task.descriptionText
+            } 
+            : task
         })
         return newColumns
     }
