@@ -12,11 +12,11 @@ export const editThisTask = ({ taskId, newTaskText, columns }: editThisTaskParam
         const newColumn = column
         newColumn.taskList = newColumn.taskList.map(task => {
             if(taskId === task.id) {
-                const createNewTask = (taskId: string): taskModel => ({
-                    id: taskId,
+                const createTheNewTaskFrom = (task: taskModel): taskModel => ({
+                    id: task.id,
                     descriptionText: !!newTaskText ? newTaskText : task.descriptionText
                 })
-                return createNewTask(taskId)
+                return createTheNewTaskFrom(task)
             }
             return task
         })
