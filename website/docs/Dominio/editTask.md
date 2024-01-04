@@ -58,7 +58,7 @@ Boar > TaskList > Task > TaskOptions
 
 ## Pruebas
 
-Se prueba a la función `deleteThisColumnFromColumns` en el archivo `src\domainFunctions\editTask.test.ts`.
+Se prueba a la función `editTask` en el archivo `src\domainFunctions\editTask.test.ts`.
 
 Puedes ejecutar las pruebas de la función con el siguiente comando.
 
