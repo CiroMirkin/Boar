@@ -19,6 +19,8 @@ interface options {
 
 function TaskOptions({ taskId, deleteTask, moveTask, taskDescription }: TaskOptionsProps) {
     const [ showTaskOptions, setShowTaskOptions ] = useState(false)
+    const [ doesTheUserEditTheTask, setDoesTheUserEditTheTask ] = useState(false)
+    const [ taskText, setTaskText ] = useState(taskDescription)
     const options: options[] = [
         {
             name: "Retroceder",
@@ -48,6 +50,13 @@ function TaskOptions({ taskId, deleteTask, moveTask, taskDescription }: TaskOpti
         const newShowTaskOptionsValue = !showTaskOptions
         setShowTaskOptions(newShowTaskOptionsValue)
     }
+
+    const handleClick = () => {
+        if(doesTheUserEditTheTask) {
+            console.log('edit')
+        }
+        setDoesTheUserEditTheTask(!doesTheUserEditTheTask)
+    }
     
     return (
         <footer className='task-options'>
@@ -64,6 +73,29 @@ function TaskOptions({ taskId, deleteTask, moveTask, taskDescription }: TaskOpti
                             </button>
                         </li>
                     )
+                }
+                <li>
+                    <button 
+                        onClick={handleClick} 
+                        className='task-option-btn task-option-btn--primary'
+                    >
+                        <Icon name={'pencil-square'}></Icon>
+                        <span>Cambiar texto</span>
+                    </button>
+                </li>
+                {
+                    doesTheUserEditTheTask && 
+                    <li style={{display: 'flex'}}>
+                        <input 
+                            type="text" 
+                            name="Editar descripción de la tarea" 
+                            value={taskText} 
+                            onChange={(e) => setTaskText(e.target.value)}
+                        />
+                        <button onClick={handleClick} className='task-option-btn task-option-btn--primary'>
+                            <Icon name={'pencil-square'}></Icon>
+                        </button>
+                    </li>
                 }
             </ul>
         </footer>
