@@ -11,7 +11,7 @@ function Task({ descriptionText, id, deleteTask, moveTask }: ColumnProps) {
   return (
     <li className='task'>
         <p className="task__text">{descriptionText}</p>
-        <TaskOptions taskId={id} deleteTask={deleteTask} moveTask={moveTask}/>
+        <TaskOptions taskId={id} deleteTask={deleteTask} moveTask={moveTask} taskDescription={descriptionText} />
     </li>    
   )
 }

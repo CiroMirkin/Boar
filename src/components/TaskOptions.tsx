@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import './TaskOptions.css'
 import Icon, { iconType } from './Icon'
+import toast from 'react-hot-toast'
 
 interface TaskOptionsProps {
     taskId: string,
+    taskDescription: string
     deleteTask: Function,
     moveTask: Function,
 }
@@ -15,7 +17,7 @@ interface options {
     iconName?: iconType
 }
 
-function TaskOptions({ taskId, deleteTask, moveTask }: TaskOptionsProps) {
+function TaskOptions({ taskId, deleteTask, moveTask, taskDescription }: TaskOptionsProps) {
     const [ showTaskOptions, setShowTaskOptions ] = useState(false)
     const options: options[] = [
         {
@@ -27,6 +29,12 @@ function TaskOptions({ taskId, deleteTask, moveTask }: TaskOptionsProps) {
             name: "Avanzar",
             function: () => moveTask('next-column', taskId),
             colorClassName: "task-option-btn--primary"
+        },
+        {
+          name: 'Copiar', 
+          function: () => navigator.clipboard.writeText(taskDescription).then(() => toast.success('Tarea copiada al portapapeles')),
+          colorClassName: 'task-option-btn--primary',
+          iconName: 'clipboard2-fill'
         },
         {
           name: 'Eliminar', 
