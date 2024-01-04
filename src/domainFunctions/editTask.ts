@@ -1,5 +1,4 @@
 import { columnModel } from "../models/column";
-import { taskModel } from "../models/task";
 
 export const getTheColumnIndexWhereIsTheTask = (columns: columnModel[], taskId: string): number => {
     let columnIndex = -1
