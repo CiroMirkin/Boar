@@ -15,7 +15,7 @@ describe('Editar el contenido de una tarea', () => {
     })
 })
 
-describe('Funciones complementarias para editar una tarea', () => {
+describe('Función complementaria: Búsqueda del index de la columna donde una la tarea', () => {
     test('Se debería retornar el index de la columna donde esta la tarea recibida como parámetro', () => {
         const columns = [{
             name: "",
