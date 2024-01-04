@@ -39,9 +39,22 @@ const newColumns = editThisTask({ taskId, columns, newTaskText })
 setColumns(newColumns)
 ```
 
-:::info
-Esta función aun no se a implementado en ningún componente
-:::
+Se implementa en el componente `Boar` y para usar la función esta se encapsula dentro de otra, la cual se pasa a los componentes hijos. 
+
+```tsx title="/src/components/Boar.tsx"
+const editTask = (taskId: string, newTaskText: string) => {
+  // highlight-next-line
+  const newColumns = editThisTask({ taskId, columns, newTaskText })
+  setColumns(newColumns)
+  // highlight-next-line
+  toast.success('Tarea editada')
+}
+```
+
+Recorrido de la función `editTask`:
+
+Boar > TaskList > Task > TaskOptions
+
 
 ## Pruebas
 
