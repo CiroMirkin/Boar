@@ -17,9 +17,11 @@ interface editThisTaskParams {
 }
 
 export const editThisTask = ({ taskId, newTaskText, columns }: editThisTaskParams): columnModel[] => {
-    const newColumns = [...columns].map(column => {
-        const newColumn = column
-        newColumn.taskList = newColumn.taskList.map(task => {
+    const columnIndexWhereIsTheTask = getTheColumnIndexWhereIsTheTask(columns, taskId)
+    const doesTheTaskExist = columnIndexWhereIsTheTask >= 0
+    if(doesTheTaskExist) {
+        const newColumns = [...columns]
+        newColumns[columnIndexWhereIsTheTask].taskList = newColumns[columnIndexWhereIsTheTask].taskList.map(task => {
             if(taskId === task.id) {
                 const createTheNewTaskFrom = (task: taskModel): taskModel => ({
                     id: task.id,
@@ -29,7 +31,7 @@ export const editThisTask = ({ taskId, newTaskText, columns }: editThisTaskParam
             }
             return task
         })
-        return newColumn
-    })
-    return newColumns
+        return newColumns
+    }
+    throw 'No se encontró la tarea en ninguna columna'
 }
