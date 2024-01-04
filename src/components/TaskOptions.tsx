@@ -53,10 +53,14 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
     }
 
     const handleClick = () => {
-        if(doesTheUserEditTheTask) {
-            editTask(taskId, taskText)
+        if(doesTheUserEditTheTask && !taskText) {
+            toast.error('La tarea esta vacía')
         }
-        setDoesTheUserEditTheTask(!doesTheUserEditTheTask)
+        else if(doesTheUserEditTheTask) {
+            editTask(taskId, taskText)
+            setShowTaskOptions(false)
+        }
+        else setDoesTheUserEditTheTask(!doesTheUserEditTheTask)
     }
     
     return (
@@ -91,6 +95,7 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
                             type="text" 
                             name="Editar descripción de la tarea" 
                             value={taskText} 
+                            onKeyUp={(e) => e.key == 'Enter' && handleClick()}
                             onChange={(e) => setTaskText(e.target.value)}
                         />
                         <button onClick={handleClick} className='task-option-btn task-option-btn--primary'>
