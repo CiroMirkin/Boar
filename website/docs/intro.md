@@ -19,3 +19,17 @@ Boar esta en linea, puedes usarlo en **[cm-boar.netlify.app](https://cm-boar.net
 * Vitest
 * Jest
 * Git
+
+## Características implementadas
+
+* En tareas
+  * Creación. 
+  * Eliminación. 
+  * Edición de descripción.  
+  * Movimiento entre columnas. 
+* En columnas
+  * Creación. 
+  * Edición de nombre. 
+  * Eliminación.  
+* En tablero
+  * Edición de se nombre. 
