@@ -54,6 +54,10 @@ const deleteColumn = (columnId: string) => {
 }
 ```
 
+Recorrido de la función `deleteColumn` definida en el componente `Boar`:
+
+Boar > Column > ColumnHeader
+
 ## Pruebas
 
 Se prueba a la función `deleteThisColumnFromColumns` en el archivo `src\domainFunctions\deleteColumn.test.ts`.
