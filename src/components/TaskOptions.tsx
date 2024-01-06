@@ -35,7 +35,7 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
         },
         {
           name: 'Editar', 
-          function: () => showEditarTaskInput(),
+          function: () => showEditTaskInput(),
           colorClassName: 'task-option-btn--primary',
           iconName: 'pencil-square'
         },
@@ -58,11 +58,11 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
         setShowTaskOptions(newShowTaskOptionsValue)
     }
 
-    const showEditarTaskInput = () => {
+    const showEditTaskInput = () => {
         setDoesTheUserEditTheTask(!doesTheUserEditTheTask)
     }
 
-    const handleClick = () => {
+    const editTaskBtnHandleClick = () => {
         if(doesTheUserEditTheTask && !taskText) {
             toast.error('La tarea esta vacía')
         }
@@ -88,10 +88,10 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
                                 type="text" 
                                 name="Editar descripción de la tarea" 
                                 value={taskText} 
-                                onKeyUp={(e) => e.key == 'Enter' && handleClick()}
+                                onKeyUp={(e) => e.key == 'Enter' && editTaskBtnHandleClick()}
                                 onChange={(e) => setTaskText(e.target.value)}
                             />
-                            <button onClick={handleClick} className='task-option-btn task-option-btn--primary'>
+                            <button onClick={editTaskBtnHandleClick} className='task-option-btn task-option-btn--primary'>
                                 <Icon name={'pencil-square'}></Icon>
                             </button>
                         </div>
