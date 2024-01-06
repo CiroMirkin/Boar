@@ -13,6 +13,16 @@ function ColumnHeader({ name, columnId, changeColumnName, deleteColumn }: Column
     const [ columnName, setColumnName ] = useState(name)
     const [ isTheColumnNameChanging, setIsTheColumnNameChanging ] = useState(false)
 
+    const editColumnName = () => {
+        if(isTheColumnNameChanging && !!columnName.trim()) {
+            changeColumnName(columnId, columnName)
+        }
+        if(!columnName.trim()) {
+            setColumnName(name)
+        }
+        setIsTheColumnNameChanging(!isTheColumnNameChanging)
+    }
+    
     enum columnActions {
         EDIT = 'EDIT',
         DELETE = 'DELETE'
@@ -20,13 +30,7 @@ function ColumnHeader({ name, columnId, changeColumnName, deleteColumn }: Column
 
     const handleClick = (columnAction: string) => {
         if(columnAction == columnActions.EDIT) {
-            if(isTheColumnNameChanging && !!columnName.trim()) {
-                changeColumnName(columnId, columnName)
-            }
-            if(!columnName.trim()) {
-                setColumnName(name)
-            }
-            setIsTheColumnNameChanging(!isTheColumnNameChanging)
+            editColumnName()
         }
         if(columnAction == columnActions.DELETE) {
             deleteColumn(columnId)
@@ -37,7 +41,12 @@ function ColumnHeader({ name, columnId, changeColumnName, deleteColumn }: Column
         <div className='column-header'>
             { 
                 isTheColumnNameChanging 
-                ? <input type="text" value={columnName} onChange={(e) => setColumnName(e.target.value)}/> 
+                ? <input 
+                        type="text" 
+                        value={columnName} 
+                        onChange={(e) => setColumnName(e.target.value)} 
+                        onKeyUp={(e) => e.key == 'Enter' && editColumnName()}
+                    /> 
                 : <h2>{name}</h2> 
             }
             <button 
