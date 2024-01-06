@@ -44,6 +44,13 @@
     gap: .5rem;
 }
 
+.task-options__options-first-option {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .task-option-btn {
     height: auto;
     padding: 3px 6px 2px;

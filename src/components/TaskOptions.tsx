@@ -34,6 +34,12 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
             colorClassName: "task-option-btn--primary"
         },
         {
+          name: 'Editar', 
+          function: () => showEditarTaskInput(),
+          colorClassName: 'task-option-btn--primary',
+          iconName: 'pencil-square'
+        },
+        {
           name: 'Copiar', 
           function: () => navigator.clipboard.writeText(taskDescription).then(() => toast.success('Tarea copiada al portapapeles')),
           colorClassName: 'task-option-btn--primary',
@@ -52,6 +58,10 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
         setShowTaskOptions(newShowTaskOptionsValue)
     }
 
+    const showEditarTaskInput = () => {
+        setDoesTheUserEditTheTask(!doesTheUserEditTheTask)
+    }
+
     const handleClick = () => {
         if(doesTheUserEditTheTask && !taskText) {
             toast.error('La tarea esta vacía')
@@ -68,8 +78,25 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
         <footer className='task-options'>
             <button className='task-options__btn' onClick={toggleTaskOptions} title='Opciones'>
                 <Icon name='three-dots'></Icon>
-            </button>
+            </button> 
             <ul className={`task-options__options ${showTaskOptions ? 'task-options__options--show' : 'task-options__options--hide'}`}>
+                <li className='task-options__options-first-option'>
+                    {
+                        doesTheUserEditTheTask && 
+                        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', gap: '2px' ,padding: '0.2rem' }}>
+                            <input 
+                                type="text" 
+                                name="Editar descripción de la tarea" 
+                                value={taskText} 
+                                onKeyUp={(e) => e.key == 'Enter' && handleClick()}
+                                onChange={(e) => setTaskText(e.target.value)}
+                            />
+                            <button onClick={handleClick} className='task-option-btn task-option-btn--primary'>
+                                <Icon name={'pencil-square'}></Icon>
+                            </button>
+                        </div>
+                    }
+                </li>
                 {
                     options.map(option => 
                         <li key={option.name}>
@@ -79,30 +106,6 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
                             </button>
                         </li>
                     )
-                }
-                <li>
-                    <button 
-                        onClick={handleClick} 
-                        className='task-option-btn task-option-btn--primary'
-                    >
-                        <Icon name={'pencil-square'}></Icon>
-                        <span>Cambiar texto</span>
-                    </button>
-                </li>
-                {
-                    doesTheUserEditTheTask && 
-                    <li style={{display: 'flex'}}>
-                        <input 
-                            type="text" 
-                            name="Editar descripción de la tarea" 
-                            value={taskText} 
-                            onKeyUp={(e) => e.key == 'Enter' && handleClick()}
-                            onChange={(e) => setTaskText(e.target.value)}
-                        />
-                        <button onClick={handleClick} className='task-option-btn task-option-btn--primary'>
-                            <Icon name={'pencil-square'}></Icon>
-                        </button>
-                    </li>
                 }
             </ul>
         </footer>
