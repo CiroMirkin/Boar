@@ -47,6 +47,10 @@ const deleteThisTaskInThisColumn = (taskId: string, columnId: string) => {
 }
 ```
 
+Recorrido de la función `deleteThisTaskInThisColumn` definida en el componente `Boar`:
+
+Boar > TaskList > Task > TaskOptions
+
 ## Pruebas
 
 Se prueba a la función `deleteThisTaskFromThisColumn` en el archivo `src\domainFunctions\deleteTask.test.ts`.
