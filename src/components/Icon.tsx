@@ -12,4 +12,9 @@ function Icon({ name }: IconProps) {
 
 export default Icon
 
-export const clipboardIcon = () => (<i className="bi bi-clipboard2-fill"></i>)
+export const ClipboardIcon = ({}) => (<i className="bi bi-clipboard2-fill"></i>)
+export const ThreeDotsIcon = ({}) => (<i className="bi bi-three-dots"></i>)
+export const TrashIcon = ({}) => (<i className="bi bi-trash-fill"></i>)
+export const CaretRightIcon = ({}) => (<i className="bi bi-caret-right-fill"></i>)
+export const CaretLeftIcon = ({}) => (<i className="bi bi-caret-left-fill"></i>)
+export const PencilSquareIcon = ({}) => (<i className="bi bi-pencil-square"></i>)

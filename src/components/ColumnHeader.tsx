@@ -1,6 +1,6 @@
 import { useState } from "react"
 import './ColumnHeader.css'
-import Icon from "./Icon"
+import { PencilSquareIcon, TrashIcon } from "./Icon"
 
 interface ColumnHeaderProps{
     name: string
@@ -54,14 +54,14 @@ function ColumnHeader({ name, columnId, changeColumnName, deleteColumn }: Column
                 onClick={() => handleClick(columnActions.EDIT)}
                 title="Editar el nombre de la columna"
             >
-                <Icon name="pencil-square" />
+                <PencilSquareIcon />
             </button>
             <button
                 className='column-header__change-name-btn'
                 onClick={() => handleClick(columnActions.DELETE)}
                 title="Eliminar columna"
             >
-                <Icon name="trash-fill" />
+                <TrashIcon />
             </button>
         </div>
     )
