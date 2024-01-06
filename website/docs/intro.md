@@ -32,4 +32,4 @@ Boar esta en linea, puedes usarlo en **[cm-boar.netlify.app](https://cm-boar.net
   * Edición de nombre. 
   * Eliminación.  
 * En tablero
-  * Edición de se nombre. 
+  * Edición de nombre. 
