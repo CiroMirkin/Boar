@@ -6,7 +6,7 @@ tags:
   - Dominio
 ---
 
-# Editar Una tarea
+# Editar una tarea
 
 Un usuario puede editar la descripción de una tarea.
 
@@ -51,14 +51,14 @@ const editTask = (taskId: string, newTaskText: string) => {
 }
 ```
 
-Recorrido de la función `editTask`:
+Recorrido de la función `editTask` definida en el componente `Boar`:
 
 Boar > TaskList > Task > TaskOptions
 
 
 ## Pruebas
 
-Se prueba a la función `editTask` en el archivo `src\domainFunctions\editTask.test.ts`.
+Se prueba a la función `editThisTask` en el archivo `src\domainFunctions\editTask.test.ts`.
 
 Puedes ejecutar las pruebas de la función con el siguiente comando.
 
