@@ -25,7 +25,12 @@ function BoardHeader({ name, changeName }: BoardHeaderProps) {
         <div className="board-header-component">
             { 
                 isTheColumnNameChanging 
-                ? <input type="text" value={boardName} onChange={(e) => setBoardName(e.target.value)}/> 
+                ? <input 
+                        type="text" 
+                        value={boardName} 
+                        onChange={(e) => setBoardName(e.target.value)}
+                        onKeyUp={(e) => e.key == 'Enter' && handleClick()}
+                    /> 
                 : <h1 className='board-name'>{name}</h1> 
             }
             <button 
