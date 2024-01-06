@@ -1,11 +1,11 @@
 ---
 sidebar_position: 1
-description: Funciones de dominio
+description: Definición
 tags:
   - Dominio
 ---
 
-# Funciones de dominio
+# Definición
 
 Cada función de dominio representa a un caso de uso dentro de la aplicación.
 
