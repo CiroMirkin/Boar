@@ -1,4 +1,4 @@
-.board-name-component {
+.board-header-component {
     width: 100%;
     padding-inline-start: 1rem;
     margin: 2rem 0 0;
@@ -6,7 +6,7 @@
     justify-content: flex-start;
     align-items: baseline;
 }
-.board-name-component input {
+.board-header-component input {
     padding-block: 0;
     min-width: 10em;
     font-size: 2rem;

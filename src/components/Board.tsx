@@ -8,7 +8,7 @@ import { deleteThisTaskFromThisColumn } from '../domainFunctions/deleteTask'
 import { moveTask, moveToType } from '../domainFunctions/moveTask'
 import { changeColumnName } from '../domainFunctions/changeColumnName'
 import toast from 'react-hot-toast'
-import BoardName from './BoardName'
+import BoardHeader from './BoardHeader'
 import { addColumnAtTheEnd } from '../domainFunctions/addColumn'
 import { deleteThisColumnFromColumns } from '../domainFunctions/deleteColumn'
 import { editThisTask } from '../domainFunctions/editTask'
@@ -69,7 +69,7 @@ function Board({ columns, setColumns, name, changeName }: BoardProps) {
 
   return (
     <>
-      <BoardName name={name} changeName={changeName} />
+      <BoardHeader name={name} changeName={changeName} />
 
       <ul className='board'>
           {

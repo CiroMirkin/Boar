@@ -1,13 +1,13 @@
 import { useState } from "react"
-import './BoardName.css'
+import './BoardHeader.css'
 import Icon from "./Icon"
 
-interface BoardNameProps {
+interface BoardHeaderProps {
     name: string,
     changeName: Function
 }
   
-function BoardName({ name, changeName }: BoardNameProps) {
+function BoardHeader({ name, changeName }: BoardHeaderProps) {
     const [ boardName, setBoardName ] = useState(name)
     const [ isTheColumnNameChanging, setIsTheColumnNameChanging ] = useState(false)
 
@@ -22,7 +22,7 @@ function BoardName({ name, changeName }: BoardNameProps) {
     }
 
     return (
-        <div className="board-name-component">
+        <div className="board-header-component">
             { 
                 isTheColumnNameChanging 
                 ? <input type="text" value={boardName} onChange={(e) => setBoardName(e.target.value)}/> 
@@ -39,5 +39,5 @@ function BoardName({ name, changeName }: BoardNameProps) {
     )
   }
   
-  export default BoardName
+  export default BoardHeader
   
