@@ -50,6 +50,10 @@ Se implementa en el componente `Boar` y para usar la función esta se encapsula 
   }
 ```
 
+Recorrido de la función `addNewTaskInColumn` definida en el componente `Boar`:
+
+Boar > Column
+
 ## Pruebas
 
 Se prueba a la función `addTaskToThisColumn` en el archivo `src\domainFunctions\addTask.test.ts`.
