@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './Column.css'
-import ColumnName from './ColumnName'
+import ColumnHeader from './ColumnHeader'
 
 interface ColumnProps {
   id: string,
@@ -37,7 +37,7 @@ function Column({ name, id, children, addNewTaskInColumn, changeColumnName, dele
 
   return (
     <li className='column' key={id}>
-        <ColumnName name={name} columnId={id} changeColumnName={changeColumnName} deleteColumn={deleteColumn} />
+        <ColumnHeader name={name} columnId={id} changeColumnName={changeColumnName} deleteColumn={deleteColumn} />
         {
           children
         }

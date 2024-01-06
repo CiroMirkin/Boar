@@ -1,4 +1,4 @@
-.column-title {
+.column-header {
     width: 100%;
     margin: 0 0 10px;
     padding: 0;
@@ -8,7 +8,7 @@
     justify-content: flex-start;
 
 }
-.column-title h2 {
+.column-header h2 {
     margin: 0;
     font-size: 1.5rem;
     line-height: 1.7rem;
@@ -16,7 +16,7 @@
     text-align: left;
     border: 2px solid transparent;
 }
-.column-title input {
+.column-header input {
     width: 100%;
     height: auto;
     padding-block: 0;
@@ -24,7 +24,7 @@
     line-height: 1.7rem;
     font-weight: bold;
 }
-.column-title__change-name-btn {
+.column-header__change-name-btn {
     padding: 0;
     padding-inline-start: 10px;
     font-size: .8rem;
@@ -34,7 +34,7 @@
     border: none;
     background: transparent;
 }
-.column-title__change-name-btn:hover {
+.column-header__change-name-btn:hover {
     color: rgba(0, 0, 0, 1);
     text-decoration: underline;
 }

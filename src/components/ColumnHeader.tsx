@@ -1,15 +1,15 @@
 import { useState } from "react"
-import './ColumnName.css'
+import './ColumnHeader.css'
 import Icon from "./Icon"
 
-interface ColumnNameProps{
+interface ColumnHeaderProps{
     name: string
     columnId: string
     changeColumnName: Function,
     deleteColumn: Function
 }
 
-function ColumnName({ name, columnId, changeColumnName, deleteColumn }: ColumnNameProps) {
+function ColumnHeader({ name, columnId, changeColumnName, deleteColumn }: ColumnHeaderProps) {
     const [ columnName, setColumnName ] = useState(name)
     const [ isTheColumnNameChanging, setIsTheColumnNameChanging ] = useState(false)
 
@@ -34,21 +34,21 @@ function ColumnName({ name, columnId, changeColumnName, deleteColumn }: ColumnNa
     }
 
     return (
-        <div className='column-title'>
+        <div className='column-header'>
             { 
                 isTheColumnNameChanging 
                 ? <input type="text" value={columnName} onChange={(e) => setColumnName(e.target.value)}/> 
                 : <h2>{name}</h2> 
             }
             <button 
-                className='column-title__change-name-btn' 
+                className='column-header__change-name-btn' 
                 onClick={() => handleClick(columnActions.EDIT)}
                 title="Editar el nombre de la columna"
             >
                 <Icon name="pencil-square" />
             </button>
             <button
-                className='column-title__change-name-btn'
+                className='column-header__change-name-btn'
                 onClick={() => handleClick(columnActions.DELETE)}
                 title="Eliminar columna"
             >
@@ -58,4 +58,4 @@ function ColumnName({ name, columnId, changeColumnName, deleteColumn }: ColumnNa
     )
 }
 
-export default ColumnName
+export default ColumnHeader
