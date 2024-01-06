@@ -40,7 +40,7 @@ setColumns(newColumns)
 
 Se implementa en el componente `Boar` y para usar la función esta se encapsula dentro de otra, la cual se pasa a los componentes hijos. 
 
-```tsx title="/src/components/.tsx"
+```tsx title="/src/components/Boar.tsx"
   const addNewTaskInColumn = (newTask: taskModel, columnId: string) => {
     // highlight-next-line
     const newColumns = addTaskToThisColumn(columnId, columns, newTask)
@@ -52,12 +52,12 @@ Se implementa en el componente `Boar` y para usar la función esta se encapsula 
 
 ## Pruebas
 
-Se prueba a la función `addTaskToThisColumn` en el archivo `src\domainFunctions\addTaskToThisColumn.test.ts`.
+Se prueba a la función `addTaskToThisColumn` en el archivo `src\domainFunctions\addTask.test.ts`.
 
 Puedes ejecutar las pruebas de la función con el siguiente comando.
 
 ```bash
-npm run test src/domainFunctions/addTaskToThisColumn.test.ts
+npm run test src/domainFunctions/addTask.test.ts
 ```
 
 :::info
