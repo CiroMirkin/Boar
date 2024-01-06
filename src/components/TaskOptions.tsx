@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './TaskOptions.css'
-import Icon, { iconType } from './Icon'
+import { ClipboardIcon, PencilSquareIcon, ThreeDotsIcon, TrashIcon } from './Icon'
 import toast from 'react-hot-toast'
 
 interface TaskOptionsProps {
@@ -15,7 +15,7 @@ interface options {
     name: string,
     function: Function,
     colorClassName: string
-    iconName?: iconType
+    icon?: Function
 }
 
 function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }: TaskOptionsProps) {
@@ -37,19 +37,19 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
           name: 'Editar', 
           function: () => showEditTaskInput(),
           colorClassName: 'task-option-btn--primary',
-          iconName: 'pencil-square'
+          icon: () => <PencilSquareIcon />
         },
         {
           name: 'Copiar', 
           function: () => navigator.clipboard.writeText(taskDescription).then(() => toast.success('Tarea copiada al portapapeles')),
           colorClassName: 'task-option-btn--primary',
-          iconName: 'clipboard2-fill'
+          icon: () => <ClipboardIcon />
         },
         {
           name: 'Eliminar', 
           function: () => deleteTask(taskId),
           colorClassName: 'task-option-btn--danger',
-          iconName: "trash-fill"
+          icon: () => <TrashIcon />
         },
     ]
 
@@ -77,7 +77,7 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
     return (
         <footer className='task-options'>
             <button className='task-options__btn' onClick={toggleTaskOptions} title='Opciones'>
-                <Icon name='three-dots'></Icon>
+                <ThreeDotsIcon />
             </button> 
             <ul className={`task-options__options ${showTaskOptions ? 'task-options__options--show' : 'task-options__options--hide'}`}>
                 <li className='task-options__options-first-option'>
@@ -92,7 +92,7 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
                                 onChange={(e) => setTaskText(e.target.value)}
                             />
                             <button onClick={editTaskBtnHandleClick} className='task-option-btn task-option-btn--primary'>
-                                <Icon name={'pencil-square'}></Icon>
+                                <PencilSquareIcon />
                             </button>
                         </div>
                     }
@@ -101,7 +101,7 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
                     options.map(option => 
                         <li key={option.name}>
                             <button onClick={() => option.function()} className={`task-option-btn ${option.colorClassName}`}>
-                                { option.iconName! && <Icon name={option.iconName}></Icon> }
+                                { option.icon! && option.icon() }
                                 <span>{option.name}</span>
                             </button>
                         </li>
