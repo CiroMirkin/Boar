@@ -1,6 +1,6 @@
 import { useState } from "react"
 import './BoardHeader.css'
-import Icon from "./Icon"
+import { PencilSquareIcon } from "./Icon"
 
 interface BoardHeaderProps {
     name: string,
@@ -38,7 +38,7 @@ function BoardHeader({ name, changeName }: BoardHeaderProps) {
                 onClick={handleClick}
                 title="Editar el nombre del tablero"
             >
-                <Icon name="pencil-square" />
+                <PencilSquareIcon />
             </button>
         </div>
     )
