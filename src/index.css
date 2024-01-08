@@ -23,7 +23,7 @@ html {
 :root {
   --info-color: rgb(136,163,253);
   --danger-color: rgba(239, 69, 100, 0.647);
-  --background-color: #FCFBFC;
+  --background-color: #f3f3f3;
 }
 
 body {
