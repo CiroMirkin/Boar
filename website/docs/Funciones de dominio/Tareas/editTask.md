@@ -10,6 +10,9 @@ tags:
 
 Un usuario puede editar la descripción de una tarea.
 
+**Reglas de negocio**:
+* Solo se puede editar la descripción de una tarea en la primer columna.
+
 ## Función de dominio
 
 La función `editThisTask` implementa este caso de uso en el archivo `src\domainFunctions\editTask.ts`.
