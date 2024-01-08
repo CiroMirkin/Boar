@@ -27,6 +27,13 @@ const steps = [
     title: 'Boar',
   },
   {
+    content: 'Aquí puedes escribir y crear tus tareas.',
+    disableBeacon: true,
+    target: ".column__footer",
+    showSkipButton: false,
+    title: 'Boar',
+  },
+  {
     content: 'Las columnas representan el estado de las tareas.',
     disableBeacon: true,
     target: ".column--first-column",
@@ -39,16 +46,9 @@ const steps = [
     target: ".column-header",
     showSkipButton: false,
     title: 'Boar',
-  },
-  {
-    content: 'Aquí puedes escribir y crear tus tareas.',
-    disableBeacon: true,
-    target: ".column__footer",
-    showSkipButton: false,
     locale: {
       last: 'Terminar tutorial', 
     },
-    title: 'Boar',
   },
 ];
 
