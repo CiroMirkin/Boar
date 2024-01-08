@@ -2,6 +2,17 @@ import './App.css'
 import { useState } from 'react'
 import Board from './components/Board'
 import { Toaster } from 'react-hot-toast'
+import Joyride from "react-joyride";
+
+const steps = [
+  {
+    content: 'Una aplicación para gestionar tareas.',
+    disableBeacon: true,
+    placement: 'center',
+    target: 'body',
+    title: 'Bienvenido a Boar',
+  },
+];
 
 function App() {
   const [ columns, setColumns ] = useState([
@@ -30,6 +41,15 @@ function App() {
 
   return (
     <>
+      <Joyride 
+        steps={steps} 
+        showProgress 
+        showSkipButton 
+        hideCloseButton
+        disableScrolling
+        continuous
+        
+      />
       <Toaster
         position="bottom-right"
         reverseOrder={false}

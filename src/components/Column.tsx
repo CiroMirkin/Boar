@@ -12,7 +12,7 @@ interface ColumnProps {
   deleteColumn: Function
 };
 
-function Column({ name, id, firstColumn,children, addNewTaskInColumn, changeColumnName, deleteColumn }: ColumnProps) {
+function Column({ name, id, firstColumn, children, addNewTaskInColumn, changeColumnName, deleteColumn }: ColumnProps) {
   const [ newTask, setNewTask ] = useState('')
 
   const pushNewTaskInColumn = () => {
@@ -35,9 +35,10 @@ function Column({ name, id, firstColumn,children, addNewTaskInColumn, changeColu
       pushNewTaskInColumn()
     }
   }
+  const columnClassName = `column ${firstColumn && 'column--first-column'}`
 
   return (
-    <li className='column' key={id}>
+    <li className={columnClassName} key={id}>
         <ColumnHeader name={name} columnId={id} changeColumnName={changeColumnName} deleteColumn={deleteColumn} />
         {
           children
