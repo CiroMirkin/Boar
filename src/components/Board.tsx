@@ -73,11 +73,12 @@ function Board({ columns, setColumns, name, changeName }: BoardProps) {
 
       <ul className='board'>
           {
-              columns.map(column => 
+              columns.map((column, index) => 
                   <Column 
                     key={column.id} 
                     id={column.id} 
                     name={column.name} 
+                    firstColumn={index == 0}
                     addNewTaskInColumn={addNewTaskInColumn}
                     changeColumnName={changeColumnNameOfThisColumn}
                     deleteColumn={deleteColumn}

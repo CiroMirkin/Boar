@@ -5,13 +5,14 @@ import ColumnHeader from './ColumnHeader'
 interface ColumnProps {
   id: string,
   name: string,
+  firstColumn: boolean,
   children: React.ReactNode,
   addNewTaskInColumn: Function,
   changeColumnName: Function,
   deleteColumn: Function
 };
 
-function Column({ name, id, children, addNewTaskInColumn, changeColumnName, deleteColumn }: ColumnProps) {
+function Column({ name, id, firstColumn,children, addNewTaskInColumn, changeColumnName, deleteColumn }: ColumnProps) {
   const [ newTask, setNewTask ] = useState('')
 
   const pushNewTaskInColumn = () => {
@@ -41,16 +42,19 @@ function Column({ name, id, children, addNewTaskInColumn, changeColumnName, dele
         {
           children
         }
-        <footer className="column__footer">
-          <input 
-            type="text" 
-            value={newTask} 
-            onChange={(e) => setNewTask(e.target.value)} 
-            onKeyUp={handleKeyUp}
-            placeholder='Agregar una nueva tarea...'
-          />
-          <button onClick={handleClick}>Agregar</button>
-        </footer>
+        {
+          firstColumn &&
+            <footer className="column__footer">
+              <input 
+                type="text" 
+                value={newTask} 
+                onChange={(e) => setNewTask(e.target.value)} 
+                onKeyUp={handleKeyUp}
+                placeholder='Agregar una nueva tarea...'
+              />
+              <button onClick={handleClick}>Agregar</button>
+          </footer>
+        }
     </li>
   )
 }
