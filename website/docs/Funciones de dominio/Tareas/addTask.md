@@ -9,6 +9,7 @@ tags:
 
 **Reglas de negocio**:
 * No se pueden crear tareas vacías.
+* Solo se pueden crear tareas en la primer columna.
 
 ## Función de dominio
 
