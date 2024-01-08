@@ -5,7 +5,7 @@ import TaskOptions from './TaskOptions'
 interface ColumnProps extends taskModel {
   deleteTask: Function,
   moveTask: Function,
-  editTask: Function
+  editTask?: Function
 };
 
 function Task({ descriptionText, id, deleteTask, moveTask, editTask }: ColumnProps) {

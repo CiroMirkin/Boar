@@ -86,7 +86,7 @@ function Board({ columns, setColumns, name, changeName }: BoardProps) {
                     <TaskList 
                       taskList={column.taskList} 
                       deleteTask={(taskId: string) => deleteThisTaskInThisColumn(taskId, column.id)}
-                      editTask={editTask}
+                      editTask={index === 0 ? editTask : undefined}
                       moveTask={moveATask}
                     />
                   </Column>

@@ -6,7 +6,7 @@ interface TaskListProps {
     taskList: taskModel[],
     deleteTask: Function,
     moveTask: Function,
-    editTask: Function
+    editTask?: Function
 };
 
 function TaskList({ taskList, deleteTask, moveTask, editTask }: TaskListProps) {
