@@ -70,14 +70,14 @@ Para el **flujo de trabajo** se utilizara Git siguiendo la metodología *ship/sh
 
 ## Documentación
 
-Para leer la documentación del proyecto puedes ejecutar los siguientes comandos:
+1. Puede leer la documentación en linea en [cm-boar-docs.netlify.app](https://cm-boar-docs.netlify.app/) o 
+2. puede acceder a la documentación localmente primero ejecutando:
 
-```bash
-cd website
-```
-
-```bash
-npm run start
-```
-
-Con `cd website` entraras a al directorio donde esta la documentación y con `npm run start` se creara el sitio con la documentación en [http://localhost:3000/](http://localhost:3000/).
+    ```bash
+    cd website
+    ```
+    Y luego:
+    ```bash
+    npm run start
+    ```
+    Con `cd website` entrara a al directorio donde esta la documentación y con `npm run start` se creara el sitio con la documentación en [http://localhost:3000/](http://localhost:3000/).
