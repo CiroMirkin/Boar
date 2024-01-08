@@ -48,7 +48,23 @@ function App() {
         hideCloseButton
         disableScrolling
         continuous
-        
+        locale={{
+          back: 'Volver', 
+          close: 'Cerrar', 
+          last: 'Anterior', 
+          next: 'Siguiente', 
+          skip: 'Saltar tutorial'
+        }}
+        styles={{
+          options: {
+            backgroundColor: "#f3f3f3",
+            overlayColor: "rgb(0 0 0 / 46%)",
+            textColor: "#000",
+            primaryColor: "rgb(136,163,253)",
+            width: "18rem",
+            zIndex: 1
+          },
+        }}
       />
       <Toaster
         position="bottom-right"
