@@ -80,4 +80,4 @@ Para el **flujo de trabajo** se utilizara Git siguiendo la metodología *ship/sh
     ```bash
     npm run start
     ```
-    Con `cd website` entrara a al directorio donde esta la documentación y con `npm run start` se creara el sitio con la documentación en [http://localhost:3000/](http://localhost:3000/).
+    Con `cd website` entrara al directorio donde esta la documentación y con `npm run start` se creara el sitio con la documentación en [http://localhost:3000/](http://localhost:3000/).
