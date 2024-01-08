@@ -10,10 +10,10 @@ tags:
 
 El tutorial de Boar fue creado con [React Joyride](https://docs.react-joyride.com/).
 
-El recorrido del tutorial esta dentro del arreglo `steps`.
+El recorrido del tutorial esta dentro del arreglo `tutorialSteps` en el archivo `src/tutorialSteps.tsx`.
 
-```typescript title="/src/App.tsx"
-const steps = [
+```typescript title="/src/tutorialSteps.tsx"
+const tutorialSteps = [
   {
     content: 'Una aplicación para gestionar tareas.',
     disableBeacon: true,
@@ -31,12 +31,12 @@ const steps = [
 ]
 ```
 
-El arreglo `steps` se pasa como prop al componente `Joyride`.
+El arreglo `tutorialSteps` se pasa como prop al componente `Joyride`.
 
 ```jsx title="/src/App.tsx"
 <Joyride 
         // highlight-next-line
-        steps={steps} 
+        steps={tutorialSteps} 
         showProgress 
         showSkipButton 
         hideCloseButton
@@ -69,7 +69,7 @@ La mayoría de los atributos están documentados por la misma librería en [Reac
 El atributo `disableBeacon` permite que el tutorial inicie automáticamente, solo es necesario en el primer elemento.
 
 ```typescript title="/src/App.tsx"
-const steps = [
+const tutorialSteps = [
   {
     content: 'Una aplicación para gestionar tareas.',
     // highlight-next-line
@@ -84,7 +84,7 @@ const steps = [
 **TypeScript detecta un error** en la propiedad `placement`, la cual existe en la interfaz de `steps` y nos permite definir manualmente donde estará el cuadro de dialogo.
 
 ```typescript
-const steps = [
+const tutorialSteps = [
   {
     content: 'Una aplicación para gestionar tareas.',
     disableBeacon: true,
