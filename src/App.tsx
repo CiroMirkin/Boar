@@ -12,6 +12,49 @@ const steps = [
     target: 'body',
     title: 'Bienvenido a Boar',
   },
+  {
+    content: 'Así son las tareas.',
+    disableBeacon: true,
+    target: ".task",
+    placement: 'bottom',
+    showSkipButton: false,
+    title: 'Boar',
+  },
+  {
+    content: 'Con este botón puedes ver las opciones de una tarea.',
+    disableBeacon: true,
+    target: ".task-options",
+    placement: 'bottom',
+    showSkipButton: false,
+    title: 'Boar',
+  },
+  {
+    content: 'Las columnas representan el estado de las tareas.',
+    disableBeacon: true,
+    target: ".column--first-column",
+    placement: 'bottom',
+    showSkipButton: false,
+    title: 'Boar',
+  },
+  {
+    content: 'Al lado del nombre de una columna están las opciones editar y eliminar.',
+    disableBeacon: true,
+    target: ".column-header",
+    placement: 'bottom',
+    showSkipButton: false,
+    title: 'Boar',
+  },
+  {
+    content: 'Aquí puedes escribir y crear tus tareas.',
+    disableBeacon: true,
+    target: ".column__footer",
+    placement: 'top',
+    showSkipButton: false,
+    locale: {
+      last: 'Terminar tutorial', 
+    },
+    title: 'Boar',
+  },
 ];
 
 function App() {
