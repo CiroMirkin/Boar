@@ -17,13 +17,11 @@ const tutorialSteps = [
   {
     content: 'Una aplicación para gestionar tareas.',
     disableBeacon: true,
-    placement: 'center',
-    target: 'body',
+    target: '.board-header-component',
     title: 'Bienvenido a Boar',
   },
   {
     content: 'Así son las tareas.',
-    disableBeacon: true,
     target: ".task",
     showSkipButton: false,
     title: 'Boar',
@@ -64,7 +62,7 @@ El arreglo `tutorialSteps` se pasa como prop al componente `Joyride`.
 
 ## Atributos
 
-La mayoría de los atributos están documentados por la misma librería en [React Joyride](https://docs.react-joyride.com/), salvo los atributos definidos a continuación.
+La mayoría de los atributos están documentados por la misma librería en [React Joyride](https://docs.react-joyride.com/).
 
 El atributo `disableBeacon` permite que el tutorial inicie automáticamente, solo es necesario en el primer elemento.
 
@@ -74,24 +72,8 @@ const tutorialSteps = [
     content: 'Una aplicación para gestionar tareas.',
     // highlight-next-line
     disableBeacon: true,
-    placement: 'center',
-    target: 'body',
+    target: '.board-header-component',
     title: 'Bienvenido a Boar',
   }
 ]
-```
-
-**TypeScript detecta un error** en la propiedad `placement`, la cual existe en la interfaz de `steps` y nos permite definir manualmente donde estará el cuadro de dialogo.
-
-```typescript
-const tutorialSteps = [
-  {
-    content: 'Una aplicación para gestionar tareas.',
-    disableBeacon: true,
-    // highlight-next-line
-    placement: 'center',
-    target: 'body',
-    title: 'Bienvenido a Boar',
-  }
-];
 ```
