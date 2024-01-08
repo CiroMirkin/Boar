@@ -8,7 +8,7 @@ interface TaskOptionsProps {
     taskDescription: string
     deleteTask: Function,
     moveTask: Function,
-    editTask: Function
+    editTask?: Function
 }
 
 interface options {
@@ -34,12 +34,6 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
             colorClassName: "task-option-btn--primary"
         },
         {
-          name: 'Editar', 
-          function: () => showEditTaskInput(),
-          colorClassName: 'task-option-btn--primary',
-          icon: () => <PencilSquareIcon />
-        },
-        {
           name: 'Copiar', 
           function: () => navigator.clipboard.writeText(taskDescription).then(() => toast.success('Tarea copiada al portapapeles')),
           colorClassName: 'task-option-btn--primary',
@@ -58,15 +52,26 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
         setShowTaskOptions(newShowTaskOptionsValue)
     }
 
+    const editTaskPositionInOptionsList = 2;
+    const SpliceParamToInsertAnElementWithoutDeletingElements = 0
+    editTask && options.splice(
+        editTaskPositionInOptionsList, SpliceParamToInsertAnElementWithoutDeletingElements, 
+        {
+            name: 'Editar', 
+            function: () => showEditTaskInput(),
+            colorClassName: 'task-option-btn--primary',
+            icon: () => <PencilSquareIcon />
+        }
+    )
     const showEditTaskInput = () => {
         setDoesTheUserEditTheTask(!doesTheUserEditTheTask)
     }
-
+    
     const editTaskBtnHandleClick = () => {
         if(doesTheUserEditTheTask && !taskText) {
             toast.error('La tarea esta vacía')
         }
-        else if(doesTheUserEditTheTask) {
+        else if(doesTheUserEditTheTask && editTask) {
             editTask(taskId, taskText)
             setShowTaskOptions(false)
             setDoesTheUserEditTheTask(!doesTheUserEditTheTask)
