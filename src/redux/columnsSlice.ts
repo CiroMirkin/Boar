@@ -1,6 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { columnModel } from "../models/column";
 
-const initialState = [
+interface initialStateInterface {
+  columns: columnModel[]
+}
+
+const initialState: initialStateInterface = {
+  columns: [
     {
       name: "Pendientes",
       id: "1",
@@ -21,14 +27,15 @@ const initialState = [
       id: "3",
       taskList: []
     },
-];
+  ]
+};
 
 export const columnsSlice = createSlice({
   name: "columns",
   initialState,
   reducers: {
     addColumn: (state, action) => {
-      console.log(state, action.payload)
+      
     },
   },
 });
