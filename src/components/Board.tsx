@@ -12,7 +12,7 @@ import { addColumnAtTheEnd } from '../domainFunctions/addColumn'
 import { deleteThisColumnFromColumns } from '../domainFunctions/deleteColumn'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../redux/store'
-import { addColumn, addTask, deleteTask } from '../redux/columnsSlice'
+import { addColumn, addTask, deleteColumn, deleteTask } from '../redux/columnsSlice'
 
 interface BoardProps {
   name: string,
@@ -71,9 +71,9 @@ function Board({ name, changeName }: BoardProps) {
     toast.success('Columna creada')
   }
 
-  const deleteColumn = (columnId: string) => {
+  const deleteThisColumn = (columnId: string) => {
     try {
-      
+      dispatch(deleteColumn(columnId))
       toast.success('Columna eliminada')
     }
     catch(e) {
@@ -95,7 +95,7 @@ function Board({ name, changeName }: BoardProps) {
                     firstColumn={index == 0}
                     addNewTaskInColumn={addNewTaskInColumn}
                     changeColumnName={changeColumnNameOfThisColumn}
-                    deleteColumn={deleteColumn}
+                    deleteColumn={deleteThisColumn}
                   > 
                     <TaskList 
                       taskList={column.taskList} 
