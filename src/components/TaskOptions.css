@@ -37,7 +37,7 @@
     display: block;
     height: auto;
     opacity: 1;
-    padding: .6rem .5rem;
+    padding: 0 .5rem .6rem;
     display: flex;
     align-items: center;
     justify-content: flex-start;

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './TaskOptions.css'
-import { ClipboardIcon, PencilSquareIcon, ThreeDotsIcon, TrashIcon } from './Icon'
+import { ClipboardIcon, PencilSquareIcon, TrashIcon } from './Icon'
 import toast from 'react-hot-toast'
 
 interface TaskOptionsProps {
@@ -19,7 +19,6 @@ interface options {
 }
 
 function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }: TaskOptionsProps) {
-    const [ showTaskOptions, setShowTaskOptions ] = useState(false)
     const [ doesTheUserEditTheTask, setDoesTheUserEditTheTask ] = useState(false)
     const [ taskText, setTaskText ] = useState(taskDescription)
     const options: options[] = [
@@ -47,11 +46,6 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
         },
     ]
 
-    const toggleTaskOptions = () => {
-        const newShowTaskOptionsValue = !showTaskOptions
-        setShowTaskOptions(newShowTaskOptionsValue)
-    }
-
     const editTaskPositionInOptionsList = 2;
     const SpliceParamToInsertAnElementWithoutDeletingElements = 0
     editTask && options.splice(
@@ -73,19 +67,14 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
         }
         else if(doesTheUserEditTheTask && editTask) {
             editTask(taskId, taskText)
-            setShowTaskOptions(false)
             setDoesTheUserEditTheTask(!doesTheUserEditTheTask)
         }
         else setDoesTheUserEditTheTask(!doesTheUserEditTheTask)
     }
     
     return (
-        <footer className='task-options'>
-            <button className='task-options__btn' onClick={toggleTaskOptions} title='Opciones'>
-                <ThreeDotsIcon />
-            </button> 
-            <ul className={`task-options__options ${showTaskOptions ? 'task-options__options--show' : 'task-options__options--hide'}`}>
-                <li className='task-options__options-first-option'>
+        <>
+            <li className='task-options__options-first-option'>
                     {
                         doesTheUserEditTheTask && 
                         <div style={{ width: '100%', display: 'flex', justifyContent: 'center', gap: '2px' ,padding: '0.2rem' }}>
@@ -112,8 +101,7 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
                         </li>
                     )
                 }
-            </ul>
-        </footer>
+        </>
     )
 }
 

@@ -21,8 +21,7 @@
 }
 .task__text {
     margin: 0;
-    padding: .5rem 0 0 .5rem;
-    padding-right: .5rem;
+    padding: .5rem;
 
     font-size: 1.1rem;
     line-height: 1.3rem;
