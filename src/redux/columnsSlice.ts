@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { columnModel } from "../models/column";
 import { taskModel } from "../models/task";
+import { deleteThisColumnFromColumns } from "../domainFunctions/deleteColumn";
 
 interface initialStateInterface {
   columns: columnModel[]
@@ -41,6 +42,9 @@ export const columnsSlice = createSlice({
     addTask: (state, action: PayloadAction<taskModel>) => {
       const columnIndex = action.payload.column ? (action.payload.column.columnIndex || 0) : 0
       state.columns[columnIndex].taskList.push(action.payload)
+    },
+    deleteColumn: (state, action: PayloadAction<string>) => {
+      state.columns = deleteThisColumnFromColumns({ columnId: action.payload, columns: state.columns })
     },
   },
 });
