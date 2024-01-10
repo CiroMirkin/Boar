@@ -12,7 +12,7 @@ import { addColumnAtTheEnd } from '../domainFunctions/addColumn'
 import { deleteThisColumnFromColumns } from '../domainFunctions/deleteColumn'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../redux/store'
-import { addTask } from '../redux/columnsSlice'
+import { addTask, deleteTask } from '../redux/columnsSlice'
 
 interface BoardProps {
   name: string,
@@ -33,13 +33,23 @@ function Board({ name, changeName }: BoardProps) {
     }
     const columnIndex = getColumnIndex()
     newTask.column = { columnIndex, columnId }
-    
+
     dispatch(addTask(newTask))
     toast.success('Tarea creada')
   }
 
   const deleteThisTaskInThisColumn = (taskId: string, columnId: string) => {
-    
+    const getTask = () => {
+      let task: any;
+      columns.map((column) => {
+        column.taskList.map(taskInColumn => {
+          if(taskInColumn.id === taskId) task = taskInColumn
+        })
+      })
+      return task
+    }
+    const task = getTask()
+    dispatch(deleteTask(task))
     toast.success('Tarea eliminada')
   }
 
