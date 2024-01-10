@@ -17,6 +17,8 @@
     border-radius: 0.25rem;
     border: solid 0.125rem #000;
     box-shadow: 0.15rem 0.15rem #000;
+    cursor: default;
+    user-select: none;
     transition: background-color 500ms ease;
 }
 .task:hover {
