@@ -12,7 +12,7 @@ import { addColumnAtTheEnd } from '../domainFunctions/addColumn'
 import { deleteThisColumnFromColumns } from '../domainFunctions/deleteColumn'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../redux/store'
-import { addTask, deleteTask } from '../redux/columnsSlice'
+import { addColumn, addTask, deleteTask } from '../redux/columnsSlice'
 
 interface BoardProps {
   name: string,
@@ -62,7 +62,12 @@ function Board({ name, changeName }: BoardProps) {
   }
 
   const addNewColumnAtTheEndOfTheBoard = () => {
-    
+    const getColumnId = () => (Number(columns.at(-1)?.id ? columns.at(-1)?.id : '0') + 1).toString()
+    dispatch(addColumn({
+      name: 'Nueva columna',
+      id: getColumnId(),
+      taskList: []
+    }))
     toast.success('Columna creada')
   }
 
