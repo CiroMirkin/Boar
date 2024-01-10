@@ -16,7 +16,7 @@
     font-size: 8px;
     opacity: .5;
     border: none;
-    background-color: #ccc;
+    background-color: #FCFBFC;
 }
 .task-options__btn:hover {
     opacity: 1;
@@ -61,7 +61,7 @@
     font-size: .8rem;
     text-align: left;
     line-height: .9rem;
-    background: var(--white-color);
+    background: #FCFBFC;
 	border-radius: 0.25rem;
     border: solid 0.125rem #121212;
     transition: background-color 500ms ease;
@@ -74,4 +74,7 @@
 }
 .task-option-btn--danger:hover {
     background-color: var(--danger-color);
+}
+.task-option-btn--success:hover {
+    background-color: var(--success-color);
 }

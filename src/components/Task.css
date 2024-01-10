@@ -4,8 +4,7 @@
     
     --warning-color: #ffd48e;
     --purple-color: rgb(208,186,241);
-    --pink-color: rgb(252,163,220);
-    --success-color: #6a8d8b;
+    --success-color: #2cb67d;
     --info-color: rgb(136,163,253);
     --primary-color: rgb(223,233,238);
 }
@@ -18,6 +17,10 @@
     border-radius: 0.25rem;
     border: solid 0.125rem #000;
     box-shadow: 0.15rem 0.15rem #000;
+    transition: background-color 500ms ease;
+}
+.task:hover {
+    background-color: var(--primary-color);
 }
 .task__text {
     margin: 0;

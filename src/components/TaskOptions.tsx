@@ -25,12 +25,12 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
         {
             name: "Retroceder",
             function: () => moveTask('prev-column', taskId),
-            colorClassName: "task-option-btn--primary"
+            colorClassName: "task-option-btn--success"
         },
         {
             name: "Avanzar",
             function: () => moveTask('next-column', taskId),
-            colorClassName: "task-option-btn--primary"
+            colorClassName: "task-option-btn--success"
         },
         {
           name: 'Copiar', 
