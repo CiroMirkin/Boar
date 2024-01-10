@@ -3,6 +3,7 @@ import { columnModel } from "../models/column";
 import { taskModel } from "../models/task";
 import { deleteThisColumnFromColumns } from "../domainFunctions/deleteColumn";
 import { deleteThisTaskFromThisColumn } from "../domainFunctions/deleteTask";
+import { moveTask, moveToType } from "../domainFunctions/moveTask";
 
 interface initialStateInterface {
   columns: columnModel[]
@@ -53,6 +54,11 @@ export const columnsSlice = createSlice({
       if(columnId) {
         state.columns = deleteThisTaskFromThisColumn(taskId, columnId, state.columns)
       }
+    },
+    moveTask: (state, action: PayloadAction<{ taskId: string, to: moveToType }>) => {
+      const taskId = action.payload.taskId
+      const to = action.payload.to
+      state.columns = moveTask({ taskId, to, columns: state.columns })
     },
   },
 });
