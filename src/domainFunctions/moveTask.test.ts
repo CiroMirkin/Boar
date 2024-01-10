@@ -1,4 +1,4 @@
-import { moveTask } from "./moveTask"
+import { moveThisTask } from "./moveTask"
 
 describe('Mover una tarea entre columnas', () => {
     test('Una tarea debería moverse a la columna siguiente', () => {
@@ -16,7 +16,7 @@ describe('Mover una tarea entre columnas', () => {
             }
         ]
 
-        expect(moveTask({ taskId, to: 'next-column', columns})).toEqual([
+        expect(moveThisTask({ taskId, to: 'next-column', columns})).toEqual([
             {
                 name: "",
                 id: "1",
@@ -45,7 +45,7 @@ describe('Mover una tarea entre columnas', () => {
             }
         ]
 
-        expect(moveTask({ taskId, to: 'prev-column', columns})).toEqual([
+        expect(moveThisTask({ taskId, to: 'prev-column', columns})).toEqual([
             {
                 name: "",
                 id: "1",
@@ -74,7 +74,7 @@ describe('Mover una tarea entre columnas', () => {
             }
         ]
 
-        expect(moveTask({ taskId, to: 'next-column', columns})).toEqual([
+        expect(moveThisTask({ taskId, to: 'next-column', columns})).toEqual([
             {
                 name: "",
                 id: "1",
@@ -103,7 +103,7 @@ describe('Mover una tarea entre columnas', () => {
             }
         ]
 
-        expect(moveTask({ taskId, to: 'prev-column', columns})).toEqual([
+        expect(moveThisTask({ taskId, to: 'prev-column', columns})).toEqual([
             {
                 name: "",
                 id: "1",
@@ -132,7 +132,7 @@ describe('Mover una tarea entre columnas', () => {
             }
         ]
 
-        expect(moveTask({ taskId, to: 'next-column', columns})).toEqual([
+        expect(moveThisTask({ taskId, to: 'next-column', columns})).toEqual([
             {
                 name: "",
                 id: "1",

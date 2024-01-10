@@ -3,7 +3,9 @@ import { columnModel } from "../models/column";
 import { taskModel } from "../models/task";
 import { deleteThisColumnFromColumns } from "../domainFunctions/deleteColumn";
 import { deleteThisTaskFromThisColumn } from "../domainFunctions/deleteTask";
-import { moveTask, moveToType } from "../domainFunctions/moveTask";
+import { moveThisTask, moveToType } from "../domainFunctions/moveTask";
+
+export interface moveTaskPayloadAction { taskId: string, to: moveToType }
 
 interface initialStateInterface {
   columns: columnModel[]
@@ -59,13 +61,13 @@ export const columnsSlice = createSlice({
         state.columns = deleteThisTaskFromThisColumn(taskId, columnId, state.columns)
       }
     },
-    moveTask: (state, action: PayloadAction<{ taskId: string, to: moveToType }>) => {
+    moveTask: (state, action: PayloadAction<moveTaskPayloadAction>) => {
       const taskId = action.payload.taskId
       const to = action.payload.to
-      state.columns = moveTask({ taskId, to, columns: state.columns })
+      state.columns = moveThisTask({ taskId, to, columns: state.columns })
     },
   },
 });
 
-export const { addColumn, addTask, deleteColumn, deleteTask } = columnsSlice.actions;
+export const { addColumn, addTask, deleteColumn, deleteTask, moveTask } = columnsSlice.actions;
 export default columnsSlice.reducer;

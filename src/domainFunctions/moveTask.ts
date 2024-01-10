@@ -10,10 +10,17 @@ interface moveTaskParams {
     columns: columnsType
 }
 
-export const moveTask = ({ taskId, to, columns }: moveTaskParams): columnsType => {
+export const moveThisTask = ({ taskId, to, columns }: moveTaskParams): columnsType => {
     let columnIndexOfTheTask: number = 0;
     let taskIndex: number = 0;
-    let task: taskModel = { descriptionText: "", id: "" }
+    let task: taskModel = { 
+        descriptionText: "", 
+        id: "", 
+        column: {
+            columnId: '',
+            columnIndex: 0
+        }
+    }
 
     const newColumns = columns.map((column, columnIndex) => {
         column.taskList = column.taskList.filter((taskInColumn, taskInColumnIndex) => {
@@ -31,6 +38,8 @@ export const moveTask = ({ taskId, to, columns }: moveTaskParams): columnsType =
     const prevColumnIndex = columnIndexOfTheTask - 1
     const columnIndexWhereTheTaskWillBe = (to === 'next-column') ? nextColumnIndex : prevColumnIndex 
     if(columnIndexWhereTheTaskWillBe < columns.length && columnIndexWhereTheTaskWillBe > -1) {
+        task.column.columnIndex = columnIndexWhereTheTaskWillBe
+        task.column.columnId = columns[columnIndexWhereTheTaskWillBe].id
         const SpliceMethodParamToInsertAnElementWithoutDeletingElements = 0
         newColumns[columnIndexWhereTheTaskWillBe].taskList.splice(
             taskIndex, 
