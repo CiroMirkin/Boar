@@ -12,7 +12,7 @@ export const tutorialSteps = [
       title: 'Boar',
     },
     {
-      content: 'Con este botón puedes ver las opciones de una tarea.',
+      content: 'Al presionar una tarea puedes ver sus opciones.',
       target: ".task-options",
       showSkipButton: false,
       title: 'Boar',
