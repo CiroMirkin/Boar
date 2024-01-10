@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { columnModel } from "../models/column";
+import { taskModel } from "../models/task";
 
 interface initialStateInterface {
   columns: columnModel[]
@@ -36,6 +37,10 @@ export const columnsSlice = createSlice({
   reducers: {
     addColumn: (state, action: PayloadAction<columnModel>) => {
       state.columns.push(action.payload)
+    },
+    addTask: (state, action: PayloadAction<taskModel>) => {
+      const columnIndex = action.payload.column ? (action.payload.column.columnIndex || 0) : 0
+      state.columns[columnIndex].taskList.push(action.payload)
     },
   },
 });
