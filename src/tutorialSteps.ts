@@ -1,6 +1,6 @@
 export const tutorialSteps = [
     {
-      content: 'Una aplicación para gestionar tareas. Empezara con un tablero básico.',
+      content: 'Una aplicación para gestionar tareas. Empezaras con un tablero básico.',
       disableBeacon: true,
       target: '.board-header-component',
       title: 'Bienvenido a Boar',
@@ -13,13 +13,7 @@ export const tutorialSteps = [
     },
     {
       content: 'Al presionar una tarea puedes ver sus opciones.',
-      target: ".task-options",
-      showSkipButton: false,
-      title: 'Boar',
-    },
-    {
-      content: 'Aquí puedes escribir y crear tus tareas.',
-      target: ".column__footer",
+      target: ".task",
       showSkipButton: false,
       title: 'Boar',
     },
