@@ -17,7 +17,11 @@ const initialState: initialStateInterface = {
       taskList: [
         {
           descriptionText: "Hacer un cafe.",
-          id: "1"
+          id: "1",
+          column: {
+            columnId: "1",
+            columnIndex: 0
+          }
         },
       ]
     },
@@ -42,7 +46,7 @@ export const columnsSlice = createSlice({
       state.columns.push(action.payload)
     },
     addTask: (state, action: PayloadAction<taskModel>) => {
-      const columnIndex = action.payload.column ? (action.payload.column.columnIndex || 0) : 0
+      const columnIndex = action.payload.column.columnIndex
       state.columns[columnIndex].taskList.push(action.payload)
     },
     deleteColumn: (state, action: PayloadAction<string>) => {
@@ -50,7 +54,7 @@ export const columnsSlice = createSlice({
     },
     deleteTask: (state, action: PayloadAction<taskModel>) => {
       const taskId = action.payload.id
-      const columnId = action.payload.column ? (action.payload.column.columnId || '') : ''
+      const columnId = action.payload.column.columnId
       if(columnId) {
         state.columns = deleteThisTaskFromThisColumn(taskId, columnId, state.columns)
       }
