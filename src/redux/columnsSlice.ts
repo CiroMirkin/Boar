@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { columnModel } from "../models/column";
 
 interface initialStateInterface {
@@ -34,8 +34,8 @@ export const columnsSlice = createSlice({
   name: "columns",
   initialState,
   reducers: {
-    addColumn: (state, action) => {
-      
+    addColumn: (state, action: PayloadAction<columnModel>) => {
+      state.columns.push(action.payload)
     },
   },
 });
