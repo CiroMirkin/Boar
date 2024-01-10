@@ -7,7 +7,16 @@ describe('Mover una tarea entre columnas', () => {
             {
                 name: "",
                 id: "1",
-                taskList: [{ descriptionText: "string", id: "1"}]
+                taskList: [
+                    { 
+                        descriptionText: "", 
+                        id: "1",
+                        column: {
+                            columnId: '1',
+                            columnIndex: 0
+                        }
+                    }
+                ]
             },
             {
                 name: "",
@@ -25,7 +34,16 @@ describe('Mover una tarea entre columnas', () => {
             {
                 name: "",
                 id: "2",
-                taskList: [{ descriptionText: "string", id: "1"}]
+                taskList: [
+                    { 
+                        descriptionText: "", 
+                        id: "1",
+                        column: {
+                            columnId: '2',
+                            columnIndex: 1
+                        }
+                    }
+                ]
             }
         ])
     })
@@ -41,7 +59,16 @@ describe('Mover una tarea entre columnas', () => {
             {
                 name: "",
                 id: "2",
-                taskList: [{ descriptionText: "string", id: "1"}]
+                taskList: [
+                    { 
+                        descriptionText: "", 
+                        id: "1",
+                        column: {
+                            columnId: '2',
+                            columnIndex: 1
+                        }
+                    }
+                ]
             }
         ]
 
@@ -49,7 +76,16 @@ describe('Mover una tarea entre columnas', () => {
             {
                 name: "",
                 id: "1",
-                taskList: [{ descriptionText: "string", id: "1"}]
+                taskList: [
+                    { 
+                        descriptionText: "", 
+                        id: "1",
+                        column: {
+                            columnId: '1',
+                            columnIndex: 0
+                        }   
+                    }
+                ]
             },
             {
                 name: "",
@@ -70,7 +106,16 @@ describe('Mover una tarea entre columnas', () => {
             {
                 name: "",
                 id: "2",
-                taskList: [{ descriptionText: "string", id: "1"}]
+                taskList: [
+                    { 
+                        descriptionText: "", 
+                        id: "1",
+                        column: {
+                            columnId: '2',
+                            columnIndex: 1
+                        }
+                    }
+                ]
             }
         ]
 
@@ -83,7 +128,16 @@ describe('Mover una tarea entre columnas', () => {
             {
                 name: "",
                 id: "2",
-                taskList: [{ descriptionText: "string", id: "1"}]
+                taskList: [
+                    { 
+                        descriptionText: "", 
+                        id: "1",
+                        column: {
+                            columnId: '2',
+                            columnIndex: 1
+                        }
+                    }
+                ]
             }
         ])
     })
@@ -94,7 +148,16 @@ describe('Mover una tarea entre columnas', () => {
             {
                 name: "",
                 id: "1",
-                taskList: [{ descriptionText: "string", id: "1"}]
+                taskList: [
+                    { 
+                        descriptionText: "", 
+                        id: "1",
+                        column: {
+                            columnId: '1',
+                            columnIndex: 0
+                        }
+                    }
+                ]
             },
             {
                 name: "",
@@ -107,7 +170,16 @@ describe('Mover una tarea entre columnas', () => {
             {
                 name: "",
                 id: "1",
-                taskList: [{ descriptionText: "string", id: "1"}]
+                taskList: [
+                    { 
+                        descriptionText: "", 
+                        id: "1",
+                        column: {
+                            columnId: '1',
+                            columnIndex: 0
+                        }
+                    }
+                ]
             },
             {
                 name: "",
@@ -123,12 +195,30 @@ describe('Mover una tarea entre columnas', () => {
             {
                 name: "",
                 id: "1",
-                taskList: [{ descriptionText: "string", id: "1"}]
+                taskList: [
+                    { 
+                        descriptionText: "", 
+                        id: "1",
+                        column: {
+                            columnId: '1',
+                            columnIndex: 0
+                        }
+                    }
+                ]
             },
             {
                 name: "",
                 id: "2",
-                taskList: [{ descriptionText: "string", id: "2"}]
+                taskList: [
+                    { 
+                        descriptionText: "", 
+                        id: "2",
+                        column: {
+                            columnId: '2',
+                            columnIndex: 1
+                        }
+                    }
+                ]
             }
         ]
 
@@ -141,7 +231,25 @@ describe('Mover una tarea entre columnas', () => {
             {
                 name: "",
                 id: "2",
-                taskList: [ { descriptionText: "string", id: "1"}, { descriptionText: "string", id: "2"}]
+                taskList: [ 
+                    { 
+                        descriptionText: "", 
+                        id: "1",
+                        column: {
+                            columnId: '2',
+                            columnIndex: 1
+                        }
+                    }
+                    , 
+                    { 
+                        descriptionText: "", 
+                        id: "2",
+                        column: {
+                            columnId: '2',
+                            columnIndex: 1
+                        }
+                    }
+                ]
             }
         ])
     })
