@@ -7,7 +7,7 @@ import toast from 'react-hot-toast'
 import BoardHeader from './BoardHeader'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../redux/store'
-import { addColumn, addTask, deleteColumn, deleteTask } from '../redux/columnsSlice'
+import { addColumn, addTask, deleteColumn, deleteTask, moveTask } from '../redux/columnsSlice'
 
 interface BoardProps {
   name: string,
@@ -49,7 +49,7 @@ function Board({ name, changeName }: BoardProps) {
   }
 
   const moveATask = (to: moveToType, taskId: string) => {
-    
+    dispatch(moveTask({ to, taskId }))
   }
 
   const changeColumnNameOfThisColumn = (columnId: string, newColumnName: string) => {
