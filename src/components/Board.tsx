@@ -1,4 +1,3 @@
-import { columnModel } from '../models/column'
 import './Board.css'
 import Column from './Column'
 import TaskList from './TaskList'
@@ -11,48 +10,55 @@ import toast from 'react-hot-toast'
 import BoardHeader from './BoardHeader'
 import { addColumnAtTheEnd } from '../domainFunctions/addColumn'
 import { deleteThisColumnFromColumns } from '../domainFunctions/deleteColumn'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../redux/store'
+import { addTask } from '../redux/columnsSlice'
 
 interface BoardProps {
-  columns: columnModel[],
-  setColumns: Function,
   name: string,
   changeName: Function
 }
 
-function Board({ columns, setColumns, name, changeName }: BoardProps) {
+function Board({ name, changeName }: BoardProps) {
+  const columns = useSelector((state: RootState) => state.columns.columns)
+  const dispatch = useDispatch();
 
   const addNewTaskInColumn = (newTask: taskModel, columnId: string) => {
-    const newColumns = addTaskToThisColumn(columnId, columns, newTask)
-    setColumns(newColumns)
+    const getColumnIndex = () => {
+      let theColumnIndex = 0;
+      columns.filter((column, index) => {
+        if(column.id == columnId) theColumnIndex = index
+      })
+      return theColumnIndex
+    }
+    const columnIndex = getColumnIndex()
+    newTask.column = { columnIndex, columnId }
+    
+    dispatch(addTask(newTask))
     toast.success('Tarea creada')
   }
 
   const deleteThisTaskInThisColumn = (taskId: string, columnId: string) => {
-    const newColumns = deleteThisTaskFromThisColumn(taskId, columnId, columns)
-    setColumns(newColumns)
+    
     toast.success('Tarea eliminada')
   }
 
   const moveATask = (to: moveToType, taskId: string) => {
-    const newColumns = moveTask({to, columns, taskId})
-    setColumns(newColumns)
+    
   }
 
   const changeColumnNameOfThisColumn = (columnId: string, newColumnName: string) => {
-    const newColumns = changeColumnName({ columnId, newColumnName, columns })
-    setColumns(newColumns)
+    
   }
 
   const addNewColumnAtTheEndOfTheBoard = () => {
-    const newColumns = addColumnAtTheEnd('Nueva columna', columns)
-    setColumns(newColumns)
+    
     toast.success('Columna creada')
   }
 
   const deleteColumn = (columnId: string) => {
     try {
-      const newColumns = deleteThisColumnFromColumns({ columnId, columns })
-      setColumns(newColumns)
+      
       toast.success('Columna eliminada')
     }
     catch(e) {

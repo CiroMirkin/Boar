@@ -63,5 +63,5 @@ export const columnsSlice = createSlice({
   },
 });
 
-export const { addColumn } = columnsSlice.actions;
+export const { addColumn, addTask, deleteColumn, deleteTask } = columnsSlice.actions;
 export default columnsSlice.reducer;
