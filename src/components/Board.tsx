@@ -18,25 +18,6 @@ function Board({ name, changeName }: BoardProps) {
   const columns = useSelector((state: RootState) => state.columns.columns)
   const dispatch = useDispatch();
 
-  const deleteThisTaskInThisColumn = (taskId: string, columnId: string) => {
-    const getTask = () => {
-      let task: any;
-      columns.map((column) => {
-        column.taskList.map(taskInColumn => {
-          if(taskInColumn.id === taskId) task = taskInColumn
-        })
-      })
-      return task
-    }
-    const task = getTask()
-    dispatch(deleteTask(task))
-    toast.success('Tarea eliminada')
-  }
-
-  const moveATask = (to: moveToType, taskId: string) => {
-    dispatch(moveTask({ to, taskId }))
-  }
-
   const changeColumnNameOfThisColumn = (columnId: string, newColumnName: string) => {
     dispatch(changeColumnName({ columnId, newColumnName }))
   }
@@ -66,11 +47,7 @@ function Board({ name, changeName }: BoardProps) {
                     changeColumnName={changeColumnNameOfThisColumn}
                     deleteColumn={deleteThisColumn}
                   > 
-                    <TaskList 
-                      taskList={column.taskList} 
-                      deleteTask={(taskId: string) => deleteThisTaskInThisColumn(taskId, column.id)}
-                      moveTask={moveATask}
-                    />
+                    <TaskList taskList={column.taskList} />
                   </Column>
               )
           }
