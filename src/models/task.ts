@@ -6,3 +6,12 @@ export interface taskModel {
     },
     id: string
 }
+
+export const taskNull: taskModel = {
+    id: '',
+    descriptionText: '',
+    column: {
+        columnIndex: 0,
+        columnId: '1'
+    }
+}
