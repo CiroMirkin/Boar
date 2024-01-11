@@ -10,15 +10,15 @@ interface TaskOptionsProps {
     moveTask: Function
 }
 
-interface options {
-    name: string,
-    function: Function,
-    colorClassName: BTN_COLORS
-    icon?: Function
-}
-
 function TaskOptions({ taskId, deleteTask, moveTask, taskDescription }: TaskOptionsProps) {
-    const options: options[] = [
+    interface option {
+        name: string,
+        function: Function,
+        colorClassName: BTN_COLORS
+        icon?: Function
+    }
+    
+    const options: option[] = [
         {
             name: "Retroceder",
             function: () => moveTask('prev-column', taskId),
