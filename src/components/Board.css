@@ -17,17 +17,3 @@
     justify-content: flex-end;
     padding: 0 1rem .6rem;
 }
-.board-footer .btn {
-    padding-block: 4px;
-    font-size: .8rem;
-    line-height: 1rem;
-    font-weight: 400;
-    border-radius: 0.25rem;
-	border: solid 0.125rem #121212;
-	box-shadow: 0.15rem 0.15rem #121212;
-    background-color: var(--white-color);
-    transition: background-color 500ms ease;
-}
-.board-footer .btn:hover {
-    background-color: var(--info-color);
-}

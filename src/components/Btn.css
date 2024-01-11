@@ -1,0 +1,40 @@
+#root {
+    --warning-color: #ffd48e;
+    --purple-color: rgb(208,186,241);
+    --success-color: #2cb67d;
+    --info-color: rgb(136,163,253);
+    --primary-color: rgb(223,233,238);
+}
+.btn {
+    height: auto;
+    padding: 3px 6px 2px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    
+    font-size: .8rem;
+    line-height: 1rem;
+    font-weight: 400;
+    text-align: left;
+    border-radius: 0.25rem;
+    background: #FCFBFC;
+    transition: background-color 500ms ease;
+}
+.btn-border--neo {
+	border: solid 0.125rem #121212;
+	box-shadow: 0.15rem 0.15rem #121212;
+}
+.btn:hover {
+    background-color: var(--info-color);
+}
+.btn--primary:hover {
+    background-color: var(--info-color);
+}
+.btn--danger:hover {
+    background-color: var(--danger-color);
+}
+.btn--success:hover {
+    background-color: var(--success-color);
+}

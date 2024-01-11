@@ -51,30 +51,3 @@
     align-items: center;
 }
 
-.task-option-btn {
-    height: auto;
-    padding: 3px 6px 2px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 4px;
-    font-size: .8rem;
-    text-align: left;
-    line-height: .9rem;
-    background: #FCFBFC;
-	border-radius: 0.25rem;
-    border: solid 0.125rem #121212;
-    transition: background-color 500ms ease;
-}
-.task-option-btn > * {
-    display: block;
-}
-.task-option-btn--primary:hover {
-    background-color: var(--info-color);
-}
-.task-option-btn--danger:hover {
-    background-color: var(--danger-color);
-}
-.task-option-btn--success:hover {
-    background-color: var(--success-color);
-}
