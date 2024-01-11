@@ -11,12 +11,10 @@ interface ColumnProps {
   id: string,
   name: string,
   firstColumn: boolean,
-  children: React.ReactNode,
-  changeColumnName: Function,
-  deleteColumn: Function
+  children: React.ReactNode
 };
 
-function Column({ name, id, firstColumn, children, changeColumnName, deleteColumn }: ColumnProps) {
+function Column({ name, id, firstColumn, children }: ColumnProps) {
   const [ taskText, setTaskText ] = useState('')
   const dispatch = useDispatch()
   const columns = useSelector((state: RootState) => state.columns.columns)
@@ -60,7 +58,7 @@ function Column({ name, id, firstColumn, children, changeColumnName, deleteColum
 
   return (
     <li className={columnClassName}>
-        <ColumnHeader name={name} columnId={id} changeColumnName={changeColumnName} deleteColumn={deleteColumn} />
+        <ColumnHeader name={name} columnId={id} />
         {
           children
         }

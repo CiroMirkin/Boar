@@ -15,21 +15,6 @@ interface BoardProps {
 
 function Board({ name, changeName }: BoardProps) {
   const columns = useSelector((state: RootState) => state.columns.columns)
-  const dispatch = useDispatch();
-
-  const changeColumnNameOfThisColumn = (columnId: string, newColumnName: string) => {
-    dispatch(changeColumnName({ columnId, newColumnName }))
-  }
-
-  const deleteThisColumn = (columnId: string) => {
-    try {
-      dispatch(deleteColumn(columnId))
-      toast.success('Columna eliminada')
-    }
-    catch(e) {
-      toast.error('Solo hay tres columnas, no se puede eliminar esta columna')
-    }
-  }
 
   return (
     <>
@@ -43,8 +28,6 @@ function Board({ name, changeName }: BoardProps) {
                     id={column.id} 
                     name={column.name} 
                     firstColumn={index == 0}
-                    changeColumnName={changeColumnNameOfThisColumn}
-                    deleteColumn={deleteThisColumn}
                   > 
                     <TaskList taskList={column.taskList} />
                   </Column>
