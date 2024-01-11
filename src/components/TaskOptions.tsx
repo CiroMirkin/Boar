@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './TaskOptions.css'
 import { ClipboardIcon, PencilSquareIcon, TrashIcon } from './Icon'
 import toast from 'react-hot-toast'
+import { BTN_COLORS, Btn } from './Btn'
 
 interface TaskOptionsProps {
     taskId: string,
@@ -14,7 +15,7 @@ interface TaskOptionsProps {
 interface options {
     name: string,
     function: Function,
-    colorClassName: string
+    colorClassName: BTN_COLORS
     icon?: Function
 }
 
@@ -25,23 +26,23 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
         {
             name: "Retroceder",
             function: () => moveTask('prev-column', taskId),
-            colorClassName: "task-option-btn--success"
+            colorClassName: BTN_COLORS.SUCCESS
         },
         {
             name: "Avanzar",
             function: () => moveTask('next-column', taskId),
-            colorClassName: "task-option-btn--success"
+            colorClassName: BTN_COLORS.SUCCESS
         },
         {
           name: 'Copiar', 
           function: () => navigator.clipboard.writeText(taskDescription).then(() => toast.success('Tarea copiada al portapapeles')),
-          colorClassName: 'task-option-btn--primary',
+          colorClassName: BTN_COLORS.PRIMARY,
           icon: () => <ClipboardIcon />
         },
         {
           name: 'Eliminar', 
           function: () => deleteTask(taskId),
-          colorClassName: 'task-option-btn--danger',
+          colorClassName: BTN_COLORS.DANGER,
           icon: () => <TrashIcon />
         },
     ]
@@ -53,7 +54,7 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
         {
             name: 'Editar', 
             function: () => showEditTaskInput(),
-            colorClassName: 'task-option-btn--primary',
+            colorClassName: BTN_COLORS.PRIMARY,
             icon: () => <PencilSquareIcon />
         }
     )
@@ -85,19 +86,19 @@ function TaskOptions({ taskId, deleteTask, moveTask, editTask, taskDescription }
                                 onKeyUp={(e) => e.key == 'Enter' && editTaskBtnHandleClick()}
                                 onChange={(e) => setTaskText(e.target.value)}
                             />
-                            <button onClick={editTaskBtnHandleClick} className='task-option-btn task-option-btn--primary'>
+                            <Btn onClickHandler={editTaskBtnHandleClick} color={BTN_COLORS.PRIMARY}>
                                 <PencilSquareIcon />
-                            </button>
+                            </Btn>
                         </div>
                     }
                 </li>
                 {
                     options.map(option => 
                         <li key={option.name}>
-                            <button onClick={() => option.function()} className={`task-option-btn ${option.colorClassName}`}>
+                            <Btn onClickHandler={() => option.function()} color={option.colorClassName}>
                                 { option.icon! && option.icon() }
                                 <span>{option.name}</span>
-                            </button>
+                            </Btn>
                         </li>
                     )
                 }

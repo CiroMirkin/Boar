@@ -1,5 +1,7 @@
+import { MouseEventHandler } from "react"
+import './Btn.css'
 
-enum BTN_COLORS {
+export enum BTN_COLORS {
     PRIMARY = 'primary',
     DANGER = 'danger',
     SUCCESS = 'success'
@@ -8,13 +10,14 @@ enum BTN_COLORS {
 interface BtnProps {
     color: BTN_COLORS
     children: React.ReactNode
-    neoBtn: boolean
+    neoBtn?: boolean
+    onClickHandler: MouseEventHandler<HTMLButtonElement>
 }
 
-export function Btn({ color, neoBtn, children }:  BtnProps) {
-    const btnClassName = `btn btn--${color} ${neoBtn && "btn-border--neo"}`
+export function Btn({ color, neoBtn = false, children, onClickHandler }:  BtnProps) {
+    const btnClassName = `btn btn--${color} ${neoBtn ? "btn-border--neo" : ''}`
     return (
-        <button className={btnClassName}>
+        <button className={btnClassName} onClick={onClickHandler}>
             { children }
         </button>
     )
