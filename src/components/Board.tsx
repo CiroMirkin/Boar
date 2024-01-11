@@ -1,13 +1,12 @@
 import './Board.css'
 import Column from './Column'
 import TaskList from './TaskList'
-import { taskModel } from '../models/task'
 import { moveToType } from '../domainFunctions/moveTask'
 import toast from 'react-hot-toast'
 import BoardHeader from './BoardHeader'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../redux/store'
-import { addTask, changeColumnName, deleteColumn, deleteTask, moveTask } from '../redux/columnsSlice'
+import { changeColumnName, deleteColumn, deleteTask, moveTask } from '../redux/columnsSlice'
 import { BoardFooter } from './BoardFooter'
 
 interface BoardProps {
@@ -18,21 +17,6 @@ interface BoardProps {
 function Board({ name, changeName }: BoardProps) {
   const columns = useSelector((state: RootState) => state.columns.columns)
   const dispatch = useDispatch();
-
-  const addNewTaskInColumn = (newTask: taskModel, columnId: string) => {
-    const getColumnIndex = () => {
-      let theColumnIndex = 0;
-      columns.filter((column, index) => {
-        if(column.id == columnId) theColumnIndex = index
-      })
-      return theColumnIndex
-    }
-    const columnIndex = getColumnIndex()
-    newTask.column = { columnIndex, columnId }
-
-    dispatch(addTask(newTask))
-    toast.success('Tarea creada')
-  }
 
   const deleteThisTaskInThisColumn = (taskId: string, columnId: string) => {
     const getTask = () => {
@@ -79,7 +63,6 @@ function Board({ name, changeName }: BoardProps) {
                     id={column.id} 
                     name={column.name} 
                     firstColumn={index == 0}
-                    addNewTaskInColumn={addNewTaskInColumn}
                     changeColumnName={changeColumnNameOfThisColumn}
                     deleteColumn={deleteThisColumn}
                   > 
