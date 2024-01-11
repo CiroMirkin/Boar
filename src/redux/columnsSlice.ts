@@ -5,6 +5,7 @@ import { deleteThisColumnFromColumns } from "../domainFunctions/deleteColumn";
 import { deleteThisTaskFromThisColumn } from "../domainFunctions/deleteTask";
 import { moveThisTask, moveToType } from "../domainFunctions/moveTask";
 import { changeTheNameOfThisColumn } from "../domainFunctions/changeColumnName";
+import { getColumn } from "../domainFunctions/addColumn";
 
 export interface moveTaskPayloadAction { taskId: string, to: moveToType }
 interface changeColumnNamePayloadAction { columnId: string, newColumnName: string }
@@ -46,8 +47,10 @@ export const columnsSlice = createSlice({
   name: "columns",
   initialState,
   reducers: {
-    addColumn: (state, action: PayloadAction<columnModel>) => {
-      state.columns.push(action.payload)
+    addColumn: (state, action: PayloadAction<string>) => {
+      const columnName = action.payload
+      const column = getColumn({ columnName, columns: state.columns })
+      state.columns.push(column)
     },
     addTask: (state, action: PayloadAction<taskModel>) => {
       const columnIndex = action.payload.column.columnIndex

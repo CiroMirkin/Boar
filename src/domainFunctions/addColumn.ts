@@ -1,6 +1,11 @@
 import { columnModel } from "../models/column";
 
-export const addColumnAtTheEnd = (columnName: string, columns: columnModel[]): columnModel[] => {
+interface getColumn {
+    columnName: string,
+    columns: columnModel[]
+}
+
+export const getColumn = ({ columnName, columns }: getColumn): columnModel => {
     const getColumnId = (): string => {
         const lastColumn = columns.at(-1)
         const lastColumnId = lastColumn?.id
@@ -12,7 +17,5 @@ export const addColumnAtTheEnd = (columnName: string, columns: columnModel[]): c
         id: getColumnId(),
         taskList: []
     }
-    const newColumns = [...columns]
-    newColumns.push(newColumn)
-    return newColumns
+    return newColumn
 }
