@@ -32,5 +32,7 @@ body {
   place-items: center; */
   min-width: 320px;
   min-height: 100vh;
-  background-color: var(--background-color);
+  background-color: var(--background-color);    
+  background-image: radial-gradient(#dfdcdc 0.2px, transparent 0.2px);
+  background-size: calc(10 * 0.5px) calc(10 * 0.5px);
 }
