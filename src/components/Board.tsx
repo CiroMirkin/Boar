@@ -18,6 +18,8 @@ function Board({ name, changeName }: BoardProps) {
   return (
     <>
       <BoardHeader name={name} changeName={changeName} />
+
+      <ul className='board'>
         {
           columns.map((column, index) => 
             <Column 
@@ -30,6 +32,8 @@ function Board({ name, changeName }: BoardProps) {
             </Column>
           )
         }
+      </ul>
+
       <BoardFooter />
     </>
   )
