@@ -15,10 +15,12 @@ Boar esta en linea, puedes usarlo en **[cm-boar.netlify.app](https://cm-boar.net
 
 * TypeScript
 * React
+* Redux toolkit
 * Vite
 * Vitest
 * Jest
 * Git
+* Docusaurus
 
 ## Características implementadas
 
