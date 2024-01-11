@@ -18,22 +18,18 @@ function Board({ name, changeName }: BoardProps) {
   return (
     <>
       <BoardHeader name={name} changeName={changeName} />
-
-      <ul className='board'>
-          {
-              columns.map((column, index) => 
-                  <Column 
-                    key={column.id} 
-                    id={column.id} 
-                    name={column.name} 
-                    firstColumn={index == 0}
-                  > 
-                    <TaskList taskList={column.taskList} />
-                  </Column>
-              )
-          }
-      </ul>
-
+        {
+          columns.map((column, index) => 
+            <Column 
+              key={column.id} 
+              id={column.id} 
+              name={column.name} 
+              firstColumn={index == 0}
+            > 
+              <TaskList taskList={column.taskList} />
+            </Column>
+          )
+        }
       <BoardFooter />
     </>
   )
