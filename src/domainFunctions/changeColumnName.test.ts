@@ -1,4 +1,4 @@
-import { changeColumnName } from "./changeColumnName"
+import { changeTheNameOfThisColumn } from "./changeColumnName"
 
 describe('Cambiar el nombre de una columna', () => {
     test('Debería cambiarse el nombre de la columna correspondiente', () => {
@@ -9,7 +9,7 @@ describe('Cambiar el nombre de una columna', () => {
                 taskList: []
             }
         ]
-        expect(changeColumnName({columnId: "1", newColumnName: "En espera", columns})).toEqual([
+        expect(changeTheNameOfThisColumn({columnId: "1", newColumnName: "En espera", columns})).toEqual([
             {
                 name: "En espera",
                 id: "1",
@@ -35,7 +35,7 @@ describe('Cambiar el nombre de una columna', () => {
                 taskList: []
             }
         ]
-        expect(changeColumnName({columnId: "2", newColumnName: "En espera", columns})).toEqual([
+        expect(changeTheNameOfThisColumn({columnId: "2", newColumnName: "En espera", columns})).toEqual([
             {
                 name: "Esperando",
                 id: "1",

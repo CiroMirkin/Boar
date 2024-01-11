@@ -1,4 +1,4 @@
-import { moveTask } from "./moveTask"
+import { moveThisTask } from "./moveTask"
 
 describe('Mover una tarea entre columnas', () => {
     test('Una tarea debería moverse a la columna siguiente', () => {
@@ -7,7 +7,16 @@ describe('Mover una tarea entre columnas', () => {
             {
                 name: "",
                 id: "1",
-                taskList: [{ descriptionText: "string", id: "1"}]
+                taskList: [
+                    { 
+                        descriptionText: "", 
+                        id: "1",
+                        column: {
+                            columnId: '1',
+                            columnIndex: 0
+                        }
+                    }
+                ]
             },
             {
                 name: "",
@@ -16,7 +25,7 @@ describe('Mover una tarea entre columnas', () => {
             }
         ]
 
-        expect(moveTask({ taskId, to: 'next-column', columns})).toEqual([
+        expect(moveThisTask({ taskId, to: 'next-column', columns})).toEqual([
             {
                 name: "",
                 id: "1",
@@ -25,7 +34,16 @@ describe('Mover una tarea entre columnas', () => {
             {
                 name: "",
                 id: "2",
-                taskList: [{ descriptionText: "string", id: "1"}]
+                taskList: [
+                    { 
+                        descriptionText: "", 
+                        id: "1",
+                        column: {
+                            columnId: '2',
+                            columnIndex: 1
+                        }
+                    }
+                ]
             }
         ])
     })
@@ -41,15 +59,33 @@ describe('Mover una tarea entre columnas', () => {
             {
                 name: "",
                 id: "2",
-                taskList: [{ descriptionText: "string", id: "1"}]
+                taskList: [
+                    { 
+                        descriptionText: "", 
+                        id: "1",
+                        column: {
+                            columnId: '2',
+                            columnIndex: 1
+                        }
+                    }
+                ]
             }
         ]
 
-        expect(moveTask({ taskId, to: 'prev-column', columns})).toEqual([
+        expect(moveThisTask({ taskId, to: 'prev-column', columns})).toEqual([
             {
                 name: "",
                 id: "1",
-                taskList: [{ descriptionText: "string", id: "1"}]
+                taskList: [
+                    { 
+                        descriptionText: "", 
+                        id: "1",
+                        column: {
+                            columnId: '1',
+                            columnIndex: 0
+                        }   
+                    }
+                ]
             },
             {
                 name: "",
@@ -70,11 +106,20 @@ describe('Mover una tarea entre columnas', () => {
             {
                 name: "",
                 id: "2",
-                taskList: [{ descriptionText: "string", id: "1"}]
+                taskList: [
+                    { 
+                        descriptionText: "", 
+                        id: "1",
+                        column: {
+                            columnId: '2',
+                            columnIndex: 1
+                        }
+                    }
+                ]
             }
         ]
 
-        expect(moveTask({ taskId, to: 'next-column', columns})).toEqual([
+        expect(moveThisTask({ taskId, to: 'next-column', columns})).toEqual([
             {
                 name: "",
                 id: "1",
@@ -83,7 +128,16 @@ describe('Mover una tarea entre columnas', () => {
             {
                 name: "",
                 id: "2",
-                taskList: [{ descriptionText: "string", id: "1"}]
+                taskList: [
+                    { 
+                        descriptionText: "", 
+                        id: "1",
+                        column: {
+                            columnId: '2',
+                            columnIndex: 1
+                        }
+                    }
+                ]
             }
         ])
     })
@@ -94,7 +148,16 @@ describe('Mover una tarea entre columnas', () => {
             {
                 name: "",
                 id: "1",
-                taskList: [{ descriptionText: "string", id: "1"}]
+                taskList: [
+                    { 
+                        descriptionText: "", 
+                        id: "1",
+                        column: {
+                            columnId: '1',
+                            columnIndex: 0
+                        }
+                    }
+                ]
             },
             {
                 name: "",
@@ -103,11 +166,20 @@ describe('Mover una tarea entre columnas', () => {
             }
         ]
 
-        expect(moveTask({ taskId, to: 'prev-column', columns})).toEqual([
+        expect(moveThisTask({ taskId, to: 'prev-column', columns})).toEqual([
             {
                 name: "",
                 id: "1",
-                taskList: [{ descriptionText: "string", id: "1"}]
+                taskList: [
+                    { 
+                        descriptionText: "", 
+                        id: "1",
+                        column: {
+                            columnId: '1',
+                            columnIndex: 0
+                        }
+                    }
+                ]
             },
             {
                 name: "",
@@ -123,16 +195,34 @@ describe('Mover una tarea entre columnas', () => {
             {
                 name: "",
                 id: "1",
-                taskList: [{ descriptionText: "string", id: "1"}]
+                taskList: [
+                    { 
+                        descriptionText: "", 
+                        id: "1",
+                        column: {
+                            columnId: '1',
+                            columnIndex: 0
+                        }
+                    }
+                ]
             },
             {
                 name: "",
                 id: "2",
-                taskList: [{ descriptionText: "string", id: "2"}]
+                taskList: [
+                    { 
+                        descriptionText: "", 
+                        id: "2",
+                        column: {
+                            columnId: '2',
+                            columnIndex: 1
+                        }
+                    }
+                ]
             }
         ]
 
-        expect(moveTask({ taskId, to: 'next-column', columns})).toEqual([
+        expect(moveThisTask({ taskId, to: 'next-column', columns})).toEqual([
             {
                 name: "",
                 id: "1",
@@ -141,7 +231,25 @@ describe('Mover una tarea entre columnas', () => {
             {
                 name: "",
                 id: "2",
-                taskList: [ { descriptionText: "string", id: "1"}, { descriptionText: "string", id: "2"}]
+                taskList: [ 
+                    { 
+                        descriptionText: "", 
+                        id: "1",
+                        column: {
+                            columnId: '2',
+                            columnIndex: 1
+                        }
+                    }
+                    , 
+                    { 
+                        descriptionText: "", 
+                        id: "2",
+                        column: {
+                            columnId: '2',
+                            columnIndex: 1
+                        }
+                    }
+                ]
             }
         ])
     })

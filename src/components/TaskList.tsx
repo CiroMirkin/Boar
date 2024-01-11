@@ -3,18 +3,15 @@ import Task from './Task'
 import './TaskList.css'
 
 interface TaskListProps {
-    taskList: taskModel[],
-    deleteTask: Function,
-    moveTask: Function,
-    editTask?: Function
+    taskList: taskModel[]
 };
 
-function TaskList({ taskList, deleteTask, moveTask, editTask }: TaskListProps) {
+function TaskList({ taskList }: TaskListProps) {
   return (
     <ul className="column-task-list">
         {
           taskList.map(task => 
-            <Task key={task.id} id={task.id} descriptionText={task.descriptionText} deleteTask={deleteTask} moveTask={moveTask} editTask={editTask}  /> 
+            <Task key={task.id} task={task} /> 
           )
         }
     </ul>

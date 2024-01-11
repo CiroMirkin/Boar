@@ -6,7 +6,7 @@ interface changeColumnNameParams {
     columns: columnModel[]
 }
 
-export const changeColumnName = ({ columnId, newColumnName, columns }: changeColumnNameParams): columnModel[] => {
+export const changeTheNameOfThisColumn = ({ columnId, newColumnName, columns }: changeColumnNameParams): columnModel[] => {
     let columnNameIsChange = false;
     const newColumns = columns.map(column => {
         if(column.id === columnId) {

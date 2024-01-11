@@ -6,28 +6,6 @@ import Joyride from "react-joyride";
 import { tutorialSteps } from './tutorialSteps';
 
 function App() {
-  const [ columns, setColumns ] = useState([
-    {
-      name: "Pendientes",
-      id: "1",
-      taskList: [
-        {
-          descriptionText: "Hacer un cafe.",
-          id: "1"
-        },
-      ]
-    },
-    {
-      name: "Procesando",
-      id: "2",
-      taskList: []
-    },
-    {
-      name: "Terminado",
-      id: "3",
-      taskList: []
-    },
-  ])
   const [ boardName, setBoardName ] = useState("Tablero básico")
 
   return (
@@ -61,7 +39,7 @@ function App() {
         position="bottom-right"
         reverseOrder={false}
       />
-      <Board name={boardName} changeName={setBoardName} columns={columns} setColumns={setColumns} />
+      <Board name={boardName} changeName={setBoardName} />
     </>
   )
 }
