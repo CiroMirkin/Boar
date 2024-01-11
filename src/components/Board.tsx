@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import { RootState } from '../redux/store'
 import { BoardFooter } from './BoardFooter'
 
+
 interface BoardProps {
   name: string,
   changeName: Function
