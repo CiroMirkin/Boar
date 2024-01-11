@@ -17,7 +17,7 @@ interface ColumnProps {
 };
 
 function Column({ name, id, firstColumn, children, changeColumnName, deleteColumn }: ColumnProps) {
-  const [ taskText, setNewTask ] = useState('')
+  const [ taskText, setTaskText ] = useState('')
   const dispatch = useDispatch()
   const columns = useSelector((state: RootState) => state.columns.columns)
 
@@ -45,25 +45,21 @@ function Column({ name, id, firstColumn, children, changeColumnName, deleteColum
     if(!!taskText.trim()) {
       const newTask = getTask({ descriptionText: taskText, columnId: id })
       dispatch(addTask(newTask))
+      setTaskText('')
       toast.success('Tarea creada')
-      setNewTask('')
+    }
+    else {
+      toast.error('No pude crear una tarea sin texto (•_•)')
     }
   }
 
   const handleClick = () => pushNewTaskInColumn()
-
-  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if(e.key == 'Enter') {
-      const target = e.target as HTMLInputElement;
-      const newTaskText = (target.value).trim()
-      setNewTask(newTaskText)
-      pushNewTaskInColumn()
-    }
-  }
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => e.key == 'Enter' && pushNewTaskInColumn()
+  
   const columnClassName = `column ${firstColumn && 'column--first-column'}`
 
   return (
-    <li className={columnClassName} key={id}>
+    <li className={columnClassName}>
         <ColumnHeader name={name} columnId={id} changeColumnName={changeColumnName} deleteColumn={deleteColumn} />
         {
           children
@@ -74,7 +70,7 @@ function Column({ name, id, firstColumn, children, changeColumnName, deleteColum
               <input 
                 type="text" 
                 value={taskText} 
-                onChange={(e) => setNewTask(e.target.value)} 
+                onChange={(e) => setTaskText(e.target.value)} 
                 onKeyUp={handleKeyUp}
                 placeholder='Agregar una nueva tarea...'
               />
