@@ -1,12 +1,11 @@
 import './Board.css'
 import Column from './Column'
 import TaskList from './TaskList'
-import { moveToType } from '../domainFunctions/moveTask'
 import toast from 'react-hot-toast'
 import BoardHeader from './BoardHeader'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../redux/store'
-import { changeColumnName, deleteColumn, deleteTask, moveTask } from '../redux/columnsSlice'
+import { changeColumnName, deleteColumn } from '../redux/columnsSlice'
 import { BoardFooter } from './BoardFooter'
 
 interface BoardProps {
