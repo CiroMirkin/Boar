@@ -7,7 +7,8 @@ import toast from 'react-hot-toast'
 import BoardHeader from './BoardHeader'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../redux/store'
-import { addColumn, addTask, changeColumnName, deleteColumn, deleteTask, moveTask } from '../redux/columnsSlice'
+import { addTask, changeColumnName, deleteColumn, deleteTask, moveTask } from '../redux/columnsSlice'
+import { BoardFooter } from './BoardFooter'
 
 interface BoardProps {
   name: string,
@@ -56,16 +57,6 @@ function Board({ name, changeName }: BoardProps) {
     dispatch(changeColumnName({ columnId, newColumnName }))
   }
 
-  const addNewColumnAtTheEndOfTheBoard = () => {
-    const getColumnId = () => (Number(columns.at(-1)?.id ? columns.at(-1)?.id : '0') + 1).toString()
-    dispatch(addColumn({
-      name: 'Nueva columna',
-      id: getColumnId(),
-      taskList: []
-    }))
-    toast.success('Columna creada')
-  }
-
   const deleteThisColumn = (columnId: string) => {
     try {
       dispatch(deleteColumn(columnId))
@@ -102,9 +93,7 @@ function Board({ name, changeName }: BoardProps) {
           }
       </ul>
 
-      <footer className='board-footer'>
-        <button className='btn' onClick={() => addNewColumnAtTheEndOfTheBoard()}>Agregar columna</button>
-      </footer>
+      <BoardFooter />
     </>
   )
 }
