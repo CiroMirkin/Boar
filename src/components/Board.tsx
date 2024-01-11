@@ -1,11 +1,9 @@
 import './Board.css'
 import Column from './Column'
 import TaskList from './TaskList'
-import toast from 'react-hot-toast'
 import BoardHeader from './BoardHeader'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { RootState } from '../redux/store'
-import { changeColumnName, deleteColumn } from '../redux/columnsSlice'
 import { BoardFooter } from './BoardFooter'
 
 interface BoardProps {
