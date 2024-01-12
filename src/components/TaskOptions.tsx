@@ -36,11 +36,11 @@ function TaskOptions({ taskId, deleteTask, moveTask, taskDescription }: TaskOpti
     return (
         <>
             <li className='first-option'>
-                <Btn onClickHandler={() => moveTask('prev-column', taskId)} color={BTN_COLORS.SUCCESS}>
+                <Btn onClickHandler={() => moveTask('prev-column', taskId)} color={BTN_COLORS.PRIMARY}>
                     <CaretLeftIcon />
                     <span>Retroceder</span>
                 </Btn>
-                <Btn onClickHandler={() => moveTask('next-column', taskId)} color={BTN_COLORS.SUCCESS}>
+                <Btn onClickHandler={() => moveTask('next-column', taskId)} color={BTN_COLORS.PRIMARY}>
                     <span>Avanzar</span>
                     <CaretRightIcon />
                 </Btn>
