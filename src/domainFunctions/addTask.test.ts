@@ -22,7 +22,11 @@ describe('Agregar una tarea en la columna correspondiente', () => {
             taskList: [
                 {
                     descriptionText: "Hacer un cafe americano.",
-                    id: "1"
+                    id: "1",
+                    column: {
+                        columnId: '1',
+                        columnIndex: 0
+                    }
                 }
             ]
         }])
