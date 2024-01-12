@@ -7,6 +7,12 @@
     align-items: center;
     gap: 5px;
 }
+.first-option button:first-child {
+    justify-content: flex-start;
+}
+.first-option button:last-child {
+    justify-content: flex-end;
+}
 .option {
     width: 100%;
 }
