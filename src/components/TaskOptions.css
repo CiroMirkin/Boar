@@ -1,53 +1,8 @@
-.task-options {
+.first-option {
     width: 100%;
-    margin-top: .2rem;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-end;
-}
-.task-options__btn {
-    box-sizing: border-box;
-    width: 100%;
-    height: 15px;
-    padding: 0;
-    font-weight: 700;
-    font-size: 8px;
-    opacity: .5;
-    border: none;
-    background-color: #FCFBFC;
-}
-.task-options__btn:hover {
-    opacity: 1;
-}
-.task-options__options {
-    width: 100%;
-    margin: 0;
-    list-style: none;
-    flex-wrap: wrap;
-}
-.task-options__options--hide {
-    display: none;
-    height: 0;
-    opacity: 0;
-    padding: 0;
-}
-.task-options__options--show {
-    display: block;
-    height: auto;
-    opacity: 1;
-    padding: 0 .5rem .6rem;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
     align-items: center;
-    justify-content: flex-start;
-    gap: .5rem;
+    gap: 5px;
 }
-
-.task-options__options-first-option {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-

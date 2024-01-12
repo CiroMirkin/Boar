@@ -1,5 +1,5 @@
 import './TaskOptions.css'
-import { ClipboardIcon, TrashIcon } from './Icon'
+import { CaretLeftIcon, CaretRightIcon, ClipboardIcon, TrashIcon } from './Icon'
 import toast from 'react-hot-toast'
 import { BTN_COLORS, Btn } from './Btn'
 
@@ -20,16 +20,6 @@ function TaskOptions({ taskId, deleteTask, moveTask, taskDescription }: TaskOpti
     
     const options: option[] = [
         {
-            name: "Retroceder",
-            function: () => moveTask('prev-column', taskId),
-            colorClassName: BTN_COLORS.SUCCESS
-        },
-        {
-            name: "Avanzar",
-            function: () => moveTask('next-column', taskId),
-            colorClassName: BTN_COLORS.SUCCESS
-        },
-        {
           name: 'Copiar', 
           function: () => navigator.clipboard.writeText(taskDescription).then(() => toast.success('Tarea copiada al portapapeles')),
           colorClassName: BTN_COLORS.PRIMARY,
@@ -45,9 +35,19 @@ function TaskOptions({ taskId, deleteTask, moveTask, taskDescription }: TaskOpti
 
     return (
         <>
+            <li className='first-option'>
+                <Btn onClickHandler={() => moveTask('prev-column', taskId)} color={BTN_COLORS.SUCCESS}>
+                    <CaretLeftIcon />
+                    <span>Retroceder</span>
+                </Btn>
+                <Btn onClickHandler={() => moveTask('next-column', taskId)} color={BTN_COLORS.SUCCESS}>
+                    <span>Avanzar</span>
+                    <CaretRightIcon />
+                </Btn>
+            </li>
             {
                 options.map(option => 
-                    <li key={option.name}>
+                    <li key={option.name} className='option'>
                         <Btn onClickHandler={() => option.function()} color={option.colorClassName}>
                             { option.icon! && option.icon() }
                             <span>{option.name}</span>
