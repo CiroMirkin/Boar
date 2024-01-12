@@ -6,6 +6,7 @@
     --primary-color: rgb(223,233,238);
 }
 .btn {
+    width: auto;
     height: auto;
     padding: 3px 6px 2px;
 
@@ -22,6 +23,10 @@
     border-radius: 0.25rem;
     background: transparent;
     transition: background-color 500ms ease;
+}
+.btn-width-100 {
+    width: 100%;
+    justify-content: flex-start;
 }
 .btn--border {
     background: #FCFBFC;
