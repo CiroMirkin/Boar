@@ -7,7 +7,14 @@ describe('Agregar una tarea en la columna correspondiente', () => {
             id: "1",
             taskList: []
         }]
-        const task = { descriptionText: "Hacer un cafe americano.", id: "1"}
+        const task = { 
+            descriptionText: "Hacer un cafe americano.", 
+            id: "1",
+            column: {
+                columnId: '1',
+                columnIndex: 0
+            }
+        }
     
         expect(addTaskToThisColumn("1", columns, task)).toEqual([{
             name: "",
@@ -29,7 +36,11 @@ describe('Agregar una tarea en la columna correspondiente', () => {
         }]
         const task = {
             descriptionText: "Hacer un cafe americano.",
-            id: ""
+            id: "",
+            column: {
+                columnId: '1',
+                columnIndex: 0
+            }
         }
 
         function taskWitoutId() {
