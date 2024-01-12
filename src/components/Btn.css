@@ -18,11 +18,17 @@
     line-height: 1rem;
     font-weight: 400;
     text-align: left;
+    border: none;
     border-radius: 0.25rem;
-    background: #FCFBFC;
+    background: transparent;
     transition: background-color 500ms ease;
 }
+.btn--border {
+    background: #FCFBFC;
+    border: solid 0.125rem #121212;
+}
 .btn-border--neo {
+    background: #FCFBFC;
 	border: solid 0.125rem #121212;
 	box-shadow: 0.15rem 0.15rem #121212;
 }
