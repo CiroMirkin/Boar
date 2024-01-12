@@ -32,5 +32,6 @@
     line-height: 1.3rem;
     font-weight: 400;
     text-align: left;
+    transition: font-size ease 50ms;
     color: var(--task-font-color);
 }

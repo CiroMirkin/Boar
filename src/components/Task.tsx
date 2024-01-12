@@ -30,7 +30,9 @@ function Task({ task }: TaskProps) {
 
   return (
     <li className='task' onClick={handleClick}>
-        <p className="task__text">{task.descriptionText}</p>
+        <p className="task__text" style={{fontSize: showTaskOptions ? '.7rem' : '1.1rem', lineHeight: showTaskOptions ? '.9rem' : '1.3rem'}}>
+          {task.descriptionText}
+        </p>
         <footer className='task-options'>
           <ul className={`task-options__options ${showTaskOptions ? 'task-options__options--show' : 'task-options__options--hide'}`}>
             <TaskOptions 
