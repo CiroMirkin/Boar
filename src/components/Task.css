@@ -19,10 +19,10 @@
     box-shadow: 0.15rem 0.15rem #000;
     cursor: default;
     user-select: none;
-    transition: background-color 500ms ease;
+    transition: box-shadow 50ms ease;
 }
 .task:hover {
-    background-color: var(--primary-color);
+    box-shadow: none;
 }
 .task__text {
     margin: 0;
