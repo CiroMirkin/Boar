@@ -5,7 +5,16 @@ describe('Eliminar una tarea de la columna correspondiente', () => {
         const columns = [{
             name: "",
             id: "1",
-            taskList: [{ descriptionText: "Hacer un cafe americano.", id: "1"}]
+            taskList: [
+                {
+                    descriptionText: "Hacer un cafe americano.", 
+                    id: "1",
+                    column: {
+                        columnId: '1',
+                        columnIndex: 0
+                    }
+                }
+            ]
         }]
     
         expect(deleteThisTaskFromThisColumn("1", "1", columns)).toEqual([{
