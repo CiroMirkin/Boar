@@ -34,29 +34,9 @@ Con la nueva lista de columnas se pueden actualizar las columnas.
 
 ```tsx
 const newColumns = deleteThisColumnFromColumns({ columnId, columns })
-setColumns(newColumns)
 ```
 
-Se implementa en el componente `Boar` y para usar la función esta se encapsula dentro de otra, la cual se pasa a los componentes hijos. 
-
-```tsx title="/src/components/Boar.tsx"
-const deleteColumn = (columnId: string) => {
-  try {
-    // highlight-next-line
-    const newColumns = deleteThisColumnFromColumns({ columnId, columns })
-    // highlight-next-line
-    setColumns(newColumns)
-    toast.success('Columna eliminada')
-  }
-  catch(e) {
-    toast.error('Solo hay tres columnas, no se puede eliminar la columna')
-  }
-}
-```
-
-Recorrido de la función `deleteColumn` definida en el componente `Boar`:
-
-Boar > Column > ColumnHeader
+Esta función se implementa en el archivo `src\redux\columnsSlice.ts`.
 
 ## Pruebas
 
