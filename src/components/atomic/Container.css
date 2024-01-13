@@ -1,0 +1,40 @@
+.neo-border {
+	border: solid 0.125rem #121212;
+	box-shadow: 0.15rem 0.15rem #121212;
+    border-radius: 0.25rem;
+}
+.normal-border {
+	border: solid 0.125rem #121212;
+    border-radius: 0.25rem;
+}
+.none-border {
+    border: none;
+}
+
+.container {
+    width: 100%;
+    height: auto;
+    padding: 2px;
+    margin: 2px;
+}
+
+.flex-container {
+    width: 100%;
+    height: auto;
+    padding: 2px;
+    margin: 2px;
+
+    display: flex;
+}
+.flex-container--wrap {
+    flex-wrap: wrap;
+}
+.flex-container--nowrap {
+    flex-wrap: nowrap;
+}
+.flex-container--column {
+    flex-direction: column;
+}
+.flex-container--row {
+    flex-direction: row;
+}
