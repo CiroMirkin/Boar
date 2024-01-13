@@ -1,7 +1,8 @@
 import { useDispatch } from "react-redux"
 import { addColumn } from "../redux/columnsSlice"
 import toast from "react-hot-toast"
-import { BTN_COLORS, Btn } from "./Btn"
+import { Btn } from "./atomic/Btn"
+import { COLORS_CLASS_NAME } from "./atomic/colors"
 
 export function BoardFooter() {
     const dispatch = useDispatch()
@@ -12,7 +13,7 @@ export function BoardFooter() {
 
     return (
         <footer className='board-footer'>
-            <Btn color={BTN_COLORS.PRIMARY} neoBtn onClickHandler={handleClick}>Agregar columna</Btn>
+            <Btn color={COLORS_CLASS_NAME.PRIMARY} neoBtn onClickHandler={handleClick}>Agregar columna</Btn>
         </footer>
     )
 }
