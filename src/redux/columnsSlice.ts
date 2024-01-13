@@ -85,5 +85,5 @@ export const columnsSlice = createSlice({
   },
 });
 
-export const { addColumn, addTask, deleteColumn, deleteTask, moveTask, changeColumnName } = columnsSlice.actions;
+export const { addColumn, addTask, deleteColumn, deleteTask, moveTask, changeColumnName, highlightTask } = columnsSlice.actions;
 export default columnsSlice.reducer;

@@ -1,5 +1,5 @@
 import './TaskOptions.css'
-import { CaretLeftIcon, CaretRightIcon, ClipboardIcon, TrashIcon } from './atomic/Icon'
+import { CaretLeftIcon, CaretRightIcon, ClipboardIcon, ExclamationIcon, TrashIcon } from './atomic/Icon'
 import toast from 'react-hot-toast'
 import { Btn } from './atomic/Btn'
 import { COLORS_CLASS_NAME } from './atomic/colors'
@@ -8,10 +8,11 @@ interface TaskOptionsProps {
     taskId: string,
     taskDescription: string
     deleteTask: Function,
-    moveTask: Function
+    moveTask: Function,
+    highlightTheTask: Function
 }
 
-function TaskOptions({ taskId, deleteTask, moveTask, taskDescription }: TaskOptionsProps) {
+function TaskOptions({ taskId, deleteTask, moveTask, highlightTheTask, taskDescription }: TaskOptionsProps) {
     interface option {
         name: string,
         function: Function,
@@ -26,6 +27,12 @@ function TaskOptions({ taskId, deleteTask, moveTask, taskDescription }: TaskOpti
           color: COLORS_CLASS_NAME.PRIMARY,
           icon: () => <ClipboardIcon />
         },
+        {
+            name: 'Resaltar', 
+            function: highlightTheTask,
+            color: COLORS_CLASS_NAME.PRIMARY,
+            icon: () => <ExclamationIcon />
+          },
         {
           name: 'Eliminar', 
           function: () => deleteTask(taskId),

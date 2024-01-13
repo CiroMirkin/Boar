@@ -5,7 +5,7 @@ import './Task.css'
 import TaskOptions from './TaskOptions'
 import toast from 'react-hot-toast'
 import { moveToType } from '../domainFunctions/moveTask'
-import { deleteTask, moveTask } from '../redux/columnsSlice'
+import { deleteTask, highlightTask, moveTask } from '../redux/columnsSlice'
 import { Paragraph, textAlign, textWeight } from './atomic/Paragraph'
 
 interface TaskProps {
@@ -22,6 +22,10 @@ function Task({ task }: TaskProps) {
   }
   const moveTheTask = (to: moveToType, taskId: string) => {
     dispatch(moveTask({ to, taskId }))
+  }
+  const highlightTheTask = () => {
+    dispatch(highlightTask(task))
+    toast.success('Tarea resaltada')
   }
 
   const handleClick = () => {
@@ -44,6 +48,7 @@ function Task({ task }: TaskProps) {
               taskId={task.id} 
               deleteTask={deleteTheTask} 
               moveTask={moveTheTask} 
+              highlightTheTask={highlightTheTask}
               taskDescription={task.descriptionText} 
             />
           </ul>
