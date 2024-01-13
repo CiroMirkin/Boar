@@ -1,7 +1,8 @@
 import './TaskOptions.css'
 import { CaretLeftIcon, CaretRightIcon, ClipboardIcon, TrashIcon } from './atomic/Icon'
 import toast from 'react-hot-toast'
-import { BTN_COLORS, Btn } from './atomic/Btn'
+import { Btn } from './atomic/Btn'
+import { COLORS_CLASS_NAME } from './atomic/colors'
 
 interface TaskOptionsProps {
     taskId: string,
@@ -14,7 +15,7 @@ function TaskOptions({ taskId, deleteTask, moveTask, taskDescription }: TaskOpti
     interface option {
         name: string,
         function: Function,
-        colorClassName: BTN_COLORS
+        color: COLORS_CLASS_NAME
         icon?: Function
     }
     
@@ -22,13 +23,13 @@ function TaskOptions({ taskId, deleteTask, moveTask, taskDescription }: TaskOpti
         {
           name: 'Copiar', 
           function: () => navigator.clipboard.writeText(taskDescription).then(() => toast.success('Tarea copiada al portapapeles')),
-          colorClassName: BTN_COLORS.PRIMARY,
+          color: COLORS_CLASS_NAME.PRIMARY,
           icon: () => <ClipboardIcon />
         },
         {
           name: 'Eliminar', 
           function: () => deleteTask(taskId),
-          colorClassName: BTN_COLORS.DANGER,
+          color: COLORS_CLASS_NAME.DANGER,
           icon: () => <TrashIcon />
         },
     ]
@@ -36,11 +37,11 @@ function TaskOptions({ taskId, deleteTask, moveTask, taskDescription }: TaskOpti
     return (
         <>
             <li className='first-option'>
-                <Btn onClickHandler={() => moveTask('prev-column', taskId)} color={BTN_COLORS.PRIMARY}>
+                <Btn onClickHandler={() => moveTask('prev-column', taskId)} color={COLORS_CLASS_NAME.PRIMARY}>
                     <CaretLeftIcon />
                     <span>Retroceder</span>
                 </Btn>
-                <Btn onClickHandler={() => moveTask('next-column', taskId)} color={BTN_COLORS.PRIMARY}>
+                <Btn onClickHandler={() => moveTask('next-column', taskId)} color={COLORS_CLASS_NAME.PRIMARY}>
                     <span>Avanzar</span>
                     <CaretRightIcon />
                 </Btn>
@@ -48,7 +49,7 @@ function TaskOptions({ taskId, deleteTask, moveTask, taskDescription }: TaskOpti
             {
                 options.map(option => 
                     <li key={option.name} className='option'>
-                        <Btn onClickHandler={() => option.function()} color={option.colorClassName} border={false} widthAuto={true}>
+                        <Btn onClickHandler={() => option.function()} color={option.color} border={false} widthAuto={true}>
                             { option.icon! && option.icon() }
                             <span>{option.name}</span>
                         </Btn>
