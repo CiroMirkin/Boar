@@ -4,7 +4,7 @@
 }
 
 .column {
-    min-height: 20rem;
+    min-height: 34rem;
     padding: 8px 10px 6px;
 
     display: flex;
@@ -13,6 +13,9 @@
 
     box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
     background-color: var(--column-background-color);
+}
+.column-container {
+    padding-bottom: 4rem;
 }
 .column__footer {
     width: 100%;
