@@ -49,7 +49,7 @@ function TaskOptions({ taskId, deleteTask, moveTask, taskDescription }: TaskOpti
             {
                 options.map(option => 
                     <li key={option.name} className='option'>
-                        <Btn onClickHandler={() => option.function()} color={option.color} border={false} widthAuto={true}>
+                        <Btn onClickHandler={() => option.function()} color={option.color} border={false} widthAuto={false}>
                             { option.icon! && option.icon() }
                             <span>{option.name}</span>
                         </Btn>
