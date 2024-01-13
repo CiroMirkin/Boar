@@ -5,6 +5,7 @@ import BoardHeader from './BoardHeader'
 import { useSelector } from 'react-redux'
 import { RootState } from '../redux/store'
 import { BoardFooter } from './BoardFooter'
+import { CONTAINER_BORDER_TYPES, Container } from './atomic/Container'
 
 
 interface BoardProps {
@@ -19,7 +20,7 @@ function Board({ name, changeName }: BoardProps) {
     <>
       <BoardHeader name={name} changeName={changeName} />
 
-      <ul className='board'>
+      <Container customClassName='board' borderType={CONTAINER_BORDER_TYPES.NONE}>
         {
           columns.map((column, index) => 
             <Column 
@@ -32,7 +33,7 @@ function Board({ name, changeName }: BoardProps) {
             </Column>
           )
         }
-      </ul>
+      </Container>
 
       <BoardFooter />
     </>

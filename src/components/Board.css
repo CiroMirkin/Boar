@@ -1,14 +1,10 @@
 .board {
-    width: 100%;
-    height: auto;
     padding: 1rem;
     margin: 2rem 0 0;
 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
     gap: 5px;
-
-    list-style: none;
 }
 
 .board-footer {
