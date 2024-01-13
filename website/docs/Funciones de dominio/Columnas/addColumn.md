@@ -13,21 +13,15 @@ tags:
 
 ## Función de dominio
 
-La función `addColumnAtTheEnd` implementa este caso de uso en el archivo `src\domainFunctions\addColumn.ts`.
+La función `getColumn` implementa este caso de uso en el archivo `src\domainFunctions\addColumn.ts`.
 
-**Recibe** como parámetros:
-```typescript
-columnName: string, 
-columns: columnModel[]
-```
-
+**Recibe** como parámetros el nombre de la nueva columna y la lista de columnas.
 **Retorna** una lista de columnas con la nueva columna integrada al final.
+**No lanza error** en ningún caso. 
 
 ```typescript
-columnModel[]
+getColumn = ({ columnName, columns }: getColumn): columnModel
 ```
-
-**No lanza error** en ningún caso. 
 
 ### Implementación
 
@@ -37,7 +31,7 @@ Con la nueva lista de columnas se pueden actualizar las columnas.
 const newColumns = addColumnAtTheEnd('Nueva columna', columns)
 ```
 
-Esta función se implementa no se implementa en ningún lugar, se tienen que actualizar para poderse implementar.
+Esta función se implementa en el archivo `src\redux\columnsSlice.ts`.
 
 ## Pruebas
 
