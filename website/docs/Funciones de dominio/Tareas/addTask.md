@@ -39,21 +39,7 @@ const newColumns = addTaskToThisColumn( columnId, columns, task )
 setColumns(newColumns)
 ```
 
-Se implementa en el componente `Boar` y para usar la función esta se encapsula dentro de otra, la cual se pasa a los componentes hijos. 
-
-```tsx title="/src/components/Boar.tsx"
-  const addNewTaskInColumn = (newTask: taskModel, columnId: string) => {
-    // highlight-next-line
-    const newColumns = addTaskToThisColumn(columnId, columns, newTask)
-    // highlight-next-line
-    setColumns(newColumns)
-    toast.success('Tarea creada')
-  }
-```
-
-Recorrido de la función `addNewTaskInColumn` definida en el componente `Boar`:
-
-Boar > Column
+Esta función se implementa no se implementa en ningún lugar, se tienen que actualizar para poderse implementar.
 
 ## Pruebas
 
