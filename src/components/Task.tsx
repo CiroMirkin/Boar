@@ -33,8 +33,11 @@ function Task({ task }: TaskProps) {
       setShowTaskOptions(newShowTaskOptionsValue)
   }
 
+  const highlightTaskClassName = task.highlight ? 'task--highlight' : ''
+  const className = `task ${highlightTaskClassName}`
+
   return (
-    <li className='task' onClick={handleClick}>
+    <li className={className} onClick={handleClick}>
         <Paragraph 
           align={textAlign.LEFT}
           weight={textWeight.NORMAL}          

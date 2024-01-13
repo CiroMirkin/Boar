@@ -24,6 +24,9 @@
 .task:hover {
     box-shadow: none;
 }
+.task--highlight {
+    background-color: var(--purple-color);
+}
 .task__text {
     margin: 0;
     padding-bottom: .2rem;
