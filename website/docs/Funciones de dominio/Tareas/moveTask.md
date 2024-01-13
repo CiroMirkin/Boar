@@ -36,21 +36,9 @@ Con la nueva lista de columnas se pueden actualizar las columnas.
 
 ```tsx
 const newColumns = moveTask({to, columns, taskId})
-setColumns(newColumns)
 ```
 
-Se implementa en el componente `Boar` y para usar la función esta se encapsula dentro de otra, la cual se pasa a los componentes hijos. 
-
-```tsx title="/src/components/Boar.tsx"
-const moveATask = (to: moveToType, taskId: string) => {
-    const newColumns = moveTask({to, columns, taskId})
-    setColumns(newColumns)
-}
-```
-
-Recorrido de la función `moveATask` definida en el componente `Boar`:
-
-Boar > TaskList > Task > TaskOptions
+Esta función se implementa en el archivo `src\redux\columnsSlice.ts`.
 
 ## Pruebas
 
