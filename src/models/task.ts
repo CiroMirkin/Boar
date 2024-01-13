@@ -1,5 +1,6 @@
 export interface taskModel {
     descriptionText: string,
+    highlight?: boolean,
     column: {
         columnIndex: number,
         columnId: string
@@ -10,6 +11,7 @@ export interface taskModel {
 export const taskNull: taskModel = {
     id: '',
     descriptionText: '',
+    highlight: false,
     column: {
         columnIndex: 0,
         columnId: '1'
