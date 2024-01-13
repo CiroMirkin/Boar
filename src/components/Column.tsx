@@ -6,6 +6,7 @@ import { addTask } from '../redux/columnsSlice'
 import toast from 'react-hot-toast'
 import { taskModel } from '../models/task'
 import { RootState } from '../redux/store'
+import { CONTAINER_BORDER_TYPES, Container } from './atomic/Container'
 
 interface ColumnProps {
   id: string,
@@ -57,11 +58,9 @@ function Column({ name, id, firstColumn, children }: ColumnProps) {
   const columnClassName = `column ${firstColumn && 'column--first-column'}`
 
   return (
-    <li className={columnClassName}>
-        <ColumnHeader name={name} columnId={id} />
-        {
-          children
-        }
+    <Container customClassName={columnClassName} borderType={CONTAINER_BORDER_TYPES.NORMAL}>
+      <ColumnHeader name={name} columnId={id} />
+        <Container borderType={CONTAINER_BORDER_TYPES.NONE}> { children } </Container>
         {
           firstColumn &&
             <footer className="column__footer">
@@ -75,7 +74,8 @@ function Column({ name, id, firstColumn, children }: ColumnProps) {
               <button onClick={handleClick}>Agregar</button>
           </footer>
         }
-    </li>
+    </Container>
+
   )
 }
 
