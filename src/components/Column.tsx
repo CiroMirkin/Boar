@@ -59,21 +59,22 @@ function Column({ name, id, firstColumn, children }: ColumnProps) {
 
   return (
     <Container customClassName={columnClassName} borderType={CONTAINER_BORDER_TYPES.NORMAL}>
-      <ColumnHeader name={name} columnId={id} />
-        <Container borderType={CONTAINER_BORDER_TYPES.NONE}> { children } </Container>
-        {
-          firstColumn &&
-            <footer className="column__footer">
-              <input 
-                type="text" 
-                value={taskText} 
-                onChange={(e) => setTaskText(e.target.value)} 
-                onKeyUp={handleKeyUp}
-                placeholder='Agregar una nueva tarea...'
-              />
-              <button onClick={handleClick}>Agregar</button>
-          </footer>
-        }
+      <Container borderType={CONTAINER_BORDER_TYPES.NONE}>
+        <ColumnHeader name={name} columnId={id} /> { children } 
+      </Container>
+      {
+        firstColumn &&
+          <footer className="column__footer">
+            <input 
+              type="text" 
+              value={taskText} 
+              onChange={(e) => setTaskText(e.target.value)} 
+              onKeyUp={handleKeyUp}
+              placeholder='Agregar una nueva tarea...'
+            />
+            <button onClick={handleClick}>Agregar</button>
+        </footer>
+      }
     </Container>
 
   )
