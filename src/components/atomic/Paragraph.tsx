@@ -1,5 +1,5 @@
 import React from 'react'
-import './Text.css'
+import './Paragraph.css'
 
 export enum textWeight {
     NORMAL = '400',
