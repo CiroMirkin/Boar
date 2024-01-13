@@ -1,3 +1,4 @@
+import React from 'react'
 import './Text.css'
 
 export enum textWeight {
@@ -11,17 +12,21 @@ export enum textAlign {
     CENTER = 'center'
 }
 
-interface TextProps {
+interface ParagraphProps {
     weight: textWeight
     align: textAlign
+    customStyles?: Object
     customClassName?: string
     children: React.ReactNode
 }
 
-export function Text({ weight, align: align, customClassName, children }: TextProps) {
+export function Paragraph({ weight, align: align, customClassName, customStyles, children }: ParagraphProps) {
     const className = `text ${customClassName?.trim() && customClassName}`
+    const textStyles = {
+        fontWeight: weight, textAlign: align
+    }
     return (
-        <p className={className} style={{ fontWeight: weight, textAlign: align }}>
+        <p className={className} style={{...textStyles, ...customStyles}}>
             { children }
         </p>
     )

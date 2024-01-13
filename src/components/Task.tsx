@@ -6,6 +6,7 @@ import TaskOptions from './TaskOptions'
 import toast from 'react-hot-toast'
 import { moveToType } from '../domainFunctions/moveTask'
 import { deleteTask, moveTask } from '../redux/columnsSlice'
+import { Paragraph, textAlign, textWeight } from './atomic/Paragraph'
 
 interface TaskProps {
   task: taskModel,
@@ -30,9 +31,13 @@ function Task({ task }: TaskProps) {
 
   return (
     <li className='task' onClick={handleClick}>
-        <p className="task__text" style={{fontSize: showTaskOptions ? '.7rem' : '1.1rem', lineHeight: showTaskOptions ? '.9rem' : '1.3rem'}}>
+        <Paragraph 
+          align={textAlign.LEFT}
+          weight={textWeight.NORMAL}          
+          customClassName="task__text" 
+          customStyles={{fontSize: showTaskOptions ? '.7rem' : '1.1rem', lineHeight: showTaskOptions ? '.9rem' : '1.3rem'}}>
           {task.descriptionText}
-        </p>
+        </Paragraph>
         <footer className='task-options'>
           <ul className={`task-options__options ${showTaskOptions ? 'task-options__options--show' : 'task-options__options--hide'}`}>
             <TaskOptions 
