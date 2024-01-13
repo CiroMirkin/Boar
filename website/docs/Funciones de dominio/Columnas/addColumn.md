@@ -35,20 +35,9 @@ Con la nueva lista de columnas se pueden actualizar las columnas.
 
 ```tsx
 const newColumns = addColumnAtTheEnd('Nueva columna', columns)
-setColumns(newColumns)
 ```
 
-Se implementa en el componente `Boar`.
-
-```tsx title="/src/components/Boar.tsx"
-const addNewColumnAtTheEndOfTheBoard = () => {
-    // highlight-next-line
-    const newColumns = addColumnAtTheEnd('Nueva columna', columns)
-    // highlight-next-line
-    setColumns(newColumns)
-    toast.success('Columna creada')
-  }
-```
+Esta función se implementa no se implementa en ningún lugar, se tienen que actualizar para poderse implementar.
 
 ## Pruebas
 
