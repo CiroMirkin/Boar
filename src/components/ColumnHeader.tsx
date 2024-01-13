@@ -1,6 +1,6 @@
 import { useState } from "react"
 import './ColumnHeader.css'
-import { PencilSquareIcon, TrashIcon } from "./Icon"
+import { PencilSquareIcon, TrashIcon } from "./atomic/Icon"
 import { useDispatch } from "react-redux"
 import { changeColumnName, deleteColumn } from "../redux/columnsSlice"
 import toast from "react-hot-toast"

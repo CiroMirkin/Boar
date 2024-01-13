@@ -4,7 +4,8 @@ import './Btn.css'
 export enum BTN_COLORS {
     PRIMARY = 'primary',
     DANGER = 'danger',
-    SUCCESS = 'success'
+    SUCCESS = 'success',
+    WARNING = 'warning'
 }
 
 interface BtnProps {

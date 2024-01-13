@@ -1,7 +1,7 @@
 import './TaskOptions.css'
-import { CaretLeftIcon, CaretRightIcon, ClipboardIcon, TrashIcon } from './Icon'
+import { CaretLeftIcon, CaretRightIcon, ClipboardIcon, TrashIcon } from './atomic/Icon'
 import toast from 'react-hot-toast'
-import { BTN_COLORS, Btn } from './Btn'
+import { BTN_COLORS, Btn } from './atomic/Btn'
 
 interface TaskOptionsProps {
     taskId: string,

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import './BoardHeader.css'
-import { PencilSquareIcon } from "./Icon"
+import { PencilSquareIcon } from "./atomic/Icon"
 
 interface BoardHeaderProps {
     name: string,
