@@ -6,6 +6,7 @@ import { deleteThisTaskFromThisColumn } from "../domainFunctions/deleteTask";
 import { moveThisTask, moveToType } from "../domainFunctions/moveTask";
 import { changeTheNameOfThisColumn } from "../domainFunctions/changeColumnName";
 import { getColumn } from "../domainFunctions/addColumn";
+import { setThisTaskAsHighlightedTask } from "../domainFunctions/highlightedTask";
 
 export interface moveTaskPayloadAction { taskId: string, to: moveToType }
 interface changeColumnNamePayloadAction { columnId: string, newColumnName: string }
@@ -70,6 +71,12 @@ export const columnsSlice = createSlice({
       const taskId = action.payload.taskId
       const to = action.payload.to
       state.columns = moveThisTask({ taskId, to, columns: state.columns })
+    },
+    highlightTask: (state, action: PayloadAction<taskModel>) => {
+      const newTask = setThisTaskAsHighlightedTask({ task: action.payload })
+      state.columns[newTask.column.columnIndex].taskList = state.columns[newTask.column.columnIndex].taskList.map(task =>
+        task.id == newTask.id ? newTask : task
+      )
     },
     changeColumnName: (state, action: PayloadAction<changeColumnNamePayloadAction>) => {
       const { columnId, newColumnName } = action.payload
