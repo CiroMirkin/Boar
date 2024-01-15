@@ -8,21 +8,28 @@
 .btn {
     width: auto;
     height: auto;
-    padding: 3px 6px 2px;
+    padding: 3px 6px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 4px;
     
-    font-size: .8rem;
-    line-height: 1rem;
+    font-size: .9rem;
+    line-height: 1.1rem;
     font-weight: 400;
     text-align: left;
     border: none;
     border-radius: 0.25rem;
     background: transparent;
     transition: background-color 500ms ease;
+}
+@media only screen and (max-width: 768px) { 
+    .btn {
+        font-size: 1.1rem;
+        line-height: 1.3rem;
+        margin-block-end: .2rem;
+    }
 }
 .btn-width-100 {
     width: 100%;
