@@ -1,5 +1,5 @@
 import './TaskOptions.css'
-import { CaretLeftIcon, CaretRightIcon, ClipboardIcon, ExclamationIcon, TrashIcon } from './atomic/Icon'
+import { CaretLeftIcon, CaretRightIcon, CircleFillIcon, ClipboardIcon, TrashIcon } from './atomic/Icon'
 import toast from 'react-hot-toast'
 import { Btn } from './atomic/Btn'
 import { COLORS_CLASS_NAME } from './atomic/colors'
@@ -31,7 +31,7 @@ function TaskOptions({ taskId, deleteTask, moveTask, highlightTheTask, taskDescr
             name: 'Resaltar', 
             function: highlightTheTask,
             color: COLORS_CLASS_NAME.PRIMARY,
-            icon: () => <ExclamationIcon />
+            icon: () => <CircleFillIcon />
           },
         {
           name: 'Eliminar', 

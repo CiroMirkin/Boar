@@ -7,3 +7,4 @@ export const PencilSquareIcon = ({}) => (<i className="bi bi-pencil-square"></i>
 export const ExclamationIcon = () => (<i className="bi bi-exclamation-lg"></i>)
 export const EyeICon = () => (<i className="bi bi-eye-fill"></i>)
 export const EyeSlashICon = () => (<i className="bi bi-eye-slash-fill"></i>)
+export const CircleFillIcon = () => (<i className="bi bi-circle-fill"></i>)
