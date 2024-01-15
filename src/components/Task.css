@@ -75,3 +75,12 @@
     align-items: flex-start;
     gap: .2rem;
 }
+
+.highlight {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+    border-radius: 10px;
+    background: var(--info-color);
+}
