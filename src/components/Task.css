@@ -19,7 +19,7 @@
     box-shadow: 0.15rem 0.15rem #000;
     cursor: default;
     user-select: none;
-    transition: box-shadow 50ms ease;
+    transition: box-shadow, height 50ms ease;
 }
 .task:hover {
     box-shadow: none;
