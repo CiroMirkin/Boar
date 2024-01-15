@@ -25,7 +25,12 @@ function Task({ task }: TaskProps) {
   }
   const highlightTheTask = () => {
     dispatch(highlightTask(task))
-    toast.success('Tarea resaltada')
+    if(!task.highlight) {
+      toast.success('Tarea resaltada')
+    }
+    else {
+      toast.success('Tarea sin resaltado')
+    }
   }
 
   const handleClick = () => {
