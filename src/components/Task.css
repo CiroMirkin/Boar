@@ -39,7 +39,7 @@
 }
 .task__text {
     margin: 0;
-    padding-bottom: 0;
+    padding-bottom: 0 !important;
 
     transition: font-size ease 50ms;
     color: var(--task-font-color);
