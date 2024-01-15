@@ -45,6 +45,12 @@ function Task({ task }: TaskProps) {
           customStyles={{fontSize: showTaskOptions ? '.7rem' : '1.1rem', lineHeight: showTaskOptions ? '.9rem' : '1.3rem'}}>
           {task.descriptionText}
         </Paragraph>
+          <Paragraph
+            align={textAlign.RIGHT}
+            weight={textWeight.NORMAL}          
+            customClassName="task-options-hover-text">
+            Opciones
+          </Paragraph>
         <footer className='task-options'>
           <ul className={`task-options__options ${showTaskOptions ? 'task-options__options--show' : 'task-options__options--hide'}`}>
             <TaskOptions 

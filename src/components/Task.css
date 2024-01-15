@@ -11,7 +11,7 @@
 
 .task {
     margin-bottom: 1rem;
-    padding: 0 0  .3rem;
+    padding: 0;
 
     background: var(--task-background-color);
     border-radius: 0.25rem;
@@ -21,15 +21,25 @@
     user-select: none;
     transition: box-shadow, height 50ms ease;
 }
-.task:hover {
-    box-shadow: none;
+.task-options-hover-text {
+    margin: 0;
+    opacity: 0;
+    padding: 0 .4rem !important;
+    visibility: hidden;
+    font-size: .9rem !important;
+    line-height: 1rem !important;
+    text-decoration: underline;
+}
+.task:hover .task-options-hover-text {
+    opacity: 1;
+    visibility: visible;
 }
 .task--highlight {
     background-color: var(--purple-color);
 }
 .task__text {
     margin: 0;
-    padding-bottom: .2rem;
+    padding-bottom: 0;
 
     transition: font-size ease 50ms;
     color: var(--task-font-color);
@@ -55,6 +65,7 @@
     display: block;
     height: auto;
     opacity: 1;
+    margin-top: .5rem;
     padding: 0 .5rem .6rem;
 
     display: flex;
