@@ -59,8 +59,9 @@ function Column({ name, id, firstColumn, children }: ColumnProps) {
 
   return (
     <Container customClassName={columnClassName} borderType={CONTAINER_BORDER_TYPES.NORMAL}>
-      <Container borderType={CONTAINER_BORDER_TYPES.NONE} customClassName='column-container'>
-        <ColumnHeader name={name} columnId={id} /> { children } 
+      <Container borderType={CONTAINER_BORDER_TYPES.NONE}>
+        <ColumnHeader name={name} columnId={id} /> 
+        { children } 
       </Container>
       {
         firstColumn &&

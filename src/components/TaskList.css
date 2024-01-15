@@ -1,6 +1,14 @@
 .column-task-list {
-    height: auto;
-    min-height: 14rem;
     list-style: none;
     padding: 0;
+    margin: 0;
+    
+    display: flex;
+    flex-direction: column;
+    height: 30rem;
+    overflow-y: scroll;
+    overscroll-behavior-y: contain;
+    scroll-snap-type: y proximity;
+    position: relative;
+    scroll-snap-align: center;
 }
