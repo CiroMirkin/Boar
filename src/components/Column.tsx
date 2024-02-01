@@ -6,7 +6,7 @@ import { addTask } from '../redux/columnsSlice'
 import toast from 'react-hot-toast'
 import { taskModel } from '../models/task'
 import { RootState } from '../redux/store'
-import { CONTAINER_BORDER_TYPES, Container } from './atomic/Container'
+import { Container } from './atomic/Container'
 
 interface ColumnProps {
   id: string,
