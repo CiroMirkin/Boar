@@ -20,7 +20,7 @@ function Column({ name, id, firstColumn, children }: ColumnProps) {
   const dispatch = useDispatch()
   const columns = useSelector((state: RootState) => state.columns.columns)
 
-  const getTask = ({ descriptionText, columnId }: { descriptionText: string, columnId: string }): taskModel => {
+  const getNewTask = ({ descriptionText, columnId }: { descriptionText: string, columnId: string }): taskModel => {
     const getColumnIndex = () => {
       let theColumnIndex = 0;
       columns.filter((column, index) => {
@@ -42,7 +42,7 @@ function Column({ name, id, firstColumn, children }: ColumnProps) {
 
   const pushNewTaskInColumn = () => {
     if(!!taskText.trim()) {
-      const newTask = getTask({ descriptionText: taskText, columnId: id })
+      const newTask = getNewTask({ descriptionText: taskText, columnId: id })
       dispatch(addTask(newTask))
       setTaskText('')
       toast.success('Tarea creada')
