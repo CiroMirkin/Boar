@@ -1,11 +1,7 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { taskModel } from '../models/task'
 import './Task.css'
 import TaskOptions from './TaskOptions'
-import toast from 'react-hot-toast'
-import { moveToType } from '../domainFunctions/moveTask'
-import { deleteTask, highlightTask, moveTask } from '../redux/columnsSlice'
 import { Paragraph, textAlign, textWeight } from './atomic/Paragraph'
 
 interface TaskProps {
@@ -14,24 +10,6 @@ interface TaskProps {
 
 function Task({ task }: TaskProps) {
   const [ showTaskOptions, setShowTaskOptions ] = useState(false)
-  const dispatch = useDispatch();
-
-  const deleteTheTask = () => {
-    dispatch(deleteTask(task))
-    toast.success('Tarea eliminada')
-  }
-  const moveTheTask = (to: moveToType, taskId: string) => {
-    dispatch(moveTask({ to, taskId }))
-  }
-  const highlightTheTask = () => {
-    dispatch(highlightTask(task))
-    if(!task.highlight) {
-      toast.success('Tarea resaltada')
-    }
-    else {
-      toast.success('Tarea sin resaltado')
-    }
-  }
 
   const handleClick = () => {
       const newShowTaskOptionsValue = !showTaskOptions
@@ -57,11 +35,7 @@ function Task({ task }: TaskProps) {
         <footer className='task-options'>
           <ul className={`task-options__options ${showTaskOptions ? 'task-options__options--show' : 'task-options__options--hide'}`}>
             <TaskOptions 
-              taskId={task.id} 
-              deleteTask={deleteTheTask} 
-              moveTask={moveTheTask} 
-              highlightTheTask={highlightTheTask}
-              taskDescription={task.descriptionText} 
+              task={task}
             />
           </ul>
         </footer>
