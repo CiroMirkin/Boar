@@ -11,7 +11,7 @@
 
 .task {
     margin-bottom: 1rem;
-    padding: 0;
+    padding: 0 6px 0 6px;
 
     background: var(--task-background-color);
     border-radius: 0.25rem;
