@@ -18,22 +18,14 @@ function Task({ task }: TaskProps) {
 
   return (
     <li className='task' onClick={handleClick}>
-        <Paragraph 
-          align={textAlign.LEFT}
-          weight={textWeight.NORMAL}          
+        <Paragraph     
           customClassName="task__text" 
           customStyles={{fontSize: showTaskOptions ? '.7rem' : '1.1rem', lineHeight: showTaskOptions ? '.9rem' : '1.3rem'}}
         >
           { task.highlight && <span className='highlight'></span> }
           { task.descriptionText }
         </Paragraph>
-        <Paragraph
-          align={textAlign.RIGHT}
-          weight={textWeight.NORMAL}          
-          customClassName="task-options-hover-text"
-          >
-            Opciones
-          </Paragraph>
+        <Paragraph align={textAlign.RIGHT} customClassName="task-options-hover-text">Opciones</Paragraph>
         <footer className='task-options'>
           <ul className={`task-options__options ${showTaskOptions ? 'task-options__options--show' : 'task-options__options--hide'}`}>
             <TaskOptions task={task} />
