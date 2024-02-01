@@ -9,7 +9,7 @@ export enum CONTAINER_BORDER_TYPES {
 interface ContainerProps {
     children: React.ReactNode
     customClassName?: string
-    borderType: CONTAINER_BORDER_TYPES
+    borderType?: CONTAINER_BORDER_TYPES
 }
 
 export function Container({ borderType=CONTAINER_BORDER_TYPES.NONE, customClassName, children }: ContainerProps) {

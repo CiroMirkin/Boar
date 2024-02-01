@@ -58,8 +58,8 @@ function Column({ name, id, firstColumn, children }: ColumnProps) {
   const columnClassName = `column ${firstColumn && 'column--first-column'}`
 
   return (
-    <Container customClassName={columnClassName} borderType={CONTAINER_BORDER_TYPES.NORMAL}>
-      <Container borderType={CONTAINER_BORDER_TYPES.NONE}>
+    <Container customClassName={columnClassName}>
+      <Container>
         <ColumnHeader name={name} columnId={id} /> 
         { children } 
       </Container>
