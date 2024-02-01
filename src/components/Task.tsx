@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { taskModel } from '../models/task'
 import './Task.css'
 import TaskOptions from './TaskOptions'
-import { Paragraph, textAlign, textWeight } from './atomic/Paragraph'
+import { Paragraph, textAlign } from './atomic/Paragraph'
 
 interface TaskProps {
   task: taskModel,
