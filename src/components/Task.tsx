@@ -18,10 +18,7 @@ function Task({ task }: TaskProps) {
 
   return (
     <li className='task' onClick={handleClick}>
-        <Paragraph     
-          customClassName="task__text" 
-          customStyles={{fontSize: showTaskOptions ? '.7rem' : '1.1rem', lineHeight: showTaskOptions ? '.9rem' : '1.3rem'}}
-        >
+        <Paragraph customClassName="task__text">
           { task.highlight && <span className='highlight'></span> }
           { task.descriptionText }
         </Paragraph>
