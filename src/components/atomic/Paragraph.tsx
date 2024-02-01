@@ -13,14 +13,14 @@ export enum textAlign {
 }
 
 interface ParagraphProps {
-    weight: textWeight
-    align: textAlign
+    weight?: textWeight
+    align?: textAlign
     customStyles?: Object
     customClassName?: string
     children: React.ReactNode
 }
 
-export function Paragraph({ weight, align: align, customClassName, customStyles, children }: ParagraphProps) {
+export function Paragraph({ weight = textWeight.NORMAL, align = textAlign.LEFT, customClassName, customStyles, children }: ParagraphProps) {
     const className = `text ${customClassName?.trim() && customClassName}`
     const textStyles = {
         fontWeight: weight, textAlign: align
