@@ -1,36 +1,26 @@
-import { useDispatch } from 'react-redux'
 import './TaskOptions.css'
 import { CaretLeftIcon, CaretRightIcon } from './atomic/Icon'
 import { Btn } from './atomic/Btn'
-import { COLORS_CLASS_NAME } from './atomic/colors'
-import { moveToType } from '../domainFunctions/moveTask'
-import { moveTask } from '../redux/columnsSlice'
 import { taskModel } from '../models/task'
-import { getTaskOptions } from '../taskOptions'
+import { getMoveTaskOptions, getTaskOptions } from '../taskOptions'
 
 interface TaskOptionsProps {
     task: taskModel
 }
 
 function TaskOptions({ task }: TaskOptionsProps) {
-    const dispatch = useDispatch();
-
-    const moveTheTask = (to: moveToType) => {
-        const taskId = task.id
-        dispatch(moveTask({ to, taskId }))
-    }
-
+    const [ movePrev, moveNext ] = getMoveTaskOptions(task) 
     const options = getTaskOptions(task)
 
     return (
         <>
             <li className='first-option'>
-                <Btn onClickHandler={() => moveTheTask('prev-column')} color={COLORS_CLASS_NAME.PRIMARY}>
+                <Btn onClickHandler={movePrev.function} color={movePrev.color}>
                     <CaretLeftIcon />
-                    <span>Retroceder</span>
+                    <span>{ movePrev.name }</span>
                 </Btn>
-                <Btn onClickHandler={() => moveTheTask('next-column')} color={COLORS_CLASS_NAME.PRIMARY}>
-                    <span>Avanzar</span>
+                <Btn onClickHandler={moveNext.function} color={moveNext.color}>
+                    <span>{ moveNext.name }</span>
                     <CaretRightIcon />
                 </Btn>
             </li>

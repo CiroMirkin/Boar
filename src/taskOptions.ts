@@ -1,7 +1,8 @@
 import { MouseEventHandler } from 'react'
 import { useDispatch } from 'react-redux'
 import toast from 'react-hot-toast'
-import { deleteTask, highlightTask } from './redux/columnsSlice'
+import { deleteTask, highlightTask, moveTask } from './redux/columnsSlice'
+import { moveToType } from './domainFunctions/moveTask'
 import { COLORS_CLASS_NAME } from './components/atomic/colors'
 import { taskModel } from './models/task'
 
@@ -49,4 +50,28 @@ export function getTaskOptions(task: taskModel): option[] {
     ]
 
     return options
+}
+
+export function getMoveTaskOptions(task: taskModel): option[] {
+    const dispatch = useDispatch();
+    
+    const moveTheTask = (to: moveToType) => {
+        const taskId = task.id
+        dispatch(moveTask({ to, taskId }))
+    }
+
+    const moveOptions = [
+        {
+            name: "Retroceder",
+            function: () => moveTheTask('prev-column'),
+            color: COLORS_CLASS_NAME.PRIMARY
+        },
+        {
+            name: "Avanzar",
+            function: () => moveTheTask('next-column'),
+            color: COLORS_CLASS_NAME.PRIMARY
+        },
+    ]
+
+    return moveOptions
 }
