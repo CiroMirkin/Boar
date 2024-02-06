@@ -27,28 +27,31 @@ html {
 }
 
 body {
+  --sb-track-color: #dcdcdc;
+  --sb-thumb-color: #88a3fd;
+  --sb-size: 6px;
+
   margin: 0;
   min-width: 320px;
   background-color: var(--background-color);    
   background-image: radial-gradient(#dfdcdc 0.2px, transparent 0.2px);
   background-size: calc(10 * 0.5px) calc(10 * 0.5px);
-
-  scrollbar-width: thin;
-  scrollbar-color: rgb(136,163,253) #ccc;
 }
-/* Chrome, Edge, and Safari */
-body::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+/* Scroll rules */
+/* The scroll has its own variables */
+*::-webkit-scrollbar {
+  width: var(--sb-size)
 }
-body::-webkit-scrollbar-track {
-  background: #ccc;
-}
-body::-webkit-scrollbar-thumb {
-  background-color: var(--info-color);
+*::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
   border-radius: 10px;
-  border: 0px solid #ffffff;
 }
-body::-webkit-scrollbar-thumb:hover {
-  background-color: rgb(111, 143, 248);
+*::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 10px;
+}
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
 }
