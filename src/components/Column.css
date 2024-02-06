@@ -4,7 +4,7 @@
 }
 
 .column {
-    min-height: 34rem;
+    height: 75vh !important;
     padding: 0;
 
     display: flex;
