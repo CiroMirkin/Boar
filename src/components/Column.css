@@ -16,17 +16,24 @@
 }
 .column__footer {
     width: 100%;
-    padding: .8rem .5rem .5rem;
+    padding: 2.6rem .5rem .5rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .column__footer input {
-    width: 76%;
+    width: 100%;
+    padding-inline: 6px;
+    padding-block: 4px;
+    font-size: 1rem;
+    line-height: .9rem;
     border: #ccc 2px solid;
     border-radius: 4px 0px 0px 4px;
 }
 .column__footer button {
+    font-size: 1rem;
+    line-height: .9rem;
+    padding: 6px 6px;
     border: #ccc 2px solid;
     border-left: none;
     border-radius: 0px 4px 4px 0px;
