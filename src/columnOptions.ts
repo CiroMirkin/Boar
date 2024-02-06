@@ -1,7 +1,7 @@
 import { MouseEventHandler } from "react"
 import { COLORS_CLASS_NAME } from "./components/atomic/colors"
 import { useDispatch } from "react-redux"
-import { addColumn, deleteColumn } from "./redux/columnsSlice"
+import { addColumn, changeColumnName, deleteColumn } from "./redux/columnsSlice"
 import toast from "react-hot-toast"
 
 interface option {
@@ -40,4 +40,16 @@ export function getDeleteColumnOption(columnId: string): option {
         color: COLORS_CLASS_NAME.DANGER
     }
     return deleteColumnOption
+}
+
+export function getEditColumnOption(columnId: string, newColumnName: string): option {
+    const dispatch = useDispatch()
+    const editColumnOption: option = {
+        name: "Cambiar nombre",
+        function: () => {
+            dispatch(changeColumnName({ columnId, newColumnName }))
+        },
+        color: COLORS_CLASS_NAME.PRIMARY
+    }
+    return editColumnOption
 }
