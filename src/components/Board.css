@@ -4,7 +4,7 @@
 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
-    gap: 5px;
+    gap: 1.5rem;
 }
 
 .board-footer {
