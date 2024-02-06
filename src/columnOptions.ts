@@ -1,7 +1,8 @@
 import { MouseEventHandler } from "react"
 import { COLORS_CLASS_NAME } from "./components/atomic/colors"
 import { useDispatch } from "react-redux"
-import { addColumn } from "./redux/columnsSlice"
+import { addColumn, deleteColumn } from "./redux/columnsSlice"
+import toast from "react-hot-toast"
 
 interface option {
     name: string,
@@ -21,4 +22,22 @@ export function getCreateDefaultColumnOption(): option {
         color: COLORS_CLASS_NAME.PRIMARY
     }
     return  createDefaultColumn
+}
+
+export function getDeleteColumnOption(columnId: string): option {
+    const dispatch = useDispatch()
+    const deleteColumnOption: option = {
+        name: 'Eliminar',
+        function: () => {
+            try {
+                dispatch(deleteColumn(columnId))
+                toast.success('Columna eliminada')
+            }
+            catch(e) {
+                toast.error('Solo hay tres columnas, no se puede eliminar esta columna')
+            }
+        },
+        color: COLORS_CLASS_NAME.DANGER
+    }
+    return deleteColumnOption
 }
