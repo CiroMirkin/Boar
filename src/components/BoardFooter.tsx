@@ -1,17 +1,11 @@
-import { useDispatch } from "react-redux"
-import { addColumn } from "../redux/columnsSlice"
+import { getCreateDefaultColumnOption } from "../columnOptions"
 import { Btn } from "./atomic/Btn"
-import { COLORS_CLASS_NAME } from "./atomic/colors"
 
 export function BoardFooter() {
-    const dispatch = useDispatch()
-    const handleClick = () => {
-        dispatch(addColumn('Nueva columna'))
-    }
-
+    const createColumn = getCreateDefaultColumnOption() 
     return (
         <footer className='board-footer'>
-            <Btn color={COLORS_CLASS_NAME.PRIMARY} neoBtn onClickHandler={handleClick}>Agregar columna</Btn>
+            <Btn color={createColumn.color} neoBtn onClickHandler={createColumn.function}>{ createColumn.name }</Btn>
         </footer>
     )
 }
