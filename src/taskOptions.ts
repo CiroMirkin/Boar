@@ -23,12 +23,6 @@ export function getTaskOptions(task: taskModel): option[] {
 
     const highlightTheTask = () => {
         dispatch(highlightTask(task))
-        if(!task.highlight) {
-        toast.success('Tarea resaltada')
-        }
-        else {
-        toast.success('Tarea sin resaltado')
-        }
     }
 
     const options = [
