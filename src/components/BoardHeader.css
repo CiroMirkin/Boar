@@ -1,7 +1,7 @@
 .board-header-component {
     width: 100%;
     padding-inline-start: 1rem;
-    margin: 2rem 0 0;
+    margin: 1rem 0 0;
     display: flex;
     justify-content: flex-start;
     align-items: baseline;
@@ -15,10 +15,13 @@
 }
 .board-name {
     margin: 0;
+    padding-block: 2px;
+    padding-inline-end: 2px;
     font-size: 2rem;
     line-height: 2.2rem;
     font-weight: bold;
     border: 2px solid transparent;
+    background: var(--background-color);
 }
 .board-name__change-name-btn {
     font-size: .8rem;
