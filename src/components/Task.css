@@ -43,6 +43,7 @@
 
     transition: font-size ease 50ms;
     color: var(--task-font-color);
+    overflow-wrap: break-word;
 }
 
 
