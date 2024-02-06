@@ -10,11 +10,15 @@ interface option {
     icon?: Function
 }
 
-export const createColumn: option = {
-    name: 'Agregar columna',
-    function: () => {
-        const dispatch = useDispatch()
-        dispatch(addColumn('Nueva columna'))
-    },
-    color: COLORS_CLASS_NAME.PRIMARY
+
+export function getCreateDefaultColumnOption(): option {
+    const dispatch = useDispatch()
+    const createDefaultColumn: option = {
+        name: 'Agregar columna',
+        function: () => {
+            dispatch(addColumn('Nueva columna'))
+        },
+        color: COLORS_CLASS_NAME.PRIMARY
+    }
+    return  createDefaultColumn
 }
