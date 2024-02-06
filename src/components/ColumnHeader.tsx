@@ -4,6 +4,7 @@ import { PencilSquareIcon, TrashIcon } from "./atomic/Icon"
 import { useDispatch } from "react-redux"
 import { changeColumnName, deleteColumn } from "../redux/columnsSlice"
 import toast from "react-hot-toast"
+import { getDeleteColumnOption } from "../columnOptions"
 
 interface ColumnHeaderProps{
     name: string
@@ -13,20 +14,13 @@ interface ColumnHeaderProps{
 function ColumnHeader({ name, columnId }: ColumnHeaderProps) {
     const [ columnName, setColumnName ] = useState(name)
     const [ isTheColumnNameChanging, setIsTheColumnNameChanging ] = useState(false)
+
+    const deleteOption = getDeleteColumnOption(columnId)
+
     const dispatch = useDispatch();
 
     const changeTheColumnName = (columnId: string, newColumnName: string) => {
       dispatch(changeColumnName({ columnId, newColumnName }))
-    }
-  
-    const deleteTheColumn = (columnId: string) => {
-      try {
-        dispatch(deleteColumn(columnId))
-        toast.success('Columna eliminada')
-      }
-      catch(e) {
-        toast.error('Solo hay tres columnas, no se puede eliminar esta columna')
-      }
     }
 
     const editColumnName = () => {
@@ -39,20 +33,6 @@ function ColumnHeader({ name, columnId }: ColumnHeaderProps) {
         setIsTheColumnNameChanging(!isTheColumnNameChanging)
     }
     
-    enum columnActions {
-        EDIT = 'EDIT',
-        DELETE = 'DELETE'
-    }
-
-    const handleClick = (columnAction: string) => {
-        if(columnAction == columnActions.EDIT) {
-            editColumnName()
-        }
-        if(columnAction == columnActions.DELETE) {
-            deleteTheColumn(columnId)
-        }
-    }
-
     return (
         <div className='column-header'>
             { 
@@ -67,14 +47,14 @@ function ColumnHeader({ name, columnId }: ColumnHeaderProps) {
             }
             <button 
                 className='column-header__change-name-btn' 
-                onClick={() => handleClick(columnActions.EDIT)}
+                onClick={() => editColumnName()}
                 title="Editar el nombre de la columna"
             >
                 <PencilSquareIcon />
             </button>
             <button
                 className='column-header__change-name-btn'
-                onClick={() => handleClick(columnActions.DELETE)}
+                onClick={deleteOption.function}
                 title="Eliminar columna"
             >
                 <TrashIcon />
