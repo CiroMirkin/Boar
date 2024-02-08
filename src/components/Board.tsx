@@ -26,7 +26,7 @@ function Board({ name, changeName }: BoardProps) {
             <Column 
               key={column.id} 
               id={column.id} 
-              name={column.name} 
+              columnData={column}
               firstColumn={index == 0}
             > 
               <TaskList taskList={column.taskList} />
