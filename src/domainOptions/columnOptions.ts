@@ -1,10 +1,10 @@
 import { MouseEventHandler } from "react"
-import { COLORS_CLASS_NAME } from "./components/atomic/colors"
+import { COLORS_CLASS_NAME } from "../components/atomic/colors"
 import { useDispatch } from "react-redux"
-import { addColumn, addTask, changeColumnName, deleteColumn } from "./redux/columnsSlice"
+import { addColumn, addTask, changeColumnName, deleteColumn } from "../redux/columnsSlice"
 import toast from "react-hot-toast"
-import { columnModel } from "./models/column"
-import { taskModel } from "./models/task"
+import { columnModel } from "../models/column"
+import { taskModel } from "../models/task"
 
 interface option {
     name: string,
