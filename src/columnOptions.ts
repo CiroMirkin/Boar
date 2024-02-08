@@ -15,8 +15,8 @@ interface optionEventHandler extends option {
     function: MouseEventHandler<HTMLButtonElement>,
 }
 
-interface optionFunction extends option {
-    function(column: columnModel): void
+interface optionEditFunction extends option {
+    function(column: columnModel, data: string): void
 }
 
 export function getCreateDefaultColumnOption(): optionEventHandler {
@@ -49,14 +49,14 @@ export function getDeleteColumnOption(columnId: string): optionEventHandler {
     return deleteColumnOption
 }
 
-export function getEditColumnOption(): optionFunction {
+export function getEditColumnOption(): optionEditFunction {
     const dispatch = useDispatch()
-    const editColumnOption: optionFunction = {
+    const editColumnOption: optionEditFunction = {
         name: "Cambiar nombre",
-        function: (column: columnModel) => {
+        function: (column: columnModel, data: string) => {
             dispatch(changeColumnName({ 
                 columnId: column.id, 
-                newColumnName: column.name 
+                newColumnName: data
             }))
         },
         color: COLORS_CLASS_NAME.PRIMARY
