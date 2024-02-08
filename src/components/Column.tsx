@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import './Column.css'
 import ColumnHeader from './ColumnHeader'
-import { useDispatch, useSelector } from 'react-redux'
-import { addTask } from '../redux/columnsSlice'
-import toast from 'react-hot-toast'
+import { useSelector } from 'react-redux'
 import { taskModel } from '../models/task'
 import { RootState } from '../redux/store'
 import { Container } from './atomic/Container'
 import { columnModel } from '../models/column'
+import { getAddTaskOption } from '../columnOptions'
 
 interface ColumnProps {
   id: string,
@@ -18,7 +17,6 @@ interface ColumnProps {
 
 function Column({ id, firstColumn, columnData, children }: ColumnProps) {
   const [ taskText, setTaskText ] = useState('')
-  const dispatch = useDispatch()
   const columns = useSelector((state: RootState) => state.columns.columns)
 
   const getNewTask = ({ descriptionText, columnId }: { descriptionText: string, columnId: string }): taskModel => {
@@ -41,16 +39,12 @@ function Column({ id, firstColumn, columnData, children }: ColumnProps) {
     return newTask
   }
 
+  const addTaskOption = getAddTaskOption()
+
   const pushNewTaskInColumn = () => {
-    if(!!taskText.trim()) {
-      const newTask = getNewTask({ descriptionText: taskText, columnId: id })
-      dispatch(addTask(newTask))
-      setTaskText('')
-      toast.success('Tarea creada')
-    }
-    else {
-      toast.error('No pude crear una tarea sin texto (•_•)')
-    }
+    const newTask = getNewTask({ descriptionText: taskText, columnId: id })
+    addTaskOption.function(newTask)
+    setTaskText('')
   }
 
   const handleClick = () => pushNewTaskInColumn()
