@@ -4,13 +4,15 @@ import { PencilSquareIcon, TrashIcon } from "./atomic/Icon"
 import { useDispatch } from "react-redux"
 import { changeColumnName } from "../redux/columnsSlice"
 import { getDeleteColumnOption } from "../columnOptions"
+import { columnModel } from "../models/column"
 
 interface ColumnHeaderProps{
-    name: string
-    columnId: string
+    column: columnModel
 }
 
-function ColumnHeader({ name, columnId }: ColumnHeaderProps) {
+function ColumnHeader({ column }: ColumnHeaderProps) {
+    const name = column.name
+    const columnId = column.id
     const [ columnName, setColumnName ] = useState(name)
     const [ isTheColumnNameChanging, setIsTheColumnNameChanging ] = useState(false)
 

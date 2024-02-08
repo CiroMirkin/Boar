@@ -7,15 +7,16 @@ import toast from 'react-hot-toast'
 import { taskModel } from '../models/task'
 import { RootState } from '../redux/store'
 import { Container } from './atomic/Container'
+import { columnModel } from '../models/column'
 
 interface ColumnProps {
   id: string,
-  name: string,
+  columnData: columnModel,
   firstColumn: boolean,
   children: React.ReactNode
 };
 
-function Column({ name, id, firstColumn, children }: ColumnProps) {
+function Column({ id, firstColumn, columnData, children }: ColumnProps) {
   const [ taskText, setTaskText ] = useState('')
   const dispatch = useDispatch()
   const columns = useSelector((state: RootState) => state.columns.columns)
@@ -60,7 +61,7 @@ function Column({ name, id, firstColumn, children }: ColumnProps) {
   return (
     <Container customClassName={columnClassName}>
       <Container>
-        <ColumnHeader name={name} columnId={id} /> 
+        <ColumnHeader column={columnData}/> 
         { children } 
       </Container>
       {
