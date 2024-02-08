@@ -1,9 +1,10 @@
 import { MouseEventHandler } from "react"
 import { COLORS_CLASS_NAME } from "./components/atomic/colors"
 import { useDispatch } from "react-redux"
-import { addColumn, changeColumnName, deleteColumn } from "./redux/columnsSlice"
+import { addColumn, addTask, changeColumnName, deleteColumn } from "./redux/columnsSlice"
 import toast from "react-hot-toast"
 import { columnModel } from "./models/column"
+import { taskModel } from "./models/task"
 
 interface option {
     name: string,
@@ -17,6 +18,10 @@ interface optionEventHandler extends option {
 
 interface optionEditFunction extends option {
     function(column: columnModel, data: string): void
+}
+
+interface optionAddTask extends option {
+    function(task: taskModel): void
 }
 
 export function getCreateDefaultColumnOption(): optionEventHandler {
@@ -62,4 +67,22 @@ export function getEditColumnOption(): optionEditFunction {
         color: COLORS_CLASS_NAME.PRIMARY
     }
     return editColumnOption
+}
+
+export function getAddTaskOption(): optionAddTask {
+    const dispatch = useDispatch()
+    const addTaskOption: optionAddTask = {
+        name: 'Agregar tarea',
+        color: COLORS_CLASS_NAME.PRIMARY,
+        function: (task: taskModel) => {
+            if(!!task.descriptionText.trim()) {
+                dispatch(addTask(task))
+                toast.success('Tarea creada')
+            }
+            else {
+                toast.error('No pude crear una tarea sin texto (•_•)')
+            }
+        }
+    }
+    return addTaskOption
 }
