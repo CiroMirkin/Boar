@@ -1,7 +1,7 @@
 import { useState } from "react"
 import './ColumnHeader.css'
 import { PencilSquareIcon, TrashIcon } from "./atomic/Icon"
-import { getDeleteColumnOption, getEditColumnOption } from "../columnOptions"
+import { getDeleteColumnOption, getEditColumnOption } from "../domainOptions/columnOptions"
 import { columnModel } from "../models/column"
 
 interface ColumnHeaderProps{

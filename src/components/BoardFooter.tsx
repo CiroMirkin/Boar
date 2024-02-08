@@ -1,4 +1,4 @@
-import { getCreateDefaultColumnOption } from "../columnOptions"
+import { getCreateDefaultColumnOption } from "../domainOptions/columnOptions"
 import { Btn } from "./atomic/Btn"
 
 export function BoardFooter() {

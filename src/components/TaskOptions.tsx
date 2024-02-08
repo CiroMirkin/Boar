@@ -2,7 +2,7 @@ import './TaskOptions.css'
 import { CaretLeftIcon, CaretRightIcon } from './atomic/Icon'
 import { Btn } from './atomic/Btn'
 import { taskModel } from '../models/task'
-import { getMoveTaskOptions, getTaskOptions } from '../taskOptions'
+import { getMoveTaskOptions, getTaskOptions } from '../domainOptions/taskOptions'
 
 interface TaskOptionsProps {
     task: taskModel
