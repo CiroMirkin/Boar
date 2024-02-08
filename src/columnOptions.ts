@@ -6,15 +6,17 @@ import toast from "react-hot-toast"
 
 interface option {
     name: string,
-    function: MouseEventHandler<HTMLButtonElement>,
     color: COLORS_CLASS_NAME
     icon?: Function
 }
 
+interface optionEventHandler extends option {
+    function: MouseEventHandler<HTMLButtonElement>,
+}
 
-export function getCreateDefaultColumnOption(): option {
+export function getCreateDefaultColumnOption(): optionEventHandler {
     const dispatch = useDispatch()
-    const createDefaultColumn: option = {
+    const createDefaultColumn: optionEventHandler = {
         name: 'Agregar columna',
         function: () => {
             dispatch(addColumn('Nueva columna'))
@@ -24,9 +26,9 @@ export function getCreateDefaultColumnOption(): option {
     return  createDefaultColumn
 }
 
-export function getDeleteColumnOption(columnId: string): option {
+export function getDeleteColumnOption(columnId: string): optionEventHandler {
     const dispatch = useDispatch()
-    const deleteColumnOption: option = {
+    const deleteColumnOption: optionEventHandler = {
         name: 'Eliminar',
         function: () => {
             try {
@@ -42,9 +44,9 @@ export function getDeleteColumnOption(columnId: string): option {
     return deleteColumnOption
 }
 
-export function getEditColumnOption(columnId: string, newColumnName: string): option {
+export function getEditColumnOption(columnId: string, newColumnName: string): optionEventHandler {
     const dispatch = useDispatch()
-    const editColumnOption: option = {
+    const editColumnOption: optionEventHandler = {
         name: "Cambiar nombre",
         function: () => {
             dispatch(changeColumnName({ columnId, newColumnName }))
