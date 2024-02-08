@@ -1,9 +1,7 @@
 import { useState } from "react"
 import './ColumnHeader.css'
 import { PencilSquareIcon, TrashIcon } from "./atomic/Icon"
-import { useDispatch } from "react-redux"
-import { changeColumnName } from "../redux/columnsSlice"
-import { getDeleteColumnOption } from "../columnOptions"
+import { getDeleteColumnOption, getEditColumnOption } from "../columnOptions"
 import { columnModel } from "../models/column"
 
 interface ColumnHeaderProps{
@@ -17,16 +15,11 @@ function ColumnHeader({ column }: ColumnHeaderProps) {
     const [ isTheColumnNameChanging, setIsTheColumnNameChanging ] = useState(false)
 
     const deleteOption = getDeleteColumnOption(columnId)
-
-    const dispatch = useDispatch();
-
-    const changeTheColumnName = (columnId: string, newColumnName: string) => {
-      dispatch(changeColumnName({ columnId, newColumnName }))
-    }
+    const editColumnOption = getEditColumnOption()
 
     const editColumnName = () => {
         if(isTheColumnNameChanging && !!columnName.trim()) {
-            changeTheColumnName(columnId, columnName)
+            editColumnOption.function(column, columnName)
         }
         if(!columnName.trim()) {
             setColumnName(name)
