@@ -3,6 +3,7 @@ import { COLORS_CLASS_NAME } from "./components/atomic/colors"
 import { useDispatch } from "react-redux"
 import { addColumn, changeColumnName, deleteColumn } from "./redux/columnsSlice"
 import toast from "react-hot-toast"
+import { columnModel } from "./models/column"
 
 interface option {
     name: string,
@@ -12,6 +13,10 @@ interface option {
 
 interface optionEventHandler extends option {
     function: MouseEventHandler<HTMLButtonElement>,
+}
+
+interface optionFunction extends option {
+    function(column: columnModel): void
 }
 
 export function getCreateDefaultColumnOption(): optionEventHandler {
@@ -44,12 +49,15 @@ export function getDeleteColumnOption(columnId: string): optionEventHandler {
     return deleteColumnOption
 }
 
-export function getEditColumnOption(columnId: string, newColumnName: string): optionEventHandler {
+export function getEditColumnOption(): optionFunction {
     const dispatch = useDispatch()
-    const editColumnOption: optionEventHandler = {
+    const editColumnOption: optionFunction = {
         name: "Cambiar nombre",
-        function: () => {
-            dispatch(changeColumnName({ columnId, newColumnName }))
+        function: (column: columnModel) => {
+            dispatch(changeColumnName({ 
+                columnId: column.id, 
+                newColumnName: column.name 
+            }))
         },
         color: COLORS_CLASS_NAME.PRIMARY
     }
