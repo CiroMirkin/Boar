@@ -4,10 +4,11 @@ import Board from './components/Board'
 import { Toaster } from 'react-hot-toast'
 import Joyride from "react-joyride";
 import { tutorialSteps } from './tutorialSteps';
+import { SaveDataInLocalStorage } from './localStorage';
 
 function App() {
   const [ boardName, setBoardName ] = useState("Tablero básico")
-
+  SaveDataInLocalStorage()
   return (
     <>
       <Joyride 
