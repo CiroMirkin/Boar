@@ -1,19 +1,13 @@
-import { MouseEventHandler } from 'react'
 import { useDispatch } from 'react-redux'
 import toast from 'react-hot-toast'
-import { deleteTask, highlightTask, moveTask } from '../redux/columnsSlice'
+import { addTask, deleteTask, highlightTask, moveTask } from '../redux/columnsSlice'
 import { moveToType } from '../domainFunctions/moveTask'
 import { COLORS_CLASS_NAME } from '../components/atomic/colors'
 import { taskModel } from '../models/task'
+import { option, optionWithMouseEventHandler } from './options'
 
-interface option {
-    name: string,
-    function: MouseEventHandler<HTMLButtonElement>,
-    color: COLORS_CLASS_NAME
-    icon?: Function
-}
 
-export function getTaskOptions(task: taskModel): option[] {
+export function getTaskOptions(task: taskModel): optionWithMouseEventHandler[] {
     const dispatch = useDispatch();
 
     const deleteTheTask = () => {
@@ -44,6 +38,28 @@ export function getTaskOptions(task: taskModel): option[] {
     ]
 
     return options
+}
+
+interface addTaskOption extends option {
+    function(task: taskModel): void
+}
+
+export function getAddTaskOption(): addTaskOption {
+    const dispatch = useDispatch()
+    const addTaskOption: addTaskOption = {
+        name: 'Agregar tarea',
+        color: COLORS_CLASS_NAME.PRIMARY,
+        function: (task: taskModel) => {
+            if(!!task.descriptionText.trim()) {
+                dispatch(addTask(task))
+                toast.success('Tarea creada')
+            }
+            else {
+                toast.error('No pude crear una tarea sin texto (•_•)')
+            }
+        }
+    }
+    return addTaskOption
 }
 
 export function getMoveTaskOptions(task: taskModel): option[] {
