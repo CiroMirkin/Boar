@@ -15,9 +15,6 @@ interface optionEventHandler extends option {
     function: MouseEventHandler<HTMLButtonElement>,
 }
 
-interface optionEditFunction extends option {
-    function(column: columnModel, data: string): void
-}
 
 export function getCreateDefaultColumnOption(): optionEventHandler {
     const dispatch = useDispatch()
@@ -47,6 +44,10 @@ export function getDeleteColumnOption(columnId: string): optionEventHandler {
         color: COLORS_CLASS_NAME.DANGER
     }
     return deleteColumnOption
+}
+
+interface optionEditFunction extends option {
+    function(column: columnModel, data: string): void
 }
 
 export function getEditColumnOption(): optionEditFunction {
