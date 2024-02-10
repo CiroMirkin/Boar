@@ -7,6 +7,7 @@ import { moveThisTask, moveToType } from "../domainFunctions/moveTask";
 import { changeTheNameOfThisColumn } from "../domainFunctions/changeColumnName";
 import { getColumn } from "../domainFunctions/addColumn";
 import { setThisTaskAsHighlightedTask } from "../domainFunctions/highlightedTask";
+import { localStorageKey } from "../localStorage";
 
 export interface moveTaskPayloadAction { taskId: string, to: moveToType }
 interface changeColumnNamePayloadAction { columnId: string, newColumnName: string }
@@ -46,7 +47,9 @@ const initialState: initialStateInterface = {
 
 export const columnsSlice = createSlice({
   name: "columns",
-  initialState,
+  initialState: localStorage.getItem(localStorageKey)
+    ? JSON.parse(localStorage.getItem(localStorageKey) as string) as initialStateInterface
+    : initialState,
   reducers: {
     addColumn: (state, action: PayloadAction<string>) => {
       const columnName = action.payload
