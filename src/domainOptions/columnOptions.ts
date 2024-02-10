@@ -1,36 +1,25 @@
-import { MouseEventHandler } from "react"
 import { COLORS_CLASS_NAME } from "../components/atomic/colors"
 import { useDispatch } from "react-redux"
 import { addColumn, changeColumnName, deleteColumn } from "../redux/columnsSlice"
 import toast from "react-hot-toast"
 import { columnModel } from "../models/column"
+import { option, optionWithMouseEventHandler } from "./options"
 
-interface option {
-    name: string,
-    color: COLORS_CLASS_NAME
-    icon?: Function
-}
-
-interface optionEventHandler extends option {
-    function: MouseEventHandler<HTMLButtonElement>,
-}
-
-
-export function getCreateDefaultColumnOption(): optionEventHandler {
+export function getCreateDefaultColumnOption(): optionWithMouseEventHandler {
     const dispatch = useDispatch()
-    const createDefaultColumn: optionEventHandler = {
+    const createDefaultColumn: optionWithMouseEventHandler = {
         name: 'Agregar columna',
         function: () => {
             dispatch(addColumn('Nueva columna'))
         },
-        color: COLORS_CLASS_NAME.PRIMARY
+        color: COLORS_CLASS_NAME.PRIMARY,
     }
     return  createDefaultColumn
 }
 
-export function getDeleteColumnOption(columnId: string): optionEventHandler {
+export function getDeleteColumnOption(columnId: string): optionWithMouseEventHandler {
     const dispatch = useDispatch()
-    const deleteColumnOption: optionEventHandler = {
+    const deleteColumnOption: optionWithMouseEventHandler = {
         name: 'Eliminar',
         function: () => {
             try {
