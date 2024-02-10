@@ -6,7 +6,7 @@ import { taskModel } from '../models/task'
 import { RootState } from '../redux/store'
 import { Container } from './atomic/Container'
 import { columnModel } from '../models/column'
-import { getAddTaskOption } from '../domainOptions/columnOptions'
+import { getAddTaskOption } from '../domainOptions/taskOptions'
 
 interface ColumnProps {
   id: string,
