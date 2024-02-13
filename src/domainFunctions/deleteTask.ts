@@ -5,7 +5,7 @@ export const deleteThisTaskFromThisColumn = (taskId: string, columnId: string, c
     if(!columnId.trim()) throw new Error('No se puede eliminar una tarea de una columna con un id en blanco')
 
     const newColumns: columnModel[] = columns.map(column => {
-        if(column.id === columnId) {
+        if(column.position === columnId) {
             if(column.taskList.length === 0) throw new Error('No se puede eliminar una tarea de una columna vacía')
 
             const newTaskListInColumn = column.taskList.filter(task => task.id !== taskId)

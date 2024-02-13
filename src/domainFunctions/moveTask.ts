@@ -39,7 +39,7 @@ export const moveThisTask = ({ taskId, to, columns }: moveTaskParams): columnsTy
     const columnIndexWhereTheTaskWillBe = (to === 'next-column') ? nextColumnIndex : prevColumnIndex 
     if(columnIndexWhereTheTaskWillBe < columns.length && columnIndexWhereTheTaskWillBe > -1) {
         task.column.columnIndex = columnIndexWhereTheTaskWillBe
-        task.column.columnId = columns[columnIndexWhereTheTaskWillBe].id
+        task.column.columnId = columns[columnIndexWhereTheTaskWillBe].position
         const SpliceMethodParamToInsertAnElementWithoutDeletingElements = 0
         newColumns[columnIndexWhereTheTaskWillBe].taskList.splice(
             taskIndex, 

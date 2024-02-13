@@ -45,7 +45,7 @@ export function getEditColumnOption(): optionEditFunction {
         name: "Cambiar nombre",
         function: (column: columnModel, data: string) => {
             dispatch(changeColumnName({ 
-                columnId: column.id, 
+                columnId: column.position, 
                 newColumnName: data
             }))
         },

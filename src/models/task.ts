@@ -1,19 +1,15 @@
 export interface taskModel {
-    descriptionText: string,
-    highlight?: boolean,
-    column: {
-        columnIndex: number,
-        columnId: string
-    },
     id: string
+    descriptionText: string
+    columnPosition: string
+    highlight?: boolean
 }
 
 export const taskNull: taskModel = {
     id: '',
     descriptionText: '',
-    highlight: false,
-    column: {
-        columnIndex: 0,
-        columnId: '1'
-    }
+    columnPosition: '1',
+    highlight: false
 }
+
+export type taskList = taskModel[]

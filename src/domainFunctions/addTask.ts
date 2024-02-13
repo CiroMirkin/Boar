@@ -6,7 +6,7 @@ export const addTaskToThisColumn = (columnId: string, columns: columnModel[], ta
         throw 'No se puede agregar una tarea sin id'
     }
     const newColumns = columns.map(column => {
-        if(column.id === columnId) {
+        if(column.position === columnId) {
             column.taskList.push(task)
         }
         return column
