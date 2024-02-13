@@ -12,14 +12,12 @@
     "test-ui": "vitest --ui"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.0.1",
     "jsdom": "^22.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-joyride": "^2.7.2",
     "react-magic-motion": "^1.1.2",
-    "react-redux": "^9.0.4",
     "vitest": "^0.34.6"
   },
   "devDependencies": {
