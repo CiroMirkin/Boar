@@ -13,7 +13,7 @@ export function TaskList({ columnPosition }: TaskListProps) {
 
     tasks.forEach(task => {
         taskList.push(
-            <Task data={task} />
+            <Task data={task} key={task.id} />
         )
     })
 
