@@ -8,7 +8,7 @@ interface TaskListProps {
 
 export function TaskList({ columnPosition }: TaskListProps) {
     const columnIndex = (Number(columnPosition) - 1)
-    const tasks = React.useContext(BoardDataContext).columnContent[columnIndex]
+    const tasks = React.useContext(BoardDataContext).tasksInColumns[columnIndex]
     const taskList: React.ReactNode[] = []
 
     tasks.forEach(task => {
