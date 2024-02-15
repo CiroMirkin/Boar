@@ -1,5 +1,7 @@
 import React from "react";
 import { columnModel } from "../models/column";
+import { BoardDataContext } from "./Board";
+import { TaskList } from "./TaskList";
 
 interface ColumnProps {
     data: columnModel
@@ -11,6 +13,25 @@ export function Column({ data, children }: ColumnProps) {
         <div>
             <h3>{ data.name }</h3>
             { children }
+        </div>
+    )
+}
+
+export function ColumnList({ }) {
+    const columns = React.useContext(BoardDataContext).columnList
+    const columnList: React.ReactNode[] = []
+
+    columns.forEach(column => {
+        columnList.push(
+            <Column data={column} key={column.id}>
+                <TaskList columnPosition={column.position} />
+            </Column>
+        )
+    })
+
+    return (
+        <div>
+            {columnList}
         </div>
     )
 }
