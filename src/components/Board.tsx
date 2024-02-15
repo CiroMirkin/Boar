@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { boardModel, defaultBoard } from "../models/board"
 import { ColumnList } from "./ColumnList"
 
@@ -10,11 +10,12 @@ interface BoardProps {
 }
 
 export function Board({ data }: BoardProps) {
+    const [ allBoardData, setAllBoardData ] = useState(data)
     console.log(data)
     return (
         <>
         <h1>{ data.boardData.name }</h1>
-        <BoardDataContext.Provider value={data}>
+        <BoardDataContext.Provider value={allBoardData}>
             <ColumnList />
         </BoardDataContext.Provider>
         </>
