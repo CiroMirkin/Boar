@@ -9,7 +9,7 @@ export interface boardData {
 export interface boardModel {
     boardData: boardData,
     columnList: columnModel[],
-    columnContent: taskList[] 
+    tasksInColumns: taskList[] 
 }
   
 export const defaultBoard: boardModel = {
@@ -18,5 +18,5 @@ export const defaultBoard: boardModel = {
         name: "Tablero básico"
     },
     columnList: defaultColumnList,
-    columnContent: [[], [], []]
+    tasksInColumns: [[], [], []]
 };
