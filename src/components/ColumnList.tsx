@@ -1,12 +1,11 @@
 import React from "react"
-import { columnModel } from "../models/column"
 import { Column } from "./Column"
+import { BoardDataContext } from "./Board"
 
-interface ColumnListProps {
-    columns: columnModel[]
-}
+interface ColumnListProps {  }
 
-export function ColumnList({ columns }: ColumnListProps) {
+export function ColumnList({  }: ColumnListProps) {
+    const columns = React.useContext(BoardDataContext).columnList
     const columnList: React.ReactNode[] = []
 
     columns.forEach(column => {

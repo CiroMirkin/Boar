@@ -1,20 +1,21 @@
 import React from "react"
 import { boardModel, defaultBoard } from "../models/board"
+import { ColumnList } from "./ColumnList"
 
-const BoardDataContext = React.createContext(defaultBoard as boardModel)
+export const BoardDataContext = React.createContext(defaultBoard as boardModel)
 
 interface BoardProps {
     data: boardModel,
-    children: React.ReactNode
+    children?: React.ReactNode
 }
 
-export function Board({ data, children }: BoardProps) {
+export function Board({ data }: BoardProps) {
     console.log(data)
     return (
         <>
         <h1>{ data.boardData.name }</h1>
         <BoardDataContext.Provider value={data}>
-            { children }
+            <ColumnList />
         </BoardDataContext.Provider>
         </>
     )
