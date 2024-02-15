@@ -2,12 +2,15 @@ import { boardData } from "../models/board"
 
 interface BoardProps {
     data: boardData,
-    children: JSX.Element
+    children: React.ReactNode
 }
 
 export function Board({ data, children }: BoardProps) {
     console.log(data)
     return (
-        <>{ children }</>
+        <>
+        <h1>{ data.name }</h1>
+        { children }
+        </>
     )
 }
