@@ -11,7 +11,7 @@ export function ColumnList({  }: ColumnListProps) {
 
     columns.forEach(column => {
         columnList.push(
-            <Column data={column}>
+            <Column data={column} key={column.id}>
                 <TaskList columnPosition={column.position} />
             </Column>
         )
