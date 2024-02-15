@@ -1,6 +1,7 @@
 import React from "react"
 import { Column } from "./Column"
 import { BoardDataContext } from "./Board"
+import { TaskList } from "./TaskList"
 
 interface ColumnListProps {  }
 
@@ -10,7 +11,9 @@ export function ColumnList({  }: ColumnListProps) {
 
     columns.forEach(column => {
         columnList.push(
-            <Column data={column} />
+            <Column data={column}>
+                <TaskList columnPosition={column.position} />
+            </Column>
         )
     })
 
