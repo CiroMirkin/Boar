@@ -2,18 +2,6 @@ import React from "react";
 import { taskModel } from "../models/task";
 import { BoardDataContext } from "./Board";
 
-interface TaskProps {
-    data: taskModel
-}
-
-export function Task({ data }: TaskProps) {
-    return (
-        <div>
-            <p>{ data.descriptionText }</p>
-        </div>
-    )
-}
-
 interface TaskListProps {
     columnPosition: string
 }
@@ -33,5 +21,17 @@ export function TaskList({ columnPosition }: TaskListProps) {
         <>
             {taskList}
         </>
+    )
+}
+
+interface TaskProps {
+    data: taskModel
+}
+
+export function Task({ data }: TaskProps) {
+    return (
+        <div>
+            <p>{ data.descriptionText }</p>
+        </div>
     )
 }
