@@ -1,7 +1,7 @@
 import React from "react";
 import { columnModel } from "../models/column";
 import { BoardDataContext } from "./Board";
-import { TaskList } from "./TaskList";
+import { TaskList } from "./Task";
 
 interface ColumnProps {
     data: columnModel

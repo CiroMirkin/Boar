@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { boardModel, defaultBoard } from "../models/board"
-import { ColumnList } from "./ColumnList"
+import { ColumnList } from "./Column"
 
 export const BoardDataContext = React.createContext(defaultBoard as boardModel)
 
