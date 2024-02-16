@@ -3,20 +3,6 @@ import { columnModel } from "../models/column";
 import { BoardDataContext } from "./Board";
 import { TaskList } from "./Task";
 
-interface ColumnProps {
-    data: columnModel
-    children: React.ReactNode 
-}
-
-export function Column({ data, children }: ColumnProps) {
-    return (
-        <div>
-            <h3>{ data.name }</h3>
-            { children }
-        </div>
-    )
-}
-
 export function ColumnList({ }) {
     const columns = React.useContext(BoardDataContext).columnList
     const columnList: React.ReactNode[] = []
@@ -32,6 +18,20 @@ export function ColumnList({ }) {
     return (
         <div>
             {columnList}
+        </div>
+    )
+}
+
+interface ColumnProps {
+    data: columnModel
+    children: React.ReactNode 
+}
+
+export function Column({ data, children }: ColumnProps) {
+    return (
+        <div>
+            <h3>{ data.name }</h3>
+            { children }
         </div>
     )
 }
