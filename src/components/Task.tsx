@@ -1,6 +1,6 @@
 import React from "react";
 import { taskModel } from "../models/task";
-import { BoardDataContext } from "./Board";
+import { AllBoardData } from "./Board";
 
 interface TaskListProps {
     columnPosition: string
@@ -8,7 +8,7 @@ interface TaskListProps {
 
 export function TaskList({ columnPosition }: TaskListProps) {
     const columnIndex = (Number(columnPosition) - 1)
-    const tasks = React.useContext(BoardDataContext).tasksInColumns[columnIndex]
+    const tasks = React.useContext(AllBoardData).tasksInColumns[columnIndex]
     const taskList: React.ReactNode[] = []
 
     tasks.forEach(task => {

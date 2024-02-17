@@ -1,10 +1,10 @@
 import React from "react";
 import { columnModel } from "../models/column";
-import { BoardDataContext } from "./Board";
+import { AllBoardData } from "./Board";
 import { TaskList } from "./Task";
 
 export function ColumnList({ }) {
-    const columns = React.useContext(BoardDataContext).columnList
+    const columns = React.useContext(AllBoardData).columnList
     const columnList: React.ReactNode[] = []
 
     columns.forEach(column => {
