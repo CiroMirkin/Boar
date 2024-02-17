@@ -15,23 +15,11 @@ Boar esta en linea, puedes usarlo en **[cm-boar.netlify.app](https://cm-boar.net
 
 * TypeScript
 * React
-* Redux toolkit
 * Vite
 * Vitest
-* Jest
 * Git
 * Docusaurus
 
-## Características implementadas
+## Wireframe
 
-* En tareas
-  * Creación. 
-  * Eliminación. 
-  * Edición de descripción.  
-  * Movimiento entre columnas. 
-* En columnas
-  * Creación. 
-  * Edición de nombre. 
-  * Eliminación.  
-* En tablero
-  * Edición de nombre. 
+![Wireframe](/img/wireframe.svg)

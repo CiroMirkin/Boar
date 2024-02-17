@@ -6,6 +6,7 @@ tags:
   - Comandos
   - Testing
   - Pruebas
+  - Documentación
 ---
 
 # Comandos
@@ -37,6 +38,20 @@ npm run test-ui
 ```
 
 El comando `npm run test-ui` creara un **sitio local** donde poder ver el estado de las pruebas en: [http://localhost:51204/__vitest__/#/](http://localhost:51204/__vitest__/#/).
+
+### Documentación
+
+puede acceder a la documentación localmente primero ejecutando:
+
+```
+cd website
+```
+Y luego:
+```
+npm run start
+```
+
+Con `cd website` entrara al directorio donde esta la documentación y con `npm run start` se creara el sitio con la documentación en [http://localhost:3000/](http://localhost:3000/).
 
 ### Despliegue
 
