@@ -3,7 +3,7 @@ import { columnModel } from "../models/column";
 import { AllBoardData, UpdateBoardData } from "./Board";
 import { TaskList } from "./Task";
 import { isThisTheFirstColumn } from "../auxiliaryFunction/firstOrLastColumn";
-import { taskOptions } from "../useCase/taskOptions";
+import { addTaskToFirstColumAction } from "../useCase/taskOptions";
 
 export function ColumnList({ }) {
     const columns = React.useContext(AllBoardData).columnList
@@ -41,7 +41,7 @@ export function Column({ data, children }: ColumnProps) {
             columnPosition: '1',
             highlight: false
         }
-        updateBoard(taskOptions[0].action({ board, task }))
+        updateBoard(addTaskToFirstColumAction.action({ board, task }))
         setNewTaskDescription('')
     }
 
