@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { boardModel, defaultBoard } from "../models/board"
-import { ColumnList } from "./Column"
+import { ColumnList } from "./ColumnList"
 
 export const AllBoardData = React.createContext(defaultBoard as boardModel)
 export const UpdateBoardData = React.createContext((newBoardData: boardModel): void => console.log('the set function is not defined, your new board data should be ', newBoardData))

@@ -1,28 +1,8 @@
 import React, { useState } from "react";
 import { columnModel } from "../models/column";
 import { AllBoardData, UpdateBoardData } from "./Board";
-import { TaskList } from "./Task";
 import { isThisTheFirstColumn } from "../auxiliaryFunction/firstOrLastColumn";
 import { addTaskToFirstColumAction } from "../useCase/taskOptions";
-
-export function ColumnList({ }) {
-    const columns = React.useContext(AllBoardData).columnList
-    const columnList: React.ReactNode[] = []
-
-    columns.forEach(column => {
-        columnList.push(
-            <Column data={column} key={column.id}>
-                <TaskList columnPosition={column.position} />
-            </Column>
-        )
-    })
-
-    return (
-        <div>
-            {columnList}
-        </div>
-    )
-}
 
 interface ColumnProps {
     data: columnModel
