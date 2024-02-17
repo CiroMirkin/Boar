@@ -31,8 +31,17 @@ interface ColumnProps {
 
 export function Column({ data, children }: ColumnProps) {
     const [ newTaskDescription, setNewTaskDescription ] = useState('')
+    
+    const updateBoard = React.useContext(UpdateBoardData)
+    const board = React.useContext(AllBoardData)
     const handleClick = () => {
-        console.log(newTaskDescription)
+        const task = {
+            id: crypto.randomUUID(),
+            descriptionText: newTaskDescription.trim(),
+            columnPosition: '1',
+            highlight: false
+        }
+        updateBoard(taskOptions[0].action({ board, task }))
         setNewTaskDescription('')
     }
 
