@@ -8,6 +8,6 @@ export const addTaskToFirstColumAction: action = {
     action: ({ task, board }) => addTaskInFirstColumn({ task, board })
 }
 
-export const taskOptions: action[] = [
+export const allTaskActions: action[] = [
     {...addTaskToFirstColumAction},
 ]
