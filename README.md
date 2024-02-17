@@ -8,33 +8,16 @@ Al entrar en la aplicación verá un tablero con tres columnas, cada columna ind
 :dart: **Stack:** <br> 
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=flat-square&logo=typescript&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=flat-square&logo=react&logoColor=%2361DAFB) ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=flat-square&logo=vite&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=flat-square&logo=css3&logoColor=white) ![GIT](https://img.shields.io/badge/Git-fc6d26?style=flat-square&logo=git&logoColor=white)
 
-## Características
+## Características principales
 
-Ordenadas de mayor a menor prioridad, comenzando por las *fundamentales*.
-
-* Crear tareas. :white_check_mark:
-* Mover las tareas entre columnas. :white_check_mark:
-* Eliminar las tareas. :white_check_mark:
-* Editar el nombre de las columnas. :white_check_mark:
-* Crear nuevas columnas. :white_check_mark:
-* Editar el contenido de las tareas.  :white_check_mark:
-* Eliminar columnas, siempre debe haber mínimo tres columnas, nunca menos.  :white_check_mark:
-* Cambiar el nombre del tablero. :white_check_mark:
-
-### Próximamente
-* Poder descargar y subir un archivo con la información del tablero.
-* Marcar una tarea como terminada.
-* Ver todas las tareas terminadas, ordenadas de la más reciente a la más antigua.
-
-* Métricas:
-    * Cuantas tareas hay en total.
-    * Cuantas tareas hay en cada columna.
-    * Cuantas tareas se terminaron.
-    * Cuantas tareas no se terminaron.
-
-* Vaciar una columna, eliminar todas las tareas que contiene.
-* Mover una columna de lugar.
-* Ver cuanto tiempo promedio tarda una tarea en terminarse contando desde el momento en que se crea.
+* Crear tareas.
+* Mover las tareas entre columnas.
+* Eliminar las tareas.
+* Editar el nombre de las columnas.
+* Crear nuevas columnas.
+* Editar el contenido de las tareas. 
+* Eliminar columnas.  
+* Cambiar el nombre del tablero. 
 
 ## Referencias
 
