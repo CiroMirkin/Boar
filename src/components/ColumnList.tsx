@@ -2,6 +2,7 @@ import React from "react";
 import { AllBoardData } from "./Board";
 import { TaskList } from "./TaskListProps";
 import { Column } from "./Column";
+import './ColumnList.css'
 
 export function ColumnList({ }) {
     const columns = React.useContext(AllBoardData).columnList;
@@ -16,7 +17,7 @@ export function ColumnList({ }) {
     });
 
     return (
-        <div>
+        <div className="column-list">
             {columnList}
         </div>
     );
