@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { columnModel } from "../models/column";
 import { UpdateBoardData } from "./Board";
 import { isThisTheFirstColumn } from "../auxiliaryFunction/firstOrLastColumn";
-import { addTaskToFirstColumAction } from "../useCase/taskOptions";
 import './Column.css'
+import { addTaskInFirstColumn } from "../useCase/addTaskInFirstColumn";
 
 interface ColumnProps {
     data: columnModel
@@ -22,7 +22,7 @@ export function Column({ data, children }: ColumnProps) {
             highlight: false
         }
         updateBoard({
-            action: addTaskToFirstColumAction.action,
+            action: addTaskInFirstColumn,
             task
         })
         setNewTaskDescription('')
