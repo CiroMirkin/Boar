@@ -1,6 +1,6 @@
 import React from "react";
 import { AllBoardData } from "./Board";
-import { TaskList } from "./TaskListProps";
+import { TaskList } from "./TaskList";
 import { Column } from "./Column";
 import './ColumnList.css'
 
