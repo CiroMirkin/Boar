@@ -1,5 +1,5 @@
 import { columnModel, defaultColumnList } from "./column";
-import { taskList } from "./task";
+import { taskList, taskModel } from "./task";
 
 export interface boardData {
     id: string,
@@ -20,3 +20,11 @@ export const defaultBoard: boardModel = {
     columnList: defaultColumnList,
     tasksInColumns: [[], [], []]
 };
+
+export interface boardActionParams {
+    task: taskModel;
+    board: boardModel;
+}
+export interface boardAction {
+    action({ task, board }: boardActionParams): boardModel;
+}

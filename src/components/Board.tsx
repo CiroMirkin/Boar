@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { boardModel, defaultBoard } from "../models/board"
 import { ColumnList } from "./ColumnList"
 import { taskModel } from "../models/task"
-import { boardAction } from "../models/option"
+import { boardAction } from "../models/board"
 
 export const AllBoardData = React.createContext(defaultBoard as boardModel)
 interface UpdateBoardDataParams extends boardAction {
