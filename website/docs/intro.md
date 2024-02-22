@@ -20,6 +20,10 @@ Boar esta en linea, puedes usarlo en **[cm-boar.netlify.app](https://cm-boar.net
 * Git
 * Docusaurus
 
+## Características básicas
+
+![Características básicas](/img/Basicos.svg)
+
 ## Wireframe
 
 ![Wireframe](/img/wireframe.svg)
