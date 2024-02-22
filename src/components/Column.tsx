@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { columnModel } from "../models/column";
-import { AllBoardData, UpdateBoardData } from "./Board";
+import { UpdateBoardData } from "./Board";
 import { isThisTheFirstColumn } from "../auxiliaryFunction/firstOrLastColumn";
 import { addTaskToFirstColumAction } from "../useCase/taskOptions";
 
@@ -13,7 +13,6 @@ export function Column({ data, children }: ColumnProps) {
     const [ newTaskDescription, setNewTaskDescription ] = useState('')
     
     const updateBoard = React.useContext(UpdateBoardData)
-    const board = React.useContext(AllBoardData)
     const handleClick = () => {
         const task = {
             id: crypto.randomUUID(),
