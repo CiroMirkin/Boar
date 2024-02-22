@@ -1,9 +1,14 @@
 import React, { useState } from "react"
 import { boardModel, defaultBoard } from "../models/board"
 import { ColumnList } from "./ColumnList"
+import { taskModel } from "../models/task"
+import { boardAction } from "../models/option"
 
 export const AllBoardData = React.createContext(defaultBoard as boardModel)
-export const UpdateBoardData = React.createContext((newBoardData: boardModel): void => console.log('the set function is not defined, your new board data should be ', newBoardData))
+interface UpdateBoardDataParams extends boardAction {
+    task: taskModel
+}
+export const UpdateBoardData = React.createContext(({ action, task }: UpdateBoardDataParams): void => console.info('The set function is not defined. ', action, task))
 
 interface BoardProps {
     data: boardModel,
@@ -12,7 +17,10 @@ interface BoardProps {
 
 export function Board({ data }: BoardProps) {
     const [ allBoardData, setAllBoardData ] = useState(data as boardModel)
-    const updateAllBoardData = (newBoardData: boardModel) => setAllBoardData(newBoardData)
+    const updateAllBoardData = ({ action, task }: UpdateBoardDataParams): void => {
+        const newBoardData = action({ board: allBoardData, task })
+        setAllBoardData(newBoardData)
+    }
 
     return (
         <>

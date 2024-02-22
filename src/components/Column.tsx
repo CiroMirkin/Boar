@@ -21,7 +21,10 @@ export function Column({ data, children }: ColumnProps) {
             columnPosition: '1',
             highlight: false
         }
-        updateBoard(addTaskToFirstColumAction.action({ board, task }))
+        updateBoard({
+            action: addTaskToFirstColumAction.action,
+            task
+        })
         setNewTaskDescription('')
     }
 

@@ -1,13 +1,13 @@
-import { action } from "../models/option";
+import { actionFunctionParams, actionObject } from "../models/option";
 import { addTaskInFirstColumn } from "./addTaskInFirstColumn";
 
-export const addTaskToFirstColumAction: action = {
+export const addTaskToFirstColumAction: actionObject = {
     id: '1',
     name: 'Crear tarea',
     enable: true,
-    action: ({ task, board }) => addTaskInFirstColumn({ task, board })
+    action: ({ task, board }: actionFunctionParams) => addTaskInFirstColumn({ task, board })
 }
 
-export const allTaskActions: action[] = [
+export const allTaskActions: actionObject[] = [
     {...addTaskToFirstColumAction},
 ]
