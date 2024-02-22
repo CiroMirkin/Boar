@@ -11,7 +11,7 @@ export function ColumnList({ }) {
     columns.forEach(column => {
         columnList.push(
             <Column data={column} key={column.id}>
-                <TaskList columnPosition={column.position} />
+                <TaskList tasks={column.taskList} />
             </Column>
         );
     });

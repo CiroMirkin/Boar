@@ -1,14 +1,12 @@
 import React from "react";
-import { AllBoardData } from "./Board";
 import { Task } from "./Task";
+import { taskList } from "../models/task";
 
 interface TaskListProps {
-    columnPosition: string;
+    tasks: taskList;
 }
 
-export function TaskList({ columnPosition }: TaskListProps) {
-    const columnIndex = (Number(columnPosition) - 1);
-    const tasks = React.useContext(AllBoardData).tasksInColumns[columnIndex];
+export function TaskList({ tasks }: TaskListProps) {
     const taskList: React.ReactNode[] = [];
 
     tasks.forEach(task => {

@@ -1,5 +1,4 @@
 import { defaultBoard } from "../models/board"
-import { defaultColumnList } from "../models/column"
 import { addTaskInFirstColumn } from "./addTaskInFirstColumn"
 
 describe("", () => {
@@ -15,16 +14,29 @@ describe("", () => {
                 id: '0',
                 name: "Tablero básico"
             },
-            columnList: defaultColumnList,
-            tasksInColumns: [
-                [
-                    {
+            columnList: [
+                {
+                    id: "c1",
+                    name: "Pendientes",
+                    position: "1",
+                    taskList: [{
                         id: '',
                         descriptionText: '',
                         columnPosition: '1',
-                    }
-                ], 
-                [], []
+                    }]
+                },
+                {
+                    id: "c2",
+                    name: "Procesando",
+                    position: "2",
+                    taskList: []
+                },
+                {
+                    id: "c3",
+                    name: "Terminado",
+                    position: "3",
+                    taskList: []
+                },
             ]
         })
     })
