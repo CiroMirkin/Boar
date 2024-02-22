@@ -3,6 +3,7 @@ import { boardModel, defaultBoard } from "../models/board"
 import { ColumnList } from "./ColumnList"
 import { taskModel } from "../models/task"
 import { boardAction } from "../models/board"
+import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData"
 
 export const AllBoardData = React.createContext(defaultBoard as boardModel)
 interface UpdateBoardDataParams extends boardAction {
@@ -25,7 +26,7 @@ export function Board({ data }: BoardProps) {
     return (
         <>
         <h1>{ allBoardData.boardData.name }</h1>
-        <AllBoardData.Provider value={allBoardData}>
+        <AllBoardData.Provider value={getCopyOfTheBoardData(allBoardData)}>
             <UpdateBoardData.Provider value={updateAllBoardData}>
                 <ColumnList />
             </UpdateBoardData.Provider>
