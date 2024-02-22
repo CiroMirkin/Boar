@@ -9,12 +9,13 @@ export interface option {
     icon?: React.ReactNode
 }
 
-export interface actionFunctionParams { 
+export interface boardActionParams { 
     task: taskModel, 
     board: boardModel 
 }
 
 export interface boardAction {
-    action({ task, board }: actionFunctionParams): boardModel
+    action({ task, board }: boardActionParams): boardModel
 }
-export interface actionObject extends option, boardAction {}
+
+export interface actionData extends option, boardAction {}
