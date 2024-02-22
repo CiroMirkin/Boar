@@ -3,6 +3,7 @@ import { columnModel } from "../models/column";
 import { UpdateBoardData } from "./Board";
 import { isThisTheFirstColumn } from "../auxiliaryFunction/firstOrLastColumn";
 import { addTaskToFirstColumAction } from "../useCase/taskOptions";
+import './Column.css'
 
 interface ColumnProps {
     data: columnModel
