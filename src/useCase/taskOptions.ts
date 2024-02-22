@@ -7,7 +7,3 @@ export const addTaskToFirstColumAction: actionData = {
     enable: true,
     action: ({ task, board }: boardActionParams) => addTaskInFirstColumn({ task, board })
 }
-
-export const allTaskActions: actionData[] = [
-    {...addTaskToFirstColumAction},
-]
