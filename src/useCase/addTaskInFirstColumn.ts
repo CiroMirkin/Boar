@@ -1,13 +1,7 @@
 import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData";
-import { boardModel } from "../models/board";
-import { taskModel } from "../models/task";
+import { boardActionParams, boardModel } from "../models/board";
 
-interface addTaskInFirstColumnParams {
-    board: boardModel
-    task: taskModel
-}
-
-export function addTaskInFirstColumn({ board, task }: addTaskInFirstColumnParams): boardModel {
+export function addTaskInFirstColumn({ board, task }: boardActionParams): boardModel {
     const columnIndex = 0
     board.tasksInColumns[columnIndex].push(task)
     const newBoard = getCopyOfTheBoardData(board)
