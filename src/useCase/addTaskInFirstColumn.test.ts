@@ -1,8 +1,8 @@
 import { defaultBoard } from "../models/board"
 import { addTaskInFirstColumn } from "./addTaskInFirstColumn"
 
-describe("", () => {
-    test("", () => {
+describe("Crear una tarea.", () => {
+    test("Se debería agregar la tarea recibida a la primer columna del tablero.", () => {
         const board = defaultBoard
         const task = {
             id: '',
