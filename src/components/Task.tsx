@@ -3,7 +3,7 @@ import { taskModel } from "../models/task";
 import { UpdateBoardData } from "./Board";
 import { deleteThisTask } from "../useCase/deleteTask";
 import { moveThisTaskToTheNextColumn, moveThisTaskToThePrevColumn } from "../useCase/moveTask";
-import { boardActionParams, boardModel } from "../models/board";
+import { boardActionFunction } from "../models/board";
 
 interface TaskProps {
     data: taskModel
@@ -12,7 +12,7 @@ interface TaskProps {
 export function Task({ data }: TaskProps) {
     const updateBoard = React.useContext(UpdateBoardData)
 
-    const handleClick = (action: ({ task, board }: boardActionParams) => boardModel) => {
+    const handleClick = (action: boardActionFunction) => {
         updateBoard({
             action,
             task: data

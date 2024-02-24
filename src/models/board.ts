@@ -23,6 +23,7 @@ export interface boardActionParams {
     task: taskModel;
     board: boardModel;
 }
+export type boardActionFunction = ({ task, board }: boardActionParams) => boardModel;
 export interface boardAction {
-    action({ task, board }: boardActionParams): boardModel;
+    action: boardActionFunction;
 }
