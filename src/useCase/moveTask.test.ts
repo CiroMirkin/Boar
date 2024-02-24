@@ -114,4 +114,61 @@ describe('Mover una tarea entre columnas', () => {
             ]
         })
     })
+
+    test('Al intentar mover una tarea en la primer columna a la columna anterior la tarea se quedara donde esta', () => {
+        const task = { 
+            id: "1",
+            descriptionText: "", 
+            columnPosition: '1',
+        }
+        const board = {
+            boardData: {
+                id: "",
+                name: "",
+            },
+            columnList: [
+                {
+                    id: "c1",
+                    name: "",
+                    position: "1",
+                    taskList: [
+                        {...task}
+                    ],
+                },
+                {
+                    id: "c2",
+                    name: "",
+                    position: "2",
+                    taskList: [],
+                }
+            ]
+        }
+
+        expect(moveThisTask({ task, to: 'prev-column', board})).toEqual({
+            boardData: {
+                id: "",
+                name: "",
+            },
+            columnList: [
+                {
+                    id: "c1",
+                    name: "",
+                    position: "1",
+                    taskList: [
+                        { 
+                            id: "1",
+                            descriptionText: "", 
+                            columnPosition: '1',
+                        }
+                    ],
+                },
+                {
+                    id: "c2",
+                    name: "",
+                    position: "2",
+                    taskList: [ ],
+                }
+            ]
+        })
+    })
 })
