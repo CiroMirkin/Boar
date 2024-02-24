@@ -12,8 +12,8 @@ interface moveTaskParams {
 }
 
 export const moveThisTask = ({ task, to, board }: moveTaskParams): boardModel => {
-    const newColumns = board.columnList
     const newBoard = getCopyOfTheBoardData(board)
+    const newColumns = newBoard.columnList
     const indexOfTheColumnWhereTheTaskIs: number = getIndexOfColumnInColumnList(task.columnPosition);
     // Este arreglo es necesario porque la referencia de las taskList dentro de las columnas no cambia
     // Por ende cuando se elimina la tarea se elimina de newBoard y de board
