@@ -20,10 +20,10 @@ export const moveThisTask = ({ task, to, board }: moveTaskParams): boardModel =>
 
     const nextColumnIndex = indexOfTheColumnWhereTheTaskIs + 1
     const prevColumnIndex = indexOfTheColumnWhereTheTaskIs - 1
-    const columnIndexWhereTheTaskWillBe = (to === 'next-column') ? nextColumnIndex : prevColumnIndex 
-    if(columnIndexWhereTheTaskWillBe < newColumns.length && columnIndexWhereTheTaskWillBe > -1) {
-        task.columnPosition = newColumns[columnIndexWhereTheTaskWillBe].position
-        newColumns[columnIndexWhereTheTaskWillBe].taskList.push(task)
+    const indexOfTheColumnWhereTheTaskWillBe = (to === 'next-column') ? nextColumnIndex : prevColumnIndex 
+    if(indexOfTheColumnWhereTheTaskWillBe < newColumns.length && indexOfTheColumnWhereTheTaskWillBe > -1) {
+        task.columnPosition = newColumns[indexOfTheColumnWhereTheTaskWillBe].position
+        newColumns[indexOfTheColumnWhereTheTaskWillBe].taskList.push(task)
         newBoard.columnList = newColumns
 
         return newBoard
