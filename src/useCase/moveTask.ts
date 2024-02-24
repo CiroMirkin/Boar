@@ -14,12 +14,12 @@ interface moveTaskParams {
 export const moveThisTask = ({ task, to, board }: moveTaskParams): boardModel => {
     const newColumns = board.columnList
     const newBoard = getCopyOfTheBoardData(board)
-    let columnIndexOfTheTask: number = getIndexOfColumnInColumnList(task.columnPosition);
+    const indexOfTheColumnWhereTheTaskIs: number = getIndexOfColumnInColumnList(task.columnPosition);
 
-    newBoard.columnList[columnIndexOfTheTask].taskList = newBoard.columnList[columnIndexOfTheTask].taskList.filter(t => t.id !== task.id)
+    newBoard.columnList[indexOfTheColumnWhereTheTaskIs].taskList = newBoard.columnList[indexOfTheColumnWhereTheTaskIs].taskList.filter(t => t.id !== task.id)
 
-    const nextColumnIndex = columnIndexOfTheTask + 1
-    const prevColumnIndex = columnIndexOfTheTask - 1
+    const nextColumnIndex = indexOfTheColumnWhereTheTaskIs + 1
+    const prevColumnIndex = indexOfTheColumnWhereTheTaskIs - 1
     const columnIndexWhereTheTaskWillBe = (to === 'next-column') ? nextColumnIndex : prevColumnIndex 
     if(columnIndexWhereTheTaskWillBe < newColumns.length && columnIndexWhereTheTaskWillBe > -1) {
         task.columnPosition = newColumns[columnIndexWhereTheTaskWillBe].position
