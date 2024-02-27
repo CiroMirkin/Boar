@@ -15,7 +15,7 @@ interface ColumnProps {
 export function Column({ data, children }: ColumnProps) {
     const [ newTaskDescription, setNewTaskDescription ] = useState('')
     const board = React.useContext(AllBoardData)
-    
+
     const updateBoard = React.useContext(UpdateBoardData)
     const handleClick = () => {
         const task = {
@@ -35,25 +35,28 @@ export function Column({ data, children }: ColumnProps) {
         <div>
             <h3>{ data.name }</h3>
             { children }
-            {
-                isThisTheFirstColumn(data) 
-                && <footer>
-                    <input 
-                        type="text" value={newTaskDescription} 
-                        onChange={(e) => setNewTaskDescription(e.target.value)}  
-                    />
-                    <button onClick={handleClick}>Añadir</button>
-                </footer>
-            }
-            {
-                isThisTheLastColumn(data, board.columnList) 
-                && <button  
-                    onClick={() => updateBoard({
-                        action: archiveTaskListInTheLastColumn,
-                        task: taskNull
-                    })}
-                    >Archivar tareas</button>
-            }
+            <footer>
+                {
+                    isThisTheFirstColumn(data) 
+                    && <div>
+                        <input 
+                            type="text" value={newTaskDescription} 
+                            onChange={(e) => setNewTaskDescription(e.target.value)}  
+                        />
+                        <button onClick={handleClick}>Añadir</button>
+                    </div>
+                    
+                }
+                {
+                    isThisTheLastColumn(data, board.columnList) 
+                    && <button  
+                        onClick={() => updateBoard({
+                            action: archiveTaskListInTheLastColumn,
+                            task: taskNull
+                        })}
+                        >Archivar tareas</button>
+                }
+            </footer>
         </div>
     )
 }
