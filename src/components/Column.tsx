@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { columnModel } from "../models/column";
-import { UpdateBoardData } from "./Board";
-import { isThisTheFirstColumn } from "../auxiliaryFunction/firstOrLastColumn";
+import { AllBoardData, UpdateBoardData } from "./Board";
+import { isThisTheFirstColumn, isThisTheLastColumn } from "../auxiliaryFunction/firstOrLastColumn";
 import './Column.css'
 import { addTaskInFirstColumn } from "../useCase/addTaskInFirstColumn";
+import { archiveTaskListInTheLastColumn } from "../useCase/archiveTaskList";
+import { taskNull } from "../models/task";
 
 interface ColumnProps {
     data: columnModel
@@ -12,6 +14,7 @@ interface ColumnProps {
 
 export function Column({ data, children }: ColumnProps) {
     const [ newTaskDescription, setNewTaskDescription ] = useState('')
+    const board = React.useContext(AllBoardData)
     
     const updateBoard = React.useContext(UpdateBoardData)
     const handleClick = () => {
@@ -41,6 +44,15 @@ export function Column({ data, children }: ColumnProps) {
                     />
                     <button onClick={handleClick}>Añadir</button>
                 </footer>
+            }
+            {
+                isThisTheLastColumn(data, board.columnList) 
+                && <button  
+                    onClick={() => updateBoard({
+                        action: archiveTaskListInTheLastColumn,
+                        task: taskNull
+                    })}
+                    >Archivar tareas</button>
             }
         </div>
     )
