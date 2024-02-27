@@ -37,7 +37,8 @@ describe("Crear una tarea.", () => {
                     position: "3",
                     taskList: []
                 },
-            ]
+            ],
+            archive: []
         })
     })
 })
