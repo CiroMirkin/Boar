@@ -1,6 +1,11 @@
 import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData";
-import { boardModel } from "../models/board";
+import { boardActionParams, boardModel } from "../models/board";
 import { taskList } from "../models/task";
+
+export function archiveTaskListInTheLastColumn({ board }: boardActionParams): boardModel {
+    const columnIndex = Number(board.columnList.length) - 1
+    return archiveTaskListInColumn({ board, columnIndex })
+}
 
 interface archiveTaskListParams {
     board: boardModel,
