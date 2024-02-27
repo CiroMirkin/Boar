@@ -1,3 +1,4 @@
+import { taskListArchived } from "./archive";
 import { columnModel, defaultColumnList } from "./column";
 import { taskModel } from "./task";
 
@@ -8,7 +9,8 @@ export interface boardData {
 
 export interface boardModel {
     boardData: boardData,
-    columnList: columnModel[]
+    columnList: columnModel[],
+    archive: taskListArchived[]
 }
   
 export const defaultBoard: boardModel = {
@@ -16,7 +18,8 @@ export const defaultBoard: boardModel = {
         id: '0',
         name: "Tablero básico"
     },
-    columnList: defaultColumnList
+    columnList: defaultColumnList,
+    archive: []
 };
 
 export interface boardActionParams {
