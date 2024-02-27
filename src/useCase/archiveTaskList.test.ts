@@ -59,9 +59,15 @@ describe("Archivar lista de tareas.", () => {
                 ],
                 archive: [
                     {
-                        id: '',
-                        descriptionText: '',
-                        columnPosition: '1',
+                        date: (new Date().toDateString()),
+                        tasklist: [
+                            {
+                                id: '',
+                                descriptionText: '',
+                                columnPosition: '1',
+                                highlight: false
+                            }
+                        ]
                     }
                 ]
             }
