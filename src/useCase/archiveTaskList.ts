@@ -1,3 +1,4 @@
+import { format } from "@formkit/tempo";
 import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData";
 import { boardActionParams, boardModel } from "../models/board";
 import { taskList } from "../models/task";
@@ -14,7 +15,7 @@ interface archiveTaskListParams {
 export function archiveTaskListInColumn({ board, columnIndex }: archiveTaskListParams): boardModel {
     const newBoard = getCopyOfTheBoardData(board)
 
-    const date = new Date().toDateString()
+    const date = format(new Date(), { date: "full", time: "short" })
     const taskListToArchive: taskList = structuredClone(newBoard.columnList[columnIndex].taskList)
     newBoard.archive.push({
         date,

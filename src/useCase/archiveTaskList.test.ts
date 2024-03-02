@@ -1,3 +1,4 @@
+import { format } from "@formkit/tempo"
 import { taskNull } from "../models/task"
 import { archiveTaskListInColumn } from "./archiveTaskList"
 
@@ -59,7 +60,7 @@ describe("Archivar lista de tareas.", () => {
                 ],
                 archive: [
                     {
-                        date: (new Date().toDateString()),
+                        date: (format(new Date(), { date: "full", time: "short" })),
                         tasklist: [
                             {
                                 id: '',
