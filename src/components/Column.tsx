@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { columnModel } from "../models/column";
-import { AllBoardData, UpdateBoardData } from "./Board";
+import { AllBoardData, UpdateBoardData } from "../App";
 import { isThisTheFirstColumn, isThisTheLastColumn } from "../auxiliaryFunction/firstOrLastColumn";
 import './Column.css'
 import { addTaskInFirstColumn } from "../useCase/addTaskInFirstColumn";

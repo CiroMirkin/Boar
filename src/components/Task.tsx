@@ -1,6 +1,6 @@
 import React from "react";
 import { taskModel } from "../models/task";
-import { UpdateBoardData } from "./Board";
+import { UpdateBoardData } from "../App";
 import { deleteThisTask } from "../useCase/deleteTask";
 import { moveThisTaskToTheNextColumn, moveThisTaskToThePrevColumn } from "../useCase/moveTask";
 import { boardActionFunction } from "../models/board";

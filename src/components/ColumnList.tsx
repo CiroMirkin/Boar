@@ -1,5 +1,5 @@
 import React from "react";
-import { AllBoardData } from "./Board";
+import { AllBoardData } from "../App";
 import { TaskList } from "./TaskList";
 import { Column } from "./Column";
 import './ColumnList.css'
