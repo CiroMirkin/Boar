@@ -23,10 +23,12 @@ export const defaultBoard: boardModel = {
 };
 
 export interface boardActionParams {
-    task: taskModel;
     board: boardModel;
 }
-export type boardActionFunction = ({ task, board }: boardActionParams) => boardModel;
+export interface taskActionParams extends boardActionParams {
+    task: taskModel;
+}
+export type boardActionFunction = ({ task, board }: taskActionParams) => boardModel;
 export interface boardAction {
     action: boardActionFunction;
 }
