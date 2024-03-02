@@ -12,6 +12,13 @@ export function ConfigBoard({}:ConfigBoardParams) {
             <div>
                 <h2>{boardData.boardData.name}</h2>
             </div>
+            <ul>
+                {boardData.columnList.map(column =>
+                    <li key={column.id}>
+                        <h4>{column.name}</h4>
+                    </li>
+                )}
+            </ul>
         </>
     )
 }
