@@ -1,3 +1,4 @@
+import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData";
 import { boardActionParams, boardModel } from "../models/board";
 
 interface changeBoardNameParams extends boardActionParams {
@@ -5,5 +6,7 @@ interface changeBoardNameParams extends boardActionParams {
 }
 
 export function changeBoardName({ board, newName }: changeBoardNameParams): boardModel {
-    return board
+    const newBoard = getCopyOfTheBoardData(board)
+    newBoard.boardData.name = newName
+    return newBoard
 }
