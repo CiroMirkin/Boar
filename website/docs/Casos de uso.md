@@ -28,3 +28,10 @@ tags:
   * Puede archivar todas las tareas de la ultima columna.
   * Puede ver las tareas archivadas.
   * El archivo es una lista con las tareas archivadas y la fecha en que se archivaron.
+
+### Preferencias
+
+* Como usuario, puedo cambiar el nombre del tablero.
+  * El tablero debe tener un nombre.
+* Como usuario, puedo cambiar el nombre de las columnas.
+  * Las columnas deben tener un nombre.
