@@ -1,5 +1,4 @@
 import { defaultColumnList } from "../models/column"
-import { taskNull } from "../models/task"
 import { changeBoardName } from "./changeBoardName"
 
 describe('Cambiar el nombre del tablero.', () => {
@@ -12,7 +11,7 @@ describe('Cambiar el nombre del tablero.', () => {
             columnList: [...defaultColumnList],
             archive: []
         }
-        expect(changeBoardName({ board, newName: 'PipiPupu', task: taskNull})).toStrictEqual({
+        expect(changeBoardName({ board, newName: 'PipiPupu'})).toStrictEqual({
             boardData: {
                 id: '0',
                 name: "PipiPupu"
