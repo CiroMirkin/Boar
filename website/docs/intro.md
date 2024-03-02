@@ -27,3 +27,4 @@ Boar esta en linea, puedes usarlo en **[cm-boar.netlify.app](https://cm-boar.net
 ## Wireframe
 
 ![Wireframe](/img/wireframe.svg)
+![Wireframe de la pagina de preferencias](/img/wireframe-preferencias.svg)
