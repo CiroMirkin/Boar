@@ -28,7 +28,7 @@ export interface boardActionParams {
 export interface taskActionParams extends boardActionParams {
     task: taskModel;
 }
-export interface changeBoardNameParams extends boardActionParams {
+export interface changeNameParams extends boardActionParams {
     newName: string
 }
 
