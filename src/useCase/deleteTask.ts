@@ -1,9 +1,9 @@
 import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData";
 import { getIndexOfColumnInColumnList } from "../auxiliaryFunction/indexOfColumn";
-import { boardActionParams, boardModel } from "../models/board";
+import { taskActionParams, boardModel } from "../models/board";
 import { columnModel } from "../models/column";
 
-export function deleteThisTask({ board, task }: boardActionParams): boardModel {
+export function deleteThisTask({ board, task }: taskActionParams): boardModel {
     const newBoard = getCopyOfTheBoardData(board)
     const columns = newBoard.columnList
     const taskId = task.id
