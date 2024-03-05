@@ -23,7 +23,7 @@ export function Task({ data }: TaskProps) {
 
     return (
         <TaskContext.Provider value={ data }>
-            <TaskDescription description={data.descriptionText} />
+            <TaskDescription />
             <button onClick={() => handleClick(deleteThisTask)}>Eliminar</button>
             <button onClick={() => handleClick(moveThisTaskToThePrevColumn)}>Retroceder</button>
             <button onClick={() => handleClick(moveThisTaskToTheNextColumn)}>Avanzar</button>
@@ -31,7 +31,8 @@ export function Task({ data }: TaskProps) {
     )
 }
 
-function TaskDescription({ description }: { description: string }) {
+function TaskDescription() {
+    const description = React.useContext(TaskContext).descriptionText
     return (
         <p>{ description }</p>
     )
