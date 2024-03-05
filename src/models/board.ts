@@ -28,7 +28,8 @@ export interface boardActionParams {
 export interface taskActionParams extends boardActionParams {
     task: taskModel;
 }
-export type taskActionFunction = ({ task, board }: taskActionParams) => boardModel;
+
+export type boardActionFunction = (data: any) => boardModel;
 export interface boardAction {
-    action: taskActionFunction;
+    action: boardActionFunction;
 }
