@@ -13,6 +13,7 @@ export function TaskList({ tasks }: TaskListProps) {
         taskList.push(
             <Task data={task} key={task.id}>
                 <Task.TaskDescription/>
+                <Task.TaskActions/>
             </Task>
         );
     });
