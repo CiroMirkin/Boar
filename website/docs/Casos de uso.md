@@ -8,11 +8,15 @@ tags:
 
 # Casos de uso
 
-1. Se crea una función básica en la carpeta `useCase`, una funcion que puede estar en la propiedad `action` del tipo `action`.
+1. Se crea una función en la carpeta `useCase`.
 
-2. La función se implementa en el arreglo `taskOptions` en la propiedad `action`.
+2. Esta tiene que retornar el tipo `Board`.
 
-Gestión del estado global
+3. Esta en su parámetro tiene que usar la interfaz `boardActionParams` o alguna otra que se extienda de esta.
+
+4. Las función de este tipo pueden usare pasándose como parámetro a la función global `updateAllBoardData` que esta disponible en el contexto del componente App.
+
+Gestión del estado global:
 
 ![Descripción de la gestión del estado global](/img/context.svg)
 
