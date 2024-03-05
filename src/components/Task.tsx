@@ -1,9 +1,11 @@
-import React from "react";
-import { taskModel } from "../models/task";
+import React, { createContext } from "react";
+import { taskModel, taskNull } from "../models/task";
 import { UpdateBoardData } from "../App";
 import { deleteThisTask } from "../useCase/deleteTask";
 import { moveThisTaskToTheNextColumn, moveThisTaskToThePrevColumn } from "../useCase/moveTask";
 import { boardActionFunction } from "../models/board";
+
+const TaskContext = createContext(taskNull)
 
 interface TaskProps {
     data: taskModel
@@ -20,12 +22,12 @@ export function Task({ data }: TaskProps) {
     }
 
     return (
-        <div>
+        <TaskContext.Provider value={ data }>
             <TaskDescription description={data.descriptionText} />
             <button onClick={() => handleClick(deleteThisTask)}>Eliminar</button>
             <button onClick={() => handleClick(moveThisTaskToThePrevColumn)}>Retroceder</button>
             <button onClick={() => handleClick(moveThisTaskToTheNextColumn)}>Avanzar</button>
-        </div>
+        </TaskContext.Provider>
     )
 }
 
