@@ -28,6 +28,10 @@ export interface boardActionParams {
 export interface taskActionParams extends boardActionParams {
     task: taskModel;
 }
+export interface changeBoardNameParams extends boardActionParams {
+    newName: string
+}
+
 
 export type boardActionFunction = (data: any) => boardModel;
 export interface boardAction {
