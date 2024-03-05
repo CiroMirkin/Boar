@@ -1,5 +1,6 @@
 import React from "react"
 import { AllBoardData } from "../App"
+import { Task } from "./Task"
 
 interface ArchiveProps { }
 
@@ -11,7 +12,9 @@ export function Archive({}: ArchiveProps) {
         const taskListArchived: React.ReactNode[] = []
         tasklist.forEach(task => 
             taskListArchived.push(
-                <div key={task.id}>{task.descriptionText}</div>
+                <Task key={task.id} data={task}>
+                    <Task.TaskDescription />
+                </Task>
             )
         )
         archive.push(
