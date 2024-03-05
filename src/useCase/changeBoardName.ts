@@ -1,7 +1,7 @@
 import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData";
 import { boardActionParams, boardModel } from "../models/board";
 
-interface changeBoardNameParams extends boardActionParams {
+export interface changeBoardNameParams extends boardActionParams {
     newName: string
 }
 
