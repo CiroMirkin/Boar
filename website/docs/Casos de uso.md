@@ -12,6 +12,10 @@ tags:
 
 2. La función se implementa en el arreglo `taskOptions` en la propiedad `action`.
 
+Gestión del estado global
+
+![Descripción de la gestión del estado global](/img/context.svg)
+
 ## Historias de usuario
 
 ### Tablero
