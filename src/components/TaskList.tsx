@@ -11,7 +11,9 @@ export function TaskList({ tasks }: TaskListProps) {
 
     tasks.forEach(task => {
         taskList.push(
-            <Task data={task} key={task.id} />
+            <Task data={task} key={task.id}>
+                <Task.TaskDescription/>
+            </Task>
         );
     });
 

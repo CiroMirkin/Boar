@@ -8,10 +8,11 @@ import { boardActionFunction } from "../models/board";
 const TaskContext = createContext(taskNull)
 
 interface TaskProps {
-    data: taskModel
+    data: taskModel,
+    children: React.ReactNode
 }
 
-export function Task({ data }: TaskProps) {
+export function Task({ data, children }: TaskProps) {
     const updateBoard = React.useContext(UpdateBoardData)
 
     const handleClick = (action: boardActionFunction) => {
@@ -23,7 +24,7 @@ export function Task({ data }: TaskProps) {
 
     return (
         <TaskContext.Provider value={ data }>
-            <TaskDescription />
+            { children }
             <button onClick={() => handleClick(deleteThisTask)}>Eliminar</button>
             <button onClick={() => handleClick(moveThisTaskToThePrevColumn)}>Retroceder</button>
             <button onClick={() => handleClick(moveThisTaskToTheNextColumn)}>Avanzar</button>
@@ -37,3 +38,5 @@ function TaskDescription() {
         <p>{ description }</p>
     )
 }
+
+Task.TaskDescription = TaskDescription
