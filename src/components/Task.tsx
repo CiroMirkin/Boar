@@ -13,21 +13,9 @@ interface TaskProps {
 }
 
 export function Task({ data, children }: TaskProps) {
-    const updateBoard = React.useContext(UpdateBoardData)
-
-    const handleClick = (action: boardActionFunction) => {
-        updateBoard({
-            action,
-            task: data
-        })
-    }
-
     return (
         <TaskContext.Provider value={ data }>
             { children }
-            <button onClick={() => handleClick(deleteThisTask)}>Eliminar</button>
-            <button onClick={() => handleClick(moveThisTaskToThePrevColumn)}>Retroceder</button>
-            <button onClick={() => handleClick(moveThisTaskToTheNextColumn)}>Avanzar</button>
         </TaskContext.Provider>
     )
 }
@@ -39,4 +27,23 @@ function TaskDescription() {
     )
 }
 
+function TaskActions() {
+    const data = React.useContext(TaskContext)
+    const updateBoard = React.useContext(UpdateBoardData)
+    const handleClick = (action: boardActionFunction) => {
+        updateBoard({
+            action,
+            task: data
+        })
+    }
+    return (
+        <div className="actions">
+            <button onClick={() => handleClick(deleteThisTask)}>Eliminar</button>
+            <button onClick={() => handleClick(moveThisTaskToThePrevColumn)}>Retroceder</button>
+            <button onClick={() => handleClick(moveThisTaskToTheNextColumn)}>Avanzar</button>
+        </div>
+    )
+}
+
 Task.TaskDescription = TaskDescription
+Task.TaskActions = TaskActions
