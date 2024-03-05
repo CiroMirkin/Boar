@@ -8,16 +8,18 @@ import { getCopyOfTheBoardData } from "./auxiliaryFunction/copyBoardData"
 
 export const AllBoardData = React.createContext(defaultBoard as boardModel)
 interface UpdateBoardDataParams extends boardAction {
-    task: taskModel
+  task?: taskModel
 }
-export const UpdateBoardData = React.createContext(({ action, task }: UpdateBoardDataParams): void => console.info('The set function is not defined. ', action, task))
+export const UpdateBoardData = React.createContext(({ action }: UpdateBoardDataParams): void => console.info('The set function is not defined. ', action))
 
 
 function App() {
   const [ allBoardData, setAllBoardData ] = useState(defaultBoard)
   const updateAllBoardData = ({ action, task }: UpdateBoardDataParams): void => {
+    if(task) {
       const newBoardData = action({ board: allBoardData, task })
       setAllBoardData(newBoardData)
+    }
   }
 
   return (
