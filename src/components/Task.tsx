@@ -21,10 +21,16 @@ export function Task({ data }: TaskProps) {
 
     return (
         <div>
-            <p>{ data.descriptionText }</p>
+            <TaskDescription description={data.descriptionText} />
             <button onClick={() => handleClick(deleteThisTask)}>Eliminar</button>
             <button onClick={() => handleClick(moveThisTaskToThePrevColumn)}>Retroceder</button>
             <button onClick={() => handleClick(moveThisTaskToTheNextColumn)}>Avanzar</button>
         </div>
+    )
+}
+
+function TaskDescription({ description }: { description: string }) {
+    return (
+        <p>{ description }</p>
     )
 }
