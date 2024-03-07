@@ -8,5 +8,12 @@ interface changeNameOfColumnParams extends changeNameParams {
 
 export function changeNameOfColumn({ board, column, newName }: changeNameOfColumnParams): boardModel {
     const newBoard = getCopyOfTheBoardData(board)
+    const newColumns = newBoard.columnList.map(columnInBoard => {
+        if(columnInBoard.id === column.id) {
+            columnInBoard.name = newName
+        }
+        return columnInBoard
+    })
+    newBoard.columnList = newColumns
     return newBoard
 }
