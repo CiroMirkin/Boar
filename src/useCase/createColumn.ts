@@ -1,10 +1,6 @@
 import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData";
-import { boardActionParams, boardModel } from "../models/board";
-import { columnModel } from "../models/column";
-
-interface columnActionParams extends boardActionParams {
-    column: columnModel
-}
+import { columnActionParams } from "../models/board";
+import { boardModel } from "../models/board";
 
 export function addColumnAtTheEnd({ board, column }: columnActionParams): boardModel {
     const newBoard = getCopyOfTheBoardData(board)
