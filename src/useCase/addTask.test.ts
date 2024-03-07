@@ -1,5 +1,5 @@
 import { defaultBoard } from "../models/board"
-import { addTaskInFirstColumn } from "./addTaskInFirstColumn"
+import { addTaskInFirstColumn } from "./addTask"
 
 describe("Crear una tarea.", () => {
     test("Se debería agregar la tarea recibida a la primer columna del tablero.", () => {

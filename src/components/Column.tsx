@@ -3,7 +3,7 @@ import { columnModel } from "../models/column";
 import { AllBoardData, UpdateBoardData } from "../App";
 import { isThisTheFirstColumn, isThisTheLastColumn } from "../auxiliaryFunction/firstOrLastColumn";
 import './Column.css'
-import { addTaskInFirstColumn } from "../useCase/addTaskInFirstColumn";
+import { addTaskInFirstColumn } from "../useCase/addTask";
 import { archiveTaskListInTheLastColumn } from "../useCase/archiveTaskList";
 import { taskNull } from "../models/task";
 
