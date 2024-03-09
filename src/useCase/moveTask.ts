@@ -1,7 +1,7 @@
 import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData"
 import { getIndexOfColumnInColumnList } from "../auxiliaryFunction/indexOfColumn"
 import { boardModel } from "../models/board"
-import { taskActionParams } from "./useCase"
+import { taskUseCaseParams } from "./useCase"
 import { taskModel } from "../models/task"
 
 export type moveToType = 'next-column' | 'prev-column'
@@ -33,9 +33,9 @@ export const moveThisTask = ({ task, to, board }: moveTaskParams): boardModel =>
     return board
 }
 
-export const moveThisTaskToTheNextColumn = ({ task, board }: taskActionParams): boardModel => {
+export const moveThisTaskToTheNextColumn = ({ task, board }: taskUseCaseParams): boardModel => {
     return moveThisTask({ task, to: 'next-column', board })
 }
-export const moveThisTaskToThePrevColumn = ({ task, board }: taskActionParams): boardModel => {
+export const moveThisTaskToThePrevColumn = ({ task, board }: taskUseCaseParams): boardModel => {
     return moveThisTask({ task, to: 'prev-column', board })
 }

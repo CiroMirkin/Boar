@@ -6,7 +6,7 @@ import { taskModel } from "../models/task";
 export interface boardUseCaseParams {
     board: boardModel;
 }
-export interface taskActionParams extends boardUseCaseParams {
+export interface taskUseCaseParams extends boardUseCaseParams {
     task: taskModel;
 }
 export interface changeNameParams extends boardUseCaseParams {
