@@ -4,6 +4,7 @@ import { taskModel } from "./models/task"
 import './App.css'
 import { Board } from './components/Board'
 import { getCopyOfTheBoardData } from "./auxiliaryFunction/copyBoardData"
+import { columnModel } from "./models/column"
 
 export type boardActionFunction = (data: any) => boardModel;
 export interface boardAction {
@@ -13,15 +14,20 @@ export interface boardAction {
 export const AllBoardData = React.createContext(defaultBoard as boardModel)
 interface UpdateBoardDataParams extends boardAction {
   task?: taskModel
+  column?: columnModel
 }
 export const UpdateBoardData = React.createContext(({ action }: UpdateBoardDataParams): void => console.info('The set function is not defined. ', action))
 
 
 function App() {
   const [ allBoardData, setAllBoardData ] = useState(defaultBoard)
-  const updateAllBoardData = ({ action, task }: UpdateBoardDataParams): void => {
+  const updateAllBoardData = ({ action, task, column }: UpdateBoardDataParams): void => {
     if(task) {
       const newBoardData = action({ board: allBoardData, task })
+      setAllBoardData(newBoardData)
+    }
+    if(column) {
+      const newBoardData = action({ board: allBoardData, column })
       setAllBoardData(newBoardData)
     }
   }
