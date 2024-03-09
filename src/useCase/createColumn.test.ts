@@ -70,4 +70,49 @@ describe('Crear una columna.', () => {
         archive: []
         })  
     })
+    
+    test('Se debería corregir la posición de una columna si esta no lo tiene.', () => {
+        const board = {
+            boardData: {
+                id: '',
+                name: ""
+            },
+            columnList: [
+                {
+                    id: "",
+                    name: "",
+                    position: "1",
+                    taskList: []
+                }
+            ],
+            archive: []
+        }
+        const column: columnModel = {
+            id: "",
+            name: "",
+            position: "-1",
+            taskList: []
+        }
+        expect(addColumnAtTheEnd({ board, column })).toStrictEqual({
+            boardData: {
+                id: '',
+                name: ""
+            },
+            columnList: [
+                {
+                    id: "",
+                    name: "",
+                    position: "1",
+                    taskList: []
+                },
+                {
+                    id: "",
+                    name: "",
+                    position: "2",
+                    taskList: []
+                }
+            ],
+            archive: []
+        })
+    })
 })
