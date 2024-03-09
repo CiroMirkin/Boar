@@ -1,5 +1,6 @@
 import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData";
-import { boardModel, changeNameParams } from "../models/board";
+import { boardModel } from "../models/board";
+import { changeNameParams } from "./useCase";
 import { columnModel } from "../models/column";
 
 interface changeNameOfColumnParams extends changeNameParams {

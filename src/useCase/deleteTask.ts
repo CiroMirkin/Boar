@@ -1,6 +1,7 @@
 import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData";
 import { getIndexOfColumnInColumnList } from "../auxiliaryFunction/indexOfColumn";
-import { taskActionParams, boardModel } from "../models/board";
+import { boardModel } from "../models/board";
+import { taskActionParams } from "./useCase";
 import { columnModel } from "../models/column";
 
 export function deleteThisTask({ board, task }: taskActionParams): boardModel {

@@ -1,6 +1,5 @@
 import { taskListArchived } from "./archive";
 import { columnModel, defaultColumnList } from "./column";
-import { taskModel } from "./task";
 
 export interface boardData {
     id: string,
@@ -21,19 +20,6 @@ export const defaultBoard: boardModel = {
     columnList: defaultColumnList,
     archive: []
 };
-
-export interface boardActionParams {
-    board: boardModel;
-}
-export interface taskActionParams extends boardActionParams {
-    task: taskModel;
-}
-export interface changeNameParams extends boardActionParams {
-    newName: string
-}
-export interface columnActionParams extends boardActionParams {
-    column: columnModel;
-}
 
 export type boardActionFunction = (data: any) => boardModel;
 export interface boardAction {

@@ -1,5 +1,5 @@
 import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData";
-import { columnActionParams } from "../models/board";
+import { columnActionParams } from "./useCase";
 import { boardModel } from "../models/board";
 
 export function addColumnAtTheEnd({ board, column }: columnActionParams): boardModel {

@@ -1,5 +1,6 @@
 import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData";
-import { boardActionParams, boardModel } from "../models/board";
+import { boardModel } from "../models/board";
+import { boardActionParams } from "./useCase";
 import { taskList } from "../models/task";
 import { getFullDate } from "../auxiliaryFunction/getTime";
 

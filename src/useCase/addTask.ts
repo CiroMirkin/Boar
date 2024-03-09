@@ -1,5 +1,6 @@
 import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData";
-import { taskActionParams, boardModel } from "../models/board";
+import { boardModel } from "../models/board";
+import { taskActionParams } from "./useCase";
 
 export function addTaskInFirstColumn({ board, task }: taskActionParams): boardModel {
     const columnIndex = 0

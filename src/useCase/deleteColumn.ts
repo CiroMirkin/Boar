@@ -1,5 +1,6 @@
 import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData";
-import { boardModel, columnActionParams } from "../models/board";
+import { boardModel } from "../models/board";
+import { columnActionParams } from "./useCase";
 
 export function deleteThisColumn({ board, column }: columnActionParams): boardModel {
     const newBoard = getCopyOfTheBoardData(board) 
