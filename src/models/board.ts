@@ -20,8 +20,3 @@ export const defaultBoard: boardModel = {
     columnList: defaultColumnList,
     archive: []
 };
-
-export type boardActionFunction = (data: any) => boardModel;
-export interface boardAction {
-    action: boardActionFunction;
-}

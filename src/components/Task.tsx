@@ -3,7 +3,7 @@ import { taskModel, taskNull } from "../models/task";
 import { UpdateBoardData } from "../App";
 import { deleteThisTask } from "../useCase/deleteTask";
 import { moveThisTaskToTheNextColumn, moveThisTaskToThePrevColumn } from "../useCase/moveTask";
-import { boardActionFunction } from "../models/board";
+import { boardActionFunction } from "../App";
 
 const TaskContext = createContext(taskNull)
 

@@ -1,10 +1,14 @@
 import React, { useState } from "react"
 import { boardModel, defaultBoard } from "./models/board"
-import { boardAction } from "./models/board"
 import { taskModel } from "./models/task"
 import './App.css'
 import { Board } from './components/Board'
 import { getCopyOfTheBoardData } from "./auxiliaryFunction/copyBoardData"
+
+export type boardActionFunction = (data: any) => boardModel;
+export interface boardAction {
+    action: boardActionFunction;
+}
 
 export const AllBoardData = React.createContext(defaultBoard as boardModel)
 interface UpdateBoardDataParams extends boardAction {
