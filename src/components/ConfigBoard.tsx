@@ -1,10 +1,17 @@
 import React from "react"
-import { AllBoardData } from "../App"
+import { AllBoardData, UpdateBoardData } from "../App"
+import { addColumnAtTheEnd, createColumnWithoutPosition } from "../useCase/createColumn"
 
 interface ConfigBoardParams {}
 
 export function ConfigBoard({}:ConfigBoardParams) {
     const boardData = React.useContext(AllBoardData)
+    const updateBoardData = React.useContext(UpdateBoardData)
+
+    const handleClick = () => {
+        const column = createColumnWithoutPosition({ name: 'Nueva columna'})
+        updateBoardData({ action: addColumnAtTheEnd, column })
+    }
 
     return (
         <>
@@ -18,6 +25,7 @@ export function ConfigBoard({}:ConfigBoardParams) {
                         <h4>{column.name}</h4>
                     </li>
                 )}
+                <li><button onClick={handleClick}>Nueva columna</button></li>
             </ul>
         </>
     )
