@@ -31,10 +31,7 @@ export function ConfigBoard({}:ConfigBoardParams) {
                 {boardData.columnList.map(column =>
                     <li key={column.id}>
                         <h4>{column.name}</h4>
-                        <button onClick={() => {
-                            try { updateBoardData({ action: deleteThisColumn, column }) }
-                            catch(e) { console.error(e) }
-                        }}>Eliminar</button>
+                        <button onClick={() => handleClick(deleteThisColumn, column)}>Eliminar</button>
                     </li>
                 )}
                 <li><button onClick={() => handleClick(addColumnAtTheEnd, getNewColumn())}>Nueva columna</button></li>
