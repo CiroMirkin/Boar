@@ -3,15 +3,15 @@ import { columnModel } from "../models/column";
 import { taskModel } from "../models/task";
 
 
-export interface boardActionParams {
+export interface boardUseCaseParams {
     board: boardModel;
 }
-export interface taskActionParams extends boardActionParams {
+export interface taskActionParams extends boardUseCaseParams {
     task: taskModel;
 }
-export interface changeNameParams extends boardActionParams {
+export interface changeNameParams extends boardUseCaseParams {
     newName: string;
 }
-export interface columnActionParams extends boardActionParams {
+export interface columnActionParams extends boardUseCaseParams {
     column: columnModel;
 }

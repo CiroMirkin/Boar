@@ -1,10 +1,10 @@
 import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData";
 import { boardModel } from "../models/board";
-import { boardActionParams } from "./useCase";
+import { boardUseCaseParams } from "./useCase";
 import { taskList } from "../models/task";
 import { getFullDate } from "../auxiliaryFunction/getTime";
 
-export function archiveTaskListInTheLastColumn({ board }: boardActionParams): boardModel {
+export function archiveTaskListInTheLastColumn({ board }: boardUseCaseParams): boardModel {
     const columnIndex = Number(board.columnList.length) - 1
     return archiveTaskListInColumn({ board, columnIndex })
 }
