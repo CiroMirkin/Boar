@@ -9,9 +9,12 @@ export function ConfigBoard({}:ConfigBoardParams) {
     const boardData = React.useContext(AllBoardData)
     const updateBoardData = React.useContext(UpdateBoardData)
 
+    const getNewColumn = () => createColumnWithoutPosition({ name: 'Nueva columna'})
+
     const handleClick = () => {
-        const column = createColumnWithoutPosition({ name: 'Nueva columna'})
-        updateBoardData({ action: addColumnAtTheEnd, column })
+        const action = addColumnAtTheEnd
+        const column = getNewColumn()
+        updateBoardData({ action, column })
     }
 
     return (
