@@ -13,7 +13,12 @@ export function ConfigBoard({}:ConfigBoardParams) {
     const getNewColumn = () => createColumnWithoutPosition({ name: 'Nueva columna'})
 
     const handleClick = (action: boardActionFunction, column: columnModel) => {
-        updateBoardData({ action, column })
+        try {
+            updateBoardData({ action, column })
+        }
+        catch (error) {
+            console.log(error)
+        }
     }
 
     return (
