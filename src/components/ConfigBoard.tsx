@@ -1,7 +1,8 @@
 import React from "react"
-import { AllBoardData, UpdateBoardData } from "../App"
+import { AllBoardData, UpdateBoardData, boardActionFunction } from "../App"
 import { addColumnAtTheEnd, createColumnWithoutPosition } from "../useCase/createColumn"
 import { deleteThisColumn } from "../useCase/deleteColumn"
+import { columnModel } from "../models/column"
 
 interface ConfigBoardParams {}
 
@@ -11,9 +12,7 @@ export function ConfigBoard({}:ConfigBoardParams) {
 
     const getNewColumn = () => createColumnWithoutPosition({ name: 'Nueva columna'})
 
-    const handleClick = () => {
-        const action = addColumnAtTheEnd
-        const column = getNewColumn()
+    const handleClick = (action: boardActionFunction, column: columnModel) => {
         updateBoardData({ action, column })
     }
 
@@ -33,7 +32,7 @@ export function ConfigBoard({}:ConfigBoardParams) {
                         }}>Eliminar</button>
                     </li>
                 )}
-                <li><button onClick={handleClick}>Nueva columna</button></li>
+                <li><button onClick={() => handleClick(addColumnAtTheEnd, getNewColumn())}>Nueva columna</button></li>
             </ul>
         </>
     )
