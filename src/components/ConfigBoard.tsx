@@ -1,6 +1,7 @@
 import React from "react"
 import { AllBoardData, UpdateBoardData } from "../App"
 import { addColumnAtTheEnd, createColumnWithoutPosition } from "../useCase/createColumn"
+import { deleteThisColumn } from "../useCase/deleteColumn"
 
 interface ConfigBoardParams {}
 
@@ -23,6 +24,10 @@ export function ConfigBoard({}:ConfigBoardParams) {
                 {boardData.columnList.map(column =>
                     <li key={column.id}>
                         <h4>{column.name}</h4>
+                        <button onClick={() => {
+                            try { updateBoardData({ action: deleteThisColumn, column }) }
+                            catch(e) { console.error(e) }
+                        }}>Eliminar</button>
                     </li>
                 )}
                 <li><button onClick={handleClick}>Nueva columna</button></li>
