@@ -25,7 +25,6 @@ const defaultBoardData = {
 }
 
 export const BoardData = React.createContext(defaultBoardData as boardData)
-export const UpdateBoardData = React.createContext(({ action }: UpdateBoardDataParams): void => console.info('The set function is not defined. ', action))
 
 
 function App() {
@@ -44,10 +43,8 @@ function App() {
   return (
     <>
       <BoardData.Provider value={{ board: getCopyOfTheBoardData(allBoardData), update: updateAllBoardData } as boardData}>
-        <UpdateBoardData.Provider value={updateAllBoardData}>
-          <Board data={defaultBoard} ></Board>
-        </UpdateBoardData.Provider>
-        </BoardData.Provider>
+        <Board data={defaultBoard} ></Board>
+      </BoardData.Provider>
     </>
   )
 }
