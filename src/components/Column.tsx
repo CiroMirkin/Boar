@@ -5,7 +5,7 @@ import { isThisTheFirstColumn, isThisTheLastColumn } from "../auxiliaryFunction/
 import './Column.css'
 import { addTaskInFirstColumn } from "../useCase/addTask";
 import { archiveTaskListInTheLastColumn } from "../useCase/archiveTaskList";
-import { taskNull } from "../models/task";
+import { getNewTask, taskNull } from "../models/task";
 
 interface ColumnProps {
     data: columnModel
@@ -18,12 +18,7 @@ export function Column({ data, children }: ColumnProps) {
 
     const updateBoard = React.useContext(BoardData).update
     const handleClick = () => {
-        const task = {
-            id: crypto.randomUUID(),
-            descriptionText: newTaskDescription.trim(),
-            columnPosition: '1',
-            highlight: false
-        }
+        const task = getNewTask({ descriptionText: newTaskDescription, columnPosition: '1'})
         updateBoard({
             action: addTaskInFirstColumn,
             task
