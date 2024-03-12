@@ -1,6 +1,7 @@
 import React from "react"
 import { AllBoardData, UpdateBoardData, boardActionFunction } from "../App"
-import { addColumnAtTheEnd, createColumnWithoutPosition } from "../useCase/createColumn"
+import { addColumnAtTheEnd } from "../useCase/createColumn"
+import { createColumnWithoutPosition } from "../models/column"
 import { deleteThisColumn } from "../useCase/deleteColumn"
 import { columnModel } from "../models/column"
 

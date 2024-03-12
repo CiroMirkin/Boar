@@ -27,3 +27,12 @@ export const defaultColumnList: columnModel[] = [
       taskList: []
     },
 ]
+
+export function createColumnWithoutPosition({ name }: { name: string }): columnModel {
+  return {
+    id: crypto.randomUUID(),
+    position: '-1',
+    name,
+    taskList: []
+  }
+}

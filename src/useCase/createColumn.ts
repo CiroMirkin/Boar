@@ -1,7 +1,6 @@
 import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData";
 import { columnUseCaseParams } from "./useCase";
 import { boardModel } from "../models/board";
-import { columnModel } from "../models/column";
 
 export function addColumnAtTheEnd({ board, column }: columnUseCaseParams): boardModel {
     const newBoard = getCopyOfTheBoardData(board)
@@ -12,11 +11,3 @@ export function addColumnAtTheEnd({ board, column }: columnUseCaseParams): board
     return newBoard
 }
 
-export function createColumnWithoutPosition({ name }: { name: string }): columnModel {
-    return {
-        id: crypto.randomUUID(),
-        position: '-1',
-        name,
-        taskList: []
-    }
-}
