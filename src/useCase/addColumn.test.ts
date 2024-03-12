@@ -1,5 +1,5 @@
 import { columnModel } from "../models/column"
-import { addColumnAtTheEnd } from "./createColumn"
+import { addColumnAtTheEnd } from "./addColumn"
 
 describe('Crear una columna.', () => {
     test('Se debería añadir una columna al final del tablero.', () => {
