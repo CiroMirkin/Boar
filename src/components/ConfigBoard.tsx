@@ -1,7 +1,7 @@
 import React from "react"
 import { AllBoardData, UpdateBoardData, boardActionFunction } from "../App"
 import { addColumnAtTheEnd } from "../useCase/createColumn"
-import { createColumnWithoutPosition } from "../models/column"
+import { getBlankColumnWithoutPosition } from "../models/column"
 import { deleteThisColumn } from "../useCase/deleteColumn"
 import { columnModel } from "../models/column"
 
@@ -11,7 +11,7 @@ export function ConfigBoard({}:ConfigBoardParams) {
     const boardData = React.useContext(AllBoardData)
     const updateBoardData = React.useContext(UpdateBoardData)
 
-    const getNewColumn = () => createColumnWithoutPosition({ name: 'Nueva columna'})
+    const getNewColumn = () => getBlankColumnWithoutPosition({ name: 'Nueva columna'})
 
     const handleClick = (action: boardActionFunction, column: columnModel) => {
         try {

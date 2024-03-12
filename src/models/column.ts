@@ -28,7 +28,7 @@ export const defaultColumnList: columnModel[] = [
     },
 ]
 
-export function createColumnWithoutPosition({ name }: { name: string }): columnModel {
+export function getBlankColumnWithoutPosition({ name }: { name: string }): columnModel {
   return {
     id: crypto.randomUUID(),
     position: '-1',
