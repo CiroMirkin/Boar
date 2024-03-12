@@ -11,18 +11,20 @@ export interface boardAction {
     action: boardActionFunction;
 }
 
-interface boardData {
-  board: boardModel
-}
-const defaultBoardData = { 
-  board: defaultBoard 
-}
-
-export const BoardData = React.createContext(defaultBoardData as boardData)
 interface UpdateBoardDataParams extends boardAction {
   task?: taskModel
   column?: columnModel
 }
+interface boardData {
+  board: boardModel,
+  update: ({ }: UpdateBoardDataParams) => void
+}
+const defaultBoardData = { 
+  board: defaultBoard,
+  update: ({ action }: UpdateBoardDataParams): void => console.info('The set function is not defined. ', action)
+}
+
+export const BoardData = React.createContext(defaultBoardData as boardData)
 export const UpdateBoardData = React.createContext(({ action }: UpdateBoardDataParams): void => console.info('The set function is not defined. ', action))
 
 
@@ -41,7 +43,7 @@ function App() {
 
   return (
     <>
-      <BoardData.Provider value={{ board: getCopyOfTheBoardData(allBoardData) } as boardData}>
+      <BoardData.Provider value={{ board: getCopyOfTheBoardData(allBoardData), update: updateAllBoardData } as boardData}>
         <UpdateBoardData.Provider value={updateAllBoardData}>
           <Board data={defaultBoard} ></Board>
         </UpdateBoardData.Provider>
