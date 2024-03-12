@@ -1,11 +1,11 @@
 import React from "react"
-import { AllBoardData } from "../App"
+import { BoardData } from "../App"
 import { Task } from "./Task"
 
 interface ArchiveProps { }
 
 export function Archive({}: ArchiveProps) {
-    const boardArchive = React.useContext(AllBoardData).archive
+    const boardArchive = React.useContext(BoardData).board.archive
     const archive: React.ReactNode[] = []
 
     boardArchive.forEach(({ tasklist, date }) => {

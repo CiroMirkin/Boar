@@ -1,11 +1,11 @@
 import React from "react";
-import { AllBoardData } from "../App";
+import { BoardData } from "../App";
 import { TaskList } from "./TaskList";
 import { Column } from "./Column";
 import './ColumnList.css'
 
 export function ColumnList({ }) {
-    const columns = React.useContext(AllBoardData).columnList;
+    const columns = React.useContext(BoardData).board.columnList;
     const columnList: React.ReactNode[] = [];
 
     columns.forEach(column => {

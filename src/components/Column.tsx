@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { columnModel } from "../models/column";
-import { AllBoardData, UpdateBoardData } from "../App";
+import { BoardData, UpdateBoardData } from "../App";
 import { isThisTheFirstColumn, isThisTheLastColumn } from "../auxiliaryFunction/firstOrLastColumn";
 import './Column.css'
 import { addTaskInFirstColumn } from "../useCase/addTask";
@@ -14,7 +14,7 @@ interface ColumnProps {
 
 export function Column({ data, children }: ColumnProps) {
     const [ newTaskDescription, setNewTaskDescription ] = useState('')
-    const board = React.useContext(AllBoardData)
+    const board = React.useContext(BoardData).board
 
     const updateBoard = React.useContext(UpdateBoardData)
     const handleClick = () => {

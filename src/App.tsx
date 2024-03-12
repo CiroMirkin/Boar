@@ -11,7 +11,14 @@ export interface boardAction {
     action: boardActionFunction;
 }
 
-export const AllBoardData = React.createContext(defaultBoard as boardModel)
+interface boardData {
+  board: boardModel
+}
+const defaultBoardData = { 
+  board: defaultBoard 
+}
+
+export const BoardData = React.createContext(defaultBoardData as boardData)
 interface UpdateBoardDataParams extends boardAction {
   task?: taskModel
   column?: columnModel
@@ -34,11 +41,11 @@ function App() {
 
   return (
     <>
-      <AllBoardData.Provider value={getCopyOfTheBoardData(allBoardData)}>
+      <BoardData.Provider value={{ board: getCopyOfTheBoardData(allBoardData) } as boardData}>
         <UpdateBoardData.Provider value={updateAllBoardData}>
           <Board data={defaultBoard} ></Board>
         </UpdateBoardData.Provider>
-        </AllBoardData.Provider>
+        </BoardData.Provider>
     </>
   )
 }
