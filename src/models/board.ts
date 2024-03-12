@@ -1,3 +1,4 @@
+import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData";
 import { taskListArchived } from "./archive";
 import { columnModel, defaultColumnList } from "./column";
 
@@ -20,3 +21,9 @@ export const defaultBoard: boardModel = {
     columnList: defaultColumnList,
     archive: []
 };
+
+export const getNewBlankBoard = (): boardModel => {
+    const newDefaultBoard = getCopyOfTheBoardData(defaultBoard)
+    newDefaultBoard.boardData.id = crypto.randomUUID()
+    return newDefaultBoard
+}
