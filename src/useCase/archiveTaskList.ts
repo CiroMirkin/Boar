@@ -1,4 +1,3 @@
-import { getCopyOfTheBoardData } from "../utility/copyBoardData";
 import { boardModel } from "../models/board";
 import { boardUseCaseParams } from "./useCase";
 import { taskList } from "../models/task";
@@ -14,7 +13,7 @@ interface archiveTaskListParams {
     columnIndex: number
 }
 export function archiveTaskListInColumn({ board, columnIndex }: archiveTaskListParams): boardModel {
-    const newBoard = getCopyOfTheBoardData(board)
+    const newBoard = board
 
     const date = getFullDate()
     const taskListToArchive: taskList = structuredClone(newBoard.columnList[columnIndex].taskList)
