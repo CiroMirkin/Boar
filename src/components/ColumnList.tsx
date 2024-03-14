@@ -7,6 +7,7 @@ import './ColumnList.css'
 export function ColumnList({ }) {
     const columns = React.useContext(BoardData).board.columnList;
     const columnList: React.ReactNode[] = [];
+    const columnsContent: React.ReactNode[] = []
 
     columns.forEach(column => {
         columnList.push(
