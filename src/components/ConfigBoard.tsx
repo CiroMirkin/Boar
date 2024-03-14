@@ -23,6 +23,12 @@ export function ConfigBoard({}:ConfigBoardParams) {
         }
     }
 
+    const columns: React.ReactNode[] = boardData.columnList.map(column =>
+        <li key={column.id}>
+            <h4>{column.name}</h4>
+            <button onClick={() => handleClick(deleteThisColumn, column)}>Eliminar</button>
+        </li>
+    )
     return (
         <>
             <h1>Preferencias</h1>
@@ -30,12 +36,7 @@ export function ConfigBoard({}:ConfigBoardParams) {
                 <h2>{boardData.boardData.name}</h2>
             </div>
             <ul>
-                {boardData.columnList.map(column =>
-                    <li key={column.id}>
-                        <h4>{column.name}</h4>
-                        <button onClick={() => handleClick(deleteThisColumn, column)}>Eliminar</button>
-                    </li>
-                )}
+                { columns }
                 <li><button onClick={() => handleClick(addColumnAtTheEnd, getNewColumn())}>Nueva columna</button></li>
             </ul>
         </>
