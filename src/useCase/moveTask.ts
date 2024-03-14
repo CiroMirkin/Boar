@@ -1,4 +1,3 @@
-import { getCopyOfTheBoardData } from "../utility/copyBoardData"
 import { getIndexOfColumnInColumnList } from "../utility/indexOfColumn"
 import { boardModel } from "../models/board"
 import { taskUseCaseParams } from "./useCase"
@@ -13,7 +12,7 @@ interface moveTaskParams {
 }
 
 export const moveThisTask = ({ task, to, board }: moveTaskParams): boardModel => {
-    const newBoard = getCopyOfTheBoardData(board)
+    const newBoard = board
     const newColumns = newBoard.columnList
     const indexOfTheColumnWhereTheTaskIs: number = getIndexOfColumnInColumnList(task.columnPosition);
 
