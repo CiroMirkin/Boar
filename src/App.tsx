@@ -3,7 +3,7 @@ import { boardModel, defaultBoard } from "./models/board"
 import { taskModel } from "./models/task"
 import './App.css'
 import { Board } from './components/Board'
-import { getCopyOfTheBoardData } from "./auxiliaryFunction/copyBoardData"
+import { getCopyOfTheBoardData } from "./utility/copyBoardData"
 import { columnModel } from "./models/column"
 
 export type boardActionFunction = (data: any) => boardModel;

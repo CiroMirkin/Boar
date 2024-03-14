@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { columnModel } from "../models/column";
 import { BoardData } from "../App";
-import { isThisTheFirstColumn, isThisTheLastColumn } from "../auxiliaryFunction/firstOrLastColumn";
+import { isThisTheFirstColumn, isThisTheLastColumn } from "../utility/firstOrLastColumn";
 import './Column.css'
 import { addTaskInFirstColumn } from "../useCase/addTask";
 import { archiveTaskListInTheLastColumn } from "../useCase/archiveTaskList";

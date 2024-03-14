@@ -1,4 +1,4 @@
-import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData";
+import { getCopyOfTheBoardData } from "../utility/copyBoardData";
 import { taskListArchived } from "./archive";
 import { columnModel, defaultColumnList } from "./column";
 

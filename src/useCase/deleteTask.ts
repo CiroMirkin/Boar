@@ -1,5 +1,5 @@
-import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData";
-import { getIndexOfColumnInColumnList } from "../auxiliaryFunction/indexOfColumn";
+import { getCopyOfTheBoardData } from "../utility/copyBoardData";
+import { getIndexOfColumnInColumnList } from "../utility/indexOfColumn";
 import { boardModel } from "../models/board";
 import { taskUseCaseParams } from "./useCase";
 import { columnModel } from "../models/column";

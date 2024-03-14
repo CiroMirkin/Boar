@@ -1,8 +1,8 @@
-import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData";
+import { getCopyOfTheBoardData } from "../utility/copyBoardData";
 import { boardModel } from "../models/board";
 import { boardUseCaseParams } from "./useCase";
 import { taskList } from "../models/task";
-import { getFullDate } from "../auxiliaryFunction/getTime";
+import { getFullDate } from "../utility/getTime";
 
 export function archiveTaskListInTheLastColumn({ board }: boardUseCaseParams): boardModel {
     const columnIndex = Number(board.columnList.length) - 1

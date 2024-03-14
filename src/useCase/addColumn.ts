@@ -1,4 +1,4 @@
-import { getCopyOfTheBoardData } from "../auxiliaryFunction/copyBoardData";
+import { getCopyOfTheBoardData } from "../utility/copyBoardData";
 import { columnUseCaseParams } from "./useCase";
 import { boardModel } from "../models/board";
 
