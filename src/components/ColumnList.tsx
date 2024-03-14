@@ -15,10 +15,10 @@ export function ColumnList({ }) {
         )
     })
 
-    columns.forEach(column => {
+    columns.forEach((column, columnIndex) => {
         columnList.push(
             <Column data={column} key={column.id}>
-                <TaskList tasks={column.taskList} />
+                { columnsContent[columnIndex] && columnsContent[columnIndex] }
             </Column>
         );
     });
