@@ -23,6 +23,10 @@ export function ConfigBoard({}:ConfigBoardParams) {
         }
     }
 
+    const columnsContent: React.ReactNode[] = boardData.columnList.map(column => 
+        <button onClick={() => handleClick(deleteThisColumn, column)}>Eliminar</button>
+    ) 
+
     const columns: React.ReactNode[] = boardData.columnList.map(column =>
         <li key={column.id}>
             <h4>{column.name}</h4>
