@@ -10,6 +10,12 @@ export function ColumnList({ }) {
     const columnsContent: React.ReactNode[] = []
 
     columns.forEach(column => {
+        columnsContent.push(
+            <TaskList tasks={column.taskList} />
+        )
+    })
+
+    columns.forEach(column => {
         columnList.push(
             <Column data={column} key={column.id}>
                 <TaskList tasks={column.taskList} />
