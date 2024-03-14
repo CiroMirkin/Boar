@@ -30,12 +30,13 @@ export const BoardData = React.createContext(defaultBoardData as boardData)
 function App() {
   const [ allBoardData, setAllBoardData ] = useState(defaultBoard)
   const updateAllBoardData = ({ action, task, column }: UpdateBoardDataParams): void => {
+    const boardData = getCopyOfTheBoardData(allBoardData)
     if(task) {
-      const newBoardData = action({ board: allBoardData, task })
+      const newBoardData = action({ board: boardData, task })
       setAllBoardData(newBoardData)
     }
     if(column) {
-      const newBoardData = action({ board: allBoardData, column })
+      const newBoardData = action({ board: boardData, column })
       setAllBoardData(newBoardData)
     }
   }
