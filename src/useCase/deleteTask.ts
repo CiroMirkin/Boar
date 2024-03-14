@@ -1,11 +1,10 @@
-import { getCopyOfTheBoardData } from "../utility/copyBoardData";
 import { getIndexOfColumnInColumnList } from "../utility/indexOfColumn";
 import { boardModel } from "../models/board";
 import { taskUseCaseParams } from "./useCase";
 import { columnModel } from "../models/column";
 
 export function deleteThisTask({ board, task }: taskUseCaseParams): boardModel {
-    const newBoard = getCopyOfTheBoardData(board)
+    const newBoard = board
     const columns = newBoard.columnList
     const taskId = task.id
     const columnIndex = getIndexOfColumnInColumnList(task.columnPosition)
