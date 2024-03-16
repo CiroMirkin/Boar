@@ -6,6 +6,15 @@ import './Column.css'
 import { addTaskInFirstColumn } from "../useCase/addTask";
 import { archiveTaskListInTheLastColumn } from "../useCase/archiveTaskList";
 import { getNewTask, taskNull } from "../models/task";
+import {
+    Card,
+    CardContent,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+  } from "@/components/ui/card"  
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
 
 interface ColumnProps {
     data: columnModel
@@ -27,31 +36,35 @@ export function Column({ data, children }: ColumnProps) {
     }
 
     return (
-        <div>
-            <h3>{ data.name }</h3>
-            { children }
-            <footer>
+        <Card>
+            <CardHeader>
+                <CardTitle>{ data.name }</CardTitle>
+            </CardHeader>
+            <CardContent>
+                { children }
+            </CardContent>
+            <CardFooter>
                 {
                     isThisTheFirstColumn(data) 
-                    && <div>
-                        <input 
+                    && <>
+                        <Input 
                             type="text" value={newTaskDescription} 
                             onChange={(e) => setNewTaskDescription(e.target.value)}  
                         />
-                        <button onClick={handleClick}>Añadir</button>
-                    </div>
+                        <Button onClick={handleClick}>Añadir</Button>
+                    </>
                     
                 }
                 {
                     isThisTheLastColumn(data, board.columnList) 
-                    && <button  
+                    && <Button  
                         onClick={() => updateBoard({
                             action: archiveTaskListInTheLastColumn,
                             task: taskNull
                         })}
-                        >Archivar tareas</button>
+                        >Archivar tareas</Button>
                 }
-            </footer>
-        </div>
+            </CardFooter>
+        </Card>
     )
 }
