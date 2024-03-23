@@ -4,3 +4,5 @@ export interface taskListArchived {
     date: string,
     tasklist: taskList
 }
+
+export type archive = taskListArchived[]
