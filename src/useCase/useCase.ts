@@ -13,6 +13,7 @@ export interface taskUseCaseParams {
 export interface changeNameParams extends boardUseCaseParams {
     newName: string;
 }
-export interface columnUseCaseParams extends boardUseCaseParams {
+export interface columnUseCaseParams {
+    columnList: columnModel
     column: columnModel;
 }
