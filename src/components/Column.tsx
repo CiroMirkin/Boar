@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { columnModel } from "../models/column";
 import { isThisTheFirstColumn, isThisTheLastColumn } from "../utility/firstOrLastColumn";
 import './Column.css'
@@ -12,8 +12,7 @@ import {
   } from "@/components/ui/card"  
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { ColumnListContext } from "@/App";
 
 interface ColumnProps {
     data: columnModel
@@ -22,7 +21,7 @@ interface ColumnProps {
 
 export function Column({ data, children }: ColumnProps) {
     const [ newTaskDescription, setNewTaskDescription ] = useState('')
-    const columnList = useSelector((state: RootState) => state.columnList)
+    const columnList = useContext(ColumnListContext)
 
     const handleClick = () => {
         const task = getNewTask({ descriptionText: newTaskDescription, columnPosition: '1'})

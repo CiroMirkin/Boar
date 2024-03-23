@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Column } from "./Column";
 import './ColumnList.css'
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { ColumnListContext } from "@/App";
 
 interface ColumnListProps {
     columnsContent: React.ReactNode[]
 }
 export function ColumnList({ columnsContent }: ColumnListProps) {
-    const columns = useSelector((state: RootState) => state.columnList)
+    const columns = useContext(ColumnListContext)
     const columnList: React.ReactNode[] = [];
 
     columns.forEach((column, columnIndex) => {
