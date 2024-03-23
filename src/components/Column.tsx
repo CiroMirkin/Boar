@@ -13,6 +13,8 @@ import {
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { ColumnListContext } from "@/App";
+import { useDispatch } from "react-redux";
+import { addTaskAtFirstColumn } from "@/redux/taskListInEachColumnReducer";
 
 interface ColumnProps {
     data: columnModel
@@ -23,8 +25,11 @@ export function Column({ data, children }: ColumnProps) {
     const [ newTaskDescription, setNewTaskDescription ] = useState('')
     const columnList = useContext(ColumnListContext)
 
+    const dispatch = useDispatch()
+
     const handleClick = () => {
         const task = getNewTask({ descriptionText: newTaskDescription, columnPosition: '1'})
+        dispatch(addTaskAtFirstColumn(task))
         setNewTaskDescription('')
     }
 
