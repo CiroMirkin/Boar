@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { columnModel } from "../models/column";
-import { BoardData } from "../App";
 import { isThisTheFirstColumn, isThisTheLastColumn } from "../utility/firstOrLastColumn";
 import './Column.css'
 import { getNewTask } from "../models/task";
@@ -13,6 +12,8 @@ import {
   } from "@/components/ui/card"  
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 interface ColumnProps {
     data: columnModel
@@ -21,7 +22,7 @@ interface ColumnProps {
 
 export function Column({ data, children }: ColumnProps) {
     const [ newTaskDescription, setNewTaskDescription ] = useState('')
-    const board = React.useContext(BoardData).board
+    const columnList = useSelector((state: RootState) => state.columnList)
 
     const handleClick = () => {
         const task = getNewTask({ descriptionText: newTaskDescription, columnPosition: '1'})
@@ -49,7 +50,7 @@ export function Column({ data, children }: ColumnProps) {
                     
                 }
                 {
-                    isThisTheLastColumn(data, board.columnList) 
+                    isThisTheLastColumn(data, columnList) 
                     && <Button  
                         onClick={() => console.log('archive')}
                         >Archivar tareas</Button>
