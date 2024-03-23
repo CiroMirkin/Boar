@@ -1,19 +1,16 @@
-import { boardModel } from "../../models/board";
-import { changeNameParams } from "../useCase";
+import { columnUseCaseParams } from "../useCase";
 import { columnModel } from "../../models/column";
 
-interface changeNameOfColumnParams extends changeNameParams {
-    column: columnModel
+interface changeNameOfColumnParams extends columnUseCaseParams {
+    newName: string
 }
 
-export function changeNameOfColumn({ board, column, newName }: changeNameOfColumnParams): boardModel {
-    const newBoard = board
-    const newColumns = newBoard.columnList.map(columnInBoard => {
+export function changeNameOfColumn({ columnList, column, newName }: changeNameOfColumnParams): columnModel[] {
+    const newColumnList = columnList.map(columnInBoard => {
         if(columnInBoard.id === column.id) {
             columnInBoard.name = newName
         }
         return columnInBoard
     })
-    newBoard.columnList = newColumns
-    return newBoard
+    return newColumnList
 }
