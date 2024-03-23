@@ -1,8 +1,9 @@
-import React from "react"
+import React, { useContext } from "react"
 import { boardModel } from "../models/board"
 import { ColumnList } from "./ColumnList"
 import { TaskList } from "./TaskList"
 import { defaultColumnList } from "@/models/column"
+import { TaskListInEachColumnContext } from "@/App"
 
 interface BoardProps {
     children?: React.ReactNode
@@ -14,10 +15,10 @@ export function Board({}: BoardProps) {
         name: 'Tablero básico'
     }
     const columnsContent: React.ReactNode[] = []
-    const columnList = defaultColumnList;
-    columnList.forEach(column => {
+    const taskListInEachColumn = useContext(TaskListInEachColumnContext);
+    taskListInEachColumn.forEach(taskList => {
         columnsContent.push(
-            <TaskList tasks={[]} />
+            <TaskList tasks={taskList} />
         )
     })
     return (
