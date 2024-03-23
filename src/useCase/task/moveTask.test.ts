@@ -31,7 +31,7 @@ describe('Mover una tarea entre columnas', () => {
             [{ 
                 id: "1",
                 descriptionText: "", 
-                columnPosition: '2',
+                columnPosition: '1',
             }],
             []
         ])
