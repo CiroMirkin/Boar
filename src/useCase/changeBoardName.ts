@@ -3,6 +3,6 @@ import { changeNameParams } from "./useCase";
 
 export function changeBoardName({ board, newName }: changeNameParams): boardModel {
     const newBoard = board
-    newBoard.boardData.name = newName
+    newBoard.name = newName
     return newBoard
 }
