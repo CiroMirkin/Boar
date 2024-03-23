@@ -1,6 +1,5 @@
 import React, { createContext } from "react";
 import { taskModel, taskNull } from "../models/task";
-import { BoardData } from "../App";
 import { deleteThisTask } from "../useCase/deleteTask";
 import { moveThisTaskToTheNextColumn, moveThisTaskToThePrevColumn } from "../useCase/moveTask";
 import { boardActionFunction } from "../App";
@@ -29,12 +28,8 @@ function TaskDescription() {
 
 function TaskActions() {
     const data = React.useContext(TaskContext)
-    const updateBoard = React.useContext(BoardData).update
     const handleClick = (action: boardActionFunction) => {
-        updateBoard({
-            action,
-            task: data
-        })
+        
     }
     return (
         <div className="actions">
