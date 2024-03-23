@@ -1,12 +1,11 @@
 import { columnUseCaseParams } from "../useCase";
-import { boardModel } from "../../models/board";
+import { columnModel } from "@/models/column";
 
-export function addColumnAtTheEnd({ board, column }: columnUseCaseParams): boardModel {
-    const newBoard = board
+export function addColumnAtTheEnd({ columnList, column }: columnUseCaseParams): columnModel[] {
     if(column.position === '-1') {
-        column.position = JSON.stringify(newBoard.columnList.length + 1)
+        column.position = JSON.stringify(columnList.length + 1)
     }
-    newBoard.columnList.push(column)
-    return newBoard
+    columnList.push(column)
+    return columnList
 }
 
