@@ -1,113 +1,76 @@
-import { boardModel } from "../../models/board.ts"
 import { columnModel } from "../../models/column.ts"
 import { deleteThisColumn } from "./deleteColumn.ts"
 
 describe('Eliminar columna.', () => {
     test('Se debería eliminar la columna indicada.', () => {
-        const board: boardModel = {
-            boardData: {
-                id: '',
-                name: ""
-            },
-            columnList: [
-                {
-                    id: "",
-                    name: "",
-                    position: "1",
-                    taskList: []
-                },
-                {
-                    id: "",
-                    name: "",
-                    position: "2",
-                    taskList: []
-                },
-                {
-                    id: "c3",
-                    name: "",
-                    position: "3",
-                    taskList: []
-                },
-                {
-                    id: "",
-                    name: "",
-                    position: "4",
-                    taskList: []
-                },
-            ],
-            archive: []
-        }
         const column: columnModel = {
-            id: "c3",
+            id: "c4",
             name: "",
-            position: "3",
-            taskList: []
+            position: "4",
         }
-        expect(deleteThisColumn({ board, column })).toStrictEqual({
-            boardData: {
-                id: '',
-                name: ""
+        const columnList: columnModel[] = [
+            {
+                id: "",
+                name: "",
+                position: "1",
             },
-            columnList: [
-                {
-                    id: "",
-                    name: "",
-                    position: "1",
-                    taskList: []
-                },
-                {
-                    id: "",
-                    name: "",
-                    position: "2",
-                    taskList: []
-                },
-                {
-                    id: "",
-                    name: "",
-                    position: "4",
-                    taskList: []
-                },
-            ],
-            archive: []
-        })
+            {
+                id: "",
+                name: "",
+                position: "2",
+            },
+            {
+                id: "c3",
+                name: "",
+                position: "3",
+            },
+            {...column},
+        ]
+
+        expect(deleteThisColumn({ columnList, column })).toStrictEqual([
+            {
+                id: "",
+                name: "",
+                position: "1",
+            },
+            {
+                id: "",
+                name: "",
+                position: "2",
+            },
+            {
+                id: "c3",
+                name: "",
+                position: "3",
+            },
+        ])
     })
 
     test('Debería poderse eliminar una columna solo cuando hay mas de tres.', () => {
-        const board: boardModel = {
-            boardData: {
-                id: '',
-                name: ""
+        const columnList: columnModel[] = [
+            {
+                id: "",
+                name: "",
+                position: "1",
             },
-            columnList: [
-                {
-                    id: "",
-                    name: "",
-                    position: "1",
-                    taskList: []
-                },
-                {
-                    id: "",
-                    name: "",
-                    position: "2",
-                    taskList: []
-                },
-                {
-                    id: "c3",
-                    name: "",
-                    position: "3",
-                    taskList: []
-                },
-            ],
-            archive: []
-        }
+            {
+                id: "",
+                name: "",
+                position: "2",
+            },
+            {
+                id: "c3",
+                name: "",
+                position: "3",
+            },
+        ]
         const column: columnModel = {
             id: "c3",
             name: "",
             position: "3",
-            taskList: []
         }
         expect(() => {
-            return deleteThisColumn({ board, column })
+            return deleteThisColumn({ columnList, column })
         }).toThrow('Para poder eliminar una columna debe haber mas de tres.')
 
     })
