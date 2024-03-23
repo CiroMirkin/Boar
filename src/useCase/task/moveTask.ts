@@ -1,35 +1,31 @@
 import { getIndexOfColumnInColumnList } from "../../utility/indexOfColumn"
 import { boardModel } from "../../models/board"
 import { taskUseCaseParams } from "../useCase"
-import { taskModel } from "../../models/task"
+import { taskList } from "@/models/task"
 
 export type moveToType = 'next-column' | 'prev-column'
 
-interface moveTaskParams {
-    task: taskModel,
+interface moveTaskParams extends taskUseCaseParams {
     to: moveToType,
-    board: boardModel
 }
 
-export const moveThisTask = ({ task, to, board }: moveTaskParams): boardModel => {
-    const newBoard = board
-    const newColumns = newBoard.columnList
+export const moveThisTask = ({ task, to, taskListInEachColumn }: moveTaskParams): taskList[] => {
+    const newTaskListInEachColumn = structuredClone(taskListInEachColumn)
     const indexOfTheColumnWhereTheTaskIs: number = getIndexOfColumnInColumnList(task.columnPosition);
 
-    newBoard.columnList[indexOfTheColumnWhereTheTaskIs].taskList = newBoard.columnList[indexOfTheColumnWhereTheTaskIs].taskList.filter(t => t.id !== task.id)
+    newTaskListInEachColumn[indexOfTheColumnWhereTheTaskIs] = newTaskListInEachColumn[indexOfTheColumnWhereTheTaskIs].filter(t => t.id !== task.id)
 
     const nextColumnIndex = indexOfTheColumnWhereTheTaskIs + 1
     const prevColumnIndex = indexOfTheColumnWhereTheTaskIs - 1
     const indexOfTheColumnWhereTheTaskWillBe = (to === 'next-column') ? nextColumnIndex : prevColumnIndex 
-    if(indexOfTheColumnWhereTheTaskWillBe < newColumns.length && indexOfTheColumnWhereTheTaskWillBe > -1) {
-        task.columnPosition = newColumns[indexOfTheColumnWhereTheTaskWillBe].position
-        newColumns[indexOfTheColumnWhereTheTaskWillBe].taskList.push(task)
-        newBoard.columnList = newColumns
+    if(indexOfTheColumnWhereTheTaskWillBe < newTaskListInEachColumn.length && indexOfTheColumnWhereTheTaskWillBe > -1) {
+        task.columnPosition = `${indexOfTheColumnWhereTheTaskWillBe + 1}`
+        newTaskListInEachColumn[indexOfTheColumnWhereTheTaskWillBe].push(task)
 
-        return newBoard
+        return newTaskListInEachColumn
     } 
 
-    return board
+    return taskListInEachColumn
 }
 
 export const moveThisTaskToTheNextColumn = ({ task, board }: taskUseCaseParams): boardModel => {
