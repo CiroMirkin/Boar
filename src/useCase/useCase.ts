@@ -7,7 +7,7 @@ export interface boardUseCaseParams {
     board: boardModel;
 }
 export interface taskUseCaseParams {
-    taskList: taskList[];
+    taskListInEachColumn: taskList[];
     task: taskModel;
 }
 export interface changeNameParams extends boardUseCaseParams {

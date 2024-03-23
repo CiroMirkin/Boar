@@ -8,8 +8,8 @@ describe("Crear una tarea.", () => {
             descriptionText: '',
             columnPosition: '1',
         }
-        const taskList: taskList[] = [ [], [], [] ]
-        expect(addTaskInFirstColumn({ taskList, task })).toStrictEqual([ 
+        const taskListInEachColumn: taskList[] = [ [], [], [] ]
+        expect(addTaskInFirstColumn({ taskListInEachColumn, task })).toStrictEqual([ 
             [
                 {
                     id: '',
