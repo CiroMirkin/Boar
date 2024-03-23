@@ -1,7 +1,7 @@
-import { getIndexOfColumnInColumnList } from "../utility/indexOfColumn"
-import { boardModel } from "../models/board"
-import { taskUseCaseParams } from "./useCase"
-import { taskModel } from "../models/task"
+import { getIndexOfColumnInColumnList } from "../../utility/indexOfColumn"
+import { boardModel } from "../../models/board"
+import { taskUseCaseParams } from "../useCase"
+import { taskModel } from "../../models/task"
 
 export type moveToType = 'next-column' | 'prev-column'
 

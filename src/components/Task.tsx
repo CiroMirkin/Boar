@@ -1,7 +1,7 @@
 import React, { createContext } from "react";
 import { taskModel, taskNull } from "../models/task";
-import { deleteThisTask } from "../useCase/deleteTask";
-import { moveThisTaskToTheNextColumn, moveThisTaskToThePrevColumn } from "../useCase/moveTask";
+import { deleteThisTask } from "../useCase/task/deleteTask";
+import { moveThisTaskToTheNextColumn, moveThisTaskToThePrevColumn } from "../useCase/task/moveTask";
 import { boardActionFunction } from "../App";
 
 const TaskContext = createContext(taskNull)
