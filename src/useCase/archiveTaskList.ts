@@ -2,6 +2,8 @@ import { boardModel } from "../models/board";
 import { boardUseCaseParams } from "./useCase";
 import { taskList } from "../models/task";
 import { getFullDate } from "../utility/getTime";
+import { archive } from "@/models/archive";
+import { getIndexOfColumnInColumnList } from "@/utility/indexOfColumn";
 
 export function archiveTaskListInTheLastColumn({ board }: boardUseCaseParams): boardModel {
     const columnIndex = Number(board.columnList.length) - 1
@@ -9,20 +11,16 @@ export function archiveTaskListInTheLastColumn({ board }: boardUseCaseParams): b
 }
 
 interface archiveTaskListParams {
-    board: boardModel,
-    columnIndex: number
+    taskListInEachColumn: taskList[],
+    columnPosition: string,
+    archive: archive
 }
-export function archiveTaskListInColumn({ board, columnIndex }: archiveTaskListParams): boardModel {
-    const newBoard = board
-
+export function archiveTaskListInColumn({ taskListInEachColumn, columnPosition, archive }: archiveTaskListParams): archive {
     const date = getFullDate()
-    const taskListToArchive: taskList = structuredClone(newBoard.columnList[columnIndex].taskList)
-    newBoard.archive.push({
+    const taskListToArchive: taskList = structuredClone(taskListInEachColumn[getIndexOfColumnInColumnList(columnPosition)])
+    archive.push({
         date,
         tasklist: taskListToArchive
     })
-    
-    newBoard.columnList[columnIndex].taskList = []
-
-    return newBoard
+    return archive
 }
