@@ -1,13 +1,13 @@
 import React from "react";
-import { BoardData } from "../App";
 import { Column } from "./Column";
 import './ColumnList.css'
+import { defaultColumnList } from "@/models/column";
 
 interface ColumnListProps {
     columnsContent: React.ReactNode[]
 }
 export function ColumnList({ columnsContent }: ColumnListProps) {
-    const columns = React.useContext(BoardData).board.columnList;
+    const columns = defaultColumnList
     const columnList: React.ReactNode[] = [];
 
     columns.forEach((column, columnIndex) => {

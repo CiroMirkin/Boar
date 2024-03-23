@@ -2,23 +2,28 @@ import React from "react"
 import { boardModel } from "../models/board"
 import { ColumnList } from "./ColumnList"
 import { TaskList } from "./TaskList"
+import { defaultColumnList } from "@/models/column"
 
 interface BoardProps {
-    data: boardModel,
     children?: React.ReactNode
 }
 
-export function Board({ data }: BoardProps) {
+export function Board({}: BoardProps) {
+    const data: boardModel = {
+        id: '1',
+        name: 'Tablero básico'
+    }
     const columnsContent: React.ReactNode[] = []
-    data.columnList.forEach(column => {
+    const columnList = defaultColumnList;
+    columnList.forEach(column => {
         columnsContent.push(
-            <TaskList tasks={column.taskList} />
+            <TaskList tasks={[]} />
         )
     })
     return (
         <>
-        <h1>{ data.boardData.name }</h1>
-        <ColumnList columnsContent={columnsContent} />
+        <h1>{ data.name }</h1>
+            <ColumnList columnsContent={columnsContent} />
         </>
     )
 }

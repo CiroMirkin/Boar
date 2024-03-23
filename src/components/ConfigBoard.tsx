@@ -1,20 +1,23 @@
 import React from "react"
-import { BoardData, boardActionFunction } from "../App"
 import { addColumnAtTheEnd } from "../useCase/column/addColumn"
-import { getBlankColumnWithoutPosition } from "../models/column"
+import { defaultColumnList, getBlankColumnWithoutPosition } from "../models/column"
 import { deleteThisColumn } from "../useCase/column/deleteColumn"
 import { columnModel } from "../models/column"
 
 interface ConfigBoardParams {}
 
 export function ConfigBoard({}:ConfigBoardParams) {
-    const { board, update } = React.useContext(BoardData)
-    const updateBoardData = update
-    const boardData = board
+    const updateBoardData = (p: any) => p
+    const boardData = {
+        boardData: {
+            name: 'pip'
+        },
+        columnList: defaultColumnList
+    }
     
     const getNewColumn = () => getBlankColumnWithoutPosition({ name: 'Nueva columna'})
 
-    const handleClick = (action: boardActionFunction, column: columnModel) => {
+    const handleClick = (action: Function, column: columnModel) => {
         try {
             updateBoardData({ action, column })
         }
