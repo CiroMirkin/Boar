@@ -1,24 +1,18 @@
 import { getIndexOfColumnInColumnList } from "../../utility/indexOfColumn";
-import { boardModel } from "../../models/board";
 import { taskUseCaseParams } from "../useCase";
-import { columnModel } from "../../models/column";
+import { taskList } from "@/models/task";
 
-export function deleteThisTask({ board, task }: taskUseCaseParams): boardModel {
-    const newBoard = board
-    const columns = newBoard.columnList
+export function deleteThisTask({ taskListInEachColumn, task }: taskUseCaseParams): taskList[] {
     const taskId = task.id
     const columnIndex = getIndexOfColumnInColumnList(task.columnPosition)
     
-    const newColumns: columnModel[] = columns.map((column, index) => {
+    const newTaskListInEachColumn = taskListInEachColumn.map((taskList, index) => {
         if(index === columnIndex) {
-            const newTaskListInColumn = column.taskList.filter(task => task.id !== taskId)
-            column.taskList = newTaskListInColumn
-            return column
+            const newTaskListInColumn = taskList.filter(task => task.id !== taskId)
+            return newTaskListInColumn
         }
-        return column
+        return taskList
     })
 
-    newBoard.columnList = newColumns
-
-    return newBoard
+    return newTaskListInEachColumn
 }
