@@ -1,5 +1,4 @@
 import { getIndexOfColumnInColumnList } from "../../utility/indexOfColumn"
-import { boardModel } from "../../models/board"
 import { taskUseCaseParams } from "../useCase"
 import { taskList } from "@/models/task"
 
@@ -28,9 +27,9 @@ export const moveThisTask = ({ task, to, taskListInEachColumn }: moveTaskParams)
     return taskListInEachColumn
 }
 
-export const moveThisTaskToTheNextColumn = ({ task, board }: taskUseCaseParams): boardModel => {
-    return moveThisTask({ task, to: 'next-column', board })
+export const moveThisTaskToTheNextColumn = ({ task, taskListInEachColumn }: taskUseCaseParams): taskList[] => {
+    return moveThisTask({ task, to: 'next-column', taskListInEachColumn })
 }
-export const moveThisTaskToThePrevColumn = ({ task, board }: taskUseCaseParams): boardModel => {
-    return moveThisTask({ task, to: 'prev-column', board })
+export const moveThisTaskToThePrevColumn = ({ task, taskListInEachColumn }: taskUseCaseParams): taskList[] => {
+    return moveThisTask({ task, to: 'prev-column', taskListInEachColumn })
 }
