@@ -14,6 +14,6 @@ export interface changeNameParams extends boardUseCaseParams {
     newName: string;
 }
 export interface columnUseCaseParams {
-    columnList: columnModel
+    columnList: columnModel[]
     column: columnModel;
 }
