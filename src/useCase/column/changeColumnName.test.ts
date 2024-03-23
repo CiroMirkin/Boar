@@ -1,5 +1,5 @@
-import { boardModel } from "../models/board"
-import { columnModel } from "../models/column"
+import { boardModel } from "../../models/board"
+import { columnModel } from "../../models/column"
 import { changeNameOfColumn } from "./changeColumnName"
 
 describe('Cambiar el nombre de una columna.', () => {

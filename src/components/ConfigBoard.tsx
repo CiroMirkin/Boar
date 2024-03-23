@@ -1,8 +1,8 @@
 import React from "react"
 import { BoardData, boardActionFunction } from "../App"
-import { addColumnAtTheEnd } from "../useCase/addColumn"
+import { addColumnAtTheEnd } from "../useCase/column/addColumn"
 import { getBlankColumnWithoutPosition } from "../models/column"
-import { deleteThisColumn } from "../useCase/deleteColumn"
+import { deleteThisColumn } from "../useCase/column/deleteColumn"
 import { columnModel } from "../models/column"
 
 interface ConfigBoardParams {}

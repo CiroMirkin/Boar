@@ -1,5 +1,5 @@
-import { columnUseCaseParams } from "./useCase";
-import { boardModel } from "../models/board";
+import { columnUseCaseParams } from "../useCase";
+import { boardModel } from "../../models/board";
 
 export function addColumnAtTheEnd({ board, column }: columnUseCaseParams): boardModel {
     const newBoard = board

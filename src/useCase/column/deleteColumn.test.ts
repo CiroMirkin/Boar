@@ -1,5 +1,5 @@
-import { boardModel } from "../models/board"
-import { columnModel } from "../models/column"
+import { boardModel } from "../../models/board.ts"
+import { columnModel } from "../../models/column.ts"
 import { deleteThisColumn } from "./deleteColumn.ts"
 
 describe('Eliminar columna.', () => {
