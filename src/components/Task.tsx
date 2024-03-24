@@ -2,6 +2,7 @@ import React, { createContext } from "react";
 import { taskModel, taskNull } from "../models/task";
 import { deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn } from "@/redux/taskListInEachColumnReducer";
 import { useDispatch } from "react-redux";
+import { Button } from "./ui/button";
 
 const TaskContext = createContext(taskNull)
 
@@ -37,10 +38,10 @@ function TaskActions() {
         dispatch(action(data))
     }
     return (
-        <div className="actions">
-            <button onClick={() => handleClick(deleteTaskAction())}>Eliminar</button>
-            <button onClick={() => handleClick(moveTaskToPrevColumnAction())}>Retroceder</button>
-            <button onClick={() => handleClick(moveTaskToNextColumnAction())}>Avanzar</button>
+        <div className="mt-4 flex justify-between gap-x-1 gap-y-1">
+            <Button size="sm" variant="destructiveGhost" onClick={() => handleClick(deleteTaskAction())}>Eliminar</Button>
+            <Button size="sm" onClick={() => handleClick(moveTaskToPrevColumnAction())}>Retroceder</Button>
+            <Button size="sm" onClick={() => handleClick(moveTaskToNextColumnAction())}>Avanzar</Button>
         </div>
     )
 }
