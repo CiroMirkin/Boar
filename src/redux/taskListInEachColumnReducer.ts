@@ -2,7 +2,13 @@ import { taskList, taskModel } from "@/models/task";
 import { addTaskInFirstColumn } from "@/useCase/task/addTask";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-const initialState: taskList[] = [[], [], []]
+interface InitialState {
+    list: taskList[]
+}
+
+const initialState: InitialState = {
+    list: [[], [], []]
+}
 
 export const taskListInEachColumnSlice = createSlice({
     name: 'taskListInEachColumn',
@@ -10,7 +16,7 @@ export const taskListInEachColumnSlice = createSlice({
     reducers: {
         addTaskAtFirstColumn: (state, action: PayloadAction<taskModel>) => {
             const task = action.payload
-            state = addTaskInFirstColumn({ taskListInEachColumn: state, task })
+            state.list = addTaskInFirstColumn({ taskListInEachColumn: state.list, task })
         }
     }
 })

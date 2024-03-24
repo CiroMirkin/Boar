@@ -11,7 +11,7 @@ export const TaskListInEachColumnContext = React.createContext([[], [], []] as t
 
 function App() {
   const columnList = useSelector((state: RootState) => state.columnList)
-  const taskListInEachColumn = useSelector((state: RootState) => state.taskListInEachColumn)
+  const taskListInEachColumn = useSelector((state: RootState) => state.taskListInEachColumn.list)
   return (
     <>
     <ColumnListContext.Provider value={columnList}>
