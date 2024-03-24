@@ -1,6 +1,6 @@
 import { getIndexOfColumnInColumnList } from "../../utility/indexOfColumn"
 import { taskUseCaseParams } from "../useCase"
-import { taskList } from "@/models/task"
+import { getNewTask, taskList } from "@/models/task"
 
 export type moveToType = 'next-column' | 'prev-column'
 
@@ -9,21 +9,38 @@ interface moveTaskParams extends taskUseCaseParams {
 }
 
 export const moveThisTask = ({ task, to, taskListInEachColumn }: moveTaskParams): taskList[] => {
-    const newTaskListInEachColumn = structuredClone(taskListInEachColumn)
+    const newTaskListInEachColumn = taskListInEachColumn
     const indexOfTheColumnWhereTheTaskIs: number = getIndexOfColumnInColumnList(task.columnPosition);
+    let taskOldIndexInList = 0;
 
-    newTaskListInEachColumn[indexOfTheColumnWhereTheTaskIs] = newTaskListInEachColumn[indexOfTheColumnWhereTheTaskIs].filter(t => t.id !== task.id)
+    newTaskListInEachColumn[indexOfTheColumnWhereTheTaskIs] = newTaskListInEachColumn[indexOfTheColumnWhereTheTaskIs].filter((t, index) => {
+        if (t.id === task.id) {
+            taskOldIndexInList = index;
+            return false;
+        }
+        return true;
+    })
 
     const nextColumnIndex = indexOfTheColumnWhereTheTaskIs + 1
     const prevColumnIndex = indexOfTheColumnWhereTheTaskIs - 1
     const indexOfTheColumnWhereTheTaskWillBe = (to === 'next-column') ? nextColumnIndex : prevColumnIndex 
     if(indexOfTheColumnWhereTheTaskWillBe < newTaskListInEachColumn.length && indexOfTheColumnWhereTheTaskWillBe > -1) {
-        task.columnPosition = `${indexOfTheColumnWhereTheTaskWillBe + 1}`
-        newTaskListInEachColumn[indexOfTheColumnWhereTheTaskWillBe].push(task)
+        const newTask = getNewTask({
+            descriptionText: task.descriptionText,
+            columnPosition: `${indexOfTheColumnWhereTheTaskWillBe + 1}`
+        })
+        newTask.id = task.id 
+        newTaskListInEachColumn[indexOfTheColumnWhereTheTaskWillBe].push(newTask)
 
         return newTaskListInEachColumn
     } 
 
+    const itemsToBeRemovedOrReplaced = 0
+    newTaskListInEachColumn[indexOfTheColumnWhereTheTaskIs].splice(
+        taskOldIndexInList, 
+        itemsToBeRemovedOrReplaced, 
+        task
+    )
     return taskListInEachColumn
 }
 
