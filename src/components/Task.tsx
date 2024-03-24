@@ -1,8 +1,7 @@
 import React, { createContext } from "react";
 import { taskModel, taskNull } from "../models/task";
-import { deleteThisTask } from "../useCase/task/deleteTask";
-import { moveThisTaskToTheNextColumn, moveThisTaskToThePrevColumn } from "../useCase/task/moveTask";
-import { boardActionFunction } from "../App";
+import { deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn } from "@/redux/taskListInEachColumnReducer";
+import { useDispatch } from "react-redux";
 
 const TaskContext = createContext(taskNull)
 
@@ -28,14 +27,20 @@ function TaskDescription() {
 
 function TaskActions() {
     const data = React.useContext(TaskContext)
-    const handleClick = (action: boardActionFunction) => {
-        
+    const deleteTaskAction = () => deleteTask
+    const moveTaskToNextColumnAction = () => moveTaskToNextColumn
+    const moveTaskToPrevColumnAction = () => moveTaskToPrevColumn
+
+    const dispatch = useDispatch()
+    
+    const handleClick = (action: Function) => {
+        dispatch(action(data))
     }
     return (
         <div className="actions">
-            <button onClick={() => handleClick(deleteThisTask)}>Eliminar</button>
-            <button onClick={() => handleClick(moveThisTaskToThePrevColumn)}>Retroceder</button>
-            <button onClick={() => handleClick(moveThisTaskToTheNextColumn)}>Avanzar</button>
+            <button onClick={() => handleClick(deleteTaskAction())}>Eliminar</button>
+            <button onClick={() => handleClick(moveTaskToPrevColumnAction())}>Retroceder</button>
+            <button onClick={() => handleClick(moveTaskToNextColumnAction())}>Avanzar</button>
         </div>
     )
 }
