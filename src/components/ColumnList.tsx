@@ -19,7 +19,7 @@ export function ColumnList({ columnsContent }: ColumnListProps) {
     });
 
     return (
-        <div className="column-list">
+        <div className="h-auto my-5 mx-6 flex gap-x-3.5">
             {columnList}
         </div>
     );

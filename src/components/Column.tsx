@@ -34,11 +34,11 @@ export function Column({ data, children }: ColumnProps) {
     }
 
     return (
-        <Card>
+        <Card className="h-96 flex-1 flex flex-col justify-between">
             <CardHeader>
                 <CardTitle>{ data.name }</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="h-full">
                 { children }
             </CardContent>
             <CardFooter>
