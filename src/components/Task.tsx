@@ -3,6 +3,7 @@ import { taskModel, taskNull } from "../models/task";
 import { deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn } from "@/redux/taskListInEachColumnReducer";
 import { useDispatch } from "react-redux";
 import { Button } from "./ui/button";
+import { Card, CardContent, CardFooter } from "./ui/SmallCard";
 
 const TaskContext = createContext(taskNull)
 
@@ -14,7 +15,9 @@ interface TaskProps {
 export function Task({ data, children }: TaskProps) {
     return (
         <TaskContext.Provider value={ data }>
+            <Card>
             { children }
+            </Card>
         </TaskContext.Provider>
     )
 }
@@ -22,7 +25,9 @@ export function Task({ data, children }: TaskProps) {
 function TaskDescription() {
     const description = React.useContext(TaskContext).descriptionText
     return (
-        <p>{ description }</p>
+        <CardContent>
+            <p>{ description }</p>
+        </CardContent>
     )
 }
 
@@ -38,11 +43,11 @@ function TaskActions() {
         dispatch(action(data))
     }
     return (
-        <div className="mt-4 flex justify-between gap-x-1 gap-y-1">
+        <CardFooter className="mt-4 flex justify-between gap-x-1 gap-y-1">
             <Button size="sm" onClick={() => handleClick(moveTaskToPrevColumnAction())}>Retroceder</Button>
             <Button size="sm" onClick={() => handleClick(moveTaskToNextColumnAction())}>Avanzar</Button>
             <Button size="sm" variant="destructiveGhost" onClick={() => handleClick(deleteTaskAction())}>Eliminar</Button>
-        </div>
+        </CardFooter>
     )
 }
 
