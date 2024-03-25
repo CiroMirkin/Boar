@@ -50,6 +50,7 @@ export function Column({ data, children }: ColumnProps) {
                     && <>
                         <Input 
                             type="text" value={newTaskDescription} 
+                            className="mr-1.5"
                             onChange={(e) => setNewTaskDescription(e.target.value)}  
                         />
                         <Button onClick={handleClick}>Añadir</Button>
