@@ -10,6 +10,7 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"  
+import { ScrollArea } from "./ui/scroll-area";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { ColumnListContext } from "@/App";
@@ -34,12 +35,14 @@ export function Column({ data, children }: ColumnProps) {
     }
 
     return (
-        <Card className="h-96 flex-1 flex flex-col justify-between">
+        <Card className="h-auto flex-1 flex flex-col justify-between">
             <CardHeader>
                 <CardTitle>{ data.name }</CardTitle>
             </CardHeader>
-            <CardContent className="h-full">
-                { children }
+            <CardContent className="h-96">
+                <ScrollArea className="h-full w-full rounded-md">
+                    { children }
+                </ScrollArea>
             </CardContent>
             <CardFooter>
                 {
