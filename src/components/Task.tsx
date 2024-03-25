@@ -43,10 +43,12 @@ function TaskActions() {
         dispatch(action(data))
     }
     return (
-        <CardFooter className="mt-4 flex justify-between gap-x-1 gap-y-1">
-            <Button size="sm" onClick={() => handleClick(moveTaskToPrevColumnAction())}>Retroceder</Button>
-            <Button size="sm" onClick={() => handleClick(moveTaskToNextColumnAction())}>Avanzar</Button>
-            <Button size="sm" variant="destructiveGhost" onClick={() => handleClick(deleteTaskAction())}>Eliminar</Button>
+        <CardFooter className="flex flex-col justify-between gap-x-1 gap-y-1">
+            <div className="w-full grid grid-flow-col justify-stretch gap-1.5">
+                <Button size="sm" onClick={() => handleClick(moveTaskToPrevColumnAction())}>Retroceder</Button>
+                <Button size="sm" onClick={() => handleClick(moveTaskToNextColumnAction())}>Avanzar</Button>
+            </div>
+            <Button size="sm" variant="destructiveGhost" className="w-full" onClick={() => handleClick(deleteTaskAction())}>Eliminar</Button>
         </CardFooter>
     )
 }
