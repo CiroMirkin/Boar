@@ -28,7 +28,7 @@ export function Archive({}: ArchiveProps) {
             <Card key={date} className="p-2">
                 <CardHeader>
                     <CardTitle>
-                        <h3>{date}</h3>
+                        {date}
                     </CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-col gap-y-2">
