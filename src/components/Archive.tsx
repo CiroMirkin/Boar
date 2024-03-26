@@ -2,17 +2,12 @@ import React from "react"
 import { Task } from "./Task"
 import { archive } from "@/models/archive"
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
-import { useSelector } from "react-redux"
-import { RootState } from "@/redux/store"
 
-const getArchive = (): archive => {
-    return useSelector((state: RootState) => state.archive)
+interface ArchiveProps {
+    boardArchive: archive
 }
 
-interface ArchiveProps { }
-
-export function Archive({}: ArchiveProps) {
-    const boardArchive: archive = getArchive()
+export function Archive({ boardArchive}: ArchiveProps) {
     const archive: React.ReactNode[] = []
 
     boardArchive.forEach(({ tasklist, date }) => {
