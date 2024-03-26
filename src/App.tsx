@@ -23,12 +23,11 @@ const getTaskListInEachColumn = () => {
 function App() {
   const columnList = getColumnList()
   const taskListInEachColumn = getTaskListInEachColumn()
+  const boardData = { id: '1', name: 'Tablero básico' }
   return (
     <>
     <ColumnListContext.Provider value={columnList}>
-      <TaskListInEachColumnContext.Provider value={taskListInEachColumn}>
-      <Board />
-      </TaskListInEachColumnContext.Provider>
+      <Board data={boardData} taskListInEachColumn={taskListInEachColumn} />
     </ColumnListContext.Provider>
     </>
   )

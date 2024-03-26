@@ -1,9 +1,8 @@
-import React, { useContext } from "react"
+import React from "react"
 import { boardModel } from "../models/board"
 import { ColumnList } from "./ColumnList"
 import { TaskList } from "./TaskList"
-import { defaultColumnList } from "@/models/column"
-import { TaskListInEachColumnContext } from "@/App"
+import { columnModel } from "@/models/column"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -13,18 +12,16 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Button } from "./ui/button"
+import { taskList } from "@/models/task"
 
 interface BoardProps {
     children?: React.ReactNode
+    data: boardModel
+    taskListInEachColumn: taskList[]
 }
 
-export function Board({}: BoardProps) {
-    const data: boardModel = {
-        id: '1',
-        name: 'Tablero básico'
-    }
+export function Board({ data, taskListInEachColumn }: BoardProps) {
     const columnsContent: React.ReactNode[] = []
-    const taskListInEachColumn = useContext(TaskListInEachColumnContext);
     taskListInEachColumn.forEach(taskList => {
         columnsContent.push(
             <TaskList tasks={taskList} />
