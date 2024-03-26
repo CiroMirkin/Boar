@@ -10,7 +10,7 @@ interface archiveTaskListParams {
 }
 export function archiveTaskListInColumn({ taskListInEachColumn, columnPosition, archive }: archiveTaskListParams): archive {
     const date = getFullDate()
-    const taskListToArchive: taskList = structuredClone(taskListInEachColumn[getIndexOfColumnInColumnList(columnPosition)])
+    const taskListToArchive: taskList = taskListInEachColumn[getIndexOfColumnInColumnList(columnPosition)]
     archive.push({
         date,
         tasklist: taskListToArchive
