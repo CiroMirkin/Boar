@@ -14,6 +14,8 @@ import {
 import { Button } from "./ui/button"
 import { taskList } from "@/models/task"
 
+export const TaskListInEachColumnContext = React.createContext([[], [], []] as taskList[])
+
 interface BoardProps {
     children?: React.ReactNode
     data: boardModel
@@ -43,7 +45,9 @@ export function Board({ data, taskListInEachColumn }: BoardProps) {
                     </DropdownMenuContent>
                 </DropdownMenu>
             </header>
-            <ColumnList columnsContent={columnsContent} />
+            <TaskListInEachColumnContext.Provider value={taskListInEachColumn}>
+                <ColumnList columnsContent={columnsContent} />
+            </TaskListInEachColumnContext.Provider>
         </>
     )
 }

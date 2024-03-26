@@ -13,10 +13,11 @@ import {
 import { ScrollArea } from "./ui/scroll-area";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { ColumnListContext, TaskListInEachColumnContext } from "@/App";
+import { ColumnListContext } from "@/App";
 import { useDispatch } from "react-redux";
 import { addTaskAtFirstColumn, deleteLastTheTaskList } from "@/redux/taskListInEachColumnReducer";
 import { archiveTaskListAtLastColumn } from "@/redux/archiveReducer";
+import { TaskListInEachColumnContext } from "./Board";
 
 interface ColumnProps {
     data: columnModel
