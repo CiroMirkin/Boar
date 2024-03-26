@@ -1,6 +1,7 @@
 import { taskList, taskModel } from "@/models/task";
 import { addTaskInFirstColumn } from "@/useCase/task/addTask";
 import { deleteThisTask } from "@/useCase/task/deleteTask";
+import { deleteLastTaskList } from "@/useCase/task/deleteTaskList";
 import { moveThisTaskToTheNextColumn, moveThisTaskToThePrevColumn } from "@/useCase/task/moveTask";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
@@ -31,9 +32,12 @@ export const taskListInEachColumnSlice = createSlice({
         moveTaskToPrevColumn: (state, action: PayloadAction<taskModel>) => {
             const task = action.payload
             state.list = moveThisTaskToThePrevColumn({ taskListInEachColumn: state.list, task })
+        },
+        deleteLastTheTaskList: (state) => {
+            state.list = deleteLastTaskList({ taskListInEachColumn: state.list })
         }
     }
 })
 
-export const { addTaskAtFirstColumn, deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn } = taskListInEachColumnSlice.actions
+export const { addTaskAtFirstColumn, deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn, deleteLastTheTaskList } = taskListInEachColumnSlice.actions
 export default taskListInEachColumnSlice.reducer
