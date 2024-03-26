@@ -15,7 +15,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { ColumnListContext, TaskListInEachColumnContext } from "@/App";
 import { useDispatch } from "react-redux";
-import { addTaskAtFirstColumn } from "@/redux/taskListInEachColumnReducer";
+import { addTaskAtFirstColumn, deleteLastTheTaskList } from "@/redux/taskListInEachColumnReducer";
 import { archiveTaskListAtLastColumn } from "@/redux/archiveReducer";
 
 interface ColumnProps {
@@ -32,6 +32,7 @@ export function Column({ data, children }: ColumnProps) {
     const taskListInEachColumn = useContext(TaskListInEachColumnContext)
     const archiveTaskList = () => {
         dispatch(archiveTaskListAtLastColumn(taskListInEachColumn))
+        dispatch(deleteLastTheTaskList())
     }
 
     const handleClick = () => {
