@@ -13,9 +13,10 @@ import {
 import { ScrollArea } from "./ui/scroll-area";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { ColumnListContext } from "@/App";
+import { ColumnListContext, TaskListInEachColumnContext } from "@/App";
 import { useDispatch } from "react-redux";
 import { addTaskAtFirstColumn } from "@/redux/taskListInEachColumnReducer";
+import { archiveTaskListAtLastColumn } from "@/redux/archiveReducer";
 
 interface ColumnProps {
     data: columnModel
@@ -27,6 +28,11 @@ export function Column({ data, children }: ColumnProps) {
     const columnList = useContext(ColumnListContext)
 
     const dispatch = useDispatch()
+    
+    const taskListInEachColumn = useContext(TaskListInEachColumnContext)
+    const archiveTaskList = () => {
+        dispatch(archiveTaskListAtLastColumn(taskListInEachColumn))
+    }
 
     const handleClick = () => {
         const task = getNewTask({ descriptionText: newTaskDescription, columnPosition: '1'})
@@ -60,7 +66,7 @@ export function Column({ data, children }: ColumnProps) {
                 {
                     isThisTheLastColumn(data, columnList) 
                     && <Button  
-                        onClick={() => console.log('archive')}
+                        onClick={archiveTaskList}
                         >Archivar tareas</Button>
                 }
             </CardFooter>
