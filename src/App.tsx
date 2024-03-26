@@ -13,10 +13,16 @@ export const TaskListInEachColumnContext = React.createContext([[], [], []] as t
 const getArchive = (): archive => {
   return useSelector((state: RootState) => state.archive).reverse()
 }
+const getColumnList = () => {
+  return useSelector((state: RootState) => state.columnList)
+}
+const getTaskListInEachColumn = () => {
+  return useSelector((state: RootState) => state.taskListInEachColumn.list)
+}
 
 function App() {
-  const columnList = useSelector((state: RootState) => state.columnList)
-  const taskListInEachColumn = useSelector((state: RootState) => state.taskListInEachColumn.list)
+  const columnList = getColumnList()
+  const taskListInEachColumn = getTaskListInEachColumn()
   return (
     <>
     <ColumnListContext.Provider value={columnList}>
