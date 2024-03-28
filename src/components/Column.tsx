@@ -28,14 +28,15 @@ interface ColumnProps {
 
 export function Column({ data, children }: ColumnProps) {
     return (
-        <Card className="h-auto flex-1 flex flex-col justify-between">
-            <ColumnContext.Provider value={data} >
-            <CardHeader>
-                <CardTitle>{ data.name }</CardTitle>
-            </CardHeader>
-            { children }
-            </ColumnContext.Provider>
-        </Card>
+        <ColumnContext.Provider value={data} >
+            <Card className="h-auto flex-1 flex flex-col justify-between">
+                <CardHeader>
+                    <CardTitle>{ data.name }</CardTitle>
+                </CardHeader>
+                
+                { children }
+            </Card>
+        </ColumnContext.Provider>
     )
 }
 
