@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { columnModel } from "../models/column";
+import React, { createContext, useContext, useState } from "react";
+import { columnModel, columnNull } from "../models/column";
 import { isThisTheFirstColumn, isThisTheLastColumn } from "../utility/firstOrLastColumn";
 import './Column.css'
 import { getNewTask } from "../models/task";
@@ -18,6 +18,8 @@ import { useDispatch } from "react-redux";
 import { addTaskAtFirstColumn, deleteLastTheTaskList } from "@/redux/taskListInEachColumnReducer";
 import { archiveTaskListAtLastColumn } from "@/redux/archiveReducer";
 import { TaskListInEachColumnContext } from "./Board";
+
+const ColumnContext = createContext(columnNull)
 
 interface ColumnProps {
     data: columnModel
@@ -44,6 +46,7 @@ export function Column({ data, children }: ColumnProps) {
 
     return (
         <Card className="h-auto flex-1 flex flex-col justify-between">
+            <ColumnContext.Provider value={data} >
             <CardHeader>
                 <CardTitle>{ data.name }</CardTitle>
             </CardHeader>
@@ -72,6 +75,7 @@ export function Column({ data, children }: ColumnProps) {
                         >Archivar tareas</Button>
                 }
             </CardFooter>
+            </ColumnContext.Provider>
         </Card>
     )
 }

@@ -5,6 +5,12 @@ export interface columnModel {
     name: string
 }
 
+export const columnNull: columnModel = {
+  id: "",
+  position: "",
+  name: ""
+}
+
 export const defaultColumnList: columnModel[] = [
     {
       id: "c1",
