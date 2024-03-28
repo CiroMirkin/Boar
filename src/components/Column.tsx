@@ -50,11 +50,7 @@ export function Column({ data, children }: ColumnProps) {
             <CardHeader>
                 <CardTitle>{ data.name }</CardTitle>
             </CardHeader>
-            <CardContent className="h-96">
-                <ScrollArea className="h-full w-full rounded-md">
-                    { children }
-                </ScrollArea>
-            </CardContent>
+            { children }
             <CardFooter>
                 {
                     isThisTheFirstColumn(data) 
@@ -79,3 +75,14 @@ export function Column({ data, children }: ColumnProps) {
         </Card>
     )
 }
+
+function ColumnContent({ children }: { children: React.ReactNode }) {
+    return (
+        <CardContent className="h-96">
+            <ScrollArea className="h-full w-full rounded-md">
+                { children }
+            </ScrollArea>
+        </CardContent>
+    )
+}
+Column.ColumnContent = ColumnContent

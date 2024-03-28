@@ -13,7 +13,9 @@ export function ColumnList({ columnsContent }: ColumnListProps) {
     columns.forEach((column, columnIndex) => {
         columnList.push(
             <Column data={column} key={column.id}>
-                { columnsContent[columnIndex] && columnsContent[columnIndex] }
+                <Column.ColumnContent>
+                    { columnsContent[columnIndex] && columnsContent[columnIndex] }
+                </Column.ColumnContent>
             </Column>
         );
     });
