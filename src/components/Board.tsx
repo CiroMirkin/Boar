@@ -25,7 +25,7 @@ export function Board({ data, taskListInEachColumn }: BoardProps) {
     return (
         <>
             <TaskListInEachColumnContext.Provider value={taskListInEachColumn}>
-                <ColumnList columnsContent={columnsContent} />
+                <ColumnList columnsContent={columnsContent} classNameOfColumnContent="min-h-80 md:h-[60vh] min-w-72 max-w-80" />
             </TaskListInEachColumnContext.Provider>
         </>
     )

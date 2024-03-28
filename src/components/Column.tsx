@@ -39,9 +39,9 @@ export function Column({ data, children }: ColumnProps) {
     )
 }
 
-function ColumnContent({ children }: { children: React.ReactNode }) {
+function ColumnContent({ children, className }: { children: React.ReactNode, className?: string }) {
     return (
-        <CardContent className="h-96">
+        <CardContent className={className ? className : ''}>
             
             { children }
 
