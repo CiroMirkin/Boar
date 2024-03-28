@@ -10,7 +10,6 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"  
-import { ScrollArea } from "./ui/scroll-area";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { ColumnListContext } from "@/App";
@@ -43,9 +42,9 @@ export function Column({ data, children }: ColumnProps) {
 function ColumnContent({ children }: { children: React.ReactNode }) {
     return (
         <CardContent className="h-96">
-            <ScrollArea className="h-full w-full rounded-md">
-                { children }
-            </ScrollArea>
+            
+            { children }
+
         </CardContent>
     )
 }
