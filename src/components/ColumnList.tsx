@@ -16,6 +16,7 @@ export function ColumnList({ columnsContent }: ColumnListProps) {
                 <Column.ColumnContent>
                     { columnsContent[columnIndex] && columnsContent[columnIndex] }
                 </Column.ColumnContent>
+                <Column.Footer/>
             </Column>
         );
     });

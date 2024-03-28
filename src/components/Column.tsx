@@ -27,6 +27,31 @@ interface ColumnProps {
 }
 
 export function Column({ data, children }: ColumnProps) {
+    return (
+        <Card className="h-auto flex-1 flex flex-col justify-between">
+            <ColumnContext.Provider value={data} >
+            <CardHeader>
+                <CardTitle>{ data.name }</CardTitle>
+            </CardHeader>
+            { children }
+            </ColumnContext.Provider>
+        </Card>
+    )
+}
+
+function ColumnContent({ children }: { children: React.ReactNode }) {
+    return (
+        <CardContent className="h-96">
+            <ScrollArea className="h-full w-full rounded-md">
+                { children }
+            </ScrollArea>
+        </CardContent>
+    )
+}
+Column.ColumnContent = ColumnContent
+
+function ColumnFooter({  }: {  }) { 
+    const data = useContext(ColumnContext)
     const [ newTaskDescription, setNewTaskDescription ] = useState('')
     const columnList = useContext(ColumnListContext)
 
@@ -43,46 +68,26 @@ export function Column({ data, children }: ColumnProps) {
         dispatch(addTaskAtFirstColumn(task))
         setNewTaskDescription('')
     }
-
     return (
-        <Card className="h-auto flex-1 flex flex-col justify-between">
-            <ColumnContext.Provider value={data} >
-            <CardHeader>
-                <CardTitle>{ data.name }</CardTitle>
-            </CardHeader>
-            { children }
-            <CardFooter>
-                {
-                    isThisTheFirstColumn(data) 
-                    && <>
-                        <Input 
-                            type="text" value={newTaskDescription} 
-                            className="mr-1.5"
-                            onChange={(e) => setNewTaskDescription(e.target.value)}  
-                        />
-                        <Button onClick={handleClick}>Añadir</Button>
-                    </>
-                    
-                }
-                {
-                    isThisTheLastColumn(data, columnList) 
-                    && <Button  
-                        onClick={archiveTaskList}
-                        >Archivar tareas</Button>
-                }
-            </CardFooter>
-            </ColumnContext.Provider>
-        </Card>
+        <CardFooter>
+            {
+                isThisTheFirstColumn(data) 
+                && <>
+                    <Input 
+                        type="text" value={newTaskDescription} 
+                        className="mr-1.5"
+                        onChange={(e) => setNewTaskDescription(e.target.value)}  
+                    />
+                    <Button onClick={handleClick}>Añadir</Button>
+                </>
+            }
+            {
+                isThisTheLastColumn(data, columnList) 
+                && <Button  
+                    onClick={archiveTaskList}
+                    >Archivar tareas</Button>
+            }
+        </CardFooter>
     )
 }
-
-function ColumnContent({ children }: { children: React.ReactNode }) {
-    return (
-        <CardContent className="h-96">
-            <ScrollArea className="h-full w-full rounded-md">
-                { children }
-            </ScrollArea>
-        </CardContent>
-    )
-}
-Column.ColumnContent = ColumnContent
+Column.Footer = ColumnFooter
