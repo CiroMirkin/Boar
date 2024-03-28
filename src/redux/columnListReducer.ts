@@ -3,7 +3,13 @@ import { addColumnAtTheEnd } from "@/useCase/column/addColumn";
 import { deleteThisColumn } from "@/useCase/column/deleteColumn";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-const initialState = defaultColumnList
+interface InitialState {
+    list: columnModel[]
+}
+
+const initialState: InitialState = {
+    list: defaultColumnList
+}
 
 export const columnListSlice = createSlice({
     name: 'columnList',
@@ -11,11 +17,11 @@ export const columnListSlice = createSlice({
     reducers: {
         addColumn: (state, action: PayloadAction<columnModel>) => {
             const column = action.payload
-            state = addColumnAtTheEnd({ column, columnList: state})
+            state.list = addColumnAtTheEnd({ column, columnList: state.list})
         },
         deleteColumn: (state, action: PayloadAction<columnModel>) => {
             const column = action.payload
-            state = deleteThisColumn({ column, columnList: state})
+            state.list = deleteThisColumn({ column, columnList: state.list})
         }
     }
 })

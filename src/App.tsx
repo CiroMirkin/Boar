@@ -13,7 +13,7 @@ const getArchive = (): archive => {
   return useSelector((state: RootState) => state.archive).reverse()
 }
 const getColumnList = () => {
-  return useSelector((state: RootState) => state.columnList)
+  return useSelector((state: RootState) => state.columnList.list)
 }
 const getTaskListInEachColumn = () => {
   return useSelector((state: RootState) => state.taskListInEachColumn.list)
