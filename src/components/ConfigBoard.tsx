@@ -3,17 +3,15 @@ import { addColumnAtTheEnd } from "../useCase/column/addColumn"
 import { defaultColumnList, getBlankColumnWithoutPosition } from "../models/column"
 import { deleteThisColumn } from "../useCase/column/deleteColumn"
 import { columnModel } from "../models/column"
+import { boardModel } from "@/models/board"
 
-interface ConfigBoardParams {}
+interface ConfigBoardParams {
+    columnList: columnModel[]
+    boardData: boardModel
+}
 
-export function ConfigBoard({}:ConfigBoardParams) {
+export function ConfigBoard({ boardData, columnList }:ConfigBoardParams) {
     const updateBoardData = (p: any) => p
-    const boardData = {
-        boardData: {
-            name: 'pip'
-        },
-        columnList: defaultColumnList
-    }
     
     const getNewColumn = () => getBlankColumnWithoutPosition({ name: 'Nueva columna'})
 
@@ -22,15 +20,15 @@ export function ConfigBoard({}:ConfigBoardParams) {
             updateBoardData({ action, column })
         }
         catch (error) {
-            console.log(error)
+            console.log(error) 
         }
     }
 
-    const columnsContent: React.ReactNode[] = boardData.columnList.map(column => 
+    const columnsContent: React.ReactNode[] = columnList.map(column => 
         <button onClick={() => handleClick(deleteThisColumn, column)}>Eliminar</button>
     ) 
 
-    const columns: React.ReactNode[] = boardData.columnList.map(column =>
+    const columns: React.ReactNode[] = columnList.map(column =>
         <li key={column.id}>
             <h4>{column.name}</h4>
             <button onClick={() => handleClick(deleteThisColumn, column)}>Eliminar</button>
@@ -40,7 +38,7 @@ export function ConfigBoard({}:ConfigBoardParams) {
         <>
             <h1>Preferencias</h1>
             <div>
-                <h2>{boardData.boardData.name}</h2>
+                <h2>{boardData.name}</h2>
             </div>
             <ul>
                 { columns }
