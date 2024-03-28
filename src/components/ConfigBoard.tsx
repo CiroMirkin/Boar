@@ -4,6 +4,8 @@ import { columnModel } from "../models/column"
 import { boardModel } from "@/models/board"
 import { useDispatch } from "react-redux"
 import { addColumn, deleteColumn } from "@/redux/columnListReducer"
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
+import { Button } from "./ui/button"
 
 interface ConfigBoardParams {
     columnList: columnModel[]
@@ -25,20 +27,28 @@ export function ConfigBoard({ boardData, columnList }:ConfigBoardParams) {
     }
 
     const columns: React.ReactNode[] = columnList.map(column =>
-        <li key={column.id}>
-            <h4>{column.name}</h4>
-            <button onClick={() => handleClick(deleteColumn, column)}>Eliminar</button>
-        </li>
+        <Card key={column.id}>
+            <CardHeader>
+                <CardTitle>
+                    {column.name}
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <Button 
+                    onClick={() => handleClick(deleteColumn, column)} 
+                    variant="destructiveGhost" className="w-full"
+                    >Eliminar</Button>
+            </CardContent>
+        </Card>
     )
     return (
         <>
-            <h1>Preferencias</h1>
             <div>
-                <h2>{boardData.name}</h2>
+                <h2 className="px-6 text-2xl">{boardData.name}</h2>
             </div>
-            <ul>
+            <ul className="h-auto w-full py-5 px-6 flex flex-wrap items-end gap-y-3 gap-x-3.5">
                 { columns }
-                <li><button onClick={() => handleClick(addColumn, getNewColumn())}>Nueva columna</button></li>
+                <li><Button onClick={() => handleClick(addColumn, getNewColumn())}>Nueva columna</Button></li>
             </ul>
         </>
     )
