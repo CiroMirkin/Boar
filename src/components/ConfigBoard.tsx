@@ -1,7 +1,5 @@
 import React from "react"
-import { addColumnAtTheEnd } from "../useCase/column/addColumn"
-import { defaultColumnList, getBlankColumnWithoutPosition } from "../models/column"
-import { deleteThisColumn } from "../useCase/column/deleteColumn"
+import { getBlankColumnWithoutPosition } from "../models/column"
 import { columnModel } from "../models/column"
 import { boardModel } from "@/models/board"
 import { useDispatch } from "react-redux"
@@ -25,10 +23,6 @@ export function ConfigBoard({ boardData, columnList }:ConfigBoardParams) {
             console.log(error) 
         }
     }
-
-    const columnsContent: React.ReactNode[] = columnList.map(column => 
-        <button onClick={() => handleClick(deleteColumn, column)}>Eliminar</button>
-    ) 
 
     const columns: React.ReactNode[] = columnList.map(column =>
         <li key={column.id}>
