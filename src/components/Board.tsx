@@ -3,7 +3,6 @@ import { boardModel } from "../models/board"
 import { ColumnList } from "./ColumnList"
 import { TaskList } from "./TaskList"
 import { taskList } from "@/models/task"
-import { Header } from "./Header"
 
 export const TaskListInEachColumnContext = React.createContext([[], [], []] as taskList[])
 
@@ -22,7 +21,6 @@ export function Board({ data, taskListInEachColumn }: BoardProps) {
     })
     return (
         <>
-            <Header title={data.name} />
             <TaskListInEachColumnContext.Provider value={taskListInEachColumn}>
                 <ColumnList columnsContent={columnsContent} />
             </TaskListInEachColumnContext.Provider>

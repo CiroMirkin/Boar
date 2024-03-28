@@ -5,6 +5,7 @@ import { defaultColumnList } from './models/column'
 import { useSelector } from 'react-redux'
 import { RootState } from './redux/store'
 import { archive } from './models/archive'
+import { Header } from './components/Header'
 
 export const ColumnListContext = React.createContext(defaultColumnList)
 
@@ -24,6 +25,7 @@ function App() {
   const boardData = { id: '1', name: 'Tablero básico' }
   return (
     <>
+    <Header title={boardData.name} />
     <ColumnListContext.Provider value={columnList}>
       <Board data={boardData} taskListInEachColumn={taskListInEachColumn} />
     </ColumnListContext.Provider>
