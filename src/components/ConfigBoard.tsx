@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux"
 import { addColumn, deleteColumn } from "@/redux/columnListReducer"
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
 import { Button } from "./ui/button"
+import { useToast } from "./ui/use-toast"
 
 interface ConfigBoardParams {
     columnList: columnModel[]
@@ -14,6 +15,7 @@ interface ConfigBoardParams {
 
 export function ConfigBoard({ boardData, columnList }:ConfigBoardParams) {
     const updateBoardData = useDispatch()
+    const { toast } = useToast()
     
     const getNewColumn = () => getBlankColumnWithoutPosition({ name: 'Nueva columna'})
 
@@ -22,7 +24,17 @@ export function ConfigBoard({ boardData, columnList }:ConfigBoardParams) {
             updateBoardData(action(column))
         }
         catch (error) {
-            console.log(error) 
+            let message: string = 'Unknown Error :('
+            if (error instanceof Error) {
+                message = error.message
+            }
+            console.error(message)
+            toast({
+                title: 'Error',
+                description: message,
+                variant: "destructive",
+                duration: 3000
+            })
         }
     }
 

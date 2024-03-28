@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import { RootState } from './redux/store'
 import { archive } from './models/archive'
 import { Header } from './components/Header'
+import { Toaster } from './components/ui/toaster'
 
 export const ColumnListContext = React.createContext(defaultColumnList)
 
@@ -29,6 +30,7 @@ function App() {
     <ColumnListContext.Provider value={columnList}>
       <Board data={boardData} taskListInEachColumn={taskListInEachColumn} />
     </ColumnListContext.Provider>
+    <Toaster/>
     </>
   )
 }
