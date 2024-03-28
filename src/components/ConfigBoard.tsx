@@ -4,6 +4,8 @@ import { defaultColumnList, getBlankColumnWithoutPosition } from "../models/colu
 import { deleteThisColumn } from "../useCase/column/deleteColumn"
 import { columnModel } from "../models/column"
 import { boardModel } from "@/models/board"
+import { useDispatch } from "react-redux"
+import { addColumn, deleteColumn } from "@/redux/columnListReducer"
 
 interface ConfigBoardParams {
     columnList: columnModel[]
@@ -11,13 +13,13 @@ interface ConfigBoardParams {
 }
 
 export function ConfigBoard({ boardData, columnList }:ConfigBoardParams) {
-    const updateBoardData = (p: any) => p
+    const updateBoardData = useDispatch()
     
     const getNewColumn = () => getBlankColumnWithoutPosition({ name: 'Nueva columna'})
 
     const handleClick = (action: Function, column: columnModel) => {
         try {
-            updateBoardData({ action, column })
+            updateBoardData(action(column))
         }
         catch (error) {
             console.log(error) 
@@ -25,13 +27,13 @@ export function ConfigBoard({ boardData, columnList }:ConfigBoardParams) {
     }
 
     const columnsContent: React.ReactNode[] = columnList.map(column => 
-        <button onClick={() => handleClick(deleteThisColumn, column)}>Eliminar</button>
+        <button onClick={() => handleClick(deleteColumn, column)}>Eliminar</button>
     ) 
 
     const columns: React.ReactNode[] = columnList.map(column =>
         <li key={column.id}>
             <h4>{column.name}</h4>
-            <button onClick={() => handleClick(deleteThisColumn, column)}>Eliminar</button>
+            <button onClick={() => handleClick(deleteColumn, column)}>Eliminar</button>
         </li>
     )
     return (
@@ -42,7 +44,7 @@ export function ConfigBoard({ boardData, columnList }:ConfigBoardParams) {
             </div>
             <ul>
                 { columns }
-                <li><button onClick={() => handleClick(addColumnAtTheEnd, getNewColumn())}>Nueva columna</button></li>
+                <li><button onClick={() => handleClick(addColumn, getNewColumn())}>Nueva columna</button></li>
             </ul>
         </>
     )
