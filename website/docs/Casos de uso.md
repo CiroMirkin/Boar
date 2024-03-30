@@ -5,39 +5,39 @@ tags:
   - Casos de uso
   - Historias de usuario
   - Estado global
-  - Context
+  - Redux
 ---
 
 # Casos de uso
 
 ## ¿Donde encuentro la lógica de un caso de uso?
 
-Los casos de uso están en la carpeta `useCase`.
+La lógica de los casos de uso esta en la carpeta `useCase`.
 
 ## Crear un nuevo caso de uso
 
 1. Se crea una función en la carpeta `useCase`.
 
-2. La función tiene que retornar el tipo `board`.
-
-3. La función tiene que tener como parámetro la interfaz `boardUseCaseParams` o alguna otra que se extienda de esta definida en `src/useCase/useCase.ts`.
-
 ## Implementación de una función de caso de uso
 
-Para usar las funciones de este tipo tienen que pasarse como parámetro a la función del contexto global `update` que tiene la propiedad `action`.
+Los casos de uso se implementan a través de Redux toolkit en la carpeta `src/redux`.
 
-:::warning
-  Cuando se pasa una función en el propiedad `action` se pasa sin paréntesis.
+Ejemplo de la implementación de la lógica del caso de uso eliminar tarea (*deleteThisTask*) :
 
-  ```jsx
-  updateBoard({
-    action: deleteThisTask,
-    task,
-  })
-  // Como se puede apreciar la "entidad" sobre la que actúa un caso de uso se pasa por separado.
-  ```
-:::
+```js title="/src/redux/taskListInEachColumnReducer.ts"
+// ...
 
-:::info
-El contexto global se encuentra en el componente `App.tsx`.
-:::
+export const taskListInEachColumnSlice = createSlice({
+  name: 'taskListInEachColumn',
+  initialState,
+  reducers: {
+    deleteTask: (state, action: PayloadAction<taskModel>) => {
+      const task = action.payload
+      // highlight-next-line
+      state.list = deleteThisTask({ taskListInEachColumn: state.list, task })
+    },
+  }
+})
+
+// ...
+```
