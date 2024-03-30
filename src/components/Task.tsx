@@ -57,7 +57,7 @@ function TaskActions() {
         dispatch(action(data))
     }
     return (
-        <CardFooter className="flex flex-col justify-between gap-x-1 gap-y-1">
+        <CardFooter className="flex flex-col justify-between gap-x-1 gap-y-1.5">
             <div className="w-full grid grid-flow-col justify-stretch gap-1.5">
                 <Button size="sm" onClick={() => handleClick(moveTaskToPrevColumnAction())}>Retroceder</Button>
                 <Button size="sm" onClick={() => handleClick(moveTaskToNextColumnAction())}>Avanzar</Button>
