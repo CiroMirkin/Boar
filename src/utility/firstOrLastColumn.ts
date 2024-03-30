@@ -1,15 +1,14 @@
 import { columnModel } from "../models/column";
-import { getIndexOfColumnInColumnList } from "./indexOfColumn";
 
-export const isThisTheFirstColumn = (column: columnModel): boolean => {
-    if(getIndexOfColumnInColumnList(column.position) === 0) {
+export const isThisTheFirstColumn = (column: columnModel, columnList: columnModel[]): boolean => {
+    if(columnList[0].id === column.id) {
         return true
     }
     return false
 }
 
 export const isThisTheLastColumn = (column: columnModel, columnList: columnModel[]): boolean => {
-    if(columnList.length === Number(column.position)) {
+    if(columnList[columnList.length -1].id === column.id) {
         return true
     }
     return false

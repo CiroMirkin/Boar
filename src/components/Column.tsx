@@ -70,7 +70,7 @@ function ColumnFooter({  }: {  }) {
     return (
         <CardFooter className="min-h-16">
             {
-                isThisTheFirstColumn(data) 
+                isThisTheFirstColumn(data, columnList) 
                 && <>
                     <Input 
                         type="text" value={newTaskDescription} 
