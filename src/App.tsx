@@ -7,6 +7,7 @@ import { Toaster } from './components/ui/toaster'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Archive } from './components/Archive'
 import { ConfigBoard } from './components/ConfigBoard'
+import { Erro404 } from './components/404'
 
 
 const getArchive = (): archive => {
@@ -43,6 +44,7 @@ function App() {
               <ConfigBoard boardData={boardData} columnList={columnList} />
             }
           />
+          <Route path='*' element={ <Erro404 /> } />
         </Routes>
       </Router>
       <Toaster/>
