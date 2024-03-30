@@ -7,6 +7,7 @@ import { addColumn, deleteColumn } from "@/redux/columnListReducer"
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
 import { Button } from "./ui/button"
 import { useToast } from "./ui/use-toast"
+import { Header } from "./Header"
 
 interface ConfigBoardParams {
     columnList: columnModel[]
@@ -55,6 +56,7 @@ export function ConfigBoard({ boardData, columnList }:ConfigBoardParams) {
     )
     return (
         <>
+            <Header title="Preferencias" />
             <div>
                 <h2 className="px-6 text-2xl">{boardData.name}</h2>
             </div>

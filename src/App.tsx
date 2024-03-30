@@ -3,7 +3,6 @@ import { Board } from './components/Board'
 import { useSelector } from 'react-redux'
 import { RootState } from './redux/store'
 import { archive } from './models/archive'
-import { Header } from './components/Header'
 import { Toaster } from './components/ui/toaster'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Archive } from './components/Archive'
@@ -27,8 +26,6 @@ function App() {
   return (
     <>
     <Router>
-      <Header title={boardData.name} />
-
       <Routes>
         <Route path='/' 
           element={
