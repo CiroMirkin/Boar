@@ -36,8 +36,14 @@ npm run dev
     ```bash
     cd website
     ```
+    
+    Luego para instalar sus dependencias:
 
-    Y luego:
+    ```bash
+    npm i
+    ```
+
+    Y por último:
     
     ```bash
     npm run start
