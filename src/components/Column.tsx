@@ -79,7 +79,7 @@ function ColumnFooter({  }: {  }) {
                         onChange={(e) => setNewTaskDescription(e.target.value)}  
                         placeholder="Nueva tarea..."
                     />
-                    <Button onClick={handleClick}><Plus size={iconSize} /></Button>
+                    <Button onClick={handleClick} title="Crear tarea" ><Plus size={iconSize} /></Button>
                 </>
             }
             {

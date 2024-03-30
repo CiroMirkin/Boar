@@ -64,7 +64,7 @@ export function ConfigBoard({ boardData, columnList }:ConfigBoardParams) {
             </div>
             <ul className="h-auto w-full py-5 px-6 flex flex-wrap items-end gap-y-3 gap-x-3.5"> 
                 { columns }
-                <li><Button onClick={() => handleClick(addColumn, getNewColumn())}><Plus size={iconSize} /></Button></li>
+                <li><Button onClick={() => handleClick(addColumn, getNewColumn())} title="Crear columna" ><Plus size={iconSize} /></Button></li>
             </ul>
         </>
     )
