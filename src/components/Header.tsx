@@ -7,7 +7,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
-import { Archive, Settings } from "lucide-react"
+import { Archive, Columns3, Settings } from "lucide-react"
 import { Link } from 'react-router-dom'
 
 interface HeaderProps {
@@ -22,12 +22,13 @@ export function Header({ title }: HeaderProps) {
             <Button variant="outline">Menu</Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuLabel>
-              <Link to='/'>
-                Boar
-              </Link>
-            </DropdownMenuLabel>
+            <DropdownMenuLabel>Boar</DropdownMenuLabel>
             <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <Link to='/' className="flex">
+                <Columns3 size="20" className="mr-2" /> Tablero
+              </Link>
+            </DropdownMenuItem>
             <DropdownMenuItem>
               <Link to='/settings' className="flex">
                 <Settings size="20" className="mr-2" /> Preferencias
