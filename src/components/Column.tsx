@@ -59,8 +59,11 @@ function ColumnFooter({  }: {  }) {
     
     const taskListInEachColumn = useContext(TaskListInEachColumnContext)
     const archiveTaskList = () => {
-        dispatch(archiveTaskListAtLastColumn(taskListInEachColumn))
-        dispatch(deleteLastTheTaskList())
+        const thereAreTasksToBeArchive = !!taskListInEachColumn[taskListInEachColumn.length - 1].length
+        if(thereAreTasksToBeArchive) {
+            dispatch(archiveTaskListAtLastColumn(taskListInEachColumn))
+            dispatch(deleteLastTheTaskList())
+        }
     }
 
     const handleClick = () => {
