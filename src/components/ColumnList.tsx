@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Column } from "./Column";
-import './ColumnList.css'
 import { ColumnListContext } from "@/App";
 
 interface ColumnListProps {
