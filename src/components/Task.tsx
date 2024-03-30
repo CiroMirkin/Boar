@@ -9,13 +9,14 @@ const TaskContext = createContext(taskNull)
 
 interface TaskProps {
     data: taskModel,
-    children: React.ReactNode
+    children?: React.ReactNode
 }
 
 export function Task({ data, children }: TaskProps) {
     return (
         <TaskContext.Provider value={ data }>
             <Card>
+                <TaskDescription />
             { children }
             </Card>
         </TaskContext.Provider>
@@ -53,5 +54,4 @@ function TaskActions() {
     )
 }
 
-Task.TaskDescription = TaskDescription
 Task.TaskActions = TaskActions

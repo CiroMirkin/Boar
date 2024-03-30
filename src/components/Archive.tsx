@@ -14,9 +14,7 @@ export function Archive({ boardArchive}: ArchiveProps) {
         const taskListArchived: React.ReactNode[] = []
         tasklist.forEach(task => 
             taskListArchived.push(
-                <Task key={task.id} data={task}>
-                    <Task.TaskDescription />
-                </Task>
+                <Task key={task.id} data={task} />
             )
         )
         archive.push(
