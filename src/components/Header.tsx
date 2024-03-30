@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { Archive, Settings } from "lucide-react"
+import { Link } from 'react-router-dom'
 
 interface HeaderProps {
     title: string
@@ -21,10 +22,22 @@ export function Header({ title }: HeaderProps) {
             <Button variant="outline">Menu</Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuLabel>Boar</DropdownMenuLabel>
+            <DropdownMenuLabel>
+              <Link to='/'>
+                Boar
+              </Link>
+            </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem><Settings size="20" className="mr-2" />Preferencias</DropdownMenuItem>
-            <DropdownMenuItem><Archive size="20" className="mr-2" /> Archivo</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link to='/settings' className="flex">
+                <Settings size="20" className="mr-2" /> Preferencias
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link to='/archive'>
+                <Archive size="20" className="mr-2" /> Archivo
+              </Link>
+              </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </header>

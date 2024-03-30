@@ -5,7 +5,9 @@ import { RootState } from './redux/store'
 import { archive } from './models/archive'
 import { Header } from './components/Header'
 import { Toaster } from './components/ui/toaster'
-
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { Archive } from './components/Archive'
+import { ConfigBoard } from './components/ConfigBoard'
 
 
 const getArchive = (): archive => {
@@ -24,9 +26,28 @@ function App() {
   const boardData = { id: '1', name: 'Tablero básico' }
   return (
     <>
+    <Router>
       <Header title={boardData.name} />
 
-        <Board data={boardData} taskListInEachColumn={taskListInEachColumn} columnList={columnList} />
+      <Routes>
+        <Route path='/' 
+          element={
+            <Board data={boardData} taskListInEachColumn={taskListInEachColumn} columnList={columnList} />
+          }
+        />
+        <Route path='/archive' 
+          element={
+            <Archive boardArchive={getArchive()} />
+          }
+        />
+        <Route path='/settings' 
+          element={
+            <ConfigBoard boardData={boardData} columnList={columnList} />
+          }
+        />
+      </Routes>
+    </Router>
+
 
       <Toaster/>
     </>
