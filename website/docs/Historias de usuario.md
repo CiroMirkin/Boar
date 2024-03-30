@@ -13,6 +13,7 @@ Esta son las historias de usuario implementadas actualmente en Boar.
 
 * Como usuario, puedo crear tareas.
   * Puede crear tareas solo en la primer columna.
+  * No puede crear tareas vacías, deben tener una descripción.
 * Como usuario, puedo eliminar las tareas que quiera.
 * Como usuario, puedo mover las tareas entre columnas.
 
@@ -25,9 +26,6 @@ Esta son las historias de usuario implementadas actualmente en Boar.
 
 ## Preferencias
 
-* Como usuario, puedo cambiar el nombre del tablero.
-  * El tablero debe tener un nombre.
-* Como usuario, puedo cambiar el nombre de las columnas.
-  * Las columnas deben tener un nombre.
 * Como usuario, puedo crear nuevas columnas.
 * Como usuario, puedo eliminar columnas.
+  * No puede eliminar columnas si solo hay tres.
