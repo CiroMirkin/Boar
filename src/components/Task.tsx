@@ -1,12 +1,12 @@
 import React, { createContext, useState } from "react";
-import { taskModel, taskNull } from "../models/task";
+import { taskModel, emptyTask } from "../models/task";
 import { deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn } from "@/redux/taskListInEachColumnReducer";
 import { useDispatch } from "react-redux";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardFooter } from "./ui/SmallCard";
 import { useToast } from "./ui/use-toast";
 
-const TaskContext = createContext(taskNull)
+const TaskContext = createContext(emptyTask)
 
 interface TaskProps {
     data: taskModel,

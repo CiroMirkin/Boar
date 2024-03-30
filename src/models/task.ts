@@ -5,7 +5,7 @@ export interface taskModel {
     highlight?: boolean
 }
 
-export const taskNull: taskModel = {
+export const emptyTask: taskModel = {
     id: '',
     descriptionText: '',
     columnPosition: '1',
