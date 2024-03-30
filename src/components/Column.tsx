@@ -29,7 +29,7 @@ interface ColumnProps {
 export function Column({ data, children }: ColumnProps) {
     return (
         <ColumnContext.Provider value={data} >
-            <Card className="h-auto flex-1 flex flex-col justify-between">
+            <Card className="h-auto min-w-80 flex-1 flex flex-col justify-between">
                 <CardHeader>
                     <CardTitle>{ data.name }</CardTitle>
                 </CardHeader>
@@ -70,7 +70,7 @@ function ColumnFooter({  }: {  }) {
         setNewTaskDescription('')
     }
     return (
-        <CardFooter>
+        <CardFooter className="min-h-16">
             {
                 isThisTheFirstColumn(data) 
                 && <>
