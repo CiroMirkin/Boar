@@ -7,7 +7,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
-import { Archive, Columns3, Settings } from "lucide-react"
+import { Archive, Columns3, Github, Settings } from "lucide-react"
 import { Link } from 'react-router-dom'
 import { iconSize } from "@/iconsConstants"
 
@@ -39,7 +39,13 @@ export function Header({ title }: HeaderProps) {
               <Link to='/archive' className="flex">
                 <Archive size={iconSize} className="mr-2" /> Archivo
               </Link>
-              </DropdownMenuItem>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <a href="https://github.com/CiroMirkin/Boar" className="flex">
+                <Github size={iconSize} className="mr-2" /> GitHub
+              </a>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </header>
