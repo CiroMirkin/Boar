@@ -26,11 +26,13 @@ function App() {
   const boardData = { id: '1', name: 'Tablero básico' }
   return (
     <>
-    <Header title={boardData.name} />
-    <ColumnListContext.Provider value={columnList}>
-      <Board data={boardData} taskListInEachColumn={taskListInEachColumn} />
-    </ColumnListContext.Provider>
-    <Toaster/>
+      <Header title={boardData.name} />
+
+      <ColumnListContext.Provider value={columnList}>
+        <Board data={boardData} taskListInEachColumn={taskListInEachColumn} />
+      </ColumnListContext.Provider>
+      
+      <Toaster/>
     </>
   )
 }
