@@ -8,6 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
 import { Button } from "./ui/button"
 import { useToast } from "./ui/use-toast"
 import { Header } from "./Header"
+import { Plus, Trash2 } from "lucide-react"
+import { iconSize } from "@/iconsConstants"
 
 interface ConfigBoardParams {
     columnList: columnModel[]
@@ -50,7 +52,7 @@ export function ConfigBoard({ boardData, columnList }:ConfigBoardParams) {
                 <Button 
                     onClick={() => handleClick(deleteColumn, column)} 
                     variant="destructiveGhost" className="w-full"
-                    >Eliminar</Button>
+                    > <Trash2 size={iconSize} className="mr-2" /> Eliminar</Button>
             </CardContent>
         </Card>
     )
@@ -60,9 +62,9 @@ export function ConfigBoard({ boardData, columnList }:ConfigBoardParams) {
             <div>
                 <h2 className="px-6 text-2xl">{boardData.name}</h2>
             </div>
-            <ul className="h-auto w-full py-5 px-6 flex flex-wrap items-end gap-y-3 gap-x-3.5">
+            <ul className="h-auto w-full py-5 px-6 flex flex-wrap items-end gap-y-3 gap-x-3.5"> 
                 { columns }
-                <li><Button onClick={() => handleClick(addColumn, getNewColumn())}>Nueva columna</Button></li>
+                <li><Button onClick={() => handleClick(addColumn, getNewColumn())}><Plus size={iconSize} /></Button></li>
             </ul>
         </>
     )
