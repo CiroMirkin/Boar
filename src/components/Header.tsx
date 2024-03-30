@@ -9,6 +9,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { Archive, Columns3, Settings } from "lucide-react"
 import { Link } from 'react-router-dom'
+import { iconSize } from "@/iconsConstants"
 
 interface HeaderProps {
     title: string
@@ -26,17 +27,17 @@ export function Header({ title }: HeaderProps) {
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <Link to='/' className="flex">
-                <Columns3 size="20" className="mr-2" /> Tablero
+                <Columns3 size={iconSize} className="mr-2" /> Tablero
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Link to='/settings' className="flex">
-                <Settings size="20" className="mr-2" /> Preferencias
+                <Settings size={iconSize} className="mr-2" /> Preferencias
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Link to='/archive' className="flex">
-                <Archive size="20" className="mr-2" /> Archivo
+                <Archive size={iconSize} className="mr-2" /> Archivo
               </Link>
               </DropdownMenuItem>
           </DropdownMenuContent>

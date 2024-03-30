@@ -16,6 +16,7 @@ import { addTaskAtFirstColumn, deleteLastTheTaskList } from "@/redux/taskListInE
 import { archiveTaskListAtLastColumn } from "@/redux/archiveReducer";
 import { ColumnListContext, TaskListInEachColumnContext } from "./Board";
 import { Archive, Plus } from "lucide-react";
+import { iconSize } from "@/iconsConstants";
 
 const ColumnContext = createContext(columnNull)
 
@@ -77,14 +78,14 @@ function ColumnFooter({  }: {  }) {
                         className="mr-1.5"
                         onChange={(e) => setNewTaskDescription(e.target.value)}  
                     />
-                    <Button onClick={handleClick}><Plus size="20" /></Button>
+                    <Button onClick={handleClick}><Plus size={iconSize} /></Button>
                 </>
             }
             {
                 isThisTheLastColumn(data, columnList) 
                 && <Button  
                     onClick={archiveTaskList}
-                    ><Archive size="20" className="mr-2" /> Archivar tareas</Button>
+                    ><Archive size={iconSize} className="mr-2" /> Archivar tareas</Button>
             }
         </CardFooter>
     )
