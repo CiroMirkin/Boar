@@ -25,27 +25,25 @@ function App() {
   const boardData = { id: '1', name: 'Tablero básico' }
   return (
     <>
-    <Router>
-      <Routes>
-        <Route path='/' 
-          element={
-            <Board data={boardData} taskListInEachColumn={taskListInEachColumn} columnList={columnList} />
-          }
-        />
-        <Route path='/archive' 
-          element={
-            <Archive boardArchive={getArchive()} />
-          }
-        />
-        <Route path='/settings' 
-          element={
-            <ConfigBoard boardData={boardData} columnList={columnList} />
-          }
-        />
-      </Routes>
-    </Router>
-
-
+      <Router>
+        <Routes>
+          <Route path='/' 
+            element={
+              <Board data={boardData} taskListInEachColumn={taskListInEachColumn} columnList={columnList} />
+            }
+          />
+          <Route path='/archive' 
+            element={
+              <Archive boardArchive={getArchive()} />
+            }
+          />
+          <Route path='/settings' 
+            element={
+              <ConfigBoard boardData={boardData} columnList={columnList} />
+            }
+          />
+        </Routes>
+      </Router>
       <Toaster/>
     </>
   )
