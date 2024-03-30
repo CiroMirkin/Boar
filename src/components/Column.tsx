@@ -82,13 +82,19 @@ function ColumnFooter({  }: {  }) {
                         onChange={(e) => setNewTaskDescription(e.target.value)}  
                         placeholder="Nueva tarea..."
                     />
-                    <Button onClick={handleClick} title="Crear tarea" ><Plus size={iconSize} /></Button>
+                    <Button 
+                        onClick={handleClick} 
+                        variant='ghost' 
+                        title="Crear tarea" 
+                    ><Plus size={iconSize} /></Button>
                 </>
             }
             {
                 isThisTheLastColumn(data, columnList) 
                 && <Button  
                     onClick={archiveTaskList}
+                    variant='ghost'
+                    className="w-full"
                     ><Archive size={iconSize} className="mr-2" /> Archivar tareas</Button>
             }
         </CardFooter>
