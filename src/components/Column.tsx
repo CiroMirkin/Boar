@@ -11,11 +11,10 @@ import {
   } from "@/components/ui/card"  
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { ColumnListContext } from "@/App";
 import { useDispatch } from "react-redux";
 import { addTaskAtFirstColumn, deleteLastTheTaskList } from "@/redux/taskListInEachColumnReducer";
 import { archiveTaskListAtLastColumn } from "@/redux/archiveReducer";
-import { TaskListInEachColumnContext } from "./Board";
+import { ColumnListContext, TaskListInEachColumnContext } from "./Board";
 import { Archive, Plus } from "lucide-react";
 
 const ColumnContext = createContext(columnNull)

@@ -4,16 +4,19 @@ import { ColumnList } from "./ColumnList"
 import { TaskList } from "./TaskList"
 import { taskList } from "@/models/task"
 import { ScrollArea } from "./ui/scroll-area"
+import { columnList, defaultColumnList } from "@/models/column"
 
 export const TaskListInEachColumnContext = React.createContext([[], [], []] as taskList[])
+export const ColumnListContext = React.createContext(defaultColumnList as columnList)
 
 interface BoardProps {
     children?: React.ReactNode
     data: boardModel
     taskListInEachColumn: taskList[]
+    columnList: columnList
 }
 
-export function Board({ data, taskListInEachColumn }: BoardProps) {
+export function Board({ data, taskListInEachColumn, columnList }: BoardProps) {
     const columnsContent: React.ReactNode[] = []
     taskListInEachColumn.forEach(taskList => {
         columnsContent.push(
@@ -24,9 +27,11 @@ export function Board({ data, taskListInEachColumn }: BoardProps) {
     })
     return (
         <>
+        <ColumnListContext.Provider value={columnList}>
             <TaskListInEachColumnContext.Provider value={taskListInEachColumn}>
                 <ColumnList columnsContent={columnsContent} classNameOfColumnContent="min-h-80 md:h-[60vh] min-w-72 max-w-80" />
             </TaskListInEachColumnContext.Provider>
+        </ColumnListContext.Provider>
         </>
     )
 }

@@ -1,14 +1,12 @@
-import React from 'react'
 import './App.css'
 import { Board } from './components/Board'
-import { defaultColumnList } from './models/column'
 import { useSelector } from 'react-redux'
 import { RootState } from './redux/store'
 import { archive } from './models/archive'
 import { Header } from './components/Header'
 import { Toaster } from './components/ui/toaster'
 
-export const ColumnListContext = React.createContext(defaultColumnList)
+
 
 const getArchive = (): archive => {
   return useSelector((state: RootState) => state.archive).reverse()
@@ -28,10 +26,8 @@ function App() {
     <>
       <Header title={boardData.name} />
 
-      <ColumnListContext.Provider value={columnList}>
-        <Board data={boardData} taskListInEachColumn={taskListInEachColumn} />
-      </ColumnListContext.Provider>
-      
+        <Board data={boardData} taskListInEachColumn={taskListInEachColumn} columnList={columnList} />
+
       <Toaster/>
     </>
   )

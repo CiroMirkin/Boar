@@ -5,6 +5,8 @@ export interface columnModel {
     name: string
 }
 
+export type columnList = columnModel[]
+
 export const columnNull: columnModel = {
   id: "",
   position: "",

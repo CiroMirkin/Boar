@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Column } from "./Column";
-import { ColumnListContext } from "@/App";
+import { ColumnListContext } from "./Board";
 
 interface ColumnListProps {
     columnsContent: React.ReactNode[]
