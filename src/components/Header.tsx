@@ -7,6 +7,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
+import { Archive, Settings } from "lucide-react"
 
 interface HeaderProps {
     title: string
@@ -22,8 +23,8 @@ export function Header({ title }: HeaderProps) {
           <DropdownMenuContent>
             <DropdownMenuLabel>Boar</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Preferencias</DropdownMenuItem>
-            <DropdownMenuItem>Archivo</DropdownMenuItem>
+            <DropdownMenuItem><Settings size="20" className="mr-2" />Preferencias</DropdownMenuItem>
+            <DropdownMenuItem><Archive size="20" className="mr-2" /> Archivo</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </header>
