@@ -15,7 +15,7 @@ interface HeaderProps {
 }
 export function Header({ title }: HeaderProps) {
     return (
-        <header className="w-full px-6 my-4 flex justify-between items-start">
+        <header className="w-full px-6 pb-8 my-4 flex justify-between items-start">
         <h1 className="text-4xl font-normal">{ title }</h1>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -34,7 +34,7 @@ export function Header({ title }: HeaderProps) {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link to='/archive'>
+              <Link to='/archive' className="flex">
                 <Archive size="20" className="mr-2" /> Archivo
               </Link>
               </DropdownMenuItem>
