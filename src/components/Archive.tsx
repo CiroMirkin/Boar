@@ -36,7 +36,10 @@ export function Archive({ boardArchive}: ArchiveProps) {
         <>
             <Header title="Archivo" />
             <div className="mx-6 my-4 flex flex-col gap-y-2">
-            {archive}
+                { archive.length === 0 
+                    ? <Card className="p-2"><CardHeader><CardTitle>Aún no hay tareas archivadas.</CardTitle></CardHeader></Card> 
+                    : archive
+                }
             </div>
         </>
     )
