@@ -1,22 +1,31 @@
-# Boar
-Autor: *Ciro Mirkin*
+# ⚡ ¿Que es Boar?
 
-Aplicación web para gestionar tareas al estilo de *Trello*.
+Boar es una aplicación web para gestionar tareas que busca ayudarte a enfocarte en tus tareas.
 
 Prototipo: [https://cm-boar.netlify.app/](https://cm-boar.netlify.app/)
 
-## Características principales
+## 🔥 Características
 
 * Crear tareas.
 * Mover las tareas entre columnas.
 * Eliminar las tareas.
-* Editar el nombre de las columnas.
 * Crear nuevas columnas.
-* Editar el contenido de las tareas. 
-* Eliminar columnas.  
-* Cambiar el nombre del tablero. 
+* Eliminar columnas. 
+* Archivar las tareas terminadas. 
 
-## Documentación
+## 🧬 Ejecución local para desarrollo
+
+Para ejecutar Boar localmente luego de clonar el repositorio puedes ejecutar los siguientes comandos:
+
+```bash
+npm i
+```
+
+```bash
+npm run dev
+```
+
+## 📖 Documentación
 
 * Puedes leer la documentación en [cm-boar-docs.netlify.app](https://cm-boar-docs.netlify.app/).
 
@@ -34,4 +43,4 @@ Prototipo: [https://cm-boar.netlify.app/](https://cm-boar.netlify.app/)
     npm run start
     ```
     
-    Con `cd website` entrara al directorio donde esta la documentación y con `npm run start` se creara la documentación en [http://localhost:3000/](http://localhost:3000/).
+    Con `cd website` entraras al directorio donde esta la documentación y con `npm run start` crearas la documentación en [http://localhost:3000/](http://localhost:3000/).
