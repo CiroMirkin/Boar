@@ -22,6 +22,7 @@ const getTaskListInEachColumn = () => {
 function App() {
   const columnList = getColumnList()
   const taskListInEachColumn = getTaskListInEachColumn()
+  const archive = getArchive()
   const boardData = { id: '1', name: 'Tablero básico' }
   return (
     <>
@@ -34,7 +35,7 @@ function App() {
           />
           <Route path='/archive' 
             element={
-              <Archive boardArchive={getArchive()} />
+              <Archive boardArchive={archive} />
             }
           />
           <Route path='/settings' 
