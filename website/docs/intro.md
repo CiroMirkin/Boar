@@ -9,7 +9,7 @@ tags:
 
 Boar es una aplicación web para gestionar tareas que busca ayudar a los usuarios a enfocarse en sus tareas sin tener distracciones visuales. 
 
-El prototipo de Boar esta en linea, puedes usarlo en **[cm-boar.netlify.app](https://cm-boar.netlify.app/)**.
+Boar esta en linea, puedes usarlo en **[cm-boar.netlify.app](https://cm-boar.netlify.app/)**.
 
 :dart: **Documentación de las tecnologías principales utilizadas:**
 
