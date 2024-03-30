@@ -3,74 +3,94 @@ sidebar_position: 5
 description: Estado global
 tags:
   - Estado global
-  - Context
+  - Redux
 ---
 
-# Gestión del estado global
+# Gestión del estado global (Redux)
+
+Para la gestión del estado global se utiliza [Redux Toolkit](https://redux-toolkit.js.org/).
 
 ## ¿Donde esta la definición del estado global?
 
-Se encuentra en el componente `App.tsx`.
+Se encuentra dentro de la carpeta `src/redux`, dentro de esta carpeta esta la definición de cada porción del estado global.
 
-## ¿Como se gestiona?
+Puedes modificar el estado global a través de los *Reducers* de Redux, los cuales están definidos de la siguiente forma.
 
-Para gestionar el estado global se utiliza un contexto que envuelve todo el contenido del componente `App`.
+```js title="/src/redux/taskListInEachColumnReducer.ts"
+// ...
+export const taskListInEachColumnSlice = createSlice({
+  name: 'taskListInEachColumn',
+  initialState,
+  reducers: {
+    // highlight-next-line
+    deleteTask: (state, action: PayloadAction<taskModel>) => {
+      // highlight-next-line
+      const task = action.payload
+      // highlight-next-line
+      state.list = deleteThisTask({ taskListInEachColumn: state.list, task })
+      // highlight-next-line
+    },
+  }
+})
 
-```jsx
-<BoardData.Provider value={{
-  board: getCopyOfTheBoardData(allBoardData),
-  update: updateAllBoardData
-  } as boardData}>
-
-  {/* ... */}
-
-</BoardData.Provider>
+export const { deleteTask /* ...*/ } = taskListInEachColumnSlice.actions
 ```
 
-¿No sabes usar un  context? Puedes leer la [documentación oficial de React](https://react.dev/reference/react/useContext).
+### action y payload
 
-## ¿Puedo modificar el estado global directamente?
-
-Respuesta corta: No.
-
-```jsx
-<BoardData.Provider value={{
+```js 
+reducers: {
   // highlight-next-line
-  board: getCopyOfTheBoardData(allBoardData),
-  update: updateAllBoardData
-  } as boardData}>
-
-  {/* ... */}
-
-</BoardData.Provider>
+  deleteTask: (state, action: PayloadAction<taskModel>) => {
+    // highlight-next-line
+    const task = action.payload
+    state.list = deleteThisTask({ taskListInEachColumn: state.list, task })
+  },
+}
 ```
 
-Los componentes que usen el contexto global recibirán una copia del mismo, esto evita que lo puedan modificar directamente.
+El action y payload son la información que el *Reducer* recibe, en esta caso es una tarea (*task*).
 
-## ¿Como puedo modificar el estado global?
+### state
 
-Puedes hacerlo a través de la propiedad `update`.
+El *state* es estado global actual.
 
-```jsx
-<BoardData.Provider value={{
-  board: getCopyOfTheBoardData(allBoardData),
+```js 
+reducers: {
   // highlight-next-line
-  update: updateAllBoardData
-  } as boardData}>
-
-  {/* ... */}
-
-</BoardData.Provider>
+  deleteTask: (state, action: PayloadAction<taskModel>) => {
+    const task = action.payload
+    // highlight-next-line
+    state.list = deleteThisTask({ taskListInEachColumn: state.list, task })
+  },
+}
 ```
+Primero **igualamos** el estado actual al retorno de la función `deleteThisTask`, esi definimos cual sera el nuevo valor del nuevo estado global.
 
-1. Esta propiedad `update` es una función.
+Dentro de la función `deleteThisTask` estamos **pasando como argumento** el valor del estado global actual.
+
+:::info
+La función `deleteThisTask` esta definida dentro de la carpeta `src/useCase/task`.
+:::
+
+## ¿Como puedo usar un Reducer?
+
+Ejemplo:
 
 ```jsx
-const updateAllBoardData = ({ action, task, column }: UpdateBoardDataParams): void => { }
+// highlight-next-line
+const dispatch = useDispatch()
+const descriptionText = 'Hacer un cafe.'
+
+const handleClick = () => {
+  const task = getNewTask({ descriptionText, columnPosition: '1'})
+  // highlight-next-line
+  dispatch(addTaskAtFirstColumn(task))
+}
 ```
 
-2. Esta función recibe como parámetro una función (action) que se encarga de hacer el cambio que se quiere.
+:::warning
+La función `addTaskAtFirstColumn` **es** un *Reducer* dentro de la carpeta `redux`.
 
-3. La función en el parámetro `action` debe retornar el nuevo estado global y generalmente estas están definidas en la carpeta `src/useCase`.
-
-![Descripción de la gestión del estado global](/img/context.svg)
+La función `addTaskAtFirstColumn` **no es** una función dentro la carpeta `useCase`.
+:::
