@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
 import { taskModel, taskNull } from "../models/task";
 import { deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn } from "@/redux/taskListInEachColumnReducer";
 import { useDispatch } from "react-redux";
@@ -13,11 +13,12 @@ interface TaskProps {
 }
 
 export function Task({ data, children }: TaskProps) {
+    const [ show, setShow ] = useState(false)
     return (
         <TaskContext.Provider value={ data }>
-            <Card>
+            <Card onClick={() => setShow(!show)}>
                 <TaskDescription />
-            { children }
+            { show && children }
             </Card>
         </TaskContext.Provider>
     )
