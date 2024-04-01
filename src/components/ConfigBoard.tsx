@@ -33,7 +33,6 @@ export function ConfigBoard({ boardData, columnList }:ConfigBoardParams) {
             }
             console.error(message)
             toast({
-                title: 'Error',
                 description: message,
                 variant: "destructive",
                 duration: 3000
