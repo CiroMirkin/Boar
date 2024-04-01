@@ -11,7 +11,12 @@ import { Erro404 } from './components/404'
 
 
 const getArchive = (): archive => {
-  return useSelector((state: RootState) => state.archive).reverse()
+  const archive = useSelector((state: RootState) => state.archive.list)
+  const reverseArchive = [];
+  for (let i = archive.length -1; i >= 0; i--) {
+    reverseArchive.push(archive[i]);
+  }
+  return reverseArchive
 }
 const getColumnList = () => {
   return useSelector((state: RootState) => state.columnList.list)
