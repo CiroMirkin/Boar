@@ -18,8 +18,8 @@ tags:
         └── main.tsx
         └── tutorialSteps.ts
         └── 📁assets 
-        └── 📁components
-            └── 📁ui  - Componentes genéricos y reutilizables
+        └── 📁ui  - Componentes genéricos y reutilizables
+        └── 📁components  - Componentes específicos
         └── 📁lib 
         └── 📁models - Modelos de dominio
         └── 📁useCase - Lógica de los casos de uso
