@@ -17,6 +17,7 @@ import { archiveTaskListAtLastColumn } from "@/redux/archiveReducer";
 import { ColumnListContext, TaskListInEachColumnContext } from "./Board";
 import { Archive, Plus } from "lucide-react";
 import { iconSize } from "@/iconsConstants";
+import { useToast } from "./ui/use-toast";
 
 const ColumnContext = createContext(columnNull)
 
@@ -55,6 +56,8 @@ function ColumnFooter({  }: {  }) {
     const [ newTaskDescription, setNewTaskDescription ] = useState('')
     const columnList = useContext(ColumnListContext)
 
+    const { toast } = useToast()
+
     const dispatch = useDispatch()
     
     const taskListInEachColumn = useContext(TaskListInEachColumnContext)
@@ -63,6 +66,10 @@ function ColumnFooter({  }: {  }) {
         if(thereAreTasksToBeArchive) {
             dispatch(archiveTaskListAtLastColumn(taskListInEachColumn))
             dispatch(deleteLastTheTaskList())
+            toast({
+                description: "Puedes ver las tareas archivadas yendo al menu.",
+                duration: 3000
+            })
         }
     }
 
