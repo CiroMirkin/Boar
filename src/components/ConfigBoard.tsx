@@ -62,9 +62,9 @@ export function ConfigBoard({ boardData, columnList }:ConfigBoardParams) {
             <div>
                 <h2 className="px-6 text-2xl">{boardData.name}</h2>
             </div>
-            <ul className="h-auto w-full py-5 px-6 flex flex-wrap items-end gap-y-3 gap-x-3.5"> 
+            <ul className="h-auto w-full py-5 px-6 flex flex-wrap flex-col sm:flex-row justify-start gap-y-3 gap-x-3.5"> 
                 { columns }
-                <li><Button onClick={() => handleClick(addColumn, getNewColumn())} title="Crear columna" ><Plus size={iconSize} /></Button></li>
+                <li className="self-center sm:self-end"><Button onClick={() => handleClick(addColumn, getNewColumn())} title="Crear columna" ><Plus size={iconSize} /></Button></li>
             </ul>
         </>
     )
