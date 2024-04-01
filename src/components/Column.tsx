@@ -62,12 +62,22 @@ function ColumnFooter({  }: {  }) {
     
     const taskListInEachColumn = useContext(TaskListInEachColumnContext)
     const archiveTaskList = () => {
-        const thereAreTasksToBeArchive = !!taskListInEachColumn[taskListInEachColumn.length - 1].length
-        if(thereAreTasksToBeArchive) {
+        try{
             dispatch(archiveTaskListAtLastColumn(taskListInEachColumn))
             dispatch(deleteLastTheTaskList())
             toast({
                 description: "Puedes ver las tareas archivadas yendo al menu.",
+                duration: 3000
+            })
+        }
+        catch(error){
+            let message: string = 'Unknown Error :('
+            if (error instanceof Error) {
+                message = error.message
+            }
+            toast({
+                description: message,
+                variant: "destructive",
                 duration: 3000
             })
         }
