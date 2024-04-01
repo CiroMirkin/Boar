@@ -11,9 +11,14 @@ interface archiveTaskListParams {
 export function archiveTaskListInColumn({ taskListInEachColumn, columnPosition, archive }: archiveTaskListParams): archive {
     const date = getFullDate()
     const taskListToArchive: taskList = taskListInEachColumn[getIndexOfColumnInColumnList(columnPosition)]
+    
+    if(AreThereTasksToBeArchive(taskListToArchive)) throw new Error('No hay tareas que archivar.')
+
     archive.push({
         date,
         tasklist: taskListToArchive
     })
     return archive
 }
+
+const AreThereTasksToBeArchive = (taskList: taskList): boolean => !taskList.length
