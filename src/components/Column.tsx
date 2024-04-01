@@ -8,16 +8,16 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-  } from "@/components/ui/card"  
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
+  } from "@/ui/card"  
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 import { useDispatch } from "react-redux";
 import { addTaskAtFirstColumn, deleteLastTheTaskList } from "@/redux/taskListInEachColumnReducer";
 import { archiveTaskListAtLastColumn } from "@/redux/archiveReducer";
 import { ColumnListContext, TaskListInEachColumnContext } from "./Board";
 import { Archive, Plus } from "lucide-react";
 import { iconSize } from "@/iconsConstants";
-import { useToast } from "./ui/use-toast";
+import { useToast } from "../ui/use-toast";
 
 const ColumnContext = createContext(columnNull)
 

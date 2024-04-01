@@ -3,7 +3,7 @@ import { boardModel } from "../models/board"
 import { ColumnList } from "./ColumnList"
 import { TaskList } from "./TaskList"
 import { taskList } from "@/models/task"
-import { ScrollArea } from "./ui/scroll-area"
+import { ScrollArea } from "../ui/scroll-area"
 import { columnList, defaultColumnList } from "@/models/column"
 import { Header } from "./Header"
 
