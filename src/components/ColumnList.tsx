@@ -1,20 +1,22 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Column } from "./Column";
-import { ColumnListContext } from "./Board";
+import { ColumnListContext, TaskListInEachColumnContext } from "./Board";
+import { TaskList } from "./TaskList"
+import { ScrollArea } from "../ui/scroll-area"
 
-interface ColumnListProps {
-    columnsContent: React.ReactNode[]
-    classNameOfColumnContent?: string
-}
-export function ColumnList({ columnsContent, classNameOfColumnContent }: ColumnListProps) {
+interface ColumnListProps { }
+export function ColumnList({  }: ColumnListProps) {
     const columns = useContext(ColumnListContext)
-    const columnList: React.ReactNode[] = [];
+    const taskListInEachColumn = useContext(TaskListInEachColumnContext)
 
-    columns.forEach((column, columnIndex) => {
-        columnList.push(
+    const columnList = columns.map((column, columnIndex) => {
+        const taskList = taskListInEachColumn[columnIndex]
+        return (
             <Column data={column} key={column.id}>
-                <Column.ColumnContent className={classNameOfColumnContent && classNameOfColumnContent}>
-                    { columnsContent[columnIndex] && columnsContent[columnIndex] }
+                <Column.ColumnContent className="min-h-80 md:h-[60vh] w-full" >
+                    <ScrollArea className="h-full w-full rounded-md">
+                        <TaskList tasks={taskList} />
+                    </ScrollArea>
                 </Column.ColumnContent>
                 <Column.Footer/>
             </Column>
