@@ -14,7 +14,7 @@ import { Button } from "../ui/button";
 import { useDispatch } from "react-redux";
 import { addTaskAtFirstColumn, deleteLastTheTaskList } from "@/redux/taskListInEachColumnReducer";
 import { archiveTaskListAtLastColumn } from "@/redux/archiveReducer";
-import { ColumnListContext, TaskListInEachColumnContext } from "./Board";
+import { ColumnListContext, TaskListInEachColumnContext } from "../pages/board/Board";
 import { Archive, Plus } from "lucide-react";
 import { iconSize } from "@/iconsConstants";
 import { useToast } from "../ui/use-toast";

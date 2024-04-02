@@ -1,13 +1,13 @@
 import './App.css'
-import { Board } from './components/Board'
+import { Board } from './pages/board/Board'
 import { useSelector } from 'react-redux'
 import { RootState } from './redux/store'
 import { archive } from './models/archive'
 import { Toaster } from './ui/toaster'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { Archive } from './components/Archive'
-import { ConfigBoard } from './components/ConfigBoard'
-import { Erro404 } from './components/404'
+import { Archive } from './pages/archive/Archive'
+import { ConfigBoard } from './pages/configs/ConfigBoard'
+import { Erro404 } from './pages/404'
 
 
 const getArchive = (): archive => {
