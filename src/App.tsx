@@ -8,6 +8,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Archive } from './pages/archive/Archive'
 import { ConfigBoard } from './pages/configs/ConfigBoard'
 import { Erro404 } from './pages/404'
+import { useEffect } from 'react'
+import { TaskListsRepository } from './models/taskListRepository'
 
 
 const getArchive = (): archive => {
@@ -25,11 +27,20 @@ const getTaskListInEachColumn = () => {
   return useSelector((state: RootState) => state.taskListInEachColumn.list)
 }
 
-function App() {
+interface AppProps {
+  taskListInEachColumnRepository: TaskListsRepository
+}
+
+function App({ taskListInEachColumnRepository }: AppProps) {
   const columnList = getColumnList()
   const taskListInEachColumn = getTaskListInEachColumn()
   const archive = getArchive()
   const boardData = { id: '1', name: 'Tablero básico' }
+
+  useEffect(() => {
+    taskListInEachColumnRepository.save(taskListInEachColumn)
+  }, [taskListInEachColumn])
+
   return (
     <>
       <Router>
