@@ -1,4 +1,4 @@
-import { getIndexOfColumnInColumnList } from "../../utility/indexOfColumn";
+import { getIndexOfColumnInColumnList } from "@/models/column";
 import { taskUseCaseParams } from "../useCase";
 import { taskList } from "@/models/task";
 

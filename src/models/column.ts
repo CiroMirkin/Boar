@@ -52,3 +52,5 @@ export const isThisTheLastColumn = (column: columnModel, columnList: columnModel
   }
   return false
 }
+
+export const getIndexOfColumnInColumnList = (position: string): number => (Number(position) - 1);
