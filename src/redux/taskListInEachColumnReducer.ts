@@ -1,4 +1,5 @@
-import { taskList, taskModel } from "@/models/task";
+import { taskModel } from "@/models/task";
+import { TaskListInEachColumn } from "@/models/taskListInEachColumn";
 import { TaskListInEachColumnRepository } from "@/models/taskListRepository";
 import LocalStorageTaskListInEachColumnRepository from "@/repositories/localStorageTaskLists";
 import { addTaskInFirstColumn } from "@/useCase/task/addTask";
@@ -8,7 +9,7 @@ import { moveThisTaskToTheNextColumn, moveThisTaskToThePrevColumn } from "@/useC
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface InitialState {
-    list: taskList[]
+    list: TaskListInEachColumn
 }
 
 const taskListInEachColumnRepository: TaskListInEachColumnRepository = new LocalStorageTaskListInEachColumnRepository()

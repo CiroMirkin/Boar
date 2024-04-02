@@ -1,17 +1,17 @@
 import React from "react"
 import { boardModel } from "../../models/board"
 import { ColumnList } from "./ColumnList"
-import { taskList } from "@/models/task"
 import { columnList, defaultColumnList } from "@/models/column"
 import { Header } from "../../components/Header"
+import { TaskListInEachColumn } from "@/models/taskListInEachColumn"
 
-export const TaskListInEachColumnContext = React.createContext([[], [], []] as taskList[])
+export const TaskListInEachColumnContext = React.createContext([[], [], []] as TaskListInEachColumn)
 export const ColumnListContext = React.createContext(defaultColumnList as columnList)
 
 interface BoardProps {
     children?: React.ReactNode
     data: boardModel
-    taskListInEachColumn: taskList[]
+    taskListInEachColumn: TaskListInEachColumn
     columnList: columnList
 }
 

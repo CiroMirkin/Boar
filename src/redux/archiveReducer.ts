@@ -1,5 +1,5 @@
 import { archive } from "@/models/archive";
-import { taskList } from "@/models/task";
+import { TaskListInEachColumn } from "@/models/taskListInEachColumn";
 import { archiveTaskListInColumn } from "@/useCase/archiveTaskList";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
@@ -15,7 +15,7 @@ export const archiveSlice = createSlice({
     name: 'archive',
     initialState,
     reducers: {
-        archiveTaskListAtLastColumn: (state, action: PayloadAction<taskList[]>) => {
+        archiveTaskListAtLastColumn: (state, action: PayloadAction<TaskListInEachColumn>) => {
             const taskList = action.payload
             state.list = archiveTaskListInColumn({ taskListInEachColumn: taskList, columnPosition: "3" , archive: state.list })
         },
