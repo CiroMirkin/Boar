@@ -22,7 +22,7 @@ export function ColumnList({ columnsContent, classNameOfColumnContent }: ColumnL
     });
 
     return (
-        <div className="h-auto pb-5 px-6 flex flex-wrap justify-stretch gap-y-3 gap-x-3.5">
+        <div className="h-auto pb-5 px-6 flex flex-wrap justify-stretch gap-y-3 gap-x-7">
             {columnList}
         </div>
     );
