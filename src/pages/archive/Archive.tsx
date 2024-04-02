@@ -1,7 +1,7 @@
 import React from "react"
 import { Task } from "../../components/Task"
 import { archive } from "@/models/archive"
-import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card"
 import { Header } from "../../components/Header"
 
 interface ArchiveProps {

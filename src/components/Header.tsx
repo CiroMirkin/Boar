@@ -5,8 +5,8 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "@/ui/dropdown-menu"
-import { Button } from "@/ui/button"
+} from "@/components/ui/dropdown-menu"
+import { Button } from "@/components/ui/button"
 import { Archive, Columns3, Github, Settings } from "lucide-react"
 import { Link } from 'react-router-dom'
 import { iconSize } from "@/iconsConstants"
