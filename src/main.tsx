@@ -4,9 +4,9 @@ import App from './App.tsx'
 import './index.css'
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
-import LocalStorageTaskListsRepository from './repositories/localStorageTaskLists.ts'
+import LocalStorageTaskListInEachColumnRepository from './repositories/localStorageTaskLists.ts'
 
-const taskListInEachColumnRepository = new LocalStorageTaskListsRepository();
+const taskListInEachColumnRepository = new LocalStorageTaskListInEachColumnRepository();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

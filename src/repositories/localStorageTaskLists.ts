@@ -1,7 +1,8 @@
-import { emptyTaskListInEachColumn, taskList } from "@/models/task";
-import { TaskListsRepository } from "@/models/taskListRepository";
+import { taskList } from "@/models/task";
+import { emptyTaskListInEachColumn } from "@/models/taskListInEachColumn";
+import { TaskListInEachColumnRepository } from "@/models/taskListRepository";
 
-export default class LocalStorageTaskListsRepository implements TaskListsRepository {
+export default class LocalStorageTaskListInEachColumnRepository implements TaskListInEachColumnRepository {
     #key;
     constructor() {
         this.#key = "taskListInEachColumn";

@@ -9,7 +9,7 @@ import { Archive } from './pages/archive/Archive'
 import { ConfigBoard } from './pages/configs/ConfigBoard'
 import { Erro404 } from './pages/404'
 import { useEffect } from 'react'
-import { TaskListsRepository } from './models/taskListRepository'
+import { TaskListInEachColumnRepository } from './models/taskListRepository'
 
 
 const getArchive = (): archive => {
@@ -28,7 +28,7 @@ const getTaskListInEachColumn = () => {
 }
 
 interface AppProps {
-  taskListInEachColumnRepository: TaskListsRepository
+  taskListInEachColumnRepository: TaskListInEachColumnRepository
 }
 
 function App({ taskListInEachColumnRepository }: AppProps) {

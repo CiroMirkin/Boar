@@ -1,5 +1,6 @@
 import { taskList, taskModel } from "@/models/task";
-import LocalStorageTaskListsRepository from "@/repositories/localStorageTaskLists";
+import { TaskListInEachColumnRepository } from "@/models/taskListRepository";
+import LocalStorageTaskListInEachColumnRepository from "@/repositories/localStorageTaskLists";
 import { addTaskInFirstColumn } from "@/useCase/task/addTask";
 import { deleteThisTask } from "@/useCase/task/deleteTask";
 import { deleteLastTaskList } from "@/useCase/task/deleteTaskList";
@@ -10,8 +11,10 @@ interface InitialState {
     list: taskList[]
 }
 
+const taskListInEachColumnRepository: TaskListInEachColumnRepository = new LocalStorageTaskListInEachColumnRepository()
+
 const initialState: InitialState = {
-    list: (new LocalStorageTaskListsRepository().getAll())
+    list: taskListInEachColumnRepository.getAll()
 }
 
 export const taskListInEachColumnSlice = createSlice({

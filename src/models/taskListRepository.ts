@@ -1,6 +1,6 @@
-import { taskList } from "./task";
+import { TaskListInEachColumn } from "./taskListInEachColumn";
 
-export interface TaskListsRepository {
-    save(taskListInEachColumn: taskList[]): void;
-    getAll(): taskList[];
+export interface TaskListInEachColumnRepository {
+    save(taskListInEachColumn: TaskListInEachColumn): void;
+    getAll(): TaskListInEachColumn;
 }
