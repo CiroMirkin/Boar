@@ -19,7 +19,8 @@ tags:
         └── tutorialSteps.ts
         └── 📁assets 
         └── 📁ui  - Componentes genéricos y reutilizables
-        └── 📁components  - Componentes específicos
+        └── 📁components  - Componentes que comparten las paginas
+        └── 📁pages  - Paginas de la aplicación, una página es un componente, Cada página está asociada a una ruta.
         └── 📁lib 
         └── 📁models - Modelos de dominio
         └── 📁useCase - Lógica de los casos de uso
