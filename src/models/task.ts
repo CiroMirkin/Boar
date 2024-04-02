@@ -14,6 +14,8 @@ export const emptyTask: taskModel = {
 
 export type taskList = taskModel[]
 
+export const emptyTaskListInEachColumn = [ [], [], [] ]
+
 export const getNewTask = ({ descriptionText, columnPosition }: { descriptionText: string, columnPosition: string }): taskModel => {
     descriptionText = descriptionText.trim()
     if (!descriptionText) throw('No se puede crear una tarea sin descripción.')
