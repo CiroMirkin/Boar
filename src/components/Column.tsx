@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { columnModel, columnNull } from "../models/column";
-import { isThisTheFirstColumn, isThisTheLastColumn } from "../utility/firstOrLastColumn";
+import { isThisTheFirstColumn, isThisTheLastColumn } from "@/models/column";
 import { getNewTask } from "../models/task";
 import {
     Card,
