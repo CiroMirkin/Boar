@@ -16,7 +16,7 @@ interface HeaderProps {
 }
 export function Header({ title }: HeaderProps) {
     return (
-        <header className="w-full px-6 py-7 flex justify-between items-start">
+        <header className="w-full px-6 md:px-11 py-7 flex justify-between items-start">
         <h1 className="text-4xl font-normal">{ title }</h1>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
