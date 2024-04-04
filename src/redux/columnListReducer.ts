@@ -1,4 +1,4 @@
-import { columnModel, defaultColumnList } from "@/models/column";
+import { columnModel } from "@/models/column";
 import { ColumnListRepository } from "@/models/columnListRepository";
 import LocalStorageColumnListRepository from "@/repositories/localStorageColumnList";
 import { addColumnAtTheEnd } from "@/useCase/column/addColumn";
