@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Column } from "../../components/Column";
 import { ColumnListContext, TaskListInEachColumnContext } from "./Board";
 import { TaskList } from "../../components/TaskList"
-import { ScrollArea } from "../../components/ui/scroll-area"
+import { ScrollArea } from "../../ui/scroll-area"
 
 interface ColumnListProps { }
 export function ColumnList({  }: ColumnListProps) {
