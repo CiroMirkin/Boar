@@ -30,7 +30,7 @@ export function ColumnList({  }: ColumnListProps) {
     });
 
     return (
-        <div className="h-auto pb-5 px-6 md:px-11 flex flex-wrap justify-stretch gap-y-3 gap-x-7">
+        <div className="h-auto pb-5 px-6 md:px-11 flex flex-wrap justify-stretch gap-y-3 gap-x-4">
             {columnList}
         </div>
     );
