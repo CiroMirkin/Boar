@@ -1,6 +1,6 @@
 import { columnModel } from "@/models/column";
 import { ColumnListRepository } from "@/models/columnListRepository";
-import LocalStorageColumnListRepository from "@/repositories/localStorageColumnList";
+import LocalStorageColumnListRepository from "@/repository/localStorageColumnList";
 import { addColumnAtTheEnd } from "@/useCase/column/addColumn";
 import { deleteThisColumn } from "@/useCase/column/deleteColumn";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
