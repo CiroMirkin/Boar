@@ -10,6 +10,7 @@ import { ConfigBoard } from './pages/configs/ConfigBoard'
 import { Erro404 } from './pages/404/404'
 import { useEffect } from 'react'
 import { TaskListInEachColumnRepository } from './models/taskListRepository'
+import { ColumnListRepository } from './models/columnListRepository'
 
 
 const getArchive = (): archive => {
@@ -29,9 +30,10 @@ const getTaskListInEachColumn = () => {
 
 interface AppProps {
   taskListInEachColumnRepository: TaskListInEachColumnRepository
+  columnListRepository: ColumnListRepository
 }
 
-function App({ taskListInEachColumnRepository }: AppProps) {
+function App({ taskListInEachColumnRepository, columnListRepository }: AppProps) {
   const columnList = getColumnList()
   const taskListInEachColumn = getTaskListInEachColumn()
   const archive = getArchive()
@@ -40,6 +42,8 @@ function App({ taskListInEachColumnRepository }: AppProps) {
   useEffect(() => {
     taskListInEachColumnRepository.save(taskListInEachColumn)
   }, [taskListInEachColumn])
+
+  useEffect(() => columnListRepository.save(columnList), [columnList])
 
   return (
     <>

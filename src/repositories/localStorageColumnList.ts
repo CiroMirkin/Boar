@@ -1,7 +1,7 @@
 import { columnList, defaultColumnList } from "@/models/column";
 import { ColumnListRepository } from "@/models/columnListRepository";
 
-export default class LocalStorageTaskListInEachColumnRepository implements ColumnListRepository {
+export default class LocalStorageColumnListRepository implements ColumnListRepository {
     #key;
     constructor() {
         this.#key = "columnList";
