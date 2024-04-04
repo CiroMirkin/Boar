@@ -1,4 +1,4 @@
-import { taskList } from "@/models/task"
+import { taskList } from "@/model/task"
 import { addTaskInFirstColumn } from "./addTask"
 
 describe("Crear una tarea.", () => {

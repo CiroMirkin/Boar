@@ -1,5 +1,5 @@
-import { columnModel } from "../../models/column"
-import { boardModel } from "@/models/board"
+import { columnModel } from "../../model/column"
+import { boardModel } from "@/model/board"
 import { Header } from "../Header"
 import { ConfigColumns } from "./ConfigColumns"
 

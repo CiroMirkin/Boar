@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
-import { columnModel, columnNull } from "../models/column";
-import { isThisTheFirstColumn, isThisTheLastColumn } from "@/models/column";
-import { getNewTask } from "../models/task";
+import { columnModel, columnNull } from "../model/column";
+import { isThisTheFirstColumn, isThisTheLastColumn } from "@/model/column";
+import { getNewTask } from "../model/task";
 import {
     Card,
     CardContent,

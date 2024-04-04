@@ -1,5 +1,5 @@
-import { TaskListInEachColumn, emptyTaskListInEachColumn } from "@/models/taskListInEachColumn";
-import { TaskListInEachColumnRepository } from "@/models/taskListRepository";
+import { TaskListInEachColumn, emptyTaskListInEachColumn } from "@/model/taskListInEachColumn";
+import { TaskListInEachColumnRepository } from "@/model/taskListRepository";
 
 export default class LocalStorageTaskListInEachColumnRepository implements TaskListInEachColumnRepository {
     #key;

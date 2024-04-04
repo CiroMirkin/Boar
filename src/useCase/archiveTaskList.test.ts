@@ -1,4 +1,4 @@
-import { taskList, emptyTask } from "../models/task"
+import { taskList, emptyTask } from "../model/task"
 import { archiveTaskListInColumn } from "./archiveTaskList"
 import { getFullDate } from "../utility/getTime"
 

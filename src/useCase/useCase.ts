@@ -1,6 +1,6 @@
-import { boardModel } from "../models/board";
-import { columnModel } from "../models/column";
-import { taskList, taskModel } from "../models/task";
+import { boardModel } from "../model/board";
+import { columnModel } from "../model/column";
+import { taskList, taskModel } from "../model/task";
 
 
 export interface boardUseCaseParams {

@@ -1,4 +1,4 @@
-import { boardModel } from "../models/board";
+import { boardModel } from "../model/board";
 import { changeNameParams } from "./useCase";
 
 export function changeBoardName({ board, newName }: changeNameParams): boardModel {

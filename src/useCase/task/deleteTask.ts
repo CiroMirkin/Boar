@@ -1,6 +1,6 @@
-import { getIndexOfColumnInColumnList } from "@/models/column";
+import { getIndexOfColumnInColumnList } from "@/model/column";
 import { taskUseCaseParams } from "../useCase";
-import { taskList } from "@/models/task";
+import { taskList } from "@/model/task";
 
 export function deleteThisTask({ taskListInEachColumn, task }: taskUseCaseParams): taskList[] {
     const taskId = task.id

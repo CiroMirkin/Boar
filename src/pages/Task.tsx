@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { taskModel, emptyTask } from "../models/task";
+import { taskModel, emptyTask } from "../model/task";
 import { deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn } from "@/redux/taskListInEachColumnReducer";
 import { useDispatch } from "react-redux";
 import { Button } from "../ui/button";

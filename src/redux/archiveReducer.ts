@@ -1,5 +1,5 @@
-import { archive } from "@/models/archive";
-import { TaskListInEachColumn } from "@/models/taskListInEachColumn";
+import { archive } from "@/model/archive";
+import { TaskListInEachColumn } from "@/model/taskListInEachColumn";
 import { archiveTaskListInColumn } from "@/useCase/archiveTaskList";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 

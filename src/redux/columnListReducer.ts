@@ -1,5 +1,5 @@
-import { columnModel } from "@/models/column";
-import { ColumnListRepository } from "@/models/columnListRepository";
+import { columnModel } from "@/model/column";
+import { ColumnListRepository } from "@/model/columnListRepository";
 import LocalStorageColumnListRepository from "@/repository/localStorageColumnList";
 import { addColumnAtTheEnd } from "@/useCase/column/addColumn";
 import { deleteThisColumn } from "@/useCase/column/deleteColumn";

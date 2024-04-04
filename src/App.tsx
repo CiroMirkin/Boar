@@ -2,15 +2,15 @@ import './App.css'
 import { Board } from './pages/board/Board'
 import { useSelector } from 'react-redux'
 import { RootState } from './redux/store'
-import { archive } from './models/archive'
+import { archive } from './model/archive'
 import { Toaster } from './ui/toaster'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Archive } from './pages/archive/Archive'
 import { ConfigBoard } from './pages/configs/ConfigBoard'
 import { Erro404 } from './pages/404/404'
 import { useEffect } from 'react'
-import { TaskListInEachColumnRepository } from './models/taskListRepository'
-import { ColumnListRepository } from './models/columnListRepository'
+import { TaskListInEachColumnRepository } from './model/taskListRepository'
+import { ColumnListRepository } from './model/columnListRepository'
 
 
 const getArchive = (): archive => {

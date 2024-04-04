@@ -1,6 +1,6 @@
 import React from "react"
-import { getBlankColumnWithoutPosition } from "../../models/column"
-import { columnModel } from "../../models/column"
+import { getBlankColumnWithoutPosition } from "../../model/column"
+import { columnModel } from "../../model/column"
 import { useDispatch } from "react-redux"
 import { addColumn, deleteColumn } from "@/redux/columnListReducer"
 import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card"

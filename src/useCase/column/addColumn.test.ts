@@ -1,4 +1,4 @@
-import { columnModel } from "../../models/column"
+import { columnModel } from "../../model/column"
 import { addColumnAtTheEnd } from "./addColumn"
 
 describe('Crear una columna.', () => {

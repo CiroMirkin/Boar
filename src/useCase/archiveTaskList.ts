@@ -1,7 +1,7 @@
-import { taskList } from "../models/task";
+import { taskList } from "../model/task";
 import { getFullDate } from "../utility/getTime";
-import { archive } from "@/models/archive";
-import { getIndexOfColumnInColumnList } from "@/models/column";
+import { archive } from "@/model/archive";
+import { getIndexOfColumnInColumnList } from "@/model/column";
 
 interface archiveTaskListParams {
     taskListInEachColumn: taskList[],

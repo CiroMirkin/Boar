@@ -1,4 +1,4 @@
-import { columnModel } from "../../models/column"
+import { columnModel } from "../../model/column"
 import { changeNameOfColumn } from "./changeColumnName"
 
 describe('Cambiar el nombre de una columna.', () => {
