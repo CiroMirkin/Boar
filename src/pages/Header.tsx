@@ -31,13 +31,13 @@ export function Header({ title }: HeaderProps) {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link to='/settings' className="flex">
-                <Settings size={iconSize} className="mr-2" /> Preferencias
+              <Link to='/archive' className="flex">
+                <Archive size={iconSize} className="mr-2" /> Archivo
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link to='/archive' className="flex">
-                <Archive size={iconSize} className="mr-2" /> Archivo
+              <Link to='/settings' className="flex">
+                <Settings size={iconSize} className="mr-2" /> Preferencias
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
