@@ -1,4 +1,6 @@
 import { columnModel, defaultColumnList } from "@/models/column";
+import { ColumnListRepository } from "@/models/columnListRepository";
+import LocalStorageColumnListRepository from "@/repositories/localStorageColumnList";
 import { addColumnAtTheEnd } from "@/useCase/column/addColumn";
 import { deleteThisColumn } from "@/useCase/column/deleteColumn";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
@@ -7,8 +9,10 @@ interface InitialState {
     list: columnModel[]
 }
 
+const columnListRepository: ColumnListRepository = new LocalStorageColumnListRepository()
+
 const initialState: InitialState = {
-    list: defaultColumnList
+    list: columnListRepository.getAll()
 }
 
 export const columnListSlice = createSlice({
