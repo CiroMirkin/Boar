@@ -1,6 +1,6 @@
 import { columnModel } from "../../models/column"
 import { boardModel } from "@/models/board"
-import { Header } from "../../components/Header"
+import { Header } from "../Header"
 import { ConfigColumns } from "./ConfigColumns"
 
 interface ConfigBoardParams {

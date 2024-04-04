@@ -1,4 +1,4 @@
-import { Header } from "../components/Header";
+import { Header } from "../Header";
 
 export function Erro404() {
     return (

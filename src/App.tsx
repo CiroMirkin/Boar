@@ -7,7 +7,7 @@ import { Toaster } from './ui/toaster'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Archive } from './pages/archive/Archive'
 import { ConfigBoard } from './pages/configs/ConfigBoard'
-import { Erro404 } from './pages/404'
+import { Erro404 } from './pages/404/404'
 import { useEffect } from 'react'
 import { TaskListInEachColumnRepository } from './models/taskListRepository'
 

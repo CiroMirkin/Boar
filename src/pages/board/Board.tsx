@@ -2,7 +2,7 @@ import React from "react"
 import { boardModel } from "../../models/board"
 import { ColumnList } from "./ColumnList"
 import { columnList, defaultColumnList } from "@/models/column"
-import { Header } from "../../components/Header"
+import { Header } from "../Header"
 import { TaskListInEachColumn } from "@/models/taskListInEachColumn"
 
 export const TaskListInEachColumnContext = React.createContext([[], [], []] as TaskListInEachColumn)
