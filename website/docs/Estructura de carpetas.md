@@ -19,15 +19,16 @@ tags:
         └── tutorialSteps.ts
         └── 📁 assets 
         └── 📁 ui  - Componentes genéricos y reutilizables
-        └── 📁 pages  - Paginas y contenido de la aplicación.
-        └── 📁 lib 
+        └── 📁 pages  - Paginas y contenido de la aplicación
         └── 📁 models - Modelos de dominio
+        └── 📁 repositories - Implementaciones de los repositorios
         └── 📁 useCase - Lógica de los casos de uso
             └── useCase.ts
             └── 📁 column
             └── 📁 task
         └── 📁 utility - Funciones utilitarias, por ejemplo, una función para obtener la fecha.
-        └── 📁 redux  
+        └── 📁 redux 
+        └── 📁 lib  
 ```
 
 ## Carpeta pages
