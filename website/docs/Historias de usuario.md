@@ -24,6 +24,8 @@ Esta son las historias de usuario implementadas actualmente en Boar.
   * Puede ver las tareas archivadas.
   * El archivo es una lista con las tareas archivadas y la fecha en que se archivaron.
   * El archivo es diario. Si se archivan varias tareas el mismo dia, estas deberían archivarse juntas.
+  * El archivo diario tiene capacidad para 30 tareas.
+  * El archivo tiene capacidad para 60 días.
   * No se puede archivar una lista de tareas vacía.
 
 ## Preferencias
