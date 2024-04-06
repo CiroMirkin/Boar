@@ -55,4 +55,35 @@ describe("Archivar lista de tareas.", () => {
             }
         ])
     })
+
+    test("No debería haber mas de 30 tareas diarias archivadas.  ESTA PRUEBA PODRÍA SER POCO CONFIABLE.", () => {
+        const task = {
+            id: '',
+            descriptionText: '',
+            columnPosition: '1',
+        }
+        const taskListInEachColumn: taskList[] = [ [], [], [] ]
+        let firstColumnContent = new Array(31).fill(task)
+        taskListInEachColumn[0] = firstColumnContent
+        expect(() => {
+            return archiveTaskListInColumn({ taskListInEachColumn, columnPosition: '1', archive: [] })
+        }).toThrow('El archivo diario esta lleno :(')
+    })
+
+    test("No debería haber mas de 60 días archivados.  ESTA PRUEBA PODRÍA SER POCO CONFIABLE.", () => {
+        const task = {
+            id: '',
+            descriptionText: '',
+            columnPosition: '1',
+        }
+        const taskListInEachColumn: taskList[] = [ [{...task}], [], [] ]
+        let archive = new Array(60).fill({
+            date: '',
+            tasklist: [[]]
+        })
+        
+        expect(() => {
+            return archiveTaskListInColumn({ taskListInEachColumn, columnPosition: '1', archive })
+        }).toThrow('El archivo esta lleno :(')
+    })
 })
