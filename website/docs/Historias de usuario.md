@@ -23,6 +23,7 @@ Esta son las historias de usuario implementadas actualmente en Boar.
   * Puede archivar todas las tareas de la ultima columna.
   * Puede ver las tareas archivadas.
   * El archivo es una lista con las tareas archivadas y la fecha en que se archivaron.
+  * El archivo es diario. Si se archivan varias tareas el mismo dia, estas deberían archivarse juntas.
   * No se puede archivar una lista de tareas vacía.
 
 ## Preferencias
