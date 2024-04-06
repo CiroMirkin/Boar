@@ -52,7 +52,7 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
                         ? <Input 
                             value={columnName} 
                             onChange={(e) => setColumnName(e.target.value)} 
-                            className="text-3xl font-semibold" 
+                            className="text-3xl font-semibold border-2" 
                             /> 
                         : <CardTitle className="pl-4">{columnName}</CardTitle>
                 }
