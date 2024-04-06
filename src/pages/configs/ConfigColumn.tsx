@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { columnModel } from "../../models/column"
 import { useDispatch } from "react-redux"
-import { deleteColumn } from "@/redux/columnListReducer"
+import { changeColumnName, deleteColumn } from "@/redux/columnListReducer"
 import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card"
 import { Button } from "../../ui/button"
 import { useToast } from "../../ui/use-toast"
@@ -19,9 +19,9 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
     const updateBoardData = useDispatch()
     const { toast } = useToast()
 
-    const editColumnName = () => {
+    const editColumnNameHandle = () => {
         if(showChangeColumnNameInput) {
-            console.log('save')
+            updateBoardData(changeColumnName({ column, newColumnName: columnName }))
         }
         setShowChangeColumnNameInput(!showChangeColumnNameInput)
     }
@@ -59,7 +59,7 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
             </CardHeader>
             <CardContent className="pb-0 pt-1 md:pt-0 px-4 grid grid-flow-col justify-stretch gap-1.5 gap-2 w-full md:w-auto md:flex md:items-center">
                 <Button
-                    onClick={editColumnName}
+                    onClick={editColumnNameHandle}
                 >
                     <Pencil size={iconSize} />
                 </Button>
