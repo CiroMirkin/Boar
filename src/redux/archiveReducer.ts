@@ -1,5 +1,7 @@
 import { Archive } from "@/model/archive";
+import { ArchiveRepository } from "@/model/archiveRepository";
 import { TaskListInEachColumn } from "@/model/taskListInEachColumn";
+import LocalStorageArchiveRepository from "@/repository/localStorageArchive";
 import { archiveTaskListInColumn } from "@/useCase/archiveTaskList";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
@@ -7,8 +9,10 @@ interface InitialState {
     list: Archive
 }
 
+const archiveRepository: ArchiveRepository = new LocalStorageArchiveRepository()
+
 const initialState: InitialState = {
-    list: []
+    list: archiveRepository.getAll()
 }
 
 export const archiveSlice = createSlice({
