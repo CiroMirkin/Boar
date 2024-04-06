@@ -1,4 +1,4 @@
-import { columnModel } from "@/model/column";
+import { columnModel } from "@/models/column";
 import { columnUseCaseParams } from "../useCase";
 
 export function deleteThisColumn({ columnList, column }: columnUseCaseParams): columnModel[] {

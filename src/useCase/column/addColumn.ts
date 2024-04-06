@@ -1,5 +1,5 @@
 import { columnUseCaseParams } from "../useCase";
-import { columnModel } from "@/model/column";
+import { columnModel } from "@/models/column";
 
 export function addColumnAtTheEnd({ columnList, column }: columnUseCaseParams): columnModel[] {
     if(column.position === '-1') {

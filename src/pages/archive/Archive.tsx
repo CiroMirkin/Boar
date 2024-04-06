@@ -1,6 +1,6 @@
 import React from "react"
 import { Task } from "../Task"
-import { Archive as ArchiveModel } from "@/model/archive"
+import { Archive as ArchiveModel } from "@/models/archive"
 import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card"
 import { Header } from "../Header"
 

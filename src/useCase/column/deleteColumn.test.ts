@@ -1,4 +1,4 @@
-import { columnModel } from "../../model/column.ts"
+import { columnModel } from "../../models/column.ts"
 import { deleteThisColumn } from "./deleteColumn.ts"
 
 describe('Eliminar columna.', () => {

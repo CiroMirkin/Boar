@@ -1,5 +1,5 @@
-import { Archive } from "@/model/archive";
-import { ArchiveRepository } from "@/model/archiveRepository";
+import { Archive } from "@/models/archive";
+import { ArchiveRepository } from "@/models/archiveRepository";
 
 export default class LocalStorageArchiveRepository implements ArchiveRepository {
     #key;

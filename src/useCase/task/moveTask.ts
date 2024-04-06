@@ -1,6 +1,6 @@
-import { getIndexOfColumnInColumnList } from "@/model/column"
+import { getIndexOfColumnInColumnList } from "@/models/column"
 import { taskUseCaseParams } from "../useCase"
-import { getNewTask, taskList } from "@/model/task"
+import { getNewTask, taskList } from "@/models/task"
 
 export type moveToType = 'next-column' | 'prev-column'
 

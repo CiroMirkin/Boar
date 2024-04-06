@@ -1,6 +1,6 @@
 import React from "react";
 import { Task } from "./Task";
-import { taskList } from "../model/task";
+import { taskList } from "../models/task";
 
 interface TaskListProps {
     tasks: taskList;

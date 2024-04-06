@@ -1,4 +1,4 @@
-import { taskList } from "@/model/task";
+import { taskList } from "@/models/task";
 import { taskUseCaseParams } from "../useCase";
 
 export function addTaskInFirstColumn({ taskListInEachColumn: taskList, task }: taskUseCaseParams): taskList[] {
