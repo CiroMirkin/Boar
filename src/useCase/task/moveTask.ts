@@ -31,7 +31,6 @@ export const moveThisTask = ({ task, to, taskListInEachColumn }: moveTaskParams)
         })
         newTask.id = task.id 
         
-        if(newTaskListInEachColumn[indexOfTheColumnWhereTheTaskWillBe].length > 15) throw new Error('Ya tienes muchas tareas en esta columna.')
         newTaskListInEachColumn[indexOfTheColumnWhereTheTaskWillBe].push(newTask)
 
         return newTaskListInEachColumn
