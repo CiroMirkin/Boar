@@ -1,4 +1,4 @@
-import { archive } from "@/model/archive";
+import { Archive } from "@/model/archive";
 import { ArchiveRepository } from "@/model/archiveRepository";
 
 export default class LocalStorageArchiveRepository implements ArchiveRepository {
@@ -6,10 +6,10 @@ export default class LocalStorageArchiveRepository implements ArchiveRepository 
     constructor() {
         this.#key = "tasks-archive";
     }
-    save(archive: archive): void {
+    save(archive: Archive): void {
         localStorage.setItem(this.#key, JSON.stringify(archive))
     }
-    getAll(): archive {
+    getAll(): Archive {
         return localStorage.getItem(this.#key)
             ? JSON.parse(localStorage.getItem(this.#key) as string)
             : []

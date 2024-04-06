@@ -1,14 +1,14 @@
 import { taskList } from "../model/task";
 import { getFullDate } from "../utility/getTime";
-import { archive } from "@/model/archive";
+import { Archive } from "@/model/archive";
 import { getIndexOfColumnInColumnList } from "@/model/column";
 
 interface archiveTaskListParams {
     taskListInEachColumn: taskList[],
     columnPosition: string,
-    archive: archive
+    archive: Archive
 }
-export function archiveTaskListInColumn({ taskListInEachColumn, columnPosition, archive }: archiveTaskListParams): archive {
+export function archiveTaskListInColumn({ taskListInEachColumn, columnPosition, archive }: archiveTaskListParams): Archive {
     const date = getFullDate()
     const taskListToArchive: taskList = taskListInEachColumn[getIndexOfColumnInColumnList(columnPosition)]
     

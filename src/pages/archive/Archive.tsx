@@ -1,11 +1,11 @@
 import React from "react"
 import { Task } from "../Task"
-import { archive } from "@/model/archive"
+import { Archive } from "@/model/archive"
 import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card"
 import { Header } from "../Header"
 
 interface ArchiveProps {
-    boardArchive: archive
+    boardArchive: Archive
 }
 
 export function Archive({ boardArchive}: ArchiveProps) {

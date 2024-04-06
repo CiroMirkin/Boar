@@ -5,4 +5,4 @@ export interface taskListArchived {
     tasklist: taskList
 }
 
-export type archive = taskListArchived[]
+export type Archive = taskListArchived[]

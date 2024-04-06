@@ -1,10 +1,10 @@
-import { archive } from "@/model/archive";
+import { Archive } from "@/model/archive";
 import { TaskListInEachColumn } from "@/model/taskListInEachColumn";
 import { archiveTaskListInColumn } from "@/useCase/archiveTaskList";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface InitialState {
-    list: archive
+    list: Archive
 }
 
 const initialState: InitialState = {
