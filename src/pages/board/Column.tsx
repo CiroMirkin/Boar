@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
-import { columnModel, columnNull } from "../models/column";
+import { columnModel, columnNull } from "../../models/column";
 import { isThisTheFirstColumn, isThisTheLastColumn } from "@/models/column";
-import { getNewTask } from "../models/task";
+import { getNewTask } from "../../models/task";
 import {
     Card,
     CardContent,
@@ -9,15 +9,15 @@ import {
     CardHeader,
     CardTitle,
   } from "@/ui/card"  
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Input } from "../../ui/input";
+import { Button } from "../../ui/button";
 import { useDispatch } from "react-redux";
 import { addTaskAtFirstColumn, deleteLastTheTaskList } from "@/redux/taskListInEachColumnReducer";
 import { archiveTaskListAtLastColumn } from "@/redux/archiveReducer";
-import { ColumnListContext, TaskListInEachColumnContext } from "./board/Board";
+import { ColumnListContext, TaskListInEachColumnContext } from "./Board";
 import { Archive, Plus } from "lucide-react";
 import { iconSize } from "@/iconsConstants";
-import { useToast } from "../ui/use-toast";
+import { useToast } from "../../ui/use-toast";
 
 const ColumnContext = createContext(columnNull)
 
