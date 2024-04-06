@@ -19,7 +19,7 @@ export function Archive({ boardArchive}: ArchiveProps) {
             )
         )
         archive.push(
-            <Card key={date} className="p-2">
+            <Card key={date} className="px-4">
                 <CardHeader>
                     <CardTitle>
                         {date}
