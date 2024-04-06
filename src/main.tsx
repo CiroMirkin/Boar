@@ -4,9 +4,9 @@ import App from './App.tsx'
 import './index.css'
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
-import LocalStorageTaskListInEachColumnRepository from './repository/localStorageTaskLists.ts'
-import LocalStorageColumnListRepository from './repository/localStorageColumnList.ts'
-import LocalStorageArchiveRepository from './repository/localStorageArchive.ts'
+import LocalStorageTaskListInEachColumnRepository from './repositories/localStorageTaskLists.ts'
+import LocalStorageColumnListRepository from './repositories/localStorageColumnList.ts'
+import LocalStorageArchiveRepository from './repositories/localStorageArchive.ts'
 
 const taskListInEachColumnRepository = new LocalStorageTaskListInEachColumnRepository();
 const columnListRepository = new LocalStorageColumnListRepository()

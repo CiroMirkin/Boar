@@ -1,7 +1,7 @@
 import { Archive } from "@/models/archive";
 import { ArchiveRepository } from "@/models/archiveRepository";
 import { TaskListInEachColumn } from "@/models/taskListInEachColumn";
-import LocalStorageArchiveRepository from "@/repository/localStorageArchive";
+import LocalStorageArchiveRepository from "@/repositories/localStorageArchive";
 import { archiveTaskListInColumn } from "@/useCase/archiveTaskList";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
