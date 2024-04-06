@@ -2,14 +2,12 @@ export interface taskModel {
     id: string
     descriptionText: string
     columnPosition: string
-    highlight?: boolean
 }
 
 export const emptyTask: taskModel = {
     id: '',
     descriptionText: '',
     columnPosition: '1',
-    highlight: false
 }
 
 export type taskList = taskModel[]
@@ -22,6 +20,5 @@ export const getNewTask = ({ descriptionText, columnPosition }: { descriptionTex
         id: crypto.randomUUID(),
         descriptionText,
         columnPosition,
-        highlight: false
     }
 }

@@ -6,7 +6,6 @@ describe('Mover una tarea entre columnas', () => {
             id: "1",
             descriptionText: "pipi", 
             columnPosition: '1',
-            highlight: false
         }
         const taskListInEachColumn = [ [{...task}], []]
 
@@ -16,7 +15,6 @@ describe('Mover una tarea entre columnas', () => {
                 id: "1",
                 descriptionText: "pipi", 
                 columnPosition: '2',
-                highlight: false
             }]
         ])
     })
@@ -26,7 +24,6 @@ describe('Mover una tarea entre columnas', () => {
             id: "1",
             descriptionText: "pipi", 
             columnPosition: '2',
-            highlight: false
         }
         const taskListInEachColumn = [ [], [{...task}]]
 
@@ -35,7 +32,6 @@ describe('Mover una tarea entre columnas', () => {
                 id: "1",
                 descriptionText: "pipi", 
                 columnPosition: '1',
-                highlight: false
             }],
             []
         ])
@@ -46,7 +42,6 @@ describe('Mover una tarea entre columnas', () => {
             id: "1",
             descriptionText: "pipi", 
             columnPosition: '1',
-            highlight: false
         }
         const taskListInEachColumn = [ [{...task}], []]
 
@@ -55,7 +50,6 @@ describe('Mover una tarea entre columnas', () => {
                 id: "1",
                 descriptionText: "pipi", 
                 columnPosition: '1',
-                highlight: false
             }],
             []
         ])
