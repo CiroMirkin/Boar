@@ -49,7 +49,20 @@ function TaskActions() {
     const dispatch = useDispatch()
     
     const handleClick = (action: Function) => {
-        dispatch(action(data))
+        try {
+            dispatch(action(data))
+        }
+        catch(error){
+            let message: string = 'Unknown Error :('
+            if (error instanceof Error) {
+                message = error.message
+            }
+            toast({
+                description: message,
+                variant: "destructive",
+                duration: 3000
+            })
+        }
     }
     return (
         <CardFooter className="flex flex-col justify-between gap-x-1 gap-y-1.5">
