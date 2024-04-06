@@ -2,12 +2,12 @@ import React from "react"
 import { getBlankColumnWithoutPosition } from "../../models/column"
 import { columnModel } from "../../models/column"
 import { useDispatch } from "react-redux"
-import { addColumn, deleteColumn } from "@/redux/columnListReducer"
-import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card"
+import { addColumn } from "@/redux/columnListReducer"
 import { Button } from "../../ui/button"
 import { useToast } from "../../ui/use-toast"
-import { Plus, Trash2 } from "lucide-react"
+import { Plus } from "lucide-react"
 import { iconSize } from "@/iconsConstants"
+import { ConfigColumn } from "./ConfigColumn"
 
 interface ConfigColumnsParams {
     columnList: columnModel[]
@@ -38,21 +38,7 @@ export function ConfigColumns({ columnList }: ConfigColumnsParams) {
     }
 
     const columns: React.ReactNode[] = columnList.map(column =>
-        <Card key={column.id} className="px-6 flex content-center justify-between border">
-            <CardHeader>
-                <CardTitle>
-                    {column.name}
-                </CardTitle>
-            </CardHeader>
-            <CardContent className="py-0 flex items-center">
-                <Button 
-                    onClick={() => handleClick(deleteColumn, column)} 
-                    variant="destructive" className="w-full"
-                > 
-                    <Trash2 size={iconSize} />
-                </Button>
-            </CardContent>
-        </Card>
+        <ConfigColumn column={column} key={column.id} />
     )
     return (
         <ul className="h-auto w-full py-5 px-6 flex flex-wrap flex-col justify-start gap-y-3 gap-x-3.5"> 
