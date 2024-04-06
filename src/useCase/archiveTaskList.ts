@@ -13,10 +13,13 @@ export function archiveTaskListInColumn({ taskListInEachColumn, columnPosition, 
     const taskListToArchive: taskList = taskListInEachColumn[getIndexOfColumnInColumnList(columnPosition)]
     
     if(AreThereTasksToBeArchive(taskListToArchive)) throw new Error('No hay tareas que archivar.')
+    if(archive.length === 60) throw new Error('El archivo esta lleno :(')
+    
 
     if(getDataOfTheLastTaskListArchived(archive) === date) {
         const toArchive = [...taskListToArchive, ...archive[archive.length - 1].tasklist]
         archive[archive.length - 1].tasklist = toArchive
+        if(toArchive.length === 30) throw new Error('El archivo diario esta lleno :(')
         return archive
     }
 
