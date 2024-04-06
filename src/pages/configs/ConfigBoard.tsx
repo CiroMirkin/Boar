@@ -1,6 +1,6 @@
 import { columnModel } from "../../models/column"
 import { boardModel } from "@/models/board"
-import { Header } from "../Header"
+import { Header, USER_IS_IN } from "../Header"
 import { ConfigColumns } from "./ConfigColumns"
 
 interface ConfigBoardParams {
@@ -11,7 +11,7 @@ interface ConfigBoardParams {
 export function ConfigBoard({ boardData, columnList }:ConfigBoardParams) {
     return (
         <>
-            <Header title="Preferencias" />
+            <Header title="Preferencias" whereUserIs={USER_IS_IN.CONFIG} />
             <div>
                 <h2 className="px-6 text-2xl">{boardData.name}</h2>
             </div>

@@ -2,7 +2,7 @@ import React from "react"
 import { Task } from "../Task"
 import { Archive as ArchiveModel } from "@/models/archive"
 import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card"
-import { Header } from "../Header"
+import { Header, USER_IS_IN } from "../Header"
 
 interface ArchiveProps {
     boardArchive: ArchiveModel
@@ -34,7 +34,7 @@ export function Archive({ boardArchive}: ArchiveProps) {
 
     return (
         <>
-            <Header title="Archivo" />
+            <Header title="Archivo" whereUserIs={USER_IS_IN.ARCHIVE}/>
             <div className="mx-6 my-4 flex flex-col gap-y-2">
                 { archive.length === 0 
                     ? <Card className="p-2"><CardHeader><CardTitle>Aún no hay tareas archivadas.</CardTitle></CardHeader></Card> 

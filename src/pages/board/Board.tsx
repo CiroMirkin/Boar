@@ -2,7 +2,7 @@ import React from "react"
 import { boardModel } from "../../models/board"
 import { ColumnList } from "./ColumnList"
 import { columnList, defaultColumnList } from "@/models/column"
-import { Header } from "../Header"
+import { Header, USER_IS_IN } from "../Header"
 import { TaskListInEachColumn } from "@/models/taskListInEachColumn"
 
 export const TaskListInEachColumnContext = React.createContext([[], [], []] as TaskListInEachColumn)
@@ -19,7 +19,7 @@ export function Board({ data, taskListInEachColumn, columnList }: BoardProps) {
     
     return (
         <>
-        <Header title={data.name} />
+        <Header title={data.name} whereUserIs={USER_IS_IN.BOARD} />
         <ColumnListContext.Provider value={columnList}>
             <TaskListInEachColumnContext.Provider value={taskListInEachColumn}>
                 <ColumnList />
