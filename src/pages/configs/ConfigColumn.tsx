@@ -26,9 +26,9 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
         setShowChangeColumnNameInput(!showChangeColumnNameInput)
     }
     
-    const handleClick = (action: Function, column: columnModel) => {
+    const deleteColumnHandle = () => {
         try {
-            updateBoardData(action(column))
+            updateBoardData(deleteColumn(column))
         }
         catch (error) {
             let message: string = 'Unknown Error :('
@@ -64,7 +64,7 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
                     <Pencil size={iconSize} />
                 </Button>
                 <Button 
-                    onClick={() => handleClick(deleteColumn, column)} 
+                    onClick={deleteColumnHandle} 
                     variant="destructive"
                 > 
                     <Trash2 size={iconSize} />
