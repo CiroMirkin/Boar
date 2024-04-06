@@ -15,22 +15,17 @@ interface TaskProps {
 
 export function Task({ data, children }: TaskProps) {
     const [ show, setShow ] = useState(false)
+    const description = data.descriptionText
+
     return (
         <TaskContext.Provider value={ data }>
             <Card onClick={() => setShow(!show)}>
-                <TaskDescription />
-            { show && children }
+                <CardContent>
+                    <p>{ description }</p>
+                </CardContent>
+                { show && children }
             </Card>
         </TaskContext.Provider>
-    )
-}
-
-function TaskDescription() {
-    const description = React.useContext(TaskContext).descriptionText
-    return (
-        <CardContent>
-            <p>{ description }</p>
-        </CardContent>
     )
 }
 
