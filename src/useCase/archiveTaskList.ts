@@ -14,6 +14,12 @@ export function archiveTaskListInColumn({ taskListInEachColumn, columnPosition, 
     
     if(AreThereTasksToBeArchive(taskListToArchive)) throw new Error('No hay tareas que archivar.')
 
+    if(getDataOfTheLastTaskListArchived(archive) === date) {
+        const toArchive = [...taskListToArchive, ...archive[archive.length - 1].tasklist]
+        archive[archive.length - 1].tasklist = toArchive
+        return archive
+    }
+
     archive.push({
         date,
         tasklist: taskListToArchive
@@ -22,3 +28,11 @@ export function archiveTaskListInColumn({ taskListInEachColumn, columnPosition, 
 }
 
 const AreThereTasksToBeArchive = (taskList: taskList): boolean => !taskList.length
+
+const getDataOfTheLastTaskListArchived = (archive: Archive): string | null => {
+    const lastTaskListArchived = archive[archive.length -1]
+    if(lastTaskListArchived) {
+        return lastTaskListArchived.date
+    }
+    return null
+}
