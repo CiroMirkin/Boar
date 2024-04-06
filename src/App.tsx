@@ -2,7 +2,7 @@ import './App.css'
 import { Board } from './pages/board/Board'
 import { useSelector } from 'react-redux'
 import { RootState } from './redux/store'
-import { Archive } from './model/archive'
+import { Archive as ArchiveModel } from './model/archive'
 import { Toaster } from './ui/toaster'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Archive } from './pages/archive/Archive'
@@ -13,7 +13,7 @@ import { TaskListInEachColumnRepository } from './model/taskListRepository'
 import { ColumnListRepository } from './model/columnListRepository'
 
 
-const getArchive = (): Archive => {
+const getArchive = (): ArchiveModel => {
   const archive = useSelector((state: RootState) => state.archive.list)
   const reverseArchive = [];
   for (let i = archive.length -1; i >= 0; i--) {
