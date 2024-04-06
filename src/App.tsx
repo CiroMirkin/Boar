@@ -11,6 +11,7 @@ import { Erro404 } from './pages/404/404'
 import { useEffect } from 'react'
 import { TaskListInEachColumnRepository } from './model/taskListRepository'
 import { ColumnListRepository } from './model/columnListRepository'
+import { ArchiveRepository } from './model/archiveRepository'
 
 
 const getArchive = (): ArchiveModel => {
@@ -31,9 +32,10 @@ const getTaskListInEachColumn = () => {
 interface AppProps {
   taskListInEachColumnRepository: TaskListInEachColumnRepository
   columnListRepository: ColumnListRepository
+  archiveRepository: ArchiveRepository
 }
 
-function App({ taskListInEachColumnRepository, columnListRepository }: AppProps) {
+function App({ taskListInEachColumnRepository, columnListRepository, archiveRepository }: AppProps) {
   const columnList = getColumnList()
   const taskListInEachColumn = getTaskListInEachColumn()
   const archive = getArchive()
@@ -44,6 +46,8 @@ function App({ taskListInEachColumnRepository, columnListRepository }: AppProps)
   }, [taskListInEachColumn])
 
   useEffect(() => columnListRepository.save(columnList), [columnList])
+
+  useEffect(() => archiveRepository.save(archive), [archive])
 
   return (
     <>
