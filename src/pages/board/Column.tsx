@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { ChangeEvent, createContext, useContext, useState } from "react";
 import { columnModel, columnNull } from "../../models/column";
 import { isThisTheFirstColumn, isThisTheLastColumn } from "@/models/column";
 import { getNewTask } from "../../models/task";
@@ -104,6 +104,14 @@ function ColumnFooter({  }: {  }) {
             })
         }
     }
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const taskDescription = e.target.value 
+        setNewTaskDescription(taskDescription)
+        if(!taskDescription.trim()) setCanUserUseTheAddTaskInput(false)
+        else setCanUserUseTheAddTaskInput(true)
+    }
+
     return (
         <CardFooter className="min-h-16">
             {
@@ -112,12 +120,7 @@ function ColumnFooter({  }: {  }) {
                     <Input 
                         type="text" value={newTaskDescription} 
                         className="mr-1.5"
-                        onChange={(e) => {
-                            const taskDescription = e.target.value 
-                            setNewTaskDescription(taskDescription)
-                            if(!taskDescription.trim()) setCanUserUseTheAddTaskInput(false)
-                            else setCanUserUseTheAddTaskInput(true)
-                        }}  
+                        onChange={handleChange}  
                         placeholder="Nueva tarea..."
                     />
                     <Button 
