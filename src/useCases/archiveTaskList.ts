@@ -1,5 +1,5 @@
 import { taskList } from "../models/task";
-import { getFullDate } from "../utility/getTime";
+import { getFullDate } from "../utils/getTime";
 import { Archive } from "@/models/archive";
 import { getIndexOfColumnInColumnList } from "@/models/column";
 

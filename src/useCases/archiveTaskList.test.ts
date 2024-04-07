@@ -1,6 +1,6 @@
 import { taskList, emptyTask } from "../models/task"
 import { archiveTaskListInColumn } from "./archiveTaskList"
-import { getFullDate } from "../utility/getTime"
+import { getFullDate } from "../utils/getTime"
 
 describe("Archivar lista de tareas.", () => {
     test("Se deberían archivar todas las tareas de la columna indicada.", () => {
