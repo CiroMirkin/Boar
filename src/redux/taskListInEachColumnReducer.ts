@@ -2,10 +2,10 @@ import { taskModel } from "@/models/task";
 import { TaskListInEachColumn } from "@/models/taskListInEachColumn";
 import { TaskListInEachColumnRepository } from "@/models/taskListRepository";
 import LocalStorageTaskListInEachColumnRepository from "@/repositories/localStorageTaskLists";
-import { addTaskInFirstColumn } from "@/useCase/task/addTask";
-import { deleteThisTask } from "@/useCase/task/deleteTask";
-import { deleteLastTaskList } from "@/useCase/task/deleteTaskList";
-import { moveThisTaskToTheNextColumn, moveThisTaskToThePrevColumn } from "@/useCase/task/moveTask";
+import { addTaskInFirstColumn } from "@/useCases/task/addTask";
+import { deleteThisTask } from "@/useCases/task/deleteTask";
+import { deleteLastTaskList } from "@/useCases/task/deleteTaskList";
+import { moveThisTaskToTheNextColumn, moveThisTaskToThePrevColumn } from "@/useCases/task/moveTask";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface InitialState {
