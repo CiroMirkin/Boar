@@ -9,7 +9,7 @@ import {
 import { Button } from "@/ui/button"
 import { Archive, Columns3, Github, Settings } from "lucide-react"
 import { Link } from 'react-router-dom'
-import { iconSize } from "@/iconsConstants"
+import { iconSize } from "@/configs/iconsConstants"
 
 export enum USER_IS_IN {
   ARCHIVE = "archive",

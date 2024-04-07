@@ -6,7 +6,7 @@ import { addColumn } from "@/redux/columnListReducer"
 import { Button } from "../../ui/button"
 import { useToast } from "../../ui/use-toast"
 import { Plus } from "lucide-react"
-import { iconSize } from "@/iconsConstants"
+import { iconSize } from "@/configs/iconsConstants"
 import { ConfigColumn } from "./ConfigColumn"
 
 interface ConfigColumnsParams {

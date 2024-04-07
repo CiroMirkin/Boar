@@ -16,7 +16,7 @@ import { addTaskAtFirstColumn, deleteLastTheTaskList } from "@/redux/taskListInE
 import { archiveTaskListAtLastColumn } from "@/redux/archiveReducer";
 import { ColumnListContext, TaskListInEachColumnContext } from "./Board";
 import { Archive, Plus } from "lucide-react";
-import { iconSize } from "@/iconsConstants";
+import { iconSize } from "@/configs/iconsConstants";
 import { useToast } from "../../ui/use-toast";
 
 const ColumnContext = createContext(columnNull)

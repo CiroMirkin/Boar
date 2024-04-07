@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card"
 import { Button } from "../../ui/button"
 import { useToast } from "../../ui/use-toast"
 import { Pencil, Trash2 } from "lucide-react"
-import { iconSize } from "@/iconsConstants"
+import { iconSize } from "@/configs/iconsConstants"
 import { Input } from "@/ui/input"
 
 interface ConfigColumnParams {
