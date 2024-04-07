@@ -55,6 +55,7 @@ function ColumnFooter({  }: {  }) {
     const data = useContext(ColumnContext)
     const [ newTaskDescription, setNewTaskDescription ] = useState('')
     const columnList = useContext(ColumnListContext)
+    const [ canUserUseTheAddTaskInput, setCanUserUseTheAddTaskInput ] = useState(false)
 
     const { toast } = useToast()
 
@@ -88,6 +89,7 @@ function ColumnFooter({  }: {  }) {
             const task = getNewTask({ descriptionText: newTaskDescription, columnPosition: '1'})
             dispatch(addTaskAtFirstColumn(task))
             setNewTaskDescription('')
+            setCanUserUseTheAddTaskInput(false)
         }
         catch(error){
             let message: string = 'Unknown Error :('
@@ -110,12 +112,18 @@ function ColumnFooter({  }: {  }) {
                     <Input 
                         type="text" value={newTaskDescription} 
                         className="mr-1.5"
-                        onChange={(e) => setNewTaskDescription(e.target.value)}  
+                        onChange={(e) => {
+                            setNewTaskDescription(e.target.value)
+                            const taskDescription = e.target.value.trim() 
+                            if(!taskDescription) setCanUserUseTheAddTaskInput(false)
+                            else setCanUserUseTheAddTaskInput(true)
+                        }}  
                         placeholder="Nueva tarea..."
                     />
                     <Button 
                         onClick={handleClick} 
                         variant='ghost' 
+                        disabled={!canUserUseTheAddTaskInput && true}
                         title="Crear tarea" 
                     ><Plus size={iconSize} /></Button>
                 </>
