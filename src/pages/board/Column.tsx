@@ -113,9 +113,9 @@ function ColumnFooter({  }: {  }) {
                         type="text" value={newTaskDescription} 
                         className="mr-1.5"
                         onChange={(e) => {
-                            setNewTaskDescription(e.target.value)
-                            const taskDescription = e.target.value.trim() 
-                            if(!taskDescription) setCanUserUseTheAddTaskInput(false)
+                            const taskDescription = e.target.value 
+                            setNewTaskDescription(taskDescription)
+                            if(!taskDescription.trim()) setCanUserUseTheAddTaskInput(false)
                             else setCanUserUseTheAddTaskInput(true)
                         }}  
                         placeholder="Nueva tarea..."
