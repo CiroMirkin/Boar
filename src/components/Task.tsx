@@ -5,6 +5,9 @@ import { useDispatch } from "react-redux";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardFooter } from "../ui/SmallCard";
 import { useToast } from "../ui/use-toast";
+import { isThisTheFirstColumn } from "@/models/column";
+import { isThisTaskInTheFirstColumn } from "@/utils/isTheTaskInTheFirstColumn";
+import { isThisTaskInTheLastColumn } from "@/utils/isThisTaskInTheLastColumn";
 
 const TaskContext = createContext(emptyTask)
 
@@ -67,8 +70,8 @@ function TaskActions() {
     return (
         <CardFooter className="flex flex-col justify-between gap-x-1 gap-y-1.5">
             <div className="w-full grid grid-flow-col justify-stretch gap-1.5">
-                <Button size="sm" onClick={() => handleClick(moveTaskToPrevColumnAction())}>Retroceder</Button>
-                <Button size="sm" onClick={() => handleClick(moveTaskToNextColumnAction())}>Avanzar</Button>
+                <Button size="sm" disabled={isThisTaskInTheFirstColumn(data) && true} onClick={() => handleClick(moveTaskToPrevColumnAction())}>Retroceder</Button>
+                <Button size="sm" disabled={isThisTaskInTheLastColumn(data) && true} onClick={() => handleClick(moveTaskToNextColumnAction())}>Avanzar</Button>
             </div>
             <Button size="sm" variant="ghost" className="w-full" onClick={() => copyTextToClipboard(data.descriptionText)}>Copiar texto</Button>
             <Button size="sm" variant="destructiveGhost" className="w-full" onClick={() => handleClick(deleteTaskAction())}>Eliminar</Button>
