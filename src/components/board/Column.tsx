@@ -18,6 +18,7 @@ import { useToast } from "../../ui/use-toast";
 import { isThisColumnTheFirst } from "@/utils/isThisColumnTheFirst";
 import { isThisColumnTheLast } from "@/utils/isThisColumnTheLast";
 import { AddNewTaskInput } from "./AddNewTaskInput";
+import { ArchiveTaskListButton } from "./ArchiveTaskListButton";
 
 const ColumnContext = createContext(columnNull)
 
@@ -54,46 +55,12 @@ Column.ColumnContent = ColumnContent
 function ColumnFooter({  }: {  }) { 
     const data = useContext(ColumnContext)
 
-    const { toast } = useToast()
-
-    const dispatch = useDispatch()
-    
-    const taskListInEachColumn = useContext(TaskListInEachColumnContext)
-    const archiveTaskList = () => {
-        try{
-            dispatch(archiveTaskListAtLastColumn(taskListInEachColumn))
-            dispatch(deleteLastTheTaskList())
-            toast({
-                description: "Puedes ver las tareas archivadas yendo al menu.",
-                duration: 3000
-            })
-        }
-        catch(error){
-            let message: string = 'Unknown Error :('
-            if (error instanceof Error) {
-                message = error.message
-            }
-            toast({
-                description: message,
-                variant: "destructive",
-                duration: 3000
-            })
-        }
-    }
-
     return (
         <CardFooter className="min-h-16">
             {
                 isThisColumnTheFirst(data) && <AddNewTaskInput />
             }
-            {
-                isThisColumnTheLast(data) 
-                && <Button  
-                    onClick={archiveTaskList}
-                    variant='ghost'
-                    className="w-full"
-                    ><Archive size={iconSize} className="mr-2" /> Archivar tareas</Button>
-            }
+            { isThisColumnTheLast(data) &&  <ArchiveTaskListButton /> }
         </CardFooter>
     )
 }
