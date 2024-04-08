@@ -1,6 +1,6 @@
 # ⚡ ¿Que es Boar?
 
-Boar es una aplicación web para gestionar tareas que busca ayudarte a enfocarte en tus tareas.
+Boar es una aplicación web para gestionar tareas a corto plazo que busca ayudarte a enfocarte en tus tareas.
 
 Alpha: [https://cm-boar.netlify.app/](https://cm-boar.netlify.app/)
 
@@ -27,26 +27,4 @@ npm run dev
 
 ## 📖 Documentación
 
-* Puedes leer la documentación en [cm-boar-docs.netlify.app](https://cm-boar-docs.netlify.app/).
-
-* Puedes acceder localmente ejecutando:
-
-    Primero:
-
-    ```bash
-    cd website
-    ```
-    
-    Luego para instalar sus dependencias:
-
-    ```bash
-    npm i
-    ```
-
-    Y por último:
-    
-    ```bash
-    npm run start
-    ```
-    
-    Con `cd website` entraras al directorio donde esta la documentación y con `npm run start` crearas la documentación en [http://localhost:3000/](http://localhost:3000/).
+Puedes leer la documentación de Boar en [cm-boar-docs.netlify.app](https://cm-boar-docs.netlify.app/).
