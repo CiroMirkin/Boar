@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardFooter } from "../ui/SmallCard";
 import { useToast } from "../ui/use-toast";
-import { isThisTheFirstColumn } from "@/models/column";
 import { isThisTaskInTheFirstColumn } from "@/utils/isTheTaskInTheFirstColumn";
 import { isThisTaskInTheLastColumn } from "@/utils/isThisTaskInTheLastColumn";
 
