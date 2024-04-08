@@ -54,20 +54,15 @@ describe('Eliminar columna.', () => {
                 position: "1",
             },
             {
-                id: "",
+                id: "c2",
                 name: "",
                 position: "2",
-            },
-            {
-                id: "c3",
-                name: "",
-                position: "3",
-            },
+            }
         ]
         const column: columnModel = {
-            id: "c3",
+            id: "c2",
             name: "",
-            position: "3",
+            position: "2",
         }
         expect(() => {
             return deleteThisColumn({ columnList, column })
