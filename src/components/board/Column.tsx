@@ -1,6 +1,6 @@
 import React, { ChangeEvent, createContext, useContext, useState } from "react";
 import { columnModel, columnNull } from "../../models/column";
-import { isThisTheFirstColumn, isThisTheLastColumn } from "@/models/column";
+import { isThisTheLastColumn } from "@/models/column";
 import { getNewTask } from "../../models/task";
 import {
     Card,
@@ -18,6 +18,7 @@ import { ColumnListContext, TaskListInEachColumnContext } from "./Board";
 import { Archive, Plus } from "lucide-react";
 import { iconSize } from "@/configs/iconsConstants";
 import { useToast } from "../../ui/use-toast";
+import { isThisColumnTheFirst } from "@/utils/isThisColumnTheFirst";
 
 const ColumnContext = createContext(columnNull)
 
@@ -115,7 +116,7 @@ function ColumnFooter({  }: {  }) {
     return (
         <CardFooter className="min-h-16">
             {
-                isThisTheFirstColumn(data, columnList) 
+                isThisColumnTheFirst(data) 
                 && <>
                     <Input 
                         type="text" value={newTaskDescription} 
