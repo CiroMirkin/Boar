@@ -1,6 +1,5 @@
-import React, { ChangeEvent, KeyboardEvent, createContext, useContext, useState } from "react";
+import React, { createContext, useContext } from "react";
 import { columnModel, columnNull } from "../../models/column";
-import { getNewTask } from "../../models/task";
 import {
     Card,
     CardContent,
@@ -8,17 +7,17 @@ import {
     CardHeader,
     CardTitle,
   } from "@/ui/card"  
-import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
 import { useDispatch } from "react-redux";
-import { addTaskAtFirstColumn, deleteLastTheTaskList } from "@/redux/taskListInEachColumnReducer";
+import { deleteLastTheTaskList } from "@/redux/taskListInEachColumnReducer";
 import { archiveTaskListAtLastColumn } from "@/redux/archiveReducer";
 import { TaskListInEachColumnContext } from "./Board";
-import { Archive, Plus } from "lucide-react";
+import { Archive } from "lucide-react";
 import { iconSize } from "@/configs/iconsConstants";
 import { useToast } from "../../ui/use-toast";
 import { isThisColumnTheFirst } from "@/utils/isThisColumnTheFirst";
 import { isThisColumnTheLast } from "@/utils/isThisColumnTheLast";
+import { AddNewTaskInput } from "./AddNewTaskInput";
 
 const ColumnContext = createContext(columnNull)
 
@@ -54,8 +53,6 @@ Column.ColumnContent = ColumnContent
 
 function ColumnFooter({  }: {  }) { 
     const data = useContext(ColumnContext)
-    const [ newTaskDescription, setNewTaskDescription ] = useState('')
-    const [ canUserUseTheAddTaskInput, setCanUserUseTheAddTaskInput ] = useState(false)
 
     const { toast } = useToast()
 
@@ -84,57 +81,10 @@ function ColumnFooter({  }: {  }) {
         }
     }
 
-    const handleClick = () => {
-        try {
-            const task = getNewTask({ descriptionText: newTaskDescription, columnPosition: '1'})
-            dispatch(addTaskAtFirstColumn(task))
-            setNewTaskDescription('')
-            setCanUserUseTheAddTaskInput(false)
-        }
-        catch(error){
-            let message: string = 'Unknown Error :('
-            if (error instanceof Error) {
-                message = error.message
-            }
-            console.error(message)
-            toast({
-                description: message,
-                variant: "destructive",
-                duration: 3000
-            })
-        }
-    }
-
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const taskDescription = e.target.value 
-        setNewTaskDescription(taskDescription)
-        if(!taskDescription.trim()) setCanUserUseTheAddTaskInput(false)
-        else setCanUserUseTheAddTaskInput(true)
-    }
-
-    function handleKeyDown(e: KeyboardEvent<HTMLInputElement>): void {
-        if (e.ctrlKey && e.key === "Enter") handleClick()
-    }
-
     return (
         <CardFooter className="min-h-16">
             {
-                isThisColumnTheFirst(data) 
-                && <>
-                    <Input 
-                        type="text" value={newTaskDescription} 
-                        className="mr-1.5"
-                        onChange={handleChange}  
-                        onKeyDown={handleKeyDown}
-                        placeholder="Nueva tarea..."
-                    />
-                    <Button 
-                        onClick={handleClick} 
-                        variant='ghost' 
-                        disabled={!canUserUseTheAddTaskInput && true}
-                        title="Crear tarea" 
-                    ><Plus size={iconSize} /></Button>
-                </>
+                isThisColumnTheFirst(data) && <AddNewTaskInput 
             }
             {
                 isThisColumnTheLast(data) 
