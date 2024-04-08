@@ -7,14 +7,6 @@ import {
     CardHeader,
     CardTitle,
   } from "@/ui/card"  
-import { Button } from "../../ui/button";
-import { useDispatch } from "react-redux";
-import { deleteLastTheTaskList } from "@/redux/taskListInEachColumnReducer";
-import { archiveTaskListAtLastColumn } from "@/redux/archiveReducer";
-import { TaskListInEachColumnContext } from "./Board";
-import { Archive } from "lucide-react";
-import { iconSize } from "@/configs/iconsConstants";
-import { useToast } from "../../ui/use-toast";
 import { isThisColumnTheFirst } from "@/utils/isThisColumnTheFirst";
 import { isThisColumnTheLast } from "@/utils/isThisColumnTheLast";
 import { AddNewTaskInput } from "./AddNewTaskInput";
