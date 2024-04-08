@@ -1,6 +1,5 @@
 import React, { ChangeEvent, createContext, useContext, useState } from "react";
 import { columnModel, columnNull } from "../../models/column";
-import { isThisTheLastColumn } from "@/models/column";
 import { getNewTask } from "../../models/task";
 import {
     Card,
@@ -14,11 +13,12 @@ import { Button } from "../../ui/button";
 import { useDispatch } from "react-redux";
 import { addTaskAtFirstColumn, deleteLastTheTaskList } from "@/redux/taskListInEachColumnReducer";
 import { archiveTaskListAtLastColumn } from "@/redux/archiveReducer";
-import { ColumnListContext, TaskListInEachColumnContext } from "./Board";
+import { TaskListInEachColumnContext } from "./Board";
 import { Archive, Plus } from "lucide-react";
 import { iconSize } from "@/configs/iconsConstants";
 import { useToast } from "../../ui/use-toast";
 import { isThisColumnTheFirst } from "@/utils/isThisColumnTheFirst";
+import { isThisColumnTheLast } from "@/utils/isThisColumnTheLast";
 
 const ColumnContext = createContext(columnNull)
 
@@ -55,7 +55,6 @@ Column.ColumnContent = ColumnContent
 function ColumnFooter({  }: {  }) { 
     const data = useContext(ColumnContext)
     const [ newTaskDescription, setNewTaskDescription ] = useState('')
-    const columnList = useContext(ColumnListContext)
     const [ canUserUseTheAddTaskInput, setCanUserUseTheAddTaskInput ] = useState(false)
 
     const { toast } = useToast()
@@ -133,7 +132,7 @@ function ColumnFooter({  }: {  }) {
                 </>
             }
             {
-                isThisTheLastColumn(data, columnList) 
+                isThisColumnTheLast(data) 
                 && <Button  
                     onClick={archiveTaskList}
                     variant='ghost'
