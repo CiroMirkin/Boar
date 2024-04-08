@@ -1,4 +1,4 @@
-import React, { ChangeEvent, createContext, useContext, useState } from "react";
+import React, { ChangeEvent, KeyboardEvent, createContext, useContext, useState } from "react";
 import { columnModel, columnNull } from "../../models/column";
 import { getNewTask } from "../../models/task";
 import {
@@ -112,6 +112,10 @@ function ColumnFooter({  }: {  }) {
         else setCanUserUseTheAddTaskInput(true)
     }
 
+    function handleKeyDown(e: KeyboardEvent<HTMLInputElement>): void {
+        if (e.ctrlKey && e.key === "Enter") handleClick()
+    }
+
     return (
         <CardFooter className="min-h-16">
             {
@@ -121,6 +125,7 @@ function ColumnFooter({  }: {  }) {
                         type="text" value={newTaskDescription} 
                         className="mr-1.5"
                         onChange={handleChange}  
+                        onKeyDown={handleKeyDown}
                         placeholder="Nueva tarea..."
                     />
                     <Button 
