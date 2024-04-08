@@ -46,7 +46,7 @@ describe('Eliminar columna.', () => {
         ])
     })
 
-    test('Debería poderse eliminar una columna solo cuando hay mas de tres.', () => {
+    test('Debería poderse eliminar una columna solo cuando hay mas de dos.', () => {
         const columnList: columnModel[] = [
             {
                 id: "",
@@ -71,7 +71,7 @@ describe('Eliminar columna.', () => {
         }
         expect(() => {
             return deleteThisColumn({ columnList, column })
-        }).toThrow('Para poder eliminar una columna debe haber mas de tres.')
+        }).toThrow('No puedes tener menos de dos columnas.')
 
     })
 })
