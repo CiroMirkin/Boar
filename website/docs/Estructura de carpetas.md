@@ -16,17 +16,23 @@ tags:
     └── 📁 src
         └── App.tsx
         └── main.tsx
-        └── tutorialSteps.ts
         └── 📁 assets 
         └── 📁 ui  - Componentes genéricos y reutilizables
-        └── 📁 pages  - Paginas y contenido de la aplicación
+        └── 📁 components  - Paginas y contenido de la aplicación
+            └── 📁 404  - Pagina 404
+            └── 📁 archive  - Pagina y componentes únicos del archivo
+            └── 📁 board  - Pagina y componentes únicos del tablero
+            └── 📁 configs  - Pagina y componentes únicos de las preferencias
         └── 📁 models - Modelos de dominio
         └── 📁 repositories - Implementaciones de los repositorios
-        └── 📁 useCase - Lógica de los casos de uso
+        └── 📁 useCases - Lógica de los casos de uso
             └── useCase.ts
             └── 📁 column
             └── 📁 task
-        └── 📁 utility - Funciones utilitarias, por ejemplo, una función para obtener la fecha.
+            └── 📁 archive
+            └── 📁 board
+        └── 📁 utils - Componentes y funciones utilitarias.
+        └── 📁 configs - Archivos de configuración 
         └── 📁 redux 
         └── 📁 lib  
 ```
