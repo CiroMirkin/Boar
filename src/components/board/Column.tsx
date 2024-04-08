@@ -84,7 +84,7 @@ function ColumnFooter({  }: {  }) {
     return (
         <CardFooter className="min-h-16">
             {
-                isThisColumnTheFirst(data) && <AddNewTaskInput 
+                isThisColumnTheFirst(data) && <AddNewTaskInput />
             }
             {
                 isThisColumnTheLast(data) 
