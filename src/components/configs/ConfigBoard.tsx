@@ -11,7 +11,7 @@ interface ConfigBoardParams {
 export function ConfigBoard({ boardData, columnList }:ConfigBoardParams) {
     return (
         <>
-            <Header title="Preferencias" whereUserIs={USER_IS_IN.CONFIG} />
+            <Header title="Ajustes" whereUserIs={USER_IS_IN.CONFIG} />
             <div>
                 <h2 className="px-6 text-2xl">{boardData.name}</h2>
             </div>

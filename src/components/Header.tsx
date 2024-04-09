@@ -44,7 +44,7 @@ export function Header({ title, whereUserIs }: HeaderProps) {
             </DropdownMenuItem>
             <DropdownMenuItem disabled={whereUserIs === USER_IS_IN.CONFIG && true}>
               <Link to='/settings' className="flex">
-                <Settings size={iconSize} className="mr-2" /> Preferencias
+                <Settings size={iconSize} className="mr-2" /> Ajustes
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
