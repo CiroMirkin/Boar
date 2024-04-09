@@ -60,14 +60,15 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
             <CardContent className="pb-0 pt-1 md:pt-0 px-4 grid grid-flow-col justify-stretch gap-1.5 gap-2 w-full md:w-auto md:flex md:items-center">
                 <Button
                     onClick={editColumnNameHandle}
+                    variant="ghost"
                 >
-                    <Pencil size={iconSize} />
+                    <Pencil size={iconSize} className="mr-2" /> Editar
                 </Button>
                 <Button 
                     onClick={deleteColumnHandle} 
-                    variant="destructive"
+                    variant="destructiveGhost"
                 > 
-                    <Trash2 size={iconSize} />
+                    <Trash2 size={iconSize} className="mr-2" /> Eliminar
                 </Button>
             </CardContent>
         </Card>
