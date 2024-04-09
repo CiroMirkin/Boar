@@ -8,6 +8,7 @@ import { useToast } from "../../ui/use-toast"
 import { Pencil, Trash2 } from "lucide-react"
 import { iconSize } from "@/configs/iconsConstants"
 import { Input } from "@/ui/input"
+import { ToastAction } from "@/ui/toast"
 
 interface ConfigColumnParams {
     column: columnModel
@@ -44,6 +45,13 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
         }
     }
 
+    const askForConfirmationToDeleteTheColumn = () => toast({
+        description: "¿Seguro que quieres eliminar esta columna?",
+        variant: "destructive",
+        duration: 3000,
+        action: <ToastAction altText="Eliminar" onClick={deleteColumnHandle}>Eliminar</ToastAction>,
+    })
+
     return (
         <Card key={column.id} className="px-2 pb-4 md:pb-1 pt-1 flex content-center justify-between flex-wrap border">
             <CardHeader className={`${showChangeColumnNameInput ? "py-3": 'py-4'} w-auto`}>
@@ -65,7 +73,7 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
                     <Pencil size={iconSize} className="mr-2" /> Editar
                 </Button>
                 <Button 
-                    onClick={deleteColumnHandle} 
+                    onClick={askForConfirmationToDeleteTheColumn} 
                     variant="destructiveGhost"
                 > 
                     <Trash2 size={iconSize} className="mr-2" /> Eliminar
