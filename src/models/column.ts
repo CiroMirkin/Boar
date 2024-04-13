@@ -1,3 +1,4 @@
+import BusinessError from "@/errors/businessError"
 
 export interface columnModel {
     id: string
@@ -32,6 +33,7 @@ export const defaultColumnList: columnModel[] = [
 ]
 
 export function getBlankColumnWithoutPosition({ name }: { name: string }): columnModel {
+  if(!!name.trim()) throw new BusinessError('No se pueden crear columnas sin nombre.')
   return {
     id: crypto.randomUUID(),
     position: '-1',
