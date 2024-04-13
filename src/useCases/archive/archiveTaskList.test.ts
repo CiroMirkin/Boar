@@ -64,7 +64,7 @@ describe("Archivar lista de tareas.", () => {
         }
         const taskListInEachColumn: taskList[] = [ [], [], [] ]
         let firstColumnContent = new Array(31).fill(task)
-        taskListInEachColumn[0] = firstColumnContent
+        taskListInEachColumn[2] = firstColumnContent
         expect(() => {
             return archiveTaskListInTheLastColumn({ taskListInEachColumn, columnPosition: '1', archive: [] })
         }).toThrow('El archivo diario esta lleno :(')
@@ -76,7 +76,7 @@ describe("Archivar lista de tareas.", () => {
             descriptionText: '',
             columnPosition: '1',
         }
-        const taskListInEachColumn: taskList[] = [ [{...task}], [], [] ]
+        const taskListInEachColumn: taskList[] = [ [], [], [{...task}] ]
         let archive = new Array(60).fill({
             date: '',
             tasklist: [[]]
