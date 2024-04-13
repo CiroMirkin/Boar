@@ -22,7 +22,7 @@ export function Task({ data, children }: TaskProps) {
     return (
         <TaskContext.Provider value={ data }>
             <Card onClick={() => setShow(!show)}>
-                <CardContent>
+                <CardContent className="rounded-md hover:bg-accent">
                     <p>{ description }</p>
                 </CardContent>
                 { show && children }
