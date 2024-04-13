@@ -9,7 +9,7 @@ interface ConfigBoardParams {
     boardData: boardModel
 }
 
-export function ConfigBoard({ boardData, columnList }:ConfigBoardParams) {
+export function Configs({ boardData, columnList }:ConfigBoardParams) {
     console.log(boardData)
     return (
         <>

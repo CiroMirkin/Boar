@@ -6,7 +6,7 @@ import { Archive as ArchiveModel } from './models/archive'
 import { Toaster } from './ui/toaster'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Archive } from './components/archive/Archive'
-import { ConfigBoard } from './components/configs/ConfigBoard'
+import { Configs } from './components/configs/Configs'
 import { Erro404 } from './components/404/404'
 import { useEffect } from 'react'
 import { TaskListInEachColumnRepository } from './models/taskListRepository'
@@ -65,7 +65,7 @@ function App({ taskListInEachColumnRepository, columnListRepository, archiveRepo
           />
           <Route path='/settings' 
             element={
-              <ConfigBoard boardData={boardData} columnList={columnList} />
+              <Configs boardData={boardData} columnList={columnList} />
             }
           />
           <Route path='*' element={ <Erro404 /> } />
