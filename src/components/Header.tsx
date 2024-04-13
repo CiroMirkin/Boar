@@ -7,7 +7,7 @@ import {
     DropdownMenuTrigger,
 } from "@/ui/dropdown-menu"
 import { Button } from "@/ui/button"
-import { Archive, Columns3, Github, Settings } from "lucide-react"
+import { Archive, Columns3, Github, Menu, Settings } from "lucide-react"
 import { Link } from 'react-router-dom'
 import { iconSize } from "@/configs/iconsConstants"
 
@@ -27,7 +27,7 @@ export function Header({ title, whereUserIs }: HeaderProps) {
         <h1 className="text-4xl font-normal">{ title }</h1>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline">Menu</Button>
+            <Button variant="outline"><Menu size={iconSize}/></Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuLabel>Boar</DropdownMenuLabel>
