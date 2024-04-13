@@ -12,11 +12,6 @@ export const deleteLastTaskList = ({ taskListInEachColumn }: deleteLastTaskListP
     return taskListInEachColumn
 }
 export const deleteTheTaskListInThisIndex = ({ index, taskListInEachColumn }: { index: number, taskListInEachColumn: TaskListInEachColumn }): TaskListInEachColumn => {
-    const newTaskListInEachColumn = taskListInEachColumn.filter((taskList, taskListIndex) => {
-        if(taskListIndex === index) {
-            return false;
-        }
-        return true;
-    })
+    const newTaskListInEachColumn = taskListInEachColumn.filter(taskList => taskListInEachColumn.indexOf(taskList) !== index)
     return newTaskListInEachColumn
 }
