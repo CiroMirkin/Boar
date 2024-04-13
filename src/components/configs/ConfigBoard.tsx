@@ -10,6 +10,7 @@ interface ConfigBoardParams {
 }
 
 export function ConfigBoard({ boardData, columnList }:ConfigBoardParams) {
+    console.log(boardData)
     return (
         <>
             <Header title="Ajustes" whereUserIs={USER_IS_IN.CONFIG} />

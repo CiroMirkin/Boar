@@ -46,7 +46,7 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
     }
 
     const askForConfirmationToDeleteTheColumn = () => toast({
-        description: "¿Seguro que quieres eliminar esta columna?",
+        description: `¿Seguro que quieres eliminar la columna "${columnName}"?`,
         variant: "destructive",
         duration: 3000,
         action: <ToastAction altText="Eliminar" onClick={deleteColumnHandle}>Eliminar</ToastAction>,
