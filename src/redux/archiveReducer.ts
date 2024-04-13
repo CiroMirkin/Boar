@@ -2,7 +2,7 @@ import { Archive } from "@/models/archive";
 import { ArchiveRepository } from "@/models/archiveRepository";
 import { TaskListInEachColumn } from "@/models/taskListInEachColumn";
 import LocalStorageArchiveRepository from "@/repositories/localStorageArchive";
-import { archiveTaskListInColumn } from "@/useCases/archive/archiveTaskList";
+import { archiveTaskListInTheLastColumn } from "@/useCases/archive/archiveTaskList";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface InitialState {
@@ -21,7 +21,7 @@ export const archiveSlice = createSlice({
     reducers: {
         archiveTaskListAtLastColumn: (state, action: PayloadAction<TaskListInEachColumn>) => {
             const taskList = action.payload
-            state.list = archiveTaskListInColumn({ taskListInEachColumn: taskList, columnPosition: "3" , archive: state.list })
+            state.list = archiveTaskListInTheLastColumn({ taskListInEachColumn: taskList, columnPosition: "3" , archive: state.list })
         },
     }
 })

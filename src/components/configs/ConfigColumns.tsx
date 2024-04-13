@@ -8,6 +8,7 @@ import { useToast } from "../../ui/use-toast"
 import { Plus } from "lucide-react"
 import { iconSize } from "@/configs/iconsConstants"
 import { ConfigColumn } from "./ConfigColumn"
+import { addEmptyTaskListAtTheEnd } from "@/redux/taskListInEachColumnReducer"
 
 interface ConfigColumnsParams {
     columnList: columnModel[]
@@ -16,12 +17,16 @@ interface ConfigColumnsParams {
 export function ConfigColumns({ columnList }: ConfigColumnsParams) {
     const updateBoardData = useDispatch()
     const { toast } = useToast()
-    
-    const getNewColumn = () => getBlankColumnWithoutPosition({ name: 'Nueva columna'})
 
-    const handleClick = (action: Function, column: columnModel) => {
+    const addNewColumn = () => {
+        const newColumn = getBlankColumnWithoutPosition({ name: 'Nueva columna'})
+        updateBoardData(addColumn(newColumn))
+        updateBoardData(addEmptyTaskListAtTheEnd())
+    }
+
+    const handleClick = (action: Function) => {
         try {
-            updateBoardData(action(column))
+            action()
         }
         catch (error) {
             let message: string = 'Unknown Error :('
@@ -43,7 +48,7 @@ export function ConfigColumns({ columnList }: ConfigColumnsParams) {
     return (
         <ul className="h-auto w-full py-5 flex flex-wrap flex-col justify-start gap-y-3 gap-x-3.5"> 
             { columns }
-            <li className="self-center sm:self-end"><Button onClick={() => handleClick(addColumn, getNewColumn())} title="Crear columna" ><Plus size={iconSize} /></Button></li>
+            <li className="self-center sm:self-end"><Button onClick={() => handleClick(addNewColumn)} title="Crear columna" ><Plus size={iconSize} /></Button></li>
         </ul>
     )
 }

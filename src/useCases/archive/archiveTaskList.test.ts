@@ -1,12 +1,12 @@
 import { taskList, emptyTask } from "../../models/task"
-import { archiveTaskListInColumn } from "./archiveTaskList"
+import { archiveTaskListInTheLastColumn } from "./archiveTaskList"
 import { getFullDate } from "../../utils/getTime"
 
 describe("Archivar lista de tareas.", () => {
     test("Se deberían archivar todas las tareas de la columna indicada.", () => {
         const task = {...emptyTask}
         const taskListInEachColumn: taskList[] = [[{...task}]]
-        expect(archiveTaskListInColumn({ taskListInEachColumn, columnPosition: '1', archive: [] })).toStrictEqual([
+        expect(archiveTaskListInTheLastColumn({ taskListInEachColumn, columnPosition: '1', archive: [] })).toStrictEqual([
             {
                 date: (getFullDate()),
                 tasklist: [
@@ -18,7 +18,7 @@ describe("Archivar lista de tareas.", () => {
 
     test("No se debería poder archivar una lista de tareas vacía.", () => {
         expect(() => {
-            return archiveTaskListInColumn({ taskListInEachColumn: [[]], columnPosition: '1', archive: [] })
+            return archiveTaskListInTheLastColumn({ taskListInEachColumn: [[]], columnPosition: '1', archive: [] })
         }).toThrow('No hay tareas que archivar.')
     })
 
@@ -41,7 +41,7 @@ describe("Archivar lista de tareas.", () => {
                 ]
             }
         ]
-        expect(archiveTaskListInColumn({ taskListInEachColumn, columnPosition: '1', archive })).toStrictEqual([
+        expect(archiveTaskListInTheLastColumn({ taskListInEachColumn, columnPosition: '1', archive })).toStrictEqual([
             {
                 date: (getFullDate()),
                 tasklist: [
@@ -66,7 +66,7 @@ describe("Archivar lista de tareas.", () => {
         let firstColumnContent = new Array(31).fill(task)
         taskListInEachColumn[0] = firstColumnContent
         expect(() => {
-            return archiveTaskListInColumn({ taskListInEachColumn, columnPosition: '1', archive: [] })
+            return archiveTaskListInTheLastColumn({ taskListInEachColumn, columnPosition: '1', archive: [] })
         }).toThrow('El archivo diario esta lleno :(')
     })
 
@@ -83,7 +83,7 @@ describe("Archivar lista de tareas.", () => {
         })
         
         expect(() => {
-            return archiveTaskListInColumn({ taskListInEachColumn, columnPosition: '1', archive })
+            return archiveTaskListInTheLastColumn({ taskListInEachColumn, columnPosition: '1', archive })
         }).toThrow('El archivo esta lleno :(')
     })
 })

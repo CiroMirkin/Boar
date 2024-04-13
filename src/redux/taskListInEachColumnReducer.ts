@@ -47,5 +47,5 @@ export const taskListInEachColumnSlice = createSlice({
     }
 })
 
-export const { addTaskAtFirstColumn, deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn, deleteLastTheTaskList, addEmptyTaskListAtTheEnd: addTaskListAtTheEnd } = taskListInEachColumnSlice.actions
+export const { addTaskAtFirstColumn, deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn, deleteLastTheTaskList, addEmptyTaskListAtTheEnd } = taskListInEachColumnSlice.actions
 export default taskListInEachColumnSlice.reducer
