@@ -9,6 +9,7 @@ import { Pencil, Trash2 } from "lucide-react"
 import { iconSize } from "@/configs/iconsConstants"
 import { Input } from "@/ui/input"
 import { ToastAction } from "@/ui/toast"
+import { deleteTheTaskListOfThisColumn } from "@/redux/taskListInEachColumnReducer"
 
 interface ConfigColumnParams {
     column: columnModel
@@ -30,6 +31,7 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
     const deleteColumnHandle = () => {
         try {
             updateBoardData(deleteColumn(column))
+            updateBoardData(deleteTheTaskListOfThisColumn(column))
         }
         catch (error) {
             let message: string = 'Unknown Error :('

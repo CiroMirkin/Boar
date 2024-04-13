@@ -1,4 +1,4 @@
-import { deleteLastTaskList } from "./deleteTaskList"
+import { deleteLastTaskList, deleteTheTaskListInThisIndex } from "./deleteTaskList"
 
 describe("Eliminar una lista de tareas.", () => {
     test("Se debería eliminar la última lista de tareas.", () => {       
@@ -14,5 +14,20 @@ describe("Eliminar una lista de tareas.", () => {
             ]
         ]
         expect(deleteLastTaskList({ taskListInEachColumn })).toStrictEqual([ [], [], [] ])
+    })
+
+    test("Se debería eliminar la lista de tareas indicada.", () => {       
+        const taskListInEachColumn = [
+            [], 
+            [
+                {
+                    id: '',
+                    descriptionText: '',
+                    columnPosition: '1',
+                }
+            ],
+            [], 
+        ]
+        expect(deleteTheTaskListInThisIndex({ taskListInEachColumn, index: 1 })).toStrictEqual([ [], [] ])
     })
 })
