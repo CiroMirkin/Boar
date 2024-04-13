@@ -13,8 +13,8 @@ export function ConfigBoard({ boardData, columnList }:ConfigBoardParams) {
     return (
         <>
             <Header title="Ajustes" whereUserIs={USER_IS_IN.CONFIG} />
-            <div className="p-4">
-                <h2 className="px-6 text-2xl">Columnas</h2>
+            <div className="py-4 md:px-11 px-6">
+                <h2 className="text-2xl">Columnas</h2>
                 <ConfigColumns columnList={columnList} />
                 <Separator />
             </div>

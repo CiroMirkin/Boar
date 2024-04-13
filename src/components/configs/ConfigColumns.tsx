@@ -41,7 +41,7 @@ export function ConfigColumns({ columnList }: ConfigColumnsParams) {
         <ConfigColumn column={column} key={column.id} />
     )
     return (
-        <ul className="h-auto w-full py-5 px-6 flex flex-wrap flex-col justify-start gap-y-3 gap-x-3.5"> 
+        <ul className="h-auto w-full py-5 flex flex-wrap flex-col justify-start gap-y-3 gap-x-3.5"> 
             { columns }
             <li className="self-center sm:self-end"><Button onClick={() => handleClick(addColumn, getNewColumn())} title="Crear columna" ><Plus size={iconSize} /></Button></li>
         </ul>
