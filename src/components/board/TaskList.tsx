@@ -1,6 +1,7 @@
 import React from "react";
-import { Task } from "../Task";
 import { taskList } from "../../models/task";
+import { TaskInBoardActions } from "./TaskInBoardActions";
+import { Task } from "../Task";
 
 interface TaskListProps {
     tasks: taskList;
@@ -12,7 +13,9 @@ export function TaskList({ tasks }: TaskListProps) {
     tasks.forEach(task => {
         taskList.push(
             <Task data={task} key={task.id}>
-                <Task.TaskActions/>
+                <Task.TaskActions>
+                    <TaskInBoardActions/>
+                </Task.TaskActions>
             </Task>
         );
     });
