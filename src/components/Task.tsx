@@ -3,7 +3,7 @@ import { taskModel, emptyTask } from "../models/task";
 import { deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn } from "@/redux/taskListInEachColumnReducer";
 import { useDispatch } from "react-redux";
 import { Button } from "../ui/button";
-import { Card, CardContent, CardFooter } from "../ui/SmallCard";
+import { Card, CardContent, CardFooter } from "../ui/card";
 import { useToast } from "../ui/use-toast";
 import { isThisTaskInTheFirstColumn } from "@/utils/isTheTaskInTheFirstColumn";
 import { isThisTaskInTheLastColumn } from "@/utils/isThisTaskInTheLastColumn";
@@ -21,8 +21,8 @@ export function Task({ data, children }: TaskProps) {
 
     return (
         <TaskContext.Provider value={ data }>
-            <Card onClick={() => setShow(!show)}>
-                <CardContent className="rounded-md hover:bg-accent">
+            <Card onClick={() => setShow(!show)} className="p-0 rounded-md border-2 border-black bg-card text-card-foreground shadow-sm">
+                <CardContent className="rounded-md hover:bg-accent px-3 py-1.5 text-xl">
                     <p>{ description }</p>
                 </CardContent>
                 { show && children }
@@ -67,7 +67,7 @@ function TaskActions() {
         }
     }
     return (
-        <CardFooter className="flex flex-col justify-between gap-x-1 gap-y-1.5">
+        <CardFooter className="flex flex-col justify-between gap-x-1 gap-y-1.5 items-start p-2 pt-1">
             <div className="w-full grid grid-flow-col justify-stretch gap-1.5">
                 <Button 
                     size="sm" 
