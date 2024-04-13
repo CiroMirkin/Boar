@@ -9,6 +9,7 @@ import { Plus } from "lucide-react"
 import { iconSize } from "@/configs/iconsConstants"
 import { ConfigColumn } from "./ConfigColumn"
 import { addEmptyTaskListAtTheEnd } from "@/redux/taskListInEachColumnReducer"
+import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser"
 
 interface ConfigColumnsParams {
     columnList: columnModel[]
@@ -29,13 +30,8 @@ export function ConfigColumns({ columnList }: ConfigColumnsParams) {
             action()
         }
         catch (error) {
-            let message: string = 'Unknown Error :('
-            if (error instanceof Error) {
-                message = error.message
-            }
-            console.error(message)
             toast({
-                description: message,
+                description: getErrorMessageForTheUser(error),
                 variant: "destructive",
                 duration: 3000
             })

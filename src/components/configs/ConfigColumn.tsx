@@ -10,6 +10,7 @@ import { iconSize } from "@/configs/iconsConstants"
 import { Input } from "@/ui/input"
 import { ToastAction } from "@/ui/toast"
 import { deleteTheTaskListOfThisColumn } from "@/redux/taskListInEachColumnReducer"
+import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser"
 
 interface ConfigColumnParams {
     column: columnModel
@@ -34,13 +35,8 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
             updateBoardData(deleteTheTaskListOfThisColumn(column))
         }
         catch (error) {
-            let message: string = 'Unknown Error :('
-            if (error instanceof Error) {
-                message = error.message
-            }
-            console.error(message)
             toast({
-                description: message,
+                description: getErrorMessageForTheUser(error),
                 variant: "destructive",
                 duration: 3000
             })

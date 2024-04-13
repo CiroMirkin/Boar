@@ -4,6 +4,7 @@ import { addTaskAtFirstColumn } from "@/redux/taskListInEachColumnReducer";
 import { Button } from "@/ui/button";
 import { Input } from "@/ui/input";
 import { useToast } from "@/ui/use-toast";
+import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser";
 import { Plus } from "lucide-react";
 import { ChangeEvent, KeyboardEvent, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -26,13 +27,8 @@ export function AddNewTaskInput({ }: AddNewTaskInputProps) {
             setCanUserUseTheAddTaskInput(false);
         }
         catch (error) {
-            let message: string = 'Unknown Error :(';
-            if (error instanceof Error) {
-                message = error.message;
-            }
-            console.error(message);
             toast({
-                description: message,
+                description: getErrorMessageForTheUser(error),
                 variant: "destructive",
                 duration: 3000
             });

@@ -7,6 +7,7 @@ import { TaskListInEachColumnContext } from "./Board"
 import { Button } from "@/ui/button"
 import { Archive } from "lucide-react"
 import { iconSize } from "@/configs/iconsConstants"
+import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser"
 
 export function ArchiveTaskListButton() {
     const { toast } = useToast()
@@ -25,12 +26,8 @@ export function ArchiveTaskListButton() {
             })
         }
         catch(error){
-            let message: string = 'Unknown Error :('
-            if (error instanceof Error) {
-                message = error.message
-            }
             toast({
-                description: message,
+                description: getErrorMessageForTheUser(error),
                 variant: "destructive",
                 duration: 3000
             })

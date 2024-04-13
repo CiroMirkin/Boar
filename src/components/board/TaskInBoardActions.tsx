@@ -6,6 +6,7 @@ import { deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn } from "@/redux/
 import { isThisTaskInTheFirstColumn } from "@/utils/isTheTaskInTheFirstColumn";
 import { isThisTaskInTheLastColumn } from "@/utils/isThisTaskInTheLastColumn";
 import { useContext } from "react";
+import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser";
 
 export function TaskInBoardActions() {
     const data = useContext(TaskContext)
@@ -31,12 +32,8 @@ export function TaskInBoardActions() {
             dispatch(action(data))
         }
         catch(error){
-            let message: string = 'Unknown Error :('
-            if (error instanceof Error) {
-                message = error.message
-            }
             toast({
-                description: message,
+                description: getErrorMessageForTheUser(error),
                 variant: "destructive",
                 duration: 3000
             })
