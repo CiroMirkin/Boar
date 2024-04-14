@@ -12,7 +12,7 @@ import { ChangeEvent, KeyboardEvent, useState } from "react";
 
 export function AddNewColumnForm() {
     const [ newColumnName, setNewColumnName ] = useState('')
-    const [canUserUseTheAddTaskInput, setCanUserUseTheAddTaskInput] = useState(false);
+    const canUserCreateTheNewColumn: boolean = !newColumnName;
     const updateBoardData = useDispatch()
     const { toast } = useToast()
 
@@ -21,7 +21,6 @@ export function AddNewColumnForm() {
         updateBoardData(addColumn(newColumn))
         updateBoardData(addEmptyTaskListAtTheEnd())
         setNewColumnName('')
-        setCanUserUseTheAddTaskInput(false);
     }
 
     function handleKeyDown(e: KeyboardEvent<HTMLInputElement>): void {
@@ -33,8 +32,6 @@ export function AddNewColumnForm() {
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const newColumnNameFromInput = e.target.value
         setNewColumnName(newColumnNameFromInput)
-        if(!newColumnNameFromInput.trim()) setCanUserUseTheAddTaskInput(false)
-        else setCanUserUseTheAddTaskInput(true);
     }
 
     const handleClick = (action: Function) => {
@@ -61,7 +58,7 @@ export function AddNewColumnForm() {
                 onChange={handleChange} 
                 onKeyDown={handleKeyDown}
             />
-            <Button onClick={() => handleClick(addNewColumn)} title="Crear columna" disabled={!canUserUseTheAddTaskInput && true} >
+            <Button onClick={() => handleClick(addNewColumn)} title="Crear columna" disabled={canUserCreateTheNewColumn} >
                 <Plus size={iconSize} />
             </Button>
         </li>
