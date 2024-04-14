@@ -7,6 +7,7 @@ import { isThisTaskInTheFirstColumn } from "@/utils/isTheTaskInTheFirstColumn";
 import { isThisTaskInTheLastColumn } from "@/utils/isThisTaskInTheLastColumn";
 import { useContext } from "react";
 import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser";
+import { archiveTask } from "@/redux/archiveReducer";
 
 export function TaskInBoardActions() {
     const data = useContext(TaskContext)
@@ -24,6 +25,14 @@ export function TaskInBoardActions() {
     const deleteTaskAction = () => dispatch(deleteTask(data))
     const moveTaskToNextColumnAction = () => dispatch(moveTaskToNextColumn(data))
     const moveTaskToPrevColumnAction = () => dispatch(moveTaskToPrevColumn(data))
+    const archiveTaskAction = () => {
+        dispatch(archiveTask(data))
+        dispatch(deleteTask(data))
+        toast({
+            description: 'La tarea se guardo en el archivo.',
+            duration: 3000
+        })
+    }
 
     const dispatch = useDispatch()
     
@@ -61,6 +70,14 @@ export function TaskInBoardActions() {
                 className="w-full" 
                 onClick={() => copyTextToClipboard(data.descriptionText)}
             >Copiar texto</Button>
+            {
+                isThisTaskInTheLastColumn(data) && <Button
+                size="sm"
+                variant="ghost"
+                className="w-full"
+                onClick={() => handleClick(archiveTaskAction)}
+                >Archivar</Button>
+            }
             <Button 
                 size="sm" 
                 variant="destructiveGhost" 
