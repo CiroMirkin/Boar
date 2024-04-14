@@ -34,7 +34,7 @@ export function archiveTaskListInTheLastColumn({ taskListInEachColumn, archive }
 
 const AreThereTasksToBeArchive = (taskList: taskList): boolean => !taskList.length
 
-const getDataOfTheLastTaskListArchived = (archive: Archive): string | null => {
+export const getDataOfTheLastTaskListArchived = (archive: Archive): string | null => {
     const lastTaskListArchived = archive[archive.length -1]
     if(lastTaskListArchived) {
         return lastTaskListArchived.date
