@@ -1,6 +1,6 @@
 import { Archive } from "@/models/archive";
 import { taskModel } from "@/models/task";
-import { getDateOfTheLastTaskListArchived } from "./archiveTaskList";
+import { getDateOfTheLastTaskListArchived } from "@/models/archive";
 import BusinessError from "@/errors/businessError";
 import { getFullDate } from "@/utils/getTime";
 

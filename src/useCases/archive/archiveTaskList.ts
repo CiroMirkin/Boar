@@ -2,6 +2,7 @@ import BusinessError from "@/errors/businessError";
 import { taskList } from "../../models/task";
 import { getFullDate } from "../../utils/getTime";
 import { Archive } from "@/models/archive";
+import { getDateOfTheLastTaskListArchived } from "@/models/archive";
 
 interface archiveTaskListParams {
     taskListInEachColumn: taskList[],
@@ -33,11 +34,3 @@ export function archiveTaskListInTheLastColumn({ taskListInEachColumn, archive }
 }
 
 const AreThereTasksToBeArchive = (taskList: taskList): boolean => !taskList.length
-
-export const getDateOfTheLastTaskListArchived = (archive: Archive): string | null => {
-    const lastTaskListArchived = archive[archive.length -1]
-    if(lastTaskListArchived) {
-        return lastTaskListArchived.date
-    }
-    return null
-}
