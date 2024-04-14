@@ -1,7 +1,9 @@
 import { Archive } from "@/models/archive";
 import { ArchiveRepository } from "@/models/archiveRepository";
+import { taskModel } from "@/models/task";
 import { TaskListInEachColumn } from "@/models/taskListInEachColumn";
 import LocalStorageArchiveRepository from "@/repositories/localStorageArchive";
+import { archiveThisTask } from "@/useCases/archive/archiveTask";
 import { archiveTaskListInTheLastColumn } from "@/useCases/archive/archiveTaskList";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
@@ -23,8 +25,12 @@ export const archiveSlice = createSlice({
             const taskList = action.payload
             state.list = archiveTaskListInTheLastColumn({ taskListInEachColumn: taskList, columnPosition: "3" , archive: state.list })
         },
+        archiveTask: (state, action: PayloadAction<taskModel>) => {
+            const task = action.payload
+            state.list = archiveThisTask({ archive: state.list, task })
+        }
     }
 })
 
-export const { archiveTaskListAtLastColumn } = archiveSlice.actions
+export const { archiveTaskListAtLastColumn, archiveTask } = archiveSlice.actions
 export default archiveSlice.reducer
