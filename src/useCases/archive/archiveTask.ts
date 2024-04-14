@@ -1,13 +1,13 @@
 import { Archive } from "@/models/archive";
 import { taskModel } from "@/models/task";
-import { getDataOfTheLastTaskListArchived } from "./archiveTaskList";
+import { getDateOfTheLastTaskListArchived } from "./archiveTaskList";
 import BusinessError from "@/errors/businessError";
 import { getFullDate } from "@/utils/getTime";
 
 export const archiveThisTask = ({ task, archive }: { task: taskModel, archive: Archive }): Archive => {
     const date = getFullDate()
 
-    if(getDataOfTheLastTaskListArchived(archive) === date) {
+    if(getDateOfTheLastTaskListArchived(archive) === date) {
         const indexOfTheLastTaskListArchived = archive.length - 1
         const indexOfTheTaskInTheTaskListArchived = 0
         const itemsToBeRemovedOrReplaced = 0;

@@ -18,7 +18,7 @@ export function archiveTaskListInTheLastColumn({ taskListInEachColumn, archive }
 
     
 
-    if(getDataOfTheLastTaskListArchived(archive) === date) {
+    if(getDateOfTheLastTaskListArchived(archive) === date) {
         const toArchive = [...taskListToArchive, ...archive[archive.length - 1].tasklist]
         archive[archive.length - 1].tasklist = toArchive
         if(toArchive.length > 30) throw new BusinessError('El archivo diario esta lleno :(')
@@ -34,7 +34,7 @@ export function archiveTaskListInTheLastColumn({ taskListInEachColumn, archive }
 
 const AreThereTasksToBeArchive = (taskList: taskList): boolean => !taskList.length
 
-export const getDataOfTheLastTaskListArchived = (archive: Archive): string | null => {
+export const getDateOfTheLastTaskListArchived = (archive: Archive): string | null => {
     const lastTaskListArchived = archive[archive.length -1]
     if(lastTaskListArchived) {
         return lastTaskListArchived.date
