@@ -11,11 +11,11 @@ interface moveTaskParams extends taskUseCaseParams {
 export const moveThisTask = ({ task, to, taskListInEachColumn }: moveTaskParams): taskList[] => {
     const newTaskListInEachColumn = taskListInEachColumn
     const indexOfTheColumnWhereTheTaskIs: number = getIndexOfColumnInColumnList(task.columnPosition);
-    let taskOldIndexInList = 0;
+    let oldTaskIndexInList = 0;
 
     newTaskListInEachColumn[indexOfTheColumnWhereTheTaskIs] = newTaskListInEachColumn[indexOfTheColumnWhereTheTaskIs].filter((t, index) => {
         if (t.id === task.id) {
-            taskOldIndexInList = index;
+            oldTaskIndexInList = index;
             return false;
         }
         return true;
@@ -38,7 +38,7 @@ export const moveThisTask = ({ task, to, taskListInEachColumn }: moveTaskParams)
 
     const itemsToBeRemovedOrReplaced = 0
     newTaskListInEachColumn[indexOfTheColumnWhereTheTaskIs].splice(
-        taskOldIndexInList, 
+        oldTaskIndexInList, 
         itemsToBeRemovedOrReplaced, 
         task
     )
