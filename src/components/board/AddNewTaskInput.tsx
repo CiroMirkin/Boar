@@ -13,7 +13,7 @@ interface AddNewTaskInputProps {}
 
 export function AddNewTaskInput({ }: AddNewTaskInputProps) {
     const [newTaskDescription, setNewTaskDescription] = useState('');
-    const [canUserUseTheAddTaskInput, setCanUserUseTheAddTaskInput] = useState(false);
+    const canUserUseTheAddTaskInput = !newTaskDescription
 
     const { toast } = useToast();
 
@@ -24,7 +24,6 @@ export function AddNewTaskInput({ }: AddNewTaskInputProps) {
             const task = getNewTask({ descriptionText: newTaskDescription, columnPosition: '1' });
             dispatch(addTaskAtFirstColumn(task));
             setNewTaskDescription('');
-            setCanUserUseTheAddTaskInput(false);
         }
         catch (error) {
             toast({
@@ -38,8 +37,6 @@ export function AddNewTaskInput({ }: AddNewTaskInputProps) {
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const taskDescription = e.target.value;
         setNewTaskDescription(taskDescription);
-        if (!taskDescription.trim()) setCanUserUseTheAddTaskInput(false);
-        else setCanUserUseTheAddTaskInput(true);
     };
 
     function handleKeyDown(e: KeyboardEvent<HTMLInputElement>): void {
@@ -57,7 +54,7 @@ export function AddNewTaskInput({ }: AddNewTaskInputProps) {
             <Button
                 onClick={handleClick}
                 variant='ghost'
-                disabled={!canUserUseTheAddTaskInput && true}
+                disabled={canUserUseTheAddTaskInput}
                 title="Crear tarea"
             ><Plus size={iconSize} /></Button>
         </>
