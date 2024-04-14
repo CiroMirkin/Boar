@@ -21,15 +21,15 @@ export function TaskInBoardActions() {
         })
     }
 
-    const deleteTaskAction = () => deleteTask
-    const moveTaskToNextColumnAction = () => moveTaskToNextColumn
-    const moveTaskToPrevColumnAction = () => moveTaskToPrevColumn
+    const deleteTaskAction = () => dispatch(deleteTask(data))
+    const moveTaskToNextColumnAction = () => dispatch(moveTaskToNextColumn(data))
+    const moveTaskToPrevColumnAction = () => dispatch(moveTaskToPrevColumn(data))
 
     const dispatch = useDispatch()
     
     const handleClick = (action: Function) => {
         try {
-            dispatch(action(data))
+            action()
         }
         catch(error){
             toast({
@@ -46,13 +46,13 @@ export function TaskInBoardActions() {
                     size="sm" 
                     disabled={isThisTaskInTheFirstColumn(data) && true} 
                     variant={isThisTaskInTheFirstColumn(data) ? 'ghost' : 'default'} 
-                    onClick={() => handleClick(moveTaskToPrevColumnAction())}
+                    onClick={() => handleClick(moveTaskToPrevColumnAction)}
                 >Retroceder</Button>
                 <Button 
                     size="sm" 
                     disabled={isThisTaskInTheLastColumn(data) && true} 
                     variant={isThisTaskInTheLastColumn(data) ? 'ghost' : 'default'} 
-                    onClick={() => handleClick(moveTaskToNextColumnAction())}
+                    onClick={() => handleClick(moveTaskToNextColumnAction)}
                 >Avanzar</Button>
             </div>
             <Button 
@@ -65,7 +65,7 @@ export function TaskInBoardActions() {
                 size="sm" 
                 variant="destructiveGhost" 
                 className="w-full" 
-                onClick={() => handleClick(deleteTaskAction())}
+                onClick={() => handleClick(deleteTaskAction)}
             >Eliminar</Button>
         </>
     )
