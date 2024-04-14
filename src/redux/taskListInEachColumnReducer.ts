@@ -5,7 +5,7 @@ import { TaskListInEachColumnRepository } from "@/models/taskListRepository";
 import LocalStorageTaskListInEachColumnRepository from "@/repositories/localStorageTaskLists";
 import { addTaskInFirstColumn } from "@/useCases/task/addTask";
 import { deleteThisTask } from "@/useCases/task/deleteTask";
-import { deleteLastTaskList, deleteTheTaskListInThisIndex } from "@/useCases/task/deleteTaskList";
+import { cleanLastTaskList, deleteTheTaskListInThisIndex } from "@/useCases/task/deleteTaskList";
 import { moveThisTaskToTheNextColumn, moveThisTaskToThePrevColumn } from "@/useCases/task/moveTask";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
@@ -39,8 +39,8 @@ export const taskListInEachColumnSlice = createSlice({
             const task = action.payload
             state.list = moveThisTaskToThePrevColumn({ taskListInEachColumn: state.list, task })
         },
-        deleteLastTheTaskList: (state) => {
-            state.list = deleteLastTaskList({ taskListInEachColumn: state.list })
+        clearTheLastTaskList: (state) => {
+            state.list = cleanLastTaskList({ taskListInEachColumn: state.list })
         },
         addEmptyTaskListAtTheEnd: (state) => {
             state.list.push([])
@@ -53,5 +53,5 @@ export const taskListInEachColumnSlice = createSlice({
     }
 })
 
-export const { addTaskAtFirstColumn, deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn, deleteLastTheTaskList, addEmptyTaskListAtTheEnd, deleteTheTaskListOfThisColumn } = taskListInEachColumnSlice.actions
+export const { addTaskAtFirstColumn, deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn, clearTheLastTaskList, addEmptyTaskListAtTheEnd, deleteTheTaskListOfThisColumn } = taskListInEachColumnSlice.actions
 export default taskListInEachColumnSlice.reducer
