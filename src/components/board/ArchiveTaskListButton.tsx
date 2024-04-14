@@ -8,6 +8,7 @@ import { Button } from "@/ui/button"
 import { Archive } from "lucide-react"
 import { iconSize } from "@/configs/iconsConstants"
 import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser"
+import { areThereTasksInTheLastColumn } from "@/utils/areThereTasksInTheLastColumn"
 
 export function ArchiveTaskListButton() {
     const { toast } = useToast()
@@ -15,6 +16,7 @@ export function ArchiveTaskListButton() {
     const dispatch = useDispatch()
     
     const taskListInEachColumn = useContext(TaskListInEachColumnContext)
+    const canUserArchiveTask = areThereTasksInTheLastColumn()
     
     const archiveTaskList = () => {
         try{
@@ -39,6 +41,7 @@ export function ArchiveTaskListButton() {
             onClick={archiveTaskList}
             variant='ghost'
             className="w-full"
+            disabled={canUserArchiveTask}
         >
             <Archive size={iconSize} className="mr-2" /> Archivar tareas
         </Button>
