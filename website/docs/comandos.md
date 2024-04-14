@@ -42,7 +42,7 @@ npm test src/useCase/addTask.test.ts
 ```
 
 :::warning
-**No olvide** agregar la extension `.test` escribir el nombre del archivo.
+**No olvide** agregar la extension `.test` al escribir el nombre del archivo.
 :::
 
 Para correr todas las pruebas con entorno gráfico: 
@@ -80,7 +80,7 @@ También puede acceder a la documentación en linea: [cm-boar-docs.netlify.app](
 :::
 ## Despliegue
 
-Para compila la aplicación:
+Para compilar la aplicación:
 
 ```
 npm run build
