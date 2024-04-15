@@ -1,8 +1,8 @@
 import React from "react"
-import { Task } from "../Task"
 import { Archive as ArchiveModel } from "@/models/archive"
 import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card"
 import { Header, USER_IS_IN } from "../Header"
+import { TaskListArchived } from "./TaskListArchived"
 
 interface ArchiveProps {
     boardArchive: ArchiveModel
@@ -12,12 +12,6 @@ export function Archive({ boardArchive}: ArchiveProps) {
     const archive: React.ReactNode[] = []
 
     boardArchive.forEach(({ tasklist, date }) => {
-        const taskListArchived: React.ReactNode[] = []
-        tasklist.forEach(task => 
-            taskListArchived.push(
-                <Task key={task.id} data={task} />
-            )
-        )
         archive.push(
             <Card key={date} className="px-4">
                 <CardHeader>
@@ -26,7 +20,7 @@ export function Archive({ boardArchive}: ArchiveProps) {
                     </CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-col gap-y-2">
-                    {taskListArchived}
+                    <TaskListArchived taskList={tasklist} />
                 </CardContent>
             </Card>
         )
