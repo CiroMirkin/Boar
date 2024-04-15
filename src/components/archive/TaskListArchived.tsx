@@ -9,7 +9,7 @@ interface TaskListArchivedProps {
     date: string
 }
 
-export function TaskListArchived({ taskList: tasks, date }: TaskListArchivedProps) {
+export function TaskListArchived({ taskList, date }: TaskListArchivedProps) {
     return (
         <>
             <Card key={date} className="px-4">
@@ -19,7 +19,7 @@ export function TaskListArchived({ taskList: tasks, date }: TaskListArchivedProp
                     </CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-col gap-y-2">
-                    <TaskList taskList={tasks} />
+                    <TaskList taskList={taskList} />
                 </CardContent>
             </Card>
         </>
