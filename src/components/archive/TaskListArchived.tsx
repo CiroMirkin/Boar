@@ -10,11 +10,6 @@ interface TaskListArchivedProps {
 }
 
 export function TaskListArchived({ taskList: tasks, date }: TaskListArchivedProps) {
-    const taskList: React.ReactNode[] = tasks.map(task => 
-        <Task data={task} key={task.id}>
-        </Task>
-    )
-
     return (
         <>
             <Card key={date} className="px-4">
@@ -24,9 +19,17 @@ export function TaskListArchived({ taskList: tasks, date }: TaskListArchivedProp
                     </CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-col gap-y-2">
-                    { taskList }
+                    <TaskList taskList={tasks} />
                 </CardContent>
             </Card>
         </>
     );
+}
+
+function TaskList({ taskList }: { taskList: taskList }) {
+    const tasks: React.ReactNode[] = taskList.map(task => 
+        <Task data={task} key={task.id}>
+        </Task>
+    )
+    return(<>{ tasks }</>)
 }
