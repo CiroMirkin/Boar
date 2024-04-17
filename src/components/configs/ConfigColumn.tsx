@@ -68,7 +68,7 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
                     onClick={editColumnNameHandle}
                     variant="ghost"
                 >
-                    <Pencil size={iconSize} className="mr-2" /> Editar
+                    <Pencil size={iconSize} className="mr-2" /> Renombrar
                 </Button>
                 <Button 
                     onClick={askForConfirmationToDeleteTheColumn} 
