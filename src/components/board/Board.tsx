@@ -4,6 +4,7 @@ import { ColumnList } from "./ColumnList"
 import { columnList, defaultColumnList } from "@/models/column"
 import { Header, USER_IS_IN } from "../Header"
 import { TaskListInEachColumn } from "@/models/taskListInEachColumn"
+import { WelcomeDialog } from "./WelcomeDialog"
 
 export const TaskListInEachColumnContext = React.createContext([[], [], []] as TaskListInEachColumn)
 export const ColumnListContext = React.createContext(defaultColumnList as columnList)
@@ -25,6 +26,7 @@ export function Board({ data, taskListInEachColumn, columnList }: BoardProps) {
                 <ColumnList />
             </TaskListInEachColumnContext.Provider>
         </ColumnListContext.Provider>
+        <WelcomeDialog />
         </>
     )
 }
