@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "../ui/dialog"
+import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle } from ".../ui/dialog"
 import { Button } from "@/ui/button"
 
 export function WelcomeDialog(){
