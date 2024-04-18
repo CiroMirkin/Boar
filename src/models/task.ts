@@ -14,9 +14,10 @@ export const emptyTask: taskModel = {
 
 export type taskList = taskModel[]
 
+export const isThisTaskDescriptionValid = (taskDescription: string): boolean => !!taskDescription.trim()
+
 export const getNewTask = ({ descriptionText, columnPosition }: { descriptionText: string, columnPosition: string }): taskModel => {
-    descriptionText = descriptionText.trim()
-    if (!descriptionText) throw new BusinessError('No se puede crear una tarea sin descripción.')
+    if (!isThisTaskDescriptionValid(descriptionText)) throw new BusinessError('No se puede crear una tarea sin descripción.')
     
     return {
         id: crypto.randomUUID(),
