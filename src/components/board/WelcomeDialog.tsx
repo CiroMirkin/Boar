@@ -15,7 +15,7 @@ export function WelcomeDialog(){
                 <DialogTitle>¡Bienvenido!</DialogTitle>
                 </DialogHeader>
                 <div className="flex flex-col gap-y-1">
-                    <p><span className="font-medium">Boar</span> es un aplicación que busca ayudarte con tus tareas diarias o semales.</p>
+                    <p><span className="font-medium">Boar</span> es un aplicación que busca ayudarte con tus tareas diarias o semanales.</p>
                 </div>
                 <DialogFooter className="sm:justify-start">
                 <DialogClose asChild>
