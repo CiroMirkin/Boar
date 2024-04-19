@@ -1,4 +1,4 @@
-import { taskList } from "@/models/task"
+import { TaskList } from "@/models/taskListInEachColumn"
 import { addTaskInFirstColumn } from "./addTask"
 
 describe("Crear una tarea.", () => {
@@ -8,7 +8,7 @@ describe("Crear una tarea.", () => {
             descriptionText: '',
             columnPosition: '1',
         }
-        const taskListInEachColumn: taskList[] = [ [], [], [] ]
+        const taskListInEachColumn: TaskList[] = [ [], [], [] ]
         expect(addTaskInFirstColumn({ taskListInEachColumn, task })).toStrictEqual([ 
             [
                 {

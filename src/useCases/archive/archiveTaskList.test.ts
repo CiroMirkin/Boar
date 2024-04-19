@@ -1,11 +1,12 @@
-import { taskList, emptyTask } from "../../models/task"
+import { emptyTask } from "../../models/task"
+import { TaskList } from "@/models/taskListInEachColumn"
 import { archiveTaskListInTheLastColumn } from "./archiveTaskList"
 import { getFullDate } from "../../utils/getTime"
 
 describe("Archivar lista de tareas.", () => {
     test("Se deberían archivar todas las tareas de la columna indicada.", () => {
         const task = {...emptyTask}
-        const taskListInEachColumn: taskList[] = [[{...task}]]
+        const taskListInEachColumn: TaskList[] = [[{...task}]]
         expect(archiveTaskListInTheLastColumn({ taskListInEachColumn, columnPosition: '1', archive: [] })).toStrictEqual([
             {
                 date: (getFullDate()),
@@ -28,7 +29,7 @@ describe("Archivar lista de tareas.", () => {
             descriptionText: 'Nueva tarea para archivar',
             columnPosition: '1',
         }
-        const taskListInEachColumn: taskList[] = [[{...task}]]
+        const taskListInEachColumn: TaskList[] = [[{...task}]]
         const archive = [
             {
                 date: (getFullDate()),
@@ -62,7 +63,7 @@ describe("Archivar lista de tareas.", () => {
             descriptionText: '',
             columnPosition: '1',
         }
-        const taskListInEachColumn: taskList[] = [ [], [], [] ]
+        const taskListInEachColumn: TaskList[] = [ [], [], [] ]
         let firstColumnContent = new Array(31).fill(task)
         taskListInEachColumn[2] = firstColumnContent
         expect(() => {
@@ -76,7 +77,7 @@ describe("Archivar lista de tareas.", () => {
             descriptionText: '',
             columnPosition: '1',
         }
-        const taskListInEachColumn: taskList[] = [ [], [], [{...task}] ]
+        const taskListInEachColumn: TaskList[] = [ [], [], [{...task}] ]
         let archive = new Array(60).fill({
             date: '',
             tasklist: [[]]

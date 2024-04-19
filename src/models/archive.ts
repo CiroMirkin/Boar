@@ -1,8 +1,8 @@
-import { taskList } from "./task";
+import { TaskList } from "./taskListInEachColumn";
 
 export interface taskListArchived {
     date: string,
-    tasklist: taskList
+    tasklist: TaskList
 }
 
 export type Archive = taskListArchived[]

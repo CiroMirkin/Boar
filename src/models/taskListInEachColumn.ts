@@ -1,5 +1,6 @@
-import { taskList } from "./task";
+import { taskModel } from "./task";
 
-export type TaskListInEachColumn = taskList[]
+export type TaskList = taskModel[]
+export type TaskListInEachColumn = TaskList[]
 
 export const emptyTaskListInEachColumn: TaskListInEachColumn = [[], [], []]

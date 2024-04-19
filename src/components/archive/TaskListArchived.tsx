@@ -1,6 +1,6 @@
 
 import React from "react";
-import { taskList } from "../../models/task";
+import { TaskList as taskList } from "@/models/taskListInEachColumn";
 import { Task } from "../Task";
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
 

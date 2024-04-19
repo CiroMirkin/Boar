@@ -12,8 +12,6 @@ export const emptyTask: taskModel = {
     columnPosition: '1',
 }
 
-export type taskList = taskModel[]
-
 export const isThisTaskDescriptionValid = (taskDescription: string): boolean => !!taskDescription.trim()
 
 export const getNewTask = ({ descriptionText, columnPosition }: { descriptionText: string, columnPosition: string }): taskModel => {

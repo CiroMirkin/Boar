@@ -1,6 +1,7 @@
 import { getIndexOfColumnInColumnList } from "@/models/column"
 import { taskUseCaseParams } from "../useCase"
-import { getNewTask, taskList } from "@/models/task"
+import { getNewTask } from "@/models/task"
+import { TaskList } from "@/models/taskListInEachColumn"
 
 export type moveToType = 'next-column' | 'prev-column'
 
@@ -8,7 +9,7 @@ interface moveTaskParams extends taskUseCaseParams {
     to: moveToType,
 }
 
-export const moveThisTask = ({ task, to, taskListInEachColumn }: moveTaskParams): taskList[] => {
+export const moveThisTask = ({ task, to, taskListInEachColumn }: moveTaskParams): TaskList[] => {
     const newTaskListInEachColumn = taskListInEachColumn
     const indexOfTheColumnWhereTheTaskIs: number = getIndexOfColumnInColumnList(task.columnPosition);
     let oldTaskIndexInList = 0;
@@ -45,9 +46,9 @@ export const moveThisTask = ({ task, to, taskListInEachColumn }: moveTaskParams)
     return taskListInEachColumn
 }
 
-export const moveThisTaskToTheNextColumn = ({ task, taskListInEachColumn }: taskUseCaseParams): taskList[] => {
+export const moveThisTaskToTheNextColumn = ({ task, taskListInEachColumn }: taskUseCaseParams): TaskList[] => {
     return moveThisTask({ task, to: 'next-column', taskListInEachColumn })
 }
-export const moveThisTaskToThePrevColumn = ({ task, taskListInEachColumn }: taskUseCaseParams): taskList[] => {
+export const moveThisTaskToThePrevColumn = ({ task, taskListInEachColumn }: taskUseCaseParams): TaskList[] => {
     return moveThisTask({ task, to: 'prev-column', taskListInEachColumn })
 }

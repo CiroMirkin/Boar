@@ -1,5 +1,5 @@
 import React from "react";
-import { taskList } from "../../models/task";
+import { TaskList as taskList } from "@/models/taskListInEachColumn";
 import { TaskInBoardActions } from "./TaskInBoardActions";
 import { Task } from "../Task";
 

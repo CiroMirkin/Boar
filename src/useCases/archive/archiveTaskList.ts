@@ -1,17 +1,17 @@
 import BusinessError from "@/errors/businessError";
-import { taskList } from "../../models/task";
+import { TaskList } from "@/models/taskListInEachColumn";
 import { getFullDate } from "../../utils/getTime";
 import { Archive } from "@/models/archive";
 import { getDateOfTheLastTaskListArchived } from "@/models/archive";
 
 interface archiveTaskListParams {
-    taskListInEachColumn: taskList[],
+    taskListInEachColumn: TaskList[],
     columnPosition: string,
     archive: Archive
 }
 export function archiveTaskListInTheLastColumn({ taskListInEachColumn, archive }: archiveTaskListParams): Archive { 
     const date = getFullDate()
-    const taskListToArchive: taskList = taskListInEachColumn[taskListInEachColumn.length - 1]
+    const taskListToArchive: TaskList = taskListInEachColumn[taskListInEachColumn.length - 1]
     
     if(AreThereTasksToBeArchive(taskListToArchive)) throw new BusinessError('No hay tareas que archivar.')
     if(archive.length >= 60) throw new BusinessError('El archivo esta lleno :(')
@@ -33,4 +33,4 @@ export function archiveTaskListInTheLastColumn({ taskListInEachColumn, archive }
     return archive
 }
 
-const AreThereTasksToBeArchive = (taskList: taskList): boolean => !taskList.length
+const AreThereTasksToBeArchive = (taskList: TaskList): boolean => !taskList.length
