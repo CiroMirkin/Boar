@@ -1,4 +1,4 @@
-import { defaultColumnList } from "@/models/column";
+import { defaultColumnList } from "@/models/columnList";
 import { columnList } from "@/models/columnList";
 import { ColumnListRepository } from "@/models/columnListRepository";
 

@@ -1,7 +1,7 @@
 import React from "react"
 import { boardModel } from "../../models/board"
 import { ColumnList } from "./ColumnList"
-import { defaultColumnList } from "@/models/column"
+import { defaultColumnList } from "@/models/columnList"
 import { columnList } from "@/models/columnList"
 import { Header, USER_IS_IN } from "../Header"
 import { TaskListInEachColumn } from "@/models/taskListInEachColumn"
