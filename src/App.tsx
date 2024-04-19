@@ -9,7 +9,7 @@ import { Archive } from './components/archive/Archive'
 import { Configs } from './components/configs/Configs'
 import { Erro404 } from './components/404/404'
 import { useEffect } from 'react'
-import { TaskListInEachColumnRepository } from './models/taskListRepository'
+import { TaskListInEachColumnRepository } from './models/taskListInEachColumnRepository'
 import { ColumnListRepository } from './models/columnListRepository'
 import { ArchiveRepository } from './models/archiveRepository'
 

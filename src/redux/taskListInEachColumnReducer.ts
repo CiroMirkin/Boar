@@ -1,7 +1,7 @@
 import { columnModel, getIndexOfColumnInColumnList } from "@/models/column";
 import { taskModel } from "@/models/task";
 import { TaskListInEachColumn } from "@/models/taskListInEachColumn";
-import { TaskListInEachColumnRepository } from "@/models/taskListRepository";
+import { TaskListInEachColumnRepository } from "@/models/taskListInEachColumnRepository";
 import LocalStorageTaskListInEachColumnRepository from "@/repositories/localStorageTaskLists";
 import { addTaskInFirstColumn } from "@/useCases/task/addTask";
 import { deleteThisTask } from "@/useCases/task/deleteTask";
