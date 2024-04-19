@@ -1,4 +1,5 @@
-import { columnList, defaultColumnList } from "@/models/column";
+import { defaultColumnList } from "@/models/column";
+import { columnList } from "@/models/columnList";
 import { ColumnListRepository } from "@/models/columnListRepository";
 
 export default class LocalStorageColumnListRepository implements ColumnListRepository {
