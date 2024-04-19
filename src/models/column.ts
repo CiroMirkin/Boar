@@ -1,9 +1,9 @@
 import BusinessError from "@/errors/businessError"
 
 export interface columnModel {
-    id: string
-    position: string,
-    name: string
+  id: string
+  position: string,
+  name: string
 }
 
 export const columnNull: columnModel = {
