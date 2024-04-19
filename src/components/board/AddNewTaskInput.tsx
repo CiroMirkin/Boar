@@ -1,5 +1,5 @@
 import { iconSize } from "@/configs/iconsConstants";
-import { getNewTask } from "@/models/task";
+import { getNewTask, isThisTaskDescriptionValid } from "@/models/task";
 import { addTaskAtFirstColumn } from "@/redux/taskListInEachColumnReducer";
 import { Button } from "@/ui/button";
 import { Input } from "@/ui/input";
@@ -13,7 +13,7 @@ interface AddNewTaskInputProps {}
 
 export function AddNewTaskInput({ }: AddNewTaskInputProps) {
     const [newTaskDescription, setNewTaskDescription] = useState('');
-    const canUserUseTheAddTaskInput = !newTaskDescription
+    const canUserUseTheAddTaskInput = !isThisTaskDescriptionValid(newTaskDescription)
 
     const { toast } = useToast();
 
