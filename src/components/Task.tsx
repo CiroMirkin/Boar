@@ -1,6 +1,7 @@
 import React, { createContext, useState } from "react";
 import { taskModel, emptyTask } from "../models/task";
 import { Card, CardContent, CardFooter } from "../ui/card";
+import { TextWithURL } from "@/lib/TextWithURL";
 
 export const TaskContext = createContext(emptyTask)
 
@@ -17,7 +18,9 @@ export function Task({ data, children }: TaskProps) {
         <TaskContext.Provider value={ data }>
             <Card onClick={() => setShow(!show)} className="p-0 rounded-md border-2 border-black bg-card text-card-foreground shadow-sm">
                 <CardContent className="rounded-md hover:bg-accent px-3 py-1.5 text-xl">
-                    <p>{ description }</p>
+                    <p>
+                        <TextWithURL text={description}></TextWithURL>
+                    </p>
                 </CardContent>
                 { show && children }
             </Card>
