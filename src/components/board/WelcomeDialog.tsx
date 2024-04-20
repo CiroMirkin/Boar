@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/ui/dialog"
 import { Button } from "@/ui/button"
+import { DescriptionOfBoar } from "../DescriptionOfBoar"
 
 export function WelcomeDialog(){
     const open = localStorage.getItem('boar-welcome-dialog') ? JSON.parse(localStorage.getItem('boar-welcome-dialog') as string) : false
@@ -14,10 +15,7 @@ export function WelcomeDialog(){
                 <DialogHeader>
                 <DialogTitle>¡Bienvenido!</DialogTitle>
                 </DialogHeader>
-                <div className="flex flex-col gap-y-2">
-                    <p><span className="font-medium">Boar</span> es un aplicación que busca ayudarte con tus tareas diarias o semanales a través de un tablero.</p>
-                    <p>En la primer columna del tablero puedes crear tus tareas y cuando lleguen a la última puedes archivarlas.</p>
-                </div>
+                <DescriptionOfBoar />
                 <DialogFooter className="sm:justify-start">
                 <DialogClose asChild>
                     <Button type="button" variant="default">Empezar</Button>
