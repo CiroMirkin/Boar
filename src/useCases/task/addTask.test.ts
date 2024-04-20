@@ -1,5 +1,5 @@
 import { TaskList } from "@/models/taskListInEachColumn"
-import { addTaskInFirstColumn } from "./addTask"
+import { addTaskInFirstColumn, addTaskInTheLastColumn } from "./addTask"
 
 describe("Crear una tarea.", () => {
     test("Se debería agregar la tarea recibida a la primer columna del tablero.", () => {
@@ -19,6 +19,27 @@ describe("Crear una tarea.", () => {
             ], 
             [], 
             [] 
+        ])
+    })
+})
+
+describe("Agregar una tarea a la última columna.", () => {
+    test("Se debería agregar la tarea indicada a la última columna.", () => {
+        const task = {
+            id: '23hlvi514vli',
+            descriptionText: '',
+            columnPosition: '2',
+        }
+        const taskListInEachColumn: TaskList[] = [ [], [] ]
+        expect(addTaskInTheLastColumn({ taskListInEachColumn, task })).toStrictEqual([ 
+            [], 
+            [
+                {
+                    id: '23hlvi514vli',
+                    descriptionText: '',
+                    columnPosition: '2',
+                }
+            ] 
         ])
     })
 })
