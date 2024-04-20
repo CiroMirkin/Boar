@@ -34,28 +34,28 @@ export function Header({ title, whereUserIs }: HeaderProps) {
             <DropdownMenuLabel>Boar</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem disabled={whereUserIs === USER_IS_IN.BOARD && true}>
-              <Link to='/' className="flex">
+              <Link to='/' className="flex items-center">
                 <Columns3 size={iconSize} className="mr-2" /> Tablero
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem disabled={whereUserIs === USER_IS_IN.ARCHIVE && true}>
-              <Link to='/archive' className="flex">
+              <Link to='/archive' className="flex items-center">
                 <Archive size={iconSize} className="mr-2" /> Archivo
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem disabled={whereUserIs === USER_IS_IN.CONFIG && true}>
-              <Link to='/settings' className="flex">
+              <Link to='/settings' className="flex items-center">
                 <Settings size={iconSize} className="mr-2" /> Ajustes
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem disabled={whereUserIs === USER_IS_IN.HELP && true}>
-              <Link to='/help' className="flex">
+              <Link to='/help' className="flex items-center">
                 <CircleHelp size={iconSize} className="mr-2" /> Ayuda
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <a href="https://github.com/CiroMirkin/Boar" className="flex">
+              <a href="https://github.com/CiroMirkin/Boar" className="flex items-center">
                 <Github size={iconSize} className="mr-2" /> GitHub
               </a>
             </DropdownMenuItem>
