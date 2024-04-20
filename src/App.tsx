@@ -12,6 +12,7 @@ import { useEffect } from 'react'
 import { TaskListInEachColumnRepository } from './models/taskListInEachColumnRepository'
 import { ColumnListRepository } from './models/columnListRepository'
 import { ArchiveRepository } from './models/archiveRepository'
+import { Help } from './components/help/Help'
 
 
 const getArchive = (): ArchiveModel => {
@@ -66,6 +67,11 @@ function App({ taskListInEachColumnRepository, columnListRepository, archiveRepo
           <Route path='/settings' 
             element={
               <Configs boardData={boardData} columnList={columnList} />
+            }
+          />
+          <Route path='/help' 
+            element={
+              <Help />
             }
           />
           <Route path='*' element={ <Erro404 /> } />

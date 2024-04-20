@@ -7,7 +7,7 @@ import {
     DropdownMenuTrigger,
 } from "@/ui/dropdown-menu"
 import { Button } from "@/ui/button"
-import { Archive, Columns3, Github, Menu, Settings } from "lucide-react"
+import { Archive, CircleHelp, Columns3, Github, Menu, Settings } from "lucide-react"
 import { Link } from 'react-router-dom'
 import { iconSize } from "@/configs/iconsConstants"
 
@@ -15,6 +15,7 @@ export enum USER_IS_IN {
   ARCHIVE = "archive",
   BOARD = "board",
   CONFIG = "configs",
+  HELP = "help",
 }
 
 interface HeaderProps {
@@ -48,6 +49,11 @@ export function Header({ title, whereUserIs }: HeaderProps) {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
+            <DropdownMenuItem disabled={whereUserIs === USER_IS_IN.HELP && true}>
+              <Link to='/help' className="flex">
+                <CircleHelp size={iconSize} className="mr-2" /> Ayuda
+              </Link>
+            </DropdownMenuItem>
             <DropdownMenuItem>
               <a href="https://github.com/CiroMirkin/Boar" className="flex">
                 <Github size={iconSize} className="mr-2" /> GitHub
