@@ -24,10 +24,16 @@ export function archiveTaskListInTheLastColumn({ taskListInEachColumn, archive }
     }
 
     if(isItWithinTheArchiveLimit(archive) && isItWithinTheDailyArchiveLimit(taskListToArchive)){
-        archive.push({
-            date,
-            tasklist: taskListToArchive
-        })
+        const itemsToBeRemovedOrReplaced = 0
+        const indexWhereWillBe = 0
+        archive.splice(
+            indexWhereWillBe, 
+            itemsToBeRemovedOrReplaced, 
+            {
+                date,
+                tasklist: taskListToArchive
+            }
+        )
     }
     return archive
 }

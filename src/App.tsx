@@ -16,12 +16,7 @@ import { Help } from './components/help/Help'
 
 
 const getArchive = (): ArchiveModel => {
-  const archive = useSelector((state: RootState) => state.archive.list)
-  const reverseArchive = [];
-  for (let i = archive.length -1; i >= 0; i--) {
-    reverseArchive.push(archive[i]);
-  }
-  return reverseArchive
+  return useSelector((state: RootState) => state.archive.list)
 }
 const getColumnList = () => {
   return useSelector((state: RootState) => state.columnList.list)
