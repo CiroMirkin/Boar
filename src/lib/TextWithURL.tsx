@@ -19,7 +19,7 @@ export function TextWithURL({ text }: TextWithURLProps) {
         if (isValidURL(t)) {
             return <span key={t+tIndex}> <a href={t} target="_blank" className="text-blue-600 hover:underline">{t}</a> </span>
         } 
-        return <span key={t+tIndex}>{ t }</span>
+        return <span key={t+tIndex}>{ t } </span>
     })
     return (
         <>{ textWithURL }</>
