@@ -23,7 +23,40 @@ describe("Archivar lista de tareas.", () => {
         }).toThrow('No hay tareas que archivar.')
     })
 
-    test("Si se archivan varias tareas el mismo dia, estas deberían archivarse juntas porque el archivo es por dia.", () => {
+    test("No debería haber mas de 30 tareas diarias archivadas.  ESTA PRUEBA PODRÍA SER POCO CONFIABLE.", () => {
+        const task = {
+            id: '',
+            descriptionText: '',
+            columnPosition: '1',
+        }
+        const taskListInEachColumn: TaskList[] = [ [], [], [] ]
+        let firstColumnContent = new Array(31).fill(task)
+        taskListInEachColumn[2] = firstColumnContent
+        expect(() => {
+            return archiveTaskListInTheLastColumn({ taskListInEachColumn, columnPosition: '1', archive: [] })
+        }).toThrow('El archivo diario esta lleno :(')
+    })
+
+    test("No debería haber mas de 60 días archivados.  ESTA PRUEBA PODRÍA SER POCO CONFIABLE.", () => {
+        const task = {
+            id: '',
+            descriptionText: '',
+            columnPosition: '1',
+        }
+        const taskListInEachColumn: TaskList[] = [ [], [], [{...task}] ]
+        let archive = new Array(60).fill({
+            date: '',
+            tasklist: [[]]
+        })
+        
+        expect(() => {
+            return archiveTaskListInTheLastColumn({ taskListInEachColumn, columnPosition: '1', archive })
+        }).toThrow('El archivo esta lleno :(')
+    })
+})
+
+describe("Si se archivan varias tareas el mismo dia, estas deberían archivarse juntas porque el archivo es por dia.", () => {
+    test("Primer dia, ya hay tareas archivadas y se archivan mas. Todo en el mismo dia.", () => {
         const task = {
             id: '',
             descriptionText: 'Nueva tarea para archivar',
@@ -55,36 +88,5 @@ describe("Archivar lista de tareas.", () => {
                 ]
             }
         ])
-    })
-
-    test("No debería haber mas de 30 tareas diarias archivadas.  ESTA PRUEBA PODRÍA SER POCO CONFIABLE.", () => {
-        const task = {
-            id: '',
-            descriptionText: '',
-            columnPosition: '1',
-        }
-        const taskListInEachColumn: TaskList[] = [ [], [], [] ]
-        let firstColumnContent = new Array(31).fill(task)
-        taskListInEachColumn[2] = firstColumnContent
-        expect(() => {
-            return archiveTaskListInTheLastColumn({ taskListInEachColumn, columnPosition: '1', archive: [] })
-        }).toThrow('El archivo diario esta lleno :(')
-    })
-
-    test("No debería haber mas de 60 días archivados.  ESTA PRUEBA PODRÍA SER POCO CONFIABLE.", () => {
-        const task = {
-            id: '',
-            descriptionText: '',
-            columnPosition: '1',
-        }
-        const taskListInEachColumn: TaskList[] = [ [], [], [{...task}] ]
-        let archive = new Array(60).fill({
-            date: '',
-            tasklist: [[]]
-        })
-        
-        expect(() => {
-            return archiveTaskListInTheLastColumn({ taskListInEachColumn, columnPosition: '1', archive })
-        }).toThrow('El archivo esta lleno :(')
     })
 })
