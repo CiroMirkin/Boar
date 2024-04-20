@@ -55,8 +55,8 @@ describe("Archivar lista de tareas.", () => {
     })
 })
 
-describe("Si se archivan varias tareas el mismo dia, estas deberían archivarse juntas porque el archivo es por dia.", () => {
-    test("Primer dia, ya hay tareas archivadas y se archivan mas. Todo en el mismo dia.", () => {
+describe("Si se archivan varias tareas el mismo dia, estas deberían archivarse juntas.", () => {
+    test("Hay tareas archivadas y se archivan mas. Todo en el mismo dia.", () => {
         const task = {
             id: '',
             descriptionText: 'Nueva tarea para archivar',
@@ -89,7 +89,7 @@ describe("Si se archivan varias tareas el mismo dia, estas deberían archivarse 
             }
         ])
     })
-    test("Ya se archivaron tareas otro dia. Hoy ya se archivaron tareas y se archivan mas.", () => {
+    test("Hay tareas archivadas de otro dia. Hoy ya hay tareas archivadas y se archivan mas.", () => {
         const task = {
             id: '',
             descriptionText: 'Nueva tarea para archivar',
