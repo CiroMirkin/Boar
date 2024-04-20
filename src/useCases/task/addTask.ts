@@ -1,8 +1,8 @@
-import { TaskList, TaskListInEachColumn } from "@/models/taskListInEachColumn";
+import { TaskListInEachColumn } from "@/models/taskListInEachColumn";
 import { taskUseCaseParams } from "../useCase";
 import { getIndexOfColumnInColumnList } from "@/models/column";
 
-export function addTaskInFirstColumn({ taskListInEachColumn: taskList, task }: taskUseCaseParams): TaskList[] {
+export function addTaskInFirstColumn({ taskListInEachColumn: taskList, task }: taskUseCaseParams): TaskListInEachColumn {
     const columnPosition = 0
     taskList[columnPosition].push(task)
     return taskList
