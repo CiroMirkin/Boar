@@ -22,7 +22,7 @@ export function Help(){
                         <AccordionItem value="item-1">
                             <AccordionTrigger>¿Se guardan las tareas?</AccordionTrigger>
                             <AccordionContent>
-                            Las tareas y ajustes del tablero se guardan localmente.
+                            <p>Las tareas y ajustes del tablero se guardan localmente.</p>
                             </AccordionContent>
                         </AccordionItem>
                     </Accordion>
@@ -34,7 +34,7 @@ export function Help(){
                         <AccordionItem value="item-1">
                             <AccordionTrigger>¿El archivo tiene un limite?</AccordionTrigger>
                             <AccordionContent>
-                            Si, el archivo tiene un limite de sesenta (60) días y por dia hay un limite de treinta (30) tareas.
+                                <p>Si, el archivo tiene un limite de sesenta (60) días y por dia hay un limite de treinta (30) tareas.</p>
                             </AccordionContent>
                         </AccordionItem>
                     </Accordion>
