@@ -2,6 +2,11 @@ import { Archive as ArchiveModel } from "@/models/archive"
 import { Card, CardHeader, CardTitle } from "../../ui/card"
 import { Header, USER_IS_IN } from "../Header"
 import { TaskListArchived } from "./TaskListArchived"
+import { Button } from "@/ui/button"
+import { useToast } from "@/ui/use-toast"
+import { ToastAction } from "@/ui/toast"
+import { useDispatch } from "react-redux"
+import { cleanArchive } from "@/redux/archiveReducer"
 
 interface ArchiveProps {
     boardArchive: ArchiveModel
@@ -12,13 +17,31 @@ export function Archive({ boardArchive}: ArchiveProps) {
         <TaskListArchived taskList={tasklist} date={date} key={date} />
     )
 
+    const dispatch = useDispatch()
+
+    const { toast } = useToast()
+
+    const cleanTheWholeArchive = () => dispatch(cleanArchive())
+    const askForConfirmationToCleanTheWholeArchive = () => toast({
+        description: `¿Seguro que quieres eliminar todas las tareas archivadas?`,
+        variant: "destructive",
+        duration: 3000,
+        action: <ToastAction altText="Eliminar" onClick={cleanTheWholeArchive}>Eliminar</ToastAction>,
+    })
+
     return (
         <>
             <Header title="Archivo" whereUserIs={USER_IS_IN.ARCHIVE}/>
             <div className="mx-6 my-4 flex flex-col gap-y-2">
                 { archive.length === 0 
                     ? <EmptyArchive />
-                    : archive
+                    : <>
+                        <>{ archive }</>
+                        <Button
+                        variant="destructiveGhost"
+                        onClick={askForConfirmationToCleanTheWholeArchive}
+                        >Vaciar archivo</Button>
+                    </>
                 }
             </div>
         </>

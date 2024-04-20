@@ -41,5 +41,5 @@ export const archiveSlice = createSlice({
     }
 })
 
-export const { archiveTaskListAtLastColumn, archiveTask, deleteArchivedTask } = archiveSlice.actions
+export const { archiveTaskListAtLastColumn, archiveTask, deleteArchivedTask, cleanArchive } = archiveSlice.actions
 export default archiveSlice.reducer
