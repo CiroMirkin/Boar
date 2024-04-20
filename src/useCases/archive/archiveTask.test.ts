@@ -56,6 +56,64 @@ describe('Archivar una tarea.', () => {
         ])
     })
 
+    test("Se archiva la tarea y ya hay tareas archivadas ese mismo dia y otros.", () => {
+        const task = {
+            id: "",
+            descriptionText: "tarea que el usuario archiva", 
+            columnPosition: '',
+        }
+        const archive: Archive = [
+            {
+                date: (getFullDate()),
+                tasklist: [
+                    {
+                        id: "",
+                        descriptionText: "tarea que ya estaba archivada", 
+                        columnPosition: '',
+                    },
+                ]
+            },
+            {
+                date: "domingo",
+                tasklist: [
+                    {
+                        id: "",
+                        descriptionText: "",
+                        columnPosition: ""
+                    }
+                ]
+            }
+        ]
+
+        expect(archiveThisTask({ task, archive})).toStrictEqual([
+            {
+                date: (getFullDate()),
+                tasklist: [
+                    {
+                        id: "",
+                        descriptionText: "tarea que el usuario archiva", 
+                        columnPosition: '',
+                    },
+                    {
+                        id: "",
+                        descriptionText: "tarea que ya estaba archivada", 
+                        columnPosition: '',
+                    },
+                ]
+            },
+            {
+                date: "domingo",
+                tasklist: [
+                    {
+                        id: "",
+                        descriptionText: "",
+                        columnPosition: ""
+                    }
+                ]
+            }
+        ])
+    })
+
     test("No se debería poder archivar la tarea si ya hay 30 tareas archivadas.  ESTA PRUEBA PODRÍA SER POCO CONFIABLE.", () => {
         const task = {
             id: '',

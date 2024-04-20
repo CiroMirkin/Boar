@@ -8,16 +8,16 @@ export const archiveThisTask = ({ task, archive }: { task: taskModel, archive: A
     const date = getFullDate()
 
     if(getDateOfTheFirstTaskListArchived(archive) === date) {
-        const indexOfTheLastTaskListArchived = archive.length - 1
+        const indexOfTheTaskListArchived = 0
         const indexOfTheTaskInTheTaskListArchived = 0
         const itemsToBeRemovedOrReplaced = 0;
-        archive[indexOfTheLastTaskListArchived].tasklist.splice(
+        archive[indexOfTheTaskListArchived].tasklist.splice(
             indexOfTheTaskInTheTaskListArchived,
             itemsToBeRemovedOrReplaced,
             task
         )
 
-        if(archive[indexOfTheLastTaskListArchived].tasklist.length > 30) throw new BusinessError('El archivo diario esta lleno :(')
+        if(archive[indexOfTheTaskListArchived].tasklist.length > 30) throw new BusinessError('El archivo diario esta lleno :(')
         return archive
     }
 
