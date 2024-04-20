@@ -89,4 +89,61 @@ describe("Si se archivan varias tareas el mismo dia, estas deberían archivarse 
             }
         ])
     })
+    test("Ya se archivaron tareas otro dia. Hoy ya se archivaron tareas y se archivan mas.", () => {
+        const task = {
+            id: '',
+            descriptionText: 'Nueva tarea para archivar',
+            columnPosition: '2',
+        }
+        const taskListInEachColumn: TaskList[] = [[], [{...task}]]
+        const archive = [
+            {
+                date: (getFullDate()),
+                tasklist: [
+                    {
+                        id: '',
+                        descriptionText: 'Tarea que ya estaba archivada',
+                        columnPosition: '',
+                    }
+                ]
+            },
+            {
+                date: "Domingo",
+                tasklist: [
+                    {
+                        id: '',
+                        descriptionText: '',
+                        columnPosition: '',
+                    }
+                ]
+            }
+        ]
+        expect(archiveTaskListInTheLastColumn({ taskListInEachColumn, columnPosition: '1', archive })).toStrictEqual([
+            {
+                date: (getFullDate()),
+                tasklist: [
+                    {
+                        id: '',
+                        descriptionText: 'Nueva tarea para archivar',
+                        columnPosition: '2',
+                    },
+                    {
+                        id: '',
+                        descriptionText: 'Tarea que ya estaba archivada',
+                        columnPosition: '',
+                    }
+                ]
+            },
+            {
+                date: "Domingo",
+                tasklist: [
+                    {
+                        id: '',
+                        descriptionText: '',
+                        columnPosition: '',
+                    }
+                ]
+            }
+        ])
+    })
 })

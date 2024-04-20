@@ -11,8 +11,8 @@ export type Archive = taskListArchived[]
 const archiveLimit = 60
 const dailyArchiveLimit = 30
 
-export const getDateOfTheLastTaskListArchived = (archive: Archive): string | null => {
-    const lastTaskListArchived = archive[archive.length - 1];
+export const getDateOfTheFirstTaskListArchived = (archive: Archive): string | null => {
+    const lastTaskListArchived = archive[0];
     if (lastTaskListArchived) {
         return lastTaskListArchived.date;
     }
