@@ -20,3 +20,8 @@ export const isItWithinTheArchiveLimit = (archive: Archive): true | BusinessErro
     if(archive.length >= 60) throw new BusinessError('El archivo esta lleno :(')
     return true
 }
+
+export const isItWithinTheDailyArchiveLimit = (taskListArchived: TaskList): true | BusinessError => {
+    if(taskListArchived.length > 30) throw new BusinessError('El archivo diario esta lleno :(')
+    return true
+}

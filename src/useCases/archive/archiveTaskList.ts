@@ -1,7 +1,7 @@
 import BusinessError from "@/errors/businessError";
 import { TaskList } from "@/models/taskListInEachColumn";
 import { getFullDate } from "../../utils/getTime";
-import { Archive, isItWithinTheArchiveLimit } from "@/models/archive";
+import { Archive, isItWithinTheArchiveLimit, isItWithinTheDailyArchiveLimit } from "@/models/archive";
 import { getDateOfTheLastTaskListArchived } from "@/models/archive";
 
 interface archiveTaskListParams {
@@ -14,18 +14,16 @@ export function archiveTaskListInTheLastColumn({ taskListInEachColumn, archive }
     const taskListToArchive: TaskList = taskListInEachColumn[taskListInEachColumn.length - 1]
     
     if(AreThereTasksToBeArchive(taskListToArchive)) throw new BusinessError('No hay tareas que archivar.')
-    if(taskListToArchive.length > 30) throw new BusinessError('El archivo diario esta lleno :(')
-
     
-
     if(getDateOfTheLastTaskListArchived(archive) === date) {
-        const toArchive = [...taskListToArchive, ...archive[archive.length - 1].tasklist]
-        archive[archive.length - 1].tasklist = toArchive
-        if(toArchive.length > 30) throw new BusinessError('El archivo diario esta lleno :(')
-        return archive
+        const toArchive: TaskList = [...taskListToArchive, ...archive[archive.length - 1].tasklist]
+        if(isItWithinTheDailyArchiveLimit(toArchive)) {
+            archive[archive.length - 1].tasklist = toArchive
+            return archive
+        }
     }
 
-    if(isItWithinTheArchiveLimit(archive)){
+    if(isItWithinTheArchiveLimit(archive) && isItWithinTheDailyArchiveLimit(taskListToArchive)){
         archive.push({
             date,
             tasklist: taskListToArchive
