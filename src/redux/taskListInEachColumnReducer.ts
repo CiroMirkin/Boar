@@ -3,7 +3,7 @@ import { taskModel } from "@/models/task";
 import { TaskListInEachColumn } from "@/models/taskListInEachColumn";
 import { TaskListInEachColumnRepository } from "@/models/taskListInEachColumnRepository";
 import LocalStorageTaskListInEachColumnRepository from "@/repositories/localStorageTaskLists";
-import { addTaskInFirstColumn } from "@/useCases/task/addTask";
+import { addTaskInFirstColumn, addTaskInTheLastColumn } from "@/useCases/task/addTask";
 import { deleteThisTask } from "@/useCases/task/deleteTask";
 import { cleanLastTaskList, deleteTheTaskListInThisIndex } from "@/useCases/task/deleteTaskList";
 import { moveThisTaskToTheNextColumn, moveThisTaskToThePrevColumn } from "@/useCases/task/moveTask";
@@ -26,6 +26,10 @@ export const taskListInEachColumnSlice = createSlice({
         addTaskAtFirstColumn: (state, action: PayloadAction<taskModel>) => {
             const task = action.payload
             state.list = addTaskInFirstColumn({ taskListInEachColumn: state.list, task })
+        },
+        addTaskAtLastColumn: (state, action: PayloadAction<taskModel>) => {
+            const task = action.payload
+            state.list = addTaskInTheLastColumn({ taskListInEachColumn: state.list, task })
         },
         deleteTask: (state, action: PayloadAction<taskModel>) => {
             const task = action.payload
@@ -53,5 +57,5 @@ export const taskListInEachColumnSlice = createSlice({
     }
 })
 
-export const { addTaskAtFirstColumn, deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn, clearTheLastTaskList, addEmptyTaskListAtTheEnd, deleteTheTaskListOfThisColumn } = taskListInEachColumnSlice.actions
+export const { addTaskAtFirstColumn, addTaskAtLastColumn, deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn, clearTheLastTaskList, addEmptyTaskListAtTheEnd, deleteTheTaskListOfThisColumn } = taskListInEachColumnSlice.actions
 export default taskListInEachColumnSlice.reducer
