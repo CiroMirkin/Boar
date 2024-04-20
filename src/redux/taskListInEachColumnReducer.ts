@@ -43,7 +43,7 @@ export const taskListInEachColumnSlice = createSlice({
             const task = action.payload
             state.list = moveThisTaskToThePrevColumn({ taskListInEachColumn: state.list, task })
         },
-        clearTheLastTaskList: (state) => {
+        cleanTheLastTaskList: (state) => {
             state.list = cleanLastTaskList({ taskListInEachColumn: state.list })
         },
         addEmptyTaskListAtTheEnd: (state) => {
@@ -57,5 +57,5 @@ export const taskListInEachColumnSlice = createSlice({
     }
 })
 
-export const { addTaskAtFirstColumn, addTaskAtLastColumn, deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn, clearTheLastTaskList, addEmptyTaskListAtTheEnd, deleteTheTaskListOfThisColumn } = taskListInEachColumnSlice.actions
+export const { addTaskAtFirstColumn, addTaskAtLastColumn, deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn, cleanTheLastTaskList, addEmptyTaskListAtTheEnd, deleteTheTaskListOfThisColumn } = taskListInEachColumnSlice.actions
 export default taskListInEachColumnSlice.reducer

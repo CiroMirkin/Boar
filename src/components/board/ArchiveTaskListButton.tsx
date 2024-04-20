@@ -1,5 +1,5 @@
 import { archiveTaskListAtLastColumn } from "@/redux/archiveReducer"
-import { clearTheLastTaskList } from "@/redux/taskListInEachColumnReducer"
+import { cleanTheLastTaskList } from "@/redux/taskListInEachColumnReducer"
 import { useToast } from "@/ui/use-toast"
 import { useContext } from "react"
 import { useDispatch } from "react-redux"
@@ -21,7 +21,7 @@ export function ArchiveTaskListButton() {
     const archiveTaskList = () => {
         try{
             dispatch(archiveTaskListAtLastColumn(taskListInEachColumn))
-            dispatch(clearTheLastTaskList())
+            dispatch(cleanTheLastTaskList())
             toast({
                 description: "Consulta las tareas archivadas en el menú.",
                 duration: 3000
