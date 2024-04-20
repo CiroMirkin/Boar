@@ -2,6 +2,9 @@ import { Separator } from "@/ui/separator";
 import { DescriptionOfBoar } from "../DescriptionOfBoar";
 import { Header, USER_IS_IN } from "../Header";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/ui/accordion";
+import { Button } from "@/ui/button";
+import { Github } from "lucide-react";
+import { iconSize } from "@/configs/iconsConstants";
 
 export function Help(){
     return (
@@ -35,6 +38,14 @@ export function Help(){
                             </AccordionContent>
                         </AccordionItem>
                     </Accordion>
+                </section> 
+                <section className="mb-4">
+                    <h2 className="mb-2 text-2xl">¿Ha encontrado un problema?</h2>
+                    <a href="https://github.com/CiroMirkin/Boar/issues" target="_blank">
+                        <Button variant="link" className="pl-0">
+                            <Github size={iconSize} className="mr-2"/> Envíelo
+                        </Button>
+                    </a>
                 </section>
             </div>
         </>
