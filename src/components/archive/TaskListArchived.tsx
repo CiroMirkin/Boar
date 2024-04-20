@@ -3,6 +3,7 @@ import React from "react";
 import { TaskList as taskList } from "@/models/taskListInEachColumn";
 import { Task } from "../Task";
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
+import { TaskInArchiveActions } from "./TaskInArchiveActions";
 
 interface TaskListArchivedProps {
     taskList: taskList;
@@ -29,6 +30,9 @@ export function TaskListArchived({ taskList, date }: TaskListArchivedProps) {
 function TaskList({ taskList }: { taskList: taskList }) {
     const tasks: React.ReactNode[] = taskList.map(task => 
         <Task data={task} key={task.id}>
+            <Task.TaskActions>
+                <TaskInArchiveActions />
+            </Task.TaskActions>
         </Task>
     )
     return(<>{ tasks }</>)
