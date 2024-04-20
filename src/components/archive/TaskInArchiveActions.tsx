@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { deleteArchivedTask } from "@/redux/archiveReducer";
 import { useToast } from "@/ui/use-toast";
 import { ToastAction } from "@/ui/toast";
+import { addTaskAtLastColumn } from "@/redux/taskListInEachColumnReducer";
 
 export function TaskInArchiveActions() {
     const data = useContext(TaskContext)
@@ -14,6 +15,14 @@ export function TaskInArchiveActions() {
     
     const deleteTask = () => {
         dispatch(deleteArchivedTask(data))
+    }
+    const returnTaskToLastColumn = () => {
+        dispatch(addTaskAtLastColumn(data))
+        dispatch(deleteArchivedTask(data))
+        toast({
+            description: 'La tarea regreso a la última columna.',
+            duration: 3000
+        })
     }
 
     const askForConfirmationToDeleteTheTask = () => toast({
@@ -25,6 +34,12 @@ export function TaskInArchiveActions() {
 
     return (
         <>
+            <Button  
+                size="sm"
+                onClick={returnTaskToLastColumn}
+                variant='ghost'
+                className="w-full"
+            >Regresar tarea al tablero</Button>
             <Button 
                 size="sm" 
                 variant="destructiveGhost" 
