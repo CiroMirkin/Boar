@@ -23,7 +23,7 @@ export function ArchiveTaskListButton() {
             dispatch(archiveTaskListAtLastColumn(taskListInEachColumn))
             dispatch(clearTheLastTaskList())
             toast({
-                description: "Puedes ver las tareas archivadas yendo al menu.",
+                description: "Consulta las tareas archivadas en el menú.",
                 duration: 3000
             })
         }
