@@ -8,6 +8,9 @@ export interface taskListArchived {
 
 export type Archive = taskListArchived[]
 
+const archiveLimit = 60
+const dailyArchiveLimit = 30
+
 export const getDateOfTheLastTaskListArchived = (archive: Archive): string | null => {
     const lastTaskListArchived = archive[archive.length - 1];
     if (lastTaskListArchived) {
@@ -17,11 +20,11 @@ export const getDateOfTheLastTaskListArchived = (archive: Archive): string | nul
 };
 
 export const isItWithinTheArchiveLimit = (archive: Archive): true | BusinessError => {
-    if(archive.length >= 60) throw new BusinessError('El archivo esta lleno :(')
+    if(archive.length >= archiveLimit) throw new BusinessError('El archivo esta lleno :(')
     return true
 }
 
 export const isItWithinTheDailyArchiveLimit = (taskListArchived: TaskList): true | BusinessError => {
-    if(taskListArchived.length > 30) throw new BusinessError('El archivo diario esta lleno :(')
+    if(taskListArchived.length > dailyArchiveLimit) throw new BusinessError('El archivo diario esta lleno :(')
     return true
 }
