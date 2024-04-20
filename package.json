@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@formkit/tempo": "^0.0.13",
+    "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@radix-ui/react-scroll-area": "^1.0.5",
