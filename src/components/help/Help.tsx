@@ -29,9 +29,16 @@ export function Help(){
                 </section>
                 <section className="mb-4">
                     <h2 className="mb-2 text-2xl">Archivo</h2>
-                    <p>El archivo permite mantener limpio el tablero y al mismo tiempo tener un registro de las tareas terminadas.</p>
                     <Accordion type="single" collapsible>
                         <AccordionItem value="item-1">
+                            <AccordionTrigger>¿Para que es el archivo?</AccordionTrigger>
+                            <AccordionContent>
+                                <p>El archivo permite mantener limpio el tablero y al mismo tiempo tener un registro de las tareas terminadas.</p>
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
+                    <Accordion type="single" collapsible>
+                        <AccordionItem value="item-2">
                             <AccordionTrigger>¿El archivo tiene un limite?</AccordionTrigger>
                             <AccordionContent>
                                 <p>Si, el archivo tiene un limite de sesenta (60) días y por dia hay un limite de treinta (30) tareas.</p>
