@@ -13,6 +13,7 @@ import { TaskListInEachColumnRepository } from './models/taskListInEachColumnRep
 import { ColumnListRepository } from './models/columnListRepository'
 import { ArchiveRepository } from './models/archiveRepository'
 import { Help } from './components/help/Help'
+import { BoardRepository } from './models/boardRepository'
 
 
 const getArchive = (): ArchiveModel => {
@@ -33,13 +34,16 @@ interface AppProps {
   taskListInEachColumnRepository: TaskListInEachColumnRepository
   columnListRepository: ColumnListRepository
   archiveRepository: ArchiveRepository
+  boardRepository: BoardRepository
 }
 
-function App({ taskListInEachColumnRepository, columnListRepository, archiveRepository }: AppProps) {
+function App({ taskListInEachColumnRepository, columnListRepository, archiveRepository, boardRepository }: AppProps) {
   const columnList = getColumnList()
   const taskListInEachColumn = getTaskListInEachColumn()
   const archive = getArchive()
   const boardData = getBoard()
+
+  useEffect(() => boardRepository.save(boardData), [boardData])
 
   useEffect(() => {
     taskListInEachColumnRepository.save(taskListInEachColumn)
