@@ -27,7 +27,7 @@ const getTaskListInEachColumn = () => {
 }
 
 const getBoard = () => {
-  return ({ id: '1', name: 'Tablero básico' })
+  return useSelector((state: RootState) => state.board)
 }
 
 interface AppProps {
