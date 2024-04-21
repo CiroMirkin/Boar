@@ -25,6 +25,10 @@ const getTaskListInEachColumn = () => {
   return useSelector((state: RootState) => state.taskListInEachColumn.list)
 }
 
+const getBoard = () => {
+  return ({ id: '1', name: 'Tablero básico' })
+}
+
 interface AppProps {
   taskListInEachColumnRepository: TaskListInEachColumnRepository
   columnListRepository: ColumnListRepository
@@ -35,7 +39,7 @@ function App({ taskListInEachColumnRepository, columnListRepository, archiveRepo
   const columnList = getColumnList()
   const taskListInEachColumn = getTaskListInEachColumn()
   const archive = getArchive()
-  const boardData = { id: '1', name: 'Tablero básico' }
+  const boardData = getBoard()
 
   useEffect(() => {
     taskListInEachColumnRepository.save(taskListInEachColumn)
