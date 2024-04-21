@@ -21,5 +21,5 @@ export const boardSlice = createSlice({
     }
 })
 
-export const {} = boardSlice.actions
+export const { changeTheNameOfTheBoard } = boardSlice.actions
 export default boardSlice.reducer
