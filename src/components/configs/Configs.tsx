@@ -16,7 +16,7 @@ export function Configs({ boardData, columnList }:ConfigBoardParams) {
             <Header title="Ajustes" whereUserIs={USER_IS_IN.CONFIG} />
             <div className="py-4 md:px-11 px-6">
                 <h2 className="text-2xl">Tablero</h2>
-                <div className="my-5 flex">
+                <div className="my-5 flex items-end">
                     <ChangeBoardName name={boardData.name} />
                 </div>
             </div>
