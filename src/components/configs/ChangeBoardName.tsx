@@ -31,7 +31,7 @@ export function ChangeBoardName({ name }: ChangeBoardNameProps) {
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const newBoardName = e.target.value
         if(newBoardName.length < 30) {
-            setBoardName(newBoardName.trim())
+            setBoardName(newBoardName)
         }
     }
     return (
