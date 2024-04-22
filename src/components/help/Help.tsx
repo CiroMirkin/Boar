@@ -48,8 +48,6 @@ export function Help(){
                                 <p>El archivo permite mantener limpio el tablero y al mismo tiempo tener un registro de las tareas terminadas.</p>
                             </AccordionContent>
                         </AccordionItem>
-                    </Accordion>
-                    <Accordion type="single" collapsible>
                         <AccordionItem value="item-2">
                             <AccordionTrigger>¿El archivo tiene un limite?</AccordionTrigger>
                             <AccordionContent>
