@@ -10,7 +10,6 @@ import { Configs } from './components/configs/Configs'
 import { Erro404 } from './components/404/404'
 import { useEffect } from 'react'
 import { TaskListInEachColumnRepository } from './models/taskListInEachColumnRepository'
-import { ColumnListRepository } from './models/columnListRepository'
 import { ArchiveRepository } from './models/archiveRepository'
 import { Help } from './components/help/Help'
 import { BoardRepository } from './models/boardRepository'
@@ -32,12 +31,11 @@ const getBoard = () => {
 
 interface AppProps {
   taskListInEachColumnRepository: TaskListInEachColumnRepository
-  columnListRepository: ColumnListRepository
   archiveRepository: ArchiveRepository
   boardRepository: BoardRepository
 }
 
-function App({ taskListInEachColumnRepository, columnListRepository, archiveRepository, boardRepository }: AppProps) {
+function App({ taskListInEachColumnRepository, archiveRepository, boardRepository }: AppProps) {
   const columnList = getColumnList()
   const taskListInEachColumn = getTaskListInEachColumn()
   const archive = getArchive()
@@ -48,8 +46,6 @@ function App({ taskListInEachColumnRepository, columnListRepository, archiveRepo
   useEffect(() => {
     taskListInEachColumnRepository.save(taskListInEachColumn)
   }, [taskListInEachColumn])
-
-  useEffect(() => columnListRepository.save(columnList), [columnList])
 
   useEffect(() => archiveRepository.save(archive), [archive])
 
