@@ -6,7 +6,6 @@ import { getDateOfTheFirstTaskListArchived } from "@/models/archive";
 
 interface archiveTaskListParams {
     taskListInEachColumn: TaskList[],
-    columnPosition: string,
     archive: Archive
 }
 export function archiveTaskListInTheLastColumn({ taskListInEachColumn, archive }: archiveTaskListParams): Archive { 
