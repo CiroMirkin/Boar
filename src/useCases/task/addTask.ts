@@ -1,10 +1,13 @@
-import { TaskListInEachColumn } from "@/models/taskListInEachColumn";
+import { TaskListInEachColumn, isThisFirstTaskListWithinTheLimit } from "@/models/taskListInEachColumn";
 import { taskUseCaseParams } from "../useCase";
 import { getIndexOfColumnInColumnList } from "@/models/column";
 
 export function addTaskInFirstColumn({ taskListInEachColumn: taskList, task }: taskUseCaseParams): TaskListInEachColumn {
     const columnPosition = 0
     taskList[columnPosition].push(task)
+
+    isThisFirstTaskListWithinTheLimit({ taskList: taskList[columnPosition]})
+    
     return taskList
 }
 

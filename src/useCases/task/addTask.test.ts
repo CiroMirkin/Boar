@@ -1,4 +1,4 @@
-import { TaskList } from "@/models/taskListInEachColumn"
+import { TaskList, TaskListInEachColumn } from "@/models/taskListInEachColumn"
 import { addTaskInFirstColumn, addTaskInTheLastColumn } from "./addTask"
 
 describe("Crear una tarea.", () => {
@@ -42,4 +42,22 @@ describe("Agregar una tarea a la última columna.", () => {
             ] 
         ])
     })
+})
+
+describe('Se respetan los limites de una lista de tareas', () => {
+    test("No se debería poder crear una tarea en la primer columna si esta llena. PRUEBA POCO CONFIABLE, REVISAR.", () => {
+        const task = {
+            id: '',
+            descriptionText: 'tarea',
+            columnPosition: '1',
+        }
+        const taskListInEachColumn: TaskListInEachColumn = [ [], [], [] ]
+        let secondColumnContent = new Array(30).fill(task)
+        taskListInEachColumn[0] = secondColumnContent
+        
+        expect(() => {
+            return addTaskInFirstColumn({ taskListInEachColumn, task })
+        }).toThrow('La columna esta llena.')
+    })
+
 })
