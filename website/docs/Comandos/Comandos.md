@@ -4,3 +4,5 @@ description: Comandos
 tags: 
   - Comandos
 ---
+
+Lista de comandos necesarios para trabajar en Boar.
