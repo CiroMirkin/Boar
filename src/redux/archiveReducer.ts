@@ -25,7 +25,7 @@ export const archiveSlice = createSlice({
     reducers: {
         archiveTaskListAtLastColumn: (state, action: PayloadAction<TaskListInEachColumn>) => {
             const taskList = action.payload
-            state.list = archiveTaskListInTheLastColumn({ taskListInEachColumn: taskList, columnPosition: "3" , archive: state.list })
+            state.list = archiveTaskListInTheLastColumn({ taskListInEachColumn: taskList, archive: state.list })
         },
         archiveTask: (state, action: PayloadAction<taskModel>) => {
             const task = action.payload
