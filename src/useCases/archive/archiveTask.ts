@@ -20,10 +20,15 @@ export const archiveThisTask = ({ task, archive }: { task: taskModel, archive: A
             return archive
         }
     }
-
-    archive.push({
-        date,
-        tasklist: [task]
-    })
+    const indexOfTheNewTaskListArchived = 0
+    const itemsToBeRemovedOrReplaced = 0;
+    archive.splice(
+        indexOfTheNewTaskListArchived,
+        itemsToBeRemovedOrReplaced,
+        {
+            date,
+            tasklist: [task]
+        }
+    )
     return archive
 }
