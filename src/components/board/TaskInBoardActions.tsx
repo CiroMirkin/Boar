@@ -8,9 +8,11 @@ import { isThisTaskInTheLastColumn } from "@/utils/isThisTaskInTheLastColumn";
 import { useContext } from "react";
 import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser";
 import { archiveTask } from "@/redux/archiveReducer";
+import { ToastAction } from "@/ui/toast";
 
 export function TaskInBoardActions() {
     const data = useContext(TaskContext)
+    const  isTheTaskInTheFirstColumn = isThisTaskInTheFirstColumn(data)
 
     const { toast } = useToast();
     const copyTextToClipboard = (text: string) => {
@@ -23,6 +25,16 @@ export function TaskInBoardActions() {
     }
 
     const deleteTaskAction = () => dispatch(deleteTask(data))
+    const askForConfirmationToDeleteTheTask = () => {
+        isTheTaskInTheFirstColumn 
+            ? handleClick(deleteTaskAction) 
+            : toast({
+                description: `¿Seguro que quieres eliminar esta tarea?`,
+                variant: "destructive",
+                duration: 3000,
+                action: <ToastAction altText="Eliminar" onClick={() => handleClick(deleteTaskAction)}>Eliminar</ToastAction>,
+            })
+    }
     const moveTaskToNextColumnAction = () => dispatch(moveTaskToNextColumn(data))
     const moveTaskToPrevColumnAction = () => dispatch(moveTaskToPrevColumn(data))
     const archiveTaskAction = () => {
@@ -82,7 +94,7 @@ export function TaskInBoardActions() {
                 size="sm" 
                 variant="destructiveGhost" 
                 className="w-full" 
-                onClick={() => handleClick(deleteTaskAction)}
+                onClick={askForConfirmationToDeleteTheTask}
             >Eliminar</Button>
         </>
     )
