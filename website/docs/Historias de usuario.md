@@ -17,6 +17,7 @@ Esta son las historias de usuario implementadas actualmente en Boar.
   * La longitud de una tarea no debe exceder los 200 caracteres.
 * Como usuario, puedo eliminar las tareas que quiera.
 * Como usuario, puedo mover las tareas entre columnas.
+  * Puede mover tareas solo si la columna tiene espacio. Las columnas tienen un limite de 10 tareas.
 
 ## Archivo
 
