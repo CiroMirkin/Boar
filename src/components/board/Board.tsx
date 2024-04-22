@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { boardModel } from "../../models/board"
 import { ColumnList } from "./ColumnList"
 import { defaultColumnList } from "@/models/columnList"
@@ -6,9 +6,13 @@ import { columnList } from "@/models/columnList"
 import { Header, USER_IS_IN } from "../Header"
 import { TaskListInEachColumn } from "@/models/taskListInEachColumn"
 import { WelcomeDialog } from "./WelcomeDialog"
+import LocalStorageTaskListInEachColumnRepository from "@/repositories/localStorageTaskLists.ts"
+import { TaskListInEachColumnRepository } from "@/models/taskListInEachColumnRepository"
 
 export const TaskListInEachColumnContext = React.createContext([[], [], []] as TaskListInEachColumn)
 export const ColumnListContext = React.createContext(defaultColumnList as columnList)
+
+const taskListInEachColumnRepository: TaskListInEachColumnRepository = new LocalStorageTaskListInEachColumnRepository();
 
 interface BoardProps {
     children?: React.ReactNode
@@ -18,7 +22,10 @@ interface BoardProps {
 }
 
 export function Board({ data, taskListInEachColumn, columnList }: BoardProps) {
-    
+    useEffect(() => {
+        taskListInEachColumnRepository.save(taskListInEachColumn)
+    }, [taskListInEachColumn])
+
     return (
         <>
         <Header title={data.name} whereUserIs={USER_IS_IN.BOARD} />
