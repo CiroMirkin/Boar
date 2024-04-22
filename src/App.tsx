@@ -11,6 +11,7 @@ import { Erro404 } from './components/404/404'
 import { useEffect } from 'react'
 import { Help } from './components/help/Help'
 import { BoardRepository } from './models/boardRepository'
+import LocalStorageBoardRepository from './repositories/localstorageBoard.ts'
 
 
 const getArchive = (): ArchiveModel => {
@@ -27,11 +28,9 @@ const getBoard = () => {
   return useSelector((state: RootState) => state.board)
 }
 
-interface AppProps {
-  boardRepository: BoardRepository
-}
+const boardRepository: BoardRepository = new LocalStorageBoardRepository()
 
-function App({ boardRepository }: AppProps) {
+function App() {
   const columnList = getColumnList()
   const taskListInEachColumn = getTaskListInEachColumn()
   const archive = getArchive()
