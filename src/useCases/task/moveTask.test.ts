@@ -1,4 +1,5 @@
-import { moveThisTask } from "./moveTask"
+import { TaskListInEachColumn } from "@/models/taskListInEachColumn"
+import { moveThisTask, moveThisTaskToTheNextColumn } from "./moveTask"
 
 describe('Mover una tarea entre columnas', () => {
     test('Una tarea debería moverse a la columna siguiente', () => {
@@ -54,4 +55,22 @@ describe('Mover una tarea entre columnas', () => {
             []
         ])
     })
+})
+
+describe('Se respetan los limites de una lista de tareas', () => {
+    test("No se debería poder mover una tarea a una columna llena.", () => {
+        const task = {
+            id: '',
+            descriptionText: 'tarea',
+            columnPosition: '1',
+        }
+        const taskListInEachColumn: TaskListInEachColumn = [ [], [], [] ]
+        let secondColumnContent = new Array(14).fill(task)
+        taskListInEachColumn[1] = secondColumnContent
+        
+        expect(() => {
+            return moveThisTaskToTheNextColumn({ taskListInEachColumn, task })
+        }).toThrow('La columna esta llena.')
+    })
+
 })

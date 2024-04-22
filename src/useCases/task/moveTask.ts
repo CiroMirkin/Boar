@@ -1,7 +1,7 @@
 import { getIndexOfColumnInColumnList } from "@/models/column"
 import { taskUseCaseParams } from "../useCase"
 import { getNewTask } from "@/models/task"
-import { TaskList } from "@/models/taskListInEachColumn"
+import { TaskList, isThisTaskListWithinTheLimit } from "@/models/taskListInEachColumn"
 
 export type moveToType = 'next-column' | 'prev-column'
 
@@ -33,8 +33,10 @@ export const moveThisTask = ({ task, to, taskListInEachColumn }: moveTaskParams)
         newTask.id = task.id 
         
         newTaskListInEachColumn[indexOfTheColumnWhereTheTaskWillBe].push(newTask)
-
-        return newTaskListInEachColumn
+        if(isThisTaskListWithinTheLimit({ taskList: newTaskListInEachColumn[indexOfTheColumnWhereTheTaskWillBe]})) {
+        
+            return newTaskListInEachColumn
+        }
     } 
 
     const itemsToBeRemovedOrReplaced = 0
