@@ -58,14 +58,14 @@ describe('Mover una tarea entre columnas', () => {
 })
 
 describe('Se respetan los limites de una lista de tareas', () => {
-    test("No se debería poder mover una tarea a una columna llena.", () => {
+    test("No se debería poder mover una tarea a una columna llena. PRUEBA POCO CONFIABLE.", () => {
         const task = {
             id: '',
             descriptionText: 'tarea',
             columnPosition: '1',
         }
         const taskListInEachColumn: TaskListInEachColumn = [ [], [], [] ]
-        let secondColumnContent = new Array(14).fill(task)
+        let secondColumnContent = new Array(10).fill(task)
         taskListInEachColumn[1] = secondColumnContent
         
         expect(() => {
