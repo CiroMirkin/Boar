@@ -1,4 +1,6 @@
 import { Archive as ArchiveModel } from "@/models/archive"
+import LocalStorageArchiveRepository from "@/repositories/localStorageArchive"
+import { ArchiveRepository } from "@/models/archiveRepository"
 import { Card, CardHeader, CardTitle } from "../../ui/card"
 import { Header, USER_IS_IN } from "../Header"
 import { TaskListArchived } from "./TaskListArchived"
@@ -7,12 +9,17 @@ import { useToast } from "@/ui/use-toast"
 import { ToastAction } from "@/ui/toast"
 import { useDispatch } from "react-redux"
 import { cleanArchive } from "@/redux/archiveReducer"
+import { useEffect } from "react"
+
+const archiveRepository:ArchiveRepository = new LocalStorageArchiveRepository()
 
 interface ArchiveProps {
     boardArchive: ArchiveModel
 }
 
 export function Archive({ boardArchive}: ArchiveProps) {
+    useEffect(() => archiveRepository.save(boardArchive), [boardArchive])
+
     const archive = boardArchive.map(({ tasklist, date }) => 
         <TaskListArchived taskList={tasklist} date={date} key={date} />
     )
