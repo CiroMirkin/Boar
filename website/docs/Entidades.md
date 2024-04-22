@@ -9,7 +9,7 @@ tags:
 
 # Entidades
 
-La definiciones de las entidades estan en la carpeta `models`.
+La definiciones de las entidades están en la carpeta `models`.
 
 ## ColumnList y TaskListInEachColumn
 
@@ -18,7 +18,5 @@ Las columnas se almacenan en un arreglo, en un arreglo diferente se almacenan la
 La primera  lista dentro del arreglo *TaskListInEachColumn* corresponden a la primera columna en el arreglo *ColumnList*.
 
 :::danger
-Estos dos arreglos deben estar sincronizados, si hay mas o menos elementos en alguno de los dos arreglos habra errores.
-
-Esto porque su relacion es a travéz de las posiciones.
+Estos dos arreglos deben mantener una consistencia, si hay mas o menos elementos en alguno de los dos arreglos habrá errores. Esto porque su relación es a través de las posiciones.
 :::
