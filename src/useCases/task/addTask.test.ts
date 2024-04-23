@@ -52,7 +52,7 @@ describe('Se respetan los limites de una lista de tareas', () => {
             columnPosition: '1',
         }
         const taskListInEachColumn: TaskListInEachColumn = [ [], [], [] ]
-        let secondColumnContent = new Array(30).fill(task)
+        let secondColumnContent = new Array(10).fill(task)
         taskListInEachColumn[0] = secondColumnContent
         
         expect(() => {
