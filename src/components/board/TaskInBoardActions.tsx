@@ -65,8 +65,8 @@ export function TaskInBoardActions() {
             <div className="w-full grid grid-flow-col justify-stretch gap-1.5">
                 <Button 
                     size="sm" 
-                    disabled={isThisTaskInTheFirstColumn(data) && true} 
-                    variant={isThisTaskInTheFirstColumn(data) ? 'ghost' : 'default'} 
+                    disabled={isTheTaskInTheFirstColumn} 
+                    variant={isTheTaskInTheFirstColumn ? 'ghost' : 'default'} 
                     onClick={() => handleClick(moveTaskToPrevColumnAction)}
                 >Retroceder</Button>
                 <Button 
