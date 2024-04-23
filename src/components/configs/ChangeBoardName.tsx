@@ -6,6 +6,7 @@ import { changeTheNameOfTheBoard } from "@/redux/boardReducer"
 import { Pencil } from "lucide-react"
 import { iconSize } from "@/configs/iconsConstants"
 import { Label } from "@/ui/label"
+import { isThisBoardNameValid } from "@/models/board"
 
 interface ChangeBoardNameProps {
     name: string
@@ -30,7 +31,7 @@ export function ChangeBoardName({ name }: ChangeBoardNameProps) {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const newBoardName = e.target.value
-        if(newBoardName.length < 30) {
+        if(isThisBoardNameValid(newBoardName)) {
             setBoardName(newBoardName)
         }
     }
