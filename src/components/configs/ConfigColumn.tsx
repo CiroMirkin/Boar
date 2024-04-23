@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { columnModel } from "../../models/column"
+import { columnModel, isThisColumnNameValid, isThisColumnNameWithinTheLimitOfLetters } from "../../models/column"
 import { useDispatch } from "react-redux"
 import { changeColumnName, deleteColumn } from "@/redux/columnListReducer"
 import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card"
@@ -23,10 +23,18 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
     const { toast } = useToast()
 
     const editColumnNameHandle = () => {
-        if(showChangeColumnNameInput) {
-            updateBoardData(changeColumnName({ column, newColumnName: columnName }))
+        try{
+            if(showChangeColumnNameInput) {
+                updateBoardData(changeColumnName({ column, newColumnName: columnName }))
+            }
+            setShowChangeColumnNameInput(!showChangeColumnNameInput)
+        } catch(e) {
+            toast({
+                description: getErrorMessageForTheUser(e),
+                variant: "destructive",
+                duration: 3000
+            })
         }
-        setShowChangeColumnNameInput(!showChangeColumnNameInput)
     }
     
     const deleteColumnHandle = () => {
@@ -57,7 +65,7 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
                     showChangeColumnNameInput 
                         ? <Input 
                             value={columnName} 
-                            onChange={(e) => setColumnName(e.target.value)} 
+                            onChange={(e) => isThisColumnNameWithinTheLimitOfLetters(e.target.value) && setColumnName(e.target.value)} 
                             className="text-3xl font-semibold border-2" 
                             /> 
                         : <CardTitle className="pl-4">{columnName}</CardTitle>
