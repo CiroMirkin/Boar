@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { columnModel, isThisColumnNameValid, isThisColumnNameWithinTheLimitOfLetters } from "../../models/column"
+import { columnModel, isThisColumnNameWithinTheLimitOfLetters } from "../../models/column"
 import { useDispatch } from "react-redux"
 import { changeColumnName, deleteColumn } from "@/redux/columnListReducer"
 import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card"
