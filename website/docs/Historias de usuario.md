@@ -13,7 +13,7 @@ Esta son las historias de usuario implementadas actualmente en Boar.
 
 * Como usuario, puedo crear tareas.
   * Puede crear tareas solo en la primer columna.
-  * Puede crear tareas dentro del limite de la primer columna. El limite de la primer columna es de 30 tareas.
+  * Puede crear tareas dentro del limite del limite de tareas por columna.
   * No puede crear tareas vacías, deben tener una descripción.
   * La longitud de una tarea no debe exceder los 200 caracteres.
 * Como usuario, puedo eliminar las tareas que quiera.
@@ -36,6 +36,12 @@ Esta son las historias de usuario implementadas actualmente en Boar.
 
 ## Ajustes
 
+* Como usuario, puedo cambiar el nombre del tablero.
+  * El nombre del tablero no puede sobrepasar los 30 caracteres.
 * Como usuario, puedo crear nuevas columnas.
+  * No pude haber mas de 6 columnas
+* Como usuario, puede cambiar el nombre de las columnas.
+  * Las columnas deben tener un nombre.
+  * El nombre de las columnas no puede sobrepasar los 30 caracteres.
 * Como usuario, puedo eliminar columnas.
   * No puede haber menos de dos columnas.
