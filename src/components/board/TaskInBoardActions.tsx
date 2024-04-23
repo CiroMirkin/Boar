@@ -13,6 +13,7 @@ import { ToastAction } from "@/ui/toast";
 export function TaskInBoardActions() {
     const data = useContext(TaskContext)
     const  isTheTaskInTheFirstColumn = isThisTaskInTheFirstColumn(data)
+    const isTheTaskInTheLastColumn = isThisTaskInTheLastColumn(data)
 
     const { toast } = useToast();
     const copyTextToClipboard = (text: string) => {
@@ -71,8 +72,8 @@ export function TaskInBoardActions() {
                 >Retroceder</Button>
                 <Button 
                     size="sm" 
-                    disabled={isThisTaskInTheLastColumn(data) && true} 
-                    variant={isThisTaskInTheLastColumn(data) ? 'ghost' : 'default'} 
+                    disabled={isTheTaskInTheLastColumn} 
+                    variant={isTheTaskInTheLastColumn ? 'ghost' : 'default'} 
                     onClick={() => handleClick(moveTaskToNextColumnAction)}
                 >Avanzar</Button>
             </div>
@@ -83,7 +84,7 @@ export function TaskInBoardActions() {
                 onClick={() => copyTextToClipboard(data.descriptionText)}
             >Copiar texto</Button>
             {
-                isThisTaskInTheLastColumn(data) && <Button
+                isTheTaskInTheLastColumn && <Button
                 size="sm"
                 variant="ghost"
                 className="w-full"
