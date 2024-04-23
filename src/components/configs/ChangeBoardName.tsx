@@ -6,7 +6,9 @@ import { changeTheNameOfTheBoard } from "@/redux/boardReducer"
 import { Pencil } from "lucide-react"
 import { iconSize } from "@/configs/iconsConstants"
 import { Label } from "@/ui/label"
-import { isThisBoardNameValid } from "@/models/board"
+import { isThisBoardNameValid, isThisBoardNameWithinTheLimitOfLetters } from "@/models/board"
+import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser"
+import { useToast } from "@/ui/use-toast"
 
 interface ChangeBoardNameProps {
     name: string
@@ -15,23 +17,33 @@ interface ChangeBoardNameProps {
 export function ChangeBoardName({ name }: ChangeBoardNameProps) {
     const [ boardName, setBoardName ] = useState(name)
     const [ inputDisabled, setInputDisabled ] = useState(true)
+    const { toast } = useToast()
 
     const dispatch = useDispatch()
 
     const changeName = () => dispatch(changeTheNameOfTheBoard(boardName))
 
     const handleClick = () => {
-        if(inputDisabled) {
-            setInputDisabled(false)
-        } else {
-            changeName()
-            setInputDisabled(true)
+        try {
+            if(inputDisabled) {
+                setInputDisabled(false)
+            } 
+            else if(isThisBoardNameValid(boardName)) {
+                changeName()
+                setInputDisabled(true)
+            }
+        } catch(e) {
+            toast({
+                description: getErrorMessageForTheUser(e),
+                variant: "destructive",
+                duration: 3000
+            })
         }
     }
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const newBoardName = e.target.value
-        if(isThisBoardNameValid(newBoardName)) {
+        if(isThisBoardNameWithinTheLimitOfLetters(newBoardName)) {
             setBoardName(newBoardName)
         }
     }
