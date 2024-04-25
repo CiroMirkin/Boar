@@ -12,8 +12,8 @@ export const columnNull: columnModel = {
   name: ""
 }
 
-export const isThisColumnNameValid = (columnName: string): boolean => !!columnName.trim()
 export const isThisColumnNameWithinTheLimitOfLetters = (boardName: string): boolean => boardName.length < 30
+export const isThisColumnNameValid = (columnName: string): boolean => !!columnName.trim()
 
 export function getBlankColumnWithoutPosition({ name }: { name: string }): columnModel {
   if(!name.trim()) throw new BusinessError('No se pueden crear columnas sin nombre.')
