@@ -4,8 +4,7 @@ import { ColumnListContext, TaskListInEachColumnContext } from "./Board";
 import { TaskList } from "./TaskList"
 import { ScrollArea } from "../../ui/scroll-area"
 
-interface ColumnListProps { }
-export function ColumnList({  }: ColumnListProps) {
+export function ColumnList() {
     const columns = useContext(ColumnListContext)
     const taskListInEachColumn = useContext(TaskListInEachColumnContext)
 

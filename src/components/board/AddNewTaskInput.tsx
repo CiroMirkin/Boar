@@ -9,9 +9,7 @@ import { Plus } from "lucide-react";
 import { ChangeEvent, KeyboardEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 
-interface AddNewTaskInputProps {}
-
-export function AddNewTaskInput({ }: AddNewTaskInputProps) {
+export function AddNewTaskInput() {
     const [newTaskDescription, setNewTaskDescription] = useState('');
     const canUserUseTheAddTaskInput = !isThisTaskDescriptionValid(newTaskDescription)
 

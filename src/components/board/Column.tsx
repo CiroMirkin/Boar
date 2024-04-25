@@ -44,7 +44,7 @@ function ColumnContent({ children, className }: { children: React.ReactNode, cla
 }
 Column.ColumnContent = ColumnContent
 
-function ColumnFooter({  }: {  }) { 
+function ColumnFooter() { 
     const data = useContext(ColumnContext)
 
     return (
