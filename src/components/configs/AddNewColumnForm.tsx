@@ -12,7 +12,7 @@ import { ChangeEvent, KeyboardEvent, useState } from "react";
 
 export function AddNewColumnForm() {
     const [ newColumnName, setNewColumnName ] = useState('')
-    const canUserCreateTheNewColumn: boolean = !newColumnName.trim();
+    const theNewColumnNameIsBlank: boolean = !newColumnName.trim();
     const updateBoardData = useDispatch()
     const { toast } = useToast()
 
@@ -25,7 +25,8 @@ export function AddNewColumnForm() {
 
     function handleKeyDown(e: KeyboardEvent<HTMLInputElement>): void {
         if (e.ctrlKey && e.key === "Enter") {
-            if(!!newColumnName.trim()) handleClick(addNewColumn)
+            const theNewColumnNameIsNotBlank = !theNewColumnNameIsBlank
+            theNewColumnNameIsNotBlank && handleClick(addNewColumn)
         }
     }
 
@@ -58,7 +59,7 @@ export function AddNewColumnForm() {
                 onChange={handleChange} 
                 onKeyDown={handleKeyDown}
             />
-            <Button onClick={() => handleClick(addNewColumn)} title="Crear columna" disabled={canUserCreateTheNewColumn} >
+            <Button onClick={() => handleClick(addNewColumn)} title="Crear columna" disabled={theNewColumnNameIsBlank} >
                 <Plus size={iconSize} />
             </Button>
         </li>
