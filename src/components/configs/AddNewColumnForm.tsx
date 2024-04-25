@@ -6,13 +6,17 @@ import { useDispatch } from "react-redux";
 import { addColumn } from "@/redux/columnListReducer"
 import { addEmptyTaskListAtTheEnd } from "@/redux/taskListInEachColumnReducer"
 import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser"
-import { getBlankColumnWithoutPosition } from "../../models/column"
+import { getBlankColumnWithoutPosition, isThisColumnNameWithinTheLimitOfLetters } from "../../models/column"
 import { Input } from "@/ui/input";
 import { ChangeEvent, KeyboardEvent, useState } from "react";
 
 export function AddNewColumnForm() {
     const [ newColumnName, setNewColumnName ] = useState('')
-    const theNewColumnNameIsBlank: boolean = !newColumnName.trim();
+
+    const theNewColumnNameIsBlank = !newColumnName.trim();
+    const theNewColumnNameIsOffLimits = !isThisColumnNameWithinTheLimitOfLetters(newColumnName)
+    const theNewColumnNameIsValid = (theNewColumnNameIsBlank || theNewColumnNameIsOffLimits)
+
     const updateBoardData = useDispatch()
     const { toast } = useToast()
 
@@ -59,7 +63,7 @@ export function AddNewColumnForm() {
                 onChange={handleChange} 
                 onKeyDown={handleKeyDown}
             />
-            <Button onClick={() => handleClick(addNewColumn)} title="Crear columna" disabled={theNewColumnNameIsBlank} >
+            <Button onClick={() => handleClick(addNewColumn)} title="Crear columna" disabled={theNewColumnNameIsValid} >
                 <Plus size={iconSize} />
             </Button>
         </li>
