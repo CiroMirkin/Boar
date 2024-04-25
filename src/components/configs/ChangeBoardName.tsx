@@ -61,7 +61,7 @@ export function ChangeBoardName({ name }: ChangeBoardNameProps) {
                 />
             </div>
             <Button onClick={handleClick} variant='ghost'>
-                <Pencil size={iconSize} className="mr-2" /> Renombrar
+                <Pencil size={iconSize} />
             </Button>
         </>
     )
