@@ -13,11 +13,14 @@ export const columnNull: columnModel = {
 }
 
 export const isThisColumnNameWithinTheLimitOfLetters = (boardName: string): boolean => boardName.length < 30
-export const isThisColumnNameValid = (columnName: string): boolean => !!columnName.trim()
-
-export function getBlankColumnWithoutPosition({ name }: { name: string }): columnModel {
+export const isThisColumnNameValid = (name: string): true | BusinessError => {
   if(!name.trim()) throw new BusinessError('No se pueden crear columnas sin nombre.')
   if(!isThisColumnNameWithinTheLimitOfLetters(name)) throw new BusinessError('El nombre es demasiado largo.')
+  return true
+} 
+
+export function getBlankColumnWithoutPosition({ name }: { name: string }): columnModel {
+  isThisColumnNameValid(name)
   return {
     id: crypto.randomUUID(),
     position: '-1',
