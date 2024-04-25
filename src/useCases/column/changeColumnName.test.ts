@@ -19,4 +19,18 @@ describe('Cambiar el nombre de una columna.', () => {
             }
         ])
     })
+
+    test("No se debería poder cambiar el nombre de una columna por un string vacio.", () => {
+        const column: columnModel = {
+            id: "c1",
+            name: "",
+            position: "1",
+        }
+        const columnList: columnModel[] = [
+            {...column}
+        ]
+        expect(() => {
+            return changeNameOfColumn({ columnList, column, newName: " "})
+        }).toThrow('No se pueden crear columnas sin nombre.')
+    })
 })
