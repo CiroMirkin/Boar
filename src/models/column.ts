@@ -16,7 +16,7 @@ export const isThisColumnNameValid = (columnName: string): boolean => !!columnNa
 export const isThisColumnNameWithinTheLimitOfLetters = (boardName: string): boolean => boardName.length < 30
 
 export function getBlankColumnWithoutPosition({ name }: { name: string }): columnModel {
-  if(!isThisColumnNameValid(name)) throw new BusinessError('No se pueden crear columnas sin nombre.')
+  if(!name.trim()) throw new BusinessError('No se pueden crear columnas sin nombre.')
   if(!isThisColumnNameWithinTheLimitOfLetters(name)) throw new BusinessError('El nombre es demasiado largo.')
   return {
     id: crypto.randomUUID(),

@@ -1,5 +1,5 @@
 import { columnUseCaseParams } from "../useCase";
-import { columnModel, isThisColumnNameValid, isThisColumnNameWithinTheLimitOfLetters } from "../../models/column";
+import { columnModel, isThisColumnNameWithinTheLimitOfLetters } from "../../models/column";
 import BusinessError from "@/errors/businessError";
 
 interface changeNameOfColumnParams extends columnUseCaseParams {
@@ -7,7 +7,7 @@ interface changeNameOfColumnParams extends columnUseCaseParams {
 }
 
 export function changeNameOfColumn({ columnList, column, newName }: changeNameOfColumnParams): columnModel[] {
-    if(!isThisColumnNameValid(newName)) throw new BusinessError('No se pueden crear columnas sin nombre.')
+    if(!newName.trim()) throw new BusinessError('No se pueden crear columnas sin nombre.')
     if(!isThisColumnNameWithinTheLimitOfLetters(newName)) throw new BusinessError('El nombre es demasiado largo.')
     const newColumnList = columnList.map(columnInBoard => {
         if(columnInBoard.id === column.id) {

@@ -6,13 +6,13 @@ import { useDispatch } from "react-redux";
 import { addColumn } from "@/redux/columnListReducer"
 import { addEmptyTaskListAtTheEnd } from "@/redux/taskListInEachColumnReducer"
 import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser"
-import { getBlankColumnWithoutPosition, isThisColumnNameValid } from "../../models/column"
+import { getBlankColumnWithoutPosition } from "../../models/column"
 import { Input } from "@/ui/input";
 import { ChangeEvent, KeyboardEvent, useState } from "react";
 
 export function AddNewColumnForm() {
     const [ newColumnName, setNewColumnName ] = useState('')
-    const canUserCreateTheNewColumn: boolean = !isThisColumnNameValid(newColumnName);
+    const canUserCreateTheNewColumn: boolean = !newColumnName.trim();
     const updateBoardData = useDispatch()
     const { toast } = useToast()
 
