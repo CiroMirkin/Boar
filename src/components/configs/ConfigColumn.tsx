@@ -70,13 +70,13 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
                     onClick={editColumnNameHandle}
                     variant="ghost"
                 >
-                    <Pencil size={iconSize} className="mr-2" /> Renombrar
+                    <Pencil size={iconSize} />
                 </Button>
                 <Button 
                     onClick={askForConfirmationToDeleteTheColumn} 
                     variant="destructiveGhost"
                 > 
-                    <Trash2 size={iconSize} className="mr-2" /> Eliminar
+                    <Trash2 size={iconSize} />
                 </Button>
             </CardContent>
         </Card>
