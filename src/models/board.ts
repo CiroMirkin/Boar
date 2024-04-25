@@ -10,7 +10,7 @@ export const isThisBoardNameWithinTheLimitOfLetters = (boardName: string): boole
 }
 
 export const isThisBoardNameValid = (boardName: string): boolean | BusinessError => {
-    if(!boardName.trim()) throw new BusinessError('No puede estar en blanco.')
+    if(!boardName.trim()) throw new BusinessError('El tablero debe tener un nobmre.')
     else if(!isThisBoardNameWithinTheLimitOfLetters(boardName)) throw new BusinessError('El nombre es demasiado largo.')
     return true
 }
