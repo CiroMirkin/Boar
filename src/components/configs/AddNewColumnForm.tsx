@@ -27,7 +27,7 @@ export function AddNewColumnForm() {
         setNewColumnName('')
     }
 
-    function handleKeyDown(e: KeyboardEvent<HTMLInputElement>): void {
+    const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
         if (e.ctrlKey && e.key === "Enter") {
             const theNewColumnNameIsNotBlank = !theNewColumnNameIsBlank
             theNewColumnNameIsNotBlank && handleClick(addNewColumn)
@@ -39,7 +39,7 @@ export function AddNewColumnForm() {
         setNewColumnName(newColumnNameFromInput)
     }
 
-    const handleClick = (action: Function) => {
+    const handleClick = (action: () => void) => {
         try {
             action()
         }

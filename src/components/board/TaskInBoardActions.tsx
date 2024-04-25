@@ -49,7 +49,7 @@ export function TaskInBoardActions() {
 
     const dispatch = useDispatch()
     
-    const handleClick = (action: Function) => {
+    const handleClick = (action: () => void) => {
         try {
             action()
         }
