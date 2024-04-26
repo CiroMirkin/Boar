@@ -1,8 +1,5 @@
 import './App.css'
 import { Board } from './components/board/Board'
-import { useSelector } from 'react-redux'
-import { RootState } from './redux/store'
-import { Archive as ArchiveModel } from './models/archive'
 import { Toaster } from './ui/toaster'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Archive } from './components/archive/Archive'
@@ -12,21 +9,10 @@ import { useEffect } from 'react'
 import { Help } from './components/help/Help'
 import { BoardRepository } from './models/boardRepository'
 import LocalStorageBoardRepository from './repositories/localstorageBoard.ts'
-
-
-const useArchive = (): ArchiveModel => {
-  return useSelector((state: RootState) => state.archive.list)
-}
-const useColumnList = () => {
-  return useSelector((state: RootState) => state.columnList.list)
-}
-const useTaskListInEachColumn = () => {
-  return useSelector((state: RootState) => state.taskListInEachColumn.list)
-}
-
-const useBoard = () => {
-  return useSelector((state: RootState) => state.board)
-}
+import { useColumnList } from './hooks/getColumnList.tsx'
+import { useBoard } from './hooks/getBoardData.tsx'
+import { useArchive } from './hooks/getArchive.tsx'
+import { useTaskListInEachColumn } from './hooks/getTaskListInEachColumn.tsx'
 
 const boardRepository: BoardRepository = new LocalStorageBoardRepository()
 
