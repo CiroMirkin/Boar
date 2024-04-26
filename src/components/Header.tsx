@@ -10,13 +10,7 @@ import { Button } from "@/ui/button"
 import { Archive, CircleHelp, Columns3, Github, Menu, Settings } from "lucide-react"
 import { Link } from 'react-router-dom'
 import { iconSize } from "@/configs/iconsConstants"
-
-export enum USER_IS_IN {
-  ARCHIVE = "archive",
-  BOARD = "board",
-  CONFIG = "configs",
-  HELP = "help",
-}
+import { USER_IS_IN } from "./userIsIn"
 
 interface HeaderProps {
     title: string,
