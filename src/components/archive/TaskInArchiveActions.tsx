@@ -8,22 +8,12 @@ import { ToastAction } from "@/ui/toast";
 import { addTaskAtLastColumn } from "@/redux/taskListInEachColumnReducer";
 
 export function TaskInArchiveActions() {
-    const data = useContext(TaskContext)
     const { toast } = useToast();
 
-    const dispatch = useDispatch()
-    
-    const deleteTaskAction = () => {
-        dispatch(deleteArchivedTask(data))
-    }
-    const returnTaskToLastColumnAction = () => {
-        dispatch(addTaskAtLastColumn(data))
-        dispatch(deleteArchivedTask(data))
-        toast({
-            description: 'La tarea regreso a la última columna.',
-            duration: 3000
-        })
-    }
+    const {
+        deleteTaskAction,
+        returnTaskToLastColumnAction,
+    } = useActionsForTaskInArchive()
 
     const askForConfirmationToDeleteTheTask = () => toast({
         description: `¿Seguro que quieres eliminar esta tarea?`,
@@ -48,4 +38,27 @@ export function TaskInArchiveActions() {
             >Eliminar</Button>
         </>
     )
+}
+
+const useActionsForTaskInArchive = () => {
+    const { toast } = useToast();
+    const data = useContext(TaskContext)
+    const dispatch = useDispatch()
+    
+    const deleteTaskAction = () => {
+        dispatch(deleteArchivedTask(data))
+    }
+    const returnTaskToLastColumnAction = () => {
+        dispatch(addTaskAtLastColumn(data))
+        dispatch(deleteArchivedTask(data))
+        toast({
+            description: 'La tarea regreso a la última columna.',
+            duration: 3000
+        })
+    }
+
+    return {
+        deleteTaskAction,
+        returnTaskToLastColumnAction
+    }
 }
