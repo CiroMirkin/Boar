@@ -1,6 +1,7 @@
 import { columnModel } from "../../models/column"
 import { boardModel } from "@/models/board"
-import { Header, USER_IS_IN } from "../Header"
+import { Header } from "../Header"
+import { USER_IS_IN } from "../userIsIn"
 import { ConfigColumns } from "./ConfigColumns"
 import { Separator } from "@/ui/separator"
 import { ChangeBoardName } from "./ChangeBoardName"

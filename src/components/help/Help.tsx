@@ -1,6 +1,7 @@
 import { Separator } from "@/ui/separator";
 import { DescriptionOfBoar } from "../DescriptionOfBoar";
-import { Header, USER_IS_IN } from "../Header";
+import { Header } from "../Header";
+import { USER_IS_IN } from "../userIsIn";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/ui/accordion";
 import { Button } from "@/ui/button";
 import { Github } from "lucide-react";
