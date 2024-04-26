@@ -9,23 +9,22 @@ import { useContext } from "react";
 import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser";
 import { archiveTask } from "@/redux/archiveReducer";
 import { ToastAction } from "@/ui/toast";
+import { taskModel } from "@/models/task";
 
 export function TaskInBoardActions() {
     const data = useContext(TaskContext)
     const  isTheTaskInTheFirstColumn = useCheckIfThisTaskIsInTheFirstColumn(data)
     const isTheTaskInTheLastColumn = useCheckIfTaskIsInTheLastColumn(data)
 
-    const { toast } = useToast();
-    const copyTextToClipboard = (text: string) => {
-        navigator.clipboard.writeText(text).then(() => {
-            toast({
-                description: 'Texto copiado al portapapeles',
-                duration: 3000
-            })
-        })
-    }
+    const { 
+        deleteTaskAction,
+        moveTaskToNextColumnAction,
+        moveTaskToPrevColumnAction,
+        archiveTaskAction,
+        copyTextToClipboard,
+    } = useActionsForTaskInBoard(data)
 
-    const deleteTaskAction = () => dispatch(deleteTask(data))
+    const { toast } = useToast();
     const askForConfirmationToDeleteTheTask = () => {
         isTheTaskInTheFirstColumn 
             ? handleClick(deleteTaskAction) 
@@ -36,19 +35,6 @@ export function TaskInBoardActions() {
                 action: <ToastAction altText="Eliminar" onClick={() => handleClick(deleteTaskAction)}>Eliminar</ToastAction>,
             })
     }
-    const moveTaskToNextColumnAction = () => dispatch(moveTaskToNextColumn(data))
-    const moveTaskToPrevColumnAction = () => dispatch(moveTaskToPrevColumn(data))
-    const archiveTaskAction = () => {
-        dispatch(archiveTask(data))
-        dispatch(deleteTask(data))
-        toast({
-            description: 'La tarea se guardo en el archivo.',
-            duration: 3000
-        })
-    }
-
-    const dispatch = useDispatch()
-    
     const handleClick = (action: () => void) => {
         try {
             action()
@@ -81,7 +67,7 @@ export function TaskInBoardActions() {
                 size="sm" 
                 variant="ghost" 
                 className="w-full" 
-                onClick={() => copyTextToClipboard(data.descriptionText)}
+                onClick={() => copyTextToClipboard()}
             >Copiar texto</Button>
             {
                 isTheTaskInTheLastColumn && <Button
@@ -99,4 +85,40 @@ export function TaskInBoardActions() {
             >Eliminar</Button>
         </>
     )
+}
+
+const useActionsForTaskInBoard = (data: taskModel) => {
+    const dispatch = useDispatch()
+    const { toast } = useToast();
+
+    const copyTextToClipboard = () => {
+        const text = data.descriptionText
+        navigator.clipboard.writeText(text).then(() => {
+            toast({
+                description: 'Texto copiado al portapapeles',
+                duration: 3000
+            })
+        })
+    }
+
+    const deleteTaskAction = () => dispatch(deleteTask(data))
+    
+    const moveTaskToNextColumnAction = () => dispatch(moveTaskToNextColumn(data))
+    const moveTaskToPrevColumnAction = () => dispatch(moveTaskToPrevColumn(data))
+    const archiveTaskAction = () => {
+        dispatch(archiveTask(data))
+        dispatch(deleteTask(data))
+        toast({
+            description: 'La tarea se guardo en el archivo.',
+            duration: 3000
+        })
+    }
+
+    return { 
+        archiveTaskAction, 
+        moveTaskToNextColumnAction, 
+        moveTaskToPrevColumnAction,
+        deleteTaskAction,
+        copyTextToClipboard,
+    } 
 }
