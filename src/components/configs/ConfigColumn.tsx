@@ -8,9 +8,9 @@ import { useToast } from "../../ui/use-toast"
 import { Pencil, Trash2 } from "lucide-react"
 import { iconSize } from "@/configs/iconsConstants"
 import { Input } from "@/ui/input"
-import { ToastAction } from "@/ui/toast"
 import { deleteTheTaskListOfThisColumn } from "@/redux/taskListInEachColumnReducer"
 import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser"
+import { useAskForConfirmationToast } from "@/hooks/askForConfirmation"
 
 interface ConfigColumnParams {
     column: columnModel
@@ -51,11 +51,9 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
         }
     }
 
-    const askForConfirmationToDeleteTheColumn = () => toast({
-        description: `¿Seguro que quieres eliminar la columna "${columnName}"?`,
-        variant: "destructive",
-        duration: 3000,
-        action: <ToastAction altText="Eliminar" onClick={deleteColumnHandle}>Eliminar</ToastAction>,
+    const askForConfirmationToDeleteTheColumn = useAskForConfirmationToast({
+        confirmationText:  `¿Seguro que quieres eliminar la columna "${columnName}"?`,
+        action: deleteColumnHandle
     })
 
     return (
