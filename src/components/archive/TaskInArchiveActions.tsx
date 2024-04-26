@@ -4,22 +4,18 @@ import { Button } from "@/ui/button";
 import { useDispatch } from "react-redux";
 import { deleteArchivedTask } from "@/redux/archiveReducer";
 import { useToast } from "@/ui/use-toast";
-import { ToastAction } from "@/ui/toast";
 import { addTaskAtLastColumn } from "@/redux/taskListInEachColumnReducer";
+import { useAskForConfirmationToast } from "@/hooks/askForConfirmation";
 
 export function TaskInArchiveActions() {
-    const { toast } = useToast();
-
     const {
         deleteTaskAction,
         returnTaskToLastColumnAction,
     } = useActionsForTaskInArchive()
 
-    const askForConfirmationToDeleteTheTask = () => toast({
-        description: `¿Seguro que quieres eliminar esta tarea?`,
-        variant: "destructive",
-        duration: 3000,
-        action: <ToastAction altText="Eliminar" onClick={deleteTaskAction}>Eliminar</ToastAction>,
+    const askForConfirmationToDeleteTheTask = useAskForConfirmationToast({ 
+        confirmationText: '¿Seguro que quieres eliminar esta tarea?', 
+        action: deleteTaskAction 
     })
 
     return (
