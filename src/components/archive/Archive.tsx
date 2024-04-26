@@ -6,11 +6,10 @@ import { Header } from "../Header"
 import { USER_IS_IN } from "../userIsIn"
 import { TaskListArchived } from "./TaskListArchived"
 import { Button } from "@/ui/button"
-import { useToast } from "@/ui/use-toast"
-import { ToastAction } from "@/ui/toast"
 import { useDispatch } from "react-redux"
 import { cleanArchive } from "@/redux/archiveReducer"
 import { useEffect } from "react"
+import { useAskForConfirmationToast } from "@/hooks/askForConfirmation"
 
 const archiveRepository:ArchiveRepository = new LocalStorageArchiveRepository()
 
@@ -27,14 +26,10 @@ export function Archive({ boardArchive}: ArchiveProps) {
 
     const dispatch = useDispatch()
 
-    const { toast } = useToast()
-
     const cleanTheWholeArchive = () => dispatch(cleanArchive())
-    const askForConfirmationToCleanTheWholeArchive = () => toast({
-        description: `¿Seguro que quieres eliminar todas las tareas archivadas?`,
-        variant: "destructive",
-        duration: 3000,
-        action: <ToastAction altText="Eliminar" onClick={cleanTheWholeArchive}>Eliminar</ToastAction>,
+    const askForConfirmationToCleanTheWholeArchive = useAskForConfirmationToast({
+        confirmationText: '¿Seguro que quieres eliminar todas las tareas archivadas?',
+        action: cleanTheWholeArchive
     })
 
     return (
