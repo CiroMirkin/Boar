@@ -8,13 +8,17 @@ import { ColumnListRepository } from "@/models/columnListRepository"
 import { useEffect } from "react"
 import { useColumnList } from "@/hooks/getColumnList"
 import { useBoard } from "@/hooks/getBoardData"
+import { BoardRepository } from "@/models/boardRepository"
+import LocalStorageBoardRepository from "@/repositories/localstorageBoard"
 
 const columnListRepository: ColumnListRepository = new LocalStorageColumnListRepository()
+const boardRepository: BoardRepository = new LocalStorageBoardRepository()
 
 export function Configs() {
     const columnList = useColumnList()
     const boardData = useBoard()
 
+    useEffect(() => boardRepository.save(boardData), [boardData])
     useEffect(() => columnListRepository.save(columnList), [columnList])
 
     return (
