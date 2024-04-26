@@ -3,7 +3,7 @@ import { TaskContext } from "../Task";
 import { useToast } from "@/ui/use-toast";
 import { useDispatch } from "react-redux";
 import { deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn } from "@/redux/taskListInEachColumnReducer";
-import { isThisTaskInTheFirstColumn } from "@/utils/isTheTaskInTheFirstColumn";
+import { useCheckIfThisTaskIsInTheFirstColumn } from "@/utils/isTheTaskInTheFirstColumn";
 import { isThisTaskInTheLastColumn } from "@/utils/isThisTaskInTheLastColumn";
 import { useContext } from "react";
 import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser";
@@ -12,7 +12,7 @@ import { ToastAction } from "@/ui/toast";
 
 export function TaskInBoardActions() {
     const data = useContext(TaskContext)
-    const  isTheTaskInTheFirstColumn = isThisTaskInTheFirstColumn(data)
+    const  isTheTaskInTheFirstColumn = useCheckIfThisTaskIsInTheFirstColumn(data)
     const isTheTaskInTheLastColumn = isThisTaskInTheLastColumn(data)
 
     const { toast } = useToast();
