@@ -9,12 +9,10 @@ import { useEffect } from 'react'
 import { Help } from './components/help/Help'
 import { BoardRepository } from './models/boardRepository'
 import LocalStorageBoardRepository from './repositories/localstorageBoard.ts'
-import { useColumnList } from './hooks/getColumnList.tsx'
 import { useBoard } from './hooks/getBoardData.tsx'
 const boardRepository: BoardRepository = new LocalStorageBoardRepository()
 
 function App() {
-  const columnList = useColumnList()
   const boardData = useBoard()
 
   useEffect(() => boardRepository.save(boardData), [boardData])
@@ -35,7 +33,7 @@ function App() {
           />
           <Route path='/settings' 
             element={
-              <Configs boardData={boardData} columnList={columnList} />
+              <Configs/>
             }
           />
           <Route path='/help' 

@@ -1,5 +1,3 @@
-import { columnModel } from "../../models/column"
-import { boardModel } from "@/models/board"
 import { Header } from "../Header"
 import { USER_IS_IN } from "../userIsIn"
 import { ConfigColumns } from "./ConfigColumns"
@@ -8,15 +6,15 @@ import { ChangeBoardName } from "./ChangeBoardName"
 import LocalStorageColumnListRepository from "@/repositories/localStorageColumnList"
 import { ColumnListRepository } from "@/models/columnListRepository"
 import { useEffect } from "react"
+import { useColumnList } from "@/hooks/getColumnList"
+import { useBoard } from "@/hooks/getBoardData"
 
 const columnListRepository: ColumnListRepository = new LocalStorageColumnListRepository()
 
-interface ConfigBoardParams {
-    columnList: columnModel[]
-    boardData: boardModel
-}
+export function Configs() {
+    const columnList = useColumnList()
+    const boardData = useBoard()
 
-export function Configs({ boardData, columnList }:ConfigBoardParams) {
     useEffect(() => columnListRepository.save(columnList), [columnList])
 
     return (
