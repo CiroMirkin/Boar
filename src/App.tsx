@@ -11,12 +11,10 @@ import { BoardRepository } from './models/boardRepository'
 import LocalStorageBoardRepository from './repositories/localstorageBoard.ts'
 import { useColumnList } from './hooks/getColumnList.tsx'
 import { useBoard } from './hooks/getBoardData.tsx'
-import { useArchive } from './hooks/getArchive.tsx'
 const boardRepository: BoardRepository = new LocalStorageBoardRepository()
 
 function App() {
   const columnList = useColumnList()
-  const archive = useArchive()
   const boardData = useBoard()
 
   useEffect(() => boardRepository.save(boardData), [boardData])
@@ -32,7 +30,7 @@ function App() {
           />
           <Route path='/archive' 
             element={
-              <Archive boardArchive={archive} />
+              <Archive />
             }
           />
           <Route path='/settings' 

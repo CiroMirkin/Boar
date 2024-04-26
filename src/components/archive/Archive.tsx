@@ -1,4 +1,3 @@
-import { Archive as ArchiveModel } from "@/models/archive"
 import LocalStorageArchiveRepository from "@/repositories/localStorageArchive"
 import { ArchiveRepository } from "@/models/archiveRepository"
 import { Card, CardHeader, CardTitle } from "../../ui/card"
@@ -10,14 +9,13 @@ import { useDispatch } from "react-redux"
 import { cleanArchive } from "@/redux/archiveReducer"
 import { useEffect } from "react"
 import { useAskForConfirmationToast } from "@/hooks/askForConfirmation"
+import { useArchive } from "@/hooks/getArchive"
 
 const archiveRepository:ArchiveRepository = new LocalStorageArchiveRepository()
 
-interface ArchiveProps {
-    boardArchive: ArchiveModel
-}
+export function Archive() {
+  const boardArchive = useArchive()
 
-export function Archive({ boardArchive}: ArchiveProps) {
     useEffect(() => archiveRepository.save(boardArchive), [boardArchive])
 
     const archive = boardArchive.map(({ tasklist, date }) => 
