@@ -8,7 +8,7 @@ import { Button } from "@/ui/button"
 import { Archive } from "lucide-react"
 import { iconSize } from "@/configs/iconsConstants"
 import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser"
-import { useCheckForTasksInLastColumn } from "@/utils/areThereTasksInTheLastColumn"
+import { useCheckForTasksInLastColumn } from "@/hooks/areThereTasksInTheLastColumn"
 
 export function ArchiveTaskListButton() {
     const { toast } = useToast()
