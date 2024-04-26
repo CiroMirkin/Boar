@@ -13,10 +13,10 @@ export function TaskInArchiveActions() {
 
     const dispatch = useDispatch()
     
-    const deleteTask = () => {
+    const deleteTaskAction = () => {
         dispatch(deleteArchivedTask(data))
     }
-    const returnTaskToLastColumn = () => {
+    const returnTaskToLastColumnAction = () => {
         dispatch(addTaskAtLastColumn(data))
         dispatch(deleteArchivedTask(data))
         toast({
@@ -29,14 +29,14 @@ export function TaskInArchiveActions() {
         description: `¿Seguro que quieres eliminar esta tarea?`,
         variant: "destructive",
         duration: 3000,
-        action: <ToastAction altText="Eliminar" onClick={deleteTask}>Eliminar</ToastAction>,
+        action: <ToastAction altText="Eliminar" onClick={deleteTaskAction}>Eliminar</ToastAction>,
     })
 
     return (
         <>
             <Button  
                 size="sm"
-                onClick={returnTaskToLastColumn}
+                onClick={returnTaskToLastColumnAction}
                 variant='ghost'
                 className="w-full"
             >Regresar tarea al tablero</Button>
