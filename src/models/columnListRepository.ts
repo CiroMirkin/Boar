@@ -1,6 +1,6 @@
-import { columnList } from "./columnList";
+import { ColumnList } from "./columnList";
 
 export interface ColumnListRepository {
-    save(columnList: columnList): void;
-    getAll(): columnList;
+    save(columnList: ColumnList): void;
+    getAll(): ColumnList;
 }

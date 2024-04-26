@@ -1,7 +1,7 @@
-import { columnList } from "@/models/columnList"
+import { ColumnList } from "@/models/columnList"
 import { RootState } from "@/redux/store"
 import { useSelector } from "react-redux"
 
-export const useColumnList = (): columnList => {
+export const useColumnList = (): ColumnList => {
     return useSelector((state: RootState) => state.columnList.list)
 }

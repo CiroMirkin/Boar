@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { ColumnList } from "./ColumnList"
 import { defaultColumnList } from "@/models/columnList"
-import { columnList } from "@/models/columnList"
+import { ColumnList as columnListModel } from "@/models/columnList"
 import { Header } from "../Header"
 import { USER_IS_IN } from "../userIsIn"
 import { TaskListInEachColumn } from "@/models/taskListInEachColumn"
@@ -13,7 +13,7 @@ import { useTaskListInEachColumn } from "@/hooks/getTaskListInEachColumn"
 import { useBoard } from "@/hooks/getBoardData"
 
 export const TaskListInEachColumnContext = React.createContext([[], [], []] as TaskListInEachColumn)
-export const ColumnListContext = React.createContext(defaultColumnList as columnList)
+export const ColumnListContext = React.createContext(defaultColumnList as columnListModel)
 
 const taskListInEachColumnRepository: TaskListInEachColumnRepository = new LocalStorageTaskListInEachColumnRepository();
 
