@@ -1,3 +1,4 @@
+import BusinessError from "@/errors/businessError";
 import { columnModel } from "./column";
 
 export type columnList = columnModel[]
@@ -20,3 +21,9 @@ export const defaultColumnList: columnModel[] = [
   },
 ]
 
+const limitOfColumns = 5
+
+export const isItWithinTheLimitOfColumns = (columnList: columnList): true | BusinessError => {
+  if (columnList.length > limitOfColumns) throw new BusinessError("Ya alcanzaste el limite de columnas.")
+  return true
+}
