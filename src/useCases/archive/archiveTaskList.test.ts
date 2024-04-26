@@ -30,7 +30,7 @@ describe("Archivar lista de tareas.", () => {
             columnPosition: '1',
         }
         const taskListInEachColumn: TaskList[] = [ [], [], [] ]
-        let firstColumnContent = new Array(31).fill(task)
+        const firstColumnContent = new Array(31).fill(task)
         taskListInEachColumn[2] = firstColumnContent
         expect(() => {
             return archiveTaskListInTheLastColumn({ taskListInEachColumn, archive: [] })
@@ -44,7 +44,7 @@ describe("Archivar lista de tareas.", () => {
             columnPosition: '1',
         }
         const taskListInEachColumn: TaskList[] = [ [], [], [{...task}] ]
-        let archive = new Array(60).fill({
+        const archive = new Array(60).fill({
             date: '',
             tasklist: [[]]
         })

@@ -7,7 +7,7 @@ export function WelcomeDialog(){
     const open = localStorage.getItem('boar-welcome-dialog') ? JSON.parse(localStorage.getItem('boar-welcome-dialog') as string) : false
     useEffect(()=> {
         open == false && localStorage.setItem('boar-welcome-dialog', 'true')
-    }, [])
+    }, [open])
 
     return(
         <Dialog defaultOpen={open === false && true}>
