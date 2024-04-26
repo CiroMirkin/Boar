@@ -12,13 +12,10 @@ import LocalStorageBoardRepository from './repositories/localstorageBoard.ts'
 import { useColumnList } from './hooks/getColumnList.tsx'
 import { useBoard } from './hooks/getBoardData.tsx'
 import { useArchive } from './hooks/getArchive.tsx'
-import { useTaskListInEachColumn } from './hooks/getTaskListInEachColumn.tsx'
-
 const boardRepository: BoardRepository = new LocalStorageBoardRepository()
 
 function App() {
   const columnList = useColumnList()
-  const taskListInEachColumn = useTaskListInEachColumn()
   const archive = useArchive()
   const boardData = useBoard()
 
@@ -30,7 +27,7 @@ function App() {
         <Routes>
           <Route path='/' 
             element={
-              <Board data={boardData} taskListInEachColumn={taskListInEachColumn} columnList={columnList} />
+              <Board />
             }
           />
           <Route path='/archive' 

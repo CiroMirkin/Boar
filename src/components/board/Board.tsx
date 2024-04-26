@@ -1,5 +1,4 @@
 import React, { useEffect } from "react"
-import { boardModel } from "../../models/board"
 import { ColumnList } from "./ColumnList"
 import { defaultColumnList } from "@/models/columnList"
 import { columnList } from "@/models/columnList"
@@ -9,20 +8,20 @@ import { TaskListInEachColumn } from "@/models/taskListInEachColumn"
 import { WelcomeDialog } from "./WelcomeDialog"
 import LocalStorageTaskListInEachColumnRepository from "@/repositories/localStorageTaskLists.ts"
 import { TaskListInEachColumnRepository } from "@/models/taskListInEachColumnRepository"
+import { useColumnList } from "@/hooks/getColumnList"
+import { useTaskListInEachColumn } from "@/hooks/getTaskListInEachColumn"
+import { useBoard } from "@/hooks/getBoardData"
 
 export const TaskListInEachColumnContext = React.createContext([[], [], []] as TaskListInEachColumn)
 export const ColumnListContext = React.createContext(defaultColumnList as columnList)
 
 const taskListInEachColumnRepository: TaskListInEachColumnRepository = new LocalStorageTaskListInEachColumnRepository();
 
-interface BoardProps {
-    children?: React.ReactNode
-    data: boardModel
-    taskListInEachColumn: TaskListInEachColumn
-    columnList: columnList
-}
-
-export function Board({ data, taskListInEachColumn, columnList }: BoardProps) {
+export function Board() {
+    const columnList = useColumnList()
+    const taskListInEachColumn = useTaskListInEachColumn()
+    const data = useBoard()
+    
     useEffect(() => {
         taskListInEachColumnRepository.save(taskListInEachColumn)
     }, [taskListInEachColumn])
