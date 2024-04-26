@@ -1,4 +1,4 @@
-import { columnModel } from "../../models/column"
+import { Column } from "../../models/column"
 import { addColumnAtTheEnd } from "./addColumn"
 
 describe('Crear una columna.', () => {
@@ -10,7 +10,7 @@ describe('Crear una columna.', () => {
                 position: "1",
             }
         ]
-        const column: columnModel = {
+        const column: Column = {
             id: "",
             name: "",
             position: "2",
@@ -38,7 +38,7 @@ describe('Crear una columna.', () => {
 
             }
         ]
-        const column: columnModel = {
+        const column: Column = {
             id: "",
             name: "",
             position: "-1"

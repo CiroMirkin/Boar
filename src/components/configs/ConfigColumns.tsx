@@ -1,10 +1,10 @@
 import React from "react"
-import { columnModel } from "../../models/column"
+import { Column } from "../../models/column"
 import { ConfigColumn } from "./ConfigColumn"
 import { AddNewColumnForm } from "./AddNewColumnForm"
 
 interface ConfigColumnsParams {
-    columnList: columnModel[]
+    columnList: Column[]
 }
 
 export function ConfigColumns({ columnList }: ConfigColumnsParams) {

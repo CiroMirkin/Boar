@@ -1,12 +1,12 @@
 import BusinessError from "@/errors/businessError"
 
-export interface columnModel {
+export interface Column {
   id: string
   position: string,
   name: string
 }
 
-export const columnNull: columnModel = {
+export const columnNull: Column = {
   id: "",
   position: "",
   name: ""
@@ -19,7 +19,7 @@ export const isThisColumnNameValid = (name: string): true | BusinessError => {
   return true
 } 
 
-export function getBlankColumnWithoutPosition({ name }: { name: string }): columnModel {
+export function getBlankColumnWithoutPosition({ name }: { name: string }): Column {
   isThisColumnNameValid(name)
   return {
     id: crypto.randomUUID(),
@@ -28,14 +28,14 @@ export function getBlankColumnWithoutPosition({ name }: { name: string }): colum
   }
 }
 
-export const isThisTheFirstColumn = (column: columnModel, columnList: columnModel[]): boolean => {
+export const isThisTheFirstColumn = (column: Column, columnList: Column[]): boolean => {
   if (columnList[0].id === column.id) {
     return true
   }
   return false
 }
 
-export const isThisTheLastColumn = (column: columnModel, columnList: columnModel[]): boolean => {
+export const isThisTheLastColumn = (column: Column, columnList: Column[]): boolean => {
   if (columnList[columnList.length - 1].id === column.id) {
     return true
   }

@@ -1,14 +1,14 @@
-import { columnModel } from "../../models/column.ts"
+import { Column } from "../../models/column.ts"
 import { deleteThisColumn } from "./deleteColumn.ts"
 
 describe('Eliminar columna.', () => {
     test('Se debería eliminar la columna indicada.', () => {
-        const column: columnModel = {
+        const column: Column = {
             id: "c2",
             name: "",
             position: "2",
         }
-        const columnList: columnModel[] = [
+        const columnList: Column[] = [
             {
                 id: "",
                 name: "pipi",
@@ -37,7 +37,7 @@ describe('Eliminar columna.', () => {
     })
 
     test('Debería poderse eliminar una columna solo cuando hay mas de dos.', () => {
-        const columnList: columnModel[] = [
+        const columnList: Column[] = [
             {
                 id: "",
                 name: "",
@@ -49,7 +49,7 @@ describe('Eliminar columna.', () => {
                 position: "2",
             }
         ]
-        const column: columnModel = {
+        const column: Column = {
             id: "c2",
             name: "",
             position: "2",

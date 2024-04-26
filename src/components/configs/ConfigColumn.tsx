@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { columnModel, isThisColumnNameWithinTheLimitOfLetters } from "../../models/column"
+import { Column, isThisColumnNameWithinTheLimitOfLetters } from "../../models/column"
 import { useDispatch } from "react-redux"
 import { changeColumnName, deleteColumn } from "@/redux/columnListReducer"
 import { Card, CardContent } from "../../ui/card"
@@ -13,7 +13,7 @@ import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser"
 import { useAskForConfirmationToast } from "@/hooks/askForConfirmation"
 
 interface ConfigColumnParams {
-    column: columnModel
+    column: Column
 }
 
 export function ConfigColumn({ column }: ConfigColumnParams) {

@@ -1,9 +1,9 @@
 import BusinessError from "@/errors/businessError";
-import { columnModel } from "./column";
+import { Column } from "./column";
 
-export type ColumnList = columnModel[]
+export type ColumnList = Column[]
 
-export const defaultColumnList: columnModel[] = [
+export const defaultColumnList: Column[] = [
   {
     id: "c1",
     name: "Pendientes",

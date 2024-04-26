@@ -1,14 +1,14 @@
-import { columnModel } from "../../models/column"
+import { Column } from "../../models/column"
 import { changeNameOfColumn } from "./changeColumnName"
 
 describe('Cambiar el nombre de una columna.', () => {
     test('Se debería cambiar el nombre de la columna indicada.', () => { 
-        const column: columnModel = {
+        const column: Column = {
             id: "c1",
             name: "",
             position: "1",
         }
-        const columnList: columnModel[] = [
+        const columnList: Column[] = [
             {...column}
         ]
         expect(changeNameOfColumn({ columnList, column, newName: "pipi" })).toStrictEqual([
@@ -21,12 +21,12 @@ describe('Cambiar el nombre de una columna.', () => {
     })
 
     test("No se debería poder cambiar el nombre de una columna por un string vacio.", () => {
-        const column: columnModel = {
+        const column: Column = {
             id: "c1",
             name: "",
             position: "1",
         }
-        const columnList: columnModel[] = [
+        const columnList: Column[] = [
             {...column}
         ]
         expect(() => {

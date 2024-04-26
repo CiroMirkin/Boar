@@ -1,11 +1,11 @@
 import { columnUseCaseParams } from "../useCase";
-import { columnModel, isThisColumnNameValid } from "../../models/column";
+import { Column, isThisColumnNameValid } from "../../models/column";
 
 interface changeNameOfColumnParams extends columnUseCaseParams {
     newName: string
 }
 
-export function changeNameOfColumn({ columnList, column, newName }: changeNameOfColumnParams): columnModel[] {
+export function changeNameOfColumn({ columnList, column, newName }: changeNameOfColumnParams): Column[] {
     isThisColumnNameValid(newName)
     const newColumnList = columnList.map(columnInBoard => {
         if(columnInBoard.id === column.id) {

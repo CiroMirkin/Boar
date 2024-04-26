@@ -1,4 +1,4 @@
-import { columnModel, getIndexOfColumnInColumnList } from "@/models/column";
+import { Column, getIndexOfColumnInColumnList } from "@/models/column";
 import { taskModel } from "@/models/task";
 import { TaskListInEachColumn } from "@/models/taskListInEachColumn";
 import { TaskListInEachColumnRepository } from "@/models/taskListInEachColumnRepository";
@@ -49,7 +49,7 @@ export const taskListInEachColumnSlice = createSlice({
         addEmptyTaskListAtTheEnd: (state) => {
             state.list.push([])
         },
-        deleteTheTaskListOfThisColumn: (state, action: PayloadAction<columnModel>) => {
+        deleteTheTaskListOfThisColumn: (state, action: PayloadAction<Column>) => {
             const column = action.payload
             const taskListIndex = getIndexOfColumnInColumnList(column.position)
             state.list = deleteTheTaskListInThisIndex({ index: taskListIndex, taskListInEachColumn: state.list })

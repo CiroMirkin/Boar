@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from "react";
-import { columnModel, columnNull } from "../../models/column";
+import { Column as columnModel, columnNull } from "../../models/column";
 import {
     Card,
     CardContent,

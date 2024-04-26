@@ -1,8 +1,8 @@
 import { isItWithinTheLimitOfColumns } from "@/models/columnList";
 import { columnUseCaseParams } from "../useCase";
-import { columnModel } from "@/models/column";
+import { Column } from "@/models/column";
 
-export function addColumnAtTheEnd({ columnList, column }: columnUseCaseParams): columnModel[] {
+export function addColumnAtTheEnd({ columnList, column }: columnUseCaseParams): Column[] {
     if(column.position === '-1') {
         column.position = JSON.stringify(columnList.length + 1)
     }
