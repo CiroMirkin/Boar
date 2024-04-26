@@ -4,7 +4,7 @@ import { useToast } from "@/ui/use-toast";
 import { useDispatch } from "react-redux";
 import { deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn } from "@/redux/taskListInEachColumnReducer";
 import { useCheckIfThisTaskIsInTheFirstColumn } from "@/utils/isTheTaskInTheFirstColumn";
-import { isThisTaskInTheLastColumn } from "@/utils/isThisTaskInTheLastColumn";
+import { useCheckIfTaskIsInTheLastColumn } from "@/utils/isThisTaskInTheLastColumn";
 import { useContext } from "react";
 import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser";
 import { archiveTask } from "@/redux/archiveReducer";
@@ -13,7 +13,7 @@ import { ToastAction } from "@/ui/toast";
 export function TaskInBoardActions() {
     const data = useContext(TaskContext)
     const  isTheTaskInTheFirstColumn = useCheckIfThisTaskIsInTheFirstColumn(data)
-    const isTheTaskInTheLastColumn = isThisTaskInTheLastColumn(data)
+    const isTheTaskInTheLastColumn = useCheckIfTaskIsInTheLastColumn(data)
 
     const { toast } = useToast();
     const copyTextToClipboard = (text: string) => {
