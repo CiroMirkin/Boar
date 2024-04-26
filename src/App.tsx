@@ -14,27 +14,27 @@ import { BoardRepository } from './models/boardRepository'
 import LocalStorageBoardRepository from './repositories/localstorageBoard.ts'
 
 
-const getArchive = (): ArchiveModel => {
+const useArchive = (): ArchiveModel => {
   return useSelector((state: RootState) => state.archive.list)
 }
-const getColumnList = () => {
+const useColumnList = () => {
   return useSelector((state: RootState) => state.columnList.list)
 }
-const getTaskListInEachColumn = () => {
+const useTaskListInEachColumn = () => {
   return useSelector((state: RootState) => state.taskListInEachColumn.list)
 }
 
-const getBoard = () => {
+const useBoard = () => {
   return useSelector((state: RootState) => state.board)
 }
 
 const boardRepository: BoardRepository = new LocalStorageBoardRepository()
 
 function App() {
-  const columnList = getColumnList()
-  const taskListInEachColumn = getTaskListInEachColumn()
-  const archive = getArchive()
-  const boardData = getBoard()
+  const columnList = useColumnList()
+  const taskListInEachColumn = useTaskListInEachColumn()
+  const archive = useArchive()
+  const boardData = useBoard()
 
   useEffect(() => boardRepository.save(boardData), [boardData])
 
