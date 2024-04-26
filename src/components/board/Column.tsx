@@ -7,7 +7,7 @@ import {
     CardHeader,
     CardTitle,
   } from "@/ui/card"  
-import { isThisColumnTheFirst } from "@/utils/isThisColumnTheFirst";
+import { useCheckIfThisColumnIsTheFirst } from "@/utils/isThisColumnTheFirst";
 import { useCheckIfThisColumnIsTheLast } from "@/utils/isThisColumnTheLast";
 import { AddNewTaskInput } from "./AddNewTaskInput";
 import { ArchiveTaskListButton } from "./ArchiveTaskListButton";
@@ -50,7 +50,7 @@ function ColumnFooter() {
     return (
         <CardFooter className="min-h-16">
             {
-                isThisColumnTheFirst(data) && <AddNewTaskInput />
+                useCheckIfThisColumnIsTheFirst(data) && <AddNewTaskInput />
             }
             { useCheckIfThisColumnIsTheLast(data) &&  <ArchiveTaskListButton /> }
         </CardFooter>
