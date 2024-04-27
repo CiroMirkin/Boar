@@ -22,26 +22,28 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
     const { toast } = useToast()
 
     const editColumnNameHandle = () => {
-        try{
-            if(showChangeColumnNameInput) {
-                updateBoardData(changeColumnName({ column, newColumnName: columnName }))
-            }
-            setShowChangeColumnNameInput(!showChangeColumnNameInput)
-        } catch(e) {
-            toast({
-                description: getErrorMessageForTheUser(e),
-                variant: "destructive",
-                duration: 3000
-            })
+        if(showChangeColumnNameInput) {
+            updateBoardData(changeColumnName({ column, newColumnName: columnName }))
         }
+        setShowChangeColumnNameInput(!showChangeColumnNameInput)
+
     }
     
     const deleteColumnHandle = () => {
+        updateBoardData(deleteColumn(column))
+        updateBoardData(deleteTheTaskListOfThisColumn(column))
+    }
+
+    const askForConfirmationToDeleteTheColumn = useAskForConfirmationToast({
+        confirmationText:  `¿Seguro que quieres eliminar la columna "${columnName}"?`,
+        action: deleteColumnHandle
+    })
+
+    const handleClick = (action: () => void) => {
         try {
-            updateBoardData(deleteColumn(column))
-            updateBoardData(deleteTheTaskListOfThisColumn(column))
+            action()
         }
-        catch (error) {
+        catch(error){
             toast({
                 description: getErrorMessageForTheUser(error),
                 variant: "destructive",
@@ -49,11 +51,6 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
             })
         }
     }
-
-    const askForConfirmationToDeleteTheColumn = useAskForConfirmationToast({
-        confirmationText:  `¿Seguro que quieres eliminar la columna "${columnName}"?`,
-        action: deleteColumnHandle
-    })
 
     return (
         <li key={column.id} className="w-full p-2 flex flex-col gap-2 content-stretch border">
@@ -64,14 +61,14 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
                     disabled={!showChangeColumnNameInput}
                 />
                 <Button
-                    onClick={editColumnNameHandle}
+                    onClick={() => handleClick(editColumnNameHandle)}
                     variant="ghost"
                 >
                     <Pencil size={iconSize} />
                 </Button>
             </header>    
             <Button 
-                onClick={askForConfirmationToDeleteTheColumn} 
+                onClick={() => handleClick(askForConfirmationToDeleteTheColumn)} 
                 variant="destructiveGhost"
             > 
                 <Trash2 size={iconSize} className="mr-2" /> Eliminar
