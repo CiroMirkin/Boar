@@ -21,7 +21,7 @@ export const defaultColumnList: Column[] = [
   },
 ]
 
-const limitOfColumns = 5
+const limitOfColumns = 6
 
 export const isItWithinTheLimitOfColumns = (columnList: ColumnList): true | BusinessError => {
   if (columnList.length > limitOfColumns) throw new BusinessError("Alcanzaste el limite de columnas.")
