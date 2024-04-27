@@ -10,6 +10,7 @@ import { cleanArchive } from "@/redux/archiveReducer"
 import { useEffect } from "react"
 import { useAskForConfirmationToast } from "@/hooks/askForConfirmation"
 import { useArchive } from "@/hooks/getArchive"
+import { downloadArchiveLikePDF } from "@/utils/downloadArchiveLikePDF"
 
 const archiveRepository:ArchiveRepository = new LocalStorageArchiveRepository()
 
@@ -38,6 +39,10 @@ export function Archive() {
                     ? <EmptyArchive />
                     : <>
                         <>{ archive }</>
+                        <Button
+                        variant="ghost"
+                        onClick={() => downloadArchiveLikePDF({ archive: boardArchive })}
+                        >Descargar archivo como PDF</Button>
                         <Button
                         variant="destructiveGhost"
                         onClick={askForConfirmationToCleanTheWholeArchive}
