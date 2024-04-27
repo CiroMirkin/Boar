@@ -2,7 +2,6 @@ import { useState } from "react"
 import { Column, isThisColumnNameWithinTheLimitOfLetters } from "../../models/column"
 import { useDispatch } from "react-redux"
 import { changeColumnName, deleteColumn } from "@/redux/columnListReducer"
-import { Card, CardContent } from "../../ui/card"
 import { Button } from "../../ui/button"
 import { useToast } from "../../ui/use-toast"
 import { Pencil, Trash2 } from "lucide-react"
@@ -57,8 +56,8 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
     })
 
     return (
-        <Card key={column.id} className="px-2 pb-4 md:pb-1 pt-1 flex content-center justify-between flex-wrap border">
-            <CardContent className="pb-0 pt-1 md:pt-0 px-4 grid grid-flow-col justify-stretch gap-1.5 gap-2 w-full md:w-auto md:flex md:items-center">
+        <li key={column.id} className="w-full p-2 flex flex-col gap-2 content-stretch border">
+            <header className="w-full flex gap-2">
                 <Input 
                     value={columnName} 
                     onChange={(e) => isThisColumnNameWithinTheLimitOfLetters(e.target.value) && setColumnName(e.target.value)} 
@@ -70,13 +69,13 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
                 >
                     <Pencil size={iconSize} />
                 </Button>
-                <Button 
-                    onClick={askForConfirmationToDeleteTheColumn} 
-                    variant="destructiveGhost"
-                > 
-                    <Trash2 size={iconSize} />
-                </Button>
-            </CardContent>
-        </Card>
+            </header>    
+            <Button 
+                onClick={askForConfirmationToDeleteTheColumn} 
+                variant="destructiveGhost"
+            > 
+                <Trash2 size={iconSize} className="mr-2" /> Eliminar
+            </Button>
+        </li>
     )
 }
