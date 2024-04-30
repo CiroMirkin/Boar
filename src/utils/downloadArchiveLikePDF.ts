@@ -15,7 +15,7 @@ export const downloadArchiveLikePDF = ({ archive }: { archive: Archive }): void 
       doc.text(date, 10, Y)
       doc.setFontSize(18)
   
-      tasklist.forEach(({ descriptionText })=> {
+      tasklist.forEach(({ descriptionText }, index)=> {
         Y += 14
         let line = 63  // length of the text line
         let text = descriptionText
@@ -35,6 +35,14 @@ export const downloadArchiveLikePDF = ({ archive }: { archive: Archive }): void 
         } else {
           doc.text(text, 10, Y)
         }
+
+        // If there are more than this number of tasks, a new page must be created.
+        if(tasklist.length > 12) {
+          if([12, 24, 48].includes(index)) {
+            doc.addPage('letter', 'portrait')
+            Y = INIT_Y
+          }
+        } 
       })
       doc.addPage('letter', 'portrait')
     })
