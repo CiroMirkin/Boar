@@ -1,7 +1,7 @@
 import { Archive } from "@/models/archive";
 import { ArchiveRepository } from "@/models/archiveRepository";
 import { taskModel } from "@/models/task";
-import { TaskListInEachColumn } from "@/models/taskListInEachColumn";
+import { TaskListInEachColumn } from "@/models/taskList";
 import LocalStorageArchiveRepository from "@/repositories/localStorageArchive";
 import { archiveThisTask } from "@/useCases/archive/archiveTask";
 import { archiveTaskListInTheLastColumn } from "@/useCases/archive/archiveTaskList";

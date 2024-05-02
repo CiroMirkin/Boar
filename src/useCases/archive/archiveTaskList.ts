@@ -1,5 +1,5 @@
 import BusinessError from "@/errors/businessError";
-import { TaskList } from "@/models/taskListInEachColumn";
+import { TaskList } from "@/models/taskList";
 import { getFullDate } from "../../utils/getTime";
 import { Archive, isItWithinTheArchiveLimit, isItWithinTheDailyArchiveLimit } from "@/models/archive";
 import { getDateOfTheFirstTaskListArchived } from "@/models/archive";

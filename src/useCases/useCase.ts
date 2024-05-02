@@ -1,7 +1,7 @@
 import { boardModel } from "../models/board";
 import { Column } from "../models/column";
 import { taskModel } from "../models/task";
-import { TaskList } from "@/models/taskListInEachColumn";
+import { TaskList } from "@/models/taskList";
 
 
 export interface boardUseCaseParams {

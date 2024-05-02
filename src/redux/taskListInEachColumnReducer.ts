@@ -1,6 +1,6 @@
 import { Column, getIndexOfColumnInColumnList } from "@/models/column";
 import { taskModel } from "@/models/task";
-import { TaskListInEachColumn } from "@/models/taskListInEachColumn";
+import { TaskListInEachColumn } from "@/models/taskList";
 import { TaskListInEachColumnRepository } from "@/models/taskListInEachColumnRepository";
 import LocalStorageTaskListInEachColumnRepository from "@/repositories/localStorageTaskLists";
 import { addTaskInFirstColumn, addTaskInTheLastColumn } from "@/useCases/task/addTask";

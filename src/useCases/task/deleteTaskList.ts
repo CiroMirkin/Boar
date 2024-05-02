@@ -1,5 +1,5 @@
-import { TaskList } from "@/models/taskListInEachColumn";
-import { TaskListInEachColumn } from "@/models/taskListInEachColumn";
+import { TaskList } from "@/models/taskList";
+import { TaskListInEachColumn } from "@/models/taskList";
 
 interface deleteLastTaskListParams {
     taskListInEachColumn: TaskList[];
