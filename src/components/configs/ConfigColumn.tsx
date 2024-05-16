@@ -9,7 +9,7 @@ import { iconSize } from "@/configs/iconsConstants"
 import { Input } from "@/ui/input"
 import { deleteTheTaskListOfThisColumn } from "@/redux/taskListInEachColumnReducer"
 import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser"
-import { useAskForConfirmationToast } from "@/hooks/askForConfirmation"
+import { useAskForConfirmationToast } from "@/hooks/useAskForConfirmationToast"
 
 interface ConfigColumnParams {
     column: Column

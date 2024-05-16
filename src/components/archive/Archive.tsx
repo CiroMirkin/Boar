@@ -8,7 +8,7 @@ import { Button } from "@/ui/button"
 import { useDispatch } from "react-redux"
 import { cleanArchive } from "@/redux/archiveReducer"
 import { useEffect } from "react"
-import { useAskForConfirmationToast } from "@/hooks/askForConfirmation"
+import { useAskForConfirmationToast } from "@/hooks/useAskForConfirmationToast"
 import { useArchive } from "@/hooks/getArchive"
 import { downloadArchiveLikePDF } from "@/utils/downloadArchiveLikePDF"
 
