@@ -10,7 +10,7 @@ import LocalStorageTaskListInEachColumnRepository from "@/repositories/localStor
 import { TaskListInEachColumnRepository } from "@/models/taskListInEachColumnRepository"
 import { useColumnList } from "@/hooks/getColumnList"
 import { useTaskListInEachColumn } from "@/hooks/getTaskListInEachColumn"
-import { useBoard } from "@/hooks/getBoardData"
+import { useBoard } from "@/hooks/useBoard"
 
 export const TaskListInEachColumnContext = React.createContext([[], [], []] as TaskListInEachColumn)
 export const ColumnListContext = React.createContext(defaultColumnList as columnListModel)

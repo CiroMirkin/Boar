@@ -7,7 +7,7 @@ import LocalStorageColumnListRepository from "@/repositories/localStorageColumnL
 import { ColumnListRepository } from "@/models/columnListRepository"
 import { useEffect } from "react"
 import { useColumnList } from "@/hooks/getColumnList"
-import { useBoard } from "@/hooks/getBoardData"
+import { useBoard } from "@/hooks/useBoard"
 import { BoardRepository } from "@/models/boardRepository"
 import LocalStorageBoardRepository from "@/repositories/localstorageBoard"
 
