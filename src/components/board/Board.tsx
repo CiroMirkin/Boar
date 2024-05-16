@@ -9,7 +9,7 @@ import { WelcomeDialog } from "./WelcomeDialog"
 import LocalStorageTaskListInEachColumnRepository from "@/repositories/localStorageTaskLists.ts"
 import { TaskListInEachColumnRepository } from "@/models/taskListInEachColumnRepository"
 import { useColumnList } from "@/hooks/useColumnList"
-import { useTaskListInEachColumn } from "@/hooks/getTaskListInEachColumn"
+import { useTaskListInEachColumn } from "@/hooks/useTaskListInEachColumn"
 import { useBoard } from "@/hooks/useBoard"
 
 export const TaskListInEachColumnContext = React.createContext([[], [], []] as TaskListInEachColumn)
