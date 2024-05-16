@@ -8,7 +8,7 @@ import {
     CardTitle,
   } from "@/ui/card"  
 import { useCheckIfThisColumnIsTheFirst } from "@/hooks/useCheckIfThisColumnIsTheFirst";
-import { useCheckIfThisColumnIsTheLast } from "@/hooks/isThisColumnTheLast";
+import { useCheckIfThisColumnIsTheLast } from "@/hooks/useCheckIfThisColumnIsTheLast";
 import { AddNewTaskInput } from "./AddNewTaskInput";
 import { ArchiveTaskListButton } from "./ArchiveTaskListButton";
 
