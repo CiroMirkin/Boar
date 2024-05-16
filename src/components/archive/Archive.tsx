@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux"
 import { cleanArchive } from "@/redux/archiveReducer"
 import { useEffect } from "react"
 import { useAskForConfirmationToast } from "@/hooks/useAskForConfirmationToast"
-import { useArchive } from "@/hooks/getArchive"
+import { useArchive } from "@/hooks/useArchive"
 import { downloadArchiveLikePDF } from "@/utils/downloadArchiveLikePDF"
 
 const archiveRepository:ArchiveRepository = new LocalStorageArchiveRepository()
