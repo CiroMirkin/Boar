@@ -3,7 +3,7 @@ import { TaskContext } from "../Task";
 import { useToast } from "@/ui/use-toast";
 import { useDispatch } from "react-redux";
 import { deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn } from "@/redux/taskListInEachColumnReducer";
-import { useCheckIfThisTaskIsInTheFirstColumn } from "@/hooks/isTheTaskInTheFirstColumn";
+import { useCheckIfThisTaskIsInTheFirstColumn } from "@/hooks/useCheckIfThisTaskIsInTheFirstColumn";
 import { useCheckIfTaskIsInTheLastColumn } from "@/hooks/isThisTaskInTheLastColumn";
 import { useContext } from "react";
 import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser";
