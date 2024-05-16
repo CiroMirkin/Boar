@@ -4,7 +4,7 @@ import { useToast } from "@/ui/use-toast";
 import { useDispatch } from "react-redux";
 import { deleteTask, moveTaskToNextColumn, moveTaskToPrevColumn } from "@/redux/taskListInEachColumnReducer";
 import { useCheckIfThisTaskIsInTheFirstColumn } from "@/hooks/useCheckIfThisTaskIsInTheFirstColumn";
-import { useCheckIfTaskIsInTheLastColumn } from "@/hooks/isThisTaskInTheLastColumn";
+import { useCheckIfTaskIsInTheLastColumn } from "@/hooks/useCheckIfTaskIsInTheLastColumn";
 import { useContext } from "react";
 import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser";
 import { archiveTask } from "@/redux/archiveReducer";
