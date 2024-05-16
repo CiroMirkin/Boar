@@ -8,7 +8,7 @@ import { TaskListInEachColumn } from "@/models/taskList"
 import { WelcomeDialog } from "./WelcomeDialog"
 import LocalStorageTaskListInEachColumnRepository from "@/repositories/localStorageTaskLists.ts"
 import { TaskListInEachColumnRepository } from "@/models/taskListInEachColumnRepository"
-import { useColumnList } from "@/hooks/getColumnList"
+import { useColumnList } from "@/hooks/useColumnList"
 import { useTaskListInEachColumn } from "@/hooks/getTaskListInEachColumn"
 import { useBoard } from "@/hooks/useBoard"
 
