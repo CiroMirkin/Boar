@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Column } from "./Column";
-import { ColumnListContext } from "./Board";
+import { ColumnListContext } from "@/contexts/ColumnListContext";
 import { TaskList } from "./TaskList"
 import { ScrollArea } from "../../ui/scroll-area"
 import { TaskListInEachColumnContext } from "@/contexts/TaskListInEachColumnContext";

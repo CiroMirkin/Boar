@@ -1,4 +1,4 @@
-import { ColumnListContext } from "@/components/board/Board";
+import { ColumnListContext } from "@/contexts/ColumnListContext";
 import { Column, isThisTheLastColumn } from "@/models/column";
 import { useContext } from "react";
 
