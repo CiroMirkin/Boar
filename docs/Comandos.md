@@ -47,9 +47,8 @@ o
 npm test src/useCase/addTask.test.ts
 ```
 
-:::warning
-**No olvide** agregar la extension `.test` al escribir el nombre del archivo.
-:::
+> [!WARNING]
+> **No olvide** agregar la extension `.test` al escribir el nombre del archivo.
 
 Para correr todas las pruebas con entorno gráfico: 
 
