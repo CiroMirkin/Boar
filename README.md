@@ -2,6 +2,8 @@
 
 Boar es una aplicación web para gestionar tareas a corto plazo que busca ayudarte a enfocarte en tus tareas.
 
+![Boar](./public/Boar_OG.png)
+
 Alpha: [https://cm-boar.netlify.app/](https://cm-boar.netlify.app/)
 
 ## 🔥 Características principales
