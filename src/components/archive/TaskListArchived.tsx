@@ -30,9 +30,9 @@ export function TaskListArchived({ taskList, date }: TaskListArchivedProps) {
 function TaskList({ taskList }: { taskList: taskList }) {
     const tasks: React.ReactNode[] = taskList.map(task => 
         <Task data={task} key={task.id}>
-            <Task.TaskActions>
+            <Task.ContentCollapse>
                 <TaskInArchiveActions />
-            </Task.TaskActions>
+            </Task.ContentCollapse>
         </Task>
     )
     return(<>{ tasks }</>)

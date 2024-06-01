@@ -28,7 +28,7 @@ export function Task({ data, children }: TaskProps) {
     )
 }
 
-function TaskActions({ children }: { children: React.ReactNode }) {
+function ContentCollapse({ children }: { children: React.ReactNode }) {
     return (
         <CardFooter className="flex flex-col justify-between gap-x-1 gap-y-1.5 items-start p-2 pt-1">
             { children }
@@ -36,5 +36,5 @@ function TaskActions({ children }: { children: React.ReactNode }) {
     )
 }
 
-/** El children de TaskActions se muestra y oculta cuando el usuario hace click sobre el contenido del componente Task. */
-Task.TaskActions = TaskActions
+/** El children de ContentCollapse se muestra y oculta cuando el usuario hace click sobre el contenido del componente Task. */
+Task.ContentCollapse = ContentCollapse
