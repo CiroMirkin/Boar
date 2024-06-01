@@ -36,4 +36,5 @@ function TaskActions({ children }: { children: React.ReactNode }) {
     )
 }
 
+/** El children de TaskActions se muestra y oculta cuando el usuario hace click sobre el contenido del componente Task. */
 Task.TaskActions = TaskActions
