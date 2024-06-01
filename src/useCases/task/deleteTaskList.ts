@@ -1,11 +1,10 @@
-import { TaskList } from "@/models/taskList";
 import { TaskListInEachColumn } from "@/models/taskList";
 
 interface deleteLastTaskListParams {
-    taskListInEachColumn: TaskList[];
+    taskListInEachColumn: TaskListInEachColumn;
 }
 
-export const cleanLastTaskList = ({ taskListInEachColumn }: deleteLastTaskListParams): TaskList[] => {
+export const cleanLastTaskList = ({ taskListInEachColumn }: deleteLastTaskListParams): TaskListInEachColumn => {
     if(taskListInEachColumn.length > 1) {
         taskListInEachColumn[taskListInEachColumn.length-1] = []
     }
