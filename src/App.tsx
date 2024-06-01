@@ -8,35 +8,35 @@ import { Erro404 } from './components/404/404'
 import { Help } from './components/help/Help'
 
 const router = createBrowserRouter([
-  { 
-    path: "/",
-    element: <Board /> 
-  },
-  { 
-    path: "/archive", 
-    element: <Archive /> 
-  },
-  { 
-    path: "/settings", 
-    element: <Configs /> 
-  },
-  { 
-    path: "/help", 
-    element: <Help /> 
-  },
-  { 
-    path: "*", 
-    element: <Erro404 /> 
-  },
+	{
+		path: '/',
+		element: <Board />,
+	},
+	{
+		path: '/archive',
+		element: <Archive />,
+	},
+	{
+		path: '/settings',
+		element: <Configs />,
+	},
+	{
+		path: '/help',
+		element: <Help />,
+	},
+	{
+		path: '*',
+		element: <Erro404 />,
+	},
 ])
 
 function App() {
-  return (
-    <>
-      <RouterProvider router={router} />
-      <Toaster />
-    </>
-  )
+	return (
+		<>
+			<RouterProvider router={router} />
+			<Toaster />
+		</>
+	)
 }
 
 export default App

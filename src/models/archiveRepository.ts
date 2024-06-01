@@ -1,6 +1,6 @@
-import { Archive } from "./archive";
+import { Archive } from './archive'
 
 export interface ArchiveRepository {
-    save(archive: Archive): void;
-    getAll(): Archive;
+	save(archive: Archive): void
+	getAll(): Archive
 }

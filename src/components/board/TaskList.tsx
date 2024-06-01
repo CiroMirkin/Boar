@@ -1,30 +1,28 @@
-import React from "react";
-import { TaskList as taskList } from "@/models/taskList";
-import { TaskInBoardActions } from "./TaskInBoardActions";
-import { Task } from "../Task";
+import React from 'react'
+import { TaskList as taskList } from '@/models/taskList'
+import { TaskInBoardActions } from './TaskInBoardActions'
+import { Task } from '../Task'
 
 interface TaskListProps {
-    tasks: taskList;
+	tasks: taskList
 }
 
 export function TaskList({ tasks }: TaskListProps) {
-    const taskList: React.ReactNode[] = [];
+	const taskList: React.ReactNode[] = []
 
-    tasks.forEach(task => {
-        taskList.push(
-            <Task data={task} key={task.id}>
-                <Task.ContentCollapse>
-                    <TaskInBoardActions/>
-                </Task.ContentCollapse>
-            </Task>
-        );
-    });
+	tasks.forEach((task) => {
+		taskList.push(
+			<Task data={task} key={task.id}>
+				<Task.ContentCollapse>
+					<TaskInBoardActions />
+				</Task.ContentCollapse>
+			</Task>
+		)
+	})
 
-    return (
-        <>
-            <div className="flex flex-col gap-y-2">
-            {taskList}
-            </div>
-        </>
-    );
+	return (
+		<>
+			<div className='flex flex-col gap-y-2'>{taskList}</div>
+		</>
+	)
 }

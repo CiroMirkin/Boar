@@ -1,12 +1,12 @@
-import BusinessError from "@/errors/businessError"
+import BusinessError from '@/errors/businessError'
 
 function getErrorMessageForTheUser(error: unknown): string {
-	if(error instanceof BusinessError) {
-        return  error.message
-    } else {
-        console.error(error)
-        return 'Lo sentimos, hubo un error imprevisto :('
-	} 
+	if (error instanceof BusinessError) {
+		return error.message
+	} else {
+		console.error(error)
+		return 'Lo sentimos, hubo un error imprevisto :('
+	}
 }
 
 export default getErrorMessageForTheUser

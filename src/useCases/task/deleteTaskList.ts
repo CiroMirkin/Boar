@@ -1,22 +1,29 @@
-import { TaskListInEachColumn } from "@/models/taskList";
+import { TaskListInEachColumn } from '@/models/taskList'
 
 interface deleteLastTaskListParams {
-    taskListInEachColumn: TaskListInEachColumn;
+	taskListInEachColumn: TaskListInEachColumn
 }
 
-export const cleanLastTaskList = ({ taskListInEachColumn }: deleteLastTaskListParams): TaskListInEachColumn => {
-    if(taskListInEachColumn.length > 1) {
-        taskListInEachColumn[taskListInEachColumn.length-1] = []
-    }
-    return taskListInEachColumn
+export const cleanLastTaskList = ({
+	taskListInEachColumn,
+}: deleteLastTaskListParams): TaskListInEachColumn => {
+	if (taskListInEachColumn.length > 1) {
+		taskListInEachColumn[taskListInEachColumn.length - 1] = []
+	}
+	return taskListInEachColumn
 }
 
-interface deleteTheTaskListInThisIndexParams { 
-    index: number, 
-    taskListInEachColumn: TaskListInEachColumn 
+interface deleteTheTaskListInThisIndexParams {
+	index: number
+	taskListInEachColumn: TaskListInEachColumn
 }
 
-export const deleteTheTaskListInThisIndex = ({ index, taskListInEachColumn }: deleteTheTaskListInThisIndexParams): TaskListInEachColumn => {
-    const newTaskListInEachColumn = taskListInEachColumn.filter(taskList => taskListInEachColumn.indexOf(taskList) !== index)
-    return newTaskListInEachColumn
+export const deleteTheTaskListInThisIndex = ({
+	index,
+	taskListInEachColumn,
+}: deleteTheTaskListInThisIndexParams): TaskListInEachColumn => {
+	const newTaskListInEachColumn = taskListInEachColumn.filter(
+		(taskList) => taskListInEachColumn.indexOf(taskList) !== index
+	)
+	return newTaskListInEachColumn
 }

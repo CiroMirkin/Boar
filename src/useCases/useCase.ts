@@ -1,20 +1,19 @@
-import { boardModel } from "../models/board";
-import { Column } from "../models/column";
-import { taskModel } from "../models/task";
-import { TaskList } from "@/models/taskList";
-
+import { boardModel } from '../models/board'
+import { Column } from '../models/column'
+import { taskModel } from '../models/task'
+import { TaskList } from '@/models/taskList'
 
 export interface boardUseCaseParams {
-    board: boardModel;
+	board: boardModel
 }
 export interface taskUseCaseParams {
-    taskListInEachColumn: TaskList[];
-    task: taskModel;
+	taskListInEachColumn: TaskList[]
+	task: taskModel
 }
 export interface changeNameParams extends boardUseCaseParams {
-    newName: string;
+	newName: string
 }
 export interface columnUseCaseParams {
-    columnList: Column[]
-    column: Column;
+	columnList: Column[]
+	column: Column
 }
