@@ -14,6 +14,7 @@
             └── 📁 archive  - Pagina y componentes únicos del archivo
             └── 📁 board  - Pagina y componentes únicos del tablero
             └── 📁 configs  - Pagina y componentes únicos de las preferencias
+        └── 📁 contexts - Contextos y sus proveedores
         └── 📁 models - Modelos de dominio
         └── 📁 repositories - Implementaciones de los repositorios
         └── 📁 useCases - Lógica de los casos de uso
