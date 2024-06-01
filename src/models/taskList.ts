@@ -2,6 +2,11 @@ import BusinessError from "@/errors/businessError";
 import { taskModel } from "./task";
 
 export type TaskList = taskModel[]
+/**
+ * Cada arreglo de tareas aquí guardado tiene su correspondiente columna en el arreglo ColumnList. El primer arreglo de tareas corresponde a la primer columna del arreglo ColumnList y asi sucesivamente. 
+ * 
+ * Estos dos arreglos deben mantener una consistencia, si hay mas o menos elementos en alguno de los dos arreglos habrá errores.
+ */
 export type TaskListInEachColumn = TaskList[]
 
 export const emptyTaskListInEachColumn: TaskListInEachColumn = [[], [], []]

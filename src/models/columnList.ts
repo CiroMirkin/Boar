@@ -1,6 +1,11 @@
 import BusinessError from "@/errors/businessError";
 import { Column } from "./column";
 
+/**
+ * Lista ordenada con todas las columnas que contiene un tablero.
+ * 
+ * Cada columna en esta lista tiene su correspondiente lista de tareas en el arreglo TaskListInEachColumn. Estos dos arreglos deben mantener una consistencia, si hay mas o menos elementos en alguno de los dos arreglos habrá errores. 
+ */
 export type ColumnList = Column[]
 
 export const defaultColumnList: Column[] = [
