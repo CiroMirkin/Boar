@@ -29,6 +29,26 @@ Para correr el linter:
 npm run lint
 ```
 
+Si se realizan cambios en la configuración de eslint, asi se puede verificar que no haya conflictos entre eslint y prettier:  
+
+```bash 
+npx eslint-config-prettier ./src/main.tsx 
+```
+
+## Formato (Prettier)
+
+Para darle formato a todo el código:  
+
+```bash 
+npm run format 
+```   
+
+Si se realizan cambios en la configuración de prettier, asi se puede verificar que no haya conflictos entre eslint y prettier:  
+
+```bash 
+npx eslint-config-prettier ./src/main.tsx 
+```
+
 ## Pruebas
 
 Para correr todas las pruebas por consola: 
