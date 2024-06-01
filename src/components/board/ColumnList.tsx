@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { Column } from "./Column";
-import { ColumnListContext, TaskListInEachColumnContext } from "./Board";
+import { ColumnListContext } from "./Board";
 import { TaskList } from "./TaskList"
 import { ScrollArea } from "../../ui/scroll-area"
+import { TaskListInEachColumnContext } from "@/contexts/TaskListInEachColumnContext";
 
 export function ColumnList() {
     const columns = useContext(ColumnListContext)

@@ -1,38 +1,27 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { ColumnList } from "./ColumnList"
 import { defaultColumnList } from "@/models/columnList"
 import { ColumnList as columnListModel } from "@/models/columnList"
 import { Header } from "../Header"
 import { USER_IS_IN } from "../userIsIn"
-import { TaskListInEachColumn } from "@/models/taskList"
 import { WelcomeDialog } from "./WelcomeDialog"
-import LocalStorageTaskListInEachColumnRepository from "@/repositories/localStorageTaskLists.ts"
-import { TaskListInEachColumnRepository } from "@/models/taskListInEachColumnRepository"
 import { useColumnList } from "@/hooks/useColumnList"
-import { useTaskListInEachColumn } from "@/hooks/useTaskListInEachColumn"
 import { useBoard } from "@/hooks/useBoard"
+import { TaskListInEachColumnProvider } from "@/contexts/TaskListInEachColumnContext"
 
-export const TaskListInEachColumnContext = React.createContext([[], [], []] as TaskListInEachColumn)
 export const ColumnListContext = React.createContext(defaultColumnList as columnListModel)
-
-const taskListInEachColumnRepository: TaskListInEachColumnRepository = new LocalStorageTaskListInEachColumnRepository();
 
 export function Board() {
     const columnList = useColumnList()
-    const taskListInEachColumn = useTaskListInEachColumn()
     const data = useBoard()
-    
-    useEffect(() => {
-        taskListInEachColumnRepository.save(taskListInEachColumn)
-    }, [taskListInEachColumn])
 
     return (
         <>
         <Header title={data.name} whereUserIs={USER_IS_IN.BOARD} />
         <ColumnListContext.Provider value={columnList}>
-            <TaskListInEachColumnContext.Provider value={taskListInEachColumn}>
+            <TaskListInEachColumnProvider>
                 <ColumnList />
-            </TaskListInEachColumnContext.Provider>
+            </TaskListInEachColumnProvider>
         </ColumnListContext.Provider>
         <WelcomeDialog />
         </>
