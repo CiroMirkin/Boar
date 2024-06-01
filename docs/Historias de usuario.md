@@ -1,9 +1,3 @@
----
-sidebar_position: 3
-description: Historias de usuario
-tags: 
-  - Historias de usuario
----
 
 # Historias de usuario
 

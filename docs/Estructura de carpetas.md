@@ -1,18 +1,9 @@
----
-sidebar_position: 6
-description: Estructura de carpetas
-tags: 
-  - Carpetas  
-  - Pruebas
-  - Documentación
-  - Casos de uso
----
+
 # Estructura de carpetas
 
 ```
 └── 📁 Boar
-    └── 📁 website - Documentación
-        └── 📁 docs - Paginas de la documentación
+    └── 📁 docs - Documentación
     └── 📁 src
         └── App.tsx
         └── main.tsx

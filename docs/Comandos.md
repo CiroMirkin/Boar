@@ -1,9 +1,35 @@
----
-tags:
-  - Comandos
-  - Pruebas
----
-# Pruebas
+
+# Comandos
+
+## Servidor de desarrollo
+
+Para correr el servidor de desarrollo:
+
+```bash
+npm run dev
+```
+
+El comando `npm run start` construirá el sitio en un **servidor de desarrollo local** listo para usarse en [http://localhost:5173/](http://localhost:5173/).
+
+## Despliegue
+
+Para compilar la aplicación:
+
+```
+npm run build
+```
+
+El comando `npm run build` creara la carpeta `dist` en la raíz del directorio.
+
+## Linting
+
+Para correr el linter:
+
+```bash
+npm run lint
+```
+
+## Pruebas
 
 Para correr todas las pruebas por consola: 
 

@@ -4,7 +4,7 @@ Boar es una aplicación web para gestionar tareas a corto plazo que busca ayudar
 
 Alpha: [https://cm-boar.netlify.app/](https://cm-boar.netlify.app/)
 
-## 🔥 Características
+## 🔥 Características principales
 
 * Crear tareas.
 * Mover las tareas entre columnas.
@@ -27,4 +27,4 @@ npm run dev
 
 ## 📖 Documentación
 
-Puedes leer la documentación de Boar en [cm-boar-docs.netlify.app](https://cm-boar-docs.netlify.app/).
+Puedes leer la documentación de Boar en la carpeta [docs](./docs/).
