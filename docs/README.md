@@ -14,10 +14,10 @@ Boar esta en linea, puedes usarlo en **[cm-boar.netlify.app](https://cm-boar.net
 * [Vitest](https://vitest.dev/)
 * [Jest](https://jestjs.io/)
 
-## Características esenciales (Must-be)
+## Características principales
 
-Dentro del tablero tablero se puede crear, eliminar y mover tareas.
+Debe existir **un tablero** con columnas donde poder crear tarea, eliminarlas y moverlas entre columnas.
 
-Como parte del archivo podemos archivar y ver las tareas archivadas.
+Se debe poder **personalizar el tablero**. Poder cambiar el nombre del tablero y las columnas, al igual que poder crear y eliminar columnas.
 
-Se puede cambiar el nombre del tablero y las columnas, al igual que se pueden crear y eliminar columnas.
+Debe existir **un archivo** donde irán todas las tareas terminadas, esto permite mantener limpio el tablero y conservar un registro.
