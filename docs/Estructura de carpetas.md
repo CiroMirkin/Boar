@@ -9,7 +9,7 @@
         └── main.tsx
         └── 📁 assets 
         └── 📁 ui  - Componentes genéricos y reutilizables
-        └── 📁 components  - Paginas y contenido de la aplicación
+        └── 📁 pages  - Paginas y contenido de la aplicación
             └── 📁 404  - Pagina 404
             └── 📁 archive  - Pagina y componentes únicos del archivo
             └── 📁 board  - Pagina y componentes únicos del tablero
