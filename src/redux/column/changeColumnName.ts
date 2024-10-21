@@ -1,4 +1,4 @@
-import { columnUseCaseParams } from '../../useCases/useCase'
+import { columnUseCaseParams } from '../useCase'
 import { Column, isThisColumnNameValid } from '../../models/column'
 
 interface changeNameOfColumnParams extends columnUseCaseParams {

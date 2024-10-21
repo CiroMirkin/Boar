@@ -1,5 +1,5 @@
 import { Column } from '@/models/column'
-import { columnUseCaseParams } from '../../useCases/useCase'
+import { columnUseCaseParams } from '../useCase'
 import BusinessError from '@/errors/businessError'
 
 export function deleteThisColumn({ columnList, column }: columnUseCaseParams): Column[] {
