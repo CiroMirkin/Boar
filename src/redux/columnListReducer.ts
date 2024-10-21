@@ -1,9 +1,9 @@
 import { Column } from '@/models/column'
 import { ColumnListRepository } from '@/models/columnListRepository'
 import LocalStorageColumnListRepository from '@/repositories/localStorageColumnList'
-import { addColumnAtTheEnd } from '@/useCases/column/addColumn'
-import { changeNameOfColumn } from '@/useCases/column/changeColumnName'
-import { deleteThisColumn } from '@/useCases/column/deleteColumn'
+import { addColumnAtTheEnd } from '@/redux/column/addColumn'
+import { changeNameOfColumn } from '@/redux/column/changeColumnName'
+import { deleteThisColumn } from '@/redux/column/deleteColumn'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 interface InitialState {

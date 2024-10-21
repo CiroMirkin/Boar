@@ -1,5 +1,5 @@
 import { isItWithinTheLimitOfColumns } from '@/models/columnList'
-import { columnUseCaseParams } from '../useCase'
+import { columnUseCaseParams } from '../../useCases/useCase'
 import { Column } from '@/models/column'
 
 export function addColumnAtTheEnd({ columnList, column }: columnUseCaseParams): Column[] {
