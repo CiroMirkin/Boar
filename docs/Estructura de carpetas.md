@@ -16,18 +16,16 @@
             └── 📁 configs  - Pagina y componentes únicos de las preferencias
         └── 📁 contexts - Contextos y sus proveedores
         └── 📁 models - Modelos de dominio
-        └── 📁 repositories - Implementaciones de los repositorios
-        └── 📁 useCases - Lógica de los casos de uso
-            └── useCase.ts
+        └── 📁 repositories - Implementaciones de los repositorios            
+        └── 📁 utils - Componentes y funciones utilitarias.
+        └── 📁 configs - Archivos de configuración 
+        └── 📁 redux 
             └── 📁 column
             └── 📁 task
             └── 📁 archive
             └── 📁 board
-        └── 📁 utils - Componentes y funciones utilitarias.
-        └── 📁 configs - Archivos de configuración 
-        └── 📁 redux 
         └── 📁 lib  
-```
+``` - Lógica de los casos de uso
 
 ## Carpeta pages
 
