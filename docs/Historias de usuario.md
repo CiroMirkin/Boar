@@ -5,6 +5,9 @@ Esta son las historias de usuario implementadas actualmente en Boar.
 
 ## Tablero
 
+* Como usuario, al entrar a Boar puedo leer una introducción a su funcionamiento.
+  * La introducción solo aparecerá la primera vez que entre el usuario. 
+
 * Como usuario, puedo crear tareas.
   * Puede crear tareas solo en la primer columna.
   * Puede crear tareas dentro del limite del limite de tareas por columna.
