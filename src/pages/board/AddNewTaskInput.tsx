@@ -2,7 +2,7 @@ import { iconSize } from '@/configs/iconsConstants'
 import { getNewTask, isThisTaskDescriptionValid } from '@/models/task'
 import { addTaskAtFirstColumn } from '@/redux/taskListInEachColumnReducer'
 import { Button } from '@/ui/button'
-import { Input } from '@/ui/input'
+import { Textarea } from '@/ui/textarea'
 import { useToast } from '@/ui/use-toast'
 import getErrorMessageForTheUser from '@/utils/getErrorMessageForTheUser'
 import { Plus } from 'lucide-react'
@@ -31,19 +31,18 @@ export function AddNewTaskInput() {
 		}
 	}
 
-	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+	const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
 		const taskDescription = e.target.value
 		setNewTaskDescription(taskDescription)
 	}
 
-	function handleKeyDown(e: KeyboardEvent<HTMLInputElement>): void {
+	function handleKeyDown(e: KeyboardEvent<HTMLTextAreaElement>): void {
 		if (e.ctrlKey && e.key === 'Enter') handleClick()
 	}
 
 	return (
 		<>
-			<Input
-				type='text'
+			<Textarea
 				value={newTaskDescription}
 				className='mr-1.5'
 				onChange={handleChange}
