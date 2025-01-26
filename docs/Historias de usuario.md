@@ -28,6 +28,9 @@ Esta son las historias de usuario implementadas actualmente en Boar.
   * Puede ver las tareas archivadas.
   * El archivo es una lista con las tareas archivadas y la fecha en que se archivaron.
 
+* Como usuario, puedo exportar el archivo.
+  * Se exportara en formato PDF.
+
 ## Ajustes
 
 * Como usuario, puedo cambiar el nombre del tablero.
