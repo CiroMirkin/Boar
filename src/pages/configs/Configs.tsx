@@ -10,6 +10,7 @@ import { useColumnList } from '@/hooks/useColumnList'
 import { useBoard } from '@/hooks/useBoard'
 import { BoardRepository } from '@/models/boardRepository'
 import LocalStorageBoardRepository from '@/repositories/localstorageBoard'
+import Reminder from './Reminder'
 
 const columnListRepository: ColumnListRepository = new LocalStorageColumnListRepository()
 const boardRepository: BoardRepository = new LocalStorageBoardRepository()
@@ -36,6 +37,12 @@ export function Configs() {
 				<ConfigColumns columnList={columnList} />
 				<Separator />
 			</div>
+			<div className='py-4 md:px-11 px-6'>
+				<h2 className='text-2xl'>Crear recordatorio</h2>
+				<Reminder columnList={columnList} />
+			</div>
+			<Separator />
+
 		</>
 	)
 }
