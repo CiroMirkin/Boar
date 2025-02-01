@@ -45,3 +45,8 @@ Esta son las historias de usuario implementadas actualmente en Boar.
   * El nombre de las columnas no puede sobrepasar los 30 caracteres.
 * Como usuario, puedo eliminar columnas.
   * No puede haber menos de dos columnas.
+
+* Como usuario, puedo crear un recordatorio.
+  * El recordatorio se mostrará al usuario cada vez que una tarea entre en la columna indicada.
+  * El recordatorio debe tener una descripción.
+  * El recordatorio debe tener una columna especificada por el usuario.
