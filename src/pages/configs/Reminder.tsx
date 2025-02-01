@@ -12,6 +12,9 @@ import {
 import { ColumnList } from "@/models/columnList"
 import { Reminder as reminder } from "@/models/reminder"
 import { useToast } from "@/ui/use-toast"
+import { useDispatch } from "react-redux"
+import { addReminder } from "@/redux/configReducer"
+import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser"
 
 interface ReminderProps {
     columnList: ColumnList
@@ -20,6 +23,7 @@ interface ReminderProps {
 function Reminder({ columnList }: ReminderProps) {
     const [reminderText, setReminderText] = useState("")
     const [reminderColumnPosition, setReminderColumnPosition] = useState("")
+    const dispatch = useDispatch()
 
     const { toast } = useToast()
 
@@ -29,16 +33,21 @@ function Reminder({ columnList }: ReminderProps) {
             columnPosition: reminderColumnPosition
         }
 
-        if(!!reminder.text && !!reminder.columnPosition) {
-            console.table(reminder)
-        }
-        else {
+        try {
+			dispatch(addReminder(reminder))
+            setReminderColumnPosition('')
+            setReminderText('')
             toast({
-				description: "Los datos del recordatorio no están completos.",
-                variant: "destructive",
+				description: "Recordatorio creado!",
 				duration: 3000,
 			})
-        }
+		} catch (error) {
+			toast({
+				description: getErrorMessageForTheUser(error),
+				variant: 'destructive',
+				duration: 3000,
+			})
+		}
     }
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -48,10 +57,10 @@ function Reminder({ columnList }: ReminderProps) {
 
 
     return (
-        <div className="max-w-2xl mt-2 grid gap-3">
+        <div className="max-w-2xl py-5 grid gap-3">
             <div className='grid mr-2 w-full items-center gap-1.5'>
                 <Label>Selecciona una columna</Label>
-                <Select onValueChange={(value) => setReminderColumnPosition(value)}>
+                <Select value={reminderColumnPosition} onValueChange={(value) => setReminderColumnPosition(value)}>
                     <SelectTrigger className="w-full">
                         <SelectValue placeholder="Columnas" />
                     </SelectTrigger>
@@ -66,13 +75,13 @@ function Reminder({ columnList }: ReminderProps) {
             </div>
 
             <div className='grid mr-2 w-full items-center gap-1.5'>
-                <Label htmlFor='reminder-text'>Escribe el ecordatorio</Label>
+                <Label htmlFor='reminder-text'>Escribe la descripción</Label>
                 <Input
                     type='text'
                     id='reminder-text'
                     value={reminderText}
                     onChange={handleChange}
-                    placeholder='Recordatorio...'
+                    placeholder='No olvides...'
                 />
             </div>
 
