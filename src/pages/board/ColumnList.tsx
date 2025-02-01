@@ -4,10 +4,12 @@ import { ColumnListContext } from '@/contexts/ColumnListContext'
 import { TaskList } from './TaskList'
 import { ScrollArea } from '../../ui/scroll-area'
 import { TaskListInEachColumnContext } from '@/contexts/TaskListInEachColumnContext'
+import { useReminder } from '@/hooks/useReminder'
 
 export function ColumnList() {
 	const columns = useContext(ColumnListContext)
 	const taskListInEachColumn = useContext(TaskListInEachColumnContext)
+	useReminder(taskListInEachColumn)
 
 	const columnsContent: React.ReactNode[] = []
 	taskListInEachColumn.forEach((taskList) => {
@@ -17,6 +19,8 @@ export function ColumnList() {
 			</ScrollArea>
 		)
 	})
+
+	
 
 	const columnList = columns.map((column, columnIndex) => {
 		return (

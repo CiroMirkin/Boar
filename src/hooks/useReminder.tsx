@@ -1,7 +1,29 @@
-import { Reminder } from "@/models/reminder";
-import { RootState } from "@/redux/store";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from 'react'
+import { useToast } from '@/ui/use-toast'
+import { useReminderInfo } from '@/hooks/useReminderInfo'
+import { TaskListInEachColumn } from '@/models/taskList'
 
-export const useReminder = (): Reminder => {
-    return useSelector((state: RootState) => state.config.reminder)
+/** Si existe un recordatorio observa la columna indicada por el usuario y al ingresar una nueva tarea muestra el recordatorio en el tablero.  */
+export const useReminder = (taskListInEachColumn: TaskListInEachColumn) => {
+    const [copyOfTheLengthOfEachTaskList, setCopyOfTheLengthOfEachTaskList] = useState([0, 0, 0] as Array<number>)
+    const { toast } = useToast()
+	const reminder = useReminderInfo()
+
+	useEffect(() => {
+		if(!!reminder.text) {
+			const inTaskList: number = Number(reminder.columnPosition) - 1 // La posicion de una columna es su index + 1
+			if(taskListInEachColumn[inTaskList].length > copyOfTheLengthOfEachTaskList[inTaskList]){
+				// Si la lista de tareas a observar tiene una nueva tarea
+				setCopyOfTheLengthOfEachTaskList(taskListInEachColumn.map(taskList => taskList.length))
+				toast({
+					description: reminder.text,
+					duration: 3000,
+				})
+			}
+			else if(taskListInEachColumn[inTaskList].length < copyOfTheLengthOfEachTaskList[inTaskList]) {
+				// Si la lista de tareas a observar dejo de tener una tarea o se acaba de iniciar Boar
+				setCopyOfTheLengthOfEachTaskList(taskListInEachColumn.map(taskList => taskList.length))
+			}
+		}
+	}, [taskListInEachColumn])
 }
