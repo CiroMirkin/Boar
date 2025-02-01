@@ -10,12 +10,8 @@ import {
     SelectValue,
 } from "@/ui/select"
 import { ColumnList } from "@/models/columnList"
+import { Reminder as reminder } from "@/models/reminder"
 import { useToast } from "@/ui/use-toast"
-
-export interface Reminder {
-    columnPosition: string
-    text: string
-}
 
 interface ReminderProps {
     columnList: ColumnList
@@ -28,7 +24,7 @@ function Reminder({ columnList }: ReminderProps) {
     const { toast } = useToast()
 
     const handleClick = () => {
-        const reminder: Reminder = {
+        const reminder: reminder = {
             text: reminderText,
             columnPosition: reminderColumnPosition
         }
