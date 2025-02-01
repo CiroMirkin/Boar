@@ -15,28 +15,28 @@ import { useToast } from "@/ui/use-toast"
 import { useDispatch } from "react-redux"
 import { addReminder } from "@/redux/configReducer"
 import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser"
+import { useReminderInfo } from "@/hooks/useReminderInfo"
 
 interface ReminderProps {
     columnList: ColumnList
 }
 
 function Reminder({ columnList }: ReminderProps) {
-    const [reminderText, setReminderText] = useState("")
-    const [reminderColumnPosition, setReminderColumnPosition] = useState("")
+    const reminder = useReminderInfo()
+    const [reminderText, setReminderText] = useState(reminder.text as string)
+    const [reminderColumnPosition, setReminderColumnPosition] = useState(reminder.columnPosition as string)
     const dispatch = useDispatch()
 
     const { toast } = useToast()
 
     const handleClick = () => {
-        const reminder: reminder = {
+        const newReminder: reminder = {
             text: reminderText,
             columnPosition: reminderColumnPosition
         }
 
         try {
-			dispatch(addReminder(reminder))
-            setReminderColumnPosition('')
-            setReminderText('')
+			dispatch(addReminder(newReminder))
             toast({
 				description: "Recordatorio creado!",
 				duration: 3000,
@@ -54,7 +54,6 @@ function Reminder({ columnList }: ReminderProps) {
         const newReminderText = e.target.value
         setReminderText(newReminderText)
     }
-
 
     return (
         <div className="max-w-2xl py-5 grid gap-3">

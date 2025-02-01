@@ -35,14 +35,14 @@ export function Configs() {
 			<div className='py-4 md:px-11 px-6'>
 				<h2 className='text-2xl'>Columnas</h2>
 				<ConfigColumns columnList={columnList} />
-				<Separator />
 			</div>
+			<Separator />
 			<div className='py-4 md:px-11 px-6'>
 				<h2 className='text-2xl'>Crear recordatorio</h2>
+				<p className="opacity-75">Cada vez que una tarea llegué a la columna indicada se mostrara el recordatorio en pantalla.</p>
 				<Reminder columnList={columnList} />
 			</div>
 			<Separator />
-
 		</>
 	)
 }
