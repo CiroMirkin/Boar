@@ -10,9 +10,10 @@ export const useReminder = (taskListInEachColumn: TaskListInEachColumn) => {
 	const reminder = useReminderInfo()
 
 	useEffect(() => {
-		if(!!reminder.text) {
-			const inTaskList: number = Number(reminder.columnPosition) - 1 // La posicion de una columna es su index + 1
-			if(taskListInEachColumn[inTaskList].length > copyOfTheLengthOfEachTaskList[inTaskList]){
+		const columnPosition: number = Number(reminder.columnPosition) - 1 // La posicion de una columna es su index + 1  
+		const columnExists = Number(reminder.columnPosition) <= Number(taskListInEachColumn.length)
+		if(!!reminder.text && columnExists) {
+			if(taskListInEachColumn[columnPosition].length > copyOfTheLengthOfEachTaskList[columnPosition]) {
 				// Si la lista de tareas a observar tiene una nueva tarea
 				setCopyOfTheLengthOfEachTaskList(taskListInEachColumn.map(taskList => taskList.length))
 				toast({
@@ -20,8 +21,8 @@ export const useReminder = (taskListInEachColumn: TaskListInEachColumn) => {
 					duration: 3000,
 				})
 			}
-			else if(taskListInEachColumn[inTaskList].length < copyOfTheLengthOfEachTaskList[inTaskList]) {
-				// Si la lista de tareas a observar dejo de tener una tarea o se acaba de iniciar Boar
+			else if(taskListInEachColumn[columnPosition].length < copyOfTheLengthOfEachTaskList[columnPosition]) {
+				// Si la lista de tareas a observar dejo de tener una tarea
 				setCopyOfTheLengthOfEachTaskList(taskListInEachColumn.map(taskList => taskList.length))
 			}
 		}
