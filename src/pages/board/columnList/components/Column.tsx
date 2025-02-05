@@ -1,8 +1,8 @@
 import React, { createContext, useContext } from 'react'
 import { Column as columnModel, columnNull } from '../../../../models/column'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/card'
-import { useCheckIfThisColumnIsTheFirst } from '@/pages/board/hooks/useCheckIfThisColumnIsTheFirst'
-import { useCheckIfThisColumnIsTheLast } from '@/pages/board/hooks/useCheckIfThisColumnIsTheLast'
+import { useCheckIfThisColumnIsTheFirst } from '@/pages/board/columnList/hooks/useCheckIfThisColumnIsTheFirst'
+import { useCheckIfThisColumnIsTheLast } from '@/pages/board/columnList/hooks/useCheckIfThisColumnIsTheLast'
 import { AddNewTaskInput } from '../../components/AddNewTaskInput'
 import { ArchiveTaskListButton } from '../../components/ArchiveTaskListButton'
 

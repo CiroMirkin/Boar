@@ -1,5 +1,5 @@
 import { ColumnListContext } from '@/pages/board/columnList/context/ColumnListContext'
-import { Column, isThisTheFirstColumn } from '@/models/column'
+import { Column, isThisTheFirstColumn } from '../models/column'
 import { useContext } from 'react'
 
 export function useCheckIfThisColumnIsTheFirst(column: Column): boolean {

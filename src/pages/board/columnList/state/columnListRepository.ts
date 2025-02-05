@@ -1,4 +1,4 @@
-import { ColumnList } from './columnList'
+import { ColumnList } from '../models/columnList'
 
 export interface ColumnListRepository {
 	save(columnList: ColumnList): void

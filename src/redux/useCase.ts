@@ -1,7 +1,7 @@
 import { boardModel } from '../pages/board/models/board'
 import { Column } from '../models/column'
 import { taskModel } from '../models/task'
-import { TaskList } from '@/models/taskList'
+import { TaskList } from '@/pages/board/models/taskList'
 
 export interface boardUseCaseParams {
 	board: boardModel

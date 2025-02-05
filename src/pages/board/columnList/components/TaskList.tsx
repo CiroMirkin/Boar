@@ -1,5 +1,5 @@
 import React from 'react'
-import { TaskList as taskList } from '@/models/taskList'
+import { TaskList as taskList } from '@/pages/board/models/taskList'
 import { TaskInBoardActions } from './TaskInBoardActions'
 import { Task } from '../../../Task'
 

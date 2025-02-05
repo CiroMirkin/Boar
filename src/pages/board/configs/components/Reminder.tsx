@@ -9,7 +9,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/ui/select"
-import { ColumnList } from "@/models/columnList"
+import { ColumnList } from "@/pages/board/columnList/models/columnList"
 import { Reminder as reminder } from "@/models/reminder"
 import { useToast } from "@/ui/use-toast"
 import { useDispatch } from "react-redux"

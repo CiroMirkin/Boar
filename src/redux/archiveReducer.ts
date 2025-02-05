@@ -1,7 +1,7 @@
 import { Archive } from '@/models/archive'
 import { ArchiveRepository } from '@/models/archiveRepository'
 import { taskModel } from '@/models/task'
-import { TaskListInEachColumn } from '@/models/taskList'
+import { TaskListInEachColumn } from '@/pages/board/models/taskList'
 import LocalStorageArchiveRepository from '@/repositories/localStorageArchive'
 import { archiveThisTask } from '@/redux/archive/archiveTask'
 import { archiveTaskListInTheLastColumn } from '@/redux/archive/archiveTaskList'

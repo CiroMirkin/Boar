@@ -1,11 +1,11 @@
 import { useContext } from 'react'
-import { taskModel } from '../../../models/task'
-import { getIndexOfColumnInColumnList, isThisTheFirstColumn } from '@/models/column'
+import { taskModel } from '../../../../models/task'
+import { getIndexOfColumnInColumnList, isThisTheLastColumn } from '../models/column'
 import { ColumnListContext } from '@/pages/board/columnList/context/ColumnListContext'
 
-export function useCheckIfThisTaskIsInTheFirstColumn(task: taskModel): boolean {
+export function useCheckIfTaskIsInTheLastColumn(task: taskModel): boolean {
 	const columnList = useContext(ColumnListContext)
 	const columnIndex = getIndexOfColumnInColumnList(task.columnPosition)
 	const column = columnList[columnIndex]
-	return isThisTheFirstColumn(column, columnList)
+	return isThisTheLastColumn(column, columnList)
 }

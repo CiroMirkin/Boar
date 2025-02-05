@@ -7,8 +7,8 @@ import {
 	moveTaskToNextColumn,
 	moveTaskToPrevColumn,
 } from '@/redux/taskListInEachColumnReducer'
-import { useCheckIfThisTaskIsInTheFirstColumn } from '@/pages/board/hooks/useCheckIfThisTaskIsInTheFirstColumn'
-import { useCheckIfTaskIsInTheLastColumn } from '@/pages/board/hooks/useCheckIfTaskIsInTheLastColumn'
+import { useCheckIfThisTaskIsInTheFirstColumn } from '@/pages/board/columnList/hooks/useCheckIfThisTaskIsInTheFirstColumn'
+import { useCheckIfTaskIsInTheLastColumn } from '@/pages/board/columnList/hooks/useCheckIfTaskIsInTheLastColumn'
 import { useContext } from 'react'
 import getErrorMessageForTheUser from '@/utils/getErrorMessageForTheUser'
 import { archiveTask } from '@/redux/archiveReducer'

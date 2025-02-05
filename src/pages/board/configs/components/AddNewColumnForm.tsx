@@ -3,7 +3,7 @@ import { Button } from '@/ui/button'
 import { useToast } from '@/ui/use-toast'
 import { Plus } from 'lucide-react'
 import { useDispatch } from 'react-redux'
-import { addColumn } from '@/redux/columnListReducer'
+import { addColumn } from '@/pages/board/columnList/state/columnListReducer'
 import { addEmptyTaskListAtTheEnd } from '@/redux/taskListInEachColumnReducer'
 import getErrorMessageForTheUser from '@/utils/getErrorMessageForTheUser'
 import {

@@ -1,4 +1,4 @@
-import { ColumnList } from '@/models/columnList'
+import { ColumnList } from '@/pages/board/columnList/models/columnList'
 import { RootState } from '@/redux/store'
 import { useSelector } from 'react-redux'
 

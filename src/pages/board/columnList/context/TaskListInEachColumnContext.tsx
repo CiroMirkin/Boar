@@ -1,8 +1,8 @@
 import { ReactNode, createContext, useEffect } from 'react'
-import { TaskListInEachColumn } from '@/models/taskList'
-import { useTaskListInEachColumn } from '@/hooks/useTaskListInEachColumn'
+import { TaskListInEachColumn } from '@/pages/board/models/taskList'
+import { useTaskListInEachColumn } from '@/pages/board/columnList/hooks/useTaskListInEachColumn'
 import LocalStorageTaskListInEachColumnRepository from '@/repositories/localStorageTaskLists.ts'
-import { TaskListInEachColumnRepository } from '@/models/taskListInEachColumnRepository'
+import { TaskListInEachColumnRepository } from '@/pages/board/models/taskListInEachColumnRepository'
 
 export const TaskListInEachColumnContext = createContext([[], [], []] as TaskListInEachColumn)
 

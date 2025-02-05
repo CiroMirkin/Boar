@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Column, isThisColumnNameWithinTheLimitOfLetters } from '../../../../models/column'
 import { useDispatch } from 'react-redux'
-import { changeColumnName, deleteColumn } from '@/redux/columnListReducer'
+import { changeColumnName, deleteColumn } from '@/pages/board/columnList/state/columnListReducer'
 import { Button } from '../../../../ui/button'
 import { useToast } from '../../../../ui/use-toast'
 import { Pencil, Trash2 } from 'lucide-react'

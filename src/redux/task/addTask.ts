@@ -1,4 +1,4 @@
-import { TaskListInEachColumn, isThisTaskListWithinTheLimit } from '@/models/taskList'
+import { TaskListInEachColumn, isThisTaskListWithinTheLimit } from '@/pages/board/models/taskList'
 import { taskUseCaseParams } from '../useCase'
 import { getIndexOfColumnInColumnList } from '@/models/column'
 

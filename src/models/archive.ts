@@ -1,5 +1,5 @@
 import BusinessError from '@/errors/businessError'
-import { TaskList } from './taskList'
+import { TaskList } from '../pages/board/models/taskList'
 
 export interface taskListArchived {
 	date: string

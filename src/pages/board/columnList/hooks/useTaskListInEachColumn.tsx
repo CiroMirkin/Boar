@@ -1,4 +1,4 @@
-import { TaskListInEachColumn } from '@/models/taskList'
+import { TaskListInEachColumn } from '@/pages/board/models/taskList'
 import { RootState } from '@/redux/store'
 import { useSelector } from 'react-redux'
 
