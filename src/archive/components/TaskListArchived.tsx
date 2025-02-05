@@ -1,6 +1,6 @@
 import React from 'react'
 import { TaskList as taskList } from '@/pages/board/taskList/models/taskList'
-import { Task } from '../../pages/Task'
+import { Task } from '../../components/Task'
 import { Card, CardContent, CardHeader, CardTitle } from '@/ui/card'
 import { TaskInArchiveActions } from './TaskInArchiveActions'
 

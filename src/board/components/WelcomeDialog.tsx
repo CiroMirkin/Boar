@@ -8,7 +8,7 @@ import {
 	DialogTitle,
 } from '@/ui/dialog'
 import { Button } from '@/ui/button'
-import { DescriptionOfBoar } from '../../pages/DescriptionOfBoar'
+import { DescriptionOfBoar } from '../../components/DescriptionOfBoar'
 
 export function WelcomeDialog() {
 	const open = localStorage.getItem('boar-welcome-dialog')

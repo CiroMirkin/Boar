@@ -1,7 +1,7 @@
 import React from 'react'
 import { TaskList as taskList } from '@/board/taskList/models/taskList'
 import { TaskInBoardActions } from './TaskInBoardActions'
-import { Task } from '../../pages/Task'
+import { Task } from '../../components/Task'
 
 interface TaskListProps {
 	tasks: taskList

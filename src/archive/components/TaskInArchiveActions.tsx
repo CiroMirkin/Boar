@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { TaskContext } from '../../pages/Task'
+import { TaskContext } from '../../components/Task'
 import { Button } from '@/ui/button'
 import { useDispatch } from 'react-redux'
 import { deleteArchivedTask } from '@/archive/state/archiveReducer'

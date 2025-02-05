@@ -4,8 +4,8 @@ import { Toaster } from './ui/toaster'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Archive } from './archive/Archive'
 import { Configs } from './board/configs/Configs'
-import { Erro404 } from './pages/404/404'
-import { Help } from './pages/help/Help'
+import { Erro404 } from './components/404'
+import { Help } from './components/Help'
 
 const router = createBrowserRouter([
 	{

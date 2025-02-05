@@ -1,5 +1,5 @@
-import { Header } from '../../pages/Header'
-import { USER_IS_IN } from '../../pages/userIsIn'
+import { Header } from '../../components/Header'
+import { USER_IS_IN } from '../../components/userIsIn'
 import { ConfigColumns } from './components/ConfigColumns'
 import { Separator } from '@/ui/separator'
 import { ChangeBoardName } from './components/ChangeBoardName'
