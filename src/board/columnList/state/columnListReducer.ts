@@ -1,6 +1,6 @@
 import { Column } from '../models/column'
 import { ColumnListRepository } from '@/board/columnList/state/columnListRepository'
-import LocalStorageColumnListRepository from '@/repositories/localStorageColumnList'
+import LocalStorageColumnListRepository from '@/board/columnList/state/localStorageColumnList'
 import { addColumnAtTheEnd } from '@/board/columnList/state/actions/addColumn'
 import { changeNameOfColumn } from '@/board/columnList/state/actions/changeColumnName'
 import { deleteThisColumn } from '@/board/columnList/state/actions/deleteColumn'

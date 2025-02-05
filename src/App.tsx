@@ -1,9 +1,9 @@
 import './App.css'
-import { Board } from './pages/board/Board'
+import { Board } from './board/Board'
 import { Toaster } from './ui/toaster'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Archive } from './pages/archive/Archive'
-import { Configs } from './pages/configs/Configs'
+import { Configs } from './board/configs/Configs'
 import { Erro404 } from './pages/404/404'
 import { Help } from './pages/help/Help'
 
