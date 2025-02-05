@@ -1,5 +1,5 @@
 import BusinessError from '@/errors/businessError'
-import { taskModel } from '../../../models/task'
+import { taskModel } from './task'
 
 export type TaskList = taskModel[]
 /**

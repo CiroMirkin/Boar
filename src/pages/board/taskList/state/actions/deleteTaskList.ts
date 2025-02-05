@@ -1,4 +1,4 @@
-import { TaskListInEachColumn } from '@/pages/board/models/taskList'
+import { TaskListInEachColumn } from '@/pages/board/taskList/models/taskList'
 
 interface deleteLastTaskListParams {
 	taskListInEachColumn: TaskListInEachColumn

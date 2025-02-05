@@ -4,7 +4,7 @@ import { Button } from '@/ui/button'
 import { useDispatch } from 'react-redux'
 import { deleteArchivedTask } from '@/redux/archiveReducer'
 import { useToast } from '@/ui/use-toast'
-import { addTaskAtLastColumn } from '@/redux/taskListInEachColumnReducer'
+import { addTaskAtLastColumn } from '@/pages/board/taskList/state/taskListInEachColumnReducer'
 import { useAskForConfirmationToast } from '@/hooks/useAskForConfirmationToast'
 
 export function TaskInArchiveActions() {

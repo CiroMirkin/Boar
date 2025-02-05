@@ -1,4 +1,4 @@
-import { TaskListInEachColumnContext } from '@/pages/board/columnList/context/TaskListInEachColumnContext'
+import { TaskListInEachColumnContext } from '@/pages/board/taskList/contexts/TaskListInEachColumnContext'
 import { useContext } from 'react'
 
 export const useCheckForTasksInLastColumn = (): boolean => {

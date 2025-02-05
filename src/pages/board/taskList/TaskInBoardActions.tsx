@@ -1,19 +1,19 @@
 import { Button } from '@/ui/button'
-import { TaskContext } from '../../../Task'
+import { TaskContext } from '../../Task'
 import { useToast } from '@/ui/use-toast'
 import { useDispatch } from 'react-redux'
 import {
 	deleteTask,
 	moveTaskToNextColumn,
 	moveTaskToPrevColumn,
-} from '@/redux/taskListInEachColumnReducer'
+} from '@/pages/board/taskList/state/taskListInEachColumnReducer'
 import { useCheckIfThisTaskIsInTheFirstColumn } from '@/pages/board/columnList/hooks/useCheckIfThisTaskIsInTheFirstColumn'
 import { useCheckIfTaskIsInTheLastColumn } from '@/pages/board/columnList/hooks/useCheckIfTaskIsInTheLastColumn'
 import { useContext } from 'react'
 import getErrorMessageForTheUser from '@/utils/getErrorMessageForTheUser'
 import { archiveTask } from '@/redux/archiveReducer'
 import { ToastAction } from '@/ui/toast'
-import { taskModel } from '@/models/task'
+import { taskModel } from '@/pages/board/taskList/models/task'
 
 export function TaskInBoardActions() {
 	const data = useContext(TaskContext)

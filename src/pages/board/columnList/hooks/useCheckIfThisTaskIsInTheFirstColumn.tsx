@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { taskModel } from '../../../../models/task'
+import { taskModel } from '../../taskList/models/task'
 import { getIndexOfColumnInColumnList, isThisTheFirstColumn } from '../models/column'
 import { ColumnListContext } from '@/pages/board/columnList/context/ColumnListContext'
 

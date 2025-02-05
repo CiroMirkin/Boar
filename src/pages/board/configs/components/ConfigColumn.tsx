@@ -7,7 +7,7 @@ import { useToast } from '../../../../ui/use-toast'
 import { Pencil, Trash2 } from 'lucide-react'
 import { iconSize } from '@/configs/iconsConstants'
 import { Input } from '@/ui/input'
-import { deleteTheTaskListOfThisColumn } from '@/redux/taskListInEachColumnReducer'
+import { deleteTheTaskListOfThisColumn } from '@/pages/board/taskList/state/taskListInEachColumnReducer'
 import getErrorMessageForTheUser from '@/utils/getErrorMessageForTheUser'
 import { useAskForConfirmationToast } from '@/hooks/useAskForConfirmationToast'
 

@@ -3,7 +3,7 @@ import { Header } from '../Header'
 import { USER_IS_IN } from '../userIsIn'
 import { WelcomeDialog } from './components/WelcomeDialog'
 import { useBoard } from '@/pages/board/hooks/useBoard'
-import { TaskListInEachColumnProvider } from '@/pages/board/columnList/context/TaskListInEachColumnContext'
+import { TaskListInEachColumnProvider } from '@/pages/board/taskList/contexts/TaskListInEachColumnContext'
 import { ColumnListProvider } from '@/pages/board/columnList/context/ColumnListContext'
 
 export function Board() {

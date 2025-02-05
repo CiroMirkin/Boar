@@ -1,6 +1,6 @@
 import { iconSize } from '@/configs/iconsConstants'
-import { getNewTask, isThisTaskDescriptionValid } from '@/models/task'
-import { addTaskAtFirstColumn } from '@/redux/taskListInEachColumnReducer'
+import { getNewTask, isThisTaskDescriptionValid } from '@/pages/board/taskList/models/task'
+import { addTaskAtFirstColumn } from '@/pages/board/taskList/state/taskListInEachColumnReducer'
 import { Button } from '@/ui/button'
 import { Textarea } from '@/ui/textarea'
 import { useToast } from '@/ui/use-toast'

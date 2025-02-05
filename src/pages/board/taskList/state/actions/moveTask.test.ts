@@ -1,4 +1,4 @@
-import { TaskListInEachColumn } from '@/pages/board/models/taskList'
+import { TaskListInEachColumn } from '@/pages/board/taskList/models/taskList'
 import { moveThisTask, moveThisTaskToTheNextColumn } from './moveTask'
 
 describe('Mover una tarea entre columnas', () => {

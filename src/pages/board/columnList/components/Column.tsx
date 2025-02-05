@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react'
-import { Column as columnModel, columnNull } from '../../../../models/column'
+import { Column as columnModel, columnNull } from '../models/column'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/card'
 import { useCheckIfThisColumnIsTheFirst } from '@/pages/board/columnList/hooks/useCheckIfThisColumnIsTheFirst'
 import { useCheckIfThisColumnIsTheLast } from '@/pages/board/columnList/hooks/useCheckIfThisColumnIsTheLast'

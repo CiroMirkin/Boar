@@ -1,7 +1,7 @@
 import { getIndexOfColumnInColumnList } from '@/models/column'
-import { taskUseCaseParams } from '../useCase'
-import { getNewTask } from '@/models/task'
-import { TaskList, isThisTaskListWithinTheLimit } from '@/pages/board/models/taskList'
+import { taskUseCaseParams } from '../../../../../redux/useCase'
+import { getNewTask } from '@/pages/board/taskList/models/task'
+import { TaskList, isThisTaskListWithinTheLimit } from '@/pages/board/taskList/models/taskList'
 
 export type moveToType = 'next-column' | 'prev-column'
 

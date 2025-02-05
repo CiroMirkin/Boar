@@ -1,10 +1,10 @@
 import { useContext } from 'react'
 import { Column } from './components/Column'
 import { ColumnListContext } from '@/pages/board/columnList/context/ColumnListContext'
-import { TaskList } from './components/TaskList'
+import { TaskList } from '../taskList/TaskList'
 import { ScrollArea } from '../../../ui/scroll-area'
-import { TaskListInEachColumnContext } from '@/pages/board/columnList/context/TaskListInEachColumnContext'
-import { useReminder } from '@/pages/configs/hooks/useReminder'
+import { TaskListInEachColumnContext } from '@/pages/board/taskList/contexts/TaskListInEachColumnContext'
+import { useReminder } from '@/pages/board/configs/hooks/useReminder'
 
 export function ColumnList() {
 	const columns = useContext(ColumnListContext)
