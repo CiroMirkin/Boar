@@ -11,7 +11,7 @@ import { useCheckIfThisTaskIsInTheFirstColumn } from '@/board/columnList/hooks/u
 import { useCheckIfTaskIsInTheLastColumn } from '@/board/columnList/hooks/useCheckIfTaskIsInTheLastColumn'
 import { useContext } from 'react'
 import getErrorMessageForTheUser from '@/utils/getErrorMessageForTheUser'
-import { archiveTask } from '@/redux/archiveReducer'
+import { archiveTask } from '@/archive/state/archiveReducer'
 import { ToastAction } from '@/ui/toast'
 import { taskModel } from '@/board/taskList/models/task'
 

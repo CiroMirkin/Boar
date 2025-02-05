@@ -1,6 +1,6 @@
 import { emptyTask } from '@/pages/board/taskList/models/task'
 import { archiveThisTask } from './archiveTask'
-import { Archive } from '@/models/archive'
+import { Archive } from '@/archive/models/archive'
 import { getFullDate } from '@/utils/getTime'
 
 describe('Archivar una tarea.', () => {

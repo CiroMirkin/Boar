@@ -1,5 +1,5 @@
 import { boardModel } from '../pages/board/models/board'
-import { Column } from '../models/column'
+import { Column } from '../archive/models/column'
 import { taskModel } from '../pages/board/taskList/models/task'
 import { TaskList } from '@/pages/board/taskList/models/taskList'
 

@@ -1,4 +1,4 @@
-import { Archive } from '@/models/archive'
+import { Archive } from '@/archive/models/archive'
 import { taskModel } from '@/pages/board/taskList/models/task'
 
 interface deleteArchivedTaskParams {

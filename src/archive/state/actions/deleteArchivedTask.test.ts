@@ -1,4 +1,4 @@
-import { Archive } from '@/models/archive'
+import { Archive } from '@/archive/models/archive'
 import { deleteThisArchivedTask } from './deleteArchivedTask'
 import { getFullDate } from '@/utils/getTime'
 import { emptyTask } from '@/pages/board/taskList/models/task'

@@ -1,4 +1,4 @@
-import { Archive } from '@/models/archive'
+import { Archive } from '@/archive/models/archive'
 import { RootState } from '@/redux/store'
 import { useSelector } from 'react-redux'
 
