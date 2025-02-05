@@ -1,5 +1,5 @@
-import { boardModel } from '@/models/board'
-import { BoardRepository } from '@/models/boardRepository'
+import { boardModel } from '@/pages/board/models/board'
+import { BoardRepository } from '@/pages/board/models/boardRepository'
 
 export default class LocalStorageBoardRepository implements BoardRepository {
 	#key

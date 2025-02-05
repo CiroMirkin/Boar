@@ -1,9 +1,9 @@
 import { useContext } from 'react'
-import { Column } from './Column'
-import { ColumnListContext } from '@/contexts/ColumnListContext'
-import { TaskList } from './TaskList'
-import { ScrollArea } from '../../ui/scroll-area'
-import { TaskListInEachColumnContext } from '@/contexts/TaskListInEachColumnContext'
+import { Column } from './components/Column'
+import { ColumnListContext } from '@/pages/board/columnList/context/ColumnListContext'
+import { TaskList } from './components/TaskList'
+import { ScrollArea } from '../../../ui/scroll-area'
+import { TaskListInEachColumnContext } from '@/pages/board/columnList/context/TaskListInEachColumnContext'
 import { useReminder } from '@/hooks/useReminder'
 
 export function ColumnList() {

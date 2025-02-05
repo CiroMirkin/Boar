@@ -7,9 +7,9 @@ import LocalStorageColumnListRepository from '@/repositories/localStorageColumnL
 import { ColumnListRepository } from '@/models/columnListRepository'
 import { useEffect } from 'react'
 import { useColumnList } from '@/hooks/useColumnList'
-import { useBoard } from '@/hooks/useBoard'
-import { BoardRepository } from '@/models/boardRepository'
-import LocalStorageBoardRepository from '@/repositories/localstorageBoard'
+import { useBoard } from '@/pages/board/hooks/useBoard'
+import { BoardRepository } from '@/pages/board/models/boardRepository'
+import LocalStorageBoardRepository from '@/pages/board/state/localstorageBoard'
 import Reminder from './Reminder'
 
 const columnListRepository: ColumnListRepository = new LocalStorageColumnListRepository()

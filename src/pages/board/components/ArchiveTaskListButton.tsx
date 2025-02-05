@@ -3,12 +3,12 @@ import { cleanTheLastTaskList } from '@/redux/taskListInEachColumnReducer'
 import { useToast } from '@/ui/use-toast'
 import { useContext } from 'react'
 import { useDispatch } from 'react-redux'
-import { TaskListInEachColumnContext } from '@/contexts/TaskListInEachColumnContext'
+import { TaskListInEachColumnContext } from '@/pages/board/columnList/context/TaskListInEachColumnContext'
 import { Button } from '@/ui/button'
 import { Archive } from 'lucide-react'
 import { iconSize } from '@/configs/iconsConstants'
 import getErrorMessageForTheUser from '@/utils/getErrorMessageForTheUser'
-import { useCheckForTasksInLastColumn } from '@/hooks/useCheckForTasksInLastColumn'
+import { useCheckForTasksInLastColumn } from '@/pages/board/hooks/useCheckForTasksInLastColumn'
 
 export function ArchiveTaskListButton() {
 	const { toast } = useToast()

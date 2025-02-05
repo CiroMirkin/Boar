@@ -1,4 +1,4 @@
-import { ColumnListContext } from '@/contexts/ColumnListContext'
+import { ColumnListContext } from '@/pages/board/columnList/context/ColumnListContext'
 import { Column, isThisTheFirstColumn } from '@/models/column'
 import { useContext } from 'react'
 

@@ -1,10 +1,10 @@
-import { ColumnList } from './ColumnList'
+import { ColumnList } from './columnList/ColumnList'
 import { Header } from '../Header'
 import { USER_IS_IN } from '../userIsIn'
-import { WelcomeDialog } from './WelcomeDialog'
-import { useBoard } from '@/hooks/useBoard'
-import { TaskListInEachColumnProvider } from '@/contexts/TaskListInEachColumnContext'
-import { ColumnListProvider } from '@/contexts/ColumnListContext'
+import { WelcomeDialog } from './components/WelcomeDialog'
+import { useBoard } from '@/pages/board/hooks/useBoard'
+import { TaskListInEachColumnProvider } from '@/pages/board/columnList/context/TaskListInEachColumnContext'
+import { ColumnListProvider } from '@/pages/board/columnList/context/ColumnListContext'
 
 export function Board() {
 	const data = useBoard()

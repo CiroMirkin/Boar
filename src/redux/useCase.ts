@@ -1,4 +1,4 @@
-import { boardModel } from '../models/board'
+import { boardModel } from '../pages/board/models/board'
 import { Column } from '../models/column'
 import { taskModel } from '../models/task'
 import { TaskList } from '@/models/taskList'

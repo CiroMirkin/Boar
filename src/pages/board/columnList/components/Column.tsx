@@ -1,10 +1,10 @@
 import React, { createContext, useContext } from 'react'
-import { Column as columnModel, columnNull } from '../../models/column'
+import { Column as columnModel, columnNull } from '../../../../models/column'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/card'
-import { useCheckIfThisColumnIsTheFirst } from '@/hooks/useCheckIfThisColumnIsTheFirst'
-import { useCheckIfThisColumnIsTheLast } from '@/hooks/useCheckIfThisColumnIsTheLast'
-import { AddNewTaskInput } from './AddNewTaskInput'
-import { ArchiveTaskListButton } from './ArchiveTaskListButton'
+import { useCheckIfThisColumnIsTheFirst } from '@/pages/board/hooks/useCheckIfThisColumnIsTheFirst'
+import { useCheckIfThisColumnIsTheLast } from '@/pages/board/hooks/useCheckIfThisColumnIsTheLast'
+import { AddNewTaskInput } from '../../components/AddNewTaskInput'
+import { ArchiveTaskListButton } from '../../components/ArchiveTaskListButton'
 
 const ColumnContext = createContext(columnNull)
 

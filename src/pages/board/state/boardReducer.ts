@@ -1,7 +1,7 @@
-import { boardModel } from '@/models/board'
-import { BoardRepository } from '@/models/boardRepository'
-import LocalStorageBoardRepository from '@/repositories/localstorageBoard'
-import { changeBoardName } from '@/redux/board/changeBoardName'
+import { boardModel } from '@/pages/board/models/board'
+import { BoardRepository } from '@/pages/board/models/boardRepository'
+import LocalStorageBoardRepository from '@/pages/board/state/localstorageBoard'
+import { changeBoardName } from '@/pages/board/state/actions/changeBoardName'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 interface InitialState extends boardModel {}

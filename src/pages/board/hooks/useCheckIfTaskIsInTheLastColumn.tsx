@@ -1,7 +1,7 @@
 import { useContext } from 'react'
-import { taskModel } from '../models/task'
+import { taskModel } from '../../../models/task'
 import { getIndexOfColumnInColumnList, isThisTheLastColumn } from '@/models/column'
-import { ColumnListContext } from '@/contexts/ColumnListContext'
+import { ColumnListContext } from '@/pages/board/columnList/context/ColumnListContext'
 
 export function useCheckIfTaskIsInTheLastColumn(task: taskModel): boolean {
 	const columnList = useContext(ColumnListContext)

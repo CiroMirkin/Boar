@@ -1,4 +1,4 @@
-import { boardModel } from '@/models/board'
+import { boardModel } from '@/pages/board/models/board'
 import { changeBoardName } from './changeBoardName'
 
 describe('Cambiar el nombre del tablero.', () => {

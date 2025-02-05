@@ -1,4 +1,4 @@
-import { boardModel } from '@/models/board'
+import { boardModel } from '@/pages/board/models/board'
 import { RootState } from '@/redux/store'
 import { useSelector } from 'react-redux'
 

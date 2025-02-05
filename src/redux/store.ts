@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import columnListReducer from './columnListReducer'
 import taskListInEachColumnReducer from './taskListInEachColumnReducer'
 import archiveReducer from './archiveReducer'
-import boardReducer from './boardReducer'
+import boardReducer from '../pages/board/state/boardReducer'
 import configReducer from './configReducer'
 
 export const store = configureStore({
