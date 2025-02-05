@@ -24,6 +24,6 @@
     "noFallthroughCasesInSwitch": true,
     "types": ["vitest/globals"]
   },
-  "include": ["src", "src/pages/configs/components/reminder.ts"],
+  "include": ["src", "src/pages/board/configs/components/reminder.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
