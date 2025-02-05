@@ -1,6 +1,6 @@
-import { defaultColumnList } from '@/board/columnList/models/columnList'
-import { ColumnList } from '@/board/columnList/models/columnList'
-import { ColumnListRepository } from '@/board/columnList/state/columnListRepository'
+import { defaultColumnList } from '@/pages/board/columnList/models/columnList'
+import { ColumnList } from '@/pages/board/columnList/models/columnList'
+import { ColumnListRepository } from '@/pages/board/columnList/state/columnListRepository'
 
 export default class LocalStorageColumnListRepository implements ColumnListRepository {
 	#key
