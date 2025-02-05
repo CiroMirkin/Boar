@@ -13,9 +13,9 @@ import { ColumnList } from "@/models/columnList"
 import { Reminder as reminder } from "@/models/reminder"
 import { useToast } from "@/ui/use-toast"
 import { useDispatch } from "react-redux"
-import { addReminder } from "@/redux/configReducer"
+import { addReminder } from "@/pages/configs/state/configReducer"
 import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser"
-import { useReminderInfo } from "@/hooks/useReminderInfo"
+import { useReminderInfo } from "@/pages/configs/hooks/useReminderInfo"
 
 interface ReminderProps {
     columnList: ColumnList

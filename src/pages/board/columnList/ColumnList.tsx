@@ -4,7 +4,7 @@ import { ColumnListContext } from '@/pages/board/columnList/context/ColumnListCo
 import { TaskList } from './components/TaskList'
 import { ScrollArea } from '../../../ui/scroll-area'
 import { TaskListInEachColumnContext } from '@/pages/board/columnList/context/TaskListInEachColumnContext'
-import { useReminder } from '@/hooks/useReminder'
+import { useReminder } from '@/pages/configs/hooks/useReminder'
 
 export function ColumnList() {
 	const columns = useContext(ColumnListContext)

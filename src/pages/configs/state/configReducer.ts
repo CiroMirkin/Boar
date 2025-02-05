@@ -1,6 +1,6 @@
 import { blankReminder, Reminder } from '@/models/reminder'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { createReminder } from './config/createReminder'
+import { createReminder } from './actions/createReminder'
 
 interface Config {
 	reminder: Reminder

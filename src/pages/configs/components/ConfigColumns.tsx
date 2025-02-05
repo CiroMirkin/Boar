@@ -1,5 +1,5 @@
 import React from 'react'
-import { Column } from '../../models/column'
+import { Column } from '../../../models/column'
 import { ConfigColumn } from './ConfigColumn'
 import { AddNewColumnForm } from './AddNewColumnForm'
 

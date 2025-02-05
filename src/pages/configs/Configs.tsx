@@ -1,8 +1,8 @@
 import { Header } from '../Header'
 import { USER_IS_IN } from '../userIsIn'
-import { ConfigColumns } from './ConfigColumns'
+import { ConfigColumns } from './components/ConfigColumns'
 import { Separator } from '@/ui/separator'
-import { ChangeBoardName } from './ChangeBoardName'
+import { ChangeBoardName } from './components/ChangeBoardName'
 import LocalStorageColumnListRepository from '@/repositories/localStorageColumnList'
 import { ColumnListRepository } from '@/models/columnListRepository'
 import { useEffect } from 'react'
@@ -10,7 +10,7 @@ import { useColumnList } from '@/hooks/useColumnList'
 import { useBoard } from '@/pages/board/hooks/useBoard'
 import { BoardRepository } from '@/pages/board/models/boardRepository'
 import LocalStorageBoardRepository from '@/pages/board/state/localstorageBoard'
-import Reminder from './Reminder'
+import Reminder from './components/Reminder'
 
 const columnListRepository: ColumnListRepository = new LocalStorageColumnListRepository()
 const boardRepository: BoardRepository = new LocalStorageBoardRepository()

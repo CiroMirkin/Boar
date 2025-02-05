@@ -3,7 +3,7 @@ import columnListReducer from './columnListReducer'
 import taskListInEachColumnReducer from './taskListInEachColumnReducer'
 import archiveReducer from './archiveReducer'
 import boardReducer from '../pages/board/state/boardReducer'
-import configReducer from './configReducer'
+import configReducer from '../pages/configs/state/configReducer'
 
 export const store = configureStore({
 	reducer: {
