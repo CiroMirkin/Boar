@@ -6,11 +6,12 @@ import { Archive } from './archive/Archive'
 import { Configs } from './board/configs/Configs'
 import { Erro404 } from './components/404'
 import { Help } from './components/Help'
+import ColumnListContainer from './columnList/ColumnListContainer'
 
 const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <Board />,
+		element: <Board> <ColumnListContainer/> </Board>,
 	},
 	{
 		path: '/archive',
