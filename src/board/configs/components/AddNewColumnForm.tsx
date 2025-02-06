@@ -3,13 +3,13 @@ import { Button } from '@/ui/button'
 import { useToast } from '@/ui/use-toast'
 import { Plus } from 'lucide-react'
 import { useDispatch } from 'react-redux'
-import { addColumn } from '@/board/columnList/state/columnListReducer'
-import { addEmptyTaskListAtTheEnd } from '@/board/taskList/state/taskListInEachColumnReducer'
+import { addColumn } from '@/columnList/state/columnListReducer'
+import { addEmptyTaskListAtTheEnd } from '@/columnList/taskList/state/taskListInEachColumnReducer'
 import getErrorMessageForTheUser from '@/utils/getErrorMessageForTheUser'
 import {
 	getBlankColumnWithoutPosition,
 	isThisColumnNameWithinTheLimitOfLetters,
-} from '../../columnList/models/column'
+} from '../../../columnList/models/column'
 import { Input } from '@/ui/input'
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
 

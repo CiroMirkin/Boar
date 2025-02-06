@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react'
-import { taskModel, emptyTask } from '@/board/taskList/models/task'
+import { taskModel, emptyTask } from '@/columnList/taskList/models/task'
 import { Card, CardContent, CardFooter } from '../ui/card'
 import { TextWithURL } from '@/lib/TextWithURL'
 
