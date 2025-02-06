@@ -3,17 +3,11 @@ import { USER_IS_IN } from '../../components/userIsIn'
 import { ConfigColumns } from './components/ConfigColumns'
 import { Separator } from '@/ui/separator'
 import { ChangeBoardName } from './components/ChangeBoardName'
-import LocalStorageColumnListRepository from '@/columnList/state/localStorageColumnList'
-import { ColumnListRepository } from '@/columnList/state/columnListRepository'
-import { useEffect } from 'react'
 import { useColumnList } from '@/columnList/hooks/useColumnList'
 import Reminder from './components/Reminder'
 
-const columnListRepository: ColumnListRepository = new LocalStorageColumnListRepository()
-
 export function Configs() {
 	const columnList = useColumnList()
-	useEffect(() => columnListRepository.save(columnList), [columnList])
 
 	return (
 		<>
@@ -23,8 +17,7 @@ export function Configs() {
 			</div>
 			<Separator />
 			<div className='py-4 md:px-11 px-6'>
-				<h2 className='text-2xl'>Columnas</h2>
-				<ConfigColumns columnList={columnList} />
+				<ConfigColumns />
 			</div>
 			<Separator />
 			<div className='py-4 md:px-11 px-6'>
