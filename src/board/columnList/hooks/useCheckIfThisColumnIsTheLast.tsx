@@ -1,8 +1,7 @@
-import { ColumnListContext } from '@/board/columnList/context/ColumnListContext'
 import { Column, isThisTheLastColumn } from '../models/column'
-import { useContext } from 'react'
+import { useColumnList } from './useColumnList'
 
 export function useCheckIfThisColumnIsTheLast(column: Column): boolean {
-	const columnList = useContext(ColumnListContext)
+	const columnList = useColumnList()
 	return isThisTheLastColumn(column, columnList)
 }

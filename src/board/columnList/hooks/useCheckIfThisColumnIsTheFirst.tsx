@@ -1,8 +1,7 @@
-import { ColumnListContext } from '@/board/columnList/context/ColumnListContext'
 import { Column, isThisTheFirstColumn } from '../models/column'
-import { useContext } from 'react'
+import { useColumnList } from './useColumnList'
 
 export function useCheckIfThisColumnIsTheFirst(column: Column): boolean {
-	const columnList = useContext(ColumnListContext)
+	const columnList = useColumnList()
 	return isThisTheFirstColumn(column, columnList)
 }

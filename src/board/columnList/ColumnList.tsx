@@ -1,13 +1,13 @@
 import { useContext } from 'react'
 import { Column } from './components/Column'
-import { ColumnListContext } from '@/board/columnList/context/ColumnListContext'
+import { useColumnList } from './hooks/useColumnList' 
 import { TaskList } from '../taskList/TaskList'
 import { ScrollArea } from '../../ui/scroll-area'
 import { TaskListInEachColumnContext } from '@/board/taskList/contexts/TaskListInEachColumnContext'
 import { useReminder } from '@/board/configs/hooks/useReminder'
 
 export function ColumnList() {
-	const columns = useContext(ColumnListContext)
+	const columns = useColumnList()
 	const taskListInEachColumn = useContext(TaskListInEachColumnContext)
 	useReminder(taskListInEachColumn)
 
