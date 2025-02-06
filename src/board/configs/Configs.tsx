@@ -1,9 +1,9 @@
 import { Header } from '../../components/Header'
 import { USER_IS_IN } from '../../components/userIsIn'
-import { ConfigColumns } from './components/ConfigColumns'
+import { ConfigColumns } from '../../columnList/components/ConfigColumns'
 import { Separator } from '@/ui/separator'
-import { ChangeBoardName } from './components/ChangeBoardName'
-import Reminder from './components/Reminder'
+import { ChangeBoardName } from '../components/ChangeBoardName'
+import Reminder from '../../columnList/components/Reminder'
 
 export function Configs() {
 	return (

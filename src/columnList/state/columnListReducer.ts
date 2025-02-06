@@ -5,15 +5,19 @@ import { addColumnAtTheEnd } from '@/columnList/state/actions/addColumn'
 import { changeNameOfColumn } from '@/columnList/state/actions/changeColumnName'
 import { deleteThisColumn } from '@/columnList/state/actions/deleteColumn'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { blankReminder, Reminder } from '../models/reminder'
+import { createReminder } from './actions/createReminder'
 
 interface InitialState {
 	list: Column[]
+	reminder: Reminder
 }
 
 const columnListRepository: ColumnListRepository = new LocalStorageColumnListRepository()
 
 const initialState: InitialState = {
 	list: columnListRepository.getAll(),
+	reminder: blankReminder,
 }
 
 export const columnListSlice = createSlice({
@@ -39,8 +43,12 @@ export const columnListSlice = createSlice({
 				columnList: state.list,
 			})
 		},
+		addReminder: (state, action: PayloadAction<Reminder>) => {
+			const newReminder = action.payload
+			state.reminder = createReminder(newReminder)
+		},
 	},
 })
 
-export const { addColumn, deleteColumn, changeColumnName } = columnListSlice.actions
+export const { addColumn, deleteColumn, changeColumnName, addReminder } = columnListSlice.actions
 export default columnListSlice.reducer

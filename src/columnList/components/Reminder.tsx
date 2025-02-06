@@ -12,9 +12,9 @@ import {
 import { Reminder as reminder } from "../models/reminder"
 import { useToast } from "@/ui/use-toast"
 import { useDispatch } from "react-redux"
-import { addReminder } from "@/board/configs/state/configReducer"
+import { addReminder } from "@/columnList/state/columnListReducer"
 import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser"
-import { useReminderInfo } from "@/board/configs/hooks/useReminderInfo"
+import { useReminderInfo } from "@/columnList/hooks/useReminderInfo"
 import { useColumnList } from "@/columnList/hooks/useColumnList"
 
 function Reminder({ }) {
