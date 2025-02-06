@@ -1,5 +1,5 @@
 import { Input } from '@/ui/input'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { Button } from '@/ui/button'
 import { useDispatch } from 'react-redux'
 import { changeTheNameOfTheBoard } from '@/board/state/boardReducer'
@@ -9,13 +9,17 @@ import { Label } from '@/ui/label'
 import { isThisBoardNameValid, isThisBoardNameWithinTheLimitOfLetters } from '@/board/models/board'
 import getErrorMessageForTheUser from '@/utils/getErrorMessageForTheUser'
 import { useToast } from '@/ui/use-toast'
+import { useBoard } from '@/board/hooks/useBoard'
+import { BoardRepository } from '@/board/models/boardRepository'
+import LocalStorageBoardRepository from '@/board/state/localstorageBoard'
 
-interface ChangeBoardNameProps {
-	name: string
-}
+const boardRepository: BoardRepository = new LocalStorageBoardRepository()
 
-export function ChangeBoardName({ name }: ChangeBoardNameProps) {
-	const [boardName, setBoardName] = useState(name)
+export function ChangeBoardName({ }) {
+	const boardData = useBoard()
+	useEffect(() => boardRepository.save(boardData), [boardData])
+	
+	const [boardName, setBoardName] = useState(boardData.name)
 	const [inputDisabled, setInputDisabled] = useState(true)
 	const { toast } = useToast()
 
@@ -48,20 +52,23 @@ export function ChangeBoardName({ name }: ChangeBoardNameProps) {
 	}
 	return (
 		<>
-			<div className='grid mr-2 w-full max-w-sm items-center gap-1.5'>
-				<Label htmlFor='board-name'>Nombre</Label>
-				<Input
-					type='text'
-					id='board-name'
-					value={boardName}
-					onChange={handleChange}
-					disabled={inputDisabled}
-					placeholder='Nombre del tablero'
-				/>
+			<h2 className='text-2xl'>Tablero</h2>
+			<div className='my-5 flex items-end'>
+				<div className='grid mr-2 w-full max-w-sm items-center gap-1.5'>
+					<Label htmlFor='board-name'>Nombre</Label>
+					<Input
+						type='text'
+						id='board-name'
+						value={boardName}
+						onChange={handleChange}
+						disabled={inputDisabled}
+						placeholder='Nombre del tablero'
+					/>
+				</div>
+				<Button onClick={handleClick} variant='ghost'>
+					<Pencil size={iconSize} />
+				</Button>
 			</div>
-			<Button onClick={handleClick} variant='ghost'>
-				<Pencil size={iconSize} />
-			</Button>
 		</>
 	)
 }
