@@ -1,5 +1,5 @@
 import { getIndexOfColumnInColumnList } from '../../../columnList/models/column'
-import { taskUseCaseParams } from '../../../../redux/useCase'
+import { taskUseCaseParams } from '../actions'
 import { getNewTask } from '@/board/taskList/models/task'
 import { TaskList, isThisTaskListWithinTheLimit } from '@/board/taskList/models/taskList'
 

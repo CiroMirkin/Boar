@@ -1,6 +1,10 @@
 import BusinessError from '@/errors/businessError'
 import { boardModel } from '../../models/board'
-import { changeNameParams } from '../../../redux/useCase'
+import { boardUseCaseParams } from '../actions'
+
+interface changeNameParams extends boardUseCaseParams { 
+	newName: string 
+}
 
 export function changeBoardName({ board, newName }: changeNameParams): boardModel {
 	if (!newName.trim()) throw new BusinessError('El tablero debe tener un nobmre.')

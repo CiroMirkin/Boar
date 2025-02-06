@@ -1,4 +1,4 @@
-import { RootState } from "@/redux/store";
+import { RootState } from "@/store";
 import { Reminder } from "../models/reminder";
 import { useSelector } from "react-redux";
 

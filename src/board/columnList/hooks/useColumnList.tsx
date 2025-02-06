@@ -1,5 +1,5 @@
 import { ColumnList } from '@/board/columnList/models/columnList'
-import { RootState } from '@/redux/store'
+import { RootState } from '@/store'
 import { useSelector } from 'react-redux'
 
 export const useColumnList = (): ColumnList => {

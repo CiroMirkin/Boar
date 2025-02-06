@@ -1,5 +1,5 @@
 import { isItWithinTheLimitOfColumns } from '@/board/columnList/models/columnList'
-import { columnUseCaseParams } from '../../../../redux/useCase'
+import { columnUseCaseParams } from '../actions'
 import { Column } from '../../models/column' 
 
 export function addColumnAtTheEnd({ columnList, column }: columnUseCaseParams): Column[] {

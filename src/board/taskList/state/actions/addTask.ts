@@ -1,5 +1,5 @@
 import { TaskListInEachColumn, isThisTaskListWithinTheLimit } from '@/board/taskList/models/taskList'
-import { taskUseCaseParams } from '../../../../redux/useCase'
+import { taskUseCaseParams } from '../actions'
 import { getIndexOfColumnInColumnList } from '../../../columnList/models/column'
 
 export function addTaskInFirstColumn({

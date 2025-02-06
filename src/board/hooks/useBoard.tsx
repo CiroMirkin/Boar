@@ -1,5 +1,5 @@
 import { boardModel } from '@/board/models/board'
-import { RootState } from '@/redux/store'
+import { RootState } from '@/store'
 import { useSelector } from 'react-redux'
 
 export const useBoard = (): boardModel => {

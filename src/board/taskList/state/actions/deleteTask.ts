@@ -1,5 +1,5 @@
 import { getIndexOfColumnInColumnList } from '../../../columnList/models/column'
-import { taskUseCaseParams } from '../../../../redux/useCase'
+import { taskUseCaseParams } from '../actions'
 import { TaskList } from '@/board/taskList/models/taskList'
 
 export function deleteThisTask({ taskListInEachColumn, task }: taskUseCaseParams): TaskList[] {

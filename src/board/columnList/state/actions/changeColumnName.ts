@@ -1,4 +1,4 @@
-import { columnUseCaseParams } from '../../../../redux/useCase'
+import { columnUseCaseParams } from '../actions'
 import { Column, isThisColumnNameValid } from '../../models/column'
 
 interface changeNameOfColumnParams extends columnUseCaseParams {
