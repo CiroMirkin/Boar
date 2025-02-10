@@ -12,6 +12,7 @@ import {
 } from '../models/column'
 import { Input } from '@/ui/input'
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export function AddNewColumnForm() {
 	const [newColumnName, setNewColumnName] = useState('')
@@ -54,12 +55,13 @@ export function AddNewColumnForm() {
 		}
 	}
 
+	const { t } = useTranslation()
 	return (
 		<li className='self-center sm:self-end flex w-full max-w-sm gap-1.5'>
 			<Input
 				type='text'
-				aria-label='Crear columna'
-				placeholder='Nombre de la columna'
+				aria-label={t('settings.columns.new_column_btn')}
+				placeholder={t('settings.columns.new_column_input_placeholder')}
 				className='w-full'
 				value={newColumnName}
 				onChange={handleChange}
@@ -67,7 +69,7 @@ export function AddNewColumnForm() {
 			/>
 			<Button
 				onClick={() => handleClick(addNewColumn)}
-				title='Crear columna'
+				title={t('settings.columns.new_column_btn')}
 				disabled={theNewColumnNameIsValid}
 			>
 				<Plus size={iconSize} />

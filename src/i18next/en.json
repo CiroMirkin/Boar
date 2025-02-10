@@ -53,6 +53,7 @@
             "section_title": "Columns",
             "delete_column_btn": "Delete",
             "delete_column_warning": "Are you sure you want to delete column",
+            "new_column_btn": "Create column",
             "new_column_input_placeholder": "New column name"
         },
         "reminder": {
