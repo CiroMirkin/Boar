@@ -1,0 +1,69 @@
+{
+    "board_description": {
+        "p1": "Boar is an application that aims to help you with your daily or weekly tasks through a dashboard.",
+        "p2": "In the first column of the dashboard you can create your tasks and when they reach the last column you can archive them."
+    },
+
+    "board_name": "Basic board",
+    "first_column": "Standby",
+    "second_column": "In progress",
+    "third_column": "Completed",
+    "new_task_placeholder": "New task...",
+    "archive_task_list_btn": "Archive tasks",
+ 
+    "task_buttons": {
+        "next_btn": "Forward",
+        "prev_btn": "Backward",
+        "copy_text": "Copy text",
+        "archive": "Archive",
+        "delete": "Delete"
+    },
+
+    "menu": {
+        "board": "Board",
+        "configs": "Settings",
+        "archive": "Archive",
+        "help": "Help"
+    },
+
+    "archive": {
+        "empty_archive": "There are no archived tasks yet.",
+        "archive_to_pdf_btn": "Download file as pdf",
+        "return_task_to_board_btn": "Return task to board",
+        "return_task_to_board_toast": "The task back to the last column.",
+        "delete_task_btn": "Delete",
+        "delete_task_warning": "Are you sure you want to delete this task?",
+        "clean_archive_btn": "Clean archive",
+        "clean_archive_warning": "Are you sure you want to delete all archived tasks?"
+    },
+
+    "settings": {
+        "board": {
+            "change_board_name_section_title": "Board",
+            "change_board_name_input_label": "Name",
+            "change_board_name_input_placeholder": "Basic board"
+        },
+        "columns": {
+            "section_title": "Columns",
+            "delete_column_btn": "Delete",
+            "delete_column_warning": "Are you sure you want to delete column",
+            "new_column_input_placeholder": "New column name"
+        },
+        "reminder": {
+            "section_title": "Create reminder",
+            "section_description": "Each time a task reaches to the indicated column, a reminder will be displayed on the screen.",
+            "select_column_label": "Select a column",
+            "select_column_default_option": "Columns",
+            "reminder_description_input_label": "Write a description",
+            "reminder_description_input_placeholder": "Don't forget to...",
+            "create_reminder_btn": "Create",
+            "created_toast": "The reminder has been created!"
+        }
+    },
+
+    "help": {
+        "h2": "What is Boar?",
+        "found_a_problem_section": "Have you found a problem?",
+        "report_btn": "Report it"
+    }
+}
