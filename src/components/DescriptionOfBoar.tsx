@@ -1,14 +1,13 @@
+import { useTranslation } from "react-i18next"
+
 export function DescriptionOfBoar() {
+	const { t } = useTranslation()
 	return (
 		<div className='flex flex-col gap-y-2'>
 			<p>
-				<span className='font-medium'>Boar</span> es un aplicación que busca ayudarte con
-				tus tareas diarias o semanales a través de un tablero.
+				<span className='font-medium'>Boar</span> { t('board_description.p1') }
 			</p>
-			<p>
-				En la primer columna del tablero puedes crear tus tareas y cuando lleguen a la
-				última puedes archivarlas.
-			</p>
+			<p>{ t('board_description.p2') }</p>
 		</div>
 	)
 }
