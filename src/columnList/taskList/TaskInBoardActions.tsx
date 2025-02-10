@@ -14,6 +14,7 @@ import getErrorMessageForTheUser from '@/utils/getErrorMessageForTheUser'
 import { archiveTask } from '@/archive/state/archiveReducer'
 import { ToastAction } from '@/ui/toast'
 import { taskModel } from '@/columnList/taskList/models/task'
+import { useTranslation } from 'react-i18next'
 
 export function TaskInBoardActions() {
 	const data = useContext(TaskContext)
@@ -57,6 +58,8 @@ export function TaskInBoardActions() {
 			})
 		}
 	}
+
+	const { t } = useTranslation()
 	return (
 		<>
 			<div className='w-full grid grid-flow-col justify-stretch gap-1.5'>
@@ -66,7 +69,7 @@ export function TaskInBoardActions() {
 					variant={isTheTaskInTheFirstColumn ? 'ghost' : 'default'}
 					onClick={() => handleClick(moveTaskToPrevColumnAction)}
 				>
-					Retroceder
+					{ t('task_buttons.prev_btn') }
 				</Button>
 				<Button
 					size='sm'
@@ -74,7 +77,7 @@ export function TaskInBoardActions() {
 					variant={isTheTaskInTheLastColumn ? 'ghost' : 'default'}
 					onClick={() => handleClick(moveTaskToNextColumnAction)}
 				>
-					Avanzar
+					{ t('task_buttons.next_btn') }
 				</Button>
 			</div>
 			<Button
@@ -83,7 +86,7 @@ export function TaskInBoardActions() {
 				className='w-full'
 				onClick={() => copyTextToClipboard()}
 			>
-				Copiar texto
+				{ t('task_buttons.copy_text') }
 			</Button>
 			{isTheTaskInTheLastColumn && (
 				<Button
@@ -92,7 +95,7 @@ export function TaskInBoardActions() {
 					className='w-full'
 					onClick={() => handleClick(archiveTaskAction)}
 				>
-					Archivar
+					{ t('task_buttons.archive') }
 				</Button>
 			)}
 			<Button
@@ -101,7 +104,7 @@ export function TaskInBoardActions() {
 				className='w-full'
 				onClick={askForConfirmationToDeleteTheTask}
 			>
-				Eliminar
+				{ t('task_buttons.delete') }
 			</Button>
 		</>
 	)
