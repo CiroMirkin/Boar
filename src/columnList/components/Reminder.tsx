@@ -16,8 +16,10 @@ import { addReminder } from "@/columnList/state/columnListReducer"
 import getErrorMessageForTheUser from "@/utils/getErrorMessageForTheUser"
 import { useReminderInfo } from "@/columnList/hooks/useReminderInfo"
 import { useColumnList } from "@/columnList/hooks/useColumnList"
+import { useTranslation } from "react-i18next"
 
 function Reminder({ }) {
+    const { t } = useTranslation()
     const columnList = useColumnList()
     const reminder = useReminderInfo()
     const [reminderText, setReminderText] = useState(reminder.text as string)
@@ -35,7 +37,7 @@ function Reminder({ }) {
         try {
 			dispatch(addReminder(newReminder))
             toast({
-				description: "Recordatorio creado!",
+				description: t('settings.reminder.created_toast'),
 				duration: 3000,
 			})
 		} catch (error) {
@@ -54,14 +56,14 @@ function Reminder({ }) {
 
     return (
         <>
-            <h2 className='text-2xl'>Crear recordatorio</h2>
-			<p className="opacity-75">Cada vez que una tarea llegué a la columna indicada se mostrara el recordatorio en pantalla.</p>
+            <h2 className='text-2xl'>{ t('settings.reminder.section_title') }</h2>
+			<p className="opacity-75">{ t('settings.reminder.section_description') }</p>
             <div className="max-w-2xl py-5 grid gap-3">
                 <div className='grid mr-2 w-full items-center gap-1.5'>
-                    <Label>Selecciona una columna</Label>
+                    <Label>{ t('settings.reminder.select_column_label') }</Label>
                     <Select value={reminderColumnPosition} onValueChange={(value) => setReminderColumnPosition(value)}>
                         <SelectTrigger className="w-full">
-                            <SelectValue placeholder="Columnas" />
+                            <SelectValue placeholder={t('settings.reminder.select_column_default_option')} />
                         </SelectTrigger>
                         <SelectContent>
                             { columnList.map(column => 
@@ -74,18 +76,18 @@ function Reminder({ }) {
                 </div>
 
                 <div className='grid mr-2 w-full items-center gap-1.5'>
-                    <Label htmlFor='reminder-text'>Escribe la descripción</Label>
+                    <Label htmlFor='reminder-text'>{ t('settings.reminder.reminder_description_input_label') }</Label>
                     <Input
                         type='text'
                         id='reminder-text'
                         value={reminderText}
                         onChange={handleChange}
-                        placeholder='No olvides...'
+                        placeholder={ t('settings.reminder.reminder_description_input_placeholder') }
                     />
                 </div>
 
                 <Button onClick={handleClick} variant='ghost'>
-                    Crear
+                    { t('settings.reminder.create_reminder_btn') }
                 </Button>
             </div>
         </>

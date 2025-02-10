@@ -9,9 +9,11 @@ import { Archive } from 'lucide-react'
 import { iconSize } from '@/configs/iconsConstants'
 import getErrorMessageForTheUser from '@/utils/getErrorMessageForTheUser'
 import { useCheckForTasksInLastColumn } from '@/columnList/hooks/useCheckForTasksInLastColumn'
+import { useTranslation } from 'react-i18next'
 
 export function ArchiveTaskListButton() {
 	const { toast } = useToast()
+	const { t } = useTranslation()
 
 	const dispatch = useDispatch()
 
@@ -23,7 +25,7 @@ export function ArchiveTaskListButton() {
 			dispatch(archiveTaskListAtLastColumn(taskListInEachColumn))
 			dispatch(cleanTheLastTaskList())
 			toast({
-				description: 'Consulta las tareas archivadas en el menú.',
+				description: t('archive_task_list_toast'),
 				duration: 3000,
 			})
 		} catch (error) {
@@ -42,7 +44,7 @@ export function ArchiveTaskListButton() {
 			className='w-full'
 			disabled={canUserArchiveTask}
 		>
-			<Archive size={iconSize} className='mr-2' /> Archivar tareas
+			<Archive size={iconSize} className='mr-2' /> { t('archive_task_list_btn') }
 		</Button>
 	)
 }

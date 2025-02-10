@@ -12,6 +12,7 @@ import { useToast } from '@/ui/use-toast'
 import { useBoard } from '@/board/hooks/useBoard'
 import { BoardRepository } from '@/board/models/boardRepository'
 import LocalStorageBoardRepository from '@/board/state/localstorageBoard'
+import { useTranslation } from 'react-i18next'
 
 const boardRepository: BoardRepository = new LocalStorageBoardRepository()
 
@@ -50,19 +51,21 @@ export function ChangeBoardName({ }) {
 			setBoardName(newBoardName)
 		}
 	}
+
+	const { t } = useTranslation()
 	return (
 		<>
-			<h2 className='text-2xl'>Tablero</h2>
+			<h2 className='text-2xl'>{ t('settings.board.change_board_name_section_title') }</h2>
 			<div className='my-5 flex items-end'>
 				<div className='grid mr-2 w-full max-w-sm items-center gap-1.5'>
-					<Label htmlFor='board-name'>Nombre</Label>
+					<Label htmlFor='board-name'>{ t('settings.board.change_board_name_input_label') }</Label>
 					<Input
 						type='text'
 						id='board-name'
 						value={boardName}
 						onChange={handleChange}
 						disabled={inputDisabled}
-						placeholder='Nombre del tablero'
+						placeholder={t('settings.board.change_board_name_input_placeholder')}
 					/>
 				</div>
 				<Button onClick={handleClick} variant='ghost'>

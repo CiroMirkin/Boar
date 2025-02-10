@@ -6,12 +6,14 @@ import { deleteArchivedTask } from '@/archive/state/archiveReducer'
 import { useToast } from '@/ui/use-toast'
 import { addTaskAtLastColumn } from '@/columnList/taskList/state/taskListInEachColumnReducer'
 import { useAskForConfirmationToast } from '@/hooks/useAskForConfirmationToast'
+import { useTranslation } from 'react-i18next'
 
 export function TaskInArchiveActions() {
+	const { t } = useTranslation()
 	const { deleteTaskAction, returnTaskToLastColumnAction } = useActionsForTaskInArchive()
 
 	const askForConfirmationToDeleteTheTask = useAskForConfirmationToast({
-		confirmationText: '¿Seguro que quieres eliminar esta tarea?',
+		confirmationText: t('archive.delete_task_warning'),
 		action: deleteTaskAction,
 	})
 
@@ -23,7 +25,7 @@ export function TaskInArchiveActions() {
 				variant='ghost'
 				className='w-full'
 			>
-				Regresar tarea al tablero
+				{ t('archive.return_task_to_board_btn') }
 			</Button>
 			<Button
 				size='sm'
@@ -31,7 +33,7 @@ export function TaskInArchiveActions() {
 				className='w-full'
 				onClick={askForConfirmationToDeleteTheTask}
 			>
-				Eliminar
+				{ t('archive.delete_task_btn') }
 			</Button>
 		</>
 	)
@@ -39,6 +41,7 @@ export function TaskInArchiveActions() {
 
 const useActionsForTaskInArchive = () => {
 	const { toast } = useToast()
+	const { t } = useTranslation()
 	const data = useContext(TaskContext)
 	const dispatch = useDispatch()
 
@@ -49,7 +52,7 @@ const useActionsForTaskInArchive = () => {
 		dispatch(addTaskAtLastColumn(data))
 		dispatch(deleteArchivedTask(data))
 		toast({
-			description: 'La tarea regreso a la última columna.',
+			description: t('archive.return_task_to_board_toast'),
 			duration: 3000,
 		})
 	}

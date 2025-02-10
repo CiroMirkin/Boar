@@ -10,12 +10,14 @@ import { Input } from '@/ui/input'
 import { deleteTheTaskListOfThisColumn } from '@/columnList/taskList/state/taskListInEachColumnReducer'
 import getErrorMessageForTheUser from '@/utils/getErrorMessageForTheUser'
 import { useAskForConfirmationToast } from '@/hooks/useAskForConfirmationToast'
+import { useTranslation } from 'react-i18next'
 
 interface ConfigColumnParams {
 	column: Column
 }
 
 export function ConfigColumn({ column }: ConfigColumnParams) {
+	const { t } = useTranslation()
 	const [showChangeColumnNameInput, setShowChangeColumnNameInput] = useState(false)
 	const [columnName, setColumnName] = useState(column.name)
 	const updateBoardData = useDispatch()
@@ -34,7 +36,7 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 	}
 
 	const askForConfirmationToDeleteTheColumn = useAskForConfirmationToast({
-		confirmationText: `¿Seguro que quieres eliminar la columna "${columnName}"?`,
+		confirmationText: `${t('settings.columns.delete_column_warning')} "${columnName}"?`,
 		action: deleteColumnHandle,
 	})
 
@@ -69,7 +71,7 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 				onClick={() => handleClick(askForConfirmationToDeleteTheColumn)}
 				variant='destructiveGhost'
 			>
-				<Trash2 size={iconSize} className='mr-2' /> Eliminar
+				<Trash2 size={iconSize} className='mr-2' /> { t('settings.columns.delete_column_btn') }
 			</Button>
 		</li>
 	)

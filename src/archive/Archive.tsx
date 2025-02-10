@@ -11,10 +11,12 @@ import { useEffect } from 'react'
 import { useAskForConfirmationToast } from '@/hooks/useAskForConfirmationToast'
 import { useArchive } from '@/archive/hooks/useArchive'
 import { downloadArchiveLikePDF } from '@/utils/downloadArchiveLikePDF'
+import { useTranslation } from 'react-i18next'
 
 const archiveRepository: ArchiveRepository = new LocalStorageArchiveRepository()
 
 export function Archive() {
+	const { t } = useTranslation()
 	const boardArchive = useArchive()
 
 	useEffect(() => archiveRepository.save(boardArchive), [boardArchive])
@@ -27,13 +29,13 @@ export function Archive() {
 
 	const cleanTheWholeArchive = () => dispatch(cleanArchive())
 	const askForConfirmationToCleanTheWholeArchive = useAskForConfirmationToast({
-		confirmationText: '¿Seguro que quieres eliminar todas las tareas archivadas?',
+		confirmationText: t('archive.clean_archive_warning'),
 		action: cleanTheWholeArchive,
 	})
 
 	return (
 		<>
-			<Header title='Archivo' whereUserIs={USER_IS_IN.ARCHIVE} />
+			<Header title={t('menu.archive')} whereUserIs={USER_IS_IN.ARCHIVE} />
 			<div className='mx-6 my-4 flex flex-col gap-y-2'>
 				{archive.length === 0 ? (
 					<EmptyArchive />
@@ -44,13 +46,13 @@ export function Archive() {
 							variant='ghost'
 							onClick={() => downloadArchiveLikePDF({ archive: boardArchive })}
 						>
-							Descargar archivo como PDF
+							{ t('archive.archive_to_pdf_btn') }
 						</Button>
 						<Button
 							variant='destructiveGhost'
 							onClick={askForConfirmationToCleanTheWholeArchive}
 						>
-							Vaciar archivo
+							{ t('archive.clean_archive_btn') }
 						</Button>
 					</>
 				)}
@@ -60,10 +62,11 @@ export function Archive() {
 }
 
 function EmptyArchive() {
+	const { t } = useTranslation()
 	return (
 		<Card className='py-2 px-4'>
 			<CardHeader>
-				<CardTitle>Aún no hay tareas archivadas.</CardTitle>
+				<CardTitle>{ t('archive.empty_archive') }</CardTitle>
 			</CardHeader>
 		</Card>
 	)
