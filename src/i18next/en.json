@@ -11,6 +11,7 @@
     "new_task_placeholder": "New task...",
     "new_task_btn_title": "Create task",
     "archive_task_list_btn": "Archive tasks",
+    "archive_task_list_toast": "Browse through archived tasks in the menu.",
  
     "task_buttons": {
         "next_btn": "Forward",

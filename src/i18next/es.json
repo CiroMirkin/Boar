@@ -11,6 +11,7 @@
     "new_task_placeholder": "Nueva tarea...",
     "new_task_btn_title": "Crear tarea",
     "archive_task_list_btn": "Archivar tareas",
+    "archive_task_list_toast": "Consulta por las tareas archivadas en el menú.",
 
     "task_buttons": {
         "next_btn": "Avanzar",
