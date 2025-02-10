@@ -17,8 +17,11 @@
         "next_btn": "Avanzar",
         "prev_btn": "Retroceder",
         "copy_text": "Copiar texto",
+        "copy_text_toast": "Texto copiado al portapapeles.",
         "archive": "Archivar",
-        "delete": "Eliminar"
+        "archive_toast": "La tarea se guardo en el archivo.",
+        "delete": "Eliminar",
+        "delete_task_warning": "¿Seguro desea eliminar esta tarea?"
     },
 
     "menu": {

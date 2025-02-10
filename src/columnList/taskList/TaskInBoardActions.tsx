@@ -17,6 +17,7 @@ import { taskModel } from '@/columnList/taskList/models/task'
 import { useTranslation } from 'react-i18next'
 
 export function TaskInBoardActions() {
+	const { t } = useTranslation()
 	const data = useContext(TaskContext)
 	const isTheTaskInTheFirstColumn = useCheckIfThisTaskIsInTheFirstColumn(data)
 	const isTheTaskInTheLastColumn = useCheckIfTaskIsInTheLastColumn(data)
@@ -34,15 +35,15 @@ export function TaskInBoardActions() {
 		isTheTaskInTheFirstColumn
 			? handleClick(deleteTaskAction)
 			: toast({
-					description: `¿Seguro que quieres eliminar esta tarea?`,
+					description: t('task_buttons.delete_task_warning'),
 					variant: 'destructive',
 					duration: 3000,
 					action: (
 						<ToastAction
-							altText='Eliminar'
+							altText={t('task_buttons.delete')}
 							onClick={() => handleClick(deleteTaskAction)}
 						>
-							Eliminar
+							{ t('task_buttons.delete') }
 						</ToastAction>
 					),
 				})
@@ -59,7 +60,6 @@ export function TaskInBoardActions() {
 		}
 	}
 
-	const { t } = useTranslation()
 	return (
 		<>
 			<div className='w-full grid grid-flow-col justify-stretch gap-1.5'>
@@ -111,6 +111,7 @@ export function TaskInBoardActions() {
 }
 
 const useActionsForTaskInBoard = (data: taskModel) => {
+	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const { toast } = useToast()
 
@@ -118,7 +119,7 @@ const useActionsForTaskInBoard = (data: taskModel) => {
 		const text = data.descriptionText
 		navigator.clipboard.writeText(text).then(() => {
 			toast({
-				description: 'Texto copiado al portapapeles',
+				description: t('task_buttons.copy_text_toast'),
 				duration: 3000,
 			})
 		})
@@ -132,7 +133,7 @@ const useActionsForTaskInBoard = (data: taskModel) => {
 		dispatch(archiveTask(data))
 		dispatch(deleteTask(data))
 		toast({
-			description: 'La tarea se guardo en el archivo.',
+			description: t('task_buttons.archive_toast'),
 			duration: 3000,
 		})
 	}

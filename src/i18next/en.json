@@ -17,8 +17,11 @@
         "next_btn": "Forward",
         "prev_btn": "Backward",
         "copy_text": "Copy text",
+        "copy_text_toast": "Text copied to clipboard.",
         "archive": "Archive",
-        "delete": "Delete"
+        "archive_toast": "The task was saved in the file.",
+        "delete": "Delete",
+        "delete_task_warning": "Are you sure you want to delete this task?"
     },
 
     "menu": {
