@@ -9,6 +9,7 @@
     "second_column": "In progress",
     "third_column": "Completed",
     "new_task_placeholder": "New task...",
+    "new_task_btn_title": "Create task",
     "archive_task_list_btn": "Archive tasks",
  
     "task_buttons": {

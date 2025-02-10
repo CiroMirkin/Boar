@@ -8,6 +8,7 @@ import getErrorMessageForTheUser from '@/utils/getErrorMessageForTheUser'
 import { Plus } from 'lucide-react'
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 export function AddNewTaskInput() {
 	const [newTaskDescription, setNewTaskDescription] = useState('')
@@ -40,6 +41,7 @@ export function AddNewTaskInput() {
 		if (e.ctrlKey && e.key === 'Enter') handleClick()
 	}
 
+	const { t } = useTranslation()
 	return (
 		<>
 			<Textarea
@@ -47,13 +49,13 @@ export function AddNewTaskInput() {
 				className='mr-1.5'
 				onChange={handleChange}
 				onKeyDown={handleKeyDown}
-				placeholder='Nueva tarea...'
+				placeholder={t('new_task_placeholder')}
 			/>
 			<Button
 				onClick={handleClick}
 				variant='ghost'
 				disabled={canUserUseTheAddTaskInput}
-				title='Crear tarea'
+				title={t('new_task_btn_title')}
 			>
 				<Plus size={iconSize} />
 			</Button>

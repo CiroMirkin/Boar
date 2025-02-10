@@ -9,6 +9,7 @@
     "second_column": "Procesando",
     "third_column": "Terminado",
     "new_task_placeholder": "Nueva tarea...",
+    "new_task_btn_title": "Crear tarea",
     "archive_task_list_btn": "Archivar tareas",
 
     "task_buttons": {
