@@ -35,7 +35,7 @@ export function Archive() {
 
 	return (
 		<>
-			<Header title='Archivo' whereUserIs={USER_IS_IN.ARCHIVE} />
+			<Header title={t('menu.archive')} whereUserIs={USER_IS_IN.ARCHIVE} />
 			<div className='mx-6 my-4 flex flex-col gap-y-2'>
 				{archive.length === 0 ? (
 					<EmptyArchive />
