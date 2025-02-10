@@ -6,14 +6,16 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Button } from '@/ui/button'
 import { Github } from 'lucide-react'
 import { iconSize } from '@/configs/iconsConstants'
+import { useTranslation } from 'react-i18next'
 
 export function Help() {
+	const { t } = useTranslation()
 	return (
 		<>
-			<Header title='Ayuda' whereUserIs={USER_IS_IN.HELP} />
+			<Header title={t('menu.help')} whereUserIs={USER_IS_IN.HELP} />
 			<div className='w-full px-6 md:px-11'>
 				<section className='mb-4'>
-					<h2 className='mb-2 text-2xl'>¿Que es Boar?</h2>
+					<h2 className='mb-2 text-2xl'>{ t('help.h2') }</h2>
 					<DescriptionOfBoar />
 				</section>
 				<Separator />
@@ -70,10 +72,10 @@ export function Help() {
 					</Accordion>
 				</section>
 				<section className='mb-4'>
-					<h2 className='mb-2 text-2xl'>¿Ha encontrado un problema?</h2>
+					<h2 className='mb-2 text-2xl'>{ t('help.found_a_problem_section') }</h2>
 					<a href='https://github.com/CiroMirkin/Boar/issues' target='_blank'>
 						<Button variant='link' className='pl-0'>
-							<Github size={iconSize} className='mr-2' /> Reportalo
+							<Github size={iconSize} className='mr-2' /> { t('help.report_btn') }
 						</Button>
 					</a>
 				</section>
