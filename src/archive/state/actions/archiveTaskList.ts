@@ -1,5 +1,5 @@
 import BusinessError from '@/errors/businessError'
-import { TaskList } from '@/pages/board/taskList/models/taskList'
+import { TaskList } from '@/columnList/taskList/models/taskList' 
 import { getFullDate } from '../../../utils/getTime'
 import {
 	Archive,
