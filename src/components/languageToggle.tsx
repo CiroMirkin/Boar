@@ -28,9 +28,9 @@ export function LanguageToggle() {
 		document.body.dir = i18n.dir()
 	}
 
+	const userPrerredLanguage = usePreferredLanguage().slice(0, 2)
 	useEffect(() => {
-		const userPrerredLanguage = usePreferredLanguage().slice(0, 2)
-		if(userPrerredLanguage == "es" || userPrerredLanguage == 'en') {
+		if(userPrerredLanguage == 'en') {
 			setLanguage(userPrerredLanguage)
 			i18next.changeLanguage(userPrerredLanguage)
 			document.body.dir = i18n.dir()
