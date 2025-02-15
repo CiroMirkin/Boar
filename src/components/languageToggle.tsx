@@ -10,8 +10,7 @@ import { Languages } from 'lucide-react'
 import { iconSize } from '@/configs/iconsConstants'
 import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
-import { useLocalStorage, usePreferredLanguage  } from "@uidotdev/usehooks"
-import { useEffect } from 'react'
+import { useLocalStorage  } from "@uidotdev/usehooks"
 
 export function LanguageToggle() {
     const [language, setLanguage] = useLocalStorage("language", "es")
@@ -27,15 +26,6 @@ export function LanguageToggle() {
 		i18next.changeLanguage(value)
 		document.body.dir = i18n.dir()
 	}
-
-	const userPrerredLanguage = usePreferredLanguage().slice(0, 2)
-	useEffect(() => {
-		if(userPrerredLanguage == 'en') {
-			setLanguage(userPrerredLanguage)
-			i18next.changeLanguage(userPrerredLanguage)
-			document.body.dir = i18n.dir()
-		}
-	}, [])
 
     return (
         <DropdownMenuSub>
