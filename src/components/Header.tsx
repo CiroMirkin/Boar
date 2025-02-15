@@ -18,16 +18,21 @@ import { Link } from 'react-router-dom'
 import { iconSize } from '@/configs/iconsConstants'
 import { USER_IS_IN } from './userIsIn'
 import { useTranslation } from 'react-i18next'
-import { useState } from 'react'
 import i18next from 'i18next'
+import { useLocalStorage } from "@uidotdev/usehooks"
 
 interface HeaderProps {
 	title: string
 	whereUserIs?: USER_IS_IN
 }
 export function Header({ title, whereUserIs }: HeaderProps) {
-  	const [position, setPosition] = useState("es")
+  	const [position, setPosition] = useLocalStorage("language", "es")
 	const { t, i18n } = useTranslation()
+
+	if(i18n.language !== position) {
+		i18next.changeLanguage(position)
+		document.body.dir = i18n.dir()
+	}
 
 	const handleValueChange = (value: string) => {
 		setPosition(value)
