@@ -2,44 +2,25 @@ import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
-	DropdownMenuRadioGroup,
-	DropdownMenuRadioItem,
 	DropdownMenuLabel,
-	DropdownMenuPortal,
 	DropdownMenuSeparator,
-	DropdownMenuSub,
-	DropdownMenuSubContent,
-	DropdownMenuSubTrigger,
 	DropdownMenuTrigger,
 } from '@/ui/dropdown-menu'
 import { Button } from '@/ui/button'
-import { Archive, CircleHelp, Columns3, Github, Menu, Settings, Languages } from 'lucide-react'
+import { Archive, CircleHelp, Columns3, Github, Menu, Settings } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { iconSize } from '@/configs/iconsConstants'
 import { USER_IS_IN } from './userIsIn'
+import { LanguageToggle } from './languageToggle'
 import { useTranslation } from 'react-i18next'
-import i18next from 'i18next'
-import { useLocalStorage } from "@uidotdev/usehooks"
 
 interface HeaderProps {
 	title: string
 	whereUserIs?: USER_IS_IN
 }
 export function Header({ title, whereUserIs }: HeaderProps) {
-  	const [position, setPosition] = useLocalStorage("language", "es")
-	const { t, i18n } = useTranslation()
-
-	if(i18n.language !== position) {
-		i18next.changeLanguage(position)
-		document.body.dir = i18n.dir()
-	}
-
-	const handleValueChange = (value: string) => {
-		setPosition(value)
-		i18next.changeLanguage(value)
-		document.body.dir = i18n.dir()
-	}
-
+	const { t } = useTranslation()
+	
 	return (
 		<header className='w-full px-6 md:px-11 py-7 flex justify-between items-start'>
 			<h1 className='text-4xl font-normal'>{title}</h1>
@@ -68,19 +49,7 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 						</Link>
 					</DropdownMenuItem>
 					<DropdownMenuSeparator />
-					<DropdownMenuSub>
-						<DropdownMenuSubTrigger>
-							<Languages size={iconSize} className='mr-2' /> { t('menu.language') }
-						</DropdownMenuSubTrigger>
-						<DropdownMenuPortal>
-							<DropdownMenuSubContent>
-								<DropdownMenuRadioGroup value={position} onValueChange={handleValueChange}>
-									<DropdownMenuRadioItem value="es">Español</DropdownMenuRadioItem>
-									<DropdownMenuRadioItem value="en">English</DropdownMenuRadioItem>
-								</DropdownMenuRadioGroup>
-							</DropdownMenuSubContent>
-						</DropdownMenuPortal>
-					</DropdownMenuSub>
+					<LanguageToggle />
 					<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.HELP && true}>
 						<Link to='/help' className='flex items-center'>
 							<CircleHelp size={iconSize} className='mr-2' /> { t('menu.help') }
