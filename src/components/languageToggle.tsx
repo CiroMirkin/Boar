@@ -11,6 +11,7 @@ import { iconSize } from '@/configs/iconsConstants'
 import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
 import { useLocalStorage, usePreferredLanguage  } from "@uidotdev/usehooks"
+import { useEffect } from 'react'
 
 export function LanguageToggle() {
     const [language, setLanguage] = useLocalStorage("language", "es")
@@ -20,18 +21,21 @@ export function LanguageToggle() {
 		i18next.changeLanguage(language)
 		document.body.dir = i18n.dir()
 	} 
-	else {
-		const userPrerredLanguage = usePreferredLanguage().slice(0, 2)
-		i18next.changeLanguage(userPrerredLanguage === "es" ? "es" : "en")
-		setLanguage(userPrerredLanguage === "es" ? "es" : "en")
-		document.body.dir = i18n.dir()
-	}
 	
 	const handleValueChange = (value: string) => {
 		setLanguage(value)
 		i18next.changeLanguage(value)
 		document.body.dir = i18n.dir()
 	}
+
+	useEffect(() => {
+		const userPrerredLanguage = usePreferredLanguage().slice(0, 2)
+		if(userPrerredLanguage == "es" || userPrerredLanguage == 'en') {
+			setLanguage(userPrerredLanguage)
+			i18next.changeLanguage(userPrerredLanguage)
+			document.body.dir = i18n.dir()
+		}
+	}, [])
 
     return (
         <DropdownMenuSub>
