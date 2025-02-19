@@ -3,10 +3,17 @@ import { BoardRepository } from '@/modules/board/models/boardRepository'
 import LocalStorageBoardRepository from '@/modules/board/state/localstorageBoard'
 import { changeBoardName } from '@/modules/board/state/actions/changeBoardName'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { ColorTheme, defaultColorTheme } from '@/configs/colors'
 
-interface InitialState extends boardModel {}
+interface InitialState {
+	board: boardModel
+	colorTheme: ColorTheme
+}
 const boardRepository: BoardRepository = new LocalStorageBoardRepository()
-const initialState: InitialState = boardRepository.getAll()
+const initialState: InitialState = {
+	colorTheme: {...defaultColorTheme},
+	board: boardRepository.getAll(),
+}
 
 export const boardSlice = createSlice({
 	name: 'board',
@@ -14,10 +21,15 @@ export const boardSlice = createSlice({
 	reducers: {
 		changeTheNameOfTheBoard: (state, action: PayloadAction<string>) => {
 			const newName = action.payload
-			state = changeBoardName({ board: state, newName })
+			state.board = changeBoardName({ board: state.board, newName })
+		},
+		setColorTheme: (state, action: PayloadAction<ColorTheme>) => {
+			const { bg, text } = action.payload
+			state.colorTheme.bg = bg
+			state.colorTheme.text = text
 		},
 	},
 })
 
-export const { changeTheNameOfTheBoard } = boardSlice.actions
+export const { changeTheNameOfTheBoard, setColorTheme } = boardSlice.actions
 export default boardSlice.reducer
