@@ -28,8 +28,10 @@ export function ColorTheme({}) {
 
     const dispatch = useDispatch() 
     const handleClick = (e: any) => {
-        const [bg, text] = getColorThemeFromId(e.target.id)
-        dispatch(setColorTheme({ bg, text }))
+        if(!!e.target.id) {
+            const [bg, text] = getColorThemeFromId(e.target.id)
+            dispatch(setColorTheme({ bg, text }))
+        }
     }
 
     return (
