@@ -26,7 +26,7 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 			<h1 className='text-4xl font-normal'>{title}</h1>
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
-					<Button variant='outline'>
+					<Button variant='outline' className='text-black'>
 						<Menu size={iconSize} />
 					</Button>
 				</DropdownMenuTrigger>

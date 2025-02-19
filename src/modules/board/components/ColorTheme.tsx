@@ -36,7 +36,10 @@ export function ColorTheme({}) {
 
     return (
     <>
-        <ul className="flex gap-2" onClick={handleClick}>{colorsList}</ul>
+		<h2 className='text-2xl'>Temas</h2>
+        <div className="max-w-2xl py-5 grid gap-3">
+            <ul className="flex flex-wrap gap-2" onClick={handleClick}>{colorsList}</ul>
+        </div>
     </>
     )
 }
