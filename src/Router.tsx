@@ -1,14 +1,14 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Board } from './board/Board'
-import { Archive } from './archive/Archive'
+import { Board } from './modules/board/Board'
+import { Archive } from './modules/archive/Archive'
 import { Configs } from './components/Configs'
 import { Erro404 } from './components/404'
 import { Help } from './components/Help'
-import ColumnListContainer from './columnList/ColumnListContainer'
+import ColumnListContainer from './modules/columnList/ColumnListContainer'
 import { Separator } from './ui/separator'
-import { ChangeBoardName } from './board/components/ChangeBoardName'
-import { ConfigColumns } from './columnList/components/ConfigColumns'
-import Reminder from './columnList/components/Reminder'
+import { ChangeBoardName } from './modules/board/components/ChangeBoardName'
+import { ConfigColumns } from './modules/columnList/components/ConfigColumns'
+import Reminder from './modules/columnList/components/Reminder'
 
 const ConfigsPage = () => (
     <Configs>

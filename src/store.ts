@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import columnListReducer from './columnList/state/columnListReducer'
-import taskListInEachColumnReducer from './columnList/taskList/state/taskListInEachColumnReducer'
-import archiveReducer from './archive/state/archiveReducer'
-import boardReducer from './board/state/boardReducer'
+import columnListReducer from './modules/columnList/state/columnListReducer'
+import taskListInEachColumnReducer from './modules/columnList/taskList/state/taskListInEachColumnReducer'
+import archiveReducer from './modules/archive/state/archiveReducer'
+import boardReducer from './modules/board/state/boardReducer'
 
 export const store = configureStore({
 	reducer: {
