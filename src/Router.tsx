@@ -9,7 +9,7 @@ import { Separator } from './ui/separator'
 import { ChangeBoardName } from './modules/board/components/ChangeBoardName'
 import { ConfigColumns } from './modules/columnList/components/ConfigColumns'
 import Reminder from './modules/columnList/components/Reminder'
-import { ColorTheme } from './modules/board/components/ColorTheme'
+import { ColorTheme } from './components/ColorTheme'
 
 const ConfigsPage = () => (
     <Configs>
