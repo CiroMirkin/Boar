@@ -11,7 +11,7 @@ import { Archive, CircleHelp, Columns3, Github, Menu, Settings } from 'lucide-re
 import { Link } from 'react-router-dom'
 import { iconSize } from '@/modules/shared/configs/iconsConstants'
 import { USER_IS_IN } from './userIsIn'
-import { LanguageToggle } from './languageToggle'
+import { LanguageToggle } from './LanguageToggle'
 import { useTranslation } from 'react-i18next'
 
 interface HeaderProps {
