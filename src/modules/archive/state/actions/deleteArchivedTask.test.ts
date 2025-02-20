@@ -1,6 +1,6 @@
 import { Archive } from '@/modules/archive/models/archive'
 import { deleteThisArchivedTask } from './deleteArchivedTask'
-import { getFullDate } from '@/utils/getTime'
+import { getFullDate } from '@/modules/shared/utils/getTime'
 import { emptyTask } from '@/modules/columnList/taskList/models/task' 
 
 describe('Eliminar una tarea del archivo.', () => {

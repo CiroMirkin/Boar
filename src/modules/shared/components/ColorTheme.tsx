@@ -1,7 +1,7 @@
-import { bg_dark_colors_list, bg_light_colors_list } from "@/configs/colors"
+import { bg_dark_colors_list, bg_light_colors_list } from "@/modules/shared/configs/colors"
 import { Card } from "@/ui/card"
 import { useDispatch } from "react-redux"
-import { setColorTheme } from "../modules/board/state/boardReducer"
+import { setColorTheme } from "../../board/state/boardReducer"
 import { useTranslation } from "react-i18next"
 import { useToast } from "@/ui/use-toast"
 

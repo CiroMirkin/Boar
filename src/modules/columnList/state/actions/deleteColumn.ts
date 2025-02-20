@@ -1,6 +1,6 @@
 import { Column } from '../../models/column'
 import { columnUseCaseParams } from '../actions'
-import BusinessError from '@/errors/businessError'
+import BusinessError from '@/modules/shared/errors/businessError'
 
 export function deleteThisColumn({ columnList, column }: columnUseCaseParams): Column[] {
 	if (columnList.length <= 2) throw new BusinessError('No puedes tener menos de dos columnas.')

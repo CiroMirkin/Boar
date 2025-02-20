@@ -1,11 +1,11 @@
-import { iconSize } from '@/configs/iconsConstants'
+import { iconSize } from '@/modules/shared/configs/iconsConstants'
 import { Button } from '@/ui/button'
 import { useToast } from '@/ui/use-toast'
 import { Plus } from 'lucide-react'
 import { useDispatch } from 'react-redux'
 import { addColumn } from '@/modules/columnList/state/columnListReducer'
 import { addEmptyTaskListAtTheEnd } from '@/modules/columnList/taskList/state/taskListInEachColumnReducer'
-import getErrorMessageForTheUser from '@/utils/getErrorMessageForTheUser'
+import getErrorMessageForTheUser from '@/modules/shared/utils/getErrorMessageForTheUser'
 import {
 	getBlankColumnWithoutPosition,
 	isThisColumnNameWithinTheLimitOfLetters,

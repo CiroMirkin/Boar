@@ -1,4 +1,4 @@
-import BusinessError from '@/errors/businessError'
+import BusinessError from '@/modules/shared/errors/businessError'
 import { taskModel } from './task'
 
 export type TaskList = taskModel[]

@@ -1,11 +1,11 @@
 import { Separator } from '@/ui/separator'
-import { DescriptionOfBoar } from './DescriptionOfBoar'
-import { Header } from './Header'
-import { USER_IS_IN } from './userIsIn'
+import { DescriptionOfBoar } from '../modules/shared/components/DescriptionOfBoar'
+import { Header } from '../modules/shared/components/Header'
+import { USER_IS_IN } from '../modules/shared/components/userIsIn'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/ui/accordion'
 import { Button } from '@/ui/button'
 import { Github } from 'lucide-react'
-import { iconSize } from '@/configs/iconsConstants'
+import { iconSize } from '@/modules/shared/configs/iconsConstants'
 import { useTranslation } from 'react-i18next'
 
 export function Help() {

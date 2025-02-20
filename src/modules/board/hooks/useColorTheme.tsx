@@ -1,4 +1,4 @@
-import { ColorTheme } from "@/configs/colors";
+import { ColorTheme } from "@/modules/shared/configs/colors";
 import { RootState } from '@/store'
 import { useState } from "react";
 import { useSelector } from 'react-redux'

@@ -1,4 +1,4 @@
-import BusinessError from '@/errors/businessError'
+import BusinessError from '@/modules/shared/errors/businessError'
 
 export interface boardModel {
 	id: string

@@ -5,11 +5,11 @@ import { changeColumnName, deleteColumn } from '@/modules/columnList/state/colum
 import { Button } from '../../../ui/button'
 import { useToast } from '../../../ui/use-toast'
 import { Pencil, Trash2 } from 'lucide-react'
-import { iconSize } from '@/configs/iconsConstants'
+import { iconSize } from '@/modules/shared/configs/iconsConstants'
 import { Input } from '@/ui/input'
 import { deleteTheTaskListOfThisColumn } from '@/modules/columnList/taskList/state/taskListInEachColumnReducer'
-import getErrorMessageForTheUser from '@/utils/getErrorMessageForTheUser'
-import { useAskForConfirmationToast } from '@/hooks/useAskForConfirmationToast'
+import getErrorMessageForTheUser from '@/modules/shared/utils/getErrorMessageForTheUser'
+import { useAskForConfirmationToast } from '@/modules/shared/hooks/useAskForConfirmationToast'
 import { useTranslation } from 'react-i18next'
 
 interface ConfigColumnParams {

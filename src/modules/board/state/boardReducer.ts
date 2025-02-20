@@ -3,7 +3,7 @@ import { BoardRepository } from '@/modules/board/models/boardRepository'
 import LocalStorageBoardRepository from '@/modules/board/state/localstorageBoard'
 import { changeBoardName } from '@/modules/board/state/actions/changeBoardName'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { ColorTheme, defaultColorTheme } from '@/configs/colors'
+import { ColorTheme, defaultColorTheme } from '@/modules/shared/configs/colors'
 
 interface InitialState {
 	board: boardModel
