@@ -16,7 +16,7 @@ export function Task({ data, children }: TaskProps) {
 
 	return (
 		<TaskContext.Provider value={data}>
-			<Card className='p-0 rounded-md border-2 border-black bg-card text-card-foreground shadow-sm'>
+			<Card className='p-0 rounded-md drop-shadow-md border-2 border-black bg-card text-card-foreground shadow-sm'>
 				<CardContent
 					onClick={() => setShow(!show)}
 					className='rounded-md hover:bg-accent px-3 py-1.5 text-xl'

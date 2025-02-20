@@ -9,7 +9,7 @@ export function Board({ children }: { children: React.ReactNode }) {
 	const { bg, text } = useColorTheme()
 	
 	return (
-		<div className={`h-full ${bg} ${text}`}>
+		<div className={`xl:h-screen sm:h-full ${bg} ${text}`}>
 			<Header title={data.name} whereUserIs={USER_IS_IN.BOARD} />
 				{ children }
 			<WelcomeDialog />

@@ -5,12 +5,12 @@ export interface ColorTheme {
 }
 
 export const defaultColorTheme: ColorTheme = {
-    bg: 'bg-blue-200', 
+    bg: 'bg-blue-100', 
     text: 'text-black',
 }
 
 export const bg_light_colors_list: readonly ColorTheme[] = Object.freeze([
-    { bg: 'bg-blue-200', text: 'text-black' },
+    { bg: 'bg-blue-100', text: 'text-black' },
     { bg: 'bg-blue-300', text: 'text-black' },
     { bg: 'bg-rose-200', text: 'text-black' },
     { bg: 'bg-rose-300', text: 'text-black' },
