@@ -24,9 +24,11 @@ export const boardSlice = createSlice({
 			state.board = changeBoardName({ board: state.board, newName })
 		},
 		setColorTheme: (state, action: PayloadAction<ColorTheme>) => {
-			const { bg, text } = action.payload
+			const { bg, text, task, column } = action.payload
 			state.colorTheme.bg = bg
 			state.colorTheme.text = text
+			state.colorTheme.task = task
+			state.colorTheme.column = column
 		},
 	},
 })
