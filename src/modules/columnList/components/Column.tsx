@@ -5,6 +5,7 @@ import { useCheckIfThisColumnIsTheFirst } from '@/modules/columnList/hooks/useCh
 import { useCheckIfThisColumnIsTheLast } from '@/modules/columnList/hooks/useCheckIfThisColumnIsTheLast'
 import { AddNewTaskInput } from './AddNewTaskInput'
 import { ArchiveTaskListButton } from './ArchiveTaskListButton'
+import { useColorTheme } from '@/modules/board/hooks/useColorTheme'
 
 const ColumnContext = createContext(columnNull)
 
@@ -14,9 +15,11 @@ interface ColumnProps {
 }
 
 export function Column({ data, children }: ColumnProps) {
+	const colorTheme = useColorTheme()
+	const columnClassName = `h-auto min-w-48 flex-1 flex flex-col justify-between rounded-lg ${colorTheme.column}`
 	return (
 		<ColumnContext.Provider value={data}>
-			<Card className='h-auto min-w-48 flex-1 flex flex-col justify-between rounded-lg' >
+			<Card className={columnClassName} >
 				<CardHeader>
 					<CardTitle>{data.name}</CardTitle>
 				</CardHeader>
