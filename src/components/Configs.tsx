@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import { Header } from '../modules/shared/components/Header'
-import { USER_IS_IN } from '../modules/shared/components/userIsIn'
+import { Header } from '../modules/shared/Header/Header'
+import { USER_IS_IN } from '../modules/shared/Header/userIsIn'
 import { useColorTheme } from '@/modules/board/hooks/useColorTheme'
 
 export function Configs({ children }: { children: React.ReactNode[]}) {
