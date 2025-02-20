@@ -47,7 +47,9 @@
         "board": {
             "change_board_name_section_title": "Board",
             "change_board_name_input_label": "Name",
-            "change_board_name_input_placeholder": "Basic board"
+            "change_board_name_input_placeholder": "Basic board",
+            "board_theme_section_title": "Board theme",
+            "set_board_theme_toast": "Theme established!"
         },
         "columns": {
             "section_title": "Columns",

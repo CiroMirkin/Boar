@@ -47,7 +47,9 @@
         "board": {
             "change_board_name_section_title": "Tablero",
             "change_board_name_input_label": "Nombre",
-            "change_board_name_input_placeholder": "Tablero básico"
+            "change_board_name_input_placeholder": "Tablero básico",
+            "board_theme_section_title": "Tema del tablero",
+            "set_board_theme_toast": "¡Tema establecido!"
         },
         "columns": {
             "section_title": "Columnas",

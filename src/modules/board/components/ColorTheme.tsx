@@ -2,6 +2,8 @@ import { bg_dark_colors_list, bg_light_colors_list } from "@/configs/colors"
 import { Card } from "@/ui/card"
 import { useDispatch } from "react-redux"
 import { setColorTheme } from "../state/boardReducer"
+import { useTranslation } from "react-i18next"
+import { useToast } from "@/ui/use-toast"
 
 const getColorThemeFromId = (id: string): string[] => id.split(',')
 
@@ -26,17 +28,23 @@ export function ColorTheme({}) {
 		)
 	})
 
+    const { t } = useTranslation() 
+    const { toast } = useToast()
     const dispatch = useDispatch() 
     const handleClick = (e: any) => {
         if(!!e.target.id) {
             const [bg, text] = getColorThemeFromId(e.target.id)
             dispatch(setColorTheme({ bg, text }))
+            toast({
+				description: t('settings.board.set_board_theme_toast'),
+				duration: 3000,
+			})
         }
     }
 
     return (
     <>
-		<h2 className='text-2xl'>Temas</h2>
+		<h2 className='text-2xl'>{ t('settings.board.board_theme_section_title') }</h2>
         <div className="max-w-2xl py-5 grid gap-3">
             <ul className="flex flex-wrap gap-2" onClick={handleClick}>{colorsList}</ul>
         </div>
