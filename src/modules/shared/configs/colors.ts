@@ -8,34 +8,6 @@ export interface ColorTheme {
 
 export const colorThemeList: readonly ColorTheme[] = Object.freeze([
 	{
-		id: 'blue',
-		bg: 'bg-blue-300',
-		text: 'text-black',
-		column: 'bg-blue-50',
-		task: 'bg-blue-100',
-	},
-	{
-		id: 'rose',
-		bg: 'bg-rose-300',
-		text: 'text-black',
-		column: 'bg-rose-50',
-		task: 'bg-rose-100',
-	},
-	{
-		id: 'teal',
-		bg: 'bg-teal-300',
-		text: 'text-black',
-		column: 'bg-teal-50',
-		task: 'bg-teal-100',
-	},
-	{
-		id: 'green',
-		bg: 'bg-green-300',
-		text: 'text-black',
-		column: 'bg-green-50',
-		task: 'bg-green-100',
-	},
-	{
 		id: 'orange',
 		bg: 'bg-orange-300',
 		text: 'text-black',
@@ -50,11 +22,32 @@ export const colorThemeList: readonly ColorTheme[] = Object.freeze([
 		task: 'bg-amber-100',
 	},
 	{
-		id: 'fuchsia',
-		bg: 'bg-fuchsia-300',
+		id: 'lime',
+		bg: 'bg-lime-300',
 		text: 'text-black',
-		column: 'bg-fuchsia-50',
-		task: 'bg-fuchsia-100',
+		column: 'bg-lime-50',
+		task: 'bg-lime-100',
+	},
+	{
+		id: 'green',
+		bg: 'bg-green-300',
+		text: 'text-black',
+		column: 'bg-green-50',
+		task: 'bg-green-100',
+	},
+	{
+		id: 'teal',
+		bg: 'bg-teal-300',
+		text: 'text-black',
+		column: 'bg-teal-50',
+		task: 'bg-teal-100',
+	},
+	{
+		id: 'blue',
+		bg: 'bg-blue-300',
+		text: 'text-black',
+		column: 'bg-blue-50',
+		task: 'bg-blue-100',
 	},
 	{
 		id: 'violet',
@@ -64,12 +57,33 @@ export const colorThemeList: readonly ColorTheme[] = Object.freeze([
 		task: 'bg-violet-100',
 	},
 	{
-		id: 'neutral',
-		bg: 'bg-neutral-300',
+		id: 'fuchsia',
+		bg: 'bg-fuchsia-300',
 		text: 'text-black',
-		column: 'bg-neutral-50',
-		task: 'bg-neutral-100',
+		column: 'bg-fuchsia-50',
+		task: 'bg-fuchsia-100',
+	},
+	{
+		id: 'rose',
+		bg: 'bg-rose-300',
+		text: 'text-black',
+		column: 'bg-rose-50',
+		task: 'bg-rose-100',
+	},
+	{
+		id: 'slate',
+		bg: 'bg-slate-400',
+		text: 'text-black',
+		column: 'bg-slate-100',
+		task: 'bg-slate-200',
+	},
+	{
+		id: 'stone',
+		bg: 'bg-stone-400',
+		text: 'text-black',
+		column: 'bg-stone-100',
+		task: 'bg-stone-200',
 	},
 ])
 
-export const defaultColorTheme: ColorTheme = { ...colorThemeList[0] }
+export const defaultColorTheme: ColorTheme = { ...colorThemeList[5] }
