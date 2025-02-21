@@ -19,7 +19,7 @@ import { useTranslation } from 'react-i18next'
 
 const boardRepository: BoardRepository = new LocalStorageBoardRepository()
 
-export function ChangeBoardName({}) {
+export function ChangeBoardName() {
 	const boardData = useBoard()
 	useEffect(() => boardRepository.save(boardData), [boardData])
 

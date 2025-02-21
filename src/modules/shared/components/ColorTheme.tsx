@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 
 const getColorThemeFromId = (id: string): Theme => JSON.parse(id)
 
-export function ColorTheme({}) {
+export function ColorTheme() {
 	const [colorsList, setColorList] = useState([] as React.ReactNode[])
 
 	useEffect(() => {

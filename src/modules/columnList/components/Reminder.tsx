@@ -12,7 +12,7 @@ import { useReminderInfo } from '@/modules/columnList/hooks/useReminderInfo'
 import { useColumnList } from '@/modules/columnList/hooks/useColumnList'
 import { useTranslation } from 'react-i18next'
 
-function Reminder({}) {
+function Reminder() {
 	const { t } = useTranslation()
 	const columnList = useColumnList()
 	const reminder = useReminderInfo()

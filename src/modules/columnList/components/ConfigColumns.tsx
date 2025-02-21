@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next'
 
 const columnListRepository: ColumnListRepository = new LocalStorageColumnListRepository()
 
-export function ConfigColumns({}) {
+export function ConfigColumns() {
 	const { t } = useTranslation()
 	const columnList = useColumnList()
 	useEffect(() => columnListRepository.save(columnList), [columnList])
