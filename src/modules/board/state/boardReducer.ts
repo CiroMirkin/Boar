@@ -11,7 +11,7 @@ interface InitialState {
 }
 const boardRepository: BoardRepository = new LocalStorageBoardRepository()
 const initialState: InitialState = {
-	colorTheme: {...defaultColorTheme},
+	colorTheme: { ...defaultColorTheme },
 	board: boardRepository.getAll(),
 }
 

@@ -43,7 +43,7 @@ export function TaskInBoardActions() {
 							altText={t('task_buttons.delete')}
 							onClick={() => handleClick(deleteTaskAction)}
 						>
-							{ t('task_buttons.delete') }
+							{t('task_buttons.delete')}
 						</ToastAction>
 					),
 				})
@@ -69,7 +69,7 @@ export function TaskInBoardActions() {
 					variant={isTheTaskInTheFirstColumn ? 'ghost' : 'default'}
 					onClick={() => handleClick(moveTaskToPrevColumnAction)}
 				>
-					{ t('task_buttons.prev_btn') }
+					{t('task_buttons.prev_btn')}
 				</Button>
 				<Button
 					size='sm'
@@ -77,7 +77,7 @@ export function TaskInBoardActions() {
 					variant={isTheTaskInTheLastColumn ? 'ghost' : 'default'}
 					onClick={() => handleClick(moveTaskToNextColumnAction)}
 				>
-					{ t('task_buttons.next_btn') }
+					{t('task_buttons.next_btn')}
 				</Button>
 			</div>
 			<Button
@@ -86,7 +86,7 @@ export function TaskInBoardActions() {
 				className='w-full'
 				onClick={() => copyTextToClipboard()}
 			>
-				{ t('task_buttons.copy_text') }
+				{t('task_buttons.copy_text')}
 			</Button>
 			{isTheTaskInTheLastColumn && (
 				<Button
@@ -95,7 +95,7 @@ export function TaskInBoardActions() {
 					className='w-full'
 					onClick={() => handleClick(archiveTaskAction)}
 				>
-					{ t('task_buttons.archive') }
+					{t('task_buttons.archive')}
 				</Button>
 			)}
 			<Button
@@ -104,7 +104,7 @@ export function TaskInBoardActions() {
 				className='w-full'
 				onClick={askForConfirmationToDeleteTheTask}
 			>
-				{ t('task_buttons.delete') }
+				{t('task_buttons.delete')}
 			</Button>
 		</>
 	)

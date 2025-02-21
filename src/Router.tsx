@@ -12,26 +12,31 @@ import Reminder from './modules/columnList/components/Reminder'
 import { ColorTheme } from './modules/shared/components/ColorTheme'
 
 const ConfigsPage = () => (
-    <Configs>
-        <div className='py-4 md:px-11 px-6'>
-            <ChangeBoardName />
-        </div>
-        <Separator />
-        <div className='py-4 md:px-11 px-6'>
-            <ConfigColumns />
-        </div>
-        <Separator />
-        <div className='py-4 md:px-11 px-6'>
-            <Reminder />
-        </div>
-        <Separator />
-		<div className="py-4 md:px-11 px-6">
+	<Configs>
+		<div className='py-4 md:px-11 px-6'>
+			<ChangeBoardName />
+		</div>
+		<Separator />
+		<div className='py-4 md:px-11 px-6'>
+			<ConfigColumns />
+		</div>
+		<Separator />
+		<div className='py-4 md:px-11 px-6'>
+			<Reminder />
+		</div>
+		<Separator />
+		<div className='py-4 md:px-11 px-6'>
 			<ColorTheme />
 		</div>
-    </Configs>
+	</Configs>
 )
 
-const BoardPage = () => <Board> <ColumnListContainer/> </Board>
+const BoardPage = () => (
+	<Board>
+		{' '}
+		<ColumnListContainer />{' '}
+	</Board>
+)
 
 const router = createBrowserRouter([
 	{
@@ -57,9 +62,7 @@ const router = createBrowserRouter([
 ])
 
 function Router() {
-    return (
-        <RouterProvider router={router} />
-    )
+	return <RouterProvider router={router} />
 }
 
 export default Router

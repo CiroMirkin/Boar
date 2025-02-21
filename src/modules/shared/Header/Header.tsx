@@ -20,7 +20,7 @@ interface HeaderProps {
 }
 export function Header({ title, whereUserIs }: HeaderProps) {
 	const { t } = useTranslation()
-	
+
 	return (
 		<header className='w-full px-6 md:px-11 py-7 flex justify-between items-start'>
 			<h1 className='text-4xl font-normal'>{title}</h1>
@@ -35,24 +35,24 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 					<DropdownMenuSeparator />
 					<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.BOARD && true}>
 						<Link to='/' className='flex items-center'>
-							<Columns3 size={iconSize} className='mr-2' /> { t('menu.board') }
+							<Columns3 size={iconSize} className='mr-2' /> {t('menu.board')}
 						</Link>
 					</DropdownMenuItem>
 					<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.ARCHIVE && true}>
 						<Link to='/archive' className='flex items-center'>
-							<Archive size={iconSize} className='mr-2' /> { t('menu.archive') }
+							<Archive size={iconSize} className='mr-2' /> {t('menu.archive')}
 						</Link>
 					</DropdownMenuItem>
 					<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.CONFIG && true}>
 						<Link to='/settings' className='flex items-center'>
-							<Settings size={iconSize} className='mr-2' /> { t('menu.configs') }
+							<Settings size={iconSize} className='mr-2' /> {t('menu.configs')}
 						</Link>
 					</DropdownMenuItem>
 					<DropdownMenuSeparator />
 					<LanguageToggle />
 					<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.HELP && true}>
 						<Link to='/help' className='flex items-center'>
-							<CircleHelp size={iconSize} className='mr-2' /> { t('menu.help') }
+							<CircleHelp size={iconSize} className='mr-2' /> {t('menu.help')}
 						</Link>
 					</DropdownMenuItem>
 					<DropdownMenuItem>

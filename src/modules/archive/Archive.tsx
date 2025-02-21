@@ -46,13 +46,13 @@ export function Archive() {
 							variant='ghost'
 							onClick={() => downloadArchiveLikePDF({ archive: boardArchive })}
 						>
-							{ t('archive.archive_to_pdf_btn') }
+							{t('archive.archive_to_pdf_btn')}
 						</Button>
 						<Button
 							variant='destructiveGhost'
 							onClick={askForConfirmationToCleanTheWholeArchive}
 						>
-							{ t('archive.clean_archive_btn') }
+							{t('archive.clean_archive_btn')}
 						</Button>
 					</>
 				)}
@@ -66,7 +66,7 @@ function EmptyArchive() {
 	return (
 		<Card className='py-2 px-4'>
 			<CardHeader>
-				<CardTitle>{ t('archive.empty_archive') }</CardTitle>
+				<CardTitle>{t('archive.empty_archive')}</CardTitle>
 			</CardHeader>
 		</Card>
 	)

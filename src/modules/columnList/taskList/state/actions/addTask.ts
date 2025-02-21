@@ -1,4 +1,7 @@
-import { TaskListInEachColumn, isThisTaskListWithinTheLimit } from '@/modules/columnList/taskList/models/taskList'
+import {
+	TaskListInEachColumn,
+	isThisTaskListWithinTheLimit,
+} from '@/modules/columnList/taskList/models/taskList'
 import { taskUseCaseParams } from '../actions'
 import { getIndexOfColumnInColumnList } from '../../../models/column'
 

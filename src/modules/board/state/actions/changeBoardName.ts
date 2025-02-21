@@ -2,8 +2,8 @@ import BusinessError from '@/modules/shared/errors/businessError'
 import { boardModel } from '../../models/board'
 import { boardUseCaseParams } from '../actions'
 
-interface changeNameParams extends boardUseCaseParams { 
-	newName: string 
+interface changeNameParams extends boardUseCaseParams {
+	newName: string
 }
 
 export function changeBoardName({ board, newName }: changeNameParams): boardModel {

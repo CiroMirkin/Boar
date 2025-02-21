@@ -1,5 +1,5 @@
-import { emptyTask } from '@/modules/columnList/taskList/models/task' 
-import { TaskList } from '@/modules/columnList/taskList/models/taskList' 
+import { emptyTask } from '@/modules/columnList/taskList/models/task'
+import { TaskList } from '@/modules/columnList/taskList/models/taskList'
 import { archiveTaskListInTheLastColumn } from './archiveTaskList'
 import { getFullDate } from '../../../shared/utils/getTime'
 

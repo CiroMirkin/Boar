@@ -1,7 +1,10 @@
 import { getIndexOfColumnInColumnList } from '../../../models/column'
 import { taskUseCaseParams } from '../actions'
 import { getNewTask } from '@/modules/columnList/taskList/models/task'
-import { TaskList, isThisTaskListWithinTheLimit } from '@/modules/columnList/taskList/models/taskList'
+import {
+	TaskList,
+	isThisTaskListWithinTheLimit,
+} from '@/modules/columnList/taskList/models/taskList'
 
 export type moveToType = 'next-column' | 'prev-column'
 

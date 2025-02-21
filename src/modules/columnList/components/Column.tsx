@@ -19,7 +19,7 @@ export function Column({ data, children }: ColumnProps) {
 	const columnClassName = `h-auto min-w-48 flex-1 flex flex-col justify-between rounded-lg ${colorTheme.column}`
 	return (
 		<ColumnContext.Provider value={data}>
-			<Card className={columnClassName} >
+			<Card className={columnClassName}>
 				<CardHeader>
 					<CardTitle>{data.name}</CardTitle>
 				</CardHeader>

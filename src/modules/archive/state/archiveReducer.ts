@@ -1,6 +1,6 @@
 import { Archive } from '@/modules/archive/models/archive'
 import { ArchiveRepository } from '@/modules/archive/models/archiveRepository'
-import { taskModel } from '@/modules/columnList/taskList/models/task' 
+import { taskModel } from '@/modules/columnList/taskList/models/task'
 import { TaskListInEachColumn } from '@/modules/columnList/taskList/models/taskList'
 import LocalStorageArchiveRepository from '@/modules/archive/state/localStorageArchive'
 import { archiveThisTask } from '@/modules/archive/state/actions/archiveTask'

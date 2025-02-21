@@ -71,7 +71,8 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 				onClick={() => handleClick(askForConfirmationToDeleteTheColumn)}
 				variant='destructiveGhost'
 			>
-				<Trash2 size={iconSize} className='mr-2' /> { t('settings.columns.delete_column_btn') }
+				<Trash2 size={iconSize} className='mr-2' />{' '}
+				{t('settings.columns.delete_column_btn')}
 			</Button>
 		</li>
 	)

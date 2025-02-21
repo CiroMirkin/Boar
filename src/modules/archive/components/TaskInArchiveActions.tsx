@@ -25,7 +25,7 @@ export function TaskInArchiveActions() {
 				variant='ghost'
 				className='w-full'
 			>
-				{ t('archive.return_task_to_board_btn') }
+				{t('archive.return_task_to_board_btn')}
 			</Button>
 			<Button
 				size='sm'
@@ -33,7 +33,7 @@ export function TaskInArchiveActions() {
 				className='w-full'
 				onClick={askForConfirmationToDeleteTheTask}
 			>
-				{ t('archive.delete_task_btn') }
+				{t('archive.delete_task_btn')}
 			</Button>
 		</>
 	)

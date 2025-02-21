@@ -1,5 +1,5 @@
 import { Archive, isItWithinTheDailyArchiveLimit } from '@/modules/archive/models/archive'
-import { taskModel } from '@/modules/columnList/taskList/models/task' 
+import { taskModel } from '@/modules/columnList/taskList/models/task'
 import { getDateOfTheFirstTaskListArchived } from '@/modules/archive/models/archive'
 import { getFullDate } from '@/modules/shared/utils/getTime'
 

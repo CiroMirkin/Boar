@@ -1,78 +1,78 @@
 {
-    "board_description": {
-        "p1": "es un aplicación que busca ayudarte con tus tareas diarias o semanales a través de un tablero.",
-        "p2": "En la primer columna del tablero puedes crear tus tareas y cuando lleguen a la última puedes archivarlas."
-    },
+	"board_description": {
+		"p1": "es un aplicación que busca ayudarte con tus tareas diarias o semanales a través de un tablero.",
+		"p2": "En la primer columna del tablero puedes crear tus tareas y cuando lleguen a la última puedes archivarlas."
+	},
 
-    "board_name": "Tablero básico",
-    "first_column": "Pendientes",
-    "second_column": "Procesando",
-    "third_column": "Terminado",
-    "new_task_placeholder": "Nueva tarea...",
-    "new_task_btn_title": "Crear tarea",
-    "archive_task_list_btn": "Archivar tareas",
-    "archive_task_list_toast": "Consulta por las tareas archivadas en el menú.",
+	"board_name": "Tablero básico",
+	"first_column": "Pendientes",
+	"second_column": "Procesando",
+	"third_column": "Terminado",
+	"new_task_placeholder": "Nueva tarea...",
+	"new_task_btn_title": "Crear tarea",
+	"archive_task_list_btn": "Archivar tareas",
+	"archive_task_list_toast": "Consulta por las tareas archivadas en el menú.",
 
-    "task_buttons": {
-        "next_btn": "Avanzar",
-        "prev_btn": "Retroceder",
-        "copy_text": "Copiar texto",
-        "copy_text_toast": "Texto copiado al portapapeles.",
-        "archive": "Archivar",
-        "archive_toast": "La tarea se guardo en el archivo.",
-        "delete": "Eliminar",
-        "delete_task_warning": "¿Seguro desea eliminar esta tarea?"
-    },
+	"task_buttons": {
+		"next_btn": "Avanzar",
+		"prev_btn": "Retroceder",
+		"copy_text": "Copiar texto",
+		"copy_text_toast": "Texto copiado al portapapeles.",
+		"archive": "Archivar",
+		"archive_toast": "La tarea se guardo en el archivo.",
+		"delete": "Eliminar",
+		"delete_task_warning": "¿Seguro desea eliminar esta tarea?"
+	},
 
-    "menu": {
-        "board": "Tablero",
-        "configs": "Ajustes",
-        "archive": "Archivo",
-        "language": "Idioma",
-        "help": "Ayuda"
-    },
+	"menu": {
+		"board": "Tablero",
+		"configs": "Ajustes",
+		"archive": "Archivo",
+		"language": "Idioma",
+		"help": "Ayuda"
+	},
 
-    "archive": {
-        "empty_archive": "Aún no hay tareas archivadas.",
-        "archive_to_pdf_btn": "Descargar archivo como pdf",
-        "return_task_to_board_btn": "Regresar tarea al tablero",
-        "return_task_to_board_toast": "La tarea regreso a la última columna.",
-        "delete_task_btn": "Eliminar",
-        "delete_task_warning": "¿Seguro desea eliminar esta tarea?",
-        "clean_archive_btn": "Vaciar archivo",
-        "clean_archive_warning": "¿Seguro desea eliminar todas las tareas archivadas?"
-    },
+	"archive": {
+		"empty_archive": "Aún no hay tareas archivadas.",
+		"archive_to_pdf_btn": "Descargar archivo como pdf",
+		"return_task_to_board_btn": "Regresar tarea al tablero",
+		"return_task_to_board_toast": "La tarea regreso a la última columna.",
+		"delete_task_btn": "Eliminar",
+		"delete_task_warning": "¿Seguro desea eliminar esta tarea?",
+		"clean_archive_btn": "Vaciar archivo",
+		"clean_archive_warning": "¿Seguro desea eliminar todas las tareas archivadas?"
+	},
 
-     "settings": {
-        "board": {
-            "change_board_name_section_title": "Tablero",
-            "change_board_name_input_label": "Nombre",
-            "change_board_name_input_placeholder": "Tablero básico",
-            "board_theme_section_title": "Tema del tablero",
-            "set_board_theme_toast": "¡Tema establecido!"
-        },
-        "columns": {
-            "section_title": "Columnas",
-            "delete_column_btn": "Eliminar",
-            "delete_column_warning": "¿Seguro desea borrar la columna",
-            "new_column_btn": "Crear columna",
-            "new_column_input_placeholder": "Nombre de la columna"
-        },
-        "reminder": {
-            "section_title": "Crea un recordatorio",
-            "section_description": "Cada vez que una tarea llegué a la columna indicada se mostrara el recordatorio en pantalla.",
-            "select_column_label": "Selecciona una columna",
-            "select_column_default_option": "Columnas",
-            "reminder_description_input_label": "Escribe la descripción",
-            "reminder_description_input_placeholder": "No olvides...",
-            "create_reminder_btn": "Crear",
-            "created_toast": "¡Se ha creado el recordatorio!"
-        }
-    },
+	"settings": {
+		"board": {
+			"change_board_name_section_title": "Tablero",
+			"change_board_name_input_label": "Nombre",
+			"change_board_name_input_placeholder": "Tablero básico",
+			"board_theme_section_title": "Tema del tablero",
+			"set_board_theme_toast": "¡Tema establecido!"
+		},
+		"columns": {
+			"section_title": "Columnas",
+			"delete_column_btn": "Eliminar",
+			"delete_column_warning": "¿Seguro desea borrar la columna",
+			"new_column_btn": "Crear columna",
+			"new_column_input_placeholder": "Nombre de la columna"
+		},
+		"reminder": {
+			"section_title": "Crea un recordatorio",
+			"section_description": "Cada vez que una tarea llegué a la columna indicada se mostrara el recordatorio en pantalla.",
+			"select_column_label": "Selecciona una columna",
+			"select_column_default_option": "Columnas",
+			"reminder_description_input_label": "Escribe la descripción",
+			"reminder_description_input_placeholder": "No olvides...",
+			"create_reminder_btn": "Crear",
+			"created_toast": "¡Se ha creado el recordatorio!"
+		}
+	},
 
-    "help": {
-        "h2": "¿Que es Board?",
-        "found_a_problem_section": "¿Ha encontrado un problema?",
-        "report_btn": "Reportalo"
-    }
+	"help": {
+		"h2": "¿Que es Board?",
+		"found_a_problem_section": "¿Ha encontrado un problema?",
+		"report_btn": "Reportalo"
+	}
 }

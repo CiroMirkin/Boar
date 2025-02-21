@@ -44,7 +44,7 @@ export function ArchiveTaskListButton() {
 			className='w-full'
 			disabled={canUserArchiveTask}
 		>
-			<Archive size={iconSize} className='mr-2' /> { t('archive_task_list_btn') }
+			<Archive size={iconSize} className='mr-2' /> {t('archive_task_list_btn')}
 		</Button>
 	)
 }

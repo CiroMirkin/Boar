@@ -6,7 +6,10 @@ import { changeTheNameOfTheBoard } from '@/modules/board/state/boardReducer'
 import { Pencil } from 'lucide-react'
 import { iconSize } from '@/modules/shared/configs/iconsConstants'
 import { Label } from '@/ui/label'
-import { isThisBoardNameValid, isThisBoardNameWithinTheLimitOfLetters } from '@/modules/board/models/board'
+import {
+	isThisBoardNameValid,
+	isThisBoardNameWithinTheLimitOfLetters,
+} from '@/modules/board/models/board'
 import getErrorMessageForTheUser from '@/modules/shared/utils/getErrorMessageForTheUser'
 import { useToast } from '@/ui/use-toast'
 import { useBoard } from '@/modules/board/hooks/useBoard'
@@ -16,10 +19,10 @@ import { useTranslation } from 'react-i18next'
 
 const boardRepository: BoardRepository = new LocalStorageBoardRepository()
 
-export function ChangeBoardName({ }) {
+export function ChangeBoardName({}) {
 	const boardData = useBoard()
 	useEffect(() => boardRepository.save(boardData), [boardData])
-	
+
 	const [boardName, setBoardName] = useState(boardData.name)
 	const [inputDisabled, setInputDisabled] = useState(true)
 	const { toast } = useToast()
@@ -55,10 +58,12 @@ export function ChangeBoardName({ }) {
 	const { t } = useTranslation()
 	return (
 		<>
-			<h2 className='text-2xl'>{ t('settings.board.change_board_name_section_title') }</h2>
+			<h2 className='text-2xl'>{t('settings.board.change_board_name_section_title')}</h2>
 			<div className='my-5 flex items-end'>
 				<div className='grid mr-2 w-full max-w-sm items-center gap-1.5'>
-					<Label htmlFor='board-name'>{ t('settings.board.change_board_name_input_label') }</Label>
+					<Label htmlFor='board-name'>
+						{t('settings.board.change_board_name_input_label')}
+					</Label>
 					<Input
 						type='text'
 						id='board-name'

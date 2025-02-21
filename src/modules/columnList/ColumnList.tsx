@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { Column } from './components/Column'
-import { useColumnList } from './hooks/useColumnList' 
+import { useColumnList } from './hooks/useColumnList'
 import { TaskList } from './taskList/TaskList'
 import { ScrollArea } from '../../ui/scroll-area'
 import { TaskListInEachColumnContext } from '@/modules/columnList/taskList/contexts/TaskListInEachColumnContext'
@@ -20,8 +20,6 @@ export function ColumnList() {
 		)
 	})
 
-	
-
 	const columnList = columns.map((column, columnIndex) => {
 		return (
 			<Column data={column} key={column.id}>
@@ -33,9 +31,5 @@ export function ColumnList() {
 		)
 	})
 
-	return (
-		<>
-			{columnList}
-		</>
-	)
+	return <>{columnList}</>
 }

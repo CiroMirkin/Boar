@@ -1,5 +1,5 @@
-import { boardModel } from "../models/board";
+import { boardModel } from '../models/board'
 
 export interface boardUseCaseParams {
-    board: boardModel
+	board: boardModel
 }
