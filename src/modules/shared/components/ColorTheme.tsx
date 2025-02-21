@@ -1,5 +1,5 @@
 import { colorThemeList, ColorTheme as Theme } from '@/modules/shared/configs/colors'
-import { Card } from '@/ui/card'
+import { Card, CardContent } from '@/ui/card'
 import { useDispatch } from 'react-redux'
 import { setColorTheme } from '../../board/state/boardReducer'
 import { useTranslation } from 'react-i18next'
@@ -16,10 +16,12 @@ export function ColorTheme() {
 		colorThemeList.forEach((color) => {
 			newColorList.push(
 				<Card
-					className={`w-10 h-10 rounded-md ${color.bg}`}
+					className={`w-20 h-20 p-3 rounded-md ${color.bg} border-black`}
 					key={color.id}
 					id={JSON.stringify(color)}
-				></Card>
+				>
+					<CardContent className={`w-full h-full rounded-md ${color.task}`}></CardContent>
+				</Card>
 			)
 		})
 		setColorList(newColorList)
@@ -28,14 +30,21 @@ export function ColorTheme() {
 	const { t } = useTranslation()
 	const { toast } = useToast()
 	const dispatch = useDispatch()
+	const toggleTheme = (id: string) => {
+		const colorTheme = getColorThemeFromId(id)
+		dispatch(setColorTheme({ ...colorTheme }))
+		toast({
+			description: t('settings.board.set_board_theme_toast'),
+			duration: 3000,
+		})
+	}
 	const handleClick = (e: any) => {
 		if (!!e.target.id) {
-			const colorTheme = getColorThemeFromId(e.target.id)
-			dispatch(setColorTheme({ ...colorTheme }))
-			toast({
-				description: t('settings.board.set_board_theme_toast'),
-				duration: 3000,
-			})
+			toggleTheme(e.target.id)
+		}
+		else if(!!e.target.parentElement.id) {
+			toggleTheme(e.target.parentElement.id)
+
 		}
 	}
 
