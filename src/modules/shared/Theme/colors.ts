@@ -1,4 +1,4 @@
-export interface ColorTheme {
+export interface Theme {
 	id: string
 	bg: string
 	task: string
@@ -6,7 +6,7 @@ export interface ColorTheme {
 	text: string
 }
 
-export const themesList: readonly ColorTheme[] = Object.freeze([
+export const themesList: readonly Theme[] = Object.freeze([
 	{
 		id: 'orange',
 		bg: 'bg-orange-300',
@@ -93,4 +93,4 @@ export const themesList: readonly ColorTheme[] = Object.freeze([
 	},
 ])
 
-export const defaultColorTheme: ColorTheme = { ...themesList[5] }
+export const defaultColorTheme: Theme = { ...themesList[5] }

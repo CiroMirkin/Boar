@@ -1,4 +1,4 @@
-import { themesList, ColorTheme as Theme } from '@/modules/shared/Theme/colors'
+import { themesList, Theme as Theme } from '@/modules/shared/Theme/colors'
 import { Card, CardContent } from '@/ui/card'
 import { useTranslation } from 'react-i18next'
 import { useToast } from '@/ui/use-toast'

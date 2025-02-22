@@ -1,9 +1,9 @@
 import { createContext, Dispatch, SetStateAction } from "react"
-import { ColorTheme, defaultColorTheme } from "./colors"
+import { Theme, defaultColorTheme } from "./colors"
 
 interface ThemeContextContent {
-    theme: ColorTheme
-    changeTheme: Dispatch<SetStateAction<ColorTheme>>
+    theme: Theme
+    changeTheme: Dispatch<SetStateAction<Theme>>
 }
 
 const defaultThemeContextValue: ThemeContextContent = {
@@ -16,8 +16,8 @@ export const ThemeContext = createContext(defaultThemeContextValue)
 interface ThemeProviderProps { 
     children: React.ReactNode, 
     // value and dispatch of a useState Hook 
-    theme: ColorTheme ,
-    changeTheme: Dispatch<SetStateAction<ColorTheme>>
+    theme: Theme ,
+    changeTheme: Dispatch<SetStateAction<Theme>>
 }
 
 export const ThemeProvider = ({ children, theme, changeTheme }: ThemeProviderProps) => {
