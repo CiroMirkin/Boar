@@ -8,7 +8,7 @@ import ColumnListContainer from './modules/columnList/ColumnListContainer'
 import { TaskListInEachColumn } from './modules/columnList/taskList/TaskListInEachColumn'
 
 import { AddNewTaskInput } from './modules/columnList/taskList/AddNewTaskInput'
-import { ArchiveTaskListButton } from './modules/columnList/components/ArchiveTaskListButton'
+import { ArchiveTaskListButton } from './modules/shared/components/ArchiveTaskListButton'
 import { ColumnsContextContent } from './modules/columnList/ColumnsContext'
 
 const columnsData: ColumnsContextContent = {
