@@ -84,6 +84,13 @@ export const colorThemeList: readonly ColorTheme[] = Object.freeze([
 		column: 'bg-stone-100',
 		task: 'bg-stone-200',
 	},
+	{
+		id: 'slate-dark',
+		bg: 'bg-slate-600',
+		text: 'text-black',
+		column: 'bg-slate-400',
+		task: 'bg-slate-500',
+	},
 ])
 
 export const defaultColorTheme: ColorTheme = { ...colorThemeList[5] }
