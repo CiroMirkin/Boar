@@ -1,24 +1,15 @@
-import { useContext } from 'react'
 import { Column } from './components/Column'
 import { useColumnList } from './hooks/useColumnList'
-import { TaskList } from './taskList/TaskList'
-import { ScrollArea } from '../../ui/scroll-area'
-import { TaskListInEachColumnContext } from '@/modules/columnList/taskList/contexts/TaskListInEachColumnContext'
-import { useReminder } from '@/modules/columnList/Reminder/useReminder'
 
-export function ColumnList() {
+export type ColumnsContent = React.ReactNode[]
+
+interface ColumnListProps {
+	children: () => ColumnsContent
+}
+
+export function ColumnList({ children: getColumnsContent }: ColumnListProps) {
 	const columns = useColumnList()
-	const taskListInEachColumn = useContext(TaskListInEachColumnContext)
-	useReminder(taskListInEachColumn)
-
-	const columnsContent: React.ReactNode[] = []
-	taskListInEachColumn.forEach((taskList) => {
-		columnsContent.push(
-			<ScrollArea className='h-full w-full rounded-md'>
-				<TaskList tasks={taskList} />
-			</ScrollArea>
-		)
-	})
+	const columnsContent = getColumnsContent()
 
 	const columnList = columns.map((column, columnIndex) => {
 		return (

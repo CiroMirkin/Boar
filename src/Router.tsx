@@ -5,11 +5,13 @@ import { Configs } from './components/Configs'
 import { Erro404 } from './components/404'
 import { Help } from './components/Help'
 import ColumnListContainer from './modules/columnList/ColumnListContainer'
+import { TaskListInEachColumn } from './modules/columnList/taskList/TaskListInEachColumn'
 
 const BoardPage = () => (
 	<Board>
-		{' '}
-		<ColumnListContainer />{' '}
+		<ColumnListContainer>
+			{ TaskListInEachColumn }
+		</ColumnListContainer>
 	</Board>
 )
 
