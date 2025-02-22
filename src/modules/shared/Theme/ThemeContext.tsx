@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction } from "react"
-import { Theme, defaultTheme } from "./colors"
+import { Theme, defaultTheme } from "./themesList"
 
 interface ThemeContextContent {
     theme: Theme
