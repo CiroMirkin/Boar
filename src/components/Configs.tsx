@@ -31,7 +31,7 @@ export function Configs() {
 const ConfigPageContent = () => {
 	const { theme } = useContext(ThemeContext)
 	const { column } = theme
-	const sectionClassName = `max-w-2xl rounded-lg py-2 md:px-11 px-6 ${column}`
+	const sectionClassName = `max-w-2xl rounded-lg py-4 md:px-11 px-6 ${column}`
 	return (
 		<>
 			<div className={sectionClassName}>
