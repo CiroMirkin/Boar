@@ -7,7 +7,7 @@ import { ThemeContext } from './ThemeContext'
 
 const getColorThemeFromId = (id: string): Theme => JSON.parse(id)
 
-export function ColorTheme() {
+export function ThemeSelection() {
 	const [colorsList, setColorList] = useState([] as React.ReactNode[])
 
 	useEffect(() => {

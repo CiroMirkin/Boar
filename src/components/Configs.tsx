@@ -7,7 +7,7 @@ import { ThemeContext } from '@/modules/shared/Theme/ThemeContext'
 import { ChangeBoardName } from '../modules/board/components/ChangeBoardName'
 import { ConfigColumns } from '../modules/columnList/components/ConfigColumns'
 import Reminder from '../modules/columnList/components/Reminder'
-import { ColorTheme } from '../modules/shared/Theme/ColorTheme'
+import { ThemeSelection } from '../modules/shared/Theme/ThemeSelection'
 
 export function Configs() {
 	const { t } = useTranslation()
@@ -44,7 +44,7 @@ const ConfigPageContent = () => {
 				<Reminder />
 			</div>
 			<div className={sectionClassName}>
-				<ColorTheme />
+				<ThemeSelection />
 			</div>
 		</>
 	)
