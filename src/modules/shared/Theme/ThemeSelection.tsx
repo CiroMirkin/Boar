@@ -8,13 +8,13 @@ import { ThemeContext } from './ThemeContext'
 const getColorThemeFromId = (id: string): Theme => JSON.parse(id)
 
 export function ThemeSelection() {
-	const [colorsList, setColorList] = useState([] as React.ReactNode[])
+	const [themes, setThemes] = useState([] as React.ReactNode[])
 
 	useEffect(() => {
-		const newColorList: React.ReactNode[] = []
+		const newThemes: React.ReactNode[] = []
 		themesList.forEach((color) => {
 			console.log('wiwi')
-			newColorList.push(
+			newThemes.push(
 				<Card
 					className={`w-20 h-20 p-3 rounded-md ${color.bg} border-black`}
 					key={color.id}
@@ -24,15 +24,15 @@ export function ThemeSelection() {
 				</Card>
 			)
 		})
-		setColorList(newColorList)
+		setThemes(newThemes)
 	}, [themesList])
 
 	const { t } = useTranslation()
 	const { toast } = useToast()
 	const { changeTheme } = useContext(ThemeContext) 
 	const toggleTheme = (id: string) => {
-		const colorTheme = getColorThemeFromId(id)
-		changeTheme({ ...colorTheme })
+		const newTheme = getColorThemeFromId(id)
+		changeTheme({ ...newTheme })
 
 		toast({
 			description: t('settings.board.set_board_theme_toast'),
@@ -54,7 +54,7 @@ export function ThemeSelection() {
 			<h2 className='text-2xl'>{t('settings.board.board_theme_section_title')}</h2>
 			<div className='max-w-2xl py-5 grid gap-3'>
 				<ul className='flex flex-wrap gap-2' onClick={handleClick}>
-					{colorsList}
+					{themes}
 				</ul>
 			</div>
 		</>
