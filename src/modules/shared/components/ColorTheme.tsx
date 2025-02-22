@@ -1,10 +1,9 @@
 import { colorThemeList, ColorTheme as Theme } from '@/modules/shared/configs/colors'
 import { Card, CardContent } from '@/ui/card'
-import { useDispatch } from 'react-redux'
-import { setColorTheme } from '../../board/state/boardReducer'
 import { useTranslation } from 'react-i18next'
 import { useToast } from '@/ui/use-toast'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { ThemeContext } from './ThemeContext'
 
 const getColorThemeFromId = (id: string): Theme => JSON.parse(id)
 
@@ -29,10 +28,11 @@ export function ColorTheme() {
 
 	const { t } = useTranslation()
 	const { toast } = useToast()
-	const dispatch = useDispatch()
+	const { changeTheme } = useContext(ThemeContext) 
 	const toggleTheme = (id: string) => {
 		const colorTheme = getColorThemeFromId(id)
-		dispatch(setColorTheme({ ...colorTheme }))
+		changeTheme({ ...colorTheme })
+
 		toast({
 			description: t('settings.board.set_board_theme_toast'),
 			duration: 3000,

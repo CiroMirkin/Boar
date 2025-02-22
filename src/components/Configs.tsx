@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { Header } from '../modules/shared/Header/Header'
 import { USER_IS_IN } from '../modules/shared/Header/userIsIn'
-import { useColorTheme } from '@/modules/board/hooks/useColorTheme'
+import { useContext } from 'react'
+import { ThemeContext } from '@/modules/shared/components/ThemeContext'
 
 import { ChangeBoardName } from '../modules/board/components/ChangeBoardName'
 import { ConfigColumns } from '../modules/columnList/components/ConfigColumns'
@@ -10,7 +11,8 @@ import { ColorTheme } from '../modules/shared/components/ColorTheme'
 
 export function Configs() {
 	const { t } = useTranslation()
-	const { bg, text } = useColorTheme()
+	const { theme } = useContext(ThemeContext)
+	const { bg, text } = theme
 
 	return (
 		<>
@@ -27,7 +29,8 @@ export function Configs() {
 }
 
 const ConfigPageContent = () => {
-	const { column } = useColorTheme()
+	const { theme } = useContext(ThemeContext)
+	const { column } = theme
 	const sectionClassName = `max-w-2xl rounded-lg py-2 md:px-11 px-6 ${column}`
 	return (
 		<>

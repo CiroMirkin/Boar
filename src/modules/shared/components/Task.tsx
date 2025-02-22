@@ -1,8 +1,8 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 import { taskModel, emptyTask } from '@/modules/columnList/taskList/models/task'
 import { Card, CardContent, CardFooter } from '../../../ui/card'
 import { TextWithURL } from '@/modules/shared/utils/TextWithURL'
-import { useColorTheme } from '@/modules/board/hooks/useColorTheme'
+import { ThemeContext } from './ThemeContext'
 
 export const TaskContext = createContext(emptyTask)
 
@@ -14,7 +14,7 @@ interface TaskProps {
 export function Task({ data, children }: TaskProps) {
 	const [show, setShow] = useState(false)
 	const description = data.descriptionText
-	const colorTheme = useColorTheme()
+	const { theme: colorTheme } = useContext(ThemeContext)
 	const taskClassName = `p-0 rounded-md drop-shadow-md border-2 border-black  text-card-foreground shadow-sm ${colorTheme.task}`
 
 	return (
