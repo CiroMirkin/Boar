@@ -2,12 +2,12 @@ import { useTranslation } from 'react-i18next'
 import { Header } from '../modules/shared/Header/Header'
 import { USER_IS_IN } from '../modules/shared/Header/userIsIn'
 import { useContext } from 'react'
-import { ThemeContext } from '@/modules/shared/components/ThemeContext'
+import { ThemeContext } from '@/modules/shared/Theme/ThemeContext'
 
 import { ChangeBoardName } from '../modules/board/components/ChangeBoardName'
 import { ConfigColumns } from '../modules/columnList/components/ConfigColumns'
 import Reminder from '../modules/columnList/components/Reminder'
-import { ColorTheme } from '../modules/shared/components/ColorTheme'
+import { ColorTheme } from '../modules/shared/Theme/ColorTheme'
 
 export function Configs() {
 	const { t } = useTranslation()

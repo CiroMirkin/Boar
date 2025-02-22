@@ -3,9 +3,9 @@ import Router from './Router'
 import { Toaster } from './ui/toaster'
 import './i18next/index'
 import { useUserPreffedLanguage } from './modules/shared/hooks/useUserPreffedLanguage'
-import { ThemeProvider } from './modules/shared/components/ThemeContext'
+import { ThemeProvider } from './modules/shared/Theme/ThemeContext'
 import { useState } from 'react'
-import { defaultColorTheme } from './modules/shared/configs/colors'
+import { defaultColorTheme } from './modules/shared/Theme/colors'
 
 function App() {
 	useUserPreffedLanguage()

@@ -3,7 +3,7 @@ import { USER_IS_IN } from '../shared/Header/userIsIn'
 import { WelcomeDialog } from './components/WelcomeDialog'
 import { useBoard } from '@/modules/board/hooks/useBoard'
 import { useContext } from 'react'
-import { ThemeContext } from '../shared/components/ThemeContext'
+import { ThemeContext } from '../shared/Theme/ThemeContext'
 
 export function Board({ children }: { children: React.ReactNode }) {
 	const data = useBoard()

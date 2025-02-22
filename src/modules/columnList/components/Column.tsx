@@ -5,7 +5,7 @@ import { useCheckIfThisColumnIsTheFirst } from '@/modules/columnList/hooks/useCh
 import { useCheckIfThisColumnIsTheLast } from '@/modules/columnList/hooks/useCheckIfThisColumnIsTheLast'
 import { AddNewTaskInput } from './AddNewTaskInput'
 import { ArchiveTaskListButton } from './ArchiveTaskListButton'
-import { ThemeContext } from '@/modules/shared/components/ThemeContext'
+import { ThemeContext } from '@/modules/shared/Theme/ThemeContext'
 
 const ColumnContext = createContext(columnNull)
 
