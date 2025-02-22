@@ -7,7 +7,7 @@ import { Help } from './components/Help'
 import ColumnListContainer from './modules/columnList/ColumnListContainer'
 import { TaskListInEachColumn } from './modules/columnList/taskList/TaskListInEachColumn'
 
-import { AddNewTaskInput } from './modules/columnList/components/AddNewTaskInput'
+import { AddNewTaskInput } from './modules/columnList/taskList/AddNewTaskInput'
 import { ArchiveTaskListButton } from './modules/columnList/components/ArchiveTaskListButton'
 import { ColumnsContextContent } from './modules/columnList/ColumnsContext'
 
