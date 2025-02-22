@@ -13,7 +13,6 @@ export function ThemeSelection() {
 	useEffect(() => {
 		const newThemes: React.ReactNode[] = []
 		themesList.forEach((color) => {
-			console.log('wiwi')
 			newThemes.push(
 				<Card
 					className={`w-20 h-20 p-3 rounded-md ${color.bg} border-black`}
