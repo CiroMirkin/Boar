@@ -1,11 +1,10 @@
-import { useContext } from 'react'
 import { TaskList } from './TaskList'
 import { ScrollArea } from '@/ui/scroll-area'
-import { TaskListInEachColumnContext } from '@/modules/columnList/taskList/contexts/TaskListInEachColumnContext'
 import { useReminder } from '@/modules/columnList/taskList/Reminder/useReminder'
+import { useTaskListInEachColumn } from './hooks/useTaskListInEachColumn'
 
 export function TaskListInEachColumn() {
-    const taskListInEachColumn = useContext(TaskListInEachColumnContext)
+    const taskListInEachColumn = useTaskListInEachColumn()
 	useReminder(taskListInEachColumn)
 
 	const columnsContent: React.ReactNode[] = []
