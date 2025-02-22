@@ -13,6 +13,7 @@ export function ColorTheme() {
 	useEffect(() => {
 		const newColorList: React.ReactNode[] = []
 		colorThemeList.forEach((color) => {
+			console.log('wiwi')
 			newColorList.push(
 				<Card
 					className={`w-20 h-20 p-3 rounded-md ${color.bg} border-black`}
@@ -24,7 +25,7 @@ export function ColorTheme() {
 			)
 		})
 		setColorList(newColorList)
-	}, [])
+	}, [colorThemeList])
 
 	const { t } = useTranslation()
 	const { toast } = useToast()
