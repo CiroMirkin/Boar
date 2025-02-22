@@ -8,7 +8,7 @@ import { useToast } from '@/ui/use-toast'
 import { useDispatch } from 'react-redux'
 import { addReminder } from '@/modules/columnList/state/columnListReducer'
 import getErrorMessageForTheUser from '@/modules/shared/utils/getErrorMessageForTheUser'
-import { useReminderInfo } from '@/modules/columnList/Reminder/useReminderInfo'
+import { useReminderInfo } from '@/modules/columnList/taskList/Reminder/useReminderInfo'
 import { useColumnList } from '@/modules/columnList/hooks/useColumnList'
 import { useTranslation } from 'react-i18next'
 

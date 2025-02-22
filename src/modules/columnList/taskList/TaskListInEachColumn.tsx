@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { TaskList } from './TaskList'
 import { ScrollArea } from '@/ui/scroll-area'
 import { TaskListInEachColumnContext } from '@/modules/columnList/taskList/contexts/TaskListInEachColumnContext'
-import { useReminder } from '@/modules/columnList/Reminder/useReminder'
+import { useReminder } from '@/modules/columnList/taskList/Reminder/useReminder'
 
 export function TaskListInEachColumn() {
     const taskListInEachColumn = useContext(TaskListInEachColumnContext)
