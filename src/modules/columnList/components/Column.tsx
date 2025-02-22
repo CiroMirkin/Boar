@@ -3,9 +3,9 @@ import { Column as columnModel, columnNull } from '../models/column'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/card'
 import { useCheckIfThisColumnIsTheFirst } from '@/modules/columnList/hooks/useCheckIfThisColumnIsTheFirst'
 import { useCheckIfThisColumnIsTheLast } from '@/modules/columnList/hooks/useCheckIfThisColumnIsTheLast'
-import { AddNewTaskInput } from './AddNewTaskInput'
-import { ArchiveTaskListButton } from './ArchiveTaskListButton'
+
 import { ThemeContext } from '@/modules/shared/Theme/ThemeContext'
+import { ColumnsContext } from '../ColumnsContext'
 
 const ColumnContext = createContext(columnNull)
 
@@ -37,11 +37,11 @@ Column.ColumnContent = ColumnContent
 
 function ColumnFooter() {
 	const data = useContext(ColumnContext)
-
+	const { firstColumnFooterContent, lastColumnFooterContent } = useContext(ColumnsContext)
 	return (
 		<CardFooter className='min-h-16'>
-			{useCheckIfThisColumnIsTheFirst(data) && <AddNewTaskInput />}
-			{useCheckIfThisColumnIsTheLast(data) && <ArchiveTaskListButton />}
+			{useCheckIfThisColumnIsTheFirst(data) && firstColumnFooterContent }
+			{useCheckIfThisColumnIsTheLast(data) && lastColumnFooterContent }
 		</CardFooter>
 	)
 }

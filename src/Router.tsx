@@ -7,9 +7,18 @@ import { Help } from './components/Help'
 import ColumnListContainer from './modules/columnList/ColumnListContainer'
 import { TaskListInEachColumn } from './modules/columnList/taskList/TaskListInEachColumn'
 
+import { AddNewTaskInput } from './modules/columnList/components/AddNewTaskInput'
+import { ArchiveTaskListButton } from './modules/columnList/components/ArchiveTaskListButton'
+import { ColumnsContextContent } from './modules/columnList/ColumnsContext'
+
+const columnsData: ColumnsContextContent = {
+	firstColumnFooterContent: <AddNewTaskInput/>,
+	lastColumnFooterContent: <ArchiveTaskListButton/>,
+}
+
 const BoardPage = () => (
 	<Board>
-		<ColumnListContainer>
+		<ColumnListContainer columnsData={columnsData}>
 			{ TaskListInEachColumn }
 		</ColumnListContainer>
 	</Board>
