@@ -5,11 +5,11 @@ import './i18next/index'
 import { useUserPreffedLanguage } from './modules/shared/hooks/useUserPreffedLanguage'
 import { ThemeProvider } from './modules/shared/Theme/ThemeContext'
 import { useLocalStorage } from '@uidotdev/usehooks'
-import { defaultColorTheme } from './modules/shared/Theme/colors'
+import { defaultTheme } from './modules/shared/Theme/colors'
 
 function App() {
 	useUserPreffedLanguage()
-	const [theme, setTheme] = useLocalStorage('boar-theme', defaultColorTheme)
+	const [theme, setTheme] = useLocalStorage('boar-theme', defaultTheme)
 	return (
 		<>
 			<ThemeProvider theme={theme} changeTheme={setTheme}>

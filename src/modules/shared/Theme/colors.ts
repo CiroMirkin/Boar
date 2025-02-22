@@ -93,4 +93,4 @@ export const themesList: readonly Theme[] = Object.freeze([
 	},
 ])
 
-export const defaultColorTheme: Theme = { ...themesList[5] }
+export const defaultTheme: Theme = { ...themesList[5] }
