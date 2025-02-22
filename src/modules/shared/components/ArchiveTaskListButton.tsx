@@ -8,7 +8,7 @@ import { Button } from '@/ui/button'
 import { Archive } from 'lucide-react'
 import { iconSize } from '@/modules/shared/configs/iconsConstants'
 import getErrorMessageForTheUser from '@/modules/shared/utils/getErrorMessageForTheUser'
-import { useCheckForTasksInLastColumn } from '@/modules/columnList/hooks/useCheckForTasksInLastColumn'
+import { useCheckForTasksInLastColumn } from '@/modules/shared/hooks/useCheckForTasksInLastColumn'
 import { useTranslation } from 'react-i18next'
 
 export function ArchiveTaskListButton() {
