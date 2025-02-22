@@ -1,9 +1,9 @@
 import {
 	TaskListInEachColumn,
 	isThisTaskListWithinTheLimit,
-} from '@/modules/columnList/taskList/models/taskList'
+} from '@/modules/taskList/models/taskList'
 import { taskUseCaseParams } from '../actions'
-import { getIndexOfColumnInColumnList } from '../../../models/column'
+import { getIndexOfColumnInColumnList } from '../../../columnList/models/column'
 
 export function addTaskInFirstColumn({
 	taskListInEachColumn: taskList,

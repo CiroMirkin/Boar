@@ -1,21 +1,21 @@
-import { Column, getIndexOfColumnInColumnList } from '../../models/column'
-import { taskModel } from '@/modules/columnList/taskList/models/task'
-import { TaskListInEachColumn } from '@/modules/columnList/taskList/models/taskList'
-import { TaskListInEachColumnRepository } from '@/modules/columnList/taskList/models/taskListInEachColumnRepository'
-import LocalStorageTaskListInEachColumnRepository from '@/modules/columnList/taskList/state/localStorageTaskLists'
+import { Column, getIndexOfColumnInColumnList } from '../../columnList/models/column'
+import { taskModel } from '@/modules/taskList/models/task'
+import { TaskListInEachColumn } from '@/modules/taskList/models/taskList'
+import { TaskListInEachColumnRepository } from '@/modules/taskList/models/taskListInEachColumnRepository'
+import LocalStorageTaskListInEachColumnRepository from '@/modules/taskList/state/localStorageTaskLists'
 import {
 	addTaskInFirstColumn,
 	addTaskInTheLastColumn,
-} from '@/modules/columnList/taskList/state/actions/addTask'
-import { deleteThisTask } from '@/modules/columnList/taskList/state/actions/deleteTask'
+} from '@/modules/taskList/state/actions/addTask'
+import { deleteThisTask } from '@/modules/taskList/state/actions/deleteTask'
 import {
 	cleanLastTaskList,
 	deleteTheTaskListInThisIndex,
-} from '@/modules/columnList/taskList/state/actions/deleteTaskList'
+} from '@/modules/taskList/state/actions/deleteTaskList'
 import {
 	moveThisTaskToTheNextColumn,
 	moveThisTaskToThePrevColumn,
-} from '@/modules/columnList/taskList/state/actions/moveTask'
+} from '@/modules/taskList/state/actions/moveTask'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 interface InitialState {

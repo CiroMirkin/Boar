@@ -1,4 +1,4 @@
-import { taskModel } from '../../columnList/taskList/models/task'
+import { taskModel } from '../../taskList/models/task'
 import { getIndexOfColumnInColumnList, isThisTheLastColumn } from '../../columnList/models/column'
 import { useColumnList } from '../../columnList/hooks/useColumnList'
 

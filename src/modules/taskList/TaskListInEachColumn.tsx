@@ -1,6 +1,6 @@
 import { TaskList } from './TaskList'
 import { ScrollArea } from '@/ui/scroll-area'
-import { useReminder } from '@/modules/columnList/taskList/Reminder/useReminder'
+import { useReminder } from '@/modules/taskList/Reminder/useReminder'
 import { useTaskListInEachColumn } from './hooks/useTaskListInEachColumn'
 
 export function TaskListInEachColumn() {

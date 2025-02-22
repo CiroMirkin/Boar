@@ -4,7 +4,7 @@ import { useToast } from '@/ui/use-toast'
 import { Plus } from 'lucide-react'
 import { useDispatch } from 'react-redux'
 import { addColumn } from '@/modules/columnList/state/columnListReducer'
-import { addEmptyTaskListAtTheEnd } from '@/modules/columnList/taskList/state/taskListInEachColumnReducer'
+import { addEmptyTaskListAtTheEnd } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import getErrorMessageForTheUser from '@/modules/shared/utils/getErrorMessageForTheUser'
 import {
 	getBlankColumnWithoutPosition,

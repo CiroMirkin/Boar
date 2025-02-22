@@ -1,5 +1,5 @@
 import BusinessError from '@/modules/shared/errors/businessError'
-import { TaskList } from '@/modules/columnList/taskList/models/taskList'
+import { TaskList } from '@/modules/taskList/models/taskList'
 
 export interface taskListArchived {
 	date: string

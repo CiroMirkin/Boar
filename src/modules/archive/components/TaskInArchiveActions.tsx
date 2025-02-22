@@ -4,7 +4,7 @@ import { Button } from '@/ui/button'
 import { useDispatch } from 'react-redux'
 import { deleteArchivedTask } from '@/modules/archive/state/archiveReducer'
 import { useToast } from '@/ui/use-toast'
-import { addTaskAtLastColumn } from '@/modules/columnList/taskList/state/taskListInEachColumnReducer'
+import { addTaskAtLastColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { useAskForConfirmationToast } from '@/modules/shared/hooks/useAskForConfirmationToast'
 import { useTranslation } from 'react-i18next'
 

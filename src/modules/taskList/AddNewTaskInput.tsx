@@ -1,6 +1,6 @@
 import { iconSize } from '@/modules/shared/configs/iconsConstants'
-import { getNewTask, isThisTaskDescriptionValid } from '@/modules/columnList/taskList/models/task'
-import { addTaskAtFirstColumn } from '@/modules/columnList/taskList/state/taskListInEachColumnReducer'
+import { getNewTask, isThisTaskDescriptionValid } from '@/modules/taskList/models/task'
+import { addTaskAtFirstColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { Button } from '@/ui/button'
 import { Textarea } from '@/ui/textarea'
 import { useToast } from '@/ui/use-toast'

@@ -1,4 +1,4 @@
-import { emptyTask } from '@/modules/columnList/taskList/models/task'
+import { emptyTask } from '@/modules/taskList/models/task'
 import { archiveThisTask } from './archiveTask'
 import { Archive } from '@/modules/archive/models/archive'
 import { getFullDate } from '@/modules/shared/utils/getTime'

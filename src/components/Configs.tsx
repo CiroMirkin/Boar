@@ -6,7 +6,7 @@ import { ThemeContext } from '@/modules/shared/Theme/ThemeContext'
 
 import { ChangeBoardName } from '../modules/board/components/ChangeBoardName'
 import { ConfigColumns } from '../modules/shared/components/ConfigColumns'
-import Reminder from '../modules/columnList/taskList/Reminder/Reminder'
+import Reminder from '../modules/taskList/Reminder/Reminder'
 import { ThemeSelection } from '../modules/shared/Theme/ThemeSelection'
 
 export function Configs() {

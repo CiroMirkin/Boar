@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react'
-import { taskModel, emptyTask } from '@/modules/columnList/taskList/models/task'
+import { taskModel, emptyTask } from '@/modules/taskList/models/task'
 import { Card, CardContent, CardFooter } from '../../../ui/card'
 import { TextWithURL } from '@/modules/shared/utils/TextWithURL'
 import { ThemeContext } from '../Theme/ThemeContext'

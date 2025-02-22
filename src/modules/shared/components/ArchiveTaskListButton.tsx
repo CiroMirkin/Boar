@@ -1,5 +1,5 @@
 import { archiveTaskListAtLastColumn } from '@/modules/archive/state/archiveReducer'
-import { cleanTheLastTaskList } from '@/modules/columnList/taskList/state/taskListInEachColumnReducer'
+import { cleanTheLastTaskList } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { useToast } from '@/ui/use-toast'
 import { useDispatch } from 'react-redux'
 import { Button } from '@/ui/button'
@@ -8,7 +8,7 @@ import { iconSize } from '@/modules/shared/configs/iconsConstants'
 import getErrorMessageForTheUser from '@/modules/shared/utils/getErrorMessageForTheUser'
 import { useCheckForTasksInLastColumn } from '@/modules/shared/hooks/useCheckForTasksInLastColumn'
 import { useTranslation } from 'react-i18next'
-import { useTaskListInEachColumn } from '@/modules/columnList/taskList/hooks/useTaskListInEachColumn'
+import { useTaskListInEachColumn } from '@/modules/taskList/hooks/useTaskListInEachColumn'
 
 export function ArchiveTaskListButton() {
 	const { toast } = useToast()

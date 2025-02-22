@@ -1,5 +1,5 @@
 import { Archive } from '@/modules/archive/models/archive'
-import { taskModel } from '@/modules/columnList/taskList/models/task'
+import { taskModel } from '@/modules/taskList/models/task'
 
 interface deleteArchivedTaskParams {
 	task: taskModel

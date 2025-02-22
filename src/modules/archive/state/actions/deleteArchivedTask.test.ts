@@ -1,7 +1,7 @@
 import { Archive } from '@/modules/archive/models/archive'
 import { deleteThisArchivedTask } from './deleteArchivedTask'
 import { getFullDate } from '@/modules/shared/utils/getTime'
-import { emptyTask } from '@/modules/columnList/taskList/models/task'
+import { emptyTask } from '@/modules/taskList/models/task'
 
 describe('Eliminar una tarea del archivo.', () => {
 	test('Se debería eliminar la tarea indicada del archivo.', () => {

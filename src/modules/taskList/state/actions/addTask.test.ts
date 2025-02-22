@@ -1,4 +1,4 @@
-import { TaskList, TaskListInEachColumn } from '@/modules/columnList/taskList/models/taskList'
+import { TaskList, TaskListInEachColumn } from '@/modules/taskList/models/taskList'
 import { addTaskInFirstColumn, addTaskInTheLastColumn } from './addTask'
 
 describe('Crear una tarea.', () => {
