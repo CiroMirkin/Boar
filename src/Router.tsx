@@ -5,27 +5,24 @@ import { Configs } from './components/Configs'
 import { Erro404 } from './components/404'
 import { Help } from './components/Help'
 import ColumnListContainer from './modules/columnList/ColumnListContainer'
-import { Separator } from './ui/separator'
 import { ChangeBoardName } from './modules/board/components/ChangeBoardName'
 import { ConfigColumns } from './modules/columnList/components/ConfigColumns'
 import Reminder from './modules/columnList/components/Reminder'
 import { ColorTheme } from './modules/shared/components/ColorTheme'
 
 const ConfigsPage = () => (
+	
 	<Configs>
-		<div className='py-4 md:px-11 px-6'>
+		<div className='max-w-2xl rounded-lg py-4 bg-white md:px-11 px-6'>
 			<ChangeBoardName />
 		</div>
-		<Separator />
-		<div className='py-4 md:px-11 px-6'>
+		<div className='max-w-2xl rounded-lg py-4 bg-white md:px-11 px-6'>
 			<ConfigColumns />
 		</div>
-		<Separator />
-		<div className='py-4 md:px-11 px-6'>
+		<div className='max-w-2xl rounded-lg py-4 bg-white md:px-11 px-6'>
 			<Reminder />
 		</div>
-		<Separator />
-		<div className='py-4 md:px-11 px-6'>
+		<div className='max-w-2xl rounded-lg py-4 bg-white md:px-11 px-6'>
 			<ColorTheme />
 		</div>
 	</Configs>

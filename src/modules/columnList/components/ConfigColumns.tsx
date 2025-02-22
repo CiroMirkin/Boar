@@ -17,12 +17,12 @@ export function ConfigColumns() {
 		<ConfigColumn column={column} key={column.id} />
 	))
 	return (
-		<>
+		<div className="w-full">
 			<h2 className='text-2xl'>{t('settings.columns.section_title')}</h2>
-			<ul className='h-auto w-full max-w-2xl py-5 flex flex-wrap flex-col justify-start gap-y-3 gap-x-3.5'>
+			<ul className='h-auto w-full max-w-2xl py-5 grid justify-stretch gap-y-3'>
 				{columns}
 				<AddNewColumnForm />
 			</ul>
-		</>
+		</div>
 	)
 }

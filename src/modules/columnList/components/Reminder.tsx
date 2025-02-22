@@ -54,7 +54,7 @@ function Reminder() {
 		<>
 			<h2 className='text-2xl'>{t('settings.reminder.section_title')}</h2>
 			<p className='opacity-75'>{t('settings.reminder.section_description')}</p>
-			<div className='max-w-2xl py-5 grid gap-3'>
+			<div className='py-5 grid gap-3'>
 				<div className='grid mr-2 w-full items-center gap-1.5'>
 					<Label>{t('settings.reminder.select_column_label')}</Label>
 					<Select

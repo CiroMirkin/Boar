@@ -11,7 +11,11 @@ export function Configs({ children }: { children: React.ReactNode[] }) {
 		<>
 			<div className={`${bg} ${text}`}>
 				<Header title={t('menu.configs')} whereUserIs={USER_IS_IN.CONFIG} />
-				{children}
+				<div className="px-3 pb-6 grid justify-items-center">
+					<div className="grid gap-4 justify-items-stretch ">
+						{children}
+					</div>
+				</div>
 			</div>
 		</>
 	)
