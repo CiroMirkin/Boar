@@ -9,7 +9,7 @@ import getErrorMessageForTheUser from '@/modules/shared/utils/getErrorMessageFor
 import {
 	getBlankColumnWithoutPosition,
 	isThisColumnNameWithinTheLimitOfLetters,
-} from '../models/column'
+} from '../../columnList/models/column'
 import { Input } from '@/ui/input'
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Column, isThisColumnNameWithinTheLimitOfLetters } from '../models/column'
+import { Column, isThisColumnNameWithinTheLimitOfLetters } from '../../columnList/models/column'
 import { useDispatch } from 'react-redux'
 import { changeColumnName, deleteColumn } from '@/modules/columnList/state/columnListReducer'
 import { Button } from '../../../ui/button'
