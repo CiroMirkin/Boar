@@ -5,8 +5,8 @@ import { addColumnAtTheEnd } from '@/modules/columnList/state/actions/addColumn'
 import { changeNameOfColumn } from '@/modules/columnList/state/actions/changeColumnName'
 import { deleteThisColumn } from '@/modules/columnList/state/actions/deleteColumn'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { blankReminder, Reminder } from '../models/reminder'
-import { createReminder } from './actions/createReminder'
+import { blankReminder, Reminder } from '../Reminder/reminder'
+import { createReminder } from '../Reminder/createReminder'
 
 interface InitialState {
 	list: Column[]

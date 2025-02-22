@@ -1,5 +1,5 @@
 import BusinessError from '@/modules/shared/errors/businessError'
-import { Reminder } from '../../models/reminder'
+import { Reminder } from './reminder'
 
 export const createReminder = (newReminder: Reminder) => {
 	if (!newReminder.text.trim())

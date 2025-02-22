@@ -1,5 +1,5 @@
 import { RootState } from '@/store'
-import { Reminder } from '../models/reminder'
+import { Reminder } from './reminder'
 import { useSelector } from 'react-redux'
 
 /** Proporciona toda la información del recordatorio creado por el usuario. */

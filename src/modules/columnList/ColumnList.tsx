@@ -4,7 +4,7 @@ import { useColumnList } from './hooks/useColumnList'
 import { TaskList } from './taskList/TaskList'
 import { ScrollArea } from '../../ui/scroll-area'
 import { TaskListInEachColumnContext } from '@/modules/columnList/taskList/contexts/TaskListInEachColumnContext'
-import { useReminder } from '@/modules/columnList/hooks/useReminder'
+import { useReminder } from '@/modules/columnList/Reminder/useReminder'
 
 export function ColumnList() {
 	const columns = useColumnList()
