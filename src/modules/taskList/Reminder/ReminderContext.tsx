@@ -12,7 +12,7 @@ const defaultReminderContextValue: ReminderContextData = {
     setReminder: () => {}
 }
 
-const ReminderContext = createContext(defaultReminderContextValue)
+export const ReminderContext = createContext(defaultReminderContextValue)
 
 interface ReminderProviderProps {
     children: React.ReactNode

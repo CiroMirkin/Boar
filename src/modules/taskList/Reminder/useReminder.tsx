@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useToast } from '@/ui/use-toast'
-import { useReminderInfo } from '@/modules/taskList/Reminder/useReminderInfo'
 import { TaskListInEachColumn } from '@/modules/taskList/models/taskList'
+import { ReminderContext } from './ReminderContext'
 
 /** Si existe un recordatorio observa la columna indicada por el usuario y al ingresar una nueva tarea muestra el recordatorio en el tablero.  */
 export const useReminder = (taskListInEachColumn: TaskListInEachColumn) => {
@@ -9,7 +9,7 @@ export const useReminder = (taskListInEachColumn: TaskListInEachColumn) => {
 		0, 0, 0,
 	] as Array<number>)
 	const { toast } = useToast()
-	const reminder = useReminderInfo()
+	const { reminder } = useContext(ReminderContext) 
 
 	useEffect(() => {
 		const columnPosition: number = Number(reminder.columnPosition) - 1 // La posicion de una columna es su index + 1

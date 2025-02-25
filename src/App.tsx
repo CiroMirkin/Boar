@@ -6,15 +6,21 @@ import { useUserPreffedLanguage } from './modules/shared/hooks/useUserPreffedLan
 import { ThemeProvider } from './modules/shared/Theme/ThemeContext'
 import { useLocalStorage } from '@uidotdev/usehooks'
 import { defaultTheme } from './modules/shared/Theme/themesList'
+import { blankReminder } from './modules/taskList/Reminder/reminder'
+import { ReminderProvider } from './modules/taskList/Reminder/ReminderContext'
 
 function App() {
 	useUserPreffedLanguage()
 	const [theme, setTheme] = useLocalStorage('boar-theme', defaultTheme)
+	const [reminder, setReminder] = useLocalStorage('boar-reminder', blankReminder)
+
 	return (
 		<>
 			<ThemeProvider theme={theme} changeTheme={setTheme}>
+			<ReminderProvider reminderData={{ reminder, setReminder }}>
 				<Router />
 				<Toaster />
+			</ReminderProvider>
 			</ThemeProvider>
 		</>
 	)

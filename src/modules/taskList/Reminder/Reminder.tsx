@@ -1,26 +1,23 @@
-import { useState, ChangeEvent } from 'react'
+import { useState, ChangeEvent, useContext } from 'react'
 import { Button } from '@/ui/button'
 import { Input } from '@/ui/input'
 import { Label } from '@/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/ui/select'
 import { Reminder as reminder } from './reminder'
 import { useToast } from '@/ui/use-toast'
-import { useDispatch } from 'react-redux'
-import { addReminder } from '@/modules/columnList/state/columnListReducer'
 import getErrorMessageForTheUser from '@/modules/shared/utils/getErrorMessageForTheUser'
-import { useReminderInfo } from '@/modules/taskList/Reminder/useReminderInfo'
 import { useColumnList } from '@/modules/columnList/hooks/useColumnList'
 import { useTranslation } from 'react-i18next'
+import { ReminderContext } from './ReminderContext'
 
 function Reminder() {
 	const { t } = useTranslation()
 	const columnList = useColumnList()
-	const reminder = useReminderInfo()
+	const { reminder, setReminder } = useContext(ReminderContext)
 	const [reminderText, setReminderText] = useState(reminder.text as string)
 	const [reminderColumnPosition, setReminderColumnPosition] = useState(
 		reminder.columnPosition as string
 	)
-	const dispatch = useDispatch()
 
 	const { toast } = useToast()
 
@@ -31,7 +28,7 @@ function Reminder() {
 		}
 
 		try {
-			dispatch(addReminder(newReminder))
+			setReminder(newReminder)
 			toast({
 				description: t('settings.reminder.created_toast'),
 				duration: 3000,
