@@ -1,4 +1,4 @@
-import { Archive } from '@/modules/archive/models/archive'
+import { Archive } from '@/modules/taskList/archive/models/archive'
 import { jsPDF } from 'jspdf'
 
 export const downloadArchiveLikePDF = ({ archive }: { archive: Archive }): void => {

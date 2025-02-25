@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Board } from './modules/board/Board'
-import { Archive } from './modules/archive/Archive'
+import { Archive } from './modules/taskList/archive/Archive'
 import { Configs } from './components/Configs'
 import { Erro404 } from './components/404'
 import { Help } from './components/Help'
@@ -8,7 +8,7 @@ import ColumnListContainer from './modules/columnList/ColumnListContainer'
 import { TaskListInEachColumn } from './modules/taskList/TaskListInEachColumn'
 
 import { AddNewTaskInput } from './modules/taskList/AddNewTaskInput'
-import { ArchiveTaskListButton } from './modules/shared/components/ArchiveTaskListButton'
+import { ArchiveTaskListButton } from './modules/taskList/archive/components/ArchiveTaskListButton'
 import { ColumnsContextContent } from './modules/columnList/ColumnsContext'
 
 const columnsData: ColumnsContextContent = {
