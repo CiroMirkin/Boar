@@ -1,16 +1,16 @@
 import { useState } from 'react'
-import { Column, isThisColumnNameWithinTheLimitOfLetters } from '../../modules/columnList/models/column'
+import { Column, isThisColumnNameWithinTheLimitOfLetters } from '../models/column'
 import { useDispatch } from 'react-redux'
 import { changeColumnName } from '@/modules/columnList/state/columnListReducer'
-import { Button } from '../../ui/button'
-import { useToast } from '../../ui/use-toast'
+import { Button } from '../../../ui/button'
+import { useToast } from '../../../ui/use-toast'
 import { Pencil, Trash2 } from 'lucide-react'
 import { iconSize } from '@/sharedByModules/configs/iconsConstants'
 import { Input } from '@/ui/input'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { useAskForConfirmationToast } from '@/sharedByModules/hooks/useAskForConfirmationToast'
 import { useTranslation } from 'react-i18next'
-import { useDeleteColumn } from '../hooks/useDeleteColumn'
+import { useDeleteColumn } from '../../../sharedByModules/hooks/useDeleteColumn'
 
 interface ConfigColumnParams {
 	column: Column

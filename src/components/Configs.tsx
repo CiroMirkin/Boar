@@ -5,7 +5,7 @@ import { useContext } from 'react'
 import { ThemeContext } from '@/sharedByModules/Theme/ThemeContext'
 
 import { ChangeBoardName } from '../modules/board/components/ChangeBoardName'
-import { ConfigColumns } from '../sharedByModules/components/ConfigColumns'
+import { ConfigColumns } from '../modules/columnList/components/ConfigColumns'
 import Reminder from '../modules/taskList/Reminder/Reminder'
 import { ThemeSelection } from '../sharedByModules/Theme/ThemeSelection'
 import { useColumnList } from '@/modules/columnList/hooks/useColumnList'
