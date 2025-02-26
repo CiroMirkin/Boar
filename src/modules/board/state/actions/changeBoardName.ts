@@ -1,4 +1,4 @@
-import BusinessError from '@/shared/errors/businessError'
+import BusinessError from '@/sharedByModules/errors/businessError'
 import { boardModel } from '../../models/board'
 import { boardUseCaseParams } from '../actions'
 

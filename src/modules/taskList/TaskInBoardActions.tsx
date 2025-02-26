@@ -1,5 +1,5 @@
 import { Button } from '@/ui/button'
-import { TaskContext } from '../../shared/components/Task'
+import { TaskContext } from '../../sharedByModules/components/Task'
 import { useToast } from '@/ui/use-toast'
 import { useDispatch } from 'react-redux'
 import {
@@ -7,10 +7,10 @@ import {
 	moveTaskToNextColumn,
 	moveTaskToPrevColumn,
 } from '@/modules/taskList/state/taskListInEachColumnReducer'
-import { useCheckIfThisTaskIsInTheFirstColumn } from '@/shared/hooks/useCheckIfThisTaskIsInTheFirstColumn'
-import { useCheckIfTaskIsInTheLastColumn } from '@/shared/hooks/useCheckIfTaskIsInTheLastColumn'
+import { useCheckIfThisTaskIsInTheFirstColumn } from '@/sharedByModules/hooks/useCheckIfThisTaskIsInTheFirstColumn'
+import { useCheckIfTaskIsInTheLastColumn } from '@/sharedByModules/hooks/useCheckIfTaskIsInTheLastColumn'
 import { useContext } from 'react'
-import getErrorMessageForTheUser from '@/shared/utils/getErrorMessageForTheUser'
+import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { archiveTask } from '@/modules/taskList/archive/state/archiveReducer'
 import { ToastAction } from '@/ui/toast'
 import { taskModel } from '@/modules/taskList/models/task'

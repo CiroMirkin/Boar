@@ -1,11 +1,11 @@
 import { useContext } from 'react'
-import { TaskContext } from '../../../../shared/components/Task'
+import { TaskContext } from '../../../../sharedByModules/components/Task'
 import { Button } from '@/ui/button'
 import { useDispatch } from 'react-redux'
 import { deleteArchivedTask } from '@/modules/taskList/archive/state/archiveReducer'
 import { useToast } from '@/ui/use-toast'
 import { addTaskAtLastColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
-import { useAskForConfirmationToast } from '@/shared/hooks/useAskForConfirmationToast'
+import { useAskForConfirmationToast } from '@/sharedByModules/hooks/useAskForConfirmationToast'
 import { useTranslation } from 'react-i18next'
 
 export function TaskInArchiveActions() {

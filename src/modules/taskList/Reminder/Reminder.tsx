@@ -5,7 +5,7 @@ import { Label } from '@/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/ui/select'
 import { Reminder as reminder } from './reminder'
 import { useToast } from '@/ui/use-toast'
-import getErrorMessageForTheUser from '@/shared/utils/getErrorMessageForTheUser'
+import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { useTranslation } from 'react-i18next'
 import { ReminderContext } from './ReminderContext'
 
