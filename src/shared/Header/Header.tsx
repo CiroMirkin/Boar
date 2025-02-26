@@ -9,7 +9,7 @@ import {
 import { Button } from '@/ui/button'
 import { Archive, CircleHelp, Columns3, Github, Menu, Settings } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { iconSize } from '@/modules/shared/configs/iconsConstants'
+import { iconSize } from '@/shared/configs/iconsConstants'
 import { USER_IS_IN } from './userIsIn'
 import { LanguageToggle } from './LanguageToggle'
 import { useTranslation } from 'react-i18next'

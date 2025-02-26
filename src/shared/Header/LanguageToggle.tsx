@@ -7,7 +7,7 @@ import {
 	DropdownMenuSubTrigger,
 } from '@/ui/dropdown-menu'
 import { Languages } from 'lucide-react'
-import { iconSize } from '@/modules/shared/configs/iconsConstants'
+import { iconSize } from '@/shared/configs/iconsConstants'
 import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
 import { useLocalStorage, usePreferredLanguage } from '@uidotdev/usehooks'

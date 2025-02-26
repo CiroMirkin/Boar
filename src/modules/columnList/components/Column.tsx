@@ -4,7 +4,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/card'
 import { useCheckIfThisColumnIsTheFirst } from '@/modules/columnList/hooks/useCheckIfThisColumnIsTheFirst'
 import { useCheckIfThisColumnIsTheLast } from '@/modules/columnList/hooks/useCheckIfThisColumnIsTheLast'
 
-import { ThemeContext } from '@/modules/shared/Theme/ThemeContext'
+import { ThemeContext } from '@/shared/Theme/ThemeContext'
 import { ColumnsContext } from '../ColumnsContext'
 
 const ColumnContext = createContext(columnNull)

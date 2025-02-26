@@ -1,7 +1,7 @@
 import { emptyTask } from '@/modules/taskList/models/task'
 import { archiveThisTask } from './archiveTask'
 import { Archive } from '@/modules/taskList/archive/models/archive'
-import { getFullDate } from '@/modules/shared/utils/getTime'
+import { getFullDate } from '@/shared/utils/getTime'
 
 describe('Archivar una tarea.', () => {
 	test('Se debería archivar la tarea indicada.', () => {

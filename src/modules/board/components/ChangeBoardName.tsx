@@ -4,13 +4,13 @@ import { Button } from '@/ui/button'
 import { useDispatch } from 'react-redux'
 import { changeTheNameOfTheBoard } from '@/modules/board/state/boardReducer'
 import { Pencil } from 'lucide-react'
-import { iconSize } from '@/modules/shared/configs/iconsConstants'
+import { iconSize } from '@/shared/configs/iconsConstants'
 import { Label } from '@/ui/label'
 import {
 	isThisBoardNameValid,
 	isThisBoardNameWithinTheLimitOfLetters,
 } from '@/modules/board/models/board'
-import getErrorMessageForTheUser from '@/modules/shared/utils/getErrorMessageForTheUser'
+import getErrorMessageForTheUser from '@/shared/utils/getErrorMessageForTheUser'
 import { useToast } from '@/ui/use-toast'
 import { useBoard } from '@/modules/board/hooks/useBoard'
 import { BoardRepository } from '@/modules/board/models/boardRepository'

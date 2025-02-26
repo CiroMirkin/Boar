@@ -1,7 +1,7 @@
 import React from 'react'
 import { TaskList as taskList } from '@/modules/taskList/models/taskList'
 import { TaskInBoardActions } from './TaskInBoardActions'
-import { Task } from '../shared/components/Task'
+import { Task } from '../../shared/components/Task'
 
 interface TaskListProps {
 	tasks: taskList

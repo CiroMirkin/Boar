@@ -2,12 +2,12 @@ import './App.css'
 import Router from './Router'
 import { Toaster } from './ui/toaster'
 import './i18next/index'
-import { useUserPreffedLanguage } from './modules/shared/hooks/useUserPreffedLanguage'
-import { ThemeProvider } from './modules/shared/Theme/ThemeContext'
+import { useUserPreffedLanguage } from './shared/hooks/useUserPreffedLanguage'
+import { ThemeProvider } from './shared/Theme/ThemeContext'
 import { useLocalStorage } from '@uidotdev/usehooks'
 import { blankReminder } from './modules/taskList/Reminder/reminder'
 import { ReminderProvider } from './modules/taskList/Reminder/ReminderContext'
-import { useUserSystemTheme } from './modules/shared/Theme/useUserSystemTheme'
+import { useUserSystemTheme } from './shared/Theme/useUserSystemTheme'
 
 function App() {
 	useUserPreffedLanguage()

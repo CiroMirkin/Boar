@@ -1,7 +1,7 @@
 import { Archive, isItWithinTheDailyArchiveLimit } from '@/modules/taskList/archive/models/archive'
 import { taskModel } from '@/modules/taskList/models/task'
 import { getDateOfTheFirstTaskListArchived } from '@/modules/taskList/archive/models/archive'
-import { getFullDate } from '@/modules/shared/utils/getTime'
+import { getFullDate } from '@/shared/utils/getTime'
 
 export const archiveThisTask = ({
 	task,

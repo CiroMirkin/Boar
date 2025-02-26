@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next'
-import { Header } from '../modules/shared/Header/Header'
-import { USER_IS_IN } from '../modules/shared/Header/userIsIn'
+import { Header } from '../shared/Header/Header'
+import { USER_IS_IN } from '../shared/Header/userIsIn'
 import { useContext } from 'react'
-import { ThemeContext } from '@/modules/shared/Theme/ThemeContext'
+import { ThemeContext } from '@/shared/Theme/ThemeContext'
 
 import { ChangeBoardName } from '../modules/board/components/ChangeBoardName'
-import { ConfigColumns } from '../modules/shared/components/ConfigColumns'
+import { ConfigColumns } from '../shared/components/ConfigColumns'
 import Reminder from '../modules/taskList/Reminder/Reminder'
-import { ThemeSelection } from '../modules/shared/Theme/ThemeSelection'
+import { ThemeSelection } from '../shared/Theme/ThemeSelection'
 import { useColumnList } from '@/modules/columnList/hooks/useColumnList'
 
 export function Configs() {
