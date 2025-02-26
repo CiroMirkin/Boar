@@ -2,9 +2,6 @@ import { iconSize } from '@/sharedByModules/configs/iconsConstants'
 import { Button } from '@/ui/button'
 import { useToast } from '@/ui/use-toast'
 import { Plus } from 'lucide-react'
-import { useDispatch } from 'react-redux'
-import { addColumn } from '@/modules/columnList/state/columnListReducer'
-import { addEmptyTaskListAtTheEnd } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import {
 	getBlankColumnWithoutPosition,
@@ -13,6 +10,7 @@ import {
 import { Input } from '@/ui/input'
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useCreateColumn } from '../hooks/useCreateColumn'
 
 export function AddNewColumnForm() {
 	const [newColumnName, setNewColumnName] = useState('')
@@ -21,13 +19,12 @@ export function AddNewColumnForm() {
 	const theNewColumnNameIsOffLimits = !isThisColumnNameWithinTheLimitOfLetters(newColumnName)
 	const theNewColumnNameIsValid = theNewColumnNameIsBlank || theNewColumnNameIsOffLimits
 
-	const updateBoardData = useDispatch()
 	const { toast } = useToast()
-
+	
+	const createColumn = useCreateColumn()
 	const addNewColumn = () => {
 		const newColumn = getBlankColumnWithoutPosition({ name: newColumnName })
-		updateBoardData(addColumn(newColumn))
-		updateBoardData(addEmptyTaskListAtTheEnd())
+		createColumn({ newColumn })
 		setNewColumnName('')
 	}
 
