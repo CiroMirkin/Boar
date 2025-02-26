@@ -1,16 +1,16 @@
 import { useState } from 'react'
 import { Column, isThisColumnNameWithinTheLimitOfLetters } from '../../modules/columnList/models/column'
 import { useDispatch } from 'react-redux'
-import { changeColumnName, deleteColumn } from '@/modules/columnList/state/columnListReducer'
+import { changeColumnName } from '@/modules/columnList/state/columnListReducer'
 import { Button } from '../../ui/button'
 import { useToast } from '../../ui/use-toast'
 import { Pencil, Trash2 } from 'lucide-react'
 import { iconSize } from '@/sharedByModules/configs/iconsConstants'
 import { Input } from '@/ui/input'
-import { deleteTheTaskListOfThisColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { useAskForConfirmationToast } from '@/sharedByModules/hooks/useAskForConfirmationToast'
 import { useTranslation } from 'react-i18next'
+import { useDeleteColumn } from '../hooks/useDeleteColumn'
 
 interface ConfigColumnParams {
 	column: Column
@@ -30,10 +30,8 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 		setShowChangeColumnNameInput(!showChangeColumnNameInput)
 	}
 
-	const deleteColumnHandle = () => {
-		updateBoardData(deleteColumn(column))
-		updateBoardData(deleteTheTaskListOfThisColumn(column))
-	}
+	const deleteColumn = useDeleteColumn()
+	const deleteColumnHandle = () => deleteColumn({ column })
 
 	const askForConfirmationToDeleteTheColumn = useAskForConfirmationToast({
 		confirmationText: `${t('settings.columns.delete_column_warning')} "${columnName}"?`,
