@@ -56,3 +56,4 @@ Esta son las historias de usuario implementadas actualmente en Boar.
   * Se debe cambiar el idioma automáticamente a Ingles si es el idioma del dispositivo del usuario.
 
 * Como usuario, puedo cambiar el tema de color de toda la aplicación.
+  * Al entrar a la aplicación por primera vez se selecciona el tema automáticamente según el tema del navegador del usuario.
