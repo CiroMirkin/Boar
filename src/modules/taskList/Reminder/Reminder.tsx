@@ -6,13 +6,17 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Reminder as reminder } from './reminder'
 import { useToast } from '@/ui/use-toast'
 import getErrorMessageForTheUser from '@/modules/shared/utils/getErrorMessageForTheUser'
-import { useColumnList } from '@/modules/columnList/hooks/useColumnList'
 import { useTranslation } from 'react-i18next'
 import { ReminderContext } from './ReminderContext'
 
-function Reminder() {
+interface ReminderColumn {
+	name: string
+	position: string
+	id: string
+}
+
+function Reminder({ columnList }: { columnList: ReminderColumn[] }) {
 	const { t } = useTranslation()
-	const columnList = useColumnList()
 	const { reminder, setReminder } = useContext(ReminderContext)
 	const [reminderText, setReminderText] = useState(reminder.text as string)
 	const [reminderColumnPosition, setReminderColumnPosition] = useState(
