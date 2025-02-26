@@ -93,4 +93,6 @@ export const themesList: readonly Theme[] = Object.freeze([
 	},
 ])
 
-export const defaultTheme: Theme = { ...themesList[5] }
+export const lightTheme: Theme = { ...themesList[5] }
+
+export const darkTheme: Theme = themesList[themesList.length-3]

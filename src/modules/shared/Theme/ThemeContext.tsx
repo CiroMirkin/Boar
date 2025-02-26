@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction } from "react"
-import { Theme, defaultTheme } from "./themesList"
+import { Theme, lightTheme } from "./themesList"
 
 interface ThemeContextContent {
     theme: Theme
@@ -7,7 +7,7 @@ interface ThemeContextContent {
 }
 
 const defaultThemeContextValue: ThemeContextContent = {
-    theme: defaultTheme,
+    theme: lightTheme,
     changeTheme: () => {}
 }
 
