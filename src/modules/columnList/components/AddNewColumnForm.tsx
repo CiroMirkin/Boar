@@ -6,11 +6,11 @@ import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageFo
 import {
 	getBlankColumnWithoutPosition,
 	isThisColumnNameWithinTheLimitOfLetters,
-} from '../../modules/columnList/models/column'
+} from '../models/column'
 import { Input } from '@/ui/input'
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useCreateColumn } from '../hooks/useCreateColumn'
+import { useCreateColumn } from '../../../sharedByModules/hooks/useCreateColumn'
 
 export function AddNewColumnForm() {
 	const [newColumnName, setNewColumnName] = useState('')

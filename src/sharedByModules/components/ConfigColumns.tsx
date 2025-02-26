@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { ConfigColumn } from './ConfigColumn'
-import { AddNewColumnForm } from './AddNewColumnForm'
+import { AddNewColumnForm } from '../../modules/columnList/components/AddNewColumnForm'
 import LocalStorageColumnListRepository from '@/modules/columnList/state/localStorageColumnList'
 import { ColumnListRepository } from '@/modules/columnList/state/columnListRepository'
 import { useColumnList } from '@/modules/columnList/hooks/useColumnList'
