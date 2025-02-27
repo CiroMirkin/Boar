@@ -15,7 +15,7 @@ interface ReminderColumn {
 	id: string
 }
 
-function Reminder({ columnList }: { columnList: ReminderColumn[] }) {
+function CreateReminder({ columnList }: { columnList: ReminderColumn[] }) {
 	const { t } = useTranslation()
 	const { reminder, setReminder } = useContext(ReminderContext)
 	const [reminderText, setReminderText] = useState(reminder.text as string)
@@ -98,4 +98,4 @@ function Reminder({ columnList }: { columnList: ReminderColumn[] }) {
 	)
 }
 
-export default Reminder
+export default CreateReminder

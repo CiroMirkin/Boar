@@ -6,7 +6,7 @@ import { ThemeContext } from '@/sharedByModules/Theme/ThemeContext'
 
 import { ChangeBoardName } from '../modules/board/components/ChangeBoardName'
 import { ConfigColumns } from '../modules/columnList/components/ConfigColumns'
-import Reminder from '../modules/taskList/Reminder/Reminder'
+import CreateReminder from '../modules/taskList/Reminder/CreateReminder'
 import { ThemeSelection } from '../sharedByModules/Theme/ThemeSelection'
 import { useColumnList } from '@/modules/columnList/hooks/useColumnList'
 
@@ -42,7 +42,7 @@ const ConfigPageContent = () => {
 				<ConfigColumns />
 			</div>
 			<div className={sectionClassName}>
-				<Reminder columnList={ useColumnList() } />
+				<CreateReminder columnList={ useColumnList() } />
 			</div>
 			<div className={sectionClassName}>
 				<ThemeSelection />
