@@ -61,12 +61,16 @@
 		"reminder": {
 			"section_title": "Create reminder",
 			"section_description": "Each time a task reaches to the indicated column, a reminder will be displayed on the screen.",
-			"select_column_label": "Select a column",
+			"select_column_label": "Select the column",
 			"select_column_default_option": "Columns",
 			"reminder_description_input_label": "Write a description",
 			"reminder_description_input_placeholder": "Don't forget to...",
 			"create_reminder_btn": "Create",
-			"created_toast": "The reminder has been created!"
+			"created_toast": "The reminder has been created!",
+			"reminder_list_section_title": "Created reminders",
+			"delete_reminder_btn": "Delete reminder",
+			"delete_reminder_warning_toast": "Are you sure you want to delete this reminder?",
+			"blank_reminder_list": "You have not created any reminders yet."
 		}
 	},
 

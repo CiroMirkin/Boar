@@ -66,7 +66,11 @@
 			"reminder_description_input_label": "Escribe la descripción",
 			"reminder_description_input_placeholder": "No olvides...",
 			"create_reminder_btn": "Crear",
-			"created_toast": "¡Se ha creado el recordatorio!"
+			"created_toast": "¡Se ha creado el recordatorio!",
+			"reminder_list_section_title": "Recordatorios creados",
+			"delete_reminder_btn": "Eliminar recordatorio",
+			"delete_reminder_warning_toast": "¿Seguro desea eliminar este recordatorio?",
+			"blank_reminder_list": "Aún no haz creado ningún recordatorio."
 		}
 	},
 
