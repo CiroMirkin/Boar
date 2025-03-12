@@ -12,6 +12,7 @@
 	"new_task_btn_title": "Create task",
 	"archive_task_list_btn": "Archive tasks",
 	"archive_task_list_toast": "Browse through archived tasks in the menu.",
+	"delete_toast_btn": "Delete",
 
 	"task_buttons": {
 		"next_btn": "Forward",
