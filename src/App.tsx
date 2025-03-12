@@ -8,8 +8,10 @@ import { useLocalStorage } from '@uidotdev/usehooks'
 import { blankReminder } from './modules/taskList/Reminder/reminder'
 import { ReminderProvider } from './modules/taskList/Reminder/ReminderContext'
 import { useUserSystemTheme } from './sharedByModules/Theme/useUserSystemTheme'
+import { useSetLanguageSaved } from './sharedByModules/hooks/useSetLanguageSaved'
 
 function App() {
+	useSetLanguageSaved()
 	useUserPreffedLanguage()
 	const defaultTheme = useUserSystemTheme()
 	const [theme, setTheme] = useLocalStorage('boar-theme', defaultTheme)
