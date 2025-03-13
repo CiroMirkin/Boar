@@ -4,9 +4,11 @@ import { WelcomeDialog } from './components/WelcomeDialog'
 import { useBoard } from '@/modules/board/hooks/useBoard'
 import { useContext } from 'react'
 import { ThemeContext } from '../../sharedByModules/Theme/ThemeContext'
+import { useDocumentTitle } from '@uidotdev/usehooks'
 
 export function Board({ children }: { children: React.ReactNode }) {
 	const data = useBoard()
+	useDocumentTitle(data.name + " - Boar")
 	const { theme } = useContext(ThemeContext)
 	const { bg, text } = theme
 
