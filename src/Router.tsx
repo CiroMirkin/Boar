@@ -6,6 +6,7 @@ import { Erro404 } from './components/404'
 import { Help } from './components/Help'
 import ColumnListContainer from './modules/columnList/ColumnListContainer'
 import { TaskListInEachColumn } from './modules/taskList/TaskListInEachColumn'
+import ErrorBoundary from './ErrorBoundary'
 
 import { AddNewTaskInput } from './modules/taskList/AddNewTaskInput'
 import { ArchiveTaskListButton } from './modules/taskList/archive/components/ArchiveTaskListButton'
@@ -27,19 +28,19 @@ const BoardPage = () => (
 const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <BoardPage />,
+		element: <ErrorBoundary><BoardPage /></ErrorBoundary>,
 	},
 	{
 		path: '/archive',
-		element: <Archive />,
+		element: <ErrorBoundary><Archive /></ErrorBoundary>,
 	},
 	{
 		path: '/settings',
-		element: <Configs />,
+		element: <ErrorBoundary><Configs /></ErrorBoundary>,
 	},
 	{
 		path: '/help',
-		element: <Help />,
+		element: <ErrorBoundary><Help /></ErrorBoundary>,
 	},
 	{
 		path: '*',
