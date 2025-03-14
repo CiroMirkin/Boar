@@ -38,6 +38,7 @@ export function ArchiveTaskListButton() {
 
 	return (
 		<Button
+			id="archive_task_list_btn"
 			onClick={archiveTaskList}
 			variant='ghost'
 			className='w-full'
