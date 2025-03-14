@@ -3,16 +3,16 @@ import { ColumnList } from '../models/columnList'
 import { ColumnListRepository } from './columnListRepository'
 
 export default class LocalStorageColumnListRepository implements ColumnListRepository {
-	#key
+	key
 	constructor() {
-		this.#key = 'columnList'
+		this.key = 'columnList'
 	}
 	save(columnList: ColumnList): void {
-		localStorage.setItem(this.#key, JSON.stringify(columnList))
+		localStorage.setItem(this.key, JSON.stringify(columnList))
 	}
 	getAll(): ColumnList {
-		return localStorage.getItem(this.#key)
-			? JSON.parse(localStorage.getItem(this.#key) as string)
+		return localStorage.getItem(this.key)
+			? JSON.parse(localStorage.getItem(this.key) as string)
 			: defaultColumnList
 	}
 }

@@ -7,16 +7,16 @@ import { TaskListInEachColumnRepository } from '@/modules/taskList/models/taskLi
 export default class LocalStorageTaskListInEachColumnRepository
 	implements TaskListInEachColumnRepository
 {
-	#key
+	key
 	constructor() {
-		this.#key = 'taskListInEachColumn'
+		this.key = 'taskListInEachColumn'
 	}
 	save(taskListInEachColumn: TaskListInEachColumn): void {
-		localStorage.setItem(this.#key, JSON.stringify(taskListInEachColumn))
+		localStorage.setItem(this.key, JSON.stringify(taskListInEachColumn))
 	}
 	getAll(): TaskListInEachColumn {
-		return localStorage.getItem(this.#key)
-			? JSON.parse(localStorage.getItem(this.#key) as string)
+		return localStorage.getItem(this.key)
+			? JSON.parse(localStorage.getItem(this.key) as string)
 			: emptyTaskListInEachColumn
 	}
 }

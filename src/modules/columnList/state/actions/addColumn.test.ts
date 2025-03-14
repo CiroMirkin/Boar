@@ -1,5 +1,6 @@
 import { Column } from '../../models/column'
 import { addColumnAtTheEnd } from './addColumn'
+import { expect } from 'vitest';
 
 describe('Crear una columna.', () => {
 	test('Se debería añadir una columna al final del tablero.', () => {

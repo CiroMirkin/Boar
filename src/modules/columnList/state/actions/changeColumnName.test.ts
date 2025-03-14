@@ -1,5 +1,6 @@
 import { Column } from '../../models/column'
 import { changeNameOfColumn } from './changeColumnName'
+import { expect } from 'vitest';
 
 describe('Cambiar el nombre de una columna.', () => {
 	test('Se debería cambiar el nombre de la columna indicada.', () => {

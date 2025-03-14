@@ -1,4 +1,5 @@
 import { cleanLastTaskList, deleteTheTaskListInThisIndex } from './deleteTaskList'
+import { expect } from 'vitest';
 
 describe('Eliminar una lista de tareas.', () => {
 	test('Se debería eliminar la última lista de tareas.', () => {

@@ -1,5 +1,6 @@
 import { boardModel } from '@/modules/board/models/board'
 import { changeBoardName } from './changeBoardName'
+import { expect } from 'vitest';
 
 describe('Cambiar el nombre del tablero.', () => {
 	test('Se debería cambiar el nombre del tablero.', () => {
