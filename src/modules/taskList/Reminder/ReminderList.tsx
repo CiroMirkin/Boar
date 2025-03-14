@@ -35,7 +35,7 @@ const ReminderList = () => {
     const reminderList = (
         <li className='w-full py-1 px-3 flex flex-col gap-2 content-stretch border rounded-md'>
             <div className="w-full flex justify-between items-center gap-2">
-                <p className="text-xl">{ reminder.text }</p>
+                <p className="text-lg">{ reminder.text }</p>
                 <Button variant='destructiveGhost' title={t('settings.reminder.delete_reminder_btn')} onClick={askForConfirmationToDeleteTheReminder}>
                 <Trash size={iconSize} />
                 </Button>
