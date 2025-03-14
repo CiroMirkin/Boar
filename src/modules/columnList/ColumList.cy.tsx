@@ -42,4 +42,19 @@ describe("Lista de columnas y tareas.", () => {
         // Se busca la segunda columna y la tarea movida
         cy.get(".taskList").eq(2).children().first().contains(textOfTask)
     })
+    it("El usuario puede archivar todas las tareas en la ultima columna.", () => {
+        const columnsData: ColumnsContextContent = {
+            firstColumnFooterContent: <AddNewTaskInput/>,
+            lastColumnFooterContent: <ArchiveTaskListButton/>,
+        }
+        cy.mount(
+            <Provider store={store}>
+                <ColumnListContainer columnsData={columnsData}>
+                    { TaskListInEachColumn }
+                </ColumnListContainer>
+            </Provider>
+        )
+        cy.get("[id=archive_task_list_btn]").click()
+        cy.get(".taskList").should('be.empty')
+    })
 })
