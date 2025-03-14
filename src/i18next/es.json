@@ -8,6 +8,7 @@
 	"first_column": "Pendientes",
 	"second_column": "Procesando",
 	"third_column": "Terminado",
+	"empty_first_task_list_copy": "¡Añade tu primera tarea y comienza a organizar tu jornada!",
 	"new_task_placeholder": "Nueva tarea...",
 	"new_task_btn_title": "Crear tarea",
 	"archive_task_list_btn": "Archivar tareas",

@@ -8,6 +8,7 @@
 	"first_column": "Standby",
 	"second_column": "In progress",
 	"third_column": "Completed",
+	"empty_first_task_list_copy": "Add your first task and start organizing your day!",
 	"new_task_placeholder": "New task...",
 	"new_task_btn_title": "Create task",
 	"archive_task_list_btn": "Archive tasks",
