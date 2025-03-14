@@ -22,7 +22,7 @@ export function TaskList({ tasks }: TaskListProps) {
 
 	return (
 		<>
-			<div className='flex flex-col gap-y-2'>{taskList}</div>
+			<div className='taskList flex flex-col gap-y-2'>{taskList}</div>
 		</>
 	)
 }

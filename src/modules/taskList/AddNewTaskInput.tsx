@@ -45,6 +45,7 @@ export function AddNewTaskInput() {
 	return (
 		<>
 			<Textarea
+				id='add_new_task_input'
 				value={newTaskDescription}
 				className='mr-1.5'
 				onChange={handleChange}
@@ -52,6 +53,7 @@ export function AddNewTaskInput() {
 				placeholder={t('new_task_placeholder')}
 			/>
 			<Button
+				id='add_new_task_btn'
 				onClick={handleClick}
 				variant='ghost'
 				disabled={canUserUseTheAddTaskInput}
