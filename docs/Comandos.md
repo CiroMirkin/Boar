@@ -77,3 +77,13 @@ npm run test-ui
 ```
 
 El comando `npm run test-ui` creara un **sitio local** donde poder ver el estado de las pruebas en: [http://localhost:51204/__vitest__/#/](http://localhost:51204/__vitest__/#/).
+
+## Pruebas en componentes
+
+Ejecuta [Cypress](https://docs.cypress.io/app/component-testing/react/overview) con:
+
+```
+npx cypress open
+```
+
+Haz Click en `Component Testing` y elige tu navegador de preferencia.
