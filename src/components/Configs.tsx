@@ -9,7 +9,7 @@ import { ConfigColumns } from '../modules/columnList/components/ConfigColumns'
 import CreateReminder from '../modules/taskList/Reminder/CreateReminder'
 import { ThemeSelection } from '../sharedByModules/Theme/ThemeSelection'
 import { useColumnList } from '@/modules/columnList/hooks/useColumnList'
-import { ReminderList } from '@/modules/taskList/Reminder/ReminderList'
+import { ReminderListContainer } from '@/modules/taskList/Reminder/ReminderList'
 
 export function Configs() {
 	const { t } = useTranslation()
@@ -44,7 +44,7 @@ const ConfigPageContent = () => {
 			</div>
 			<div className={sectionClassName}>
 				<CreateReminder columnList={ useColumnList() } />
-				<ReminderList />
+				<ReminderListContainer />
 			</div>
 			<div className={sectionClassName}>
 				<ThemeSelection />

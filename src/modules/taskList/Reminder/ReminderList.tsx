@@ -7,19 +7,19 @@ import { blankReminder } from "./reminder"
 import { useAskForConfirmationToast } from "@/sharedByModules/hooks/useAskForConfirmationToast"
 import { useTranslation } from "react-i18next"
 
-export function ReminderList(){
+export function ReminderListContainer(){
     const { t } = useTranslation()
     return (
         <div>
             <h2 className='text-2xl mb-4'>{ t('settings.reminder.reminder_list_section_title') }</h2>
             <ul>
-                { getReminderList() }
+                <ReminderList />
             </ul>
         </div>
     )
 } 
 
-const getReminderList = () => {
+const ReminderList = () => {
     const t = useTranslation().t
     const { reminder, setReminder } = useContext(ReminderContext)
 
