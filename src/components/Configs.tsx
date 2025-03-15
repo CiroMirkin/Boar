@@ -1,8 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Header } from '../sharedByModules/Header/Header'
 import { USER_IS_IN } from '../sharedByModules/Header/userIsIn'
-import { useContext } from 'react'
-import { ThemeContext } from '@/sharedByModules/Theme/ThemeContext'
+import { useTheme } from '@/sharedByModules/Theme/ThemeContext'
 
 import { ChangeBoardName } from '../modules/board/components/ChangeBoardName'
 import { ConfigColumns } from '../modules/columnList/components/ConfigColumns'
@@ -13,8 +12,7 @@ import { ReminderList } from '@/modules/taskList/Reminder/ReminderList'
 
 export function Configs() {
 	const { t } = useTranslation()
-	const { theme } = useContext(ThemeContext)
-	const { bg, text } = theme
+	const { bg, text } = useTheme()
 
 	return (
 		<>
@@ -31,8 +29,7 @@ export function Configs() {
 }
 
 const ConfigPageContent = () => {
-	const { theme } = useContext(ThemeContext)
-	const { column } = theme
+	const { column } = useTheme()
 	const sectionClassName = `max-w-2xl rounded-lg py-4 md:px-11 px-6 ${column}`
 	return (
 		<>
