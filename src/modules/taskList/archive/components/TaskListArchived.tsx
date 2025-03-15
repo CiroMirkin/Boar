@@ -3,6 +3,7 @@ import { TaskList as taskList } from '@/modules/taskList/models/taskList'
 import { Task } from '../../../../sharedByModules/components/Task'
 import { Card, CardContent, CardHeader, CardTitle } from '@/ui/card'
 import { TaskInArchiveActions } from './TaskInArchiveActions'
+import { useTheme } from '@/sharedByModules/Theme/ThemeContext'
 
 interface TaskListArchivedProps {
 	taskList: taskList
@@ -10,9 +11,10 @@ interface TaskListArchivedProps {
 }
 
 export function TaskListArchived({ taskList, date }: TaskListArchivedProps) {
+	const { column } = useTheme()
 	return (
 		<>
-			<Card key={date} className='px-4'>
+			<Card key={date} className={`px-4 rounded-lg ${column}`}>
 				<CardHeader>
 					<CardTitle>{date}</CardTitle>
 				</CardHeader>

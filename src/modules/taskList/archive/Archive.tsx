@@ -12,11 +12,13 @@ import { useAskForConfirmationToast } from '@/sharedByModules/hooks/useAskForCon
 import { useArchive } from '@/modules/taskList/archive/hooks/useArchive'
 import { downloadArchiveLikePDF } from '@/modules/taskList/archive/downloadArchiveLikePDF'
 import { useTranslation } from 'react-i18next'
+import { useTheme } from '@/sharedByModules/Theme/ThemeContext'
 
 const archiveRepository: ArchiveRepository = new LocalStorageArchiveRepository()
 
 export function Archive() {
 	const { t } = useTranslation()
+	const { bg } = useTheme()
 	const boardArchive = useArchive()
 
 	useEffect(() => archiveRepository.save(boardArchive), [boardArchive])
@@ -34,9 +36,9 @@ export function Archive() {
 	})
 
 	return (
-		<>
+		<div className={bg}>
 			<Header title={t('menu.archive')} whereUserIs={USER_IS_IN.ARCHIVE} />
-			<div className='mx-6 my-4 flex flex-col gap-y-2'>
+			<div className='mx-6 my-2 pt-2 pb-6 flex flex-col gap-y-2'>
 				{archive.length === 0 ? (
 					<EmptyArchive />
 				) : (
@@ -57,14 +59,15 @@ export function Archive() {
 					</>
 				)}
 			</div>
-		</>
+		</div>
 	)
 }
 
 function EmptyArchive() {
 	const { t } = useTranslation()
+	const { column } = useTheme()
 	return (
-		<Card className='py-2 px-4'>
+		<Card className={`y-2 px-4 rounded-lg ${column}`}>
 			<CardHeader>
 				<CardTitle>{t('archive.empty_archive')}</CardTitle>
 			</CardHeader>
