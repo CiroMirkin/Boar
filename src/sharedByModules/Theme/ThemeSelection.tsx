@@ -2,8 +2,8 @@ import { themesList, Theme as Theme } from '@/sharedByModules/Theme/themesList'
 import { Card, CardContent } from '@/ui/card'
 import { useTranslation } from 'react-i18next'
 import { useToast } from '@/ui/use-toast'
-import { useContext, useEffect, useState } from 'react'
-import { ThemeContext } from './ThemeContext'
+import { useEffect, useState } from 'react'
+import { useChangeTheme } from './ThemeContext'
 
 const getColorThemeFromId = (id: string): Theme => JSON.parse(id)
 
@@ -28,7 +28,7 @@ export function ThemeSelection() {
 
 	const { t } = useTranslation()
 	const { toast } = useToast()
-	const { changeTheme } = useContext(ThemeContext) 
+	const changeTheme = useChangeTheme()
 	const toggleTheme = (id: string) => {
 		const newTheme = getColorThemeFromId(id)
 		changeTheme({ ...newTheme })
