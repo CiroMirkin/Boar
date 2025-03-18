@@ -9,7 +9,9 @@ Boar esta en linea, puedes usarlo en **[cm-boar.netlify.app](https://cm-boar.net
 
 * [TypeScript](https://www.typescriptlang.org/)
 * [React 18](https://es.react.dev/)
+* [i18next](https://www.i18next.com/)
 * [Tailwind CSS](https://tailwindcss.com/)
+* [Shadcn/ui](https://ui.shadcn.com/)
 * [Vite](https://vitejs.dev/)
 * [Vitest](https://vitest.dev/)
 * [Jest](https://jestjs.io/)
