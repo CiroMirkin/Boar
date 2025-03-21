@@ -1,7 +1,6 @@
 import React from 'react'
 import { TaskList as taskList } from '@/modules/taskList/models/taskList'
-import { TaskInBoardActions } from './TaskInBoardActions'
-import { BlankTask } from '../../sharedByModules/components/BlankTask'
+import { Task } from './components/Task'
 
 interface TaskListProps {
 	tasks: taskList
@@ -12,11 +11,7 @@ export function TaskList({ tasks }: TaskListProps) {
 
 	tasks.forEach((task) => {
 		taskList.push(
-			<BlankTask data={task} key={task.id}>
-				<BlankTask.ContentCollapse>
-					<TaskInBoardActions />
-				</BlankTask.ContentCollapse>
-			</BlankTask>
+			<Task task={task} />
 		)
 	})
 
