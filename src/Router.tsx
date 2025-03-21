@@ -8,7 +8,7 @@ import ColumnListContainer from './modules/columnList/ColumnListContainer'
 import { TaskListInEachColumn } from './modules/taskList/TaskListInEachColumn'
 import ErrorBoundary from './ErrorBoundary'
 
-import { AddNewTaskInput } from './modules/taskList/AddNewTaskInput'
+import { AddNewTaskInput } from './modules/taskList/components/AddNewTaskInput'
 import { ArchiveTaskListButton } from './modules/taskList/archive/components/ArchiveTaskListButton'
 import { ColumnsContextContent } from './modules/columnList/ColumnsContext'
 

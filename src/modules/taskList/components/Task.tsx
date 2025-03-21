@@ -1,6 +1,6 @@
 import { BlankTask } from "@/sharedByModules/components/BlankTask";
 import { taskModel } from "../models/task";
-import { TaskInBoardActions } from "../TaskInBoardActions";
+import { TaskInBoardActions } from "./TaskInBoardActions";
 
 export function Task({ task }: { task: taskModel }) {
     return (
