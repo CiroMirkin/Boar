@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { TaskContext } from '../../../../sharedByModules/components/Task'
+import { TaskContext } from '../../../../sharedByModules/components/BlankTask'
 import { Button } from '@/ui/button'
 import { useDispatch } from 'react-redux'
 import { deleteArchivedTask } from '@/modules/taskList/archive/state/archiveReducer'

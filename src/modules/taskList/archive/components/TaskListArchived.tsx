@@ -1,6 +1,6 @@
 import React from 'react'
 import { TaskList as taskList } from '@/modules/taskList/models/taskList'
-import { Task } from '../../../../sharedByModules/components/Task'
+import { BlankTask } from '../../../../sharedByModules/components/BlankTask'
 import { Card, CardContent, CardHeader, CardTitle } from '@/ui/card'
 import { TaskInArchiveActions } from './TaskInArchiveActions'
 import { useTheme } from '@/sharedByModules/Theme/ThemeContext'
@@ -28,11 +28,11 @@ export function TaskListArchived({ taskList, date }: TaskListArchivedProps) {
 
 function TaskList({ taskList }: { taskList: taskList }) {
 	const tasks: React.ReactNode[] = taskList.map((task) => (
-		<Task data={task} key={task.id}>
-			<Task.ContentCollapse>
+		<BlankTask data={task} key={task.id}>
+			<BlankTask.ContentCollapse>
 				<TaskInArchiveActions />
-			</Task.ContentCollapse>
-		</Task>
+			</BlankTask.ContentCollapse>
+		</BlankTask>
 	))
 	return <>{tasks}</>
 }

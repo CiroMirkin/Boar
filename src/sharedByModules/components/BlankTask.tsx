@@ -6,12 +6,12 @@ import { useTheme } from '../Theme/ThemeContext'
 
 export const TaskContext = createContext(emptyTask)
 
-interface TaskProps {
+interface BlankTaskProps {
 	data: taskModel
 	children?: React.ReactNode
 }
 
-export function Task({ data, children }: TaskProps) {
+export function BlankTask({ data, children }: BlankTaskProps) {
 	const [show, setShow] = useState(false)
 	const description = data.descriptionText
 	const colorTheme = useTheme()
@@ -43,4 +43,4 @@ function ContentCollapse({ children }: { children: React.ReactNode }) {
 }
 
 /** El children de ContentCollapse se muestra y oculta cuando el usuario hace click sobre el contenido del componente Task. */
-Task.ContentCollapse = ContentCollapse
+BlankTask.ContentCollapse = ContentCollapse
