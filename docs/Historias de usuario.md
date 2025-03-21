@@ -51,6 +51,10 @@ Esta son las historias de usuario implementadas actualmente en Boar.
   * El recordatorio debe tener una descripción.
   * El recordatorio debe tener una columna especificada por el usuario.
 
+* Como usuario, puedo ver el recordatorio creado.
+
+* Como usuario, puedo eliminar un recordatorio.
+
 * Como usuario, puedo cambiar el idioma de la aplicación a Ingles o Español.  
   * El idioma por defecto es Español.  
   * Se debe cambiar el idioma automáticamente a Ingles si es el idioma del dispositivo del usuario.
