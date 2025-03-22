@@ -38,7 +38,7 @@ export function Archive() {
 	return (
 		<div className={bg}>
 			<Header title={t('menu.archive')} whereUserIs={USER_IS_IN.ARCHIVE} />
-			<div className='mx-6 my-2 pt-2 pb-6 flex flex-col gap-y-2'>
+			<div className='w-full min-h-[calc(100vh-6rem)] px-6 py-2 pt-2 pb-6 flex flex-col gap-y-2'>
 				{archive.length === 0 ? (
 					<EmptyArchive />
 				) : (
