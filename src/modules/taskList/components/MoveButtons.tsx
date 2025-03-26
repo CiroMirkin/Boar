@@ -1,11 +1,10 @@
 import { useDispatch } from "react-redux"
 import { moveTaskToNextColumn, moveTaskToPrevColumn } from "../state/taskListInEachColumnReducer"
 import { useTranslation } from "react-i18next"
-import { useContext } from "react"
-import { TaskContext } from "@/sharedByModules/components/BlankTask"
 import { useCheckIfThisTaskIsInTheFirstColumn } from '@/sharedByModules/hooks/useCheckIfThisTaskIsInTheFirstColumn'
 import { useCheckIfTaskIsInTheLastColumn } from '@/sharedByModules/hooks/useCheckIfTaskIsInTheLastColumn'
 import { Button } from "@/ui/button"
+import { useDataOfTheTask } from "../hooks/useDataOfTheTask"
 
 interface MoveButtonsProps {
 	handleClick: (action: () => void) => void
@@ -13,7 +12,7 @@ interface MoveButtonsProps {
 
 export function MoveButttons({ handleClick }: MoveButtonsProps) {
 	const { t } = useTranslation()
-	const data = useContext(TaskContext)
+	const data = useDataOfTheTask()
 	const isTheTaskInTheFirstColumn = useCheckIfThisTaskIsInTheFirstColumn(data)
 	const isTheTaskInTheLastColumn = useCheckIfTaskIsInTheLastColumn(data)
 	const dispatch = useDispatch()

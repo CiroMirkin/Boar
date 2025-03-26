@@ -1,5 +1,4 @@
 import { Button } from '@/ui/button'
-import { TaskContext } from '../../../sharedByModules/components/BlankTask'
 import { useToast } from '@/ui/use-toast'
 import { useDispatch } from 'react-redux'
 import {
@@ -7,17 +6,17 @@ import {
 } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { useCheckIfThisTaskIsInTheFirstColumn } from '@/sharedByModules/hooks/useCheckIfThisTaskIsInTheFirstColumn'
 import { useCheckIfTaskIsInTheLastColumn } from '@/sharedByModules/hooks/useCheckIfTaskIsInTheLastColumn'
-import { useContext } from 'react'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { archiveTask } from '@/modules/taskList/archive/state/archiveReducer'
 import { ToastAction } from '@/ui/toast'
 import { taskModel } from '@/modules/taskList/models/task'
 import { useTranslation } from 'react-i18next'
 import { MoveButttons } from './MoveButtons'
+import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
 
 export function TaskInBoardActions() {
 	const { t } = useTranslation()
-	const data = useContext(TaskContext)
+	const data = useDataOfTheTask()
 	const isTheTaskInTheFirstColumn = useCheckIfThisTaskIsInTheFirstColumn(data)
 	const isTheTaskInTheLastColumn = useCheckIfTaskIsInTheLastColumn(data)
 
