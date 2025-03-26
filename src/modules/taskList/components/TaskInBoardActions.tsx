@@ -13,6 +13,7 @@ import { taskModel } from '@/modules/taskList/models/task'
 import { useTranslation } from 'react-i18next'
 import { MoveButttons } from './MoveButtons'
 import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
+import { CopyTextButton } from './CopyTextButton'
 
 export function TaskInBoardActions() {
 	const { t } = useTranslation()
@@ -23,7 +24,6 @@ export function TaskInBoardActions() {
 	const {
 		deleteTaskAction,
 		archiveTaskAction,
-		copyTextToClipboard,
 	} = useActionsForTaskInBoard(data)
 
 	const { toast } = useToast()
@@ -61,14 +61,7 @@ export function TaskInBoardActions() {
 			<div className='w-full grid grid-flow-col justify-stretch gap-1.5'>
 				<MoveButttons handleClick={handleClick} />
 			</div>
-			<Button
-				size='sm'
-				variant='ghost'
-				className='w-full'
-				onClick={() => copyTextToClipboard()}
-			>
-				{t('task_buttons.copy_text')}
-			</Button>
+			<CopyTextButton />			
 			{isTheTaskInTheLastColumn && (
 				<Button
 					size='sm'
@@ -96,16 +89,6 @@ const useActionsForTaskInBoard = (data: taskModel) => {
 	const dispatch = useDispatch()
 	const { toast } = useToast()
 
-	const copyTextToClipboard = () => {
-		const text = data.descriptionText
-		navigator.clipboard.writeText(text).then(() => {
-			toast({
-				description: t('task_buttons.copy_text_toast'),
-				duration: 3000,
-			})
-		})
-	}
-
 	const deleteTaskAction = () => dispatch(deleteTask(data))
 
 	const archiveTaskAction = () => {
@@ -120,6 +103,5 @@ const useActionsForTaskInBoard = (data: taskModel) => {
 	return {
 		archiveTaskAction,
 		deleteTaskAction,
-		copyTextToClipboard,
 	}
 }
