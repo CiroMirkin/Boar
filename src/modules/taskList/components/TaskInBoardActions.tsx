@@ -4,8 +4,6 @@ import { useToast } from '@/ui/use-toast'
 import { useDispatch } from 'react-redux'
 import {
 	deleteTask,
-	moveTaskToNextColumn,
-	moveTaskToPrevColumn,
 } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { useCheckIfThisTaskIsInTheFirstColumn } from '@/sharedByModules/hooks/useCheckIfThisTaskIsInTheFirstColumn'
 import { useCheckIfTaskIsInTheLastColumn } from '@/sharedByModules/hooks/useCheckIfTaskIsInTheLastColumn'
@@ -15,6 +13,7 @@ import { archiveTask } from '@/modules/taskList/archive/state/archiveReducer'
 import { ToastAction } from '@/ui/toast'
 import { taskModel } from '@/modules/taskList/models/task'
 import { useTranslation } from 'react-i18next'
+import { MoveButttons } from './MoveButtons'
 
 export function TaskInBoardActions() {
 	const { t } = useTranslation()
@@ -24,8 +23,6 @@ export function TaskInBoardActions() {
 
 	const {
 		deleteTaskAction,
-		moveTaskToNextColumnAction,
-		moveTaskToPrevColumnAction,
 		archiveTaskAction,
 		copyTextToClipboard,
 	} = useActionsForTaskInBoard(data)
@@ -63,22 +60,7 @@ export function TaskInBoardActions() {
 	return (
 		<>
 			<div className='w-full grid grid-flow-col justify-stretch gap-1.5'>
-				<Button
-					size='sm'
-					disabled={isTheTaskInTheFirstColumn}
-					variant={isTheTaskInTheFirstColumn ? 'ghost' : 'default'}
-					onClick={() => handleClick(moveTaskToPrevColumnAction)}
-				>
-					{t('task_buttons.prev_btn')}
-				</Button>
-				<Button
-					size='sm'
-					disabled={isTheTaskInTheLastColumn}
-					variant={isTheTaskInTheLastColumn ? 'ghost' : 'default'}
-					onClick={() => handleClick(moveTaskToNextColumnAction)}
-				>
-					{t('task_buttons.next_btn')}
-				</Button>
+				<MoveButttons handleClick={handleClick} />
 			</div>
 			<Button
 				size='sm'
@@ -127,8 +109,6 @@ const useActionsForTaskInBoard = (data: taskModel) => {
 
 	const deleteTaskAction = () => dispatch(deleteTask(data))
 
-	const moveTaskToNextColumnAction = () => dispatch(moveTaskToNextColumn(data))
-	const moveTaskToPrevColumnAction = () => dispatch(moveTaskToPrevColumn(data))
 	const archiveTaskAction = () => {
 		dispatch(archiveTask(data))
 		dispatch(deleteTask(data))
@@ -140,8 +120,6 @@ const useActionsForTaskInBoard = (data: taskModel) => {
 
 	return {
 		archiveTaskAction,
-		moveTaskToNextColumnAction,
-		moveTaskToPrevColumnAction,
 		deleteTaskAction,
 		copyTextToClipboard,
 	}
