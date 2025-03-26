@@ -1,6 +1,6 @@
 # ⚡ ¿Que es Boar?
 
-Boar es una es una aplicación web para organizar tareas que puede adaptarse a la forma de trabajo del usuario mejorando su rendimiento, la aplicación cuenta con un panel de configuración y un archivo para las tareas terminadas.
+Boar es una es una aplicación web desarrollada con React para organizar tareas que puede adaptarse a la forma de trabajo del usuario mejorando su rendimiento a travéz de un tablero de tareas, un panel de configuración y un archivo para guardar las tareas terminadas.
 
 ![Boar](./public/Boar_OG.png)
 
