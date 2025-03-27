@@ -7,13 +7,13 @@ import {
 import { useCheckIfThisTaskIsInTheFirstColumn } from '@/sharedByModules/hooks/useCheckIfThisTaskIsInTheFirstColumn'
 import { useCheckIfTaskIsInTheLastColumn } from '@/sharedByModules/hooks/useCheckIfTaskIsInTheLastColumn'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
-import { archiveTask } from '@/modules/taskList/archive/state/archiveReducer'
 import { ToastAction } from '@/ui/toast'
 import { taskModel } from '@/modules/taskList/models/task'
 import { useTranslation } from 'react-i18next'
 import { MoveButttons } from './MoveButtons'
 import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
 import { CopyTextButton } from './CopyTextButton'
+import { ArchiveTaskButton } from './ArchiveTaskButton'
 
 export function TaskInBoardActions() {
 	const { t } = useTranslation()
@@ -23,7 +23,6 @@ export function TaskInBoardActions() {
 
 	const {
 		deleteTaskAction,
-		archiveTaskAction,
 	} = useActionsForTaskInBoard(data)
 
 	const { toast } = useToast()
@@ -62,16 +61,7 @@ export function TaskInBoardActions() {
 				<MoveButttons handleClick={handleClick} />
 			</div>
 			<CopyTextButton />			
-			{isTheTaskInTheLastColumn && (
-				<Button
-					size='sm'
-					variant='ghost'
-					className='w-full'
-					onClick={() => handleClick(archiveTaskAction)}
-				>
-					{t('task_buttons.archive')}
-				</Button>
-			)}
+			{isTheTaskInTheLastColumn && <ArchiveTaskButton handleClick={handleClick} />}
 			<Button
 				size='sm'
 				variant='destructiveGhost'
@@ -85,23 +75,11 @@ export function TaskInBoardActions() {
 }
 
 const useActionsForTaskInBoard = (data: taskModel) => {
-	const { t } = useTranslation()
 	const dispatch = useDispatch()
-	const { toast } = useToast()
 
 	const deleteTaskAction = () => dispatch(deleteTask(data))
 
-	const archiveTaskAction = () => {
-		dispatch(archiveTask(data))
-		dispatch(deleteTask(data))
-		toast({
-			description: t('task_buttons.archive_toast'),
-			duration: 3000,
-		})
-	}
-
 	return {
-		archiveTaskAction,
 		deleteTaskAction,
 	}
 }
