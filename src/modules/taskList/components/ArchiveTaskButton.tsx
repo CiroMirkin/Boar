@@ -6,11 +6,11 @@ import { archiveTask } from "../archive/state/archiveReducer";
 import { deleteTask } from "../state/taskListInEachColumnReducer";
 import { useDataOfTheTask } from "../hooks/useDataOfTheTask";
 
-interface MoveButtonsProps {
+interface ArchiveTaskButtonProps {
 	handleClick: (action: () => void) => void
 }
 
-export function ArchiveTaskButton({ handleClick }: MoveButtonsProps) {
+export function ArchiveTaskButton({ handleClick }: ArchiveTaskButtonProps) {
     const { t } = useTranslation()
     const dispatch = useDispatch()
 	const { toast } = useToast()
