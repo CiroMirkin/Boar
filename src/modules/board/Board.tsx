@@ -11,9 +11,11 @@ export function Board({ children }: { children: React.ReactNode }) {
 	const { bg, text } = useTheme()
 
 	return (
-		<div className={`xl:h-screen sm:h-full ${bg} ${text}`}>
+		<div className={`${bg} ${text}`}>
 			<Header title={data.name} whereUserIs={USER_IS_IN.BOARD} />
-			{children}
+			<div className="w-full min-h-[calc(100vh-6rem)]">
+				{children}
+			</div>
 			<WelcomeDialog />
 		</div>
 	)
