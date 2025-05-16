@@ -13,6 +13,8 @@ import { iconSize } from '@/sharedByModules/configs/iconsConstants'
 import { USER_IS_IN } from './userIsIn'
 import { LanguageToggle } from './LanguageToggle'
 import { useTranslation } from 'react-i18next'
+import LogInAndLogOutMenuItem from './LogInAndLogOutMenuItem'
+import { useSession } from '../hooks/useSession'
 
 interface HeaderProps {
 	title: string
@@ -20,6 +22,7 @@ interface HeaderProps {
 }
 export function Header({ title, whereUserIs }: HeaderProps) {
 	const { t } = useTranslation()
+	const { session, setSession } = useSession()
 
 	return (
 		<header className='w-full px-6 md:px-11 py-7 flex justify-between items-start'>
@@ -60,6 +63,12 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 							<Github size={iconSize} className='mr-2' /> GitHub
 						</a>
 					</DropdownMenuItem>
+					<DropdownMenuSeparator />
+					<LogInAndLogOutMenuItem 
+						whereUserIs={whereUserIs} 
+						session={session}
+						setSession={setSession}
+					/>
 				</DropdownMenuContent>
 			</DropdownMenu>
 		</header>

@@ -4,4 +4,5 @@ export enum USER_IS_IN {
 	BOARD = 'board',
 	CONFIG = 'configs',
 	HELP = 'help',
+	AUTH = 'auth',
 }
