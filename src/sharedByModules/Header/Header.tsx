@@ -14,7 +14,7 @@ import { USER_IS_IN } from './userIsIn'
 import { LanguageToggle } from './LanguageToggle'
 import { useTranslation } from 'react-i18next'
 import LogInAndLogOutMenuItem from './LogInAndLogOutMenuItem'
-import { useSession } from '../hooks/useSession'
+import { useSession } from '@/SessionProvider'
 
 interface HeaderProps {
 	title: string
