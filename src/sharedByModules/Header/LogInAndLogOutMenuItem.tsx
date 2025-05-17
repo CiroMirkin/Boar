@@ -4,25 +4,34 @@ import { Link } from "react-router-dom"
 import { LogIn, LogOut } from "lucide-react"
 import { iconSize } from "../configs/iconsConstants"
 import { useTranslation } from "react-i18next"
-import { Session } from "@supabase/supabase-js"
-import { Dispatch, SetStateAction } from "react"
+import { AuthError, Session } from "@supabase/supabase-js"
 import { useToast } from "@/ui/use-toast"
+import { supabase } from "@/lib/supabase"
 
 interface LogInAndLogOutMenuItemProps { 
 	whereUserIs?: USER_IS_IN, 
 	session: Session | null,
-    setSession: Dispatch<SetStateAction<Session | null>> 
 }
 
-export default function LogInAndLogOutMenuItem({ whereUserIs, session, setSession }: LogInAndLogOutMenuItemProps) {
+export default function LogInAndLogOutMenuItem({ whereUserIs, session }: LogInAndLogOutMenuItemProps) {
     const { t } = useTranslation()
 	const { toast } = useToast()
 
-	const handleOnClick = () => {
-		setSession(null)
-		toast({
-			description: t('successful_log_out_toast')
-		})
+	const handleOnClick = async () => {
+		try {
+			const { error } = await supabase.auth.signOut()
+			if(error) throw error
+			toast({
+				description: t('successful_log_out_toast')
+			})
+		}
+		catch(error) {
+			const authError = error as AuthError
+			toast({
+				description: authError.message,
+				variant: 'destructive',
+			})
+		}
 	}
 
     return (

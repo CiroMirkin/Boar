@@ -22,7 +22,7 @@ interface HeaderProps {
 }
 export function Header({ title, whereUserIs }: HeaderProps) {
 	const { t } = useTranslation()
-	const { session, setSession } = useSession()
+	const { session } = useSession()
 
 	return (
 		<header className='w-full px-6 md:px-11 py-7 flex justify-between items-start'>
@@ -67,7 +67,6 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 					<LogInAndLogOutMenuItem 
 						whereUserIs={whereUserIs} 
 						session={session}
-						setSession={setSession}
 					/>
 				</DropdownMenuContent>
 			</DropdownMenu>
