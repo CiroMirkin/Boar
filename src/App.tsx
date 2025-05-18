@@ -1,6 +1,7 @@
 import './App.css'
 import Router from './Router'
 import { Toaster } from './ui/toaster'
+import { Toaster as SonnerToaster } from 'sonner'
 import './i18next/index'
 import { useUserPreffedLanguage } from './sharedByModules/hooks/useUserPreffedLanguage'
 import { ThemeProvider } from './sharedByModules/Theme/ThemeContext'
@@ -23,6 +24,7 @@ function App() {
 			<ReminderProvider reminderData={{ reminder, setReminder }}>
 				<Router />
 				<Toaster />
+				<SonnerToaster />
 			</ReminderProvider>
 			</ThemeProvider>
 		</>
