@@ -10,6 +10,9 @@ import { blankReminder } from './modules/taskList/Reminder/reminder'
 import { ReminderProvider } from './modules/taskList/Reminder/ReminderContext'
 import { useUserSystemTheme } from './sharedByModules/Theme/useUserSystemTheme'
 import { useSetLanguageSaved } from './sharedByModules/hooks/useSetLanguageSaved'
+import { useEffect, useRef } from 'react'
+import { useSyncUserBoard } from './sharedByModules/hooks/useSyncUserBoard'
+import { useSession } from './SessionProvider'
 
 function App() {
 	useSetLanguageSaved()
@@ -17,6 +20,16 @@ function App() {
 	const defaultTheme = useUserSystemTheme()
 	const [theme, setTheme] = useLocalStorage('boar-theme', defaultTheme)
 	const [reminder, setReminder] = useLocalStorage('boar-reminder', blankReminder)
+	
+	const isUserBoardSynchronizedRef = useRef<boolean>(false) 
+	const { session } = useSession()
+	useEffect(() => {
+		// Si el tablero NO esta sincronizado y se ha iniciado session
+		if(!isUserBoardSynchronizedRef.current && !!session) {
+			isUserBoardSynchronizedRef.current = true
+			useSyncUserBoard()
+		}
+	}, [session])
 
 	return (
 		<>
