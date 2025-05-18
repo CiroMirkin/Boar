@@ -16,6 +16,9 @@ export const boardSlice = createSlice({
 	name: 'board',
 	initialState,
 	reducers: {
+		setBoar: (state, action: PayloadAction<string>) => {
+			state.board.name = action.payload
+		},
 		changeTheNameOfTheBoard: (state, action: PayloadAction<string>) => {
 			const newName = action.payload
 			state.board = changeBoardName({ board: state.board, newName })
@@ -23,5 +26,5 @@ export const boardSlice = createSlice({
 	},
 })
 
-export const { changeTheNameOfTheBoard } = boardSlice.actions
+export const { changeTheNameOfTheBoard, setBoar } = boardSlice.actions
 export default boardSlice.reducer

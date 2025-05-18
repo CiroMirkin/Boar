@@ -13,6 +13,7 @@ import { useSetLanguageSaved } from './sharedByModules/hooks/useSetLanguageSaved
 import { useEffect, useRef } from 'react'
 import { useSyncUserBoard } from './sharedByModules/hooks/useSyncUserBoard'
 import { useSession } from './SessionProvider'
+import { useDispatch } from 'react-redux'
 
 function App() {
 	useSetLanguageSaved()
@@ -21,13 +22,14 @@ function App() {
 	const [theme, setTheme] = useLocalStorage('boar-theme', defaultTheme)
 	const [reminder, setReminder] = useLocalStorage('boar-reminder', blankReminder)
 	
+	const dispatch = useDispatch()
 	const isUserBoardSynchronizedRef = useRef<boolean>(false) 
 	const { session } = useSession()
 	useEffect(() => {
 		// Si el tablero NO esta sincronizado y se ha iniciado session
 		if(!isUserBoardSynchronizedRef.current && !!session) {
 			isUserBoardSynchronizedRef.current = true
-			useSyncUserBoard()
+			useSyncUserBoard(dispatch)
 		}
 	}, [session])
 

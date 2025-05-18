@@ -1,8 +1,12 @@
 import { supabase } from "@/lib/supabase"
 import { defaultBoard } from "@/modules/board/models/board"
+import { setBoar } from "@/modules/board/state/boardReducer"
 import { ColumnList, defaultColumnList } from "@/modules/columnList/models/columnList"
+import { setColumnList } from "@/modules/columnList/state/columnListReducer"
 import { emptyTaskListInEachColumn, TaskListInEachColumn } from "@/modules/taskList/models/taskList"
+import { setTaskListInEachColumn } from "@/modules/taskList/state/taskListInEachColumnReducer"
 import { store } from "@/store"
+import { Dispatch } from "@reduxjs/toolkit"
 import { toast } from "sonner"
 
 const sendForSaveUserBoard = async (userBoard: UserBoard) => {
@@ -22,6 +26,14 @@ interface UserBoard {
     column_list: ColumnList;
     task_list_in_each_column: TaskListInEachColumn;
     user_id: string | undefined;
+}
+
+const changeActualBoardBySavedBoard = (
+    { dispatch, savedUserBoard }: { dispatch: Dispatch, savedUserBoard: UserBoard }
+) => {
+    dispatch(setTaskListInEachColumn(savedUserBoard.task_list_in_each_column))
+    dispatch(setBoar(savedUserBoard.name))
+    dispatch(setColumnList(savedUserBoard.column_list))
 }
 
 const getUserId  = async () => {
@@ -44,7 +56,7 @@ const checkIfUserHasTheDefaultBoard = (actualUserBoard: UserBoard): boolean => {
 }
 
 /** Recupera el tablero del usuario de Supabase y si no existe ninguno guarda el tablero actual en Supabase. */
-export const useSyncUserBoard = async () => {
+export const useSyncUserBoard = async (dispatch: Dispatch) => {
     const actualUserBoard = await getActualUserBoard()
     const { data } = await supabase
         .from('boards')
@@ -57,7 +69,7 @@ export const useSyncUserBoard = async () => {
         const savedUserBoard = data[0]
         const hasUserDefaultBoard = checkIfUserHasTheDefaultBoard(actualUserBoard)
         if(hasUserDefaultBoard) {
-            console.log('El tablero actual se deberia guardar dentro de supabase')
+            changeActualBoardBySavedBoard({ dispatch, savedUserBoard })
         }
         else {
             // Preguntar si desea remplazar el tablero actual por el tablero de Supabase
@@ -66,7 +78,7 @@ export const useSyncUserBoard = async () => {
                 duration: Infinity,
                 action: {
                     label: 'Remplazar',
-                    onClick: () => { console.log('El tablero actual se deberia remplazar por el tablero guardado en Supabase', savedUserBoard)},
+                    onClick: () => changeActualBoardBySavedBoard({ dispatch, savedUserBoard }),
                 }
             })
         }
