@@ -33,6 +33,9 @@ export const taskListInEachColumnSlice = createSlice({
 	name: 'taskListInEachColumn',
 	initialState,
 	reducers: {
+		setTaskListInEachColumn: (state, action: PayloadAction<TaskListInEachColumn>) => {
+			state.list = action.payload
+		},
 		addTaskAtFirstColumn: (state, action: PayloadAction<taskModel>) => {
 			const task = action.payload
 			state.list = addTaskInFirstColumn({ taskListInEachColumn: state.list, task })
@@ -79,5 +82,6 @@ export const {
 	cleanTheLastTaskList,
 	addEmptyTaskListAtTheEnd,
 	deleteTheTaskListOfThisColumn,
+	setTaskListInEachColumn,
 } = taskListInEachColumnSlice.actions
 export default taskListInEachColumnSlice.reducer
