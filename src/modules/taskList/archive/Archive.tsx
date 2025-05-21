@@ -13,6 +13,8 @@ import { useArchive } from '@/modules/taskList/archive/hooks/useArchive'
 import { downloadArchiveLikePDF } from '@/modules/taskList/archive/downloadArchiveLikePDF'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from '@/sharedByModules/Theme/ThemeContext'
+import { useSyncArchive } from './state/useSyncArchive'
+import { useSession } from '@/SessionProvider'
 
 const archiveRepository: ArchiveRepository = new LocalStorageArchiveRepository()
 
@@ -28,6 +30,11 @@ export function Archive() {
 	))
 
 	const dispatch = useDispatch()
+
+	const { session } = useSession()
+	useEffect(() => {
+		if(!!session) useSyncArchive(dispatch)
+	}, [session])
 
 	const cleanTheWholeArchive = () => dispatch(cleanArchive())
 	const askForConfirmationToCleanTheWholeArchive = useAskForConfirmationToast({
