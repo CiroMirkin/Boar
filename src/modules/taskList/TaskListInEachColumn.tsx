@@ -4,10 +4,19 @@ import { useReminder } from '@/modules/taskList/Reminder/useReminder'
 import { useTaskListInEachColumn } from './hooks/useTaskListInEachColumn'
 import LocalStorageTaskListInEachColumnRepository from './state/localStorageTaskLists'
 import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react'
+import { sendForSaveTaskListInEachColumn } from './state/sendForSaveTaskListInEachColumn'
+import { useSession } from '@/SessionProvider'
 
 export function TaskListInEachColumn() {
     const taskListInEachColumn = useTaskListInEachColumn()
 	new LocalStorageTaskListInEachColumnRepository().save(taskListInEachColumn)
+
+	const { session } = useSession()
+	useEffect(() => {
+		if(!!session) sendForSaveTaskListInEachColumn(taskListInEachColumn)
+	}, [taskListInEachColumn])
+
 	useReminder(taskListInEachColumn)
 	const { t } = useTranslation()
 

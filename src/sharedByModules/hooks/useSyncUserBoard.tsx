@@ -36,7 +36,7 @@ const changeActualBoardBySavedBoard = (
     dispatch(setColumnList(savedUserBoard.column_list))
 }
 
-const getUserId  = async () => {
+export const getUserId  = async () => {
     const { data: { user } } = await supabase.auth.getUser()
     return user?.id
 } 
