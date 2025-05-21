@@ -23,6 +23,9 @@ export const archiveSlice = createSlice({
 	name: 'archive',
 	initialState,
 	reducers: {
+		setArchive: (state, action: PayloadAction<Archive>) => {
+			state.list = action.payload
+		},
 		archiveTaskListAtLastColumn: (state, action: PayloadAction<TaskListInEachColumn>) => {
 			const taskList = action.payload
 			state.list = archiveTaskListInTheLastColumn({
@@ -44,6 +47,6 @@ export const archiveSlice = createSlice({
 	},
 })
 
-export const { archiveTaskListAtLastColumn, archiveTask, deleteArchivedTask, cleanArchive } =
+export const { archiveTaskListAtLastColumn, archiveTask, deleteArchivedTask, cleanArchive, setArchive, } =
 	archiveSlice.actions
 export default archiveSlice.reducer
