@@ -14,6 +14,7 @@ import { useEffect, useRef } from 'react'
 import { useSyncUserBoard } from './sharedByModules/hooks/useSyncUserBoard'
 import { useSession } from './SessionProvider'
 import { useDispatch } from 'react-redux'
+import { useSyncArchive } from './modules/taskList/archive/state/useSyncArchive'
 
 function App() {
 	useSetLanguageSaved()
@@ -26,10 +27,11 @@ function App() {
 	const isUserBoardSynchronizedRef = useRef<boolean>(false) 
 	const { session } = useSession()
 	useEffect(() => {
-		// Si el tablero NO esta sincronizado y se ha iniciado session
+		// Si el usuario NO esta sincronizado y se ha iniciado session
 		if(!isUserBoardSynchronizedRef.current && !!session) {
 			isUserBoardSynchronizedRef.current = true
 			useSyncUserBoard(dispatch)
+			useSyncArchive(dispatch)
 		}
 	}, [session])
 
