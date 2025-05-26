@@ -10,11 +10,12 @@ import { useSession } from '@/SessionProvider'
 
 export function TaskListInEachColumn() {
     const taskListInEachColumn = useTaskListInEachColumn()
-	new LocalStorageTaskListInEachColumnRepository().save(taskListInEachColumn)
 
 	const { session } = useSession()
 	useEffect(() => {
+		const taskListInEachColumnRepository = new LocalStorageTaskListInEachColumnRepository()
 		if(!!session) sendForSaveTaskListInEachColumn(taskListInEachColumn)
+		else taskListInEachColumnRepository.save(taskListInEachColumn)
 	}, [taskListInEachColumn])
 
 	useReminder(taskListInEachColumn)
