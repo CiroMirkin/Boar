@@ -7,7 +7,6 @@ import { emptyTaskListInEachColumn, TaskListInEachColumn } from "@/modules/taskL
 import { setTaskListInEachColumn } from "@/modules/taskList/state/taskListInEachColumnReducer"
 import { store } from "@/store"
 import { Dispatch } from "@reduxjs/toolkit"
-import { toast } from "sonner"
 
 const sendForSaveUserBoard = async (userBoard: UserBoard) => {
 	try {
@@ -72,15 +71,8 @@ export const useSyncUserBoard = async (dispatch: Dispatch) => {
             changeActualBoardBySavedBoard({ dispatch, savedUserBoard })
         }
         else {
-            // Preguntar si desea remplazar el tablero actual por el tablero de Supabase
-            const toastText = 'El tablero actual no coincide con el tablero guardado en su cuenta ¿Desea remplazarlo?'
-            toast(toastText, {
-                duration: Infinity,
-                action: {
-                    label: 'Remplazar',
-                    onClick: () => changeActualBoardBySavedBoard({ dispatch, savedUserBoard }),
-                }
-            })
+            // Remplaza el tablero actual por el tablero de Supabase
+           changeActualBoardBySavedBoard({ dispatch, savedUserBoard })
         }
     }
 }
