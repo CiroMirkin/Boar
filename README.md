@@ -23,7 +23,7 @@ Boar actualmente cuenta con 12 características y su desarrollo se llevó a cabo
 
 ## 📖 Documentación
 
-Puedes leer la documentación de Boar en la carpeta [docs](./docs/).
+Puedes leer la documentación de Boar dentro de las [wikis](https://github.com/CiroMirkin/Boar/wiki) del repositorio.
 
 ## 🧬 Ejecución local para desarrollo
 
