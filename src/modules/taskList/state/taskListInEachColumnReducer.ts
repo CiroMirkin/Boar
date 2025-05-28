@@ -1,8 +1,6 @@
 import { Column, getIndexOfColumnInColumnList } from '../../columnList/models/column'
 import { taskModel } from '@/modules/taskList/models/task'
-import { TaskListInEachColumn } from '@/modules/taskList/models/taskList'
-import { TaskListInEachColumnRepository } from '@/modules/taskList/models/taskListInEachColumnRepository'
-import LocalStorageTaskListInEachColumnRepository from '@/modules/taskList/state/localStorageTaskLists'
+import { emptyTaskListInEachColumn, TaskListInEachColumn } from '@/modules/taskList/models/taskList'
 import {
 	addTaskInFirstColumn,
 	addTaskInTheLastColumn,
@@ -21,12 +19,8 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 interface InitialState {
 	list: TaskListInEachColumn
 }
-
-const taskListInEachColumnRepository: TaskListInEachColumnRepository =
-	new LocalStorageTaskListInEachColumnRepository()
-
 const initialState: InitialState = {
-	list: taskListInEachColumnRepository.getAll(),
+	list: emptyTaskListInEachColumn,
 }
 
 export const taskListInEachColumnSlice = createSlice({

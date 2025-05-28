@@ -1,20 +1,15 @@
 import { Column } from '../models/column'
-import { ColumnListRepository } from '@/modules/columnList/state/columnListRepository'
-import LocalStorageColumnListRepository from '@/modules/columnList/state/localStorageColumnList'
 import { addColumnAtTheEnd } from '@/modules/columnList/state/actions/addColumn'
 import { changeNameOfColumn } from '@/modules/columnList/state/actions/changeColumnName'
 import { deleteThisColumn } from '@/modules/columnList/state/actions/deleteColumn'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { ColumnList } from '../models/columnList'
+import { ColumnList, defaultColumnList } from '../models/columnList'
 
 interface InitialState {
 	list: Column[]
 }
-
-const columnListRepository: ColumnListRepository = new LocalStorageColumnListRepository()
-
 const initialState: InitialState = {
-	list: columnListRepository.getAll(),
+	list: defaultColumnList,
 }
 
 export const columnListSlice = createSlice({

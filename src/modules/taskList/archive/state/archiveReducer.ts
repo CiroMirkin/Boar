@@ -1,8 +1,6 @@
 import { Archive } from '@/modules/taskList/archive/models/archive'
-import { ArchiveRepository } from '@/modules/taskList/archive/models/archiveRepository'
 import { taskModel } from '@/modules/taskList/models/task'
 import { TaskListInEachColumn } from '@/modules/taskList/models/taskList'
-import LocalStorageArchiveRepository from '@/modules/taskList/archive/state/localStorageArchive'
 import { archiveThisTask } from '@/modules/taskList/archive/state/actions/archiveTask'
 import { archiveTaskListInTheLastColumn } from '@/modules/taskList/archive/state/actions/archiveTaskList'
 import { cleanTheWholeArchive } from '@/modules/taskList/archive/state/actions/cleanArchive'
@@ -12,11 +10,8 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 interface InitialState {
 	list: Archive
 }
-
-const archiveRepository: ArchiveRepository = new LocalStorageArchiveRepository()
-
 const initialState: InitialState = {
-	list: archiveRepository.getAll(),
+	list: [],
 }
 
 export const archiveSlice = createSlice({
