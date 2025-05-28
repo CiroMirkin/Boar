@@ -67,13 +67,6 @@ export const useSyncUserBoard = async (dispatch: Dispatch) => {
     }
     else if (data != null) {
         const savedUserBoard = data[0]
-        const hasUserDefaultBoard = await checkIfUserHasTheDefaultBoard()
-        if(hasUserDefaultBoard) {
-            changeActualBoardBySavedBoard({ dispatch, savedUserBoard })
-        }
-        else {
-            // Remplaza el tablero actual por el tablero de Supabase
-           changeActualBoardBySavedBoard({ dispatch, savedUserBoard })
-        }
+        changeActualBoardBySavedBoard({ dispatch, savedUserBoard })
     }
 }
