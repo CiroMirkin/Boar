@@ -48,7 +48,8 @@ const getActualUserBoard = async (): Promise<UserBoard> => ({
 })
 
 /** @returns True si el usuario tiene el tablero por defecto (vacio) */
-const checkIfUserHasTheDefaultBoard = (actualUserBoard: UserBoard): boolean => {
+export const checkIfUserHasTheDefaultBoard = async (): Promise<Boolean> => {
+    const actualUserBoard = await getActualUserBoard()
 	return actualUserBoard.name === defaultBoard.name 
         && JSON.stringify(actualUserBoard.column_list) === JSON.stringify(defaultColumnList) 
         && JSON.stringify(actualUserBoard.task_list_in_each_column) === JSON.stringify(emptyTaskListInEachColumn) 
@@ -66,7 +67,7 @@ export const useSyncUserBoard = async (dispatch: Dispatch) => {
     }
     else if (data != null) {
         const savedUserBoard = data[0]
-        const hasUserDefaultBoard = checkIfUserHasTheDefaultBoard(actualUserBoard)
+        const hasUserDefaultBoard = await checkIfUserHasTheDefaultBoard()
         if(hasUserDefaultBoard) {
             changeActualBoardBySavedBoard({ dispatch, savedUserBoard })
         }
