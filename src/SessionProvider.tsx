@@ -2,7 +2,7 @@ import { Session } from "@supabase/supabase-js";
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
 import { supabase } from "./lib/supabase";
 
-type SessionType = Session | null
+export type SessionType = Session | null
 interface SessionContextValue {
     session: SessionType,
     setSession: Dispatch<SetStateAction<SessionType>> 
