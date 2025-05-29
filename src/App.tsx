@@ -28,8 +28,8 @@ function App() {
 	const isUserBoardSynchronizedRef = useRef<boolean>(false) 
 	const { session } = useSession()
 	useEffect(() => {
-		// Si el usuario NO esta sincronizado y se ha iniciado session
-		if(!isUserBoardSynchronizedRef.current && !!session) {
+		// Si el usuario NO esta sincronizado o cambio el estado de la session
+		if(!isUserBoardSynchronizedRef.current || !!session) {
 			isUserBoardSynchronizedRef.current = true
 			useSyncUserBoard(dispatch)
 			useSyncArchive(dispatch)
