@@ -6,17 +6,17 @@ import { useTheme } from '../../sharedByModules/Theme/ThemeContext'
 import { useDocumentTitle } from '@uidotdev/usehooks'
 import { useSession } from '@/SessionProvider'
 import { useEffect } from 'react'
-import { sendForSaveBoard } from './state/sendForSaveBoard'
+import { useSaveBoard } from './state/useSaveBoard'
 
 export function Board({ children }: { children: React.ReactNode }) {
 	const data = useBoard()
 	useDocumentTitle(data.name + " - Boar")
 	const { bg, text } = useTheme()
 
-	const { session } = useSession()
 	useEffect(() => {
-		if(!!session) sendForSaveBoard(data)
-	}, [])
+		useSaveBoard({ data, session })
+	}, [data])
+    const { session } = useSession()
 
 	return (
 		<div className={`${bg} ${text}`}>
