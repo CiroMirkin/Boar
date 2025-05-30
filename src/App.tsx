@@ -14,7 +14,7 @@ import { useEffect, useRef } from 'react'
 import { useSyncUserBoard } from './sharedByModules/hooks/useSyncUserBoard'
 import { useSession } from './SessionProvider'
 import { useDispatch } from 'react-redux'
-import { useSyncArchive } from './modules/taskList/archive/state/useSyncArchive'
+import { useGetUserArchiveFromSupabase } from './modules/taskList/archive/state/useSyncArchive'
 import { setTheUserBoardSavedInLocalStorage } from './sharedByModules/utils/setTheUserBoardSavedInLocalStorage'
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
 		if(!isUserBoardSynchronizedRef.current || !!session) {
 			isUserBoardSynchronizedRef.current = true
 			useSyncUserBoard(dispatch)
-			useSyncArchive(dispatch)
+			useGetUserArchiveFromSupabase(dispatch)
 		}
 		else {
 			setTheUserBoardSavedInLocalStorage(dispatch)
