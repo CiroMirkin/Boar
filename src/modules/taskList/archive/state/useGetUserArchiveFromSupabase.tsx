@@ -4,6 +4,7 @@ import { setArchive } from "./archiveReducer";
 import { getUserId } from "@/sharedByModules/hooks/useSyncUserBoard";
 import { store } from "@/store";
 
+/** Obtiene el archive del usuario guardado en Supabase y lo establece. */
 export const useGetUserArchiveFromSupabase = async (dispatch: Dispatch) => {
     const { data } = await supabase
         .from('archive')
