@@ -14,7 +14,7 @@ import { useEffect, useRef } from 'react'
 import { useSyncUserBoard } from './sharedByModules/hooks/useSyncUserBoard'
 import { useSession } from './SessionProvider'
 import { useDispatch } from 'react-redux'
-import { useGetUserArchiveFromSupabase } from './modules/taskList/archive/state/useSyncArchive'
+import { useGetUserArchiveFromSupabase } from './modules/taskList/archive/state/useGetUserArchiveFromSupabase'
 import { setTheUserBoardSavedInLocalStorage } from './sharedByModules/utils/setTheUserBoardSavedInLocalStorage'
 
 function App() {
