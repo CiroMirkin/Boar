@@ -6,7 +6,7 @@ import LocalStorageTaskListInEachColumnRepository from "@/modules/taskList/state
 import { setTaskListInEachColumn } from "@/modules/taskList/state/taskListInEachColumnReducer";
 import { Dispatch } from "@reduxjs/toolkit";
 
-export const saveUserBoardInLocalStorage = (dispatch: Dispatch) => {
+export const setTheUserBoardSavedInLocalStorage = (dispatch: Dispatch) => {
     const columnList = new LocalStorageColumnListRepository()
     dispatch(setColumnList(columnList.getAll()))
 

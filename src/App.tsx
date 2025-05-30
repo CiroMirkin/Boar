@@ -15,7 +15,7 @@ import { useSyncUserBoard } from './sharedByModules/hooks/useSyncUserBoard'
 import { useSession } from './SessionProvider'
 import { useDispatch } from 'react-redux'
 import { useSyncArchive } from './modules/taskList/archive/state/useSyncArchive'
-import { saveUserBoardInLocalStorage as setTheUserBoardSavedInLocalStorage } from './sharedByModules/utils/setTheUserBoardSavedInLocalStorage'
+import { setTheUserBoardSavedInLocalStorage } from './sharedByModules/utils/setTheUserBoardSavedInLocalStorage'
 
 function App() {
 	useSetLanguageSaved()
