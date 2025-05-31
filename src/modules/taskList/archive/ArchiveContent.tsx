@@ -1,24 +1,15 @@
-import LocalStorageArchiveRepository from '@/modules/taskList/archive/state/localStorageArchive'
-import { ArchiveRepository } from '@/modules/taskList/archive/models/archiveRepository'
 import { TaskListArchived } from './components/TaskListArchived'
 import { useSession } from '@/SessionProvider'
 import { useEffect } from 'react'
 import { useArchive } from './hooks/useArchive'
-import { sendForSaveArchive } from './state/sendForSaveArchive'
-
-const archiveRepository: ArchiveRepository = new LocalStorageArchiveRepository()
+import { useSaveArchive } from './state/useSaveArchive'
 
 export function ArchiveContent() {
     const archive = useArchive()
     
     const { session } = useSession()
     useEffect(() => {
-        if(!!session) {
-            sendForSaveArchive(archive)
-        }
-        else {
-            archiveRepository.save(archive)
-        }
+        useSaveArchive({ session, archive })
     }, [archive])
 
     const archiveView = archive.map(({ tasklist, date }) => (
