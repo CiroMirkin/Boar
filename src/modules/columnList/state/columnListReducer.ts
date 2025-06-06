@@ -1,25 +1,24 @@
 import { Column } from '../models/column'
-import { ColumnListRepository } from '@/modules/columnList/state/columnListRepository'
-import LocalStorageColumnListRepository from '@/modules/columnList/state/localStorageColumnList'
 import { addColumnAtTheEnd } from '@/modules/columnList/state/actions/addColumn'
 import { changeNameOfColumn } from '@/modules/columnList/state/actions/changeColumnName'
 import { deleteThisColumn } from '@/modules/columnList/state/actions/deleteColumn'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { ColumnList, defaultColumnList } from '../models/columnList'
 
 interface InitialState {
 	list: Column[]
 }
-
-const columnListRepository: ColumnListRepository = new LocalStorageColumnListRepository()
-
 const initialState: InitialState = {
-	list: columnListRepository.getAll(),
+	list: defaultColumnList,
 }
 
 export const columnListSlice = createSlice({
 	name: 'columnList',
 	initialState,
 	reducers: {
+		setColumnList: (state, action: PayloadAction<ColumnList>) => {
+			state.list = action.payload
+		},
 		addColumn: (state, action: PayloadAction<Column>) => {
 			const column = action.payload
 			state.list = addColumnAtTheEnd({ column, columnList: state.list })
@@ -42,5 +41,5 @@ export const columnListSlice = createSlice({
 	},
 })
 
-export const { addColumn, deleteColumn, changeColumnName } = columnListSlice.actions
+export const { addColumn, deleteColumn, changeColumnName, setColumnList } = columnListSlice.actions
 export default columnListSlice.reducer

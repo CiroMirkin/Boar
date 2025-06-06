@@ -2,12 +2,19 @@ import { TaskList } from './components/TaskList'
 import { ScrollArea } from '@/ui/scroll-area'
 import { useReminder } from '@/modules/taskList/Reminder/useReminder'
 import { useTaskListInEachColumn } from './hooks/useTaskListInEachColumn'
-import LocalStorageTaskListInEachColumnRepository from './state/localStorageTaskLists'
 import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react'
+import { useSession } from '@/SessionProvider'
+import { useSaveTaskListOfColumns } from './state/useSaveTaskListOfColumns'
 
 export function TaskListInEachColumn() {
     const taskListInEachColumn = useTaskListInEachColumn()
-	new LocalStorageTaskListInEachColumnRepository().save(taskListInEachColumn)
+
+	const { session } = useSession()
+	useEffect(() => {
+		useSaveTaskListOfColumns({ session, data: taskListInEachColumn })
+	}, [taskListInEachColumn])
+
 	useReminder(taskListInEachColumn)
 	const { t } = useTranslation()
 

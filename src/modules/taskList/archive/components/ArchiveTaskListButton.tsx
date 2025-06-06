@@ -9,6 +9,9 @@ import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageFo
 import { useCheckForTasksInLastColumn } from '@/sharedByModules/hooks/useCheckForTasksInLastColumn'
 import { useTranslation } from 'react-i18next'
 import { useTaskListInEachColumn } from '@/modules/taskList/hooks/useTaskListInEachColumn'
+import { useSaveArchive } from '../state/useSaveArchive'
+import { useSession } from '@/SessionProvider'
+import { getActalArchive } from '../state/getActualArchive'
 
 export function ArchiveTaskListButton() {
 	const { toast } = useToast()
@@ -19,10 +22,15 @@ export function ArchiveTaskListButton() {
 	const taskListInEachColumn = useTaskListInEachColumn()
 	const canUserArchiveTask = useCheckForTasksInLastColumn()
 
+	const { session } = useSession()
 	const archiveTaskList = () => {
 		try {
 			dispatch(archiveTaskListAtLastColumn(taskListInEachColumn))
 			dispatch(cleanTheLastTaskList())
+			useSaveArchive({ 
+				session, 
+				archive: getActalArchive()
+			})
 			toast({
 				description: t('archive_task_list_toast'),
 				duration: 3000,

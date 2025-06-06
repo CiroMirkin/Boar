@@ -7,6 +7,8 @@ import { useTranslation } from "react-i18next"
 import { AuthError, Session } from "@supabase/supabase-js"
 import { useToast } from "@/ui/use-toast"
 import { supabase } from "@/lib/supabase"
+import { useDispatch } from "react-redux"
+import { setBoardByDefault as setUserBoardByDefault } from "../utils/setUserBoardByDefault"
 
 interface LogInAndLogOutMenuItemProps { 
 	whereUserIs?: USER_IS_IN, 
@@ -17,6 +19,9 @@ export default function LogInAndLogOutMenuItem({ whereUserIs, session }: LogInAn
     const { t } = useTranslation()
 	const { toast } = useToast()
 
+	const dispatch = useDispatch()
+
+	// Handle log out
 	const handleOnClick = async () => {
 		try {
 			const { error } = await supabase.auth.signOut()
@@ -24,6 +29,7 @@ export default function LogInAndLogOutMenuItem({ whereUserIs, session }: LogInAn
 			toast({
 				description: t('successful_log_out_toast')
 			})
+			setUserBoardByDefault(dispatch)
 		}
 		catch(error) {
 			const authError = error as AuthError

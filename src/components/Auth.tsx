@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react' 
+import { useEffect, useRef, useState, type FormEvent } from 'react' 
 import { Button } from '@/ui/button'
 import { Input } from '@/ui/input'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/card'
@@ -11,6 +11,7 @@ import { USER_IS_IN } from '@/sharedByModules/Header/userIsIn'
 import { useTheme } from '@/sharedByModules/Theme/ThemeContext'
 import { Navigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
+import { checkIfUserHasTheDefaultBoard } from '@/sharedByModules/hooks/useSyncUserBoard'
 
 export default function Auth() {
   const [loading, setLoading] = useState(false) 
@@ -22,6 +23,26 @@ export default function Auth() {
 
   const { toast } = useToast()
   const { t } = useTranslation()
+
+  const showToast = useRef<boolean>(true) 
+  useEffect(() => {
+    const showAlertIfUserDoesntHaveTheDefaultBoard = async () => {
+      const hasUserDefaultBoard = await checkIfUserHasTheDefaultBoard()
+      // El usuario no tiene el tablero por defecto antes de iniciar sesion.
+      if(!hasUserDefaultBoard) {
+        const toastText = 'El tablero actual se perderá si inicia sesión, para conservarlo debe crear una nueva cuenta.'
+        toast({
+          description: toastText,
+          duration: 5600,
+          variant: 'destructive',
+        })
+      }
+    }
+    if(showToast.current) {
+      showToast.current = false
+      showAlertIfUserDoesntHaveTheDefaultBoard()
+    }
+  }, [])
 
   const handleAuth = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault() 

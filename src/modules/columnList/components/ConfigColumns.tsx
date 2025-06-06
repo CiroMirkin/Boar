@@ -5,13 +5,19 @@ import LocalStorageColumnListRepository from '@/modules/columnList/state/localSt
 import { ColumnListRepository } from '@/modules/columnList/state/columnListRepository'
 import { useColumnList } from '@/modules/columnList/hooks/useColumnList'
 import { useTranslation } from 'react-i18next'
+import { useSession } from '@/SessionProvider'
 
 const columnListRepository: ColumnListRepository = new LocalStorageColumnListRepository()
 
 export function ConfigColumns() {
 	const { t } = useTranslation()
 	const columnList = useColumnList()
-	useEffect(() => columnListRepository.save(columnList), [columnList])
+	
+	const { session } = useSession() 
+	useEffect(() => {
+		// Si el usuario no inicio session (!session)
+		if(!session) columnListRepository.save(columnList)
+	}, [columnList])
 
 	const columns: React.ReactNode[] = columnList.map((column) => (
 		<ConfigColumn column={column} key={column.id} />

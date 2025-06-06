@@ -16,12 +16,18 @@ import { useBoard } from '@/modules/board/hooks/useBoard'
 import { BoardRepository } from '@/modules/board/models/boardRepository'
 import LocalStorageBoardRepository from '@/modules/board/state/localstorageBoard'
 import { useTranslation } from 'react-i18next'
+import { useSession } from '@/SessionProvider'
 
 const boardRepository: BoardRepository = new LocalStorageBoardRepository()
 
 export function ChangeBoardName() {
 	const boardData = useBoard()
-	useEffect(() => boardRepository.save(boardData), [boardData])
+
+	const { session } = useSession()
+	useEffect(() => {
+		// Si el usuario no inicio session (!session)
+		if(!session) boardRepository.save(boardData)
+	}, [boardData])
 
 	const [boardName, setBoardName] = useState(boardData.name)
 	const [inputDisabled, setInputDisabled] = useState(true)
