@@ -10,7 +10,7 @@ import { blankReminder } from './modules/taskList/Reminder/reminder'
 import { ReminderProvider } from './modules/taskList/Reminder/ReminderContext'
 import { useUserSystemTheme } from './sharedByModules/Theme/useUserSystemTheme'
 import { useSetLanguageSaved } from './sharedByModules/hooks/useSetLanguageSaved'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { useSyncUserBoard } from './sharedByModules/hooks/useSyncUserBoard'
 import { useSession } from './SessionProvider'
 import { useDispatch } from 'react-redux'
@@ -25,12 +25,10 @@ function App() {
 	const [reminder, setReminder] = useLocalStorage('boar-reminder', blankReminder)
 	
 	const dispatch = useDispatch()
-	const isUserBoardSynchronizedRef = useRef<boolean>(false) 
 	const { session } = useSession()
 	useEffect(() => {
 		// Si el usuario NO esta sincronizado o cambio el estado de la session
-		if(!isUserBoardSynchronizedRef.current || !!session) {
-			isUserBoardSynchronizedRef.current = true
+		if(!!session) {
 			useSyncUserBoard(dispatch)
 			useGetUserArchiveFromSupabase(dispatch)
 		}
