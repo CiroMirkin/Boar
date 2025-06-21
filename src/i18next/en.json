@@ -27,6 +27,16 @@
 	"archive_task_list_toast": "Browse through archived tasks in the menu.",
 	"delete_toast_btn": "Delete",
 
+	"notes": {
+		"action_title": "Notes",
+		"section_title": "Board notes",
+		"description": "Write the notes on the board.",
+		"warning_length_toast": "The maximum number of characters has been reached.",
+		"input_placeholder": "Here you can write your notes, all that information that are not tasks.",
+		"successful_toast": "Your notes were successfully saved!",
+		"save_btn": "Save"
+	},
+
 	"task_buttons": {
 		"next_btn": "Forward",
 		"prev_btn": "Backward",

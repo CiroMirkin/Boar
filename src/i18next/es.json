@@ -27,6 +27,16 @@
 	"archive_task_list_toast": "Consulta por las tareas archivadas en el menú.",
 	"delete_toast_btn": "Eliminar",
 
+	"notes": {
+		"action_title": "Notas",
+		"section_title": "Notas del tablero",
+		"description": "Escribe las notas del tablero.",
+		"warning_length_toast": "Se alcanzo el maximo de caracteres.",
+		"input_placeholder": "Aquí puedes escribir tus notas, toda esa información que no son tareas.",
+		"successful_toast": "Sus notas se guardaron con exito!",
+		"save_btn": "Guardar"
+	},
+
 	"task_buttons": {
 		"next_btn": "Avanzar",
 		"prev_btn": "Retroceder",
