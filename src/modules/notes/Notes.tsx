@@ -7,7 +7,7 @@ import { useSaveNotes } from "./repository/useSavedNote";
 import { useSession } from "@/SessionProvider";
 import { useEffect, useState } from "react";
 import { getNotesFromSupabase } from "./repository/getNotesFromSupabase";
-import { defaultNotes, type Notes } from "./domain/notes";
+import { defaultNotes, maxLengthOfNotes, type Notes } from "./domain/notes";
 import LocalStorageNotesRepository from "./repository/LocalStorageNotesRepository";
 
 export default function Notes() {
@@ -30,8 +30,7 @@ export default function Notes() {
     }, [session])
 
     const onChange = (newText: Notes) => {
-        const maxLength = 1500 // Este valor tambien se encuentra en Supabase como condicion
-        if(newText.trim().length <= maxLength) {
+        if(newText.trim().length <= maxLengthOfNotes) {
             setText(newText)
             return;
         }
