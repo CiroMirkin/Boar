@@ -11,7 +11,7 @@ import { defaultNotes, type Notes } from "./domain/notes";
 import LocalStorageNotesRepository from "./repository/LocalStorageNotesRepository";
 
 export default function Notes() {
-    const [text, setText] = useState('' as Notes)
+    const [text, setText] = useState(defaultNotes as Notes)
     const placeholder = 'Aquí puedes escribir tus notas, toda esa información que no son tareas.'
     const { session } = useSession()
     const { toast } = useToast()
