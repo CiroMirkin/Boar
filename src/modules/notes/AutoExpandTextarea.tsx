@@ -6,6 +6,7 @@ interface AutoExpandTextareaProps {
   placeholder?: string
   minHeight?: number
   disabled?: boolean
+  className?: string
 }
 
 export const AutoExpandTextarea = ({
@@ -13,7 +14,8 @@ export const AutoExpandTextarea = ({
   onChange,
   placeholder = 'Escribe aquí...',
   minHeight = 200,
-  disabled = false
+  disabled = false,
+  className = ''
 }: AutoExpandTextareaProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const maxHeight = 1000
@@ -49,7 +51,7 @@ export const AutoExpandTextarea = ({
       onChange={handleChange}
       placeholder={placeholder}
       disabled={disabled}
-      className='resize-none transition-all duration-200 w-full border rounded-md p-2 border-transparent focus:border-blue-200'
+      className={`resize-none transition-all duration-200 w-full border rounded-md p-2 border-transparent focus:border-blue-200 ${className}`}
       style={{
         minHeight: `${minHeight}px`,
         maxHeight: 'auto',
