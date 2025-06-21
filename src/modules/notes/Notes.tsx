@@ -1,14 +1,30 @@
 import { Button } from "@/ui/button";
 import { ScrollArea } from "@/ui/scroll-area";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/ui/sheet";
-import { useLocalStorage } from "@uidotdev/usehooks";
+import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/ui/sheet";
 import { AutoExpandTextarea } from "./AutoExpandTextarea";
 import { useToast } from "@/ui/use-toast";
+import { useSaveNotes } from "./useSavedNote";
+import { useSession } from "@/SessionProvider";
+import { useEffect, useState } from "react";
+import { getNotesFromSupabase } from "./getNotesFromSupabase";
 
 export default function Notes() {
-    const [text, setText] = useLocalStorage('notes', '')
+    const [text, setText] = useState('')
     const placeholder = 'Aquí puedes escribir tus notas, toda esa información que no son tareas.'
+    const { session } = useSession()
     const { toast } = useToast()
+
+    useEffect(() => {
+        if(!!session) {
+            getNotesFromSupabase({ setNotes: setText })
+        }
+        else {
+            // TODO refactorizar
+            const lg = localStorage.getItem('boar-notes')
+            if(lg == null) window.localStorage.setItem('boar-notes', JSON.stringify({ notes: text }))
+            else if(lg != null) setText(JSON.parse(lg).notes)
+        }
+    }, [session])
 
     const onChange = (newText: string) => {
         const maxLength = 1500 // Este valor tambien se encuentra en Supabase como condicion
@@ -21,6 +37,10 @@ export default function Notes() {
             description: 'Se alcanzo el maximo de caracteres.',
             variant: 'destructive',
         })
+    }
+
+    const handleClick = () => {
+        useSaveNotes({ session, notes: text })
     }
 
     return (
@@ -42,6 +62,9 @@ export default function Notes() {
                         />
                     </main>
                 </ScrollArea>
+                <SheetFooter>
+                    <Button onClick={handleClick}>Guardar</Button>
+                </SheetFooter>
             </SheetContent>
         </Sheet>
     )
