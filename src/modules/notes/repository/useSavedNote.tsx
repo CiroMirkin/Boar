@@ -9,12 +9,10 @@ interface useSaveBoardParams {
 }
 
 export const useSaveNotes = ({ notes, session }: useSaveBoardParams) => {
-    const notesFromLocalStorage = new LocalStorageNotesRepository().getAll()
-    
     if(!!session) {
         sendForSaveNotes({ notes })
     } 
-    else if(notesFromLocalStorage != defaultNotes && notes !== defaultNotes) {
+    else if(notes !== defaultNotes) {
         new LocalStorageNotesRepository().save(notes)
     }
 }

@@ -43,6 +43,9 @@ export default function Notes() {
 
     const handleClick = () => {
         useSaveNotes({ session, notes: text })
+        toast({
+            description: 'Sus notas se guardaron con exito!'
+        })
     }
 
     return (
