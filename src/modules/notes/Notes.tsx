@@ -7,9 +7,10 @@ import { useSaveNotes } from "./useSavedNote";
 import { useSession } from "@/SessionProvider";
 import { useEffect, useState } from "react";
 import { getNotesFromSupabase } from "./getNotesFromSupabase";
+import { type Notes } from "./domain/notes";
 
 export default function Notes() {
-    const [text, setText] = useState('')
+    const [text, setText] = useState('' as Notes)
     const placeholder = 'Aquí puedes escribir tus notas, toda esa información que no son tareas.'
     const { session } = useSession()
     const { toast } = useToast()
@@ -26,7 +27,7 @@ export default function Notes() {
         }
     }, [session])
 
-    const onChange = (newText: string) => {
+    const onChange = (newText: Notes) => {
         const maxLength = 1500 // Este valor tambien se encuentra en Supabase como condicion
         if(newText.trim().length <= maxLength) {
             setText(newText)
