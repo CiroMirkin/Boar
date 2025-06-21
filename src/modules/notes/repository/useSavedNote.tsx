@@ -1,6 +1,7 @@
 import { SessionType } from "@/SessionProvider"
 import { sendForSaveNotes } from "./sendForSaveNotes"
 import { Notes } from "../domain/notes"
+import LocalStorageNotesRepository from "./LocalStorageNotesRepository"
 
 interface useSaveBoardParams {
     notes: Notes
@@ -8,14 +9,12 @@ interface useSaveBoardParams {
 }
 
 export const useSaveNotes = ({ notes, session }: useSaveBoardParams) => {
-    const localStorage = window.localStorage.getItem('boar-notes')
+    const notesFromLocalStorage = new LocalStorageNotesRepository().getAll()
     
     if(!!session) {
         sendForSaveNotes({ notes })
     } 
-    else if(localStorage != null) {
-        if(notes !== '') {       
-            window.localStorage.setItem('boar-notes', JSON.stringify({ notes }))
-        }
+    else if(notesFromLocalStorage != '' && notes !== '') {
+        new LocalStorageNotesRepository().save(notes)
     }
 }
