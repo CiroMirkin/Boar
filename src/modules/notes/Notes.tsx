@@ -9,10 +9,12 @@ import { useEffect, useState } from "react";
 import { getNotesFromSupabase } from "./repository/getNotesFromSupabase";
 import { defaultNotes, maxLengthOfNotes, type Notes } from "./model/notes";
 import LocalStorageNotesRepository from "./repository/LocalStorageNotesRepository";
+import { useTranslation } from "react-i18next";
 
 export default function Notes() {
     const [text, setText] = useState(defaultNotes as Notes)
-    const placeholder = 'Aquí puedes escribir tus notas, toda esa información que no son tareas.'
+    const { t } = useTranslation()
+    const placeholder = t('notes.input_placeholder')
     const { session } = useSession()
     const { toast } = useToast()
 
@@ -36,7 +38,7 @@ export default function Notes() {
         }
 
         toast({
-            description: 'Se alcanzo el maximo de caracteres.',
+            description: t('notes.warning_length_toast'),
             variant: 'destructive',
         })
     }
@@ -44,19 +46,19 @@ export default function Notes() {
     const handleClick = () => {
         useSaveNotes({ session, notes: text })
         toast({
-            description: 'Sus notas se guardaron con exito!'
+            description: t('notes.successful_toast')
         })
     }
 
     return (
         <Sheet>
             <SheetTrigger asChild>
-                <Button variant='link'>Notas</Button>
+                <Button variant='link'>{ t('notes.action_title') }</Button>
             </SheetTrigger>
             <SheetContent>
                 <SheetHeader>
-                    <SheetTitle>Notas del tablero</SheetTitle>
-                    <SheetDescription aria-describedby="sheet-description">Escribe las notas del tablero.</SheetDescription>
+                    <SheetTitle>{ t('notes.section_title') }</SheetTitle>
+                    <SheetDescription aria-describedby="sheet-description">{ t('notes.description') }</SheetDescription>
                 </SheetHeader>
                 <ScrollArea className="h-full">
                     <main className="p-2 text-base">
@@ -68,7 +70,7 @@ export default function Notes() {
                     </main>
                 </ScrollArea>
                 <SheetFooter>
-                    <Button onClick={handleClick}>Guardar</Button>
+                    <Button onClick={handleClick}>{ t('notes.save_btn') }</Button>
                 </SheetFooter>
             </SheetContent>
         </Sheet>
