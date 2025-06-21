@@ -43,7 +43,7 @@ export default function Notes() {
         })
     }
 
-    const handleClick = () => {
+    const handleSaveNotes = () => {
         useSaveNotes({ session, notes: text })
         toast({
             description: t('notes.successful_toast')
@@ -51,7 +51,7 @@ export default function Notes() {
     }
 
     return (
-        <Sheet>
+        <Sheet onOpenChange={(isOpen) => !isOpen && handleSaveNotes()}>
             <SheetTrigger asChild>
                 <Button variant='link'>{ t('notes.action_title') }</Button>
             </SheetTrigger>
@@ -70,7 +70,7 @@ export default function Notes() {
                     </main>
                 </ScrollArea>
                 <SheetFooter>
-                    <Button onClick={handleClick}>{ t('notes.save_btn') }</Button>
+                    <Button onClick={handleSaveNotes}>{ t('notes.save_btn') }</Button>
                 </SheetFooter>
             </SheetContent>
         </Sheet>
