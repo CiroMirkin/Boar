@@ -7,7 +7,7 @@ import { useSaveNotes } from "./repository/useSavedNote";
 import { useSession } from "@/SessionProvider";
 import { useEffect, useState } from "react";
 import { getNotesFromSupabase } from "./repository/getNotesFromSupabase";
-import { type Notes } from "./domain/notes";
+import { defaultNotes, type Notes } from "./domain/notes";
 import LocalStorageNotesRepository from "./repository/LocalStorageNotesRepository";
 
 export default function Notes() {
@@ -23,7 +23,7 @@ export default function Notes() {
         else {
             const lg = new LocalStorageNotesRepository()
             const notesFromLocalStotage = lg.getAll()
-            notesFromLocalStotage == '' 
+            notesFromLocalStotage == defaultNotes 
                 ? lg.save(text) 
                 : setText(notesFromLocalStotage)
         }

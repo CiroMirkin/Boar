@@ -1,6 +1,6 @@
 import { SessionType } from "@/SessionProvider"
 import { sendForSaveNotes } from "./sendForSaveNotes"
-import { Notes } from "../domain/notes"
+import { defaultNotes, Notes } from "../domain/notes"
 import LocalStorageNotesRepository from "./LocalStorageNotesRepository"
 
 interface useSaveBoardParams {
@@ -14,7 +14,7 @@ export const useSaveNotes = ({ notes, session }: useSaveBoardParams) => {
     if(!!session) {
         sendForSaveNotes({ notes })
     } 
-    else if(notesFromLocalStorage != '' && notes !== '') {
+    else if(notesFromLocalStorage != defaultNotes && notes !== defaultNotes) {
         new LocalStorageNotesRepository().save(notes)
     }
 }
