@@ -3,10 +3,10 @@ import { ScrollArea } from "@/ui/scroll-area";
 import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/ui/sheet";
 import { AutoExpandTextarea } from "./AutoExpandTextarea";
 import { useToast } from "@/ui/use-toast";
-import { useSaveNotes } from "./useSavedNote";
+import { useSaveNotes } from "./repository/useSavedNote";
 import { useSession } from "@/SessionProvider";
 import { useEffect, useState } from "react";
-import { getNotesFromSupabase } from "./getNotesFromSupabase";
+import { getNotesFromSupabase } from "./repository/getNotesFromSupabase";
 import { type Notes } from "./domain/notes";
 
 export default function Notes() {

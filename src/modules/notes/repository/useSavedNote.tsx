@@ -1,6 +1,6 @@
 import { SessionType } from "@/SessionProvider"
 import { sendForSaveNotes } from "./sendForSaveNotes"
-import { Notes } from "./domain/notes"
+import { Notes } from "../domain/notes"
 
 interface useSaveBoardParams {
     notes: Notes
