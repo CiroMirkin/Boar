@@ -7,7 +7,7 @@ import { useSaveNotes } from "./repository/useSavedNote";
 import { useSession } from "@/SessionProvider";
 import { useEffect, useState } from "react";
 import { getNotesFromSupabase } from "./repository/getNotesFromSupabase";
-import { defaultNotes, maxLengthOfNotes, type Notes } from "./domain/notes";
+import { defaultNotes, maxLengthOfNotes, type Notes } from "./model/notes";
 import LocalStorageNotesRepository from "./repository/LocalStorageNotesRepository";
 
 export default function Notes() {
