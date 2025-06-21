@@ -8,6 +8,7 @@ import { useSession } from "@/SessionProvider";
 import { useEffect, useState } from "react";
 import { getNotesFromSupabase } from "./repository/getNotesFromSupabase";
 import { type Notes } from "./domain/notes";
+import LocalStorageNotesRepository from "./repository/LocalStorageNotesRepository";
 
 export default function Notes() {
     const [text, setText] = useState('' as Notes)
@@ -20,10 +21,11 @@ export default function Notes() {
             getNotesFromSupabase({ setNotes: setText })
         }
         else {
-            // TODO refactorizar
-            const lg = localStorage.getItem('boar-notes')
-            if(lg == null) window.localStorage.setItem('boar-notes', JSON.stringify({ notes: text }))
-            else if(lg != null) setText(JSON.parse(lg).notes)
+            const lg = new LocalStorageNotesRepository()
+            const notesFromLocalStotage = lg.getAll()
+            notesFromLocalStotage == '' 
+                ? lg.save(text) 
+                : setText(notesFromLocalStotage)
         }
     }, [session])
 
