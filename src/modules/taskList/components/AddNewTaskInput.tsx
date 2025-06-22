@@ -34,7 +34,14 @@ export function AddNewTaskInput() {
 
 	const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
 		const taskDescription = e.target.value
-		setNewTaskDescription(taskDescription)
+		
+		// Cuanto el texto tiene mas de 30 caracteres juntos sin espacios intermedios la aplicacion se congela, el siguiente codigo agrega un espacio en el caracter 25 para evitar que eso suceda
+
+		setNewTaskDescription(
+			taskDescription.replace(/[a-zA-Z0-9]{13,}/g, (match) => {
+				return match.replace(/(.{25})/g, '$1 ').trim()
+			})
+		)
 	}
 
 	function handleKeyDown(e: KeyboardEvent<HTMLTextAreaElement>): void {
