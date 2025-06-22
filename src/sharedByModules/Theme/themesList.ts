@@ -104,6 +104,46 @@ export const themesList: readonly Theme[] = Object.freeze([
 		task: 'bg-slate-500',
 		reminder: 'bg-slate-200',
 	},
+	{
+		id: 'green',
+		bg: 'bg-[#317B71]',
+		text: 'text-black',
+		column: 'bg-[#FEF8BD]',
+		task: 'bg-[#FFFDED]',
+		reminder: 'bg-[#FFFDED]',
+	},
+	{
+		id: 'fen',
+		bg: 'bg-[#911C43]',
+		text: 'text-black',
+		column: 'bg-[#FFD7DC]',
+		task: 'bg-[#FEBEC7]',
+		reminder: 'bg-[#FEBEC7]',
+	},
+	{
+		id: 'macha',
+		bg: 'bg-[#69B125]',
+		text: 'text-black',
+		column: 'bg-[#F2FFE0]',
+		task: 'bg-[#A7DE73]',
+		reminder: 'bg-[#FEBEC7]',
+	},
+	{
+		id: 'retro',
+		bg: 'bg-[#DE6536]',
+		text: 'text-black',
+		column: 'bg-[#EFE8D2]',
+		task: 'bg-[#F5B46C]',
+		reminder: 'bg-[#F5B46C]',
+	},
+	{
+		id: 'soft',
+		bg: 'bg-[#4D8BC7]',
+		text: 'text-black',
+		column: 'bg-[#FDEFDE]',
+		task: 'bg-[#FFBEA8]',
+		reminder: 'bg-[#FFBEA8]',
+	},
 ])
 
 export const lightTheme: Theme = { ...themesList[5] }
