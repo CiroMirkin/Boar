@@ -144,6 +144,14 @@ export const themesList: readonly Theme[] = Object.freeze([
 		task: 'bg-[#FFBEA8]',
 		reminder: 'bg-[#FFBEA8]',
 	},
+	{
+		id: 'purple',
+		bg: 'bg-[#8159A7]',
+		text: 'text-black',
+		column: 'bg-[#FDE1FF]',
+		task: 'bg-[#DB6BCC]',
+		reminder: 'bg-[#DB6BCC]',
+	},
 ])
 
 export const lightTheme: Theme = { ...themesList[5] }
