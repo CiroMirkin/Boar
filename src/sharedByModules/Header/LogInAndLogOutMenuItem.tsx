@@ -44,12 +44,12 @@ export default function LogInAndLogOutMenuItem({ whereUserIs, session }: LogInAn
         <DropdownMenuItem disabled={ whereUserIs === USER_IS_IN.AUTH && true }>
 			{
 				!session ? (
-					<Link to='/auth' className='flex items-center'>
+					<Link to='/auth' className='px-2 py-1.5 flex items-center'>
 					    <LogIn size={iconSize} className='mr-2' />
 							{t('sing_in')}
 					</Link>
 				) : (
-					<span onClick={handleOnClick} className='flex items-center'>
+					<span onClick={handleOnClick} className='px-2 py-1.5 flex items-center'>
 						<LogOut size={iconSize} className='mr-2' />
 						{t('log_out')}
 					</span>

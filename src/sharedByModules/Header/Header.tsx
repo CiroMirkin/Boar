@@ -32,7 +32,7 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 				<Notes/>
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
-						<Button variant='outline' className='text-black'>
+						<Button variant='ghost' className='text-black'>
 							<Menu size={iconSize} />
 						</Button>
 					</DropdownMenuTrigger>
@@ -40,29 +40,29 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 						<DropdownMenuLabel>Boar</DropdownMenuLabel>
 						<DropdownMenuSeparator />
 						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.BOARD && true}>
-							<Link to='/' className='flex items-center'>
+							<Link to='/' className='px-2 py-1.5 flex items-center'>
 								<Columns3 size={iconSize} className='mr-2' /> {t('menu.board')}
 							</Link>
 						</DropdownMenuItem>
 						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.ARCHIVE && true}>
-							<Link to='/archive' className='flex items-center'>
+							<Link to='/archive' className='px-2 py-1.5 flex items-center'>
 								<Archive size={iconSize} className='mr-2' /> {t('menu.archive')}
 							</Link>
 						</DropdownMenuItem>
 						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.CONFIG && true}>
-							<Link to='/settings' className='flex items-center'>
+							<Link to='/settings' className='px-2 py-1.5 flex items-center'>
 								<Settings size={iconSize} className='mr-2' /> {t('menu.configs')}
 							</Link>
 						</DropdownMenuItem>
 						<DropdownMenuSeparator />
 						<LanguageToggle />
 						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.HELP && true}>
-							<Link to='/help' className='flex items-center'>
+							<Link to='/help' className='px-2 py-1.5 flex items-center'>
 								<CircleHelp size={iconSize} className='mr-2' /> {t('menu.help')}
 							</Link>
 						</DropdownMenuItem>
 						<DropdownMenuItem>
-							<a href='https://github.com/CiroMirkin/Boar' className='flex items-center'>
+							<a href='https://github.com/CiroMirkin/Boar' className='px-2 py-1.5 flex items-center'>
 								<Github size={iconSize} className='mr-2' /> GitHub
 							</a>
 						</DropdownMenuItem>
