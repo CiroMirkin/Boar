@@ -10,6 +10,7 @@ import { getNotesFromSupabase } from "./repository/getNotesFromSupabase";
 import { defaultNotes, maxLengthOfNotes, type Notes } from "./model/notes";
 import LocalStorageNotesRepository from "./repository/LocalStorageNotesRepository";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@/sharedByModules/Theme/ThemeContext";
 
 export default function Notes() {
     const [text, setText] = useState(defaultNotes as Notes)
@@ -50,12 +51,14 @@ export default function Notes() {
         })
     }
 
+    const { column } = useTheme()
+
     return (
         <Sheet onOpenChange={(isOpen) => !isOpen && handleSaveNotes()}>
             <SheetTrigger asChild>
                 <Button variant='link'>{ t('notes.action_title') }</Button>
             </SheetTrigger>
-            <SheetContent>
+            <SheetContent className={column}>
                 <SheetHeader>
                     <SheetTitle>{ t('notes.section_title') }</SheetTitle>
                     <SheetDescription aria-describedby="sheet-description">{ t('notes.description') }</SheetDescription>
