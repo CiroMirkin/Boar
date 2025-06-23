@@ -97,14 +97,6 @@ export const themesList: readonly Theme[] = Object.freeze([
 		reminder: 'bg-stone-200',
 	},
 	{
-		id: 'slate-dark',
-		bg: 'bg-slate-600',
-		text: 'text-black',
-		column: 'bg-slate-400',
-		task: 'bg-slate-500',
-		reminder: 'bg-slate-200',
-	},
-	{
 		id: 'BMO',
 		bg: 'bg-[#317B71]',
 		text: 'text-black',
@@ -151,6 +143,30 @@ export const themesList: readonly Theme[] = Object.freeze([
 		column: 'bg-[#FDE1FF]',
 		task: 'bg-[#DB6BCC]',
 		reminder: 'bg-[#DB6BCC]',
+	},
+	{
+		id: 'dog',
+		bg: 'bg-[#FF4DA2]',
+		text: 'text-black',
+		column: 'bg-[#FFE6D9]',
+		task: 'bg-[#F5E08B]',
+		reminder: 'bg-[#F5E08B]',
+	},
+	{
+		id: 'frog',
+		bg: 'bg-[#94AE89]',
+		text: 'text-black',
+		column: 'bg-[#FFFAEC]',
+		task: 'bg-[#FFCF64]',
+		reminder: 'bg-[#FFCF64]',
+	},
+	{
+		id: 'sky-frog',
+		bg: 'bg-[#B6D67B]',
+		text: 'text-black',
+		column: 'bg-[#FEF3E3]',
+		task: 'bg-[#9ABFEF]',
+		reminder: 'bg-[#9ABFEF]',
 	},
 ])
 
