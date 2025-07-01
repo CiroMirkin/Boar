@@ -66,7 +66,7 @@ const processArchiveEntry = (
   
   // Process tasks
   tasklist.forEach((task, taskIndex) => {
-    const linesAdded = addTaskText(doc, task.descriptionText, config, currentY + config.lineHeight)
+    const linesAdded = addTaskText(doc, task.descriptionText, config, currentY + config.lineHeight, taskIndex)
     currentY += linesAdded * config.lineHeight
     
     // Check if we need a new page
@@ -81,13 +81,17 @@ const addTaskText = (
   doc: jsPDF, 
   text: string, 
   config: PDFConfig, 
-  startY: number
+  startY: number,
+  taskIndex: number
 ): number => {
-  const lines = wrapText(text, config.maxCharsPerLine)
+  const bulletPoint = `${taskIndex + 1}. `
+  const adjustedMaxChars = config.maxCharsPerLine - bulletPoint.length
+  const lines = wrapText(text, adjustedMaxChars)
   let currentY = startY
   
-  lines.forEach(line => {
-    doc.text(line, config.pageMargin, currentY)
+  lines.forEach((line, lineIndex) => {
+    const prefix = lineIndex === 0 ? bulletPoint : '   ' // Indent continuation lines
+    doc.text(prefix + line, config.pageMargin, currentY)
     currentY += 10 // Spacing between wrapped lines
   })
   
@@ -112,7 +116,7 @@ const wrapText = (text: string, maxCharsPerLine: number): string[] => {
     let breakPoint = maxCharsPerLine
     const lastSpaceIndex = remainingText.lastIndexOf(' ', maxCharsPerLine)
     
-    if (lastSpaceIndex > maxCharsPerLine * 0.7) { // Don't break too early
+    if (lastSpaceIndex > maxCharsPerLine * 0.7) { 
       breakPoint = lastSpaceIndex
     }
     
@@ -159,8 +163,10 @@ export const downloadArchiveLikePDFSimple = ({ archive }: { archive: Archive }):
     tasklist.forEach(({ descriptionText }, taskIndex) => {
       yPosition += 14
       
-      // Simple text wrapping
-      const maxLength = 63
+      const bulletPoint = `${taskIndex + 1}. `
+      const maxLength = 63 - bulletPoint.length
+      
+      // Simple text wrapping with bullet points
       if (descriptionText.length > maxLength) {
         const lines = [
           descriptionText.slice(0, maxLength),
@@ -168,12 +174,14 @@ export const downloadArchiveLikePDFSimple = ({ archive }: { archive: Archive }):
           descriptionText.slice(maxLength * 2).trimStart()
         ].filter(line => line.length > 0)
         
-        lines.forEach(line => {
-          doc.text(line, 10, yPosition)
+        lines.forEach((line, lineIndex) => {
+          const prefix = lineIndex === 0 ? bulletPoint : '   '
+          doc.text(prefix + line, 10, yPosition)
           yPosition += 10
         })
-      } else {
-        doc.text(descriptionText, 10, yPosition)
+      } 
+	  else {
+        doc.text(bulletPoint + descriptionText, 10, yPosition)
       }
 
       // Page break logic
