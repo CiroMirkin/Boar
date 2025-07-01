@@ -2,13 +2,13 @@ import { iconSize } from '@/sharedByModules/configs/iconsConstants'
 import { getNewTask, isThisTaskDescriptionValid } from '@/modules/taskList/models/task'
 import { addTaskAtFirstColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { Button } from '@/ui/button'
-import { Textarea } from '@/ui/textarea'
 import { useToast } from '@/ui/use-toast'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { Plus } from 'lucide-react'
-import { ChangeEvent, KeyboardEvent, useState } from 'react'
+import { KeyboardEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import { AutoExpandTextarea } from './AutoExpandTextarea'
 
 export function AddNewTaskInput() {
 	const [newTaskDescription, setNewTaskDescription] = useState('')
@@ -32,8 +32,7 @@ export function AddNewTaskInput() {
 		}
 	}
 
-	const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-		const taskDescription = e.target.value
+	const handleChange = (taskDescription: string) => {
 		
 		// Cuanto el texto tiene mas de 30 caracteres juntos sin espacios intermedios la aplicacion se congela, el siguiente codigo agrega un espacio en el caracter 25 para evitar que eso suceda
 
@@ -51,8 +50,7 @@ export function AddNewTaskInput() {
 	const { t } = useTranslation()
 	return (
 		<>
-			<Textarea
-				id='add_new_task_input'
+			<AutoExpandTextarea
 				value={newTaskDescription}
 				className='mr-1.5'
 				onChange={handleChange}

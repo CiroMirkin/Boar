@@ -1,7 +1,6 @@
 import { Button } from "@/ui/button";
 import { ScrollArea } from "@/ui/scroll-area";
-import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/ui/sheet";
-import { AutoExpandTextarea } from "./AutoExpandTextarea";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/ui/sheet";
 import { useToast } from "@/ui/use-toast";
 import { useSaveNotes } from "./repository/useSavedNote";
 import { useSession } from "@/SessionProvider";
@@ -11,11 +10,11 @@ import { defaultNotes, maxLengthOfNotes, type Notes } from "./model/notes";
 import LocalStorageNotesRepository from "./repository/LocalStorageNotesRepository";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/sharedByModules/Theme/ThemeContext";
+import RichTextEditor from "./RichTextEditor/RichTextEditor";
 
 export default function Notes() {
     const [text, setText] = useState(defaultNotes as Notes)
     const { t } = useTranslation()
-    const placeholder = t('notes.input_placeholder')
     const { session } = useSession()
     const { toast } = useToast()
 
@@ -51,7 +50,7 @@ export default function Notes() {
         })
     }
 
-    const { column } = useTheme()
+    const { column, text: textColor } = useTheme()
 
     return (
         <Sheet onOpenChange={(isOpen) => !isOpen && handleSaveNotes()}>
@@ -59,22 +58,21 @@ export default function Notes() {
                 <Button variant='link'>{ t('notes.action_title') }</Button>
             </SheetTrigger>
             <SheetContent className={column}>
-                <SheetHeader>
+                <SheetHeader className={textColor}>
                     <SheetTitle>{ t('notes.section_title') }</SheetTitle>
                     <SheetDescription aria-describedby="sheet-description">{ t('notes.description') }</SheetDescription>
                 </SheetHeader>
                 <ScrollArea className="h-full">
                     <main className="p-2 text-base">
-                        <AutoExpandTextarea
+                        <RichTextEditor
                             value={text}
                             onChange={onChange}
-                            placeholder={placeholder}
+                            rows={5}
+                            maxRows={18}
+                            saveTextCallback={handleSaveNotes}
                         />
                     </main>
                 </ScrollArea>
-                <SheetFooter>
-                    <Button onClick={handleSaveNotes}>{ t('notes.save_btn') }</Button>
-                </SheetFooter>
             </SheetContent>
         </Sheet>
     )

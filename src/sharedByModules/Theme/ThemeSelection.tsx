@@ -15,7 +15,7 @@ export function ThemeSelection() {
 		themesList.forEach((color) => {
 			newThemes.push(
 				<Card
-					className={`w-20 h-20 p-3 rounded-md ${color.bg} border-black`}
+					className={`w-[68px] h-[68px] p-3 rounded-md ${color.bg} border-black`}
 					key={color.id}
 					id={JSON.stringify(color)}
 				>
@@ -52,7 +52,7 @@ export function ThemeSelection() {
 		<>
 			<h2 className='text-2xl'>{t('settings.board.board_theme_section_title')}</h2>
 			<div className='max-w-2xl py-5 grid gap-3'>
-				<ul className='flex flex-wrap gap-2' onClick={handleClick}>
+				<ul className='flex justify-around flex-wrap gap-2' onClick={handleClick}>
 					{themes}
 				</ul>
 			</div>

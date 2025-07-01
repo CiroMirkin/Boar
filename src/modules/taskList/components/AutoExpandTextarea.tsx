@@ -1,8 +1,9 @@
-import { useEffect, useRef } from "react"
+import { KeyboardEvent, useEffect, useRef } from "react"
 
 interface AutoExpandTextareaProps {
   value?: string
   onChange?: (value: string) => void
+  onKeyDown?: (e: KeyboardEvent<HTMLTextAreaElement>) => void
   placeholder?: string
   minHeight?: number
   disabled?: boolean
@@ -12,13 +13,14 @@ interface AutoExpandTextareaProps {
 export const AutoExpandTextarea = ({
   value = '',
   onChange,
+  onKeyDown,
   placeholder = 'Escribe aquí...',
-  minHeight = 200,
+  minHeight = 10,
   disabled = false,
   className = ''
 }: AutoExpandTextareaProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
-  const maxHeight = 1000
+  const maxHeight = 100
 
   const adjustHeight = (): void => {
     const textarea = textareaRef.current
@@ -49,6 +51,7 @@ export const AutoExpandTextarea = ({
       ref={textareaRef}
       value={value}
       onChange={handleChange}
+      onKeyDown={onKeyDown}
       placeholder={placeholder}
       disabled={disabled}
       className={`resize-none transition-all duration-200 w-full border rounded-md p-2 border-transparent focus:border-blue-200 ${className}`}
