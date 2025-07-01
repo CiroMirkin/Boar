@@ -147,7 +147,7 @@ export default function RichTextEditor({
         onBlur={() => onBlur?.()}
         className={cn(
           "min-h-40vh",
-          "p-4 focus:outline-none prose prose-sm max-w-none custom-scrollbar text-sm",
+          "p-4 focus:outline-none prose prose-sm max-w-none custom-scrollbar text-base",
           "[&_ul]:list-disc [&_ul]:ml-6 [&_ol]:list-decimal [&_ol]:ml-6",
           "[&_li]:marker:text-foreground overflow-y-auto",
           loading && "opacity-50 pointer-events-none"
