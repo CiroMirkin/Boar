@@ -16,12 +16,12 @@ interface ColumnProps {
 
 export function Column({ data, children }: ColumnProps) {
 	const colorTheme = useTheme()
-	const columnClassName = `h-auto min-w-48 flex-1 flex flex-col justify-between rounded-lg ${colorTheme.column}`
+	const columnClassName = `h-auto min-w-48 flex-1 flex flex-col justify-between rounded-lg ${colorTheme.column} border-none`
 	return (
 		<ColumnContext.Provider value={data}>
 			<Card className={columnClassName}>
 				<CardHeader>
-					<CardTitle>{data.name}</CardTitle>
+					<CardTitle className='opacity-[.70]'>{data.name}</CardTitle>
 				</CardHeader>
 
 				{children}
