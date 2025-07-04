@@ -21,7 +21,7 @@ export function Board({ children }: { children: React.ReactNode }) {
 	return (
 		<div className={`${bg} ${text}`}>
 			<Header title={data.name} whereUserIs={USER_IS_IN.BOARD} />
-			<div className="w-full min-h-[calc(100vh-6rem)]">
+			<div className="w-full min-h-[calc(100vh-5rem)]">
 				{children}
 			</div>
 			<WelcomeDialog />
