@@ -22,7 +22,7 @@ export function ColumnList({ children: getColumnsContent }: ColumnListProps) {
 	const columnList = columns.map((column, columnIndex) => {
 		return (
 			<Column data={column} key={column.id}>
-				<Column.ColumnContent className='min-h-64 md:h-[60vh] w-full'>
+				<Column.ColumnContent className='min-h-64 md:min-h-[60vh] w-full'>
 					{columnsContent[columnIndex] && columnsContent[columnIndex]}
 				</Column.ColumnContent>
 				<Column.Footer />
