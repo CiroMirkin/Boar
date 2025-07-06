@@ -55,7 +55,7 @@ export default function Notes() {
     return (
         <Sheet onOpenChange={(isOpen) => !isOpen && handleSaveNotes()}>
             <SheetTrigger asChild>
-                <Button variant='link'>{ t('notes.action_title') }</Button>
+                <Button variant='link' className="text-base">{ t('notes.action_title') }</Button>
             </SheetTrigger>
             <SheetContent className={column}>
                 <SheetHeader className={textColor}>

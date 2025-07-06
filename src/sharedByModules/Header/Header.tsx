@@ -26,7 +26,7 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 	const { session } = useSession()
 
 	return (
-		<header className='w-full px-6 md:px-11 pt-6 pb-4 flex justify-between items-start'>
+		<header className='w-full px-6 md:px-11 pt-6 pb-4 flex justify-between items-center'>
 			<h1 className='text-2xl font-medium'>{title}</h1>
 			<div className='flex gap-2 items-center'>
 				<Notes/>
