@@ -100,9 +100,9 @@ export const themesList: readonly Theme[] = Object.freeze([
 		id: 'BMO',
 		bg: 'bg-[#317B71]',
 		text: 'text-black',
-		column: 'bg-[#FEF8BD]',
-		task: 'bg-[#FFFDED]',
-		reminder: 'bg-[#FFFDED]',
+		column: 'bg-[#FFFDED]',
+		task: 'bg-[#FEF8BD]',
+		reminder: 'bg-[#FEF8BD]',
 	},
 	{
 		id: 'fen',
@@ -210,6 +210,6 @@ export const themesList: readonly Theme[] = Object.freeze([
 	},
 ])
 
-export const lightTheme: Theme = { ...themesList[5] }
+export const lightTheme: Theme = { ...themesList.filter(theme => theme.id == 'retro')[0] }
 
-export const darkTheme: Theme = themesList[themesList.length-3]
+export const darkTheme: Theme = { ...themesList.filter(theme => theme.id == 'soft-bear')[0] }
