@@ -18,7 +18,7 @@ interface ColumnProps {
 export function Column({ data, children }: ColumnProps) {
 	const colorTheme = useTheme()
 	const [ dragOver, setDragOver] = useState(false)
-	const columnClassName = `h-auto min-w-48 flex-1 flex flex-col justify-between rounded-lg ${colorTheme.column} ${dragOver && colorTheme.task}`
+	const columnClassName = `h-auto min-w-48 flex-1 flex flex-col justify-between rounded-lg ${colorTheme.column} border-none ${dragOver && colorTheme.task}`
 	
 	const handleDrop = (e: DragEvent) => {
 		setDragOver(false)
@@ -44,7 +44,7 @@ export function Column({ data, children }: ColumnProps) {
 			<ColumnContext.Provider value={data}>
 				<Card className={columnClassName}>
 					<CardHeader>
-						<CardTitle>{data.name}</CardTitle>
+						<CardTitle  className='opacity-[.70]'>{data.name}</CardTitle>
 					</CardHeader>
 					{children}
 				</Card>

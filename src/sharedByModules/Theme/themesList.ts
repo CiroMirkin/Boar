@@ -100,9 +100,9 @@ export const themesList: readonly Theme[] = Object.freeze([
 		id: 'BMO',
 		bg: 'bg-[#317B71]',
 		text: 'text-black',
-		column: 'bg-[#FEF8BD]',
-		task: 'bg-[#FFFDED]',
-		reminder: 'bg-[#FFFDED]',
+		column: 'bg-[#FFFDED]',
+		task: 'bg-[#FEF8BD]',
+		reminder: 'bg-[#FEF8BD]',
 	},
 	{
 		id: 'fen',
@@ -149,8 +149,8 @@ export const themesList: readonly Theme[] = Object.freeze([
 		bg: 'bg-[#FF4DA2]',
 		text: 'text-black',
 		column: 'bg-[#FFE6D9]',
-		task: 'bg-[#F5E08B]',
-		reminder: 'bg-[#F5E08B]',
+		task: 'bg-[#F1AE2B]',
+		reminder: 'bg-[#F1AE2B]',
 	},
 	{
 		id: 'frog',
@@ -168,8 +168,48 @@ export const themesList: readonly Theme[] = Object.freeze([
 		task: 'bg-[#9ABFEF]',
 		reminder: 'bg-[#9ABFEF]',
 	},
+	{
+		id: 'soft-bear',
+		bg: 'bg-[#A1634F]',
+		text: 'text-black',
+		column: 'bg-[#EDE3D9]',
+		task: 'bg-[#A5AFA6]',
+		reminder: 'bg-[#A5AFA6]',
+	},
+	{
+		id: 'sofy',
+		bg: 'bg-[#AAB8DB]',
+		text: 'text-black',
+		column: 'bg-[#FDECF1]',
+		task: 'bg-[#F3AAB5]',
+		reminder: 'bg-[#F3AAB5]',
+	},
+	{
+		id: 'nipo',
+		bg: 'bg-[#B3A677]',
+		text: 'text-black',
+		column: 'bg-[#F2E4B8]',
+		task: 'bg-[#E73C0AE0]',
+		reminder: 'bg-[#E73C0A]',
+	},
+	{
+		id: 'green-yellow',
+		bg: 'bg-[#F3B659]',
+		text: 'text-black',
+		column: 'bg-[#F2E4B8]',
+		task: 'bg-[#18894ABB]',
+		reminder: 'bg-[#18894ABB]',
+	},
+	{
+		id: 'Artaud',
+		bg: 'bg-gradient-to-tr from-[#eab308] via-[#15803d] to-[#166534] backdrop-blur-sm',
+		text: 'text-black',
+		column: 'bg-[#F2E4B8]',
+		task: 'bg-[#18894ABB]',
+		reminder: 'bg-[#18894ABB]',
+	},
 ])
 
-export const lightTheme: Theme = { ...themesList[5] }
+export const lightTheme: Theme = { ...themesList.filter(theme => theme.id == 'retro')[0] }
 
-export const darkTheme: Theme = themesList[themesList.length-3]
+export const darkTheme: Theme = { ...themesList.filter(theme => theme.id == 'soft-bear')[0] }

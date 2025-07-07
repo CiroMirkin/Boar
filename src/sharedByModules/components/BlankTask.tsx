@@ -15,14 +15,14 @@ export function BlankTask({ data, children }: BlankTaskProps) {
 	const [show, setShow] = useState(false)
 	const description = data.descriptionText
 	const colorTheme = useTheme()
-	const taskClassName = `p-0 rounded-md drop-shadow-md border-2 border-black  text-card-foreground shadow-sm ${colorTheme.task}`
+	const taskClassName = `p-0 rounded-md border-none text-card-foreground shadow-sm ${colorTheme.task}`
 
 	return (
 		<TaskContext.Provider value={data}>
 			<Card className={taskClassName}>
 				<CardContent
 					onClick={() => setShow(!show)}
-					className='rounded-md hover:bg-accent px-3 py-1.5 text-xl'
+					className='rounded-md hover:bg-accent px-3 py-1.5 text-xl font-semibold'
 				>
 					<p>
 						<TextWithURL text={description}></TextWithURL>

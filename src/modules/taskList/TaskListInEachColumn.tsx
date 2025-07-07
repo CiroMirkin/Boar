@@ -1,5 +1,4 @@
 import { TaskList } from './components/TaskList'
-import { ScrollArea } from '@/ui/scroll-area'
 import { useReminder } from '@/modules/taskList/Reminder/useReminder'
 import { useTaskListInEachColumn } from './hooks/useTaskListInEachColumn'
 import { useTranslation } from 'react-i18next'
@@ -30,9 +29,7 @@ export function TaskListInEachColumn() {
 				? <p className="text-xl opacity-50">
 					{ t("empty_first_task_list_copy") }
 				</p>
-				: <ScrollArea className='h-full w-full rounded-md'>
-					<TaskList tasks={taskList} />
-				</ScrollArea>
+				: <TaskList tasks={taskList} />
 			)
 		})
 		return columnsContent
@@ -40,9 +37,7 @@ export function TaskListInEachColumn() {
 	
 	taskListInEachColumn.forEach((taskList) => {
 		columnsContent.push(
-			<ScrollArea className='h-full w-full rounded-md'>
-				<TaskList tasks={taskList} />
-			</ScrollArea>
+			<TaskList tasks={taskList} />
 		)
 	})
 
