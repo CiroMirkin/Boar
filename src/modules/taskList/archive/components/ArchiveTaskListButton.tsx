@@ -49,7 +49,7 @@ export function ArchiveTaskListButton() {
 			id="archive_task_list_btn"
 			onClick={archiveTaskList}
 			variant='ghost'
-			className='w-full'
+			className='w-full mx-4'
 			disabled={canUserArchiveTask}
 		>
 			<Archive size={iconSize} className='mr-2' /> {t('archive_task_list_btn')}

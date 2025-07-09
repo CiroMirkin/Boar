@@ -49,7 +49,7 @@ export function AddNewTaskInput() {
 
 	const { t } = useTranslation()
 	return (
-		<>
+		<div className='px-4 flex'>
 			<AutoExpandTextarea
 				value={newTaskDescription}
 				className='mr-1.5'
@@ -66,6 +66,6 @@ export function AddNewTaskInput() {
 			>
 				<Plus size={iconSize} />
 			</Button>
-		</>
+		</div>
 	)
 }

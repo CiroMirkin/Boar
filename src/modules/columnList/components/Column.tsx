@@ -6,8 +6,6 @@ import { useCheckIfThisColumnIsTheLast } from '@/modules/columnList/hooks/useChe
 
 import { useTheme } from '@/sharedByModules/Theme/ThemeContext'
 import { ColumnsContext } from '../ColumnsContext'
-import { taskModel } from '@/modules/taskList/models/task'
-import { useMoveTaskToColumnPosition } from '@/sharedByModules/hooks/useMoveTaskToColumnPosition'
 
 const ColumnContext = createContext(columnNull)
 
@@ -19,21 +17,7 @@ interface ColumnProps {
 export function Column({ data, children }: ColumnProps) {
 	const colorTheme = useTheme()
 	const [ dragOver, setDragOver] = useState(false)
-	const columnClassName = `h-auto w-auto flex flex-col justify-between rounded-lg ${colorTheme.column} border-none ${dragOver && colorTheme.task}`
-	const moveTaskToColumnPosition = useMoveTaskToColumnPosition()
-
-	const handleDrop = (e: DragEvent) => {
-		setDragOver(false)
-		const dropData = e.dataTransfer.getData('task')
-		if(dropData != null) {
-			const taskDragged: taskModel = JSON.parse(dropData)
-			const columnPosition = data.position
-			moveTaskToColumnPosition({
-				task: taskDragged,
-				columnPosition
-			})
-		}
-	}
+	const columnClassName = `h-auto w-auto px-0 flex flex-col justify-between rounded-lg ${colorTheme.column} border-none ${dragOver && colorTheme.task}`
 
 	const handleDragOver = (e: DragEvent) => {
 		e.preventDefault()
@@ -45,12 +29,12 @@ export function Column({ data, children }: ColumnProps) {
 			className="p-0 m-0 h-auto min-w-48 flex-1" 
 			onDragOver={handleDragOver}
 			onDragLeave={() => { setDragOver(false) }}
-			onDrop={handleDrop}
+			onDrop={() => setDragOver(false)}
 		>
 			<ColumnContext.Provider value={data}>
 				<Card className={columnClassName}>
-					<CardHeader>
-						<CardTitle  className='opacity-[.70]'>{data.name}</CardTitle>
+					<CardHeader className='pb-0 px-4'>
+						<CardTitle className='opacity-[.70]'>{data.name}</CardTitle>
 					</CardHeader>
 					{children}
 				</Card>

@@ -6,6 +6,9 @@ import { useEffect } from 'react'
 import { useSession } from '@/SessionProvider'
 import { useSaveTaskListOfColumns } from './state/useSaveTaskListOfColumns'
 
+/** La propiedad columnPosition es el indice de la columna mas uno */
+const getColumnPosition = (taskListIndex: number): string => `${taskListIndex + 1}`
+
 export function TaskListInEachColumn() {
     const taskListInEachColumn = useTaskListInEachColumn()
 
@@ -29,15 +32,15 @@ export function TaskListInEachColumn() {
 				? <p className="text-xl opacity-50">
 					{ t("empty_first_task_list_copy") }
 				</p>
-				: <TaskList tasks={taskList} />
+				: <TaskList tasks={taskList} columnPosition={getColumnPosition(index)} />
 			)
 		})
 		return columnsContent
 	}
 	
-	taskListInEachColumn.forEach((taskList) => {
+	taskListInEachColumn.forEach((taskList, index) => {
 		columnsContent.push(
-			<TaskList tasks={taskList} />
+			<TaskList tasks={taskList} columnPosition={getColumnPosition(index)} />
 		)
 	})
 
