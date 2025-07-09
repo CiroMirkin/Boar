@@ -15,6 +15,7 @@ import {
 	moveThisTaskToThePrevColumn,
 } from '@/modules/taskList/state/actions/moveTask'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { DataOfTheTaskForMoveIt, moveThisTaskToThisColumn } from './actions/moveThisTaskToThisColumn'
 
 interface InitialState {
 	list: TaskListInEachColumn
@@ -50,6 +51,14 @@ export const taskListInEachColumnSlice = createSlice({
 			const task = action.payload
 			state.list = moveThisTaskToThePrevColumn({ taskListInEachColumn: state.list, task })
 		},
+		moveThisTaskToThisColumnPosition: (state, action: PayloadAction<DataOfTheTaskForMoveIt>) => {
+			const { task, newColumnPosition } = action.payload
+			state.list = moveThisTaskToThisColumn({ 
+				taskListOfColumns: state.list,
+				task,
+				newColumnPosition
+			})
+		},
 		cleanTheLastTaskList: (state) => {
 			state.list = cleanLastTaskList({ taskListInEachColumn: state.list })
 		},
@@ -77,5 +86,6 @@ export const {
 	addEmptyTaskListAtTheEnd,
 	deleteTheTaskListOfThisColumn,
 	setTaskListInEachColumn,
+	moveThisTaskToThisColumnPosition,
 } = taskListInEachColumnSlice.actions
 export default taskListInEachColumnSlice.reducer

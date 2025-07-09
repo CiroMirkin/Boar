@@ -1,13 +1,20 @@
 import { BlankTask } from "@/sharedByModules/components/BlankTask";
 import { taskModel } from "../models/task";
 import { TaskInBoardActions } from "./TaskInBoardActions";
+import { DragEvent } from "react";
 
 export function Task({ task }: { task: taskModel }) {
+	const handleDragStart = (e: DragEvent<HTMLDivElement>) => {
+		e.dataTransfer.setData("task", JSON.stringify(task))
+	}
+
     return (
-        <BlankTask data={task} key={task.id}>
-			<BlankTask.ContentCollapse>
-				<TaskInBoardActions />
-			</BlankTask.ContentCollapse>
-		</BlankTask>
+		<div className='p-0 m-0' draggable onDragStart={handleDragStart}>
+			<BlankTask data={task} key={task.id}>
+				<BlankTask.ContentCollapse>
+					<TaskInBoardActions />
+				</BlankTask.ContentCollapse>
+			</BlankTask>
+		</div>
     )
 }

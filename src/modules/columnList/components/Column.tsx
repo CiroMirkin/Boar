@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react'
+import React, { createContext, DragEvent, useContext, useState } from 'react'
 import { Column as columnModel, columnNull } from '../models/column'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/card'
 import { useCheckIfThisColumnIsTheFirst } from '@/modules/columnList/hooks/useCheckIfThisColumnIsTheFirst'
@@ -6,6 +6,8 @@ import { useCheckIfThisColumnIsTheLast } from '@/modules/columnList/hooks/useChe
 
 import { useTheme } from '@/sharedByModules/Theme/ThemeContext'
 import { ColumnsContext } from '../ColumnsContext'
+import { taskModel } from '@/modules/taskList/models/task'
+import { useMoveTaskToColumnPosition } from '@/sharedByModules/hooks/useMoveTaskToColumnPosition'
 
 const ColumnContext = createContext(columnNull)
 
@@ -16,17 +18,44 @@ interface ColumnProps {
 
 export function Column({ data, children }: ColumnProps) {
 	const colorTheme = useTheme()
-	const columnClassName = `h-auto min-w-48 flex-1 flex flex-col justify-between rounded-lg ${colorTheme.column} border-none`
-	return (
-		<ColumnContext.Provider value={data}>
-			<Card className={columnClassName}>
-				<CardHeader>
-					<CardTitle className='opacity-[.70]'>{data.name}</CardTitle>
-				</CardHeader>
+	const [ dragOver, setDragOver] = useState(false)
+	const columnClassName = `h-auto w-auto flex flex-col justify-between rounded-lg ${colorTheme.column} border-none ${dragOver && colorTheme.task}`
+	const moveTaskToColumnPosition = useMoveTaskToColumnPosition()
 
-				{children}
-			</Card>
-		</ColumnContext.Provider>
+	const handleDrop = (e: DragEvent) => {
+		setDragOver(false)
+		const dropData = e.dataTransfer.getData('task')
+		if(dropData != null) {
+			const taskDragged: taskModel = JSON.parse(dropData)
+			const columnPosition = data.position
+			moveTaskToColumnPosition({
+				task: taskDragged,
+				columnPosition
+			})
+		}
+	}
+
+	const handleDragOver = (e: DragEvent) => {
+		e.preventDefault()
+		setDragOver(true)
+	}
+
+	return (
+		<div 
+			className="p-0 m-0 h-auto min-w-48 flex-1" 
+			onDragOver={handleDragOver}
+			onDragLeave={() => { setDragOver(false) }}
+			onDrop={handleDrop}
+		>
+			<ColumnContext.Provider value={data}>
+				<Card className={columnClassName}>
+					<CardHeader>
+						<CardTitle  className='opacity-[.70]'>{data.name}</CardTitle>
+					</CardHeader>
+					{children}
+				</Card>
+			</ColumnContext.Provider>
+		</div>
 	)
 }
 
