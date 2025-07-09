@@ -7,6 +7,7 @@ import { useCheckIfThisColumnIsTheLast } from '@/modules/columnList/hooks/useChe
 import { useTheme } from '@/sharedByModules/Theme/ThemeContext'
 import { ColumnsContext } from '../ColumnsContext'
 import { taskModel } from '@/modules/taskList/models/task'
+import { useMoveTaskToColumnPosition } from '@/sharedByModules/hooks/useMoveTaskToColumnPosition'
 
 const ColumnContext = createContext(columnNull)
 
@@ -18,14 +19,19 @@ interface ColumnProps {
 export function Column({ data, children }: ColumnProps) {
 	const colorTheme = useTheme()
 	const [ dragOver, setDragOver] = useState(false)
-	const columnClassName = `h-auto min-w-48 flex-1 flex flex-col justify-between rounded-lg ${colorTheme.column} border-none ${dragOver && colorTheme.task}`
-	
+	const columnClassName = `h-auto w-auto flex flex-col justify-between rounded-lg ${colorTheme.column} border-none ${dragOver && colorTheme.task}`
+	const moveTaskToColumnPosition = useMoveTaskToColumnPosition()
+
 	const handleDrop = (e: DragEvent) => {
 		setDragOver(false)
 		const dropData = e.dataTransfer.getData('task')
 		if(dropData != null) {
 			const taskDragged: taskModel = JSON.parse(dropData)
-			console.log(taskDragged)
+			const columnPosition = data.position
+			moveTaskToColumnPosition({
+				task: taskDragged,
+				columnPosition
+			})
 		}
 	}
 
@@ -36,7 +42,7 @@ export function Column({ data, children }: ColumnProps) {
 
 	return (
 		<div 
-			className="p-0 m-0" 
+			className="p-0 m-0 h-auto min-w-48 flex-1" 
 			onDragOver={handleDragOver}
 			onDragLeave={() => { setDragOver(false) }}
 			onDrop={handleDrop}
