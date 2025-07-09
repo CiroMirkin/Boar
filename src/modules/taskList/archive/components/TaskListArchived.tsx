@@ -14,9 +14,9 @@ export function TaskListArchived({ taskList, date }: TaskListArchivedProps) {
 	const { column } = useTheme()
 	return (
 		<>
-			<Card key={date} className={`px-4 rounded-lg ${column}`}>
+			<Card key={date} className={`md:px-11 px-6 rounded-lg ${column}`}>
 				<CardHeader>
-					<CardTitle>{date}</CardTitle>
+					<CardTitle className='text-2xl'>{date}</CardTitle>
 				</CardHeader>
 				<CardContent className='flex flex-col gap-y-2'>
 					<TaskList taskList={taskList} />

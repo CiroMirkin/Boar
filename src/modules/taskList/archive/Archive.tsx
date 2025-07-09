@@ -13,7 +13,7 @@ import { ArchiveContent } from './ArchiveContent'
 
 export function Archive() {
 	const { t } = useTranslation()
-	const { bg } = useTheme()
+	const { bg, column } = useTheme()
 	const boardArchive = useArchive()
 	
 	const dispatch = useDispatch()
@@ -26,24 +26,26 @@ export function Archive() {
 	return (
 		<div className={bg}>
 			<Header title={t('menu.archive')} whereUserIs={USER_IS_IN.ARCHIVE} />
-			<div className='w-full min-h-[calc(100vh-5rem)] grid justify-items-center px-6 py-2 pt-2 pb-6 '>
+			<div className='w-full min-h-[calc(100vh-5rem)] grid justify-items-center py-2 pt-2 pb-6 '>
 				{boardArchive.length === 0 ? (
 					<EmptyArchive />
 				) : (
-					<div className='max-w-2xl flex flex-col gap-y-2'>
+					<div className='max-w-3xl flex flex-col gap-y-2'>
 						<ArchiveContent />
-						<Button
-							variant='ghost'
-							onClick={() => downloadArchiveLikePDF({ archive: boardArchive })}
-						>
-							{t('archive.archive_to_pdf_btn')}
-						</Button>
-						<Button
-							variant='destructiveGhost'
-							onClick={askForConfirmationToCleanTheWholeArchive}
-						>
-							{t('archive.clean_archive_btn')}
-						</Button>
+						<footer className={`mb-4 p-4 rounded-lg flex flex-col gap-2 ${column}`}>
+							<Button
+								variant='outline'
+								onClick={() => downloadArchiveLikePDF({ archive: boardArchive })}
+							>
+								{t('archive.archive_to_pdf_btn')}
+							</Button>
+							<Button
+								variant='destructiveGhost'
+								onClick={askForConfirmationToCleanTheWholeArchive}
+							>
+								{t('archive.clean_archive_btn')}
+							</Button>
+						</footer>
 					</div>
 				)}
 			</div>
