@@ -26,11 +26,11 @@ export function Archive() {
 	return (
 		<div className={bg}>
 			<Header title={t('menu.archive')} whereUserIs={USER_IS_IN.ARCHIVE} />
-			<div className='w-full min-h-[calc(100vh-6rem)] px-6 py-2 pt-2 pb-6 flex flex-col gap-y-2'>
+			<div className='w-full min-h-[calc(100vh-5rem)] grid justify-items-center px-6 py-2 pt-2 pb-6 '>
 				{boardArchive.length === 0 ? (
 					<EmptyArchive />
 				) : (
-					<>
+					<div className='max-w-2xl flex flex-col gap-y-2'>
 						<ArchiveContent />
 						<Button
 							variant='ghost'
@@ -44,7 +44,7 @@ export function Archive() {
 						>
 							{t('archive.clean_archive_btn')}
 						</Button>
-					</>
+					</div>
 				)}
 			</div>
 		</div>
@@ -55,9 +55,9 @@ function EmptyArchive() {
 	const { t } = useTranslation()
 	const { column } = useTheme()
 	return (
-		<Card className={`y-2 px-4 rounded-lg ${column}`}>
+		<Card className={`h-fit px-4 rounded-lg ${column}`}>
 			<CardHeader>
-				<CardTitle>{t('archive.empty_archive')}</CardTitle>
+				<CardTitle className='text-lg opacity-60'>{t('archive.empty_archive')}</CardTitle>
 			</CardHeader>
 		</Card>
 	)
