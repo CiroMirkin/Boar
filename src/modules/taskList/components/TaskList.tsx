@@ -1,8 +1,9 @@
 import React, { DragEvent } from 'react'
 import { TaskList as taskList } from '@/modules/taskList/models/taskList'
 import { Task } from './Task'
-import { useMoveTaskToColumnPosition } from '@/sharedByModules/hooks/useMoveTaskToColumnPosition'
 import { taskModel } from '../models/task'
+import { useDispatch } from 'react-redux'
+import { moveThisTaskToThisColumnPosition } from '../state/taskListInEachColumnReducer'
 
 interface TaskListProps {
 	tasks: taskList
@@ -18,16 +19,17 @@ export function TaskList({ tasks, columnPosition }: TaskListProps) {
 		)
 	})
 
-	const moveTaskToColumnPosition = useMoveTaskToColumnPosition()
-	
+	const dispatch = useDispatch()
+
 		const handleDrop = (e: DragEvent) => {
 			const dropData = e.dataTransfer.getData('task')
 			if(dropData != null) {
 				const taskDragged: taskModel = JSON.parse(dropData)
-				moveTaskToColumnPosition({
+				dispatch(moveThisTaskToThisColumnPosition({
 					task: taskDragged,
-					columnPosition:  columnPosition
-				})
+					newColumnPosition: columnPosition
+				}))
+				
 			}
 		}
 
