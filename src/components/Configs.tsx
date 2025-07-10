@@ -6,7 +6,7 @@ import { useTheme } from "@/App"
 import { ChangeBoardName } from '../modules/board/components/ChangeBoardName'
 import { ConfigColumns } from '../modules/columnList/components/ConfigColumns'
 import CreateReminder from '../modules/taskList/Reminder/CreateReminder'
-import { ThemeSelection } from '../sharedByModules/Theme/ThemeSelection'
+import { ThemeSelection } from '../modules/Theme/ThemeSelection'
 import { useColumnList } from '@/modules/columnList/hooks/useColumnList'
 import { ReminderList } from '@/modules/taskList/Reminder/ReminderList'
 
