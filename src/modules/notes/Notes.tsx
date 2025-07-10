@@ -9,7 +9,7 @@ import { getNotesFromSupabase } from "./repository/getNotesFromSupabase";
 import { defaultNotes, maxLengthOfNotes, type Notes } from "./model/notes";
 import LocalStorageNotesRepository from "./repository/LocalStorageNotesRepository";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "@/sharedByModules/Theme/ThemeContext";
+import { useTheme } from "@/App";
 import RichTextEditor from "./RichTextEditor/RichTextEditor";
 
 export default function Notes() {

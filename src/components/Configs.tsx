@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Header } from '../sharedByModules/Header/Header'
 import { USER_IS_IN } from '../sharedByModules/Header/userIsIn'
-import { useTheme } from '@/sharedByModules/Theme/ThemeContext'
+import { useTheme } from "@/App"
 
 import { ChangeBoardName } from '../modules/board/components/ChangeBoardName'
 import { ConfigColumns } from '../modules/columnList/components/ConfigColumns'

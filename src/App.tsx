@@ -4,18 +4,20 @@ import { Toaster } from './ui/toaster'
 import { Toaster as SonnerToaster } from 'sonner'
 import './i18next/index'
 import { useUserPreffedLanguage } from './sharedByModules/hooks/useUserPreffedLanguage'
-import { ThemeProvider } from './sharedByModules/Theme/ThemeContext'
+import { ThemeContext, ThemeProvider } from './sharedByModules/Theme/ThemeContext'
 import { useLocalStorage } from '@uidotdev/usehooks'
 import { blankReminder } from './modules/taskList/Reminder/reminder'
 import { ReminderProvider } from './modules/taskList/Reminder/ReminderContext'
 import { useUserSystemTheme } from './sharedByModules/Theme/useUserSystemTheme'
 import { useSetLanguageSaved } from './sharedByModules/hooks/useSetLanguageSaved'
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { useSyncUserBoard } from './sharedByModules/hooks/useSyncUserBoard'
 import { useSession } from './SessionProvider'
 import { useDispatch } from 'react-redux'
 import { useGetUserArchiveFromSupabase } from './modules/taskList/archive/state/useGetUserArchiveFromSupabase'
 import { setTheUserBoardSavedInLocalStorage } from './sharedByModules/utils/setTheUserBoardSavedInLocalStorage'
+
+export const useTheme = () => useContext(ThemeContext).theme
 
 function App() {
 	useSetLanguageSaved()

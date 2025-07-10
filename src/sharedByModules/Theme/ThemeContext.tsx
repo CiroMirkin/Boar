@@ -11,8 +11,8 @@ const defaultThemeContextValue: ThemeContextContent = {
     changeTheme: () => {}
 }
 
-const ThemeContext = createContext(defaultThemeContextValue)
-export const useTheme = () => useContext(ThemeContext).theme
+export const ThemeContext = createContext(defaultThemeContextValue)
+
 export const useChangeTheme = () => useContext(ThemeContext).changeTheme
 
 interface ThemeProviderProps { 

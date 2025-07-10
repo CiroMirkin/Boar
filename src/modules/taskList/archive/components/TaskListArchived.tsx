@@ -3,7 +3,7 @@ import { TaskList as taskList } from '@/modules/taskList/models/taskList'
 import { BlankTask } from '../../../../sharedByModules/components/BlankTask'
 import { Card, CardContent, CardHeader, CardTitle } from '@/ui/card'
 import { TaskInArchiveActions } from './TaskInArchiveActions'
-import { useTheme } from '@/sharedByModules/Theme/ThemeContext'
+import { useTheme } from "@/App"
 
 interface TaskListArchivedProps {
 	taskList: taskList

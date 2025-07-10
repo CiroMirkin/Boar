@@ -2,7 +2,7 @@ import { Header } from '../../sharedByModules/Header/Header'
 import { USER_IS_IN } from '../../sharedByModules/Header/userIsIn'
 import { WelcomeDialog } from './components/WelcomeDialog'
 import { useBoard } from '@/modules/board/hooks/useBoard'
-import { useTheme } from '../../sharedByModules/Theme/ThemeContext'
+import { useTheme } from "@/App"
 import { useDocumentTitle } from '@uidotdev/usehooks'
 import { useSession } from '@/SessionProvider'
 import { useEffect } from 'react'

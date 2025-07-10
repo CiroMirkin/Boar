@@ -8,7 +8,7 @@ import { useAskForConfirmationToast } from '@/sharedByModules/hooks/useAskForCon
 import { useArchive } from '@/modules/taskList/archive/hooks/useArchive'
 import { downloadArchiveLikePDF } from '@/modules/taskList/archive/downloadArchiveLikePDF'
 import { useTranslation } from 'react-i18next'
-import { useTheme } from '@/sharedByModules/Theme/ThemeContext'
+import { useTheme } from "@/App"
 import { ArchiveContent } from './ArchiveContent'
 
 export function Archive() {

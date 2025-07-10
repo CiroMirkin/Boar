@@ -8,7 +8,7 @@ import { supabase } from '@/lib/supabase'
 import { useToast } from '@/ui/use-toast'
 import { Header } from '@/sharedByModules/Header/Header' 
 import { USER_IS_IN } from '@/sharedByModules/Header/userIsIn' 
-import { useTheme } from '@/sharedByModules/Theme/ThemeContext'
+import { useTheme } from "@/App"
 import { Navigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { checkIfUserHasTheDefaultBoard } from '@/sharedByModules/hooks/useSyncUserBoard'
