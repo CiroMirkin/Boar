@@ -29,7 +29,7 @@ export function TaskListInEachColumn() {
 		taskListInEachColumn.forEach((taskList, index) => {
 			columnsContent.push(
 				index == 0 
-				? <p className="text-xl opacity-50">
+				? <p className="min-h-64 md:min-h-[60vh] pt-4 px-4 text-xl opacity-50">
 					{ t("empty_first_task_list_copy") }
 				</p>
 				: <TaskList tasks={taskList} columnPosition={getColumnPosition(index)} />
