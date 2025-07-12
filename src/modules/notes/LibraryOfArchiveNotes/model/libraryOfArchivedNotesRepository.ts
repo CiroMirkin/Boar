@@ -1,6 +1,6 @@
 import { LibraryOfArchivedNotes } from "./libraryOfArchivedNotes"
 
 export interface LibraryOfArchiveNotesRepository {
-    save(notes: LibraryOfArchivedNotes): void
-    getAll(): LibraryOfArchivedNotes
+    save(notes: LibraryOfArchivedNotes): Promise<void>
+    getAll(): Promise<LibraryOfArchivedNotes>
 }
