@@ -1,9 +1,19 @@
-import { ReactNode } from "react"
+import { ReactNode, useEffect } from "react"
 import { LibraryOfArchivedNotes as LibraryOfArchiveNotesModel } from "./model/libraryOfArchivedNotes"
 import ArchivedNote from "./components/ArchivedNote"
 import { useTheme } from "@/App"
+import { useSession } from "@/SessionProvider"
+import { useSaveLibraryOfArchivedNotes } from "./repository/useSaveLibraryOfArchivedNotes"
 
 export default function LibraryOfArchiveNotes({ libraryOfArchiveNotes }: { libraryOfArchiveNotes : LibraryOfArchiveNotesModel}) {
+
+    const { session } = useSession()
+    useEffect(() => {
+        useSaveLibraryOfArchivedNotes({
+            notes: libraryOfArchiveNotes,
+            session
+        })
+    }, [libraryOfArchiveNotes])
 
     const archivedNotesList: ReactNode[] = libraryOfArchiveNotes.archive.reverse().map(note => (
         <div className="p-0 m-0" key={note.id}>
