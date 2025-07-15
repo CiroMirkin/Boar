@@ -6,3 +6,4 @@ export interface ArchivedNote {
     note: Notes
 }
 
+export type ListOfArchivedNotes = ArchivedNote[]
