@@ -104,8 +104,8 @@ export default function RichTextViewer({
   return (
     <div
       className={cn(
-        "w-full mx-auto bg-background",
-        showBorder && "border rounded-lg border-gray-300 dark:border-gray-700",
+        "w-full mx-auto bg-background shadow-sm  rounded-lg",
+        showBorder && "border border-gray-300 dark:border-gray-700",
         className
       )}
     >
