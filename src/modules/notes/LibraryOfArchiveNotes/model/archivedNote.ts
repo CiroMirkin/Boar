@@ -2,7 +2,7 @@ import { Notes } from "@/modules/notes/model/notes"
 
 export interface ArchivedNote {
     id: string
-    date: Date
+    date: string
     note: Notes
 }
 
