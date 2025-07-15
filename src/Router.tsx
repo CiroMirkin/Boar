@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Board } from './modules/board/Board'
-import { Archive } from './modules/taskList/archive/Archive'
 import { Configs } from './components/Configs'
 import { Erro404 } from './components/404'
 import { Help } from './components/Help'
@@ -13,6 +12,7 @@ import ErrorBoundary from './ErrorBoundary'
 import { AddNewTaskInput } from './modules/taskList/components/AddNewTaskInput'
 import { ArchiveTaskListButton } from './modules/taskList/archive/components/ArchiveTaskListButton'
 import { ColumnsContextContent } from './modules/columnList/ColumnsContext'
+import { ArchivePage } from './components/ArchivePage'
 
 const columnsData: ColumnsContextContent = {
 	firstColumnFooterContent: <AddNewTaskInput/>,
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path: '/archive',
-		element: <ErrorBoundary><Archive /></ErrorBoundary>,
+		element: <ErrorBoundary><ArchivePage /></ErrorBoundary>,
 	},
 	{
 		path: '/settings',
