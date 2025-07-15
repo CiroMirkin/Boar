@@ -1,6 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
 import { ArchivedNote as ArchivedNoteModel } from "../model/archivedNote";
-import { format } from "@formkit/tempo";
 import { useTheme } from "@/App";
 import RichTextViewer from "../../RichTextEditor/RichTextViewer";
 
@@ -15,11 +14,11 @@ export default function ArchivedNote({ note }: ArchivedNoteProps) {
         <Card className={archivedNoteClassName}>
             <CardHeader>
                 <CardTitle>
-                    { format(note.date, { date: 'full' }) }
+                    { note.date }
                 </CardTitle>
             </CardHeader>
             <CardContent className="h-auto">
-                <RichTextViewer value={note.note} className={task} />
+                <RichTextViewer value={note.note} className={task} showBorder={false} />
             </CardContent>
         </Card>
     )
