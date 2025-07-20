@@ -13,6 +13,9 @@ export const archivedNotesSlice = createSlice({
     name: 'archivedNotes',
     initialState,
     reducers: {
+        setArchivedNotes: (state, action: PayloadAction<LibraryOfArchivedNotes>) => {
+            state.content = action.payload
+        },
         archiveThisNote: (state, action: PayloadAction<string>) => {
             const note = action.payload
             state.content = archiveNote(state.content, note)
@@ -20,5 +23,5 @@ export const archivedNotesSlice = createSlice({
     },
 })
 
-export const {  archiveThisNote } = archivedNotesSlice.actions
+export const {  archiveThisNote, setArchivedNotes } = archivedNotesSlice.actions
 export default archivedNotesSlice.reducer
