@@ -40,7 +40,9 @@ export default function Notes() {
     const libraryOfArchivedNotes = useLibraryOfArchivedNotes()
     useEffect(() => {
         if(text == '' || text == "<br>") {
+            console.log(text)
             useLibraryOfArchivedNotesRepository(libraryOfArchivedNotes).send(session)
+            useSaveNotes({ notes: text, session, emptyNote: true })
         }
     }, [text])
 

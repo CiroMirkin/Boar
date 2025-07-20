@@ -6,13 +6,14 @@ import LocalStorageNotesRepository from "./LocalStorageNotesRepository"
 interface useSaveBoardParams {
     notes: Notes
     session: SessionType
+    emptyNote?: boolean
 }
 
-export const useSaveNotes = ({ notes, session }: useSaveBoardParams) => {
+export const useSaveNotes = async ({ notes, session, emptyNote = false }: useSaveBoardParams) => {
     if(!!session) {
-        sendForSaveNotes({ notes })
+        await sendForSaveNotes({ notes })
     } 
-    else if(notes !== defaultNotes) {
+    else if(notes !== defaultNotes || emptyNote) {
         new LocalStorageNotesRepository().save(notes)
     }
 }
