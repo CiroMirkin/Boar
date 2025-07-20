@@ -9,11 +9,11 @@ interface ArchivedNoteProps {
 
 export default function ArchivedNote({ note }: ArchivedNoteProps) {
     const { column, task, text } = useTheme()
-    const archivedNoteClassName = `${column} ${text} border-none max-w-2xl rounded-lg`
+    const archivedNoteClassName = `${column} ${text} border-none md:px-6 px-4 max-w-2xl rounded-lg`
     return (
         <Card className={archivedNoteClassName}>
             <CardHeader>
-                <CardTitle>
+                <CardTitle className="text-2xl">
                     { note.date }
                 </CardTitle>
             </CardHeader>
