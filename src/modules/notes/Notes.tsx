@@ -1,19 +1,25 @@
 import { Button } from "@/ui/button";
 import { ScrollArea } from "@/ui/scroll-area";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/ui/sheet";
+import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/ui/sheet";
 import { useToast } from "@/ui/use-toast";
 import { useSaveNotes } from "./repository/useSavedNote";
 import { useSession } from "@/SessionProvider";
 import { useEffect, useState } from "react";
 import { getNotesFromSupabase } from "./repository/getNotesFromSupabase";
-import { defaultNotes, maxLengthOfNotes, type Notes } from "./model/notes";
+import { defaultNotes, maxLengthOfNotes, Notes as NotesModel } from "./model/notes";
 import LocalStorageNotesRepository from "./repository/LocalStorageNotesRepository";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/App";
 import RichTextEditor from "./RichTextEditor/RichTextEditor";
+import { useDispatch } from "react-redux";
+import { archiveThisNote } from "./LibraryOfArchiveNotes/state/archivedNotesReducer";
+import { useLibraryOfArchivedNotesRepository } from "./LibraryOfArchiveNotes/repository/useLibraryOfArchivedNotesRepository";
+import { useLibraryOfArchivedNotes } from "./LibraryOfArchiveNotes/state/useLibraryOfArchivedNotes";
+import { Archive } from "lucide-react";
+import { iconSize } from "@/sharedByModules/configs/iconsConstants";
 
 export default function Notes() {
-    const [text, setText] = useState(defaultNotes as Notes)
+    const [text, setText] = useState(defaultNotes as NotesModel)
     const { t } = useTranslation()
     const { session } = useSession()
     const { toast } = useToast()
@@ -31,7 +37,16 @@ export default function Notes() {
         }
     }, [session])
 
-    const onChange = (newText: Notes) => {
+    const libraryOfArchivedNotes = useLibraryOfArchivedNotes()
+    useEffect(() => {
+        if(text == '' || text == "<br>") {
+            console.log(text)
+            useLibraryOfArchivedNotesRepository(libraryOfArchivedNotes).send(session)
+            useSaveNotes({ notes: text, session, emptyNote: true })
+        }
+    }, [text])
+
+    const onChange = (newText: NotesModel) => {
         if(newText.trim().length <= maxLengthOfNotes) {
             setText(newText)
             return;
@@ -47,6 +62,15 @@ export default function Notes() {
         useSaveNotes({ session, notes: text })
         toast({
             description: t('notes.successful_toast')
+        })
+    }
+
+    const dispatch = useDispatch()
+    const handleArchiveNote = () => {
+        dispatch(archiveThisNote(text))
+        setText(defaultNotes)
+        toast({
+            description: t('archived_note.archive_successful_toast')
         })
     }
 
@@ -73,6 +97,15 @@ export default function Notes() {
                         />
                     </main>
                 </ScrollArea>
+                <SheetFooter>
+                    <Button 
+                        variant='ghost'
+                        onClick={handleArchiveNote}
+                    >
+                        <Archive size={iconSize} className='mr-2' />
+                        { t('archived_note.archive_note_btn') }
+                    </Button>
+                </SheetFooter>
             </SheetContent>
         </Sheet>
     )

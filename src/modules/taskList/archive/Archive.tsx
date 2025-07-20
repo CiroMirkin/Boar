@@ -1,6 +1,4 @@
 import { Card, CardHeader, CardTitle } from '../../../ui/card'
-import { Header } from '../../../sharedByModules/Header/Header'
-import { USER_IS_IN } from '../../../sharedByModules/Header/userIsIn'
 import { Button } from '@/ui/button'
 import { useDispatch } from 'react-redux'
 import { cleanArchive } from '@/modules/taskList/archive/state/archiveReducer'
@@ -13,7 +11,7 @@ import { ArchiveContent } from './ArchiveContent'
 
 export function Archive() {
 	const { t } = useTranslation()
-	const { bg, column } = useTheme()
+	const { column } = useTheme()
 	const boardArchive = useArchive()
 	
 	const dispatch = useDispatch()
@@ -24,9 +22,8 @@ export function Archive() {
 	})
 
 	return (
-		<div className={bg}>
-			<Header title={t('menu.archive')} whereUserIs={USER_IS_IN.ARCHIVE} />
-			<div className='w-full min-h-[calc(100vh-5rem)] grid justify-items-center py-2 pt-2 pb-6 '>
+		<>
+			<div className='w-full min-h-[calc(100vh-7.8rem)] grid justify-items-center py-2 pt-2 pb-6 '>
 				{boardArchive.length === 0 ? (
 					<EmptyArchive />
 				) : (
@@ -49,7 +46,7 @@ export function Archive() {
 					</div>
 				)}
 			</div>
-		</div>
+		</>
 	)
 }
 

@@ -56,6 +56,11 @@
 		"help": "Help"
 	},
 
+	"archive_page": {
+		"notes": "Notes",
+		"tasks": "Tasks"
+	},
+
 	"archive": {
 		"empty_archive": "There are no archived tasks yet.",
 		"archive_to_pdf_btn": "Download file as pdf",
@@ -65,6 +70,12 @@
 		"delete_task_warning": "Are you sure you want to delete this task?",
 		"clean_archive_btn": "Clean archive",
 		"clean_archive_warning": "Are you sure you want to delete all archived tasks?"
+	},
+
+	"archived_note": {
+		"archive_note_btn": "Archive note",
+		"empty_archive": "There are no notes archived yet.",
+		"archive_successful_toast": "Your note was successfully archived!"
 	},
 
 	"settings": {

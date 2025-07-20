@@ -16,6 +16,8 @@ import { useSession } from './SessionProvider'
 import { useDispatch } from 'react-redux'
 import { useGetUserArchiveFromSupabase } from './modules/taskList/archive/state/useGetUserArchiveFromSupabase'
 import { setTheUserBoardSavedInLocalStorage } from './sharedByModules/utils/setTheUserBoardSavedInLocalStorage'
+import { useLibraryOfArchivedNotesRepository } from './modules/notes/LibraryOfArchiveNotes/repository/useLibraryOfArchivedNotesRepository'
+import { useLibraryOfArchivedNotes } from './modules/notes/LibraryOfArchiveNotes/state/useLibraryOfArchivedNotes'
 
 export const useTheme = () => useContext(ThemeContext).theme
 
@@ -28,8 +30,11 @@ function App() {
 	
 	const dispatch = useDispatch()
 	const { session } = useSession()
+	const libraryOfArchivedNotes = useLibraryOfArchivedNotes()
+	// Si el usuario NO esta sincronizado o cambio el estado de la session
 	useEffect(() => {
-		// Si el usuario NO esta sincronizado o cambio el estado de la session
+		useLibraryOfArchivedNotesRepository(libraryOfArchivedNotes).set(session, dispatch)
+		
 		if(!!session) {
 			useSyncUserBoard(dispatch)
 			useGetUserArchiveFromSupabase(dispatch)
