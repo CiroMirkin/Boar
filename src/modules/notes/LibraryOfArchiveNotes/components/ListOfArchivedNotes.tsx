@@ -6,7 +6,7 @@ import { ArchivedNote as ArchivedNoteModel} from "../model/archivedNote"
 export function ListOfArchivedNotes() {
     const archivedNotes = useLibraryOfArchivedNotes().archive
     const archivedNotesList: ReactNode[] = archivedNotes.map((note: ArchivedNoteModel) => (
-        <div className="p-0 m-0" key={note.id}>
+        <div className="p-0 m-0 w-full" key={note.id}>
             <ArchivedNote note={note} />
         </div>
     ))
