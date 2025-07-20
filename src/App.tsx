@@ -31,8 +31,8 @@ function App() {
 	const dispatch = useDispatch()
 	const { session } = useSession()
 	const libraryOfArchivedNotes = useLibraryOfArchivedNotes()
+	// Si el usuario NO esta sincronizado o cambio el estado de la session
 	useEffect(() => {
-		// Si el usuario NO esta sincronizado o cambio el estado de la session
 		useLibraryOfArchivedNotesRepository(libraryOfArchivedNotes).set(session, dispatch)
 		
 		if(!!session) {
