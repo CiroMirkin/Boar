@@ -67,6 +67,12 @@
 		"clean_archive_warning": "Are you sure you want to delete all archived tasks?"
 	},
 
+	"archived_note": {
+		"archive_note_btn": "Archive note",
+		"empty_archive": "There are no notes archived yet.",
+		"archive_successful_toast": "Your note was successfully archived!"
+	},
+
 	"settings": {
 		"board": {
 			"change_board_name_section_title": "Board",

@@ -2,6 +2,7 @@ import { ReactNode } from "react"
 import ArchivedNote from "./ArchivedNote"
 import { useLibraryOfArchivedNotes } from "../state/useLibraryOfArchivedNotes"
 import { ArchivedNote as ArchivedNoteModel} from "../model/archivedNote"
+import { useTranslation } from "react-i18next"
 
 export function ListOfArchivedNotes() {
     const archivedNotes = useLibraryOfArchivedNotes().archive
@@ -10,12 +11,12 @@ export function ListOfArchivedNotes() {
             <ArchivedNote note={note} />
         </div>
     ))
-
+    const { t } = useTranslation()
     return (
         <>
             { 
                 archivedNotes.length == 0
-                && <p className="opacity-50 text-lg">Aún no hay notar archivadas.</p>
+                && <p className="opacity-50 text-lg">{ t('archived_note.empty_archive') }</p>
             }
             { archivedNotesList }
         </>

@@ -68,7 +68,7 @@ export default function Notes() {
         dispatch(archiveThisNote(text))
         setText(defaultNotes)
         toast({
-            description: 'Su nota se archivo con exito!',
+            description: t('archived_note.archive_successful_toast')
         })
     }
 
@@ -101,7 +101,7 @@ export default function Notes() {
                         onClick={handleArchiveNote}
                     >
                         <Archive size={iconSize} className='mr-2' />
-                        Archivar nota
+                        { t('archived_note.archive_note_btn') }
                     </Button>
                 </SheetFooter>
             </SheetContent>
