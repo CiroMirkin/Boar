@@ -14,8 +14,8 @@ export function ArchivePage() {
 			<Header title={t('menu.archive')} whereUserIs={USER_IS_IN.ARCHIVE} />
             <Tabs defaultValue="tareas-archivadas">
                 <TabsList className="self-center justify-self-stretch">
-                    <TabsTrigger value="tareas-archivadas" >Tareas</TabsTrigger>
-                    <TabsTrigger value="notas-archivadas" >Notas</TabsTrigger>
+                    <TabsTrigger value="tareas-archivadas" >{ t('archive_page.tasks') }</TabsTrigger>
+                    <TabsTrigger value="notas-archivadas" >{ t('archive_page.notes') }</TabsTrigger>
                 </TabsList>
                 <TabsContent value="tareas-archivadas">
                     <Archive />

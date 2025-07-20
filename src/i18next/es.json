@@ -56,6 +56,11 @@
 		"help": "Ayuda"
 	},
 
+	"archive_page": {
+		"notes": "Notas",
+		"tasks": "Tareas"
+	},
+
 	"archive": {
 		"empty_archive": "Aún no hay tareas archivadas.",
 		"archive_to_pdf_btn": "Descargar archivo como pdf",
