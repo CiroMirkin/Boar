@@ -23,7 +23,7 @@ export function Archive() {
 
 	return (
 		<>
-			<div className='w-full min-h-[calc(100vh-5rem)] grid justify-items-center py-2 pt-2 pb-6 '>
+			<div className='w-full min-h-[calc(100vh-7.8rem)] grid justify-items-center py-2 pt-2 pb-6 '>
 				{boardArchive.length === 0 ? (
 					<EmptyArchive />
 				) : (
