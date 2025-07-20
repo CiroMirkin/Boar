@@ -13,6 +13,8 @@ import { useTheme } from "@/App";
 import RichTextEditor from "./RichTextEditor/RichTextEditor";
 import { useDispatch } from "react-redux";
 import { archiveThisNote } from "./LibraryOfArchiveNotes/state/archivedNotesReducer";
+import { useLibraryOfArchivedNotesRepository } from "./LibraryOfArchiveNotes/repository/useLibraryOfArchivedNotesRepository";
+import { useLibraryOfArchivedNotes } from "./LibraryOfArchiveNotes/state/useLibraryOfArchivedNotes";
 
 export default function Notes() {
     const [text, setText] = useState(defaultNotes as NotesModel)
@@ -32,6 +34,13 @@ export default function Notes() {
                 : setText(notesFromLocalStotage)
         }
     }, [session])
+
+    const libraryOfArchivedNotes = useLibraryOfArchivedNotes()
+    useEffect(() => {
+        if(text == '' || text == "<br>") {
+            useLibraryOfArchivedNotesRepository(libraryOfArchivedNotes).send(session)
+        }
+    }, [text])
 
     const onChange = (newText: NotesModel) => {
         if(newText.trim().length <= maxLengthOfNotes) {
