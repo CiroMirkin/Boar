@@ -8,14 +8,33 @@ import { downloadArchiveLikePDF } from '@/modules/taskList/archive/downloadArchi
 import { useTranslation } from 'react-i18next'
 import { useTheme } from "@/App"
 import { ArchiveContent } from './ArchiveContent'
+import { useEffect, useState } from 'react'
+import { useSaveArchive } from './state/useSaveArchive'
+import { useSession } from '@/SessionProvider'
 
 export function Archive() {
+	const [ cleanArchiveSignal, setCleanArchiveSignal ] = useState(false)
 	const { t } = useTranslation()
 	const { column } = useTheme()
 	const boardArchive = useArchive()
+
+	const { session } = useSession()
+	useEffect(() => {
+		if(cleanArchiveSignal) {
+            setCleanArchiveSignal(true)
+                useSaveArchive({ 
+					session, 
+					archive: boardArchive, 
+					emptyArchive: true 
+            })
+        } 
+	}, [boardArchive])
 	
 	const dispatch = useDispatch()
-	const cleanTheWholeArchive = () => dispatch(cleanArchive())
+	const cleanTheWholeArchive = () => {
+		dispatch(cleanArchive())
+		setCleanArchiveSignal(true)
+	}
 	const askForConfirmationToCleanTheWholeArchive = useAskForConfirmationToast({
 		confirmationText: t('archive.clean_archive_warning'),
 		action: cleanTheWholeArchive,
