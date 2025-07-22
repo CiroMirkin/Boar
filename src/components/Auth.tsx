@@ -95,7 +95,7 @@ export default function Auth() {
   return (
     <div className={`${bg} ${text}`}>
       <Header title='Boar' whereUserIs={USER_IS_IN.AUTH} />
-      <main className='w-full min-h-[calc(100vh-6rem)] grid place-items-center'>
+      <main className='w-full min-h-[calc(100vh-5rem)] grid place-items-center'>
         <Card className='rounded-lg px-6 py-2'>
           <CardHeader>
             <CardTitle>{isRegister ? t('log_in_form_title') : t('sing_in')}</CardTitle>
