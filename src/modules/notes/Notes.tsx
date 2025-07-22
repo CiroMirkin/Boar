@@ -20,6 +20,7 @@ import { iconSize } from "@/sharedByModules/configs/iconsConstants";
 
 export default function Notes() {
     const [text, setText] = useState(defaultNotes as NotesModel)
+    const [ taskArchived, setTaskArchived ] = useState(false)
     const { t } = useTranslation()
     const { session } = useSession()
     const { toast } = useToast()
@@ -40,11 +41,13 @@ export default function Notes() {
     const libraryOfArchivedNotes = useLibraryOfArchivedNotes()
     useEffect(() => {
         if(text == '' || text == "<br>") {
-            console.log(text)
-            useLibraryOfArchivedNotesRepository(libraryOfArchivedNotes).send(session)
-            useSaveNotes({ notes: text, session, emptyNote: true })
+            if(taskArchived) {
+                useLibraryOfArchivedNotesRepository(libraryOfArchivedNotes).send(session)
+                useSaveNotes({ notes: text, session, emptyNote: true })
+                setTaskArchived(false)
+            }
         }
-    }, [text])
+    }, [libraryOfArchivedNotes])
 
     const onChange = (newText: NotesModel) => {
         if(newText.trim().length <= maxLengthOfNotes) {
@@ -69,6 +72,7 @@ export default function Notes() {
     const handleArchiveNote = () => {
         dispatch(archiveThisNote(text))
         setText(defaultNotes)
+        setTaskArchived(true)
         toast({
             description: t('archived_note.archive_successful_toast')
         })
