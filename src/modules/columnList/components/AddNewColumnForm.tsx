@@ -1,6 +1,6 @@
 import { iconSize } from '@/sharedByModules/configs/iconsConstants'
 import { Button } from '@/ui/button'
-import { useToast } from '@/ui/use-toast'
+import { toast } from "sonner"
 import { Plus } from 'lucide-react'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import {
@@ -18,8 +18,6 @@ export function AddNewColumnForm() {
 	const theNewColumnNameIsBlank = !newColumnName.trim()
 	const theNewColumnNameIsOffLimits = !isThisColumnNameWithinTheLimitOfLetters(newColumnName)
 	const theNewColumnNameIsValid = theNewColumnNameIsBlank || theNewColumnNameIsOffLimits
-
-	const { toast } = useToast()
 	
 	const createColumn = useCreateColumn()
 	const addNewColumn = () => {
@@ -44,11 +42,7 @@ export function AddNewColumnForm() {
 		try {
 			action()
 		} catch (error) {
-			toast({
-				description: getErrorMessageForTheUser(error),
-				variant: 'destructive',
-				duration: 3000,
-			})
+			toast.error(getErrorMessageForTheUser(error))
 		}
 	}
 
