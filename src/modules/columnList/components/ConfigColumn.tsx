@@ -3,7 +3,7 @@ import { Column, isThisColumnNameWithinTheLimitOfLetters } from '../models/colum
 import { useDispatch } from 'react-redux'
 import { changeColumnName } from '@/modules/columnList/state/columnListReducer'
 import { Button } from '../../../ui/button'
-import { useToast } from '../../../ui/use-toast'
+import { toast } from "sonner"
 import { Pencil, Trash2 } from 'lucide-react'
 import { iconSize } from '@/sharedByModules/configs/iconsConstants'
 import { Input } from '@/ui/input'
@@ -21,7 +21,6 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 	const [showChangeColumnNameInput, setShowChangeColumnNameInput] = useState(false)
 	const [columnName, setColumnName] = useState(column.name)
 	const updateBoardData = useDispatch()
-	const { toast } = useToast()
 
 	const editColumnNameHandle = () => {
 		if (showChangeColumnNameInput) {
@@ -42,11 +41,7 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 		try {
 			action()
 		} catch (error) {
-			toast({
-				description: getErrorMessageForTheUser(error),
-				variant: 'destructive',
-				duration: 3000,
-			})
+			toast.error(getErrorMessageForTheUser(error))
 		}
 	}
 
