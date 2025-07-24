@@ -5,17 +5,20 @@ import { useDispatch } from 'react-redux'
 import { deleteArchivedTask } from '@/modules/taskList/archive/state/archiveReducer'
 import { toast } from "sonner"
 import { addTaskAtLastColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
-import { useAskForConfirmationToast } from '@/sharedByModules/hooks/useAskForConfirmationToast'
 import { useTranslation } from 'react-i18next'
 
 export function TaskInArchiveActions() {
 	const { t } = useTranslation()
 	const { deleteTaskAction, returnTaskToLastColumnAction } = useActionsForTaskInArchive()
 
-	const askForConfirmationToDeleteTheTask = useAskForConfirmationToast({
-		confirmationText: t('archive.delete_task_warning'),
-		action: deleteTaskAction,
-	})
+	const askForConfirmationToDeleteTheTask = () => {
+		toast.warning(t('archive.delete_task_warning'), {
+			action: {
+				label: t('archive.delete_task_btn'),
+				onClick: deleteTaskAction
+			},
+		})
+	}
 
 	return (
 		<>
