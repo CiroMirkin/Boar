@@ -4,8 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useDataOfTheTask } from "../hooks/useDataOfTheTask";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "../state/taskListInEachColumnReducer";
-import { useToast } from "@/ui/use-toast";
-import { ToastAction } from "@/ui/toast";
+import { toast } from "sonner"
 
 interface DeleteButtonProps {
 	handleClick: (action: () => void) => void
@@ -13,7 +12,6 @@ interface DeleteButtonProps {
 
 export function DeleteTaskButton({ handleClick }: DeleteButtonProps) {
     const { t } = useTranslation()
-    const { toast } = useToast()
     const data = useDataOfTheTask()
     const isTheTaskInTheFirstColumn = useCheckIfThisTaskIsInTheFirstColumn(data)
     const dispatch = useDispatch()
@@ -22,19 +20,12 @@ export function DeleteTaskButton({ handleClick }: DeleteButtonProps) {
     const askForConfirmationToDeleteTheTask = () => {
 		isTheTaskInTheFirstColumn
 			? handleClick(deleteTaskAction)
-			: toast({
-					description: t('task_buttons.delete_task_warning'),
-					variant: 'destructive',
-					duration: 3000,
-					action: (
-						<ToastAction
-							altText={t('task_buttons.delete')}
-							onClick={() => handleClick(deleteTaskAction)}
-						>
-							{t('task_buttons.delete')}
-						</ToastAction>
-					),
-				})
+			: toast.warning(t('task_buttons.delete_task_warning'), {
+				action: {
+					label: t('task_buttons.delete'),
+					onClick: () => handleClick(deleteTaskAction)
+				},
+			})
 	}
 
     return (

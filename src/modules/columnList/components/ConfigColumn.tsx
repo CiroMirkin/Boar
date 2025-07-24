@@ -3,12 +3,11 @@ import { Column, isThisColumnNameWithinTheLimitOfLetters } from '../models/colum
 import { useDispatch } from 'react-redux'
 import { changeColumnName } from '@/modules/columnList/state/columnListReducer'
 import { Button } from '../../../ui/button'
-import { useToast } from '../../../ui/use-toast'
+import { toast } from "sonner"
 import { Pencil, Trash2 } from 'lucide-react'
 import { iconSize } from '@/sharedByModules/configs/iconsConstants'
 import { Input } from '@/ui/input'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
-import { useAskForConfirmationToast } from '@/sharedByModules/hooks/useAskForConfirmationToast'
 import { useTranslation } from 'react-i18next'
 import { useDeleteColumn } from '../../../sharedByModules/hooks/useDeleteColumn'
 
@@ -21,7 +20,6 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 	const [showChangeColumnNameInput, setShowChangeColumnNameInput] = useState(false)
 	const [columnName, setColumnName] = useState(column.name)
 	const updateBoardData = useDispatch()
-	const { toast } = useToast()
 
 	const editColumnNameHandle = () => {
 		if (showChangeColumnNameInput) {
@@ -33,20 +31,21 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 	const deleteColumn = useDeleteColumn()
 	const deleteColumnHandle = () => deleteColumn({ column })
 
-	const askForConfirmationToDeleteTheColumn = useAskForConfirmationToast({
-		confirmationText: `${t('settings.columns.delete_column_warning')} "${columnName}"?`,
-		action: deleteColumnHandle,
-	})
+	const askForConfirmationToDeleteTheColumn = () => {
+		toast.warning(`${t('settings.columns.delete_column_warning')} "${columnName}"?`, {
+			action: {
+				label: t('task_buttons.delete'),
+				onClick: deleteColumnHandle
+			},
+		})
+	
+	}
 
 	const handleClick = (action: () => void) => {
 		try {
 			action()
 		} catch (error) {
-			toast({
-				description: getErrorMessageForTheUser(error),
-				variant: 'destructive',
-				duration: 3000,
-			})
+			toast.error(getErrorMessageForTheUser(error))
 		}
 	}
 

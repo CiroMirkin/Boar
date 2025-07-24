@@ -1,7 +1,7 @@
 import { themesList, Theme as Theme } from '@/modules/Theme/themesList'
 import { Card, CardContent } from '@/ui/card'
 import { useTranslation } from 'react-i18next'
-import { useToast } from '@/ui/use-toast'
+import { toast } from "sonner"
 import { useEffect, useState } from 'react'
 import { useChangeTheme } from './ThemeContext'
 
@@ -27,16 +27,12 @@ export function ThemeSelection() {
 	}, [themesList])
 
 	const { t } = useTranslation()
-	const { toast } = useToast()
 	const changeTheme = useChangeTheme()
 	const toggleTheme = (id: string) => {
 		const newTheme = getColorThemeFromId(id)
 		changeTheme({ ...newTheme })
 
-		toast({
-			description: t('settings.board.set_board_theme_toast'),
-			duration: 3000,
-		})
+		toast.success(t('settings.board.set_board_theme_toast'))
 	}
 	const handleClick = (e: any) => {
 		if (!!e.target.id) {

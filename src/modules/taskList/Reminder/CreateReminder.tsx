@@ -4,7 +4,7 @@ import { Input } from '@/ui/input'
 import { Label } from '@/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/ui/select'
 import { Reminder as reminder } from './reminder'
-import { useToast } from '@/ui/use-toast'
+import { toast } from "sonner"
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { useTranslation } from 'react-i18next'
 import { ReminderContext } from './ReminderContext'
@@ -23,8 +23,6 @@ function CreateReminder({ columnList }: { columnList: ReminderColumn[] }) {
 		reminder.columnPosition as string
 	)
 
-	const { toast } = useToast()
-
 	const handleClick = () => {
 		const newReminder: reminder = {
 			text: reminderText,
@@ -33,16 +31,9 @@ function CreateReminder({ columnList }: { columnList: ReminderColumn[] }) {
 
 		try {
 			setReminder(newReminder)
-			toast({
-				description: t('settings.reminder.created_toast'),
-				duration: 3000,
-			})
+			toast.success(t('settings.reminder.created_toast'))
 		} catch (error) {
-			toast({
-				description: getErrorMessageForTheUser(error),
-				variant: 'destructive',
-				duration: 3000,
-			})
+			toast.error(getErrorMessageForTheUser(error))
 		}
 	}
 

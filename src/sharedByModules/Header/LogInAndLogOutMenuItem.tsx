@@ -5,7 +5,7 @@ import { LogIn, LogOut } from "lucide-react"
 import { iconSize } from "../configs/iconsConstants"
 import { useTranslation } from "react-i18next"
 import { AuthError, Session } from "@supabase/supabase-js"
-import { useToast } from "@/ui/use-toast"
+import { toast } from "sonner"
 import { supabase } from "@/lib/supabase"
 import { useDispatch } from "react-redux"
 import { setBoardByDefault as setUserBoardByDefault } from "../utils/setUserBoardByDefault"
@@ -17,8 +17,6 @@ interface LogInAndLogOutMenuItemProps {
 
 export default function LogInAndLogOutMenuItem({ whereUserIs, session }: LogInAndLogOutMenuItemProps) {
     const { t } = useTranslation()
-	const { toast } = useToast()
-
 	const dispatch = useDispatch()
 
 	// Handle log out
@@ -26,17 +24,12 @@ export default function LogInAndLogOutMenuItem({ whereUserIs, session }: LogInAn
 		try {
 			const { error } = await supabase.auth.signOut()
 			if(error) throw error
-			toast({
-				description: t('successful_log_out_toast')
-			})
+			toast.success(t('successful_log_out_toast'))
 			setUserBoardByDefault(dispatch)
 		}
 		catch(error) {
 			const authError = error as AuthError
-			toast({
-				description: authError.message,
-				variant: 'destructive',
-			})
+			toast.error(authError.message)
 		}
 	}
 

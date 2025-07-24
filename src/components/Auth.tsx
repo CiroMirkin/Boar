@@ -5,7 +5,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/card'
 import { Label } from '@/ui/label'
 import type { AuthUnknownError } from '@supabase/supabase-js'
 import { supabase } from '@/lib/supabase' 
-import { useToast } from '@/ui/use-toast'
+import { toast } from "sonner"
 import { Header } from '@/sharedByModules/Header/Header' 
 import { USER_IS_IN } from '@/sharedByModules/Header/userIsIn' 
 import { useTheme } from "@/App"
@@ -21,7 +21,6 @@ export default function Auth() {
   const [isRegister, setIsRegister] = useState(false) 
   const [ isSubmitted, setIsSubmitted] = useState(false)
 
-  const { toast } = useToast()
   const { t } = useTranslation()
 
   const showToast = useRef<boolean>(true) 
@@ -31,11 +30,7 @@ export default function Auth() {
       // El usuario no tiene el tablero por defecto antes de iniciar sesion.
       if(!hasUserDefaultBoard) {
         const toastText = 'El tablero actual se perderá si inicia sesión, para conservarlo debe crear una nueva cuenta.'
-        toast({
-          description: toastText,
-          duration: 5600,
-          variant: 'destructive',
-        })
+        toast.warning(toastText)
       }
     }
     if(showToast.current) {
@@ -56,9 +51,7 @@ export default function Auth() {
         }) 
         if (error) throw error 
 
-        toast({
-          description: t('successful_log_in_toast')
-        })
+        toast.success(t('successful_log_in_toast'))
       } 
       else {
         const { error } = await supabase.auth.signInWithPassword({
@@ -67,17 +60,12 @@ export default function Auth() {
         }) 
         if (error) throw error 
        
-        toast({
-          description: t('sing_in_toast')
-        })
+        toast.success(t('sing_in_toast'))
         setIsSubmitted(true)
       }
     } catch (error) {
       const authError = error as AuthUnknownError
-      toast({
-        description: authError.message,
-        variant: 'destructive'
-      })
+      toast.error(authError.message)
       console.error(error) 
     } finally {
       setLoading(false) 

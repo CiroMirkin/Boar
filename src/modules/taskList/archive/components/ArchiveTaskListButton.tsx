@@ -1,6 +1,6 @@
 import { archiveTaskListAtLastColumn } from '@/modules/taskList/archive/state/archiveReducer'
 import { cleanTheLastTaskList } from '@/modules/taskList/state/taskListInEachColumnReducer'
-import { useToast } from '@/ui/use-toast'
+import { toast } from "sonner"
 import { useDispatch } from 'react-redux'
 import { Button } from '@/ui/button'
 import { Archive } from 'lucide-react'
@@ -14,14 +14,12 @@ import { useSession } from '@/SessionProvider'
 import { getActalArchive } from '../state/getActualArchive'
 
 export function ArchiveTaskListButton() {
-	const { toast } = useToast()
 	const { t } = useTranslation()
-
-	const dispatch = useDispatch()
 
 	const taskListInEachColumn = useTaskListInEachColumn()
 	const canUserArchiveTask = useCheckForTasksInLastColumn()
 
+	const dispatch = useDispatch()
 	const { session } = useSession()
 	const archiveTaskList = () => {
 		try {
@@ -31,16 +29,9 @@ export function ArchiveTaskListButton() {
 				session, 
 				archive: getActalArchive()
 			})
-			toast({
-				description: t('archive_task_list_toast'),
-				duration: 3000,
-			})
+			toast.success(t('archive_task_list_toast'))
 		} catch (error) {
-			toast({
-				description: getErrorMessageForTheUser(error),
-				variant: 'destructive',
-				duration: 3000,
-			})
+			toast.error(getErrorMessageForTheUser(error))
 		}
 	}
 
