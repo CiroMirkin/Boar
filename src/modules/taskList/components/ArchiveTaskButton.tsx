@@ -1,5 +1,5 @@
 import { Button } from "@/ui/button";
-import { useToast } from "@/ui/use-toast";
+import { toast } from "sonner"
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { archiveTask } from "../archive/state/archiveReducer";
@@ -16,7 +16,6 @@ interface ArchiveTaskButtonProps {
 export function ArchiveTaskButton({ handleClick }: ArchiveTaskButtonProps) {
     const { t } = useTranslation()
     const dispatch = useDispatch()
-	const { toast } = useToast()
     const data = useDataOfTheTask()
 	const { session } = useSession()
     const archiveTaskAction = () => {
@@ -26,10 +25,7 @@ export function ArchiveTaskButton({ handleClick }: ArchiveTaskButtonProps) {
 			session,
 			archive: getActalArchive()
 		})
-		toast({
-			description: t('task_buttons.archive_toast'),
-			duration: 3000,
-		})
+		toast.success(t('task_buttons.archive_toast'))
 	}
 
     return (
