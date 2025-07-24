@@ -2,7 +2,6 @@ import { Card, CardHeader, CardTitle } from '../../../ui/card'
 import { Button } from '@/ui/button'
 import { useDispatch } from 'react-redux'
 import { cleanArchive } from '@/modules/taskList/archive/state/archiveReducer'
-import { useAskForConfirmationToast } from '@/sharedByModules/hooks/useAskForConfirmationToast'
 import { useArchive } from '@/modules/taskList/archive/hooks/useArchive'
 import { downloadArchiveLikePDF } from '@/modules/taskList/archive/downloadArchiveLikePDF'
 import { useTranslation } from 'react-i18next'
@@ -11,6 +10,7 @@ import { ArchiveContent } from './ArchiveContent'
 import { useEffect, useState } from 'react'
 import { useSaveArchive } from './state/useSaveArchive'
 import { useSession } from '@/SessionProvider'
+import { toast } from 'sonner'
 
 export function Archive() {
 	const [ cleanArchiveSignal, setCleanArchiveSignal ] = useState(false)
@@ -35,10 +35,14 @@ export function Archive() {
 		dispatch(cleanArchive())
 		setCleanArchiveSignal(true)
 	}
-	const askForConfirmationToCleanTheWholeArchive = useAskForConfirmationToast({
-		confirmationText: t('archive.clean_archive_warning'),
-		action: cleanTheWholeArchive,
-	})
+	const askForConfirmationToCleanTheWholeArchive = () => {
+		toast.warning(t('archive.clean_archive_warning'), {
+			action: {
+				label: t('archive.clean_archive_btn'),
+				onClick: cleanTheWholeArchive
+			},
+		})
+	}
 
 	return (
 		<>
