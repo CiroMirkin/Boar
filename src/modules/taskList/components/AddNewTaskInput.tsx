@@ -2,7 +2,7 @@ import { iconSize } from '@/sharedByModules/configs/iconsConstants'
 import { getNewTask, isThisTaskDescriptionValid } from '@/modules/taskList/models/task'
 import { addTaskAtFirstColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { Button } from '@/ui/button'
-import { useToast } from '@/ui/use-toast'
+import { toast } from "sonner"
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { Plus } from 'lucide-react'
 import { KeyboardEvent, useState } from 'react'
@@ -14,8 +14,6 @@ export function AddNewTaskInput() {
 	const [newTaskDescription, setNewTaskDescription] = useState('')
 	const canUserUseTheAddTaskInput = !isThisTaskDescriptionValid(newTaskDescription)
 
-	const { toast } = useToast()
-
 	const dispatch = useDispatch()
 
 	const handleClick = () => {
@@ -24,11 +22,7 @@ export function AddNewTaskInput() {
 			dispatch(addTaskAtFirstColumn(task))
 			setNewTaskDescription('')
 		} catch (error) {
-			toast({
-				description: getErrorMessageForTheUser(error),
-				variant: 'destructive',
-				duration: 3000,
-			})
+			toast.error(getErrorMessageForTheUser(error))
 		}
 	}
 
