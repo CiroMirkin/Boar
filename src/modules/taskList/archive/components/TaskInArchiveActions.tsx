@@ -3,7 +3,7 @@ import { TaskContext } from '../../../../sharedByModules/components/BlankTask'
 import { Button } from '@/ui/button'
 import { useDispatch } from 'react-redux'
 import { deleteArchivedTask } from '@/modules/taskList/archive/state/archiveReducer'
-import { useToast } from '@/ui/use-toast'
+import { toast } from "sonner"
 import { addTaskAtLastColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { useAskForConfirmationToast } from '@/sharedByModules/hooks/useAskForConfirmationToast'
 import { useTranslation } from 'react-i18next'
@@ -40,7 +40,6 @@ export function TaskInArchiveActions() {
 }
 
 const useActionsForTaskInArchive = () => {
-	const { toast } = useToast()
 	const { t } = useTranslation()
 	const data = useContext(TaskContext)
 	const dispatch = useDispatch()
@@ -51,10 +50,7 @@ const useActionsForTaskInArchive = () => {
 	const returnTaskToLastColumnAction = () => {
 		dispatch(addTaskAtLastColumn(data))
 		dispatch(deleteArchivedTask(data))
-		toast({
-			description: t('archive.return_task_to_board_toast'),
-			duration: 3000,
-		})
+		toast.success(t('archive.return_task_to_board_toast'))
 	}
 
 	return {
