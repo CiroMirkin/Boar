@@ -8,7 +8,6 @@ import { Pencil, Trash2 } from 'lucide-react'
 import { iconSize } from '@/sharedByModules/configs/iconsConstants'
 import { Input } from '@/ui/input'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
-import { useAskForConfirmationToast } from '@/sharedByModules/hooks/useAskForConfirmationToast'
 import { useTranslation } from 'react-i18next'
 import { useDeleteColumn } from '../../../sharedByModules/hooks/useDeleteColumn'
 
@@ -32,10 +31,15 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 	const deleteColumn = useDeleteColumn()
 	const deleteColumnHandle = () => deleteColumn({ column })
 
-	const askForConfirmationToDeleteTheColumn = useAskForConfirmationToast({
-		confirmationText: `${t('settings.columns.delete_column_warning')} "${columnName}"?`,
-		action: deleteColumnHandle,
-	})
+	const askForConfirmationToDeleteTheColumn = () => {
+		toast.warning(`${t('settings.columns.delete_column_warning')} "${columnName}"?`, {
+			action: {
+				label: t('task_buttons.delete'),
+				onClick: deleteColumnHandle
+			},
+		})
+	
+	}
 
 	const handleClick = (action: () => void) => {
 		try {
