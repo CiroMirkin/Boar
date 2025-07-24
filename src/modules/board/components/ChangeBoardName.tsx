@@ -11,7 +11,7 @@ import {
 	isThisBoardNameWithinTheLimitOfLetters,
 } from '@/modules/board/models/board'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
-import { useToast } from '@/ui/use-toast'
+import { toast } from "sonner"
 import { useBoard } from '@/modules/board/hooks/useBoard'
 import { BoardRepository } from '@/modules/board/models/boardRepository'
 import LocalStorageBoardRepository from '@/modules/board/state/localstorageBoard'
@@ -31,10 +31,8 @@ export function ChangeBoardName() {
 
 	const [boardName, setBoardName] = useState(boardData.name)
 	const [inputDisabled, setInputDisabled] = useState(true)
-	const { toast } = useToast()
 
 	const dispatch = useDispatch()
-
 	const changeName = () => dispatch(changeTheNameOfTheBoard(boardName))
 
 	const handleClick = () => {
@@ -46,11 +44,7 @@ export function ChangeBoardName() {
 				setInputDisabled(true)
 			}
 		} catch (e) {
-			toast({
-				description: getErrorMessageForTheUser(e),
-				variant: 'destructive',
-				duration: 3000,
-			})
+			toast.error(getErrorMessageForTheUser(e))
 		}
 	}
 
