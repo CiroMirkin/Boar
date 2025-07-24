@@ -1,16 +1,13 @@
 import { useContext, useEffect, useState } from 'react'
-import { useToast } from '@/ui/use-toast'
+import { toast } from "sonner"
 import { TaskListInEachColumn } from '@/modules/taskList/models/taskList'
 import { ReminderContext } from './ReminderContext'
-import { useTheme } from "@/App"
 
 /** Si existe un recordatorio observa la columna indicada por el usuario y al ingresar una nueva tarea muestra el recordatorio en el tablero.  */
 export const useReminder = (taskListInEachColumn: TaskListInEachColumn) => {
 	const [copyOfTheLengthOfEachTaskList, setCopyOfTheLengthOfEachTaskList] = useState([
 		0, 0, 0,
 	] as Array<number>)
-	const { toast } = useToast()
-	const reminderColor  = useTheme().reminder
 	const { reminder } = useContext(ReminderContext) 
 
 	useEffect(() => {
@@ -25,11 +22,7 @@ export const useReminder = (taskListInEachColumn: TaskListInEachColumn) => {
 				setCopyOfTheLengthOfEachTaskList(
 					taskListInEachColumn.map((taskList) => taskList.length)
 				)
-				toast({
-					description: reminder.text,
-					duration: 3000,
-					className: `${reminderColor} border-black border-2`,
-				})
+				toast.info(reminder.text)
 			} else if (
 				taskListInEachColumn[columnPosition].length <
 				copyOfTheLengthOfEachTaskList[columnPosition]
