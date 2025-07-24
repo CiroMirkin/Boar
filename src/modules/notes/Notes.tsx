@@ -1,7 +1,7 @@
 import { Button } from "@/ui/button";
 import { ScrollArea } from "@/ui/scroll-area";
 import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/ui/sheet";
-import { useToast } from "@/ui/use-toast";
+import { toast } from "sonner"
 import { useSaveNotes } from "./repository/useSavedNote";
 import { useSession } from "@/SessionProvider";
 import { useEffect, useState } from "react";
@@ -23,7 +23,6 @@ export default function Notes() {
     const [ taskArchived, setTaskArchived ] = useState(false)
     const { t } = useTranslation()
     const { session } = useSession()
-    const { toast } = useToast()
 
     useEffect(() => {
         if(!!session) {
@@ -55,17 +54,12 @@ export default function Notes() {
             return;
         }
 
-        toast({
-            description: t('notes.warning_length_toast'),
-            variant: 'destructive',
-        })
+        toast.error(t('notes.warning_length_toast'))
     }
 
     const handleSaveNotes = () => {
         useSaveNotes({ session, notes: text })
-        toast({
-            description: t('notes.successful_toast')
-        })
+        toast.success(t('notes.successful_toast'))
     }
 
     const dispatch = useDispatch()
@@ -73,9 +67,7 @@ export default function Notes() {
         dispatch(archiveThisNote(text))
         setText(defaultNotes)
         setTaskArchived(true)
-        toast({
-            description: t('archived_note.archive_successful_toast')
-        })
+        toast.success(t('archived_note.archive_successful_toast'))
     }
 
     const { column, text: textColor } = useTheme()
