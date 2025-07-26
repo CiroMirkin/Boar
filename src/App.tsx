@@ -50,7 +50,7 @@ function App() {
 			<ReminderProvider reminderData={{ reminder, setReminder }}>
 				<Router />
 				<Toaster />
-				<SonnerToaster position="top-center" richColors />
+				<SonnerToaster position="top-center" richColors closeButton  />
 			</ReminderProvider>
 			</ThemeProvider>
 		</>
