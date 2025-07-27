@@ -1,6 +1,6 @@
 import { useTheme } from "@/App"
-import { Header } from "@/sharedByModules/Header/Header"
-import { USER_IS_IN } from "@/sharedByModules/Header/userIsIn"
+import { Header } from "@/modules/Header/Header"
+import { USER_IS_IN } from "@/modules/Header/userIsIn"
 import { ReactNode } from "react"
 
 interface PageContainerProps {

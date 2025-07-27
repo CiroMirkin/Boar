@@ -1,4 +1,4 @@
-import { Header } from '../sharedByModules/Header/Header'
+import { Header } from '../modules/Header/Header'
 
 export function Erro404() {
 	return (

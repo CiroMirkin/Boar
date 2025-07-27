@@ -11,7 +11,7 @@ import { iconSize } from '@/sharedByModules/configs/iconsConstants'
 import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
 import { useLocalStorage, usePreferredLanguage } from '@uidotdev/usehooks'
-import { LANGUAGE_LOCALSTORAGE_KEY } from '../configs/language'
+import { LANGUAGE_LOCALSTORAGE_KEY } from '../../sharedByModules/configs/language'
 
 export function LanguageToggle() {
 	const [language, setLanguage] = useLocalStorage(LANGUAGE_LOCALSTORAGE_KEY, 'es')

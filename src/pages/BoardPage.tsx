@@ -6,7 +6,7 @@ import { AddNewTaskInput } from "@/modules/taskList/components/AddNewTaskInput"
 import { TaskListInEachColumn } from "@/modules/taskList/TaskListInEachColumn"
 import PageContainer from "./PageContainer"
 import { useBoard } from "@/modules/board/hooks/useBoard"
-import { USER_IS_IN } from "@/sharedByModules/Header/userIsIn"
+import { USER_IS_IN } from "@/modules/Header/userIsIn"
 
 const columnsData: ColumnsContextContent = {
     firstColumnFooterContent: <AddNewTaskInput/>,

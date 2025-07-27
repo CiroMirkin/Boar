@@ -2,13 +2,13 @@ import { DropdownMenuItem } from "@/ui/dropdown-menu"
 import { USER_IS_IN } from "./userIsIn"
 import { Link } from "react-router-dom"
 import { LogIn, LogOut } from "lucide-react"
-import { iconSize } from "../configs/iconsConstants"
+import { iconSize } from "../../sharedByModules/configs/iconsConstants"
 import { useTranslation } from "react-i18next"
 import { AuthError, Session } from "@supabase/supabase-js"
 import { toast } from "sonner"
 import { supabase } from "@/lib/supabase"
 import { useDispatch } from "react-redux"
-import { setBoardByDefault as setUserBoardByDefault } from "../utils/setUserBoardByDefault"
+import { setBoardByDefault as setUserBoardByDefault } from "../../sharedByModules/utils/setUserBoardByDefault"
 
 interface LogInAndLogOutMenuItemProps { 
 	whereUserIs?: USER_IS_IN, 

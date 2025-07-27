@@ -6,7 +6,7 @@ import { Label } from '@/ui/label'
 import type { AuthUnknownError } from '@supabase/supabase-js'
 import { supabase } from '@/lib/supabase' 
 import { toast } from "sonner"
-import { USER_IS_IN } from '@/sharedByModules/Header/userIsIn' 
+import { USER_IS_IN } from '@/modules/Header/userIsIn' 
 import { Navigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { checkIfUserHasTheDefaultBoard } from '@/sharedByModules/hooks/useSyncUserBoard'
