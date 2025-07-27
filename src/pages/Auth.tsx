@@ -6,12 +6,11 @@ import { Label } from '@/ui/label'
 import type { AuthUnknownError } from '@supabase/supabase-js'
 import { supabase } from '@/lib/supabase' 
 import { toast } from "sonner"
-import { Header } from '@/sharedByModules/Header/Header' 
 import { USER_IS_IN } from '@/sharedByModules/Header/userIsIn' 
-import { useTheme } from "@/App"
 import { Navigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { checkIfUserHasTheDefaultBoard } from '@/sharedByModules/hooks/useSyncUserBoard'
+import PageContainer from './PageContainer'
 
 export default function Auth() {
   const [loading, setLoading] = useState(false) 
@@ -78,12 +77,8 @@ export default function Auth() {
     )
   }
 
-  const { bg, text } = useTheme()
-  
   return (
-    <div className={`${bg} ${text}`}>
-      <Header title='Boar' whereUserIs={USER_IS_IN.AUTH} />
-      <main className='w-full min-h-[calc(100vh-5rem)] grid place-items-center'>
+      <PageContainer whereUserIs={USER_IS_IN.AUTH}>
         <Card className='rounded-lg px-6 py-2'>
           <CardHeader>
             <CardTitle>{isRegister ? t('log_in_form_title') : t('sing_in')}</CardTitle>
@@ -123,7 +118,6 @@ export default function Auth() {
             </Button>
           </CardFooter>
         </Card>
-      </main>
-    </div>
+      </PageContainer>
   )
 }
