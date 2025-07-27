@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Board } from './modules/board/Board'
-import { Configs } from './pages/Configs'
+import { Settings } from './pages/Settings'
 import { Erro404 } from './pages/404'
 import { Help } from './pages/Help'
 import Auth from './pages/Auth'
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path: '/settings',
-		element: <ErrorBoundary><Configs /></ErrorBoundary>,
+		element: <ErrorBoundary><Settings /></ErrorBoundary>,
 	},
 	{
 		path: '/help',

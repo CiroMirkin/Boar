@@ -9,7 +9,7 @@ import { useColumnList } from '@/modules/columnList/hooks/useColumnList'
 import { ReminderList } from '@/modules/taskList/Reminder/ReminderList'
 import PageContainer from './PageContainer'
 
-export function Configs() {
+export function Settings() {
 	const { t } = useTranslation()
 	const { column } = useTheme()
 	const sectionClassName = `max-w-2xl rounded-lg py-4 md:px-11 px-6 ${column}`
