@@ -12,7 +12,7 @@ import { useSaveArchive } from './state/useSaveArchive'
 import { useSession } from '@/SessionProvider'
 import { toast } from 'sonner'
 
-export function Archive() {
+export function ArchivedTasks() {
 	const [ cleanArchiveSignal, setCleanArchiveSignal ] = useState(false)
 	const { t } = useTranslation()
 	const { column } = useTheme()

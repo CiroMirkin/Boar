@@ -1,5 +1,5 @@
 import LibraryOfArchiveNotes from "@/modules/notes/LibraryOfArchiveNotes/LibraryOfArchivedNotes";
-import { Archive } from "@/modules/taskList/archive/Archive";
+import { ArchivedTasks } from "@/modules/taskList/archive/ArchivedTasks";
 import { USER_IS_IN } from "@/sharedByModules/Header/userIsIn";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/tabs";
 import { useTranslation } from "react-i18next";
@@ -19,7 +19,7 @@ export function ArchivePage() {
                     <TabsTrigger value="notas-archivadas" >{ t('archive_page.notes') }</TabsTrigger>
                 </TabsList>
                 <TabsContent value="tareas-archivadas">
-                    <Archive />
+                    <ArchivedTasks />
                 </TabsContent>
                 <TabsContent value="notas-archivadas">
                     <LibraryOfArchiveNotes />
