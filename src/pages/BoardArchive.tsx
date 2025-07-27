@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/tabs";
 import { useTranslation } from "react-i18next";
 import PageContainer from "./PageContainer";
 
-export function ArchivePage() {
+export function BoardArchive() {
     const { t } = useTranslation()
     return (
         <PageContainer 

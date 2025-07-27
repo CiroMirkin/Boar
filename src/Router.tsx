@@ -3,7 +3,7 @@ import { Settings } from './pages/Settings'
 import { Erro404 } from './pages/404'
 import { Help } from './pages/Help'
 import Auth from './pages/Auth'
-import { ArchivePage } from './pages/ArchivePage'
+import { BoardArchive } from './pages/BoardArchive'
 import { BoardPage } from './pages/BoardPage'
 import ErrorBoundary from './ErrorBoundary'
 
@@ -14,7 +14,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path: '/archive',
-		element: <ErrorBoundary><ArchivePage /></ErrorBoundary>,
+		element: <ErrorBoundary><BoardArchive /></ErrorBoundary>,
 	},
 	{
 		path: '/settings',
