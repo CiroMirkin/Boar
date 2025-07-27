@@ -16,7 +16,7 @@ export default function PageContainer({ children, whereUserIs, title = 'Boar', c
         <div className={`${bg} ${text}`}>
             <Header title={title} whereUserIs={whereUserIs} />
             <main 
-                className={`w-full min-h-[calc(100vh-5rem)] grid place-items-center ${className}`}
+                className={`w-full min-h-[calc(100vh-5rem)] ${className}`}
             >
                 { children }
             </main>

@@ -18,7 +18,7 @@ export function Settings() {
 		<PageContainer 
 			title={t('menu.configs')} 
 			whereUserIs={USER_IS_IN.CONFIG} 
-			className='px-3 pb-6'
+			className='px-3 pb-6 grid place-items-center'
 		>
 			<div className="grid gap-4 justify-items-stretch ">
 				<div className={sectionClassName}>
