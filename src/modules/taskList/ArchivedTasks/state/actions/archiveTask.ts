@@ -1,6 +1,6 @@
-import { Archive, isItWithinTheDailyArchiveLimit } from '@/modules/taskList/archive/models/archive'
+import { Archive, isItWithinTheDailyArchiveLimit } from '@/modules/taskList/ArchivedTasks/models/archive'
 import { taskModel } from '@/modules/taskList/models/task'
-import { getDateOfTheFirstTaskListArchived } from '@/modules/taskList/archive/models/archive'
+import { getDateOfTheFirstTaskListArchived } from '@/modules/taskList/ArchivedTasks/models/archive'
 import { getFullDate } from '@/sharedByModules/utils/getTime'
 
 export const archiveThisTask = ({

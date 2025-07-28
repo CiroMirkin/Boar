@@ -1,6 +1,6 @@
 import { emptyTask } from '@/modules/taskList/models/task'
 import { archiveThisTask } from './archiveTask'
-import { Archive } from '@/modules/taskList/archive/models/archive'
+import { Archive } from '@/modules/taskList/ArchivedTasks/models/archive'
 import { getFullDate } from '@/sharedByModules/utils/getTime'
 import { expect } from 'vitest';
 

@@ -1,9 +1,9 @@
 import { Card, CardHeader, CardTitle } from '../../../ui/card'
 import { Button } from '@/ui/button'
 import { useDispatch } from 'react-redux'
-import { cleanArchive } from '@/modules/taskList/archive/state/archiveReducer'
-import { useArchive } from '@/modules/taskList/archive/hooks/useArchive'
-import { downloadArchiveLikePDF } from '@/modules/taskList/archive/downloadArchiveLikePDF'
+import { cleanArchive } from '@/modules/taskList/ArchivedTasks/state/archiveReducer'
+import { useArchive } from '@/modules/taskList/ArchivedTasks/hooks/useArchive'
+import { downloadArchiveLikePDF } from '@/modules/taskList/ArchivedTasks/downloadArchiveLikePDF'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from "@/App"
 import { ArchiveContent } from './ArchiveContent'

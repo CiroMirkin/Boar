@@ -1,7 +1,7 @@
 import { Board } from "@/modules/board/Board"
 import ColumnListContainer from "@/modules/columnList/ColumnListContainer"
 import { ColumnsContextContent } from "@/modules/columnList/ColumnsContext"
-import { ArchiveTaskListButton } from "@/modules/taskList/archive/components/ArchiveTaskListButton"
+import { ArchiveTaskListButton } from "@/modules/taskList/ArchivedTasks/components/ArchiveTaskListButton"
 import { AddNewTaskInput } from "@/modules/taskList/components/AddNewTaskInput"
 import { TaskListInEachColumn } from "@/modules/taskList/TaskListInEachColumn"
 import PageContainer from "./PageContainer"

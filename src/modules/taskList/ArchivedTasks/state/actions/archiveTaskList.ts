@@ -5,8 +5,8 @@ import {
 	Archive,
 	isItWithinTheArchiveLimit,
 	isItWithinTheDailyArchiveLimit,
-} from '@/modules/taskList/archive/models/archive'
-import { getDateOfTheFirstTaskListArchived } from '@/modules/taskList/archive/models/archive'
+} from '@/modules/taskList/ArchivedTasks/models/archive'
+import { getDateOfTheFirstTaskListArchived } from '@/modules/taskList/ArchivedTasks/models/archive'
 
 interface archiveTaskListParams {
 	taskListInEachColumn: TaskList[]

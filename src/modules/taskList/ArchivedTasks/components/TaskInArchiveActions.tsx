@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { TaskContext } from '../../../../sharedByModules/components/BlankTask'
 import { Button } from '@/ui/button'
 import { useDispatch } from 'react-redux'
-import { deleteArchivedTask } from '@/modules/taskList/archive/state/archiveReducer'
+import { deleteArchivedTask } from '@/modules/taskList/ArchivedTasks/state/archiveReducer'
 import { toast } from "sonner"
 import { addTaskAtLastColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { useTranslation } from 'react-i18next'

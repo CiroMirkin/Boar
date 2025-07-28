@@ -2,12 +2,12 @@ import { Button } from "@/ui/button";
 import { toast } from "sonner"
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { archiveTask } from "../archive/state/archiveReducer";
+import { archiveTask } from "../ArchivedTasks/state/archiveReducer";
 import { deleteTask } from "../state/taskListInEachColumnReducer";
 import { useDataOfTheTask } from "../hooks/useDataOfTheTask";
 import { useSession } from "@/SessionProvider";
-import { useSaveArchive } from "../archive/state/useSaveArchive";
-import { getActalArchive } from "../archive/state/getActualArchive";
+import { useSaveArchive } from "../ArchivedTasks/state/useSaveArchive";
+import { getActalArchive } from "../ArchivedTasks/state/getActualArchive";
 
 interface ArchiveTaskButtonProps {
 	handleClick: (action: () => void) => void

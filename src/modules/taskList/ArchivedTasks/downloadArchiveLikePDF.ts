@@ -1,4 +1,4 @@
-import { Archive } from '@/modules/taskList/archive/models/archive'
+import { Archive } from '@/modules/taskList/ArchivedTasks/models/archive'
 import { jsPDF } from 'jspdf'
 
 interface PDFConfig {

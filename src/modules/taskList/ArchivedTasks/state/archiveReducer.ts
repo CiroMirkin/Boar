@@ -1,10 +1,10 @@
-import { Archive } from '@/modules/taskList/archive/models/archive'
+import { Archive } from '@/modules/taskList/ArchivedTasks/models/archive'
 import { taskModel } from '@/modules/taskList/models/task'
 import { TaskListInEachColumn } from '@/modules/taskList/models/taskList'
-import { archiveThisTask } from '@/modules/taskList/archive/state/actions/archiveTask'
-import { archiveTaskListInTheLastColumn } from '@/modules/taskList/archive/state/actions/archiveTaskList'
-import { cleanTheWholeArchive } from '@/modules/taskList/archive/state/actions/cleanArchive'
-import { deleteThisArchivedTask } from '@/modules/taskList/archive/state/actions/deleteArchivedTask'
+import { archiveThisTask } from '@/modules/taskList/ArchivedTasks/state/actions/archiveTask'
+import { archiveTaskListInTheLastColumn } from '@/modules/taskList/ArchivedTasks/state/actions/archiveTaskList'
+import { cleanTheWholeArchive } from '@/modules/taskList/ArchivedTasks/state/actions/cleanArchive'
+import { deleteThisArchivedTask } from '@/modules/taskList/ArchivedTasks/state/actions/deleteArchivedTask'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 interface InitialState {

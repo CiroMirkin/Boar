@@ -1,4 +1,4 @@
-import { archiveTaskListAtLastColumn } from '@/modules/taskList/archive/state/archiveReducer'
+import { archiveTaskListAtLastColumn } from '@/modules/taskList/ArchivedTasks/state/archiveReducer'
 import { cleanTheLastTaskList } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { toast } from "sonner"
 import { useDispatch } from 'react-redux'
