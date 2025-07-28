@@ -1,7 +1,6 @@
-import { iconSize } from '@/sharedByModules/configs/iconsConstants'
 import { Button } from '@/ui/button'
 import { toast } from "sonner"
-import { Plus } from 'lucide-react'
+import { PlusIcon } from '@/ui/icons'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import {
 	getBlankColumnWithoutPosition,
@@ -63,7 +62,7 @@ export function AddNewColumnForm() {
 				title={t('settings.columns.new_column_btn')}
 				disabled={theNewColumnNameIsValid}
 			>
-				<Plus size={iconSize} />
+				<PlusIcon />
 			</Button>
 		</li>
 	)

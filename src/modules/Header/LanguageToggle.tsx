@@ -6,8 +6,7 @@ import {
 	DropdownMenuSubContent,
 	DropdownMenuSubTrigger,
 } from '@/ui/dropdown-menu'
-import { Languages } from 'lucide-react'
-import { iconSize } from '@/sharedByModules/configs/iconsConstants'
+import { LanguagesIcon } from '@/ui/icons'
 import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
 import { useLocalStorage, usePreferredLanguage } from '@uidotdev/usehooks'
@@ -34,7 +33,7 @@ export function LanguageToggle() {
 	return (
 		<DropdownMenuSub>
 			<DropdownMenuSubTrigger>
-				<Languages size={iconSize} className='mr-2' /> {t('menu.language')}
+				<LanguagesIcon className='mr-2' /> {t('menu.language')}
 			</DropdownMenuSubTrigger>
 			<DropdownMenuPortal>
 				<DropdownMenuSubContent>

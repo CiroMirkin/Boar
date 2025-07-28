@@ -4,8 +4,7 @@ import { useDispatch } from 'react-redux'
 import { changeColumnName } from '@/modules/columnList/state/columnListReducer'
 import { Button } from '../../../ui/button'
 import { toast } from "sonner"
-import { Pencil, Trash2 } from 'lucide-react'
-import { iconSize } from '@/sharedByModules/configs/iconsConstants'
+import { PencilIcon, TrashIcon } from '@/ui/icons'
 import { Input } from '@/ui/input'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { useTranslation } from 'react-i18next'
@@ -61,14 +60,14 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 					disabled={!showChangeColumnNameInput}
 				/>
 				<Button onClick={() => handleClick(editColumnNameHandle)} variant='ghost'>
-					<Pencil size={iconSize} />
+					<PencilIcon />
 				</Button>
 			</header>
 			<Button
 				onClick={() => handleClick(askForConfirmationToDeleteTheColumn)}
 				variant='destructiveGhost'
 			>
-				<Trash2 size={iconSize} className='mr-2' />{' '}
+				<TrashIcon className='mr-2' />{' '}
 				{t('settings.columns.delete_column_btn')}
 			</Button>
 		</li>

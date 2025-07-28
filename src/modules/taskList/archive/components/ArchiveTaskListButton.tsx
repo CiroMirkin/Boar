@@ -3,8 +3,6 @@ import { cleanTheLastTaskList } from '@/modules/taskList/state/taskListInEachCol
 import { toast } from "sonner"
 import { useDispatch } from 'react-redux'
 import { Button } from '@/ui/button'
-import { Archive } from 'lucide-react'
-import { iconSize } from '@/sharedByModules/configs/iconsConstants'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { useCheckForTasksInLastColumn } from '@/sharedByModules/hooks/useCheckForTasksInLastColumn'
 import { useTranslation } from 'react-i18next'
@@ -12,6 +10,7 @@ import { useTaskListInEachColumn } from '@/modules/taskList/hooks/useTaskListInE
 import { useSaveArchive } from '../state/useSaveArchive'
 import { useSession } from '@/SessionProvider'
 import { getActalArchive } from '../state/getActualArchive'
+import { ArchiveIcon } from '@/ui/icons'
 
 export function ArchiveTaskListButton() {
 	const { t } = useTranslation()
@@ -43,7 +42,7 @@ export function ArchiveTaskListButton() {
 			className='w-full mx-4'
 			disabled={canUserArchiveTask}
 		>
-			<Archive size={iconSize} className='mr-2' /> {t('archive_task_list_btn')}
+			<ArchiveIcon className='mr-2' /> {t('archive_task_list_btn')}
 		</Button>
 	)
 }

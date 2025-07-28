@@ -15,8 +15,7 @@ import { useDispatch } from "react-redux";
 import { archiveThisNote } from "./LibraryOfArchiveNotes/state/archivedNotesReducer";
 import { useLibraryOfArchivedNotesRepository } from "./LibraryOfArchiveNotes/repository/useLibraryOfArchivedNotesRepository";
 import { useLibraryOfArchivedNotes } from "./LibraryOfArchiveNotes/state/useLibraryOfArchivedNotes";
-import { Archive } from "lucide-react";
-import { iconSize } from "@/sharedByModules/configs/iconsConstants";
+import { ArchiveIcon } from "@/ui/icons";
 
 export default function Notes() {
     const [text, setText] = useState(defaultNotes as NotesModel)
@@ -98,7 +97,7 @@ export default function Notes() {
                         variant='ghost'
                         onClick={handleArchiveNote}
                     >
-                        <Archive size={iconSize} className='mr-2' />
+                        <ArchiveIcon className='mr-2' />
                         { t('archived_note.archive_note_btn') }
                     </Button>
                 </SheetFooter>

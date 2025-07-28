@@ -3,8 +3,7 @@ import { ChangeEvent, useEffect, useState } from 'react'
 import { Button } from '@/ui/button'
 import { useDispatch } from 'react-redux'
 import { changeTheNameOfTheBoard } from '@/modules/board/state/boardReducer'
-import { Pencil } from 'lucide-react'
-import { iconSize } from '@/sharedByModules/configs/iconsConstants'
+import { PencilIcon } from '@/ui/icons'
 import { Label } from '@/ui/label'
 import {
 	isThisBoardNameValid,
@@ -74,7 +73,7 @@ export function ChangeBoardName() {
 					/>
 				</div>
 				<Button onClick={handleClick} variant='ghost'>
-					<Pencil size={iconSize} />
+					<PencilIcon />
 				</Button>
 			</div>
 		</>

@@ -1,8 +1,7 @@
 import { DropdownMenuItem } from "@/ui/dropdown-menu"
 import { USER_IS_IN } from "./userIsIn"
 import { Link } from "react-router-dom"
-import { LogIn, LogOut } from "lucide-react"
-import { iconSize } from "../../sharedByModules/configs/iconsConstants"
+import { LogInIcon, LogOutIcon } from "@/ui/icons"
 import { useTranslation } from "react-i18next"
 import { AuthError, Session } from "@supabase/supabase-js"
 import { toast } from "sonner"
@@ -38,12 +37,12 @@ export default function LogInAndLogOutMenuItem({ whereUserIs, session }: LogInAn
 			{
 				!session ? (
 					<Link to='/auth' className='px-2 py-1.5 flex items-center'>
-					    <LogIn size={iconSize} className='mr-2' />
+					    <LogInIcon className='mr-2' />
 							{t('sing_in')}
 					</Link>
 				) : (
 					<span onClick={handleOnClick} className='px-2 py-1.5 flex items-center'>
-						<LogOut size={iconSize} className='mr-2' />
+						<LogOutIcon className='mr-2' />
 						{t('log_out')}
 					</span>
 				)

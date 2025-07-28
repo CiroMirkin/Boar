@@ -4,8 +4,7 @@ import { Header } from '../modules/Header/Header'
 import { USER_IS_IN } from '../modules/Header/userIsIn'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/ui/accordion'
 import { Button } from '@/ui/button'
-import { Github } from 'lucide-react'
-import { iconSize } from '@/sharedByModules/configs/iconsConstants'
+import { GithubIcon } from '@/ui/icons'
 import { useTranslation } from 'react-i18next'
 
 export function Help() {
@@ -75,7 +74,7 @@ export function Help() {
 					<h2 className='mb-2 text-2xl'>{t('help.found_a_problem_section')}</h2>
 					<a href='https://github.com/CiroMirkin/Boar/issues' target='_blank'>
 						<Button variant='link' className='pl-0'>
-							<Github size={iconSize} className='mr-2' /> {t('help.report_btn')}
+							<GithubIcon className='mr-2' /> {t('help.report_btn')}
 						</Button>
 					</a>
 				</section>

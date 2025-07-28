@@ -1,8 +1,7 @@
 import { useContext } from "react"
 import { ReminderContext } from "./ReminderContext"
 import { Button } from "@/ui/button"
-import { Trash } from "lucide-react"
-import { iconSize } from "@/sharedByModules/configs/iconsConstants"
+import { TrashIcon } from "@/ui/icons"
 import { blankReminder } from "./reminder"
 import { useTranslation } from "react-i18next"
 import { toast } from "sonner"
@@ -41,7 +40,7 @@ const ReminderListContainer = () => {
             <div className="w-full flex justify-between items-center gap-2">
                 <p className="text-lg">{ reminder.text }</p>
                 <Button variant='destructiveGhost' title={t('settings.reminder.delete_reminder_btn')} onClick={askForConfirmationToDeleteTheReminder}>
-                <Trash size={iconSize} />
+                <TrashIcon />
                 </Button>
             </div>
         </li>

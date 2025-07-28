@@ -7,9 +7,8 @@ import {
 	DropdownMenuTrigger,
 } from '@/ui/dropdown-menu'
 import { Button } from '@/ui/button'
-import { Archive, CircleHelp, Columns3, Github, Menu, Settings } from 'lucide-react'
+import { ArchiveIcon, CircleHelpIcon, ColumnsIcon, GithubIcon, MenuIcon, SettingsIcon } from '@/ui/icons'
 import { Link } from 'react-router-dom'
-import { iconSize } from '@/sharedByModules/configs/iconsConstants'
 import { USER_IS_IN } from './userIsIn'
 import { LanguageToggle } from './LanguageToggle'
 import { useTranslation } from 'react-i18next'
@@ -33,7 +32,7 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
 						<Button variant='ghost' className='text-black'>
-							<Menu size={iconSize} />
+							<MenuIcon />
 						</Button>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent>
@@ -41,29 +40,29 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 						<DropdownMenuSeparator />
 						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.BOARD && true}>
 							<Link to='/' className='px-2 py-1.5 flex items-center'>
-								<Columns3 size={iconSize} className='mr-2' /> {t('menu.board')}
+								<ColumnsIcon className='mr-2' /> {t('menu.board')}
 							</Link>
 						</DropdownMenuItem>
 						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.ARCHIVE && true}>
 							<Link to='/archive' className='px-2 py-1.5 flex items-center'>
-								<Archive size={iconSize} className='mr-2' /> {t('menu.archive')}
+								<ArchiveIcon className='mr-2' /> {t('menu.archive')}
 							</Link>
 						</DropdownMenuItem>
 						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.CONFIG && true}>
 							<Link to='/settings' className='px-2 py-1.5 flex items-center'>
-								<Settings size={iconSize} className='mr-2' /> {t('menu.configs')}
+								<SettingsIcon className='mr-2' /> {t('menu.configs')}
 							</Link>
 						</DropdownMenuItem>
 						<DropdownMenuSeparator />
 						<LanguageToggle />
 						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.HELP && true}>
 							<Link to='/help' className='px-2 py-1.5 flex items-center'>
-								<CircleHelp size={iconSize} className='mr-2' /> {t('menu.help')}
+								<CircleHelpIcon className='mr-2' /> {t('menu.help')}
 							</Link>
 						</DropdownMenuItem>
 						<DropdownMenuItem>
 							<a href='https://github.com/CiroMirkin/Boar' className='px-2 py-1.5 flex items-center'>
-								<Github size={iconSize} className='mr-2' /> GitHub
+								<GithubIcon className='mr-2' /> GitHub
 							</a>
 						</DropdownMenuItem>
 						<DropdownMenuSeparator />
