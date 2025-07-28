@@ -64,7 +64,7 @@
 	"archive": {
 		"empty_archive": "Aún no hay tareas archivadas.",
 		"archive_to_pdf_btn": "Descargar archivo como pdf",
-		"return_task_to_board_btn": "Regresar tarea al tablero",
+		"return_task_to_board_btn": "Restaurar",
 		"return_task_to_board_toast": "La tarea regreso a la última columna.",
 		"delete_task_btn": "Eliminar",
 		"delete_task_warning": "¿Seguro desea eliminar esta tarea? No es posible deshacer esta acción.",
