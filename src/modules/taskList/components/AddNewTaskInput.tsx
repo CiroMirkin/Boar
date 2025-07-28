@@ -1,14 +1,11 @@
-import { iconSize } from '@/sharedByModules/configs/iconsConstants'
 import { getNewTask, isThisTaskDescriptionValid } from '@/modules/taskList/models/task'
 import { addTaskAtFirstColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
-import { Button } from '@/ui/button'
 import { toast } from "sonner"
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
-import { Plus } from 'lucide-react'
 import { KeyboardEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { AutoExpandTextarea } from './AutoExpandTextarea'
+import { TeaxtArea } from '@/ui/TextAreaWithActions'
 
 export function AddNewTaskInput() {
 	const [newTaskDescription, setNewTaskDescription] = useState('')
@@ -44,22 +41,16 @@ export function AddNewTaskInput() {
 	const { t } = useTranslation()
 	return (
 		<div className='px-4 w-full flex'>
-			<AutoExpandTextarea
+			<TeaxtArea
 				value={newTaskDescription}
-				className='mr-1.5'
+				id='add_new_task_btn'
 				onChange={handleChange}
 				onKeyDown={handleKeyDown}
 				placeholder={t('new_task_placeholder')}
-			/>
-			<Button
-				id='add_new_task_btn'
 				onClick={handleClick}
-				variant='ghost'
-				disabled={canUserUseTheAddTaskInput}
-				title={t('new_task_btn_title')}
-			>
-				<Plus size={iconSize} />
-			</Button>
+				btnTitle={t('new_task_btn_title')}
+				btnDisabled={canUserUseTheAddTaskInput}
+			/>
 		</div>
 	)
 }
