@@ -45,7 +45,7 @@
 		"archive": "Archivar",
 		"archive_toast": "La tarea se guardo en el archivo.",
 		"delete": "Eliminar",
-		"delete_task_warning": "¿Seguro desea eliminar esta tarea?"
+		"delete_task_warning": "¿Seguro desea eliminar esta tarea? No es posible deshacer esta acción."
 	},
 
 	"menu": {
@@ -67,9 +67,9 @@
 		"return_task_to_board_btn": "Regresar tarea al tablero",
 		"return_task_to_board_toast": "La tarea regreso a la última columna.",
 		"delete_task_btn": "Eliminar",
-		"delete_task_warning": "¿Seguro desea eliminar esta tarea?",
+		"delete_task_warning": "¿Seguro desea eliminar esta tarea? No es posible deshacer esta acción.",
 		"clean_archive_btn": "Vaciar archivo",
-		"clean_archive_warning": "¿Seguro desea eliminar todas las tareas archivadas?"
+		"clean_archive_warning": "¿Seguro desea eliminar todas las tareas archivadas? No es posible deshacer esta acción."
 	},
 	"archived_note": {
 		"archive_note_btn": "Archivar nota",
