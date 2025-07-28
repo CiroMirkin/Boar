@@ -6,7 +6,7 @@ import { useArchive } from '@/modules/taskList/ArchivedTasks/hooks/useArchive'
 import { downloadArchiveLikePDF } from '@/modules/taskList/ArchivedTasks/downloadArchiveLikePDF'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from "@/App"
-import { ArchiveContent } from './ArchiveContent'
+import { ArchiveContent } from './components/ArchiveContent'
 import { useEffect, useState } from 'react'
 import { useSaveArchive } from './state/useSaveArchive'
 import { useSession } from '@/SessionProvider'

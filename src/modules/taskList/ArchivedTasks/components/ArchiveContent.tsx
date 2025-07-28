@@ -1,8 +1,8 @@
-import { TaskListArchived } from './components/TaskListArchived'
+import { TaskListArchived } from './TaskListArchived'
 import { useSession } from '@/SessionProvider'
 import { useEffect } from 'react'
-import { useArchive } from './hooks/useArchive'
-import { useSaveArchive } from './state/useSaveArchive'
+import { useArchive } from '../hooks/useArchive'
+import { useSaveArchive } from '../state/useSaveArchive'
 
 export function ArchiveContent() {
     const archive = useArchive()
