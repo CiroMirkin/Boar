@@ -61,7 +61,7 @@ function useAutoResizeTextarea({
     return { textareaRef, adjustHeight }
 }
 
-interface TeaxtAreaProps {
+interface TeaxtareaWithActions {
     value: string
     id?: string
     onChange?: (value: string) => void
@@ -72,7 +72,7 @@ interface TeaxtAreaProps {
     btnDisabled?: boolean
 }
 
-export function TeaxtArea({ 
+export function TeaxtareaWithActions({ 
     value, 
     id = 'textarea',
     onChange = () => {}, 
@@ -81,7 +81,7 @@ export function TeaxtArea({
     onClick = () => {},
     btnTitle = '',
     btnDisabled = false,
-}: TeaxtAreaProps) {
+}: TeaxtareaWithActions) {
     const { textareaRef, adjustHeight } = useAutoResizeTextarea({
         minHeight: 30,
         maxHeight: 200,
