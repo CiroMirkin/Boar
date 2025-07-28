@@ -113,14 +113,14 @@ export function TeaxtareaWithActions({
                             onKeyDown={handleKeyDown}
                             placeholder={placeholder}
                             className={cn(
-                                "w-full p-2 pb-0",
+                                "w-full p-3 pb-0",
                                 "resize-none",
                                 "bg-transparent",
                                 "border-none",
-                                "text-black text-sm",
+                                "text-black text-lg",
                                 "focus:outline-none",
                                 "focus-visible:ring-0 focus-visible:ring-offset-0",
-                                "placeholder:text-neutral-500 placeholder:text-sm",
+                                "placeholder:text-neutral-500 placeholder:text-base",
                                 "min-h-[30px]"
                             )}
                             style={{
@@ -129,7 +129,7 @@ export function TeaxtareaWithActions({
                         />
                     </div>
 
-                    <div className="flex items-center justify-between p-2">
+                    <footer className="flex items-center justify-between p-2">
                         <div className="flex items-center gap-2">
                             {/* <button
                                 type="button"
@@ -156,13 +156,13 @@ export function TeaxtareaWithActions({
                             >
                                 <Plus
                                     className={cn(
-                                        "w-4 h-4"
+                                        "w-5.5 h-5.5 md:w-5 md:h-5"
                                     )}
                                 />
                                 <span className="sr-only">Add</span>
                             </button>
                         </div>
-                    </div>
+                    </footer>
                 </div>
             </div>
         </div>
