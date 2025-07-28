@@ -22,7 +22,7 @@ export function BlankTask({ data, children }: BlankTaskProps) {
 			<Card className={taskClassName}>
 				<CardContent
 					onClick={() => setShow(!show)}
-					className='rounded-md hover:bg-accent px-3 py-1.5 text-xl font-semibold'
+					className='rounded-md hover:bg-accent px-3 py-2 text-xl leading-6 font-semibold'
 				>
 					<p>
 						<TextWithURL text={description}></TextWithURL>
