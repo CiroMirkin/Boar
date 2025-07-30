@@ -1,34 +1,19 @@
-import { useSession } from '@/SessionProvider'
-import { Column } from './components/Column'
-import { useColumnList } from './hooks/useColumnList'
-import { useEffect } from 'react'
-import { useSaveColumnList } from './state/useSaveColumnList'
-
-export type ColumnsContent = React.ReactNode[]
+import { ColumnsContent, ListOfColumn } from './components/ListOfColumns'
+import { ColumnsContextContent, ColumnsProvider } from './ColumnsContext'
 
 interface ColumnListProps {
-	children: () => ColumnsContent
+	children: () => ColumnsContent, 
+	columnsData: ColumnsContextContent,
 }
 
-export function ColumnList({ children: getColumnsContent }: ColumnListProps) {
-	const columns = useColumnList()
-
-	const { session } = useSession()
-	useEffect(() => {
-		useSaveColumnList({ session, columnList: columns })
-	}, [columns])
-
-	const columnsContent = getColumnsContent()
-	const columnList = columns.map((column, columnIndex) => {
-		return (
-			<Column data={column} key={column.id}>
-				<Column.ColumnContent className='h-auto w-full'>
-					{columnsContent[columnIndex] && columnsContent[columnIndex]}
-				</Column.ColumnContent>
-				<Column.Footer />
-			</Column>
-		)
-	})
-
-	return <>{columnList}</>
+function ColumnList({ children, columnsData }: ColumnListProps) {
+	return (
+		<ColumnsProvider value={columnsData}>
+			<div className='h-auto pb-5 px-6 md:px-11 flex flex-wrap justify-stretch items-start gap-3'>
+				<ListOfColumn>{ children }</ListOfColumn>
+			</div>
+		</ColumnsProvider>
+	)
 }
+
+export default ColumnList

@@ -1,5 +1,5 @@
 import { Board } from "@/modules/board/Board"
-import ColumnListContainer from "@/modules/columnList/ColumnListContainer"
+import ColumnList from "@/modules/columnList/ColumnList"
 import { ColumnsContextContent } from "@/modules/columnList/ColumnsContext"
 import { ArchiveTaskListButton } from "@/modules/taskList/ArchivedTasks/components/ArchiveTaskListButton"
 import { AddNewTaskInput } from "@/modules/taskList/components/AddNewTaskInput"
@@ -18,9 +18,9 @@ export function BoardPage() {
     return (
         <PageContainer title={data.name} whereUserIs={USER_IS_IN.BOARD}>
             <Board>
-                <ColumnListContainer columnsData={columnsData}>
+                <ColumnList columnsData={columnsData}>
                     { TaskListInEachColumn }
-                </ColumnListContainer>
+                </ColumnList>
             </Board>
         </PageContainer>
     )
