@@ -37,7 +37,6 @@ export function TaskListInEachColumn() {
 	const { t } = useTranslation()
 
 	const columnsContent: React.ReactNode[] = []
-	
 	// Si todas las listas de tareas estan vacias
 	let sumOfEachTaskList = 0;
 	taskListInEachColumn.forEach(taskList => sumOfEachTaskList += Number(taskList.length))

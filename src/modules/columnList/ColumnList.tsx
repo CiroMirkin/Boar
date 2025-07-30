@@ -17,8 +17,8 @@ export function ColumnList({ children: getColumnsContent }: ColumnListProps) {
 	useEffect(() => {
 		useSaveColumnList({ session, columnList: columns })
 	}, [columns])
-	const columnsContent = getColumnsContent()
 
+	const columnsContent = getColumnsContent()
 	const columnList = columns.map((column, columnIndex) => {
 		return (
 			<Column data={column} key={column.id}>
