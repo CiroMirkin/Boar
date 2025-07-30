@@ -201,6 +201,14 @@ export const themesList: readonly Theme[] = Object.freeze([
 		reminder: 'bg-[#18894ABB]',
 	},
 	{
+		id: 'drak-gray',
+		bg: 'bg-gray-900',
+		text: 'text-white',
+		column: 'bg-slate-700',
+		task: 'bg-slate-400',
+		reminder: 'bg-slate-400',
+	},
+	{
 		id: 'Artaud',
 		bg: 'bg-gradient-to-tr from-[#eab308] via-[#15803d] to-[#166534] backdrop-blur-sm',
 		text: 'text-black',
