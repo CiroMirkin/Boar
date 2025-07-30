@@ -9,6 +9,7 @@ import { Input } from '@/ui/input'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { useTranslation } from 'react-i18next'
 import { useDeleteColumn } from '../../../sharedByModules/hooks/useDeleteColumn'
+import { useTheme } from '@/App'
 
 interface ConfigColumnParams {
 	column: Column
@@ -48,8 +49,9 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 		}
 	}
 
+	const { task } = useTheme()
 	return (
-		<li key={column.id} className='w-full p-2 flex flex-col gap-2 content-stretch border'>
+		<li key={column.id} className={'w-full p-2 flex flex-col gap-2 content-stretch rounded-lg ' + task}>
 			<header className='w-full flex gap-2'>
 				<Input
 					value={columnName}
