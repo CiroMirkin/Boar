@@ -8,7 +8,7 @@ interface ArchivedNoteProps {
 }
 
 export default function ArchivedNote({ note }: ArchivedNoteProps) {
-    const { column, task, text } = useTheme()
+    const { column, task, text, taskText } = useTheme()
     const archivedNoteClassName = `${column} ${text} border-none md:px-6 px-4 max-w-2xl rounded-lg`
     return (
         <Card className={archivedNoteClassName}>
@@ -18,7 +18,7 @@ export default function ArchivedNote({ note }: ArchivedNoteProps) {
                 </CardTitle>
             </CardHeader>
             <CardContent className="h-auto">
-                <RichTextViewer value={note.note} className={`${task} ${text}`} showBorder={false} />
+                <RichTextViewer value={note.note} className={`${task} ${!!taskText ? taskText : text}`} showBorder={false} />
             </CardContent>
         </Card>
     )

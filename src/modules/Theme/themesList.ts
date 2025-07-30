@@ -4,6 +4,7 @@ export interface Theme {
 	task: string
 	column: string
 	text: string
+	taskText?: string
 	reminder: string
 }
 
@@ -201,12 +202,13 @@ export const themesList: readonly Theme[] = Object.freeze([
 		reminder: 'bg-[#18894ABB]',
 	},
 	{
-		id: 'drak-gray',
+		id: 'dark-gray',
 		bg: 'bg-gray-900',
 		text: 'text-white',
 		column: 'bg-slate-700',
 		task: 'bg-slate-400',
 		reminder: 'bg-slate-400',
+		taskText: 'text-black',
 	},
 	{
 		id: 'Artaud',
