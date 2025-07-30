@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next'
 import LogInAndLogOutMenuItem from './LogInAndLogOutMenuItem'
 import { useSession } from '@/SessionProvider'
 import Notes from '@/modules/notes/Notes'
+import { useTheme } from '@/App'
 
 interface HeaderProps {
 	title: string
@@ -23,6 +24,7 @@ interface HeaderProps {
 export function Header({ title, whereUserIs }: HeaderProps) {
 	const { t } = useTranslation()
 	const { session } = useSession()
+	const { text } = useTheme()
 
 	return (
 		<header className='w-full px-6 md:px-11 pt-6 pb-4 flex justify-between items-center'>
@@ -31,7 +33,7 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 				<Notes/>
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
-						<Button variant='ghost' className='text-black'>
+						<Button variant='ghost' className={text}>
 							<MenuIcon />
 						</Button>
 					</DropdownMenuTrigger>

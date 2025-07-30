@@ -18,7 +18,7 @@ export default function ArchivedNote({ note }: ArchivedNoteProps) {
                 </CardTitle>
             </CardHeader>
             <CardContent className="h-auto">
-                <RichTextViewer value={note.note} className={task} showBorder={false} />
+                <RichTextViewer value={note.note} className={`${task} ${text}`} showBorder={false} />
             </CardContent>
         </Card>
     )
