@@ -3,9 +3,10 @@ import { ListOfColumn, ColumnsContent } from "./ListOfColumns"
 
 export function ListView({ children }: { children: () => ColumnsContent}) {
     const colorTheme = useTheme()
-    const className = `h-auto min-w-2xl mx-6 md:mx-11 flex flex-col justify-stretch items-strech rounded-lg ${colorTheme.column}`
+    const className = `w-full max-w-3xl mx-auto flex flex-col justify-stretch items-stretch rounded-lg ${colorTheme.column}`
+    
     return (
-        <div className='w-full pb-5 grid justify-items-stretch'>
+        <div className='min-h-screen w-full flex items-center justify-center p-5'>
             <div className={className}>
                 <ListOfColumn>{ children }</ListOfColumn>
             </div>
