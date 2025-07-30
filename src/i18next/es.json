@@ -85,6 +85,13 @@
 			"board_theme_section_title": "Tema del tablero",
 			"set_board_theme_toast": "¡Tema establecido!"
 		},
+		"type_of_view": {
+			"section_title": "Tipo de vista",
+			"section_description": "Esta será la forma en la que se verá su tablero.",
+			"successful_toast": "¡El tipo de vista se cambió con éxito!",
+			"board_option_view": "Tablero",
+			"list_option_view": "Lista"
+		},
 		"columns": {
 			"section_title": "Columnas",
 			"delete_column_btn": "Eliminar",

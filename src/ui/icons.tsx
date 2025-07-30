@@ -25,13 +25,16 @@ const iconSize: string = '20'
 
 interface IconProps {
     className?: string
+    size?: string | number
 }
 
 export const PlusIcon = ({ className = '' }: IconProps) => <Plus size={iconSize} className={className} />
 export const ArchiveIcon = ({ className = '' }: IconProps) => <Archive size={iconSize} className={className} />
 export const CircleHelpIcon = ({ className = '' }: IconProps) => <CircleHelp size={iconSize} className={className} />
 export const GithubIcon = ({ className = '' }: IconProps) => <Github size={iconSize} className={className} />
-export const ColumnsIcon = ({ className = '' }: IconProps) => <Columns3 size={iconSize} className={className} />
+export const ColumnsIcon = ({ className = '', size = iconSize }: IconProps) => (
+    <Columns3 size={size} className={className} />
+)
 export const MenuIcon = ({ className = '' }: IconProps) => <Menu size={iconSize} className={className} />
 export const SettingsIcon = ({ className = '' }: IconProps) => <Settings size={iconSize} className={className} />
 export const LanguagesIcon = ({ className = '' }: IconProps) => <Languages size={iconSize} className={className} />

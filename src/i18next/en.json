@@ -86,6 +86,13 @@
 			"board_theme_section_title": "Board theme",
 			"set_board_theme_toast": "Theme established!"
 		},
+		"type_of_view": {
+			"section_title": "View type",
+			"section_description": "This will be the way your dashboard will be displayed.",
+			"successful_toast": "View type was successfully changed!",
+			"board_option_view": "Board",
+			"list_option_view": "List"
+		},
 		"columns": {
 			"section_title": "Columns",
 			"delete_column_btn": "Delete",

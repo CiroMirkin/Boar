@@ -1,5 +1,10 @@
-import { ColumnsContent, ListOfColumn } from './components/ListOfColumns'
+import { ColumnsContent } from './components/ListOfColumns'
 import { ColumnsContextContent, ColumnsProvider } from './ColumnsContext'
+import { TableView } from './components/TableView'
+import { ListView } from './components/ListView'
+import { useTypeOfView } from './hooks/useTypeOfView'
+
+export type TypeOfView = 'BOARD' | 'LIST'
 
 interface ColumnListProps {
 	children: () => ColumnsContent, 
@@ -7,11 +12,22 @@ interface ColumnListProps {
 }
 
 function ColumnList({ children, columnsData }: ColumnListProps) {
+	const typeOfView = useTypeOfView()
+	if(typeOfView == 'LIST') {
+		return (
+			<ColumnsProvider value={columnsData}>
+				<ListView>
+					{ children }
+				</ListView>
+			</ColumnsProvider>
+		)
+	}
+
 	return (
 		<ColumnsProvider value={columnsData}>
-			<div className='h-auto pb-5 px-6 md:px-11 flex flex-wrap justify-stretch items-start gap-3'>
-				<ListOfColumn>{ children }</ListOfColumn>
-			</div>
+			<TableView>
+				{ children }
+			</TableView>
 		</ColumnsProvider>
 	)
 }
