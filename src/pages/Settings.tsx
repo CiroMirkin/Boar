@@ -8,6 +8,7 @@ import { ThemeSelection } from '../modules/Theme/ThemeSelection'
 import { useColumnList } from '@/modules/columnList/hooks/useColumnList'
 import { ReminderList } from '@/modules/taskList/Reminder/ReminderList'
 import PageContainer from './PageContainer'
+import { ToggleTypeOfView } from '@/modules/columnList/components/ToggleTypeOfView'
 
 export function Settings() {
 	const { t } = useTranslation()
@@ -30,6 +31,9 @@ export function Settings() {
 				<div className={sectionClassName}>
 					<CreateReminder columnList={ useColumnList() } />
 					<ReminderList />
+				</div>
+				<div className={sectionClassName}>
+					<ToggleTypeOfView />
 				</div>
 				<div className={sectionClassName}>
 					<ThemeSelection />
