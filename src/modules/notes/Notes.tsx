@@ -74,12 +74,14 @@ export default function Notes() {
     return (
         <Sheet onOpenChange={(isOpen) => !isOpen && handleSaveNotes()}>
             <SheetTrigger asChild>
-                <Button variant='link' className="text-base">{ t('notes.action_title') }</Button>
+                <Button variant='link' className={`text-base ${textColor}`}>{ t('notes.action_title') }</Button>
             </SheetTrigger>
             <SheetContent className={column}>
-                <SheetHeader className={textColor}>
-                    <SheetTitle>{ t('notes.section_title') }</SheetTitle>
-                    <SheetDescription aria-describedby="sheet-description">{ t('notes.description') }</SheetDescription>
+                <SheetHeader>
+                    <SheetTitle className={textColor}>{ t('notes.section_title') }</SheetTitle>
+                    <SheetDescription aria-describedby="sheet-description">
+                        { t('notes.description') }
+                    </SheetDescription>
                 </SheetHeader>
                 <ScrollArea className="h-full">
                     <main className="p-2 text-base">
@@ -92,7 +94,7 @@ export default function Notes() {
                         />
                     </main>
                 </ScrollArea>
-                <SheetFooter>
+                <SheetFooter className={textColor}>
                     <Button 
                         variant='ghost'
                         onClick={handleArchiveNote}
