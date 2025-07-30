@@ -113,7 +113,7 @@ export default function RichTextViewer({
       <div
         ref={viewerRef}
         className={cn(
-          "p-4 prose prose-sm max-w-none text-base",
+          "p-4 prose prose-sm max-w-none text-xl font-medium",
           "[&_ul]:list-disc [&_ul]:ml-6 [&_ol]:list-decimal [&_ol]:ml-6",
           "[&_li]:marker:text-foreground",
           "select-text", // Permite seleccionar texto
