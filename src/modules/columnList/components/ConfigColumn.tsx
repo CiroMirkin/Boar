@@ -53,7 +53,7 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 	return (
 		<li key={column.id} className={'w-full p-4 grid grid-cols-4 gap-2 justify-between rounded-lg ' + task}>
 			<Input
-				className='col-span-3'
+				className='md:col-span-3 col-span-2'
 				value={columnName}
 				onChange={(e) =>
 					isThisColumnNameWithinTheLimitOfLetters(e.target.value) &&
