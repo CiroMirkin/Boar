@@ -51,27 +51,28 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 
 	const { task } = useTheme()
 	return (
-		<li key={column.id} className={'w-full p-2 flex flex-col gap-2 content-stretch rounded-lg ' + task}>
-			<header className='w-full flex gap-2'>
-				<Input
-					value={columnName}
-					onChange={(e) =>
-						isThisColumnNameWithinTheLimitOfLetters(e.target.value) &&
-						setColumnName(e.target.value)
-					}
-					disabled={!showChangeColumnNameInput}
-				/>
+		<li key={column.id} className={'w-full p-4 grid grid-cols-4 gap-2 justify-between rounded-lg ' + task}>
+			<Input
+				className='col-span-3'
+				value={columnName}
+				onChange={(e) =>
+					isThisColumnNameWithinTheLimitOfLetters(e.target.value) &&
+					setColumnName(e.target.value)
+				}
+				disabled={!showChangeColumnNameInput}
+			/>
+			<div className='w-full flex gap-2'>
 				<Button onClick={() => handleClick(editColumnNameHandle)} variant='ghost'>
 					<PencilIcon />
 				</Button>
-			</header>
-			<Button
-				onClick={() => handleClick(askForConfirmationToDeleteTheColumn)}
-				variant='destructiveGhost'
-			>
-				<TrashIcon className='mr-2' />{' '}
-				{t('settings.columns.delete_column_btn')}
-			</Button>
+				<Button
+					onClick={() => handleClick(askForConfirmationToDeleteTheColumn)}
+					variant='destructiveGhost'
+					title={t('settings.columns.delete_column_btn')}
+				>
+					<TrashIcon/>
+				</Button>
+			</div>
 		</li>
 	)
 }
