@@ -8,6 +8,7 @@ import { toast } from "sonner"
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { useTranslation } from 'react-i18next'
 import { ReminderContext } from './ReminderContext'
+import { useTheme } from '@/App'
 
 interface ReminderColumn {
 	name: string
@@ -42,12 +43,13 @@ function CreateReminder({ columnList }: { columnList: ReminderColumn[] }) {
 		setReminderText(newReminderText)
 	}
 
+	const { task } = useTheme()
 	return (
 		<>
 			<h2 className='text-2xl'>{t('settings.reminder.section_title')}</h2>
 			<p className='opacity-75'>{t('settings.reminder.section_description')}</p>
-			<div className='py-5 grid gap-3'>
-				<div className='grid mr-2 w-full items-center gap-1.5'>
+			<div className={`my-3 p-4 grid gap-3 rounded-lg ${task}`}>
+				<div className={`grid mr-2 w-full items-center gap-1.5`}>
 					<Label>{t('settings.reminder.select_column_label')}</Label>
 					<Select
 						value={reminderColumnPosition}
