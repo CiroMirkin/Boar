@@ -1,4 +1,3 @@
-import React from "react"
 
 interface SpinnerProps {
   size?: number
@@ -59,7 +58,7 @@ const bars = [
 export const Spinner = ({ size = 20, color = "#8f8f8f" }: SpinnerProps) => {
   return (
     <div style={{ width: size, height: size }}>
-      <style jsx>
+      <style>
         {`
           @keyframes spin {
               0% {
