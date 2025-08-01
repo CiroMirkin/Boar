@@ -4,8 +4,6 @@ import { TableView } from './components/TableView'
 import { ListView } from './components/ListView'
 import { useTypeOfView } from './hooks/useTypeOfView'
 
-export type TypeOfView = 'BOARD' | 'LIST'
-
 interface ColumnListProps {
 	children: () => ColumnsContent, 
 	columnsData: ColumnsContextContent,
