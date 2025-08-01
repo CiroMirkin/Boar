@@ -5,6 +5,7 @@ import { TrashIcon } from "@/ui/icons"
 import { blankReminder } from "./reminder"
 import { useTranslation } from "react-i18next"
 import { toast } from "sonner"
+import { useTheme } from "@/App"
 
 export function ReminderList(){
     const { t } = useTranslation()
@@ -35,10 +36,11 @@ const ReminderListContainer = () => {
         })
     }
 
+    const { task } = useTheme() 
     const reminderList = (
-        <li className='w-full py-1 px-3 flex flex-col gap-2 content-stretch border rounded-md'>
+        <li className={`w-full py-1 px-3 flex flex-col gap-2 content-stretch rounded-md ${task}`}>
             <div className="w-full flex justify-between items-center gap-2">
-                <p className="text-lg">{ reminder.text }</p>
+                <p className="text-base">{ reminder.text }</p>
                 <Button variant='destructiveGhost' title={t('settings.reminder.delete_reminder_btn')} onClick={askForConfirmationToDeleteTheReminder}>
                 <TrashIcon />
                 </Button>
