@@ -1,10 +1,12 @@
 import { useTheme } from "@/App"
+import { Spinner } from "@/ui/spinner"
 
 export function LoadingBoard() {
     const { column } = useTheme()
     return (
         <div className='w-full h-80 px-6 md:px-11 flex flex-col items-center justify-center'>
-			<div className={`p-3 rounded-lg ${column}`}>
+			<div className={`flex items-center p-3 rounded-lg ${column}`}>
+                <Spinner size={30} />
 			    <p className='block p-3 text-lg'>Cargando contenido del tablero...</p>
 			</div>
 		</div>
