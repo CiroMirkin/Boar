@@ -1,12 +1,14 @@
 import { Board } from "@/modules/board/Board"
-import ColumnList from "@/modules/columnList/ColumnList"
-import { ColumnsContextContent } from "@/modules/columnList/ColumnsContext"
+import { ColumnsContextContent, ColumnsProvider } from "@/modules/columnList/ColumnsContext"
 import { ArchiveTaskListButton } from "@/modules/taskList/ArchivedTasks/components/ArchiveTaskListButton"
 import { AddNewTaskInput } from "@/modules/taskList/components/AddNewTaskInput"
 import { TaskListInEachColumn } from "@/modules/taskList/TaskListInEachColumn"
 import PageContainer from "./PageContainer"
 import { useBoard } from "@/modules/board/hooks/useBoard"
 import { USER_IS_IN } from "@/modules/Header/userIsIn"
+import { ListView } from "@/modules/columnList/components/ListView"
+import { TableView } from "@/modules/columnList/components/TableView"
+import { useTypeOfView } from "@/modules/columnList/hooks/useTypeOfView"
 
 const columnsData: ColumnsContextContent = {
     firstColumnFooterContent: <AddNewTaskInput/>,
@@ -15,12 +17,18 @@ const columnsData: ColumnsContextContent = {
 
 export function BoardPage() {
     const data = useBoard()
+    const typeOfView = useTypeOfView()
     return (
         <PageContainer title={data.name} whereUserIs={USER_IS_IN.BOARD}>
             <Board>
-                <ColumnList columnsData={columnsData}>
-                    { TaskListInEachColumn }
-                </ColumnList>
+                <ColumnsProvider value={columnsData}>
+                    {
+                        typeOfView == 'LIST' && <ListView>{ TaskListInEachColumn }</ListView>
+                    }
+                    {
+                        typeOfView == 'BOARD' && <TableView>{ TaskListInEachColumn }</TableView>
+                    }
+                </ColumnsProvider>
             </Board>
         </PageContainer>
     )
