@@ -2,7 +2,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "sonner";
 import { ColumnsIcon } from "@/ui/icons";
 import { useTranslation } from "react-i18next";
-import { defaultView, TypeOfView, typeOfViewLocalStorageKey } from "./model/TypeOfView";
+import { defaultView, TypeOfView, typeOfViewLocalStorageKey } from "./TypeOfView";
 import { useLocalStorage } from "@uidotdev/usehooks";
 
 
