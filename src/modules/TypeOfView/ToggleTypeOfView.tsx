@@ -28,7 +28,7 @@ export function ToggleTypeOfView() {
                         className={`transition-transform transition-normal duration-500 ease-out ${actualTypeOfView == 'LIST' && 'rotate-90'}`} 
                     />
                 </div>
-                <Select onValueChange={handleValueChange} defaultValue={defaultView} >
+                <Select onValueChange={handleValueChange} defaultValue={actualTypeOfView} >
                     <SelectTrigger className="w-[180px]" >
                         <SelectValue placeholder={ t('settings.type_of_view.section_title') } />
                     </SelectTrigger>
