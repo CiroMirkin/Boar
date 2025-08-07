@@ -37,7 +37,7 @@ export function ToggleTypeOfView() {
                     <SelectContent>
                         <SelectItem value="BOARD">{ t('settings.type_of_view.board_option_view') }</SelectItem>
                         <SelectItem value="LIST">{ t('settings.type_of_view.list_option_view') }</SelectItem>
-                        <SelectItem value="NOTE-LIST">Lista con notas</SelectItem>
+                        <SelectItem value="NOTE-LIST">{ t('settings.type_of_view.list_note_option_view') }</SelectItem>
                     </SelectContent>
                 </Select>
             </main>

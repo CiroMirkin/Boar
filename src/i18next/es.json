@@ -90,7 +90,8 @@
 			"section_description": "Esta será la forma en la que se verá su tablero.",
 			"successful_toast": "¡El tipo de vista se cambió con éxito!",
 			"board_option_view": "Tablero",
-			"list_option_view": "Lista"
+			"list_option_view": "Lista",
+			"list_note_option_view": "Lista con notas"
 		},
 		"columns": {
 			"section_title": "Columnas",
