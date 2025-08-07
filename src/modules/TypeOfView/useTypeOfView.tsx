@@ -1,7 +1,8 @@
-import { RootState } from '@/store'
-import { useSelector } from 'react-redux'
-import { TypeOfView } from './model/TypeOfView'
+import { defaultView, isValidTypeOfView, TypeOfView, typeOfViewLocalStorageKey } from './model/TypeOfView'
+import { useLocalStorage } from '@uidotdev/usehooks'
+
 
 export const useTypeOfView = (): TypeOfView => {
-    return useSelector((state: RootState) => state.columnList.view)
+    const [view] = useLocalStorage<TypeOfView>(typeOfViewLocalStorageKey, defaultView)
+    return isValidTypeOfView(view) ? view : defaultView
 }

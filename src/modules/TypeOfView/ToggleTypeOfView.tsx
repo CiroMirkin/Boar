@@ -1,19 +1,17 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/ui/select";
-import { useDispatch } from "react-redux";
-import { changeView } from "../columnList/state/columnListReducer"; // DEPENDENCIA
-import { useTypeOfView } from "./useTypeOfView";
 import { toast } from "sonner";
 import { ColumnsIcon } from "@/ui/icons";
 import { useTranslation } from "react-i18next";
-import { TypeOfView } from "./model/TypeOfView";
+import { defaultView, TypeOfView, typeOfViewLocalStorageKey } from "./model/TypeOfView";
+import { useLocalStorage } from "@uidotdev/usehooks";
+
 
 export function ToggleTypeOfView() {
-    const actualTypeOfView = useTypeOfView()
+    const [ actualTypeOfView, changeView ] = useLocalStorage(typeOfViewLocalStorageKey, defaultView)
     const { t } = useTranslation()
 
-    const dispatch = useDispatch()
     const handleValueChange = (newTypeOfView: TypeOfView) => {
-        dispatch(changeView(newTypeOfView))
+        changeView(newTypeOfView)
         toast.success(t('settings.type_of_view.successful_toast'))
     }
 
@@ -30,7 +28,7 @@ export function ToggleTypeOfView() {
                         className={`transition-transform transition-normal duration-500 ease-out ${actualTypeOfView == 'LIST' && 'rotate-90'}`} 
                     />
                 </div>
-                <Select onValueChange={handleValueChange} defaultValue={actualTypeOfView} >
+                <Select onValueChange={handleValueChange} defaultValue={defaultView} >
                     <SelectTrigger className="w-[180px]" >
                         <SelectValue placeholder={ t('settings.type_of_view.section_title') } />
                     </SelectTrigger>
