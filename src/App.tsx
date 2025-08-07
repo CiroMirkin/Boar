@@ -18,6 +18,7 @@ import { useGetUserArchiveFromSupabase } from './modules/taskList/ArchivedTasks/
 import { setTheUserBoardSavedInLocalStorage } from './sharedByModules/utils/setTheUserBoardSavedInLocalStorage'
 import { useLibraryOfArchivedNotesRepository } from './modules/notes/LibraryOfArchiveNotes/repository/useLibraryOfArchivedNotesRepository'
 import { useLibraryOfArchivedNotes } from './modules/notes/LibraryOfArchiveNotes/state/useLibraryOfArchivedNotes'
+import { NoteProvider } from './modules/notes/NoteProvider'
 
 export const useTheme = () => useContext(ThemeContext).theme
 
@@ -48,7 +49,9 @@ function App() {
 		<>
 			<ThemeProvider theme={theme} changeTheme={setTheme}>
 			<ReminderProvider reminderData={{ reminder, setReminder }}>
-				<Router />
+				<NoteProvider>
+					<Router />
+				</NoteProvider>
 				<Toaster />
 				<SonnerToaster position="top-center" richColors closeButton  />
 			</ReminderProvider>
