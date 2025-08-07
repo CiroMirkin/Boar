@@ -5,14 +5,15 @@ import { useTypeOfView } from "../hooks/useTypeOfView";
 import { toast } from "sonner";
 import { ColumnsIcon } from "@/ui/icons";
 import { useTranslation } from "react-i18next";
+import { TypeOfView } from "../models/TypeOfView";
 
 export function ToggleTypeOfView() {
     const actualTypeOfView = useTypeOfView()
     const { t } = useTranslation()
 
     const dispatch = useDispatch()
-    const handleValueChange = () => {
-        dispatch(changeView())
+    const handleValueChange = (newTypeOfView: TypeOfView) => {
+        dispatch(changeView(newTypeOfView))
         toast.success(t('settings.type_of_view.successful_toast'))
     }
 

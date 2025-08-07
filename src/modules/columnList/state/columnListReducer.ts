@@ -19,8 +19,8 @@ export const columnListSlice = createSlice({
 	name: 'columnList',
 	initialState,
 	reducers: {
-		changeView: (state) => {
-			state.view = state.view == 'BOARD' ? 'LIST' : 'BOARD'
+		changeView: (state, action: PayloadAction<TypeOfView>) => { 
+			state.view = action.payload
 		},
 		setColumnList: (state, action: PayloadAction<ColumnList>) => {
 			state.list = action.payload
