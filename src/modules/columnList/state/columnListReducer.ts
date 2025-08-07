@@ -4,24 +4,18 @@ import { changeNameOfColumn } from '@/modules/columnList/state/actions/changeCol
 import { deleteThisColumn } from '@/modules/columnList/state/actions/deleteColumn'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { ColumnList, defaultColumnList } from '../models/columnList'
-import { TypeOfView } from '../../TypeOfView/model/TypeOfView'
 
 interface InitialState {
 	list: Column[]
-	view: TypeOfView
 }
 const initialState: InitialState = {
 	list: defaultColumnList,
-	view: "BOARD",
 }
 
 export const columnListSlice = createSlice({
 	name: 'columnList',
 	initialState,
 	reducers: {
-		changeView: (state, action: PayloadAction<TypeOfView>) => { 
-			state.view = action.payload
-		},
 		setColumnList: (state, action: PayloadAction<ColumnList>) => {
 			state.list = action.payload
 		},
@@ -47,5 +41,5 @@ export const columnListSlice = createSlice({
 	},
 })
 
-export const { changeView, addColumn, deleteColumn, changeColumnName, setColumnList } = columnListSlice.actions
+export const { addColumn, deleteColumn, changeColumnName, setColumnList } = columnListSlice.actions
 export default columnListSlice.reducer
