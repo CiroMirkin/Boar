@@ -1,4 +1,4 @@
-import { defaultView, isValidTypeOfView, TypeOfView, typeOfViewLocalStorageKey } from './TypeOfView'
+import { defaultView, isValidTypeOfView, TypeOfView, typeOfViewLocalStorageKey } from './typeOfView'
 import { useLocalStorage } from '@uidotdev/usehooks'
 
 
