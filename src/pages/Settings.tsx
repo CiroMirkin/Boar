@@ -8,7 +8,7 @@ import { ThemeSelection } from '../modules/Theme/ThemeSelection'
 import { useColumnList } from '@/modules/columnList/hooks/useColumnList'
 import { ReminderList } from '@/modules/taskList/Reminder/ReminderList'
 import PageContainer from './PageContainer'
-import { ToggleTypeOfView } from '@/modules/columnList/components/ToggleTypeOfView'
+import { ToggleTypeOfView } from '@/modules/TypeOfView/ToggleTypeOfView'
 
 export function Settings() {
 	const { t } = useTranslation()

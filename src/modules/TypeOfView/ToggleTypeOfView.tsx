@@ -1,18 +1,17 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/ui/select";
-import { useDispatch } from "react-redux";
-import { toggleView } from "../state/columnListReducer";
-import { useTypeOfView } from "../hooks/useTypeOfView";
 import { toast } from "sonner";
 import { ColumnsIcon } from "@/ui/icons";
 import { useTranslation } from "react-i18next";
+import { defaultView, TypeOfView, typeOfViewLocalStorageKey } from "./typeOfView";
+import { useLocalStorage } from "@uidotdev/usehooks";
+
 
 export function ToggleTypeOfView() {
-    const actualTypeOfView = useTypeOfView()
+    const [ actualTypeOfView, changeView ] = useLocalStorage(typeOfViewLocalStorageKey, defaultView)
     const { t } = useTranslation()
 
-    const dispatch = useDispatch()
-    const handleValueChange = () => {
-        dispatch(toggleView())
+    const handleValueChange = (newTypeOfView: TypeOfView) => {
+        changeView(newTypeOfView)
         toast.success(t('settings.type_of_view.successful_toast'))
     }
 
@@ -36,6 +35,7 @@ export function ToggleTypeOfView() {
                     <SelectContent>
                         <SelectItem value="BOARD">{ t('settings.type_of_view.board_option_view') }</SelectItem>
                         <SelectItem value="LIST">{ t('settings.type_of_view.list_option_view') }</SelectItem>
+                        <SelectItem value="NOTE-LIST">{ t('settings.type_of_view.list_note_option_view') }</SelectItem>
                     </SelectContent>
                 </Select>
             </main>
