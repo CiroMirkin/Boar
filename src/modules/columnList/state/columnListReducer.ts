@@ -19,7 +19,7 @@ export const columnListSlice = createSlice({
 	name: 'columnList',
 	initialState,
 	reducers: {
-		toggleView: (state) => {
+		changeView: (state) => {
 			state.view = state.view == 'BOARD' ? 'LIST' : 'BOARD'
 		},
 		setColumnList: (state, action: PayloadAction<ColumnList>) => {
@@ -47,5 +47,5 @@ export const columnListSlice = createSlice({
 	},
 })
 
-export const { toggleView, addColumn, deleteColumn, changeColumnName, setColumnList } = columnListSlice.actions
+export const { changeView, addColumn, deleteColumn, changeColumnName, setColumnList } = columnListSlice.actions
 export default columnListSlice.reducer
