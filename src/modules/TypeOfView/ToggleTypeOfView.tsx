@@ -1,11 +1,11 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/ui/select";
 import { useDispatch } from "react-redux";
-import { changeView } from "../state/columnListReducer";
-import { useTypeOfView } from "../hooks/useTypeOfView";
+import { changeView } from "../columnList/state/columnListReducer"; // DEPENDENCIA
+import { useTypeOfView } from "./useTypeOfView";
 import { toast } from "sonner";
 import { ColumnsIcon } from "@/ui/icons";
 import { useTranslation } from "react-i18next";
-import { TypeOfView } from "../models/TypeOfView";
+import { TypeOfView } from "./model/TypeOfView";
 
 export function ToggleTypeOfView() {
     const actualTypeOfView = useTypeOfView()

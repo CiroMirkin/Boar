@@ -8,7 +8,7 @@ import { useBoard } from "@/modules/board/hooks/useBoard"
 import { USER_IS_IN } from "@/modules/Header/userIsIn"
 import { ListView } from "@/modules/columnList/components/ListView"
 import { TableView } from "@/modules/columnList/components/TableView"
-import { useTypeOfView } from "@/modules/columnList/hooks/useTypeOfView"
+import { useTypeOfView } from "@/modules/TypeOfView/useTypeOfView"
 import { NoteInput } from "@/modules/notes/components/NoteInput"
 
 const columnsData: ColumnsContextContent = {

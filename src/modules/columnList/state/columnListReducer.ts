@@ -4,7 +4,7 @@ import { changeNameOfColumn } from '@/modules/columnList/state/actions/changeCol
 import { deleteThisColumn } from '@/modules/columnList/state/actions/deleteColumn'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { ColumnList, defaultColumnList } from '../models/columnList'
-import { TypeOfView } from '../models/TypeOfView'
+import { TypeOfView } from '../../TypeOfView/model/TypeOfView'
 
 interface InitialState {
 	list: Column[]
