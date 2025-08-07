@@ -9,6 +9,7 @@ import { USER_IS_IN } from "@/modules/Header/userIsIn"
 import { ListView } from "@/modules/columnList/components/ListView"
 import { TableView } from "@/modules/columnList/components/TableView"
 import { useTypeOfView } from "@/modules/columnList/hooks/useTypeOfView"
+import { NoteInput } from "@/modules/notes/components/NoteInput"
 
 const columnsData: ColumnsContextContent = {
     firstColumnFooterContent: <AddNewTaskInput/>,
@@ -23,10 +24,18 @@ export function BoardPage() {
             <Board>
                 <ColumnsProvider value={columnsData}>
                     {
-                        typeOfView == 'LIST' && <ListView>{ TaskListInEachColumn }</ListView>
+                        typeOfView == 'LIST' && <div className="p-5">
+                            <ListView>{ TaskListInEachColumn }</ListView>
+                        </div>
                     }
                     {
                         typeOfView == 'BOARD' && <TableView>{ TaskListInEachColumn }</TableView>
+                    }
+                    {
+                        typeOfView == 'NOTE-LIST' && <div className="flex p-6 gap-4">
+                            <ListView>{ TaskListInEachColumn }</ListView>
+                            <NoteInput />
+                        </div>
                     }
                 </ColumnsProvider>
             </Board>
