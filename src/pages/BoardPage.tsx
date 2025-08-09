@@ -32,9 +32,9 @@ export function BoardPage() {
                         typeOfView == 'BOARD' && <TableView>{ TaskListInEachColumn }</TableView>
                     }
                     {
-                        typeOfView == 'NOTE-LIST' && <div className="flex md:flex-nowrap flex-wrap-reverse justify-stretch items-start gap-4 py-4 px-8 md:px-20">
-                            <ListView>{ TaskListInEachColumn }</ListView>
-                            <div className="w-full">
+                        typeOfView == 'NOTE-LIST' && <div className="flex md:flex-nowrap flex-wrap-reverse justify-stretch items-start gap-4 px-8 md:px-20">
+                            <ListView className="my-4">{ TaskListInEachColumn }</ListView>
+                            <div className="w-full py-4 sticky top-0 ">
                                 <NoteInput />
                             </div>
                         </div>
