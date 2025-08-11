@@ -50,7 +50,7 @@ const ReminderListContainer = () => {
     )
 
     const blankReminderList = (
-        <EmptySpaceText className={`py-2 px-3 border rounded-md text-lg ${task}`}>
+        <EmptySpaceText className={`py-2 px-3 border rounded-md ${task}`} textSize="lg">
             {t('settings.reminder.blank_reminder_list')}
         </EmptySpaceText>
     )
