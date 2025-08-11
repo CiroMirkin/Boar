@@ -3,6 +3,7 @@ import ArchivedNote from "./ArchivedNote"
 import { useLibraryOfArchivedNotes } from "../state/useLibraryOfArchivedNotes"
 import { ArchivedNote as ArchivedNoteModel} from "../model/archivedNote"
 import { useTranslation } from "react-i18next"
+import { EmptySpaceText } from "@/ui/EmptySpaceText"
 
 export function ListOfArchivedNotes() {
     const archivedNotes = useLibraryOfArchivedNotes().archive
@@ -16,7 +17,7 @@ export function ListOfArchivedNotes() {
         <>
             { 
                 archivedNotes.length == 0
-                && <p className="opacity-50 text-lg">{ t('archived_note.empty_archive') }</p>
+                && <EmptySpaceText >{ t('archived_note.empty_archive') }</EmptySpaceText>
             }
             { archivedNotesList }
         </>

@@ -6,6 +6,7 @@ import { blankReminder } from "./reminder"
 import { useTranslation } from "react-i18next"
 import { toast } from "sonner"
 import { useTheme } from "@/App"
+import { EmptySpaceText } from "@/ui/EmptySpaceText"
 
 export function ReminderList(){
     const { t } = useTranslation()
@@ -40,7 +41,7 @@ const ReminderListContainer = () => {
     const reminderList = (
         <li className={`w-full py-1 px-3 flex flex-col gap-2 content-stretch rounded-md ${task}`}>
             <div className="w-full flex justify-between items-center gap-2">
-                <p className="text-base">{ reminder.text }</p>
+                <p className="text-lg">{ reminder.text }</p>
                 <Button variant='destructiveGhost' title={t('settings.reminder.delete_reminder_btn')} onClick={askForConfirmationToDeleteTheReminder}>
                 <TrashIcon />
                 </Button>
@@ -49,9 +50,9 @@ const ReminderListContainer = () => {
     )
 
     const blankReminderList = (
-        <p className="w-full py-1 px-3 opacity-75 border rounded-md">
+        <EmptySpaceText className={`py-2 px-3 border rounded-md text-lg ${task}`}>
             {t('settings.reminder.blank_reminder_list')}
-        </p>
+        </EmptySpaceText>
     )
 
     return !reminder.text ? blankReminderList : reminderList

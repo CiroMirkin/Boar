@@ -1,4 +1,3 @@
-import { Card, CardHeader, CardTitle } from '../../../ui/card'
 import { Button } from '@/ui/button'
 import { useDispatch } from 'react-redux'
 import { cleanArchive } from '@/modules/taskList/ArchivedTasks/state/archiveReducer'
@@ -11,6 +10,7 @@ import { useEffect, useState } from 'react'
 import { useSaveArchive } from './state/useSaveArchive'
 import { useSession } from '@/SessionProvider'
 import { toast } from 'sonner'
+import { EmptySpaceText } from '@/ui/EmptySpaceText'
 
 export function ArchivedTasks() {
 	const [ cleanArchiveSignal, setCleanArchiveSignal ] = useState(false)
@@ -48,7 +48,7 @@ export function ArchivedTasks() {
 		<>
 			<div className='w-full min-h-[calc(100vh-7.8rem)] grid justify-items-center py-2 pt-2 pb-6 '>
 				{boardArchive.length === 0 ? (
-					<EmptyArchive />
+					<EmptySpaceText> { t('archive.empty_archive') } </EmptySpaceText>
 				) : (
 					<div className='max-w-3xl flex flex-col gap-y-2'>
 						<ArchiveContent />
@@ -70,17 +70,5 @@ export function ArchivedTasks() {
 				)}
 			</div>
 		</>
-	)
-}
-
-function EmptyArchive() {
-	const { t } = useTranslation()
-	const { column } = useTheme()
-	return (
-		<Card className={`h-fit px-4 rounded-lg ${column}`}>
-			<CardHeader>
-				<CardTitle className='text-lg opacity-60'>{t('archive.empty_archive')}</CardTitle>
-			</CardHeader>
-		</Card>
 	)
 }
