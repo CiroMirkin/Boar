@@ -5,7 +5,7 @@ import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageFo
 import { KeyboardEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { TeaxtareaWithActions } from '@/ui/TextAreaWithActions'
+import { TeaxtareaWithActions } from '@/ui/molecules/TextAreaWithActions'
 
 export function AddNewTaskInput() {
 	const [newTaskDescription, setNewTaskDescription] = useState('')
