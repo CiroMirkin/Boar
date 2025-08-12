@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react'
 import { useSaveArchive } from './state/useSaveArchive'
 import { useSession } from '@/SessionProvider'
 import { toast } from 'sonner'
-import { EmptySpaceText } from '@/ui/EmptySpaceText'
+import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
 
 export function ArchivedTasks() {
 	const [ cleanArchiveSignal, setCleanArchiveSignal ] = useState(false)

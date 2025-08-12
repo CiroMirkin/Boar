@@ -6,7 +6,7 @@ import { blankReminder } from "./reminder"
 import { useTranslation } from "react-i18next"
 import { toast } from "sonner"
 import { useTheme } from "@/App"
-import { EmptySpaceText } from "@/ui/EmptySpaceText"
+import { EmptySpaceText } from "@/ui/atoms/EmptySpaceText"
 
 export function ReminderList(){
     const { t } = useTranslation()
