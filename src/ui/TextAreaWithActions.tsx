@@ -1,5 +1,5 @@
 import { useEffect, useRef, useCallback, KeyboardEvent, MouseEvent } from "react"
-import { Textarea } from "@/ui/textarea"
+import { Textarea } from "@/ui/atoms/textarea"
 import { cn } from "@/lib/utils"
 import {
     Plus,
