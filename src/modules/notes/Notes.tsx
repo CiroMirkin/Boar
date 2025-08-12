@@ -1,6 +1,6 @@
 import { Button } from "@/ui/atoms/button";
 import { ScrollArea } from "@/ui/atoms/scroll-area";
-import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/ui/sheet";
+import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/ui/molecules/sheet";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/App";
 import { NoteInput } from "./components/NoteInput";
