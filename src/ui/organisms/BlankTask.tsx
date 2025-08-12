@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react'
 import { taskModel, emptyTask } from '@/modules/taskList/models/task'
 import { Card, CardContent, CardFooter } from '../molecules/card'
-import { TextWithURL } from '@/sharedByModules/components/TextWithURL'
+import { TextWithURL } from '@/ui/atoms/TextWithURL'
 import { useTheme } from "@/App"
 
 export const TaskContext = createContext(emptyTask)
