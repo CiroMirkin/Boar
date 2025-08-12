@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react' 
 import { Button } from '@/ui/atoms/button'
-import { Input } from '@/ui/input'
+import { Input } from '@/ui/atoms/input'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/card'
 import { Label } from '@/ui/label'
 import type { AuthUnknownError } from '@supabase/supabase-js'

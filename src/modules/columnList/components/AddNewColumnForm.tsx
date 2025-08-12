@@ -6,7 +6,7 @@ import {
 	getBlankColumnWithoutPosition,
 	isThisColumnNameWithinTheLimitOfLetters,
 } from '../models/column'
-import { Input } from '@/ui/input'
+import { Input } from '@/ui/atoms/input'
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useCreateColumn } from '../../../sharedByModules/hooks/useCreateColumn'

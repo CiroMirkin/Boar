@@ -1,4 +1,4 @@
-import { Input } from '@/ui/input'
+import { Input } from '@/ui/atoms/input'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { Button } from '@/ui/atoms/button'
 import { useDispatch } from 'react-redux'

@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, useContext } from 'react'
 import { Button } from '@/ui/atoms/button'
-import { Input } from '@/ui/input'
+import { Input } from '@/ui/atoms/input'
 import { Label } from '@/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/ui/select'
 import { Reminder as reminder } from './reminder'
