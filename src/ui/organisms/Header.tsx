@@ -9,7 +9,7 @@ import {
 import { Button } from '@/ui/atoms/button'
 import { ArchiveIcon, CircleHelpIcon, ColumnsIcon, GithubIcon, MenuIcon, SettingsIcon } from '@/ui/atoms/icons'
 import { Link } from 'react-router-dom'
-import { USER_IS_IN } from '../../modules/LanguageToggle/userIsIn'
+import { USER_IS_IN } from './userIsIn'
 import { LanguageToggle } from '../../modules/LanguageToggle/LanguageToggle'
 import { useTranslation } from 'react-i18next'
 import LogInAndLogOutMenuItem from '../../modules/LanguageToggle/LogInAndLogOutMenuItem'

@@ -1,5 +1,5 @@
 import { DropdownMenuItem } from "@/ui/molecules/dropdown-menu"
-import { USER_IS_IN } from "./userIsIn"
+import { USER_IS_IN } from "../../ui/organisms/userIsIn"
 import { Link } from "react-router-dom"
 import { LogInIcon, LogOutIcon } from "@/ui/atoms/icons"
 import { useTranslation } from "react-i18next"

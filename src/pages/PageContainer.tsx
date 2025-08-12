@@ -1,6 +1,6 @@
 import { useTheme } from "@/App"
 import { Header } from "@/ui/organisms/Header"
-import { USER_IS_IN } from "@/modules/LanguageToggle/userIsIn"
+import { USER_IS_IN } from "@/ui/organisms/userIsIn"
 import { ReactNode } from "react"
 
 interface PageContainerProps {
