@@ -6,7 +6,7 @@ import {
 	DialogFooter,
 	DialogHeader,
 	DialogTitle,
-} from '@/ui/dialog'
+} from '@/ui/molecules/dialog'
 import { Button } from '@/ui/atoms/button'
 import { DescriptionOfBoar } from '../../../sharedByModules/components/DescriptionOfBoar'
 
