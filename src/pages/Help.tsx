@@ -1,6 +1,6 @@
 import { Separator } from '@/ui/atoms/separator'
 import { DescriptionOfBoar } from '../ui/atoms/DescriptionOfBoar'
-import { Header } from '../modules/Header/Header'
+import { Header } from '../ui/organisms/Header'
 import { USER_IS_IN } from '../modules/Header/userIsIn'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/ui/atoms/accordion'
 import { Button } from '@/ui/atoms/button'

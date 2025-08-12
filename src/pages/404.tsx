@@ -1,4 +1,4 @@
-import { Header } from '../modules/Header/Header'
+import { Header } from '../ui/organisms/Header'
 
 export function Erro404() {
 	return (
