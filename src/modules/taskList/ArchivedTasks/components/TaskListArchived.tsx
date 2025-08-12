@@ -1,6 +1,6 @@
 import React from 'react'
 import { TaskList as taskList } from '@/modules/taskList/models/taskList'
-import { BlankTask } from '../../../../sharedByModules/components/BlankTask'
+import { BlankTask } from '../../../../ui/organisms/BlankTask'
 import { Card, CardContent, CardHeader, CardTitle } from '@/ui/molecules/card'
 import { TaskInArchiveActions } from './TaskInArchiveActions'
 import { useTheme } from "@/App"
