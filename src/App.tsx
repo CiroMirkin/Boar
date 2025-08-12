@@ -1,6 +1,5 @@
 import './App.css'
 import Router from './Router'
-import { Toaster } from './ui/toaster'
 import { Toaster as SonnerToaster } from 'sonner'
 import './i18next/index'
 import { useUserPreffedLanguage } from './sharedByModules/hooks/useUserPreffedLanguage'
@@ -52,7 +51,6 @@ function App() {
 				<NoteProvider>
 					<Router />
 				</NoteProvider>
-				<Toaster />
 				<SonnerToaster position="top-center" richColors closeButton  />
 			</ReminderProvider>
 			</ThemeProvider>
