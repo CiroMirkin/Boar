@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { ReminderContext } from "./ReminderContext"
 import { Button } from "@/ui/atoms/button"
-import { TrashIcon } from "@/ui/icons"
+import { TrashIcon } from "@/ui/atoms/icons"
 import { blankReminder } from "./reminder"
 import { useTranslation } from "react-i18next"
 import { toast } from "sonner"

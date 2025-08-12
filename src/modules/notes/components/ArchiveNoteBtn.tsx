@@ -10,7 +10,7 @@ import { useNote } from "../NoteProvider"
 import { defaultNotes } from "../model/notes"
 import { toast } from "sonner"
 import { Button } from "@/ui/atoms/button"
-import { ArchiveIcon } from "@/ui/icons"
+import { ArchiveIcon } from "@/ui/atoms/icons"
 
 export function ArchiveNoteBtn() {
     const [ taskArchived, setTaskArchived ] = useState(false)

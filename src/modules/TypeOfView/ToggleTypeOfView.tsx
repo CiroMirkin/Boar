@@ -1,6 +1,6 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/ui/select";
 import { toast } from "sonner";
-import { ColumnsIcon } from "@/ui/icons";
+import { ColumnsIcon } from "@/ui/atoms/icons";
 import { useTranslation } from "react-i18next";
 import { defaultView, TypeOfView, typeOfViewLocalStorageKey } from "./typeOfView";
 import { useLocalStorage } from "@uidotdev/usehooks";

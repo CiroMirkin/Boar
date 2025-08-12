@@ -4,7 +4,7 @@ import { Header } from '../modules/Header/Header'
 import { USER_IS_IN } from '../modules/Header/userIsIn'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/ui/accordion'
 import { Button } from '@/ui/atoms/button'
-import { GithubIcon } from '@/ui/icons'
+import { GithubIcon } from '@/ui/atoms/icons'
 import { useTranslation } from 'react-i18next'
 
 export function Help() {

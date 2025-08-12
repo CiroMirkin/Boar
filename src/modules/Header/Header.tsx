@@ -7,7 +7,7 @@ import {
 	DropdownMenuTrigger,
 } from '@/ui/dropdown-menu'
 import { Button } from '@/ui/atoms/button'
-import { ArchiveIcon, CircleHelpIcon, ColumnsIcon, GithubIcon, MenuIcon, SettingsIcon } from '@/ui/icons'
+import { ArchiveIcon, CircleHelpIcon, ColumnsIcon, GithubIcon, MenuIcon, SettingsIcon } from '@/ui/atoms/icons'
 import { Link } from 'react-router-dom'
 import { USER_IS_IN } from './userIsIn'
 import { LanguageToggle } from './LanguageToggle'

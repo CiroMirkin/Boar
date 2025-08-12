@@ -3,7 +3,7 @@ import { ChangeEvent, useEffect, useState } from 'react'
 import { Button } from '@/ui/atoms/button'
 import { useDispatch } from 'react-redux'
 import { changeTheNameOfTheBoard } from '@/modules/board/state/boardReducer'
-import { PencilIcon } from '@/ui/icons'
+import { PencilIcon } from '@/ui/atoms/icons'
 import { Label } from '@/ui/label'
 import {
 	isThisBoardNameValid,

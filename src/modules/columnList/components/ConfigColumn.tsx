@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { changeColumnName } from '@/modules/columnList/state/columnListReducer'
 import { Button } from '../../../ui/atoms/button'
 import { toast } from "sonner"
-import { PencilIcon, TrashIcon } from '@/ui/icons'
+import { PencilIcon, TrashIcon } from '@/ui/atoms/icons'
 import { Input } from '@/ui/input'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { useTranslation } from 'react-i18next'

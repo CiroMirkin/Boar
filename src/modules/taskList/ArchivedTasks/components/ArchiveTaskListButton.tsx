@@ -10,7 +10,7 @@ import { useTaskListInEachColumn } from '@/modules/taskList/hooks/useTaskListInE
 import { useSaveArchive } from '../state/useSaveArchive'
 import { useSession } from '@/SessionProvider'
 import { getActalArchive } from '../state/getActualArchive'
-import { ArchiveIcon } from '@/ui/icons'
+import { ArchiveIcon } from '@/ui/atoms/icons'
 
 export function ArchiveTaskListButton() {
 	const { t } = useTranslation()

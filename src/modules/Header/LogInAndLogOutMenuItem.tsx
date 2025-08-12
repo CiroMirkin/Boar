@@ -1,7 +1,7 @@
 import { DropdownMenuItem } from "@/ui/dropdown-menu"
 import { USER_IS_IN } from "./userIsIn"
 import { Link } from "react-router-dom"
-import { LogInIcon, LogOutIcon } from "@/ui/icons"
+import { LogInIcon, LogOutIcon } from "@/ui/atoms/icons"
 import { useTranslation } from "react-i18next"
 import { AuthError, Session } from "@supabase/supabase-js"
 import { toast } from "sonner"
