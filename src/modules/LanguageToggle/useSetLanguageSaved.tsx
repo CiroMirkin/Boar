@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
-import { LANGUAGE_LOCALSTORAGE_KEY } from '../../modules/LanguageToggle/language'
+import { LANGUAGE_LOCALSTORAGE_KEY } from './language'
 
 export const useSetLanguageSaved = () => {
     const { i18n } = useTranslation()
