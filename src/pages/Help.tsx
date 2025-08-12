@@ -1,4 +1,4 @@
-import { Separator } from '@/ui/separator'
+import { Separator } from '@/ui/atoms/separator'
 import { DescriptionOfBoar } from '../sharedByModules/components/DescriptionOfBoar'
 import { Header } from '../modules/Header/Header'
 import { USER_IS_IN } from '../modules/Header/userIsIn'

@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useEffect } from "react"
-import { Separator } from "@/ui/separator"
+import { Separator } from "@/ui/atoms/separator"
 import {
   Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight,
   List, ListOrdered, Undo, Redo,
