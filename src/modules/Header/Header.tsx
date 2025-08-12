@@ -5,7 +5,7 @@ import {
 	DropdownMenuLabel,
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
-} from '@/ui/dropdown-menu'
+} from '@/ui/molecules/dropdown-menu'
 import { Button } from '@/ui/atoms/button'
 import { ArchiveIcon, CircleHelpIcon, ColumnsIcon, GithubIcon, MenuIcon, SettingsIcon } from '@/ui/atoms/icons'
 import { Link } from 'react-router-dom'

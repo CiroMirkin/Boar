@@ -1,4 +1,4 @@
-import { DropdownMenuItem } from "@/ui/dropdown-menu"
+import { DropdownMenuItem } from "@/ui/molecules/dropdown-menu"
 import { USER_IS_IN } from "./userIsIn"
 import { Link } from "react-router-dom"
 import { LogInIcon, LogOutIcon } from "@/ui/atoms/icons"
