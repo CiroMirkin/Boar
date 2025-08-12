@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/ui/molecules/card";
 import { ArchivedNote as ArchivedNoteModel } from "../model/archivedNote";
 import { useTheme } from "@/App";
 import RichTextViewer from "../../RichTextEditor/RichTextViewer";

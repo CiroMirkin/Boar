@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react'
 import { taskModel, emptyTask } from '@/modules/taskList/models/task'
-import { Card, CardContent, CardFooter } from '../../ui/card'
+import { Card, CardContent, CardFooter } from '../../ui/molecules/card'
 import { TextWithURL } from '@/sharedByModules/components/TextWithURL'
 import { useTheme } from "@/App"
 
