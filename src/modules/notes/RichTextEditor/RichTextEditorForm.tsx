@@ -2,7 +2,7 @@
 
 import { useForm, Controller } from "react-hook-form";
 import { toast } from "sonner";
-import { Button } from "@/ui/button";
+import { Button } from "@/ui/atoms/button";
 import RichTextEditor from "./RichTextEditor";
 
 type FormValues = {

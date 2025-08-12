@@ -1,5 +1,5 @@
 import { themesList, Theme as Theme } from '@/modules/Theme/themesList'
-import { Card, CardContent } from '@/ui/card'
+import { Card, CardContent } from '@/ui/molecules/card'
 import { useTranslation } from 'react-i18next'
 import { toast } from "sonner"
 import { useEffect, useState } from 'react'

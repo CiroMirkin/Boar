@@ -6,9 +6,9 @@ import {
 	DialogFooter,
 	DialogHeader,
 	DialogTitle,
-} from '@/ui/dialog'
-import { Button } from '@/ui/button'
-import { DescriptionOfBoar } from '../../../sharedByModules/components/DescriptionOfBoar'
+} from '@/ui/molecules/dialog'
+import { Button } from '@/ui/atoms/button'
+import { DescriptionOfBoar } from '../../../ui/atoms/DescriptionOfBoar'
 
 export function WelcomeDialog() {
 	const open = localStorage.getItem('boar-welcome-dialog')

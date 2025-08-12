@@ -1,4 +1,4 @@
-import { Button } from "@/ui/button";
+import { Button } from "@/ui/atoms/button";
 import { toast } from "sonner"
 import { useTranslation } from "react-i18next";
 import { useDataOfTheTask } from "../hooks/useDataOfTheTask";

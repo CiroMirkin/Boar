@@ -6,7 +6,7 @@ import { useEffect, useRef } from 'react'
 import { useSession } from '@/SessionProvider'
 import { useSaveTaskListOfColumns } from './state/useSaveTaskListOfColumns'
 import { emptyTaskListInEachColumn } from './models/taskList'
-import { EmptySpaceText } from '@/ui/EmptySpaceText'
+import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
 
 /** La propiedad columnPosition es el indice de la columna mas uno */
 const getColumnPosition = (taskListIndex: number): string => `${taskListIndex + 1}`

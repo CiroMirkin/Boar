@@ -3,7 +3,7 @@ import { moveTaskToNextColumn, moveTaskToPrevColumn } from "../state/taskListInE
 import { useTranslation } from "react-i18next"
 import { useCheckIfThisTaskIsInTheFirstColumn } from '@/sharedByModules/hooks/useCheckIfThisTaskIsInTheFirstColumn'
 import { useCheckIfTaskIsInTheLastColumn } from '@/sharedByModules/hooks/useCheckIfTaskIsInTheLastColumn'
-import { Button } from "@/ui/button"
+import { Button } from "@/ui/atoms/button"
 import { useDataOfTheTask } from "../hooks/useDataOfTheTask"
 
 interface MoveButtonsProps {

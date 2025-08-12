@@ -1,12 +1,12 @@
 import { useContext } from "react"
 import { ReminderContext } from "./ReminderContext"
-import { Button } from "@/ui/button"
-import { TrashIcon } from "@/ui/icons"
+import { Button } from "@/ui/atoms/button"
+import { TrashIcon } from "@/ui/atoms/icons"
 import { blankReminder } from "./reminder"
 import { useTranslation } from "react-i18next"
 import { toast } from "sonner"
 import { useTheme } from "@/App"
-import { EmptySpaceText } from "@/ui/EmptySpaceText"
+import { EmptySpaceText } from "@/ui/atoms/EmptySpaceText"
 
 export function ReminderList(){
     const { t } = useTranslation()

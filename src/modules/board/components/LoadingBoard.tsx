@@ -1,5 +1,5 @@
 import { useTheme } from "@/App"
-import { Spinner } from "@/ui/spinner"
+import { Spinner } from "@/ui/atoms/spinner"
 
 export function LoadingBoard() {
     const { column } = useTheme()

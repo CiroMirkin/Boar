@@ -5,8 +5,8 @@ import {
 	DropdownMenuSub,
 	DropdownMenuSubContent,
 	DropdownMenuSubTrigger,
-} from '@/ui/dropdown-menu'
-import { LanguagesIcon } from '@/ui/icons'
+} from '@/ui/molecules/dropdown-menu'
+import { LanguagesIcon } from '@/ui/atoms/icons'
 import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
 import { useLocalStorage, usePreferredLanguage } from '@uidotdev/usehooks'

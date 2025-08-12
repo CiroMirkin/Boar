@@ -1,6 +1,6 @@
 import React, { createContext, DragEvent, useContext, useState } from 'react'
 import { Column as columnModel, columnNull } from '../models/column'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/card'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/molecules/card'
 import { useCheckIfThisColumnIsTheFirst } from '@/modules/columnList/hooks/useCheckIfThisColumnIsTheFirst'
 import { useCheckIfThisColumnIsTheLast } from '@/modules/columnList/hooks/useCheckIfThisColumnIsTheLast'
 

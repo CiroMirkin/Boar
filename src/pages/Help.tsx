@@ -1,10 +1,10 @@
-import { Separator } from '@/ui/separator'
-import { DescriptionOfBoar } from '../sharedByModules/components/DescriptionOfBoar'
+import { Separator } from '@/ui/atoms/separator'
+import { DescriptionOfBoar } from '../ui/atoms/DescriptionOfBoar'
 import { Header } from '../modules/Header/Header'
 import { USER_IS_IN } from '../modules/Header/userIsIn'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/ui/accordion'
-import { Button } from '@/ui/button'
-import { GithubIcon } from '@/ui/icons'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/ui/atoms/accordion'
+import { Button } from '@/ui/atoms/button'
+import { GithubIcon } from '@/ui/atoms/icons'
 import { useTranslation } from 'react-i18next'
 
 export function Help() {

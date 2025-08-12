@@ -1,4 +1,4 @@
-import { BlankTask } from "@/sharedByModules/components/BlankTask";
+import { BlankTask } from "@/ui/organisms/BlankTask";
 import { taskModel } from "../models/task";
 import { TaskInBoardActions } from "./TaskInBoardActions";
 import { DragEvent } from "react";

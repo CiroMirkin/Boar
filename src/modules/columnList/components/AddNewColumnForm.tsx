@@ -1,12 +1,12 @@
-import { Button } from '@/ui/button'
+import { Button } from '@/ui/atoms/button'
 import { toast } from "sonner"
-import { PlusIcon } from '@/ui/icons'
+import { PlusIcon } from '@/ui/atoms/icons'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import {
 	getBlankColumnWithoutPosition,
 	isThisColumnNameWithinTheLimitOfLetters,
 } from '../models/column'
-import { Input } from '@/ui/input'
+import { Input } from '@/ui/atoms/input'
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useCreateColumn } from '../../../sharedByModules/hooks/useCreateColumn'

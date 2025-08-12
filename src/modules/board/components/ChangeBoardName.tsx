@@ -1,10 +1,10 @@
-import { Input } from '@/ui/input'
+import { Input } from '@/ui/atoms/input'
 import { ChangeEvent, useEffect, useState } from 'react'
-import { Button } from '@/ui/button'
+import { Button } from '@/ui/atoms/button'
 import { useDispatch } from 'react-redux'
 import { changeTheNameOfTheBoard } from '@/modules/board/state/boardReducer'
-import { PencilIcon } from '@/ui/icons'
-import { Label } from '@/ui/label'
+import { PencilIcon } from '@/ui/atoms/icons'
+import { Label } from '@/ui/atoms/label'
 import {
 	isThisBoardNameValid,
 	isThisBoardNameWithinTheLimitOfLetters,

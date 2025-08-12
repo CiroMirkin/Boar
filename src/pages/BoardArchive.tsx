@@ -1,7 +1,7 @@
 import LibraryOfArchiveNotes from "@/modules/notes/LibraryOfArchiveNotes/LibraryOfArchivedNotes";
 import { ArchivedTasks } from "@/modules/taskList/ArchivedTasks/ArchivedTasks";
 import { USER_IS_IN } from "@/modules/Header/userIsIn";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/atoms/tabs";
 import { useTranslation } from "react-i18next";
 import PageContainer from "./PageContainer";
 
