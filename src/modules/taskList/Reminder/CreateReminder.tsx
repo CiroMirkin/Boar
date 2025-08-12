@@ -2,7 +2,7 @@ import { useState, ChangeEvent, useContext } from 'react'
 import { Button } from '@/ui/atoms/button'
 import { Input } from '@/ui/atoms/input'
 import { Label } from '@/ui/atoms/label'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/ui/select'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/ui/atoms/select'
 import { Reminder as reminder } from './reminder'
 import { toast } from "sonner"
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'

@@ -1,4 +1,4 @@
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/ui/atoms/select";
 import { toast } from "sonner";
 import { ColumnsIcon } from "@/ui/atoms/icons";
 import { useTranslation } from "react-i18next";
