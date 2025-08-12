@@ -1,4 +1,4 @@
-import { Button } from '@/ui/button'
+import { Button } from '@/ui/atoms/button'
 import { toast } from "sonner"
 import { PlusIcon } from '@/ui/icons'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'

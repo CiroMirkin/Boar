@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react' 
-import { Button } from '@/ui/button'
+import { Button } from '@/ui/atoms/button'
 import { Input } from '@/ui/input'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/card'
 import { Label } from '@/ui/label'

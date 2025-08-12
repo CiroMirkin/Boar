@@ -1,6 +1,6 @@
 import { Input } from '@/ui/input'
 import { ChangeEvent, useEffect, useState } from 'react'
-import { Button } from '@/ui/button'
+import { Button } from '@/ui/atoms/button'
 import { useDispatch } from 'react-redux'
 import { changeTheNameOfTheBoard } from '@/modules/board/state/boardReducer'
 import { PencilIcon } from '@/ui/icons'

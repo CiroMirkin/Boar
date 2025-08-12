@@ -2,7 +2,7 @@ import { archiveTaskListAtLastColumn } from '@/modules/taskList/ArchivedTasks/st
 import { cleanTheLastTaskList } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { toast } from "sonner"
 import { useDispatch } from 'react-redux'
-import { Button } from '@/ui/button'
+import { Button } from '@/ui/atoms/button'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { useCheckForTasksInLastColumn } from '@/sharedByModules/hooks/useCheckForTasksInLastColumn'
 import { useTranslation } from 'react-i18next'

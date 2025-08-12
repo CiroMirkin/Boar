@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Column, isThisColumnNameWithinTheLimitOfLetters } from '../models/column'
 import { useDispatch } from 'react-redux'
 import { changeColumnName } from '@/modules/columnList/state/columnListReducer'
-import { Button } from '../../../ui/button'
+import { Button } from '../../../ui/atoms/button'
 import { toast } from "sonner"
 import { PencilIcon, TrashIcon } from '@/ui/icons'
 import { Input } from '@/ui/input'

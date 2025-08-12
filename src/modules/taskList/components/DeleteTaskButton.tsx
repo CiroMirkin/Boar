@@ -1,5 +1,5 @@
 import { useCheckIfThisTaskIsInTheFirstColumn } from "@/sharedByModules/hooks/useCheckIfThisTaskIsInTheFirstColumn";
-import { Button } from "@/ui/button";
+import { Button } from "@/ui/atoms/button";
 import { useTranslation } from "react-i18next";
 import { useDataOfTheTask } from "../hooks/useDataOfTheTask";
 import { useDispatch } from "react-redux";

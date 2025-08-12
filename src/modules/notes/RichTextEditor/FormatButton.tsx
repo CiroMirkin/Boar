@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Button } from "@/ui/button";
+import { Button } from "@/ui/atoms/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/ui/tooltip";
 
 /**

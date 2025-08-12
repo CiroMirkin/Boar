@@ -1,4 +1,4 @@
-import { Button } from '@/ui/button'
+import { Button } from '@/ui/atoms/button'
 import { useDispatch } from 'react-redux'
 import { cleanArchive } from '@/modules/taskList/ArchivedTasks/state/archiveReducer'
 import { useArchive } from '@/modules/taskList/ArchivedTasks/hooks/useArchive'

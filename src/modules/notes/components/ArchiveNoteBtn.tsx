@@ -9,7 +9,7 @@ import { archiveThisNote } from "../LibraryOfArchiveNotes/state/archivedNotesRed
 import { useNote } from "../NoteProvider"
 import { defaultNotes } from "../model/notes"
 import { toast } from "sonner"
-import { Button } from "@/ui/button"
+import { Button } from "@/ui/atoms/button"
 import { ArchiveIcon } from "@/ui/icons"
 
 export function ArchiveNoteBtn() {

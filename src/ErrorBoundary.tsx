@@ -1,5 +1,5 @@
 import { Component, ErrorInfo, ReactNode } from "react"
-import { Button } from "./ui/button"
+import { Button } from "./ui/atoms/button"
 
 interface ErrorBoundaryState {
     hasError: boolean

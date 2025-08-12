@@ -7,7 +7,7 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from '@/ui/dialog'
-import { Button } from '@/ui/button'
+import { Button } from '@/ui/atoms/button'
 import { DescriptionOfBoar } from '../../../sharedByModules/components/DescriptionOfBoar'
 
 export function WelcomeDialog() {
