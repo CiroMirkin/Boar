@@ -5,6 +5,7 @@ import { useDataOfTheTask } from "../hooks/useDataOfTheTask";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "../state/taskListInEachColumnReducer";
 import { toast } from "sonner"
+import { TrashIcon } from "@/ui/atoms/icons";
 
 interface DeleteButtonProps {
 	handleClick: (action: () => void) => void
@@ -34,8 +35,9 @@ export function DeleteTaskButton({ handleClick }: DeleteButtonProps) {
 			variant='destructiveGhost'
 			className='w-full'
 			onClick={askForConfirmationToDeleteTheTask}
+			title={t('task_buttons.delete')}
 		>
-			{t('task_buttons.delete')}
+			<TrashIcon />
 		</Button>
     )
 }
