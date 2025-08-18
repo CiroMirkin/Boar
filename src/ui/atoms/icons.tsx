@@ -18,7 +18,10 @@ import {
     ListOrdered, 
     Undo, 
     Redo,
-    Save, 
+    Save,
+    ArrowRight,
+    ArrowLeft,
+    Clipboard,
 } from "lucide-react"
 
 const iconSize: string = '20'
@@ -50,3 +53,6 @@ export const ListOrderedIcon = ({ className = '' }: IconProps) => <ListOrdered s
 export const UndoIcon = ({ className = '' }: IconProps) => <Undo size={iconSize} className={className} />
 export const RedoIcon = ({ className = '' }: IconProps) => <Redo size={iconSize} className={className} />
 export const SaveIcon = ({ className = '' }: IconProps) => <Save size={iconSize} className={className} />
+export const ArrowRightIcon = ({ className = '' }: IconProps) => <ArrowRight size={iconSize} className={className} />
+export const ArrowLeftIcon = ({ className = '' }: IconProps) => <ArrowLeft size={iconSize} className={className} />
+export const ClipboardIcon = ({ className = '' }: IconProps) => <Clipboard size={iconSize} className={className} />
