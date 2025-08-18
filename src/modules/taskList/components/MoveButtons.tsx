@@ -26,7 +26,7 @@ export function MoveButttons({ handleClick }: MoveButtonsProps) {
             <Button
 				size='sm'
 				disabled={isTheTaskInTheFirstColumn}
-				variant={isTheTaskInTheFirstColumn ? 'ghost' : 'default'}
+				variant='ghost'
 				onClick={() => handleClick(moveTaskToPrevColumnAction)}
 				title={t('task_buttons.prev_btn')}
 			>
@@ -35,7 +35,7 @@ export function MoveButttons({ handleClick }: MoveButtonsProps) {
 			<Button
 				size='sm'
 				disabled={isTheTaskInTheLastColumn}
-				variant={isTheTaskInTheLastColumn ? 'ghost' : 'default'}
+				variant='ghost'
 				onClick={() => handleClick(moveTaskToNextColumnAction)}
 				title={t('task_buttons.next_btn')}
 			>
