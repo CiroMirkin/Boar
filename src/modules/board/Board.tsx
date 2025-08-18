@@ -4,7 +4,6 @@ import { useDocumentTitle } from '@uidotdev/usehooks'
 import { useSession } from '@/SessionProvider'
 import { useEffect, useState } from 'react'
 import { useSaveBoard } from './state/useSaveBoard'
-import { defaultBoard } from './models/board'
 import { LoadingBoard } from './components/LoadingBoard'
 
 export function Board({ children }: { children: React.ReactNode }) {
@@ -15,17 +14,13 @@ export function Board({ children }: { children: React.ReactNode }) {
 	const { session } = useSession()
 	useEffect(() => {
 		if(!!session) {
-			if(JSON.stringify(data) != JSON.stringify(defaultBoard)) {
-				setLoading(false)
-			}
+			setLoading(false)
 		}
 		useSaveBoard({ data, session })
 	}, [data])
 	
 	if(!!session && loading) {
-		return ( 
-			<LoadingBoard/> 
-		)
+		return <LoadingBoard/>
 	}
 
 	return (

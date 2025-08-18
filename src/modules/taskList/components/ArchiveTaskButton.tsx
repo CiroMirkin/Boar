@@ -8,6 +8,7 @@ import { useDataOfTheTask } from "../hooks/useDataOfTheTask";
 import { useSession } from "@/SessionProvider";
 import { useSaveArchive } from "../ArchivedTasks/state/useSaveArchive";
 import { getActalArchive } from "../ArchivedTasks/state/getActualArchive";
+import { ArchiveIcon } from "@/ui/atoms/icons";
 
 interface ArchiveTaskButtonProps {
 	handleClick: (action: () => void) => void
@@ -34,8 +35,9 @@ export function ArchiveTaskButton({ handleClick }: ArchiveTaskButtonProps) {
 			variant='ghost'
 			className='w-full'
 			onClick={() => handleClick(archiveTaskAction)}
+			title={t('task_buttons.archive')}
 		>
-			{t('task_buttons.archive')}
+			<ArchiveIcon />
 		</Button>
     )
 }
