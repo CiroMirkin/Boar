@@ -16,6 +16,8 @@ import {
 } from '@/modules/taskList/state/actions/moveTask'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { DataOfTheTaskForMoveIt, moveThisTaskToThisColumn } from './actions/moveThisTaskToThisColumn'
+import { Tag } from '../Tags/model/tags'
+import { addTagInThisTask } from './actions/addTagInThisTask'
 
 interface InitialState {
 	list: TaskListInEachColumn
@@ -73,6 +75,13 @@ export const taskListInEachColumnSlice = createSlice({
 				taskListInEachColumn: state.list,
 			})
 		},
+		addThisTagsInThisTask: (state, action: PayloadAction<{ task: taskModel, tags: Tag[] }>) => {
+			state.list  = addTagInThisTask({
+				taskListByColumns: state.list,
+				tags: action.payload.tags,
+				task: action.payload.task
+			})
+		},
 	},
 })
 
@@ -87,5 +96,6 @@ export const {
 	deleteTheTaskListOfThisColumn,
 	setTaskListInEachColumn,
 	moveThisTaskToThisColumnPosition,
+	addThisTagsInThisTask,
 } = taskListInEachColumnSlice.actions
 export default taskListInEachColumnSlice.reducer
