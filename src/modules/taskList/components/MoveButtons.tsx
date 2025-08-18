@@ -5,6 +5,7 @@ import { useCheckIfThisTaskIsInTheFirstColumn } from '@/sharedByModules/hooks/us
 import { useCheckIfTaskIsInTheLastColumn } from '@/sharedByModules/hooks/useCheckIfTaskIsInTheLastColumn'
 import { Button } from "@/ui/atoms/button"
 import { useDataOfTheTask } from "../hooks/useDataOfTheTask"
+import { ArrowLeftIcon, ArrowRightIcon } from "@/ui/atoms/icons"
 
 interface MoveButtonsProps {
 	handleClick: (action: () => void) => void
@@ -27,16 +28,18 @@ export function MoveButttons({ handleClick }: MoveButtonsProps) {
 				disabled={isTheTaskInTheFirstColumn}
 				variant={isTheTaskInTheFirstColumn ? 'ghost' : 'default'}
 				onClick={() => handleClick(moveTaskToPrevColumnAction)}
+				title={t('task_buttons.prev_btn')}
 			>
-				{t('task_buttons.prev_btn')}
+				<ArrowLeftIcon />
 			</Button>
 			<Button
 				size='sm'
 				disabled={isTheTaskInTheLastColumn}
 				variant={isTheTaskInTheLastColumn ? 'ghost' : 'default'}
 				onClick={() => handleClick(moveTaskToNextColumnAction)}
+				title={t('task_buttons.next_btn')}
 			>
-				{t('task_buttons.next_btn')}
+				<ArrowRightIcon />
 			</Button>
         </>
     )
