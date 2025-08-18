@@ -19,17 +19,16 @@ export function Board({ children }: { children: React.ReactNode }) {
 		useSaveBoard({ data, session })
 	}, [data])
 	
+	if(!!session && loading) {
+		return <LoadingBoard/>
+	}
+
 	return (
 		<>
-			{!!session && loading && <LoadingBoard/> }
-			{ 
-				loading == false && <>
-					<div>
-						{children}
-					</div>
-					<WelcomeDialog />
-				</>
-			}
+			<div>
+				{children}
+			</div>
+			<WelcomeDialog />
 		</>
 	)
 }
