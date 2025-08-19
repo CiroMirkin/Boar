@@ -5,29 +5,29 @@ export interface Tag {
     variant?: string
 }
 
-const defaultTagList: Tag[] = [
-    {
-        id: '1',
-        name: 'Importante',
-    }, 
-    {
-        id: '2',
-        name: 'Necesario',
-    },
-]
-
 export interface TagGroup {
     id: string
     tags: Tag[]
 }
 
+export const eisenhowerTagGroup = {
+    id: 'Eisenhower',
+    tags: [
+        {
+            id: '1',
+            name: 'Importante',
+        }, 
+        {
+            id: '2',
+            name: 'Necesario',
+        },
+    ]
+}
+
 export type AvailableTags = TagGroup[]
 
 export const defaultAvialableTags: AvailableTags = [
-    {
-        id: 'default',
-        tags: [...defaultTagList]
-    }
+    {...eisenhowerTagGroup}
 ]
 
 export const getTagGroup = ({ tags }: { tags: Tag[] }): TagGroup => {
