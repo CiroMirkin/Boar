@@ -23,6 +23,6 @@ export const tagsSlice = createSlice({
 })
 
 export const {
-
+    addTagList,
 } = tagsSlice.actions
 export default tagsSlice.reducer
