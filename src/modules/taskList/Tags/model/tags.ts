@@ -10,6 +10,11 @@ export interface TagGroup {
     tags: Tag[]
 }
 
+export const emptyTagGroup = {
+    id: 'none', 
+    tags: [] 
+}
+
 export const eisenhowerTagGroup = {
     id: 'Eisenhower',
     tags: [
