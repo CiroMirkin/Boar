@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 
-const variants = {
+export const badgeVariants = {
   gray: "bg-[#8f8f8f] text-white fill-white",
   "gray-subtle": "bg-[#ebebeb] dark:bg-[#1f1f1f] text-[#171717] dark:text-[#ededed] fill-[#171717] dark:fill-[#ededed]",
   blue: "bg-[#006bff] text-white fill-white",
@@ -22,7 +22,7 @@ const variants = {
   turbo: "bg-gradient-to-br from-[#ff1e56] to-[#0096ff] text-white fill-white",
 }
 
-const sizes = {
+export const badgeSizes = {
   sm: "text-[11px] h-5 px-1.5 tracking-[0.2px] gap-[3px]",
   md: "text-[12px] h-6 px-2.5 tracking-normal gap-1",
   lg: "text-[14px] h-8 px-3 tracking-normal gap-1.5",
@@ -30,8 +30,8 @@ const sizes = {
 
 interface BadgeProps {
   children?: React.ReactNode
-  variant?: keyof typeof variants
-  size?: keyof typeof sizes
+  variant?: keyof typeof badgeVariants
+  size?: keyof typeof badgeSizes
   capitalize?: boolean
   icon?: React.ReactNode
 }
@@ -65,7 +65,7 @@ export const Badge: React.FC<BadgeProps> = ({ children, variant = "gray", size =
     injectStyles()
   }, [])
 
-  const className = `inline-flex justify-center items-center shrink-0 rounded-[9999px] text-sm font-semibold whitespace-nowrap tabular-nums ${variants[variant]} ${sizes[size]}${capitalize ? " capitalize" : ""}`
+  const className = `inline-flex justify-center items-center shrink-0 rounded-[9999px] text-sm font-semibold whitespace-nowrap tabular-nums ${badgeVariants[variant]} ${badgeSizes[size]}${capitalize ? " capitalize" : ""}`
 
   return (
     <div className={className}>
