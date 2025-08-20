@@ -6,6 +6,9 @@ import { KeyboardEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { TeaxtareaWithActions } from '@/ui/molecules/TextAreaWithActions'
+import TagGroupSelect from '../Tags/components/TagGroupSelect'
+import { useUserSelectedTags } from '../Tags/hooks/useUserSelectedTags'
+import { setUserSelectedTags } from '../Tags/state/tagsReducer'
 
 export function AddNewTaskInput() {
 	const [newTaskDescription, setNewTaskDescription] = useState('')
@@ -16,7 +19,11 @@ export function AddNewTaskInput() {
 	const handleClick = () => {
 		try {
 			const task = getNewTask({ descriptionText: newTaskDescription, columnPosition: '1' })
-			dispatch(addTaskAtFirstColumn(task))
+			dispatch(addTaskAtFirstColumn({ 
+				...task, 
+				tags: useUserSelectedTags()
+			}))
+			dispatch(setUserSelectedTags([]))
 			setNewTaskDescription('')
 		} catch (error) {
 			toast.error(getErrorMessageForTheUser(error))
@@ -41,6 +48,7 @@ export function AddNewTaskInput() {
 	const { t } = useTranslation()
 	return (
 		<div className='px-4 w-full flex'>
+			
 			<TeaxtareaWithActions
 				value={newTaskDescription}
 				id='add_new_task_btn'
@@ -50,6 +58,9 @@ export function AddNewTaskInput() {
 				onClick={handleClick}
 				btnTitle={t('new_task_btn_title')}
 				btnDisabled={canUserUseTheAddTaskInput}
+				badges={
+					<TagGroupSelect />
+				}
 			/>
 		</div>
 	)
