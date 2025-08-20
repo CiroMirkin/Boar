@@ -5,10 +5,12 @@ import { addTagGroup } from './actions/addTagGroup'
 interface InitialState {
     list: AvailableTags
     actualTagGroup?: TagGroup
+    userSelectedTags: Tag[] 
 }
 const initialState: InitialState = {
     list: [...defaultAvialableTags],
     actualTagGroup: {...eisenhowerTagGroup},
+    userSelectedTags: []
 }
 
 export const tagsSlice = createSlice({
@@ -21,10 +23,14 @@ export const tagsSlice = createSlice({
                 actualAvailableTags: state.list,
             })
         },
+        setUserSelectedTags: (state, action: PayloadAction<Tag[]>) => {
+            state.userSelectedTags = [...action.payload]
+        },
     },
 })
 
 export const {
     addTagList,
+    setUserSelectedTags,
 } = tagsSlice.actions
 export default tagsSlice.reducer
