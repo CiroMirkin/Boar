@@ -9,6 +9,7 @@ import { useColumnList } from '@/modules/columnList/hooks/useColumnList'
 import { ReminderList } from '@/modules/taskList/Reminder/ReminderList'
 import PageContainer from './PageContainer'
 import { ToggleTypeOfView } from '@/modules/TypeOfView/ToggleTypeOfView'
+import { EnableTags } from '@/modules/taskList/Tags/components/EnableTags'
 
 export function Settings() {
 	const { t } = useTranslation()
@@ -31,6 +32,9 @@ export function Settings() {
 				<div className={sectionClassName}>
 					<CreateReminder columnList={ useColumnList() } />
 					<ReminderList />
+				</div>
+				<div className={sectionClassName}>
+					<EnableTags />
 				</div>
 				<div className={sectionClassName}>
 					<ToggleTypeOfView />
