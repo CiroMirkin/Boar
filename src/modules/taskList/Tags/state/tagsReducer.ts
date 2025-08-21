@@ -26,11 +26,15 @@ export const tagsSlice = createSlice({
         setUserSelectedTags: (state, action: PayloadAction<Tag[]>) => {
             state.userSelectedTags = [...action.payload]
         },
+        changeActualTagGroup: (state, action: PayloadAction<TagGroup>) => {
+            state.actualTagGroup = {...action.payload}
+        },
     },
 })
 
 export const {
     addTagList,
     setUserSelectedTags,
+    changeActualTagGroup,
 } = tagsSlice.actions
 export default tagsSlice.reducer
