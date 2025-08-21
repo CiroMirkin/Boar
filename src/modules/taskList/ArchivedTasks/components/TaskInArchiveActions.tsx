@@ -53,7 +53,7 @@ const useActionsForTaskInArchive = () => {
 	const returnTaskToLastColumnAction = () => {
 		dispatch(addTaskAtLastColumn(data))
 		dispatch(deleteArchivedTask(data))
-		toast.success(t('archive.return_task_to_board_toast'))
+		toast.info(t('archive.return_task_to_board_toast'))
 	}
 
 	return {

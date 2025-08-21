@@ -26,7 +26,7 @@ export function ArchiveTaskButton({ handleClick }: ArchiveTaskButtonProps) {
 			session,
 			archive: getActalArchive()
 		})
-		toast.success(t('task_buttons.archive_toast'))
+		toast.info(t('task_buttons.archive_toast'))
 	}
 
     return (
