@@ -32,8 +32,8 @@ export function EnableTags() {
             <p className="opacity-75 mb-4">{t('settings.tags.enable_tags_section_description')}</p>
             { availableTags.map(availableTagGroup => (
                 <Card 
-                    className={`w-auto rounded-md border border-solid ${accentColor} ${availableTagGroup.id == actualTagGroup.id ? 'border-black' : 'border-transparent opacity-70' }
-                    key={availableTagGroup.id}`} 
+                    className={`w-auto rounded-md border border-solid ${accentColor} ${availableTagGroup.id == actualTagGroup.id ? 'border-black' : 'border-transparent opacity-70' }`} 
+                    key={availableTagGroup.id}
                     onClick={() => handleClick(availableTagGroup)}
                 >
                     <CardContent className="pt-4 flex gap-3">

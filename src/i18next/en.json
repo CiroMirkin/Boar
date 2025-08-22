@@ -37,6 +37,11 @@
 		"save_btn": "Save"
 	},
 
+	"tags": {
+		"important_tag": "Important",
+		"necessary_tag": "Necessary"
+	},
+
 	"task_buttons": {
 		"next_btn": "Forward",
 		"prev_btn": "Backward",
