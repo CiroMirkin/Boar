@@ -4,6 +4,7 @@ import taskListInEachColumnReducer from './modules/taskList/state/taskListInEach
 import archiveReducer from './modules/taskList/ArchivedTasks/state/archiveReducer'
 import boardReducer from './modules/board/state/boardReducer'
 import archivedNotesReducer from './modules/notes/LibraryOfArchiveNotes/state/archivedNotesReducer'
+import tagsReducer from './modules/taskList/Tags/state/tagsReducer'
 
 export const store = configureStore({
 	reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
 		taskListInEachColumn: taskListInEachColumnReducer,
 		archive: archiveReducer,
 		board: boardReducer,
-		archivedNotes: archivedNotesReducer
+		archivedNotes: archivedNotesReducer,
+		tags: tagsReducer,
 	},
 })
 

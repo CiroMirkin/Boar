@@ -37,6 +37,11 @@
 		"save_btn": "Save"
 	},
 
+	"tags": {
+		"important_tag": "Important",
+		"necessary_tag": "Necessary"
+	},
+
 	"task_buttons": {
 		"next_btn": "Forward",
 		"prev_btn": "Backward",
@@ -93,6 +98,12 @@
 			"board_option_view": "Board",
 			"list_option_view": "List",
 			"list_note_option_view": "List with notes"
+		},
+		"tags": {
+			"enable_tags_section_title": "Available tags",
+			"enable_tags_section_description": "Tags provide more information about tasks.",
+			"enable_tags_toast": "Tags activated!",
+			"disble_tags_toast": "Tags disabled."
 		},
 		"columns": {
 			"section_title": "Columns",

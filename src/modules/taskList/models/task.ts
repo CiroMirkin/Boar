@@ -1,9 +1,11 @@
 import BusinessError from '@/sharedByModules/errors/businessError'
+import { Tag } from '../Tags/model/tags'
 
 export interface taskModel {
 	id: string
 	descriptionText: string
 	columnPosition: string
+	tags?: Tag[]
 }
 
 export const emptyTask: taskModel = {

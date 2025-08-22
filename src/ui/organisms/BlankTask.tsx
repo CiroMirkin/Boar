@@ -3,6 +3,7 @@ import { taskModel, emptyTask } from '@/modules/taskList/models/task'
 import { Card, CardContent, CardFooter } from '../molecules/card'
 import { TextWithURL } from '@/ui/atoms/TextWithURL'
 import { useTheme } from "@/App"
+import { Badge } from '../atoms/badge'
 
 export const TaskContext = createContext(emptyTask)
 
@@ -15,18 +16,29 @@ export function BlankTask({ data, children }: BlankTaskProps) {
 	const [show, setShow] = useState(false)
 	const description = data.descriptionText
 	const colorTheme = useTheme()
-	const taskClassName = `p-0 rounded-md border-none text-card-foreground shadow-sm ${colorTheme.task}`
+	const taskClassName = `p-0 rounded-md border-none text-card-foreground shadow-sm hover:shadow-lg ${colorTheme.task}`
 
 	return (
 		<TaskContext.Provider value={data}>
 			<Card className={taskClassName}>
 				<CardContent
 					onClick={() => setShow(!show)}
-					className='rounded-md hover:bg-accent px-3 py-2 text-xl leading-6 font-semibold'
+					className='rounded-md px-3 py-2 text-xl leading-6 font-semibold'
 				>
 					<p className={colorTheme.taskText}>
 						<TextWithURL text={description}></TextWithURL>
 					</p>
+					{
+						!!data.tags && 
+						<footer className="w-full pt-2 flex gap-1.5 flex-wrap opacity-80 hover:opacity-100">
+							{
+								data.tags.map(tag => (
+									<Badge variant="inverted" key={tag.id}>{ tag.name }</Badge>
+								))
+							}
+						</footer>
+					}
+					
 				</CardContent>
 				{show && children}
 			</Card>

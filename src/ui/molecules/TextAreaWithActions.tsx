@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback, KeyboardEvent, MouseEvent } from "react"
+import { useEffect, useRef, useCallback, KeyboardEvent, MouseEvent, ReactNode } from "react"
 import { Textarea } from "@/ui/atoms/textarea"
 import { cn } from "@/lib/utils"
 import {
@@ -70,6 +70,7 @@ interface TeaxtareaWithActions {
     placeholder?: string
     btnTitle?: string
     btnDisabled?: boolean
+    badges: ReactNode
 }
 
 export function TeaxtareaWithActions({ 
@@ -81,6 +82,7 @@ export function TeaxtareaWithActions({
     onClick = () => {},
     btnTitle = '',
     btnDisabled = false,
+    badges,
 }: TeaxtareaWithActions) {
     const { textareaRef, adjustHeight } = useAutoResizeTextarea({
         minHeight: 30,
@@ -129,17 +131,9 @@ export function TeaxtareaWithActions({
                         />
                     </div>
 
-                    <footer className="flex items-center justify-between p-2">
+                    <footer className="flex items-center justify-between p-2 pt-3">
                         <div className="flex items-center gap-2">
-                            {/* <button
-                                type="button"
-                                className="group p-2 hover:bg-neutral-800 rounded-lg transition-colors flex items-center gap-1"
-                            >
-                                <Paperclip className="w-4 h-4 text-white" />
-                                <span className="text-xs text-zinc-400 hidden group-hover:inline transition-opacity">
-                                    Attach
-                                </span>
-                            </button> */}
+                            { badges }
                         </div>
                         <div className="flex items-center gap-2">
                             <button
