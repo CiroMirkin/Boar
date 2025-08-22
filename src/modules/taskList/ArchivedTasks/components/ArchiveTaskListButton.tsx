@@ -28,7 +28,7 @@ export function ArchiveTaskListButton() {
 				session, 
 				archive: getActalArchive()
 			})
-			toast.success(t('archive_task_list_toast'))
+			toast.info(t('archive_task_list_toast'))
 		} catch (error) {
 			toast.error(getErrorMessageForTheUser(error))
 		}
