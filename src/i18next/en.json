@@ -94,6 +94,12 @@
 			"list_option_view": "List",
 			"list_note_option_view": "List with notes"
 		},
+		"tags": {
+			"enable_tags_section_title": "Available tags",
+			"enable_tags_section_description": "Tags provide more information about tasks.",
+			"enable_tags_toast": "Tags activated!",
+			"disble_tags_toast": "Tags disabled."
+		},
 		"columns": {
 			"section_title": "Columns",
 			"delete_column_btn": "Delete",

@@ -7,8 +7,10 @@ import { useDispatch } from "react-redux"
 import { changeActualTagGroup } from "../state/tagsReducer"
 import { toast } from "sonner"
 import { useTheme } from "@/App"
+import { useTranslation } from "react-i18next"
 
 export function EnableTags() {
+    const { t } = useTranslation()
     const availableTags = useAvailableTags()
     const actualTagGroup = useActualTagGroup()
 
@@ -16,18 +18,18 @@ export function EnableTags() {
     const handleClick = (tagGroup: TagGroup) => {
         if(actualTagGroup.id === tagGroup.id) {
             dispatch(changeActualTagGroup(emptyTagGroup))
-            toast.info('Etiquetas desactivadas.')
+            toast.info(t('settings.tags.disble_tags_toast'))
             return;
         }
         dispatch(changeActualTagGroup(tagGroup))
-        toast.success('Etiquetas activadas!')
+        toast.success(t('settings.tags.enable_tags_toast'))
     }
 
     const accentColor = useTheme().task
     return (
         <div className="">
-            <h2 className="text-2xl">Etiquetas disponibles</h2>
-            <p className="opacity-75 mb-4">Las etiquetas aportan mas información a las tareas.</p>
+            <h2 className="text-2xl">{t('settings.tags.enable_tags_section_title')}</h2>
+            <p className="opacity-75 mb-4">{t('settings.tags.enable_tags_section_description')}</p>
             { availableTags.map(availableTagGroup => (
                 <Card 
                     className={`w-auto rounded-md border border-solid ${accentColor} ${availableTagGroup.id == actualTagGroup.id ? 'border-black' : 'border-transparent opacity-70' }
