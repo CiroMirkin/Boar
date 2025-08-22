@@ -33,7 +33,10 @@ export function BlankTask({ data, children }: BlankTaskProps) {
 						<footer className="w-full pt-2 flex gap-1.5 flex-wrap opacity-80 hover:opacity-100">
 							{
 								data.tags.map(tag => (
-									<Badge variant="inverted" key={tag.id}>{ tag.name }</Badge>
+									<Badge 
+										variant={!!tag.variant ? tag.variant : "inverted"} 
+										key={tag.id}
+									>{ tag.name }</Badge>
 								))
 							}
 						</footer>

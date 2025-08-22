@@ -38,7 +38,10 @@ export function EnableTags() {
                 >
                     <CardContent className="pt-4 flex gap-3">
                         { availableTagGroup.tags.map(tag => (
-                            <Badge key={tag.id} variant="inverted">{ tag.name }</Badge>
+                            <Badge 
+                                key={tag.id} 
+                                variant={!!tag.variant ? tag.variant : "inverted"}
+                            >{ tag.name }</Badge>
                         ))}
                     </CardContent>
                 </Card>

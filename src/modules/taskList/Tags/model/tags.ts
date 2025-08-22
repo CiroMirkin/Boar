@@ -1,8 +1,18 @@
 
+type TagVariants = 
+    "gray" | "gray-subtle" | 
+    "blue" | "blue-subtle" | 
+    "purple" | "purple-subtle" | 
+    "amber" | "amber-subtle" | 
+    "red" | "red-subtle" | 
+    "pink" | "pink-subtle" | 
+    "green" | "green-subtle" | 
+    "teal" | "inverted" | "trial"
+
 export interface Tag {
     id: string
     name: string
-    variant?: string
+    variant?: TagVariants
 }
 
 export interface TagGroup {
@@ -15,16 +25,18 @@ export const emptyTagGroup = {
     tags: [] 
 }
 
-export const eisenhowerTagGroup = {
+export const eisenhowerTagGroup: TagGroup = {
     id: 'Eisenhower',
     tags: [
         {
             id: '1',
             name: 'Importante',
+            variant: "red-subtle",
         }, 
         {
             id: '2',
             name: 'Necesario',
+            variant: "green-subtle",
         },
     ]
 }
