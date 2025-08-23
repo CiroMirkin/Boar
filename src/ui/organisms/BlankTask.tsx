@@ -25,7 +25,7 @@ export function BlankTask({ data, children }: BlankTaskProps) {
 					onClick={() => setShow(!show)}
 					className='rounded-md px-3 py-2 text-xl leading-6 font-semibold'
 				>
-					<p className={colorTheme.taskText}>
+					<p className={`whitespace-pre-wrap ${colorTheme.taskText}`}>
 						<TextWithURL text={description}></TextWithURL>
 					</p>
 					{
