@@ -1,3 +1,5 @@
+import { Fragment } from "react"
+
 interface TextWithURLProps {
 	text: string
 }
@@ -29,6 +31,35 @@ export function TextWithURL({ text }: TextWithURLProps) {
 					</a>{' '}
 				</span>
 			)
+		}
+		else if(text.includes('\n')) {
+			const lines = text.split('\n')
+      		return (
+				<span key={`fragment-${tIndex}`}>
+					{lines.map((line, lineIndex) => {
+						const isUrl = isValidURL(line)
+						const isLastLine = lineIndex === lines.length - 1
+						
+						return (
+							<Fragment key={`line-${tIndex}-${lineIndex}`}>
+								{
+									isUrl ? (
+										<a 
+											href={line.trim()} 
+											target='_blank' 
+											rel='noopener noreferrer' 
+											className='text-blue-600 hover:underline'
+										>
+											{addSpacesAfterSlashes(line.trim())}
+										</a>) 
+									: line
+								}
+								{!isLastLine && <br />}
+							</Fragment>
+						)
+					})}
+				</span>
+	  		)
 		}
 		return <span key={text + tIndex}>{text} </span>
 	})
