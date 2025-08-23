@@ -13,7 +13,7 @@ export function TextWithURL({ text }: TextWithURLProps) {
 		const url = splitText[0]
 		return (
 			<>
-				<a href={url} target='_blank' className='text-blue-600 hover:underline'>
+				<a href={url} target='_blank' rel='noopener noreferrer' className='text-blue-600 hover:underline'>
 					{ addSpacesAfterSlashes(url) }
 				</a>
 			</>
@@ -26,7 +26,7 @@ export function TextWithURL({ text }: TextWithURLProps) {
 			return (
 				<span key={text + tIndex}>
 					{' '}
-					<a href={text} target='_blank' className='text-blue-600 hover:underline'>
+					<a href={text} target='_blank' rel='noopener noreferrer' className='text-blue-600 hover:underline'>
 						{ addSpacesAfterSlashes(text) }
 					</a>{' '}
 				</span>
