@@ -8,6 +8,7 @@ import { changeActualTagGroup } from "../state/tagsReducer"
 import { toast } from "sonner"
 import { useTheme } from "@/App"
 import { useTranslation } from "react-i18next"
+import { CheckIcon } from "@/ui/atoms/icons"
 
 export function EnableTags() {
     const { t } = useTranslation()
@@ -32,11 +33,14 @@ export function EnableTags() {
             <p className="opacity-75 mb-4">{t('settings.tags.enable_tags_section_description')}</p>
             { availableTags.map(availableTagGroup => (
                 <Card 
-                    className={`w-auto rounded-md border border-solid ${accentColor} ${availableTagGroup.id == actualTagGroup.id ? 'border-black' : 'border-transparent opacity-70' }`} 
+                    className={`w-auto rounded-md border border-solid ${accentColor} ${availableTagGroup.id == actualTagGroup.id ? 'border-black' : 'border-transparent' }`} 
                     key={availableTagGroup.id}
                     onClick={() => handleClick(availableTagGroup)}
                 >
-                    <CardContent className="pt-4 flex gap-3">
+                    <CardContent className="pt-4 flex gap-3 items-center">
+                        {
+                            availableTagGroup.id == actualTagGroup.id && <CheckIcon />
+                        }
                         { availableTagGroup.tags.map(tag => (
                             <Badge 
                                 key={tag.id} 
