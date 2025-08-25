@@ -16,7 +16,7 @@ import { BoardRepository } from '@/modules/board/models/boardRepository'
 import LocalStorageBoardRepository from '@/modules/board/state/localstorageBoard'
 import { useTranslation } from 'react-i18next'
 import { useSession } from '@/SessionProvider'
-import { useTheme } from '@/App'
+import { SettingSection } from '@/ui/organisms/SettingSection'
 
 const boardRepository: BoardRepository = new LocalStorageBoardRepository()
 
@@ -56,11 +56,10 @@ export function ChangeBoardName() {
 	}
 
 	const { t } = useTranslation()
-	const colorTheme = useTheme()
 	return (
-		<>
-			<h2 className='text-2xl'>{t('settings.board.change_board_name_section_title')}</h2>
-			<div className={`p-4 my-5 flex items-end rounded-lg ${colorTheme.task}`}>
+		<SettingSection>
+			<SettingSection.Title>{t('settings.board.change_board_name_section_title')}</SettingSection.Title>
+			<SettingSection.Content className={`flex items-end `}>
 				<div className='grid mr-2 w-full max-w-sm items-center gap-1.5'>
 					<Label htmlFor='board-name'>
 						{t('settings.board.change_board_name_input_label')}
@@ -77,7 +76,7 @@ export function ChangeBoardName() {
 				<Button onClick={handleClick} variant='ghost'>
 					<PencilIcon />
 				</Button>
-			</div>
-		</>
+			</SettingSection.Content>
+		</SettingSection>
 	)
 }

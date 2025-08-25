@@ -7,16 +7,17 @@ import { useTranslation } from "react-i18next"
 import { toast } from "sonner"
 import { useTheme } from "@/App"
 import { EmptySpaceText } from "@/ui/atoms/EmptySpaceText"
+import { SettingSection } from "@/ui/organisms/SettingSection"
 
 export function ReminderList(){
     const { t } = useTranslation()
     return (
-        <div>
-            <h2 className='text-2xl mb-4'>{ t('settings.reminder.reminder_list_section_title') }</h2>
-            <ul>
+        <SettingSection>
+            <SettingSection.Title>{ t('settings.reminder.reminder_list_section_title') }</SettingSection.Title>
+            <SettingSection.Content className="py-0 px-0 bg-transparent">
                 <ReminderListContainer />
-            </ul>
-        </div>
+            </SettingSection.Content>
+        </SettingSection>
     )
 } 
 
