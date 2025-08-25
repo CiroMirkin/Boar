@@ -6,6 +6,7 @@ import { ColumnListRepository } from '@/modules/columnList/state/columnListRepos
 import { useColumnList } from '@/modules/columnList/hooks/useColumnList'
 import { useTranslation } from 'react-i18next'
 import { useSession } from '@/SessionProvider'
+import { SettingSection } from '@/ui/organisms/SettingSection'
 
 const columnListRepository: ColumnListRepository = new LocalStorageColumnListRepository()
 
@@ -23,12 +24,12 @@ export function ConfigColumns() {
 		<ConfigColumn column={column} key={column.id} />
 	))
 	return (
-		<div className="w-full">
-			<h2 className='text-2xl'>{t('settings.columns.section_title')}</h2>
-			<ul className='h-auto w-full max-w-2xl py-5 grid justify-stretch gap-y-3'>
+		<SettingSection>
+			<SettingSection.Title>{t('settings.columns.section_title')}</SettingSection.Title>
+			<SettingSection.Content className='grid justify-stretch gap-y-3 bg-transparent px-0 my-0'>
 				{columns}
 				<AddNewColumnForm />
-			</ul>
-		</div>
+			</SettingSection.Content>
+		</SettingSection>
 	)
 }

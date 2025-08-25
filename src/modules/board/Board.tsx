@@ -13,10 +13,13 @@ export function Board({ children }: { children: React.ReactNode }) {
 
 	const { session } = useSession()
 	useEffect(() => {
-		if(!!session) {
-			setLoading(false)
-		}
 		useSaveBoard({ data, session })
+		const timer = setTimeout(() => {
+			if(!!session) {
+				setLoading(false)
+			}
+		}, 1000)
+		return () => clearTimeout(timer)
 	}, [data])
 	
 	if(!!session && loading) {
