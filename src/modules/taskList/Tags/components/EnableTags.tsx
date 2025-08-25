@@ -9,6 +9,7 @@ import { toast } from "sonner"
 import { useTheme } from "@/App"
 import { useTranslation } from "react-i18next"
 import { CheckIcon } from "@/ui/atoms/icons"
+import { SettingSection } from "@/ui/organisms/SettingSection"
 
 export function EnableTags() {
     const { t } = useTranslation()
@@ -28,28 +29,30 @@ export function EnableTags() {
 
     const accentColor = useTheme().task
     return (
-        <div className="">
-            <h2 className="text-2xl">{t('settings.tags.enable_tags_section_title')}</h2>
-            <p className="opacity-75 mb-4">{t('settings.tags.enable_tags_section_description')}</p>
-            { availableTags.map(availableTagGroup => (
-                <Card 
+        <SettingSection>
+            <SettingSection.Title>{t('settings.tags.enable_tags_section_title')}</SettingSection.Title>
+            <SettingSection.Description>{t('settings.tags.enable_tags_section_description')}</SettingSection.Description>
+            <SettingSection.Content className="py-0 px-0 bg-transparent">
+                { availableTags.map(availableTagGroup => (
+                    <Card 
                     className={`w-auto rounded-md border border-solid ${accentColor} ${availableTagGroup.id == actualTagGroup.id ? 'border-black' : 'border-transparent' }`} 
                     key={availableTagGroup.id}
                     onClick={() => handleClick(availableTagGroup)}
-                >
-                    <CardContent className="pt-4 flex gap-3 items-center">
-                        {
-                            availableTagGroup.id == actualTagGroup.id && <CheckIcon />
-                        }
-                        { availableTagGroup.tags.map(tag => (
-                            <Badge 
+                    >
+                        <CardContent className="pt-4 flex gap-3 items-center">
+                            {
+                                availableTagGroup.id == actualTagGroup.id && <CheckIcon />
+                            }
+                            { availableTagGroup.tags.map(tag => (
+                                <Badge 
                                 key={tag.id} 
                                 variant={!!tag.variant ? tag.variant : "inverted"}
-                            >{ tag.name }</Badge>
-                        ))}
-                    </CardContent>
-                </Card>
-            ))}
-        </div>
+                                >{ tag.name }</Badge>
+                            ))}
+                        </CardContent>
+                    </Card>
+                ))}
+            </SettingSection.Content>
+        </SettingSection>
     )
 }
