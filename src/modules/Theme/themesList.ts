@@ -58,6 +58,14 @@ export const themesList: readonly Theme[] = Object.freeze([
 		reminder: 'bg-blue-200',
 	},
 	{
+		id: 'indigo',
+		bg: 'bg-indigo-400',
+		text: 'text-black',
+		column: 'bg-indigo-100',
+		task: 'bg-indigo-300',
+		reminder: 'bg-indigo-200',
+	},
+	{
 		id: 'violet',
 		bg: 'bg-violet-400',
 		text: 'text-black',
@@ -95,6 +103,14 @@ export const themesList: readonly Theme[] = Object.freeze([
 		text: 'text-black',
 		column: 'bg-stone-100',
 		task: 'bg-stone-200',
+		reminder: 'bg-stone-200',
+	},
+	{
+		id: 'stone-red-accent',
+		bg: 'bg-stone-400',
+		text: 'text-black',
+		column: 'bg-stone-100',
+		task: 'bg-red-300',
 		reminder: 'bg-stone-200',
 	},
 	{
