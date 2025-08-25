@@ -22,6 +22,7 @@ import {
     ArrowRight,
     ArrowLeft,
     Clipboard,
+    CircleCheck,
 } from "lucide-react"
 
 const iconSize: string = '20'
@@ -56,3 +57,4 @@ export const SaveIcon = ({ className = '' }: IconProps) => <Save size={iconSize}
 export const ArrowRightIcon = ({ className = '' }: IconProps) => <ArrowRight size={iconSize} className={className} />
 export const ArrowLeftIcon = ({ className = '' }: IconProps) => <ArrowLeft size={iconSize} className={className} />
 export const ClipboardIcon = ({ className = '' }: IconProps) => <Clipboard size={iconSize} className={className} />
+export const CheckIcon = ({ className = '' }: IconProps) => <CircleCheck size={iconSize} className={className} />
