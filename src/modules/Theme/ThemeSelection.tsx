@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { useChangeTheme } from './ThemeContext'
 import { useTheme } from '@/App'
 import { CheckIcon } from '@/ui/atoms/icons'
+import { SettingSection } from '@/ui/organisms/SettingSection'
 
 const getColorThemeFromId = (id: string): Theme => JSON.parse(id)
 
@@ -50,13 +51,13 @@ export function ThemeSelection() {
 	}
 
 	return (
-		<>
-			<h2 className='text-2xl'>{t('settings.board.board_theme_section_title')}</h2>
-			<div className='max-w-2xl py-5 grid gap-3'>
-				<ul className='flex justify-around flex-wrap gap-2' onClick={handleClick}>
+		<SettingSection>
+			<SettingSection.Title>{t('settings.board.board_theme_section_title')}</SettingSection.Title>
+			<SettingSection.Content className='py-0 px-0 grid gap-3 bg-transparent'>
+				<div className='flex justify-around flex-wrap gap-2' onClick={handleClick}>
 					{themes}
-				</ul>
-			</div>
-		</>
+				</div>
+			</SettingSection.Content>
+		</SettingSection>
 	)
 }
