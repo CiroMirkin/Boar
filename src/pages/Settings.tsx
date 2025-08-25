@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next'
 import { USER_IS_IN } from '../ui/organisms/userIsIn'
-import { useTheme } from "@/App"
 import { ChangeBoardName } from '../modules/board/components/ChangeBoardName'
 import { ConfigColumns } from '../modules/columnList/components/ConfigColumns'
 import CreateReminder from '../modules/taskList/Reminder/CreateReminder'
@@ -13,8 +12,6 @@ import { EnableTags } from '@/modules/taskList/Tags/components/EnableTags'
 
 export function Settings() {
 	const { t } = useTranslation()
-	const { column } = useTheme()
-	const sectionClassName = `max-w-2xl rounded-lg py-4 md:px-11 px-6 ${column}`
 
 	return (
 		<PageContainer 
@@ -23,25 +20,13 @@ export function Settings() {
 			className='px-3 pb-6 grid place-items-center'
 		>
 			<div className="grid gap-4 justify-items-stretch ">
-				<div className={sectionClassName}>
-					<ChangeBoardName />
-				</div>
-				<div className={sectionClassName}>
-					<ConfigColumns />
-				</div>
-				<div className={sectionClassName}>
-					<CreateReminder columnList={ useColumnList() } />
-					<ReminderList />
-				</div>
-				<div className={sectionClassName}>
-					<EnableTags />
-				</div>
-				<div className={sectionClassName}>
-					<ToggleTypeOfView />
-				</div>
-				<div className={sectionClassName}>
-					<ThemeSelection />
-				</div>
+				<ChangeBoardName />
+				<ConfigColumns />
+				<CreateReminder columnList={ useColumnList() } />
+				<ReminderList />
+				<EnableTags />
+				<ToggleTypeOfView />
+				<ThemeSelection />
 			</div>
 		</PageContainer> 
 	)

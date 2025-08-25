@@ -2,10 +2,13 @@ import { useTheme } from "@/App"
 import { ReactNode } from "react"
 
 export function SettingSection({ children }: { children: ReactNode }) {
+    const { column } = useTheme()
     return (
-        <div className="w-full">
-            { children }
-        </div>
+        <section className={`max-w-2xl rounded-lg py-4 md:px-11 px-6 ${column}`}>
+            <div className="w-full">
+                { children }
+            </div>
+        </section>
     )
 }
 
