@@ -39,7 +39,7 @@ function CheckViewContainer({ actualTypeOfView, handleValueChange, label, view, 
             <div
                 className={`p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 hover:shadow-md ${bg} ${actualTypeOfView == view
                     ? 'border-black shadow-lg'
-                    : 'border-gray-300 opacity-80 hover:border-gray-400'
+                    : 'border-transparent opacity-80 hover:border-gray-400'
                     }`}
             >
                 {children}

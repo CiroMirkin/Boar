@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { defaultView, TypeOfView, typeOfViewLocalStorageKey } from "./typeOfView";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { CheckView } from "./CheckView";
+import { SettingSection } from "@/ui/organisms/SettingSection";
 
 
 export function ToggleTypeOfView() {
@@ -15,12 +16,10 @@ export function ToggleTypeOfView() {
     }
 
     return (
-        <div className="w-full flex flex-col gap-y-3">
-            <header>
-                <h2 className='text-2xl'>{t('settings.type_of_view.section_title')}</h2>
-                <p className="opacity-75">{t('settings.type_of_view.section_description')}</p>
-            </header>
-            <main className="w-full flex justify-around flex-wrap gap-4">
+        <SettingSection>
+            <SettingSection.Title>{t('settings.type_of_view.section_title')}</SettingSection.Title>
+            <SettingSection.Description>{t('settings.type_of_view.section_description')}</SettingSection.Description>
+            <SettingSection.Content className="flex justify-around flex-wrap gap-4">
                 <CheckView 
                     view={TypeOfView.BOARD}
                     handleValueChange={handleValueChange}
@@ -39,7 +38,7 @@ export function ToggleTypeOfView() {
                     actualTypeOfView={actualTypeOfView}
                     label={ t('settings.type_of_view.list_note_option_view') }
                 />
-            </main>
-        </div>
+            </SettingSection.Content>
+        </SettingSection>
     )
 }
