@@ -9,7 +9,7 @@ export const useAvailableTags = (): AvailableTags => {
     return availableTags.map(tagGroup => {
         // Se traducen las Tags por defecto
         if(tagGroup.id == eisenhowerTagGroup.id) {
-            const [ importantTag, necessaryTag ] = tagGroup.tags
+            const [ importantTag, necessaryTag, urgentTeg ] = tagGroup.tags
             return {
                 ...tagGroup,
                 tags: [
@@ -20,7 +20,11 @@ export const useAvailableTags = (): AvailableTags => {
                     {
                         ...necessaryTag,
                         name: t('tags.necessary_tag')
-                    }
+                    },
+                    {
+                        ...urgentTeg,
+                        name: t('tags.urgent_tag')
+                    },
                 ]
             }
         }
