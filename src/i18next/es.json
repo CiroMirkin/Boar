@@ -39,7 +39,8 @@
 
 	"tags": {
 		"important_tag": "Importante",
-		"necessary_tag": "Necesario"
+		"necessary_tag": "Necesario",
+		"urgent_tag": "Urgente"
 	},
 
 	"task_buttons": {
