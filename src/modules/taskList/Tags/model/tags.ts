@@ -25,18 +25,24 @@ export const emptyTagGroup = {
     tags: [] 
 }
 
+// Este grupo de etiquetas tiene traduccion, tenelo en cuenta al realizar cambios
 export const eisenhowerTagGroup: TagGroup = {
     id: 'Eisenhower',
     tags: [
         {
             id: '1',
             name: 'Importante',
-            variant: "red-subtle",
+            variant: "purple-subtle",
         }, 
         {
             id: '2',
             name: 'Necesario',
             variant: "green-subtle",
+        },
+        {
+            id: '3',
+            name: 'Urgente',
+            variant: "red-subtle",
         },
     ]
 }
@@ -44,7 +50,32 @@ export const eisenhowerTagGroup: TagGroup = {
 export type AvailableTags = TagGroup[]
 
 export const defaultAvialableTags: AvailableTags = [
-    {...eisenhowerTagGroup}
+    {...eisenhowerTagGroup},
+    {
+        id: 'Others',
+        tags: [
+            {
+                id: '1',
+                name: 'Alto valor',
+                variant: "green-subtle",
+            }, 
+            {
+                id: 'Urgente',
+                name: 'Urgente',
+                variant: "red-subtle",
+            },
+            {
+                id: 'Investigación',
+                name: 'Investigación',
+                variant: "blue-subtle",
+            },
+            {
+                id: 'Mantenimiento',
+                name: 'Mantenimiento',
+                variant: "amber-subtle",
+            },
+        ]
+}
 ]
 
 export const getTagGroup = ({ tags }: { tags: Tag[] }): TagGroup => {
