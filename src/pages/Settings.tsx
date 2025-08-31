@@ -14,21 +14,20 @@ export function Settings() {
 	const { t } = useTranslation()
 
 	return (
-		<PageContainer 
-			title={t('menu.configs')} 
-			whereUserIs={USER_IS_IN.CONFIG} 
+		<PageContainer
+			title={t('menu.configs')}
+			whereUserIs={USER_IS_IN.CONFIG}
 			className='px-3 pb-6 grid place-items-center'
 		>
-			<div className="grid gap-4 justify-items-stretch ">
+			<div className='grid gap-4 justify-items-stretch '>
 				<ChangeBoardName />
 				<ConfigColumns />
-				<CreateReminder columnList={ useColumnList() } />
+				<CreateReminder columnList={useColumnList()} />
 				<ReminderList />
 				<EnableTags />
 				<ToggleTypeOfView />
 				<ThemeSelection />
 			</div>
-		</PageContainer> 
+		</PageContainer>
 	)
 }
-

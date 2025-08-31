@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { toast } from "sonner"
+import { toast } from 'sonner'
 import { TaskListInEachColumn } from '@/modules/taskList/models/taskList'
 import { ReminderContext } from './ReminderContext'
 
@@ -8,7 +8,7 @@ export const useReminder = (taskListInEachColumn: TaskListInEachColumn) => {
 	const [copyOfTheLengthOfEachTaskList, setCopyOfTheLengthOfEachTaskList] = useState([
 		0, 0, 0,
 	] as Array<number>)
-	const { reminder } = useContext(ReminderContext) 
+	const { reminder } = useContext(ReminderContext)
 
 	useEffect(() => {
 		const columnPosition: number = Number(reminder.columnPosition) - 1 // La posicion de una columna es su index + 1

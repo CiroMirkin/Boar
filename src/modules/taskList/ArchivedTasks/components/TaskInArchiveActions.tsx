@@ -3,7 +3,7 @@ import { TaskContext } from '../../../../ui/organisms/BlankTask'
 import { Button } from '@/ui/atoms/button'
 import { useDispatch } from 'react-redux'
 import { deleteArchivedTask } from '@/modules/taskList/ArchivedTasks/state/archiveReducer'
-import { toast } from "sonner"
+import { toast } from 'sonner'
 import { addTaskAtLastColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { useTranslation } from 'react-i18next'
 
@@ -15,7 +15,7 @@ export function TaskInArchiveActions() {
 		toast.warning(t('archive.delete_task_warning'), {
 			action: {
 				label: t('archive.delete_task_btn'),
-				onClick: deleteTaskAction
+				onClick: deleteTaskAction,
 			},
 		})
 	}

@@ -1,6 +1,6 @@
 import { archiveTaskListAtLastColumn } from '@/modules/taskList/ArchivedTasks/state/archiveReducer'
 import { cleanTheLastTaskList } from '@/modules/taskList/state/taskListInEachColumnReducer'
-import { toast } from "sonner"
+import { toast } from 'sonner'
 import { useDispatch } from 'react-redux'
 import { Button } from '@/ui/atoms/button'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
@@ -24,9 +24,9 @@ export function ArchiveTaskListButton() {
 		try {
 			dispatch(archiveTaskListAtLastColumn(taskListInEachColumn))
 			dispatch(cleanTheLastTaskList())
-			useSaveArchive({ 
-				session, 
-				archive: getActalArchive()
+			useSaveArchive({
+				session,
+				archive: getActalArchive(),
 			})
 			toast.info(t('archive_task_list_toast'))
 		} catch (error) {
@@ -36,7 +36,7 @@ export function ArchiveTaskListButton() {
 
 	return (
 		<Button
-			id="archive_task_list_btn"
+			id='archive_task_list_btn'
 			onClick={archiveTaskList}
 			variant='ghost'
 			className='w-full mx-4'

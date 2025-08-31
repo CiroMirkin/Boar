@@ -1,10 +1,9 @@
-import { ArchivedNote } from "./archivedNote"
+import { ArchivedNote } from './archivedNote'
 
 export interface LibraryOfArchivedNotes {
-    archive: ArchivedNote[]
+	archive: ArchivedNote[]
 }
 
 export const defaultLibraryOfArchivedNotes = {
-    archive: []
+	archive: [],
 }
-

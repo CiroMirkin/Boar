@@ -1,6 +1,6 @@
 import { getNewTask, isThisTaskDescriptionValid } from '@/modules/taskList/models/task'
 import { addTaskAtFirstColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
-import { toast } from "sonner"
+import { toast } from 'sonner'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { KeyboardEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -19,10 +19,12 @@ export function AddNewTaskInput() {
 	const handleClick = () => {
 		try {
 			const task = getNewTask({ descriptionText: newTaskDescription, columnPosition: '1' })
-			dispatch(addTaskAtFirstColumn({ 
-				...task, 
-				tags: useUserSelectedTags()
-			}))
+			dispatch(
+				addTaskAtFirstColumn({
+					...task,
+					tags: useUserSelectedTags(),
+				})
+			)
 			dispatch(setUserSelectedTags([]))
 			setNewTaskDescription('')
 		} catch (error) {
@@ -31,7 +33,6 @@ export function AddNewTaskInput() {
 	}
 
 	const handleChange = (taskDescription: string) => {
-		
 		// Cuanto el texto tiene mas de 30 caracteres juntos sin espacios intermedios la aplicacion se congela, el siguiente codigo agrega un espacio en el caracter 25 para evitar que eso suceda
 
 		setNewTaskDescription(
@@ -48,7 +49,6 @@ export function AddNewTaskInput() {
 	const { t } = useTranslation()
 	return (
 		<div className='px-4 w-full flex'>
-			
 			<TeaxtareaWithActions
 				value={newTaskDescription}
 				id='add_new_task_btn'
@@ -58,9 +58,7 @@ export function AddNewTaskInput() {
 				onClick={handleClick}
 				btnTitle={t('new_task_btn_title')}
 				btnDisabled={canUserUseTheAddTaskInput}
-				badges={
-					<TagGroupSelect />
-				}
+				badges={<TagGroupSelect />}
 			/>
 		</div>
 	)

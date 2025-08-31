@@ -10,7 +10,7 @@ import {
 	isThisBoardNameWithinTheLimitOfLetters,
 } from '@/modules/board/models/board'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
-import { toast } from "sonner"
+import { toast } from 'sonner'
 import { useBoard } from '@/modules/board/hooks/useBoard'
 import { BoardRepository } from '@/modules/board/models/boardRepository'
 import LocalStorageBoardRepository from '@/modules/board/state/localstorageBoard'
@@ -26,7 +26,7 @@ export function ChangeBoardName() {
 	const { session } = useSession()
 	useEffect(() => {
 		// Si el usuario no inicio session (!session)
-		if(!session) boardRepository.save(boardData)
+		if (!session) boardRepository.save(boardData)
 	}, [boardData])
 
 	const [boardName, setBoardName] = useState(boardData.name)
@@ -58,7 +58,9 @@ export function ChangeBoardName() {
 	const { t } = useTranslation()
 	return (
 		<SettingSection>
-			<SettingSection.Title>{t('settings.board.change_board_name_section_title')}</SettingSection.Title>
+			<SettingSection.Title>
+				{t('settings.board.change_board_name_section_title')}
+			</SettingSection.Title>
 			<SettingSection.Content className={`flex items-end `}>
 				<div className='grid mr-2 w-full max-w-sm items-center gap-1.5'>
 					<Label htmlFor='board-name'>

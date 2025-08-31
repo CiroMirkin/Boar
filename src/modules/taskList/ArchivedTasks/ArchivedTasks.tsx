@@ -4,7 +4,7 @@ import { cleanArchive } from '@/modules/taskList/ArchivedTasks/state/archiveRedu
 import { useArchive } from '@/modules/taskList/ArchivedTasks/hooks/useArchive'
 import { downloadArchiveLikePDF } from '@/modules/taskList/ArchivedTasks/downloadArchiveLikePDF'
 import { useTranslation } from 'react-i18next'
-import { useTheme } from "@/App"
+import { useTheme } from '@/App'
 import { ArchiveContent } from './components/ArchiveContent'
 import { useEffect, useState } from 'react'
 import { useSaveArchive } from './state/useSaveArchive'
@@ -13,23 +13,23 @@ import { toast } from 'sonner'
 import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
 
 export function ArchivedTasks() {
-	const [ cleanArchiveSignal, setCleanArchiveSignal ] = useState(false)
+	const [cleanArchiveSignal, setCleanArchiveSignal] = useState(false)
 	const { t } = useTranslation()
 	const { column } = useTheme()
 	const boardArchive = useArchive()
 
 	const { session } = useSession()
 	useEffect(() => {
-		if(cleanArchiveSignal) {
-            setCleanArchiveSignal(true)
-                useSaveArchive({ 
-					session, 
-					archive: boardArchive, 
-					emptyArchive: true 
-            })
-        } 
+		if (cleanArchiveSignal) {
+			setCleanArchiveSignal(true)
+			useSaveArchive({
+				session,
+				archive: boardArchive,
+				emptyArchive: true,
+			})
+		}
 	}, [boardArchive])
-	
+
 	const dispatch = useDispatch()
 	const cleanTheWholeArchive = () => {
 		dispatch(cleanArchive())
@@ -39,7 +39,7 @@ export function ArchivedTasks() {
 		toast.warning(t('archive.clean_archive_warning'), {
 			action: {
 				label: t('archive.clean_archive_btn'),
-				onClick: cleanTheWholeArchive
+				onClick: cleanTheWholeArchive,
 			},
 		})
 	}
@@ -48,7 +48,7 @@ export function ArchivedTasks() {
 		<>
 			<div className='w-full min-h-[calc(100vh-7.8rem)] grid justify-items-center py-2 pt-2 pb-6 '>
 				{boardArchive.length === 0 ? (
-					<EmptySpaceText> { t('archive.empty_archive') } </EmptySpaceText>
+					<EmptySpaceText> {t('archive.empty_archive')} </EmptySpaceText>
 				) : (
 					<div className='max-w-3xl flex flex-col gap-y-2'>
 						<ArchiveContent />

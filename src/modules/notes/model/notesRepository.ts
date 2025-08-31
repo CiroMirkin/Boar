@@ -1,6 +1,6 @@
-import { Notes } from "./notes"
+import { Notes } from './notes'
 
 export interface NotesRepository {
-    save(notes: Notes): void
-    getAll(): Notes
+	save(notes: Notes): void
+	getAll(): Notes
 }

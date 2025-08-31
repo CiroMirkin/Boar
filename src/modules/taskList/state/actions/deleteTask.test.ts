@@ -1,5 +1,5 @@
 import { deleteThisTask } from './deleteTask'
-import { expect } from 'vitest';
+import { expect } from 'vitest'
 
 describe('Eliminar una tarea.', () => {
 	test('Se debería eliminar la tarea elegida de su columna.', () => {

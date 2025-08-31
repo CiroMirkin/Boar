@@ -236,6 +236,6 @@ export const themesList: readonly Theme[] = Object.freeze([
 	},
 ])
 
-export const lightTheme: Theme = { ...themesList.filter(theme => theme.id == 'retro')[0] }
+export const lightTheme: Theme = { ...themesList.filter((theme) => theme.id == 'retro')[0] }
 
-export const darkTheme: Theme = { ...themesList.filter(theme => theme.id == 'soft-bear')[0] }
+export const darkTheme: Theme = { ...themesList.filter((theme) => theme.id == 'soft-bear')[0] }

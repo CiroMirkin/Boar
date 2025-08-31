@@ -1,5 +1,5 @@
 import { Button } from '@/ui/atoms/button'
-import { toast } from "sonner"
+import { toast } from 'sonner'
 import { PlusIcon } from '@/ui/atoms/icons'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import {
@@ -17,7 +17,7 @@ export function AddNewColumnForm() {
 	const theNewColumnNameIsBlank = !newColumnName.trim()
 	const theNewColumnNameIsOffLimits = !isThisColumnNameWithinTheLimitOfLetters(newColumnName)
 	const theNewColumnNameIsValid = theNewColumnNameIsBlank || theNewColumnNameIsOffLimits
-	
+
 	const createColumn = useCreateColumn()
 	const addNewColumn = () => {
 		const newColumn = getBlankColumnWithoutPosition({ name: newColumnName })
