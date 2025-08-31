@@ -55,9 +55,9 @@ export const defaultAvialableTags: AvailableTags = [
         id: 'Others',
         tags: [
             {
-                id: '1',
-                name: 'Alto valor',
-                variant: "green-subtle",
+                id: 'Importante',
+                name: 'Importante',
+                variant: "purple-subtle",
             }, 
             {
                 id: 'Urgente',
@@ -65,14 +65,14 @@ export const defaultAvialableTags: AvailableTags = [
                 variant: "red-subtle",
             },
             {
-                id: 'Investigación',
-                name: 'Investigación',
-                variant: "blue-subtle",
+                id: 'Necesario',
+                name: 'Necesario',
+                variant: "green-subtle",
             },
             {
-                id: 'Mantenimiento',
-                name: 'Mantenimiento',
-                variant: "amber-subtle",
+                id: 'Explorar',
+                name: 'Explorar',
+                variant: "blue-subtle",
             },
         ]
 }
