@@ -15,7 +15,10 @@ import {
 	moveThisTaskToThePrevColumn,
 } from '@/modules/taskList/state/actions/moveTask'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { DataOfTheTaskForMoveIt, moveThisTaskToThisColumn } from './actions/moveThisTaskToThisColumn'
+import {
+	DataOfTheTaskForMoveIt,
+	moveThisTaskToThisColumn,
+} from './actions/moveThisTaskToThisColumn'
 import { Tag } from '../Tags/model/tags'
 import { addTagInThisTask } from './actions/addTagInThisTask'
 
@@ -53,12 +56,15 @@ export const taskListInEachColumnSlice = createSlice({
 			const task = action.payload
 			state.list = moveThisTaskToThePrevColumn({ taskListInEachColumn: state.list, task })
 		},
-		moveThisTaskToThisColumnPosition: (state, action: PayloadAction<DataOfTheTaskForMoveIt>) => {
+		moveThisTaskToThisColumnPosition: (
+			state,
+			action: PayloadAction<DataOfTheTaskForMoveIt>
+		) => {
 			const { task, newColumnPosition } = action.payload
-			state.list = moveThisTaskToThisColumn({ 
+			state.list = moveThisTaskToThisColumn({
 				taskListOfColumns: state.list,
 				task,
-				newColumnPosition
+				newColumnPosition,
 			})
 		},
 		cleanTheLastTaskList: (state) => {
@@ -75,11 +81,11 @@ export const taskListInEachColumnSlice = createSlice({
 				taskListInEachColumn: state.list,
 			})
 		},
-		addThisTagsInThisTask: (state, action: PayloadAction<{ task: taskModel, tags: Tag[] }>) => {
-			state.list  = addTagInThisTask({
+		addThisTagsInThisTask: (state, action: PayloadAction<{ task: taskModel; tags: Tag[] }>) => {
+			state.list = addTagInThisTask({
 				taskListByColumns: state.list,
 				tags: action.payload.tags,
-				task: action.payload.task
+				task: action.payload.task,
 			})
 		},
 	},

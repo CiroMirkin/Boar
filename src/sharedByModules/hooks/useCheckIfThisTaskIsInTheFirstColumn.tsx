@@ -1,5 +1,8 @@
 import { taskModel } from '../../modules/taskList/models/task'
-import { getIndexOfColumnInColumnList, isThisTheFirstColumn } from '../../modules/columnList/models/column'
+import {
+	getIndexOfColumnInColumnList,
+	isThisTheFirstColumn,
+} from '../../modules/columnList/models/column'
 import { useColumnList } from '../../modules/columnList/hooks/useColumnList'
 
 export function useCheckIfThisTaskIsInTheFirstColumn(task: taskModel): boolean {

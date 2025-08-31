@@ -1,4 +1,4 @@
-import { Fragment } from "react"
+import { Fragment } from 'react'
 
 interface TextWithURLProps {
 	text: string
@@ -13,8 +13,13 @@ export function TextWithURL({ text }: TextWithURLProps) {
 		const url = splitText[0]
 		return (
 			<>
-				<a href={url} target='_blank' rel='noopener noreferrer' className='text-blue-600 hover:underline'>
-					{ addSpacesAfterSlashes(url) }
+				<a
+					href={url}
+					target='_blank'
+					rel='noopener noreferrer'
+					className='text-blue-600 hover:underline'
+				>
+					{addSpacesAfterSlashes(url)}
 				</a>
 			</>
 		)
@@ -26,40 +31,44 @@ export function TextWithURL({ text }: TextWithURLProps) {
 			return (
 				<span key={text + tIndex}>
 					{' '}
-					<a href={text} target='_blank' rel='noopener noreferrer' className='text-blue-600 hover:underline'>
-						{ addSpacesAfterSlashes(text) }
+					<a
+						href={text}
+						target='_blank'
+						rel='noopener noreferrer'
+						className='text-blue-600 hover:underline'
+					>
+						{addSpacesAfterSlashes(text)}
 					</a>{' '}
 				</span>
 			)
-		}
-		else if(text.includes('\n')) {
+		} else if (text.includes('\n')) {
 			const lines = text.split('\n')
-      		return (
+			return (
 				<span key={`fragment-${tIndex}`}>
 					{lines.map((line, lineIndex) => {
 						const isUrl = isValidURL(line)
 						const isLastLine = lineIndex === lines.length - 1
-						
+
 						return (
 							<Fragment key={`line-${tIndex}-${lineIndex}`}>
-								{
-									isUrl ? (
-										<a 
-											href={line.trim()} 
-											target='_blank' 
-											rel='noopener noreferrer' 
-											className='text-blue-600 hover:underline'
-										>
-											{addSpacesAfterSlashes(line.trim())}
-										</a>) 
-									: line
-								}
+								{isUrl ? (
+									<a
+										href={line.trim()}
+										target='_blank'
+										rel='noopener noreferrer'
+										className='text-blue-600 hover:underline'
+									>
+										{addSpacesAfterSlashes(line.trim())}
+									</a>
+								) : (
+									line
+								)}
 								{!isLastLine && <br />}
 							</Fragment>
 						)
 					})}
 				</span>
-	  		)
+			)
 		}
 		return <span key={text + tIndex}>{text} </span>
 	})
@@ -87,16 +96,16 @@ const isValidURL = (urlString: string): boolean => {
 }
 
 function addSpacesAfterSlashes(url: string): string {
-  const [protocol, ...rest] = url.split('://')
-  const remainingUrl = rest.join('://')
-  
-  // Agregar espacios despues de cada / despues del protocolo
-  let urlWithSpaces = remainingUrl.replace(/\//g, '/ ')
-  
-  // Agregar espacios en cadenas largas de letras/numeros (mas de 12 caracteres)
-  urlWithSpaces = urlWithSpaces.replace(/[a-zA-Z0-9]{13,}/g, (match) => {
-    return match.replace(/(.{12})/g, '$1 ').trim()
-  })
-  
-  return `${protocol}://${urlWithSpaces}`
+	const [protocol, ...rest] = url.split('://')
+	const remainingUrl = rest.join('://')
+
+	// Agregar espacios despues de cada / despues del protocolo
+	let urlWithSpaces = remainingUrl.replace(/\//g, '/ ')
+
+	// Agregar espacios en cadenas largas de letras/numeros (mas de 12 caracteres)
+	urlWithSpaces = urlWithSpaces.replace(/[a-zA-Z0-9]{13,}/g, (match) => {
+		return match.replace(/(.{12})/g, '$1 ').trim()
+	})
+
+	return `${protocol}://${urlWithSpaces}`
 }

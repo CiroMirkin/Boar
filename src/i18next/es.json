@@ -104,7 +104,6 @@
 			"enable_tags_section_description": "Las etiquetas aportan mas información a las tareas.",
 			"enable_tags_toast": "Etiquetas activadas!",
 			"disble_tags_toast": "Etiquetas desactivadas."
-
 		},
 		"columns": {
 			"section_title": "Columnas",

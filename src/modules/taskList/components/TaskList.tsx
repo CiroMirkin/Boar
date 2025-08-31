@@ -14,31 +14,31 @@ export function TaskList({ tasks, columnPosition }: TaskListProps) {
 	const taskList: React.ReactNode[] = []
 
 	tasks.forEach((task) => {
-		taskList.push(
-			<Task task={task} key={task.id} />
-		)
+		taskList.push(<Task task={task} key={task.id} />)
 	})
 
 	const dispatch = useDispatch()
 
 	const handleDrop = (e: DragEvent) => {
 		const dropData = e.dataTransfer.getData('task')
-		if(dropData != null) {
+		if (dropData != null) {
 			const taskDragged: taskModel = JSON.parse(dropData)
-			dispatch(moveThisTaskToThisColumnPosition({
-				task: taskDragged,
-				newColumnPosition: columnPosition
-			}))
+			dispatch(
+				moveThisTaskToThisColumnPosition({
+					task: taskDragged,
+					newColumnPosition: columnPosition,
+				})
+			)
 		}
 	}
 
 	return (
 		<>
-			<div 
+			<div
 				className='taskList min-h-64 md:min-h-[60vh] pt-4 px-4 flex flex-col gap-y-2'
 				onDrop={handleDrop}
 			>
-					{taskList}
+				{taskList}
 			</div>
 		</>
 	)

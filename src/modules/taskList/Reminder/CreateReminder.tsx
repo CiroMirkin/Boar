@@ -4,7 +4,7 @@ import { Input } from '@/ui/atoms/input'
 import { Label } from '@/ui/atoms/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/ui/atoms/select'
 import { Reminder as reminder } from './reminder'
-import { toast } from "sonner"
+import { toast } from 'sonner'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { useTranslation } from 'react-i18next'
 import { ReminderContext } from './ReminderContext'
@@ -46,7 +46,9 @@ function CreateReminder({ columnList }: { columnList: ReminderColumn[] }) {
 	return (
 		<SettingSection>
 			<SettingSection.Title>{t('settings.reminder.section_title')}</SettingSection.Title>
-			<SettingSection.Description>{t('settings.reminder.section_description')}</SettingSection.Description>
+			<SettingSection.Description>
+				{t('settings.reminder.section_description')}
+			</SettingSection.Description>
 			<SettingSection.Content className={` grid gap-3`}>
 				<div className={`grid mr-2 w-full items-center gap-1.5`}>
 					<Label>{t('settings.reminder.select_column_label')}</Label>

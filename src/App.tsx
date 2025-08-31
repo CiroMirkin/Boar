@@ -27,19 +27,18 @@ function App() {
 	const defaultTheme = useUserSystemTheme()
 	const [theme, setTheme] = useLocalStorage('boar-theme', defaultTheme)
 	const [reminder, setReminder] = useLocalStorage('boar-reminder', blankReminder)
-	
+
 	const dispatch = useDispatch()
 	const { session } = useSession()
 	const libraryOfArchivedNotes = useLibraryOfArchivedNotes()
 	// Si el usuario NO esta sincronizado o cambio el estado de la session
 	useEffect(() => {
 		useLibraryOfArchivedNotesRepository(libraryOfArchivedNotes).set(session, dispatch)
-		
-		if(!!session) {
+
+		if (!!session) {
 			useSyncUserBoard(dispatch)
 			useGetUserArchiveFromSupabase(dispatch)
-		}
-		else {
+		} else {
 			setTheUserBoardSavedInLocalStorage(dispatch)
 		}
 	}, [session])
@@ -47,12 +46,12 @@ function App() {
 	return (
 		<>
 			<ThemeProvider theme={theme} changeTheme={setTheme}>
-			<ReminderProvider reminderData={{ reminder, setReminder }}>
-				<NoteProvider>
-					<Router />
-				</NoteProvider>
-				<SonnerToaster position="top-center" richColors closeButton  />
-			</ReminderProvider>
+				<ReminderProvider reminderData={{ reminder, setReminder }}>
+					<NoteProvider>
+						<Router />
+					</NoteProvider>
+					<SonnerToaster position='top-center' richColors closeButton />
+				</ReminderProvider>
 			</ThemeProvider>
 		</>
 	)

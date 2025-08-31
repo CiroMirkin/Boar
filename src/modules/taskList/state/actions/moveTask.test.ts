@@ -1,6 +1,6 @@
 import { TaskListInEachColumn } from '@/modules/taskList/models/taskList'
 import { moveThisTask, moveThisTaskToTheNextColumn } from './moveTask'
-import { expect } from 'vitest';
+import { expect } from 'vitest'
 
 describe('Mover una tarea entre columnas', () => {
 	test('Una tarea debería moverse a la columna siguiente', () => {

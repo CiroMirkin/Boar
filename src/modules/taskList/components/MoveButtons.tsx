@@ -1,11 +1,11 @@
-import { useDispatch } from "react-redux"
-import { moveTaskToNextColumn, moveTaskToPrevColumn } from "../state/taskListInEachColumnReducer"
-import { useTranslation } from "react-i18next"
+import { useDispatch } from 'react-redux'
+import { moveTaskToNextColumn, moveTaskToPrevColumn } from '../state/taskListInEachColumnReducer'
+import { useTranslation } from 'react-i18next'
 import { useCheckIfThisTaskIsInTheFirstColumn } from '@/sharedByModules/hooks/useCheckIfThisTaskIsInTheFirstColumn'
 import { useCheckIfTaskIsInTheLastColumn } from '@/sharedByModules/hooks/useCheckIfTaskIsInTheLastColumn'
-import { Button } from "@/ui/atoms/button"
-import { useDataOfTheTask } from "../hooks/useDataOfTheTask"
-import { ArrowLeftIcon, ArrowRightIcon } from "@/ui/atoms/icons"
+import { Button } from '@/ui/atoms/button'
+import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
+import { ArrowLeftIcon, ArrowRightIcon } from '@/ui/atoms/icons'
 
 interface MoveButtonsProps {
 	handleClick: (action: () => void) => void
@@ -19,11 +19,10 @@ export function MoveButttons({ handleClick }: MoveButtonsProps) {
 	const dispatch = useDispatch()
 	const moveTaskToNextColumnAction = () => dispatch(moveTaskToNextColumn(data))
 	const moveTaskToPrevColumnAction = () => dispatch(moveTaskToPrevColumn(data))
-   
-	
+
 	return (
-        <>
-            <Button
+		<>
+			<Button
 				size='sm'
 				disabled={isTheTaskInTheFirstColumn}
 				variant='ghost'
@@ -41,6 +40,6 @@ export function MoveButttons({ handleClick }: MoveButtonsProps) {
 			>
 				<ArrowRightIcon />
 			</Button>
-        </>
-    )
+		</>
+	)
 }

@@ -21,7 +21,7 @@ export function LanguageToggle() {
 			// La preferencia de idioma del usuario es ingles y debe actualizarse el toggle
 			// Al entrar a Boar el idioma se cambia a ingles según las preferencias del usuario, este cambio de hace en App.tsx
 			setLanguage('en')
-		} 
+		}
 	}
 
 	const handleValueChange = (value: string) => {
