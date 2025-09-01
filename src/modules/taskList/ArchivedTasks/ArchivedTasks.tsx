@@ -19,16 +19,17 @@ export function ArchivedTasks() {
 	const boardArchive = useArchive()
 
 	const { session } = useSession()
+	const saveArchive = useSaveArchive()
 	useEffect(() => {
 		if (cleanArchiveSignal) {
 			setCleanArchiveSignal(true)
-			useSaveArchive({
+			saveArchive({
 				session,
 				archive: boardArchive,
 				emptyArchive: true,
 			})
 		}
-	}, [boardArchive])
+	}, [boardArchive, cleanArchiveSignal, session, saveArchive])
 
 	const dispatch = useDispatch()
 	const cleanTheWholeArchive = () => {
