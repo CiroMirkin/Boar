@@ -2,6 +2,7 @@ import { SessionType } from '@/SessionProvider'
 import { emptyTaskListInEachColumn, TaskListInEachColumn } from '../models/taskList'
 import LocalStorageTaskListInEachColumnRepository from './localStorageTaskLists'
 import { sendForSaveTaskListInEachColumn } from './sendForSaveTaskListInEachColumn'
+import { useEffect, useRef } from 'react'
 
 interface useSaveTaskListOfColumnsParams {
 	data: TaskListInEachColumn
@@ -11,6 +12,28 @@ interface useSaveTaskListOfColumnsParams {
 
 /** Guarda la entidad TaskListInEachColumn */
 export const useSaveTaskListOfColumns = ({
+	data,
+	session,
+}: useSaveTaskListOfColumnsParams) => {
+	const taskListInEachColumnRef = useRef(emptyTaskListInEachColumn)
+
+	useEffect(() => {
+		const taskListInEachColumnLikeString = JSON.stringify(data)
+		// Si la lista de tareas actualmente esta vacia y anteriormente contuvo informacion
+		if (taskListInEachColumnLikeString == JSON.stringify(emptyTaskListInEachColumn) && taskListInEachColumnLikeString !== JSON.stringify(taskListInEachColumnRef.current)) {
+				save({
+					session,
+					data: data,
+					emptyData: true,
+				})
+		} else {
+			save({ session, data: data })
+		}
+		taskListInEachColumnRef.current = data
+	}, [data])
+}
+
+const save = ({
 	data,
 	session,
 	emptyData = false,

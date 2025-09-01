@@ -2,10 +2,8 @@ import { TaskList } from './components/TaskList'
 import { useReminder } from '@/modules/taskList/Reminder/useReminder'
 import { useTaskListInEachColumn } from './hooks/useTaskListInEachColumn'
 import { useTranslation } from 'react-i18next'
-import { useEffect, useRef } from 'react'
 import { useSession } from '@/SessionProvider'
 import { useSaveTaskListOfColumns } from './state/useSaveTaskListOfColumns'
-import { emptyTaskListInEachColumn } from './models/taskList'
 import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
 
 /** La propiedad columnPosition es el indice de la columna mas uno */
@@ -13,27 +11,8 @@ const getColumnPosition = (taskListIndex: number): string => `${taskListIndex + 
 
 export function TaskListInEachColumn() {
 	const taskListInEachColumn = useTaskListInEachColumn()
-	const taskListInEachColumnRef = useRef(emptyTaskListInEachColumn)
-
 	const { session } = useSession()
-	useEffect(() => {
-		const taskListInEachColumnLikeString = JSON.stringify(taskListInEachColumn)
-		// Si la lista de tareas actualmente esta vacia y anteriormente contuvo informacion
-		if (taskListInEachColumnLikeString == JSON.stringify(emptyTaskListInEachColumn)) {
-			if (
-				taskListInEachColumnLikeString !== JSON.stringify(taskListInEachColumnRef.current)
-			) {
-				useSaveTaskListOfColumns({
-					session,
-					data: taskListInEachColumn,
-					emptyData: true,
-				})
-			}
-		} else {
-			useSaveTaskListOfColumns({ session, data: taskListInEachColumn })
-		}
-		taskListInEachColumnRef.current = taskListInEachColumn
-	}, [taskListInEachColumn])
+	useSaveTaskListOfColumns({ session, data: taskListInEachColumn })
 
 	useReminder(taskListInEachColumn)
 	const { t } = useTranslation()
