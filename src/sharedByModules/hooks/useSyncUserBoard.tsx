@@ -51,7 +51,7 @@ const getActualUserBoard = async (): Promise<UserBoard> => ({
 })
 
 /** @returns True si el usuario tiene el tablero por defecto (vacio) */
-export const checkIfUserHasTheDefaultBoard = async (): Promise<Boolean> => {
+export const checkIfUserHasTheDefaultBoard = async (): Promise<boolean> => {
 	const actualUserBoard = await getActualUserBoard()
 	return (
 		actualUserBoard.name === defaultBoard.name &&
