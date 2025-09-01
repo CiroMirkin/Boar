@@ -10,7 +10,7 @@ import {
 	SheetTrigger,
 } from '@/ui/molecules/sheet'
 import { useTranslation } from 'react-i18next'
-import { useTheme } from '@/App'
+import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { NoteInput } from './components/NoteInput'
 import { ArchiveNoteBtn } from './components/ArchiveNoteBtn'
 

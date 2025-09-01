@@ -5,7 +5,7 @@ import { emptyTagGroup, TagGroup } from '../model/tags'
 import { useDispatch } from 'react-redux'
 import { changeActualTagGroup } from '../state/tagsReducer'
 import { toast } from 'sonner'
-import { useTheme } from '@/App'
+import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { useTranslation } from 'react-i18next'
 import { SettingSection } from '@/ui/organisms/SettingSection'
 

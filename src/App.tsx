@@ -3,13 +3,13 @@ import Router from './Router'
 import { Toaster as SonnerToaster } from 'sonner'
 import './i18next/index'
 import { useUserPreffedLanguage } from './modules/LanguageToggle/useUserPreffedLanguage'
-import { ThemeContext, ThemeProvider } from './modules/Theme/ThemeContext'
+import { ThemeProvider } from './modules/Theme/ThemeContext'
 import { useLocalStorage } from '@uidotdev/usehooks'
 import { blankReminder } from './modules/taskList/Reminder/reminder'
 import { ReminderProvider } from './modules/taskList/Reminder/ReminderContext'
 import { useUserSystemTheme } from './modules/Theme/useUserSystemTheme'
 import { useSetLanguageSaved } from './modules/LanguageToggle/useSetLanguageSaved'
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useSyncUserBoard } from './sharedByModules/hooks/useSyncUserBoard'
 import { useSession } from './SessionProvider'
 import { useDispatch } from 'react-redux'
@@ -18,8 +18,6 @@ import { setTheUserBoardSavedInLocalStorage } from './sharedByModules/utils/setT
 import { useLibraryOfArchivedNotesRepository } from './modules/notes/LibraryOfArchiveNotes/repository/useLibraryOfArchivedNotesRepository'
 import { useLibraryOfArchivedNotes } from './modules/notes/LibraryOfArchiveNotes/state/useLibraryOfArchivedNotes'
 import { NoteProvider } from './modules/notes/NoteProvider'
-
-export const useTheme = () => useContext(ThemeContext).theme
 
 function App() {
 	useSetLanguageSaved()

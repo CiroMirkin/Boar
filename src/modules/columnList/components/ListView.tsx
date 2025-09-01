@@ -1,4 +1,4 @@
-import { useTheme } from '@/App'
+import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { ListOfColumn, ColumnsContent } from './ListOfColumns'
 
 export function ListView({

@@ -5,7 +5,7 @@ import { TrashIcon } from '@/ui/atoms/icons'
 import { blankReminder } from './reminder'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
-import { useTheme } from '@/App'
+import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
 import { SettingSection } from '@/ui/organisms/SettingSection'
 

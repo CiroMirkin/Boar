@@ -9,7 +9,7 @@ import { Input } from '@/ui/atoms/input'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { useTranslation } from 'react-i18next'
 import { useDeleteColumn } from '../../../sharedByModules/hooks/useDeleteColumn'
-import { useTheme } from '@/App'
+import { useTheme } from '@/sharedByModules/hooks/useTheme'
 
 interface ConfigColumnParams {
 	column: Column

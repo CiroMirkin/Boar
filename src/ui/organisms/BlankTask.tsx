@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react'
 import { taskModel, emptyTask } from '@/modules/taskList/models/task'
 import { Card, CardContent, CardFooter } from '../molecules/card'
 import { TextWithURL } from '@/ui/atoms/TextWithURL'
-import { useTheme } from '@/App'
+import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { Badge } from '../atoms/badge'
 
 export const TaskContext = createContext(emptyTask)
