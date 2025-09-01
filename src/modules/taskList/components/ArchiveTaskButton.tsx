@@ -19,7 +19,7 @@ export function ArchiveTaskButton({ handleClick }: ArchiveTaskButtonProps) {
 	const dispatch = useDispatch()
 	const data = useDataOfTheTask()
 	const { session } = useSession()
-	const archiveTaskAction = () => {
+	const useArchiveTaskAction = () => {
 		dispatch(archiveTask(data))
 		dispatch(deleteTask(data))
 		useSaveArchive({
@@ -34,7 +34,7 @@ export function ArchiveTaskButton({ handleClick }: ArchiveTaskButtonProps) {
 			size='sm'
 			variant='ghost'
 			className='w-full'
-			onClick={() => handleClick(archiveTaskAction)}
+			onClick={() => handleClick(useArchiveTaskAction)}
 			title={t('task_buttons.archive')}
 		>
 			<ArchiveIcon />
