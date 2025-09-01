@@ -28,7 +28,7 @@ export function BlankTask({ data, children }: BlankTaskProps) {
 					<p className={`whitespace-pre-wrap ${colorTheme.taskText}`}>
 						<TextWithURL text={description}></TextWithURL>
 					</p>
-					{!!data.tags && (
+					{(data.tags && data.tags.length !== 0) && (
 						<footer className='w-full pt-2 flex gap-1.5 flex-wrap opacity-80 hover:opacity-100'>
 							{data.tags.map((tag) => (
 								<Badge
