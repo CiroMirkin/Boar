@@ -13,6 +13,7 @@ import { setUserSelectedTags } from '../Tags/state/tagsReducer'
 export function AddNewTaskInput() {
 	const [newTaskDescription, setNewTaskDescription] = useState('')
 	const canUserUseTheAddTaskInput = !isThisTaskDescriptionValid(newTaskDescription)
+	const selectedTags =  useUserSelectedTags()
 
 	const dispatch = useDispatch()
 
@@ -22,7 +23,7 @@ export function AddNewTaskInput() {
 			dispatch(
 				addTaskAtFirstColumn({
 					...task,
-					tags: useUserSelectedTags(),
+					tags: selectedTags,
 				})
 			)
 			dispatch(setUserSelectedTags([]))
