@@ -9,20 +9,22 @@ interface useSaveArchiveParams {
 	emptyArchive?: boolean
 }
 
-export const useSaveArchive = ({
-	archive,
-	session,
-	emptyArchive = false,
-}: useSaveArchiveParams) => {
+export const useSaveArchive = () => {
 	const localStorage = new LocalStorageArchiveRepository()
 	const localArchive = localStorage.getAll()
 
-	if (JSON.stringify(archive) !== JSON.stringify([]) || emptyArchive) {
-		const isNotTheLocalArchive = JSON.stringify(archive) !== JSON.stringify(localArchive)
-		if (!!session && isNotTheLocalArchive) {
-			sendForSaveArchive(archive)
-		} else {
-			localStorage.save(archive)
+	return ({
+		archive,
+		session,
+		emptyArchive = false,
+	}: useSaveArchiveParams) => {
+		if (JSON.stringify(archive) !== JSON.stringify([]) || emptyArchive) {
+			const isNotTheLocalArchive = JSON.stringify(archive) !== JSON.stringify(localArchive)
+			if (!!session && isNotTheLocalArchive) {
+				sendForSaveArchive(archive)
+			} else {
+				localStorage.save(archive)
+			}
 		}
 	}
 }
