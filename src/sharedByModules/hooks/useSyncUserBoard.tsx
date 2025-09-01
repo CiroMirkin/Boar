@@ -7,6 +7,7 @@ import { emptyTaskListInEachColumn, TaskListInEachColumn } from '@/modules/taskL
 import { setTaskListInEachColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { store } from '@/store'
 import { Dispatch } from '@reduxjs/toolkit'
+import { Session } from '@supabase/supabase-js'
 
 const sendForSaveUserBoard = async (userBoard: UserBoard) => {
 	try {
@@ -62,14 +63,16 @@ export const checkIfUserHasTheDefaultBoard = async (): Promise<boolean> => {
 }
 
 /** Recupera el tablero del usuario de Supabase y si no existe ninguno guarda el tablero actual en Supabase. */
-export const useSyncUserBoard = async (dispatch: Dispatch) => {
+export const useSyncUserBoard = async (dispatch: Dispatch, session: Session) => {
 	const actualUserBoard = await getActualUserBoard()
 	const { data } = await supabase.from('boards').select('*')
 
-	if (data != null && data.length === 0) {
-		sendForSaveUserBoard(actualUserBoard)
-	} else if (data != null) {
-		const savedUserBoard = data[0]
-		changeActualBoardBySavedBoard({ dispatch, savedUserBoard })
+	if(session) {
+		if (data != null && data.length === 0) {
+			sendForSaveUserBoard(actualUserBoard)
+		} else if (data != null) {
+			const savedUserBoard = data[0]
+			changeActualBoardBySavedBoard({ dispatch, savedUserBoard })
+		}
 	}
 }

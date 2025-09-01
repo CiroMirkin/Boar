@@ -9,15 +9,13 @@ import { blankReminder } from './modules/taskList/Reminder/reminder'
 import { ReminderProvider } from './modules/taskList/Reminder/ReminderContext'
 import { useUserSystemTheme } from './modules/Theme/useUserSystemTheme'
 import { useSetLanguageSaved } from './modules/LanguageToggle/useSetLanguageSaved'
-import { useEffect } from 'react'
-import { useSyncUserBoard } from './sharedByModules/hooks/useSyncUserBoard'
 import { useSession } from './SessionProvider'
 import { useDispatch } from 'react-redux'
-import { useGetUserArchiveFromSupabase } from './modules/taskList/ArchivedTasks/state/useGetUserArchiveFromSupabase'
-import { setTheUserBoardSavedInLocalStorage } from './sharedByModules/utils/setTheUserBoardSavedInLocalStorage'
-import { useLibraryOfArchivedNotesRepository } from './modules/notes/LibraryOfArchiveNotes/repository/useLibraryOfArchivedNotesRepository'
-import { useLibraryOfArchivedNotes } from './modules/notes/LibraryOfArchiveNotes/state/useLibraryOfArchivedNotes'
 import { NoteProvider } from './modules/notes/NoteProvider'
+import { useLibraryOfArchivedNotes } from './modules/notes/LibraryOfArchiveNotes/state/useLibraryOfArchivedNotes'
+import { useLibraryOfArchivedNotesRepository } from './modules/notes/LibraryOfArchiveNotes/repository/useLibraryOfArchivedNotesRepository'
+import { useSavedUserBoardInLocalStorage } from './sharedByModules/utils/useSavedUserBoardInLocalStorage'
+import { useGetUserArchiveFromSupabase } from './modules/taskList/ArchivedTasks/state/useGetUserArchiveFromSupabase'
 
 function App() {
 	useSetLanguageSaved()
@@ -28,18 +26,10 @@ function App() {
 
 	const dispatch = useDispatch()
 	const { session } = useSession()
-	const libraryOfArchivedNotes = useLibraryOfArchivedNotes()
-	// Si el usuario NO esta sincronizado o cambio el estado de la session
-	useEffect(() => {
-		useLibraryOfArchivedNotesRepository(libraryOfArchivedNotes).set(session, dispatch)
-
-		if (!!session) {
-			useSyncUserBoard(dispatch)
-			useGetUserArchiveFromSupabase(dispatch)
-		} else {
-			setTheUserBoardSavedInLocalStorage(dispatch)
-		}
-	}, [session])
+	useSavedUserBoardInLocalStorage(dispatch, session)
+	useGetUserArchiveFromSupabase(session)
+    const libraryOfArchivedNotes = useLibraryOfArchivedNotes()
+	useLibraryOfArchivedNotesRepository(libraryOfArchivedNotes).set(session, dispatch)
 
 	return (
 		<>
