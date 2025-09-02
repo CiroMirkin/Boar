@@ -15,9 +15,10 @@ import { LANGUAGE_LOCALSTORAGE_KEY } from './language'
 export function LanguageToggle() {
 	const [language, setLanguage] = useLocalStorage(LANGUAGE_LOCALSTORAGE_KEY, 'es')
 	const { t, i18n } = useTranslation()
-
+	
+	const preferredLanguage = usePreferredLanguage().slice(0, 2)
 	if (i18n.language !== language) {
-		if (i18n.language === 'en' && usePreferredLanguage().slice(0, 2) == 'en') {
+		if (i18n.language === 'en' && preferredLanguage == 'en') {
 			// La preferencia de idioma del usuario es ingles y debe actualizarse el toggle
 			// Al entrar a Boar el idioma se cambia a ingles según las preferencias del usuario, este cambio de hace en App.tsx
 			setLanguage('en')
