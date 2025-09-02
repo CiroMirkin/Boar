@@ -12,10 +12,10 @@ import { useSetLanguageSaved } from './modules/LanguageToggle/useSetLanguageSave
 import { useSession } from './SessionProvider'
 import { useDispatch } from 'react-redux'
 import { NoteProvider } from './modules/notes/NoteProvider'
-import { useLibraryOfArchivedNotes } from './modules/notes/LibraryOfArchiveNotes/state/useLibraryOfArchivedNotes'
-import { useLibraryOfArchivedNotesRepository } from './modules/notes/LibraryOfArchiveNotes/repository/useLibraryOfArchivedNotesRepository'
 import { useSavedUserBoardInLocalStorage } from './sharedByModules/utils/useSavedUserBoardInLocalStorage'
 import { useGetUserArchiveFromSupabase } from './modules/taskList/ArchivedTasks/state/useGetUserArchiveFromSupabase'
+import { useLibraryOfArchivedNotesLoader } from './modules/notes/LibraryOfArchiveNotes/repository/useLibraryOfArchivedNotesLoader'
+import { useEffect } from 'react'
 
 function App() {
 	useSetLanguageSaved()
@@ -28,8 +28,10 @@ function App() {
 	const { session } = useSession()
 	useSavedUserBoardInLocalStorage(dispatch, session)
 	useGetUserArchiveFromSupabase(session)
-    const libraryOfArchivedNotes = useLibraryOfArchivedNotes()
-	useLibraryOfArchivedNotesRepository(libraryOfArchivedNotes).set(session, dispatch)
+	const { loadAndSetNotes } = useLibraryOfArchivedNotesLoader()
+	useEffect(() => {
+		loadAndSetNotes(session, dispatch)
+	},[session, dispatch, loadAndSetNotes])
 
 	return (
 		<>

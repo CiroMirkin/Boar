@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLibraryOfArchivedNotes } from '../LibraryOfArchiveNotes/state/useLibraryOfArchivedNotes'
 import { useSession } from '@/SessionProvider'
-import { useLibraryOfArchivedNotesRepository } from '../LibraryOfArchiveNotes/repository/useLibraryOfArchivedNotesRepository'
 import { useSaveNotes } from '../repository/useSavedNote'
 import { useDispatch } from 'react-redux'
 import { archiveThisNote } from '../LibraryOfArchiveNotes/state/archivedNotesReducer'
@@ -11,6 +10,7 @@ import { defaultNotes } from '../model/notes'
 import { toast } from 'sonner'
 import { Button } from '@/ui/atoms/button'
 import { ArchiveIcon } from '@/ui/atoms/icons'
+import { useLibraryOfArchivedNotesPersister } from '../LibraryOfArchiveNotes/repository/useLibraryOfArchivedNotesPersister'
 
 export function ArchiveNoteBtn() {
 	const [taskArchived, setTaskArchived] = useState(false)
@@ -18,16 +18,17 @@ export function ArchiveNoteBtn() {
 	const { t } = useTranslation()
 
 	const libraryOfArchivedNotes = useLibraryOfArchivedNotes()
+	const { persistNotes } = useLibraryOfArchivedNotesPersister()
 	const { session } = useSession()
 	useEffect(() => {
 		if (note == '' || note == '<br>') {
 			if (taskArchived) {
-				useLibraryOfArchivedNotesRepository(libraryOfArchivedNotes).send(session)
+				persistNotes(session, libraryOfArchivedNotes)
 				useSaveNotes({ notes: note, session, emptyNote: true })
 				setTaskArchived(false)
 			}
 		}
-	}, [libraryOfArchivedNotes])
+	}, [libraryOfArchivedNotes, session, note, persistNotes, taskArchived])
 
 	const dispatch = useDispatch()
 	const handleArchiveNote = () => {
