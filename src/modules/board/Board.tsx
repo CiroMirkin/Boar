@@ -12,15 +12,15 @@ export function Board({ children }: { children: React.ReactNode }) {
 	useDocumentTitle(data.name + ' - Boar')
 
 	const { session } = useSession()
+	useSaveBoard({ data, session })
 	useEffect(() => {
-		useSaveBoard({ data, session })
 		const timer = setTimeout(() => {
 			if (!!session && loading) {
 				setLoading(false)
 			}
 		}, 1000)
 		return () => clearTimeout(timer)
-	}, [data])
+	}, [data, session, loading, setLoading])
 
 	if (!!session && loading) {
 		return <LoadingBoard />
