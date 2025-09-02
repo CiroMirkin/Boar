@@ -2,7 +2,7 @@ import { themesList, Theme as Theme } from '@/modules/Theme/themesList'
 import { Card, CardContent } from '@/ui/molecules/card'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
-import { useEffect, useState } from 'react'
+import { MouseEvent, useEffect, useState } from 'react'
 import { useChangeTheme } from './ThemeContext'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { CheckIcon } from '@/ui/atoms/icons'
@@ -32,7 +32,7 @@ export function ThemeSelection() {
 			)
 		})
 		setThemes(newThemes)
-	}, [themesList, actualThemeId])
+	}, [actualThemeId])
 
 	const { t } = useTranslation()
 	const changeTheme = useChangeTheme()
@@ -42,11 +42,15 @@ export function ThemeSelection() {
 
 		toast.success(t('settings.board.set_board_theme_toast'))
 	}
-	const handleClick = (e: any) => {
-		if (e.target.id) {
-			toggleTheme(e.target.id)
-		} else if (e.target.parentElement.id) {
-			toggleTheme(e.target.parentElement.id)
+
+	const handleClick = (e: MouseEvent<HTMLDivElement>) => {
+		const target = e.target as HTMLElement
+		const parentElement = target.parentElement as HTMLElement
+		
+		if (target?.id) {
+			toggleTheme(target.id)
+		} else if (parentElement?.id) {
+			toggleTheme(parentElement.id)
 		}
 	}
 
