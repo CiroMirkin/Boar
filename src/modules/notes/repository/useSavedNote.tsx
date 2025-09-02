@@ -10,7 +10,7 @@ interface useSaveBoardParams {
 }
 
 export const useSaveNotes = async ({ notes, session, emptyNote = false }: useSaveBoardParams) => {
-	if (!!session) {
+	if (session) {
 		await sendForSaveNotes({ notes })
 	} else if (notes !== defaultNotes || emptyNote) {
 		new LocalStorageNotesRepository().save(notes)

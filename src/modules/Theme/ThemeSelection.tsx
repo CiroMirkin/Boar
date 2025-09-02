@@ -43,9 +43,9 @@ export function ThemeSelection() {
 		toast.success(t('settings.board.set_board_theme_toast'))
 	}
 	const handleClick = (e: any) => {
-		if (!!e.target.id) {
+		if (e.target.id) {
 			toggleTheme(e.target.id)
-		} else if (!!e.target.parentElement.id) {
+		} else if (e.target.parentElement.id) {
 			toggleTheme(e.target.parentElement.id)
 		}
 	}

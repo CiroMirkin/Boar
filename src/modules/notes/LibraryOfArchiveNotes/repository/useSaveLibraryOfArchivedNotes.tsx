@@ -15,7 +15,7 @@ export const useSaveLibraryOfArchivedNotes = ({
 	notes,
 	session,
 }: useSaveLibraryOfArchivedNotesParams) => {
-	if (!!session) {
+	if (session) {
 		new LibraryOfArchivedNotesSupabaseRepository().save(notes)
 	} else if (notes !== defaultLibraryOfArchivedNotes) {
 		new LibraryOfArchivedNotesLocalStorageRepository().save(notes)

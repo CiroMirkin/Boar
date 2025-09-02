@@ -15,7 +15,7 @@ export function NoteInput() {
 
 	const { session } = useSession()
 	useEffect(() => {
-		if (!!session) {
+		if (session) {
 			getNotesFromSupabase({ setNotes: setNote })
 		} else {
 			const lg = new LocalStorageNotesRepository()

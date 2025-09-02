@@ -19,7 +19,7 @@ interface SetParams {
 }
 /** Permite obtener los datos desde el repositorio donde se almacenan y establecerlos localmente en la aplicación. */
 const set = async ({ session, dispatch }: SetParams) => {
-	if (!!session) {
+	if (session) {
 		const notes = await new LibraryOfArchivedNotesSupabaseRepository().getAll()
 		dispatch(setArchivedNotes(notes))
 		return
