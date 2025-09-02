@@ -10,23 +10,39 @@ import ErrorBoundary from './ErrorBoundary'
 const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <ErrorBoundary><BoardPage /></ErrorBoundary>,
+		element: (
+			<ErrorBoundary>
+				<BoardPage />
+			</ErrorBoundary>
+		),
 	},
 	{
 		path: '/archive',
-		element: <ErrorBoundary><BoardArchive /></ErrorBoundary>,
+		element: (
+			<ErrorBoundary>
+				<BoardArchive />
+			</ErrorBoundary>
+		),
 	},
 	{
 		path: '/settings',
-		element: <ErrorBoundary><Settings /></ErrorBoundary>,
+		element: (
+			<ErrorBoundary>
+				<Settings />
+			</ErrorBoundary>
+		),
 	},
 	{
 		path: '/help',
-		element: <ErrorBoundary><Help /></ErrorBoundary>,
+		element: (
+			<ErrorBoundary>
+				<Help />
+			</ErrorBoundary>
+		),
 	},
 	{
 		path: '/auth',
-		element: <Auth/>,
+		element: <Auth />,
 	},
 	{
 		path: '*',

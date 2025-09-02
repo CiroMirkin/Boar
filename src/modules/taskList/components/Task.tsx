@@ -1,14 +1,14 @@
-import { BlankTask } from "@/ui/organisms/BlankTask";
-import { taskModel } from "../models/task";
-import { TaskInBoardActions } from "./TaskInBoardActions";
-import { DragEvent } from "react";
+import { BlankTask } from '@/ui/organisms/BlankTask'
+import { taskModel } from '../models/task'
+import { TaskInBoardActions } from './TaskInBoardActions'
+import { DragEvent } from 'react'
 
 export function Task({ task }: { task: taskModel }) {
 	const handleDragStart = (e: DragEvent<HTMLDivElement>) => {
-		e.dataTransfer.setData("task", JSON.stringify(task))
+		e.dataTransfer.setData('task', JSON.stringify(task))
 	}
 
-    return (
+	return (
 		<div className='p-0 m-0' draggable onDragStart={handleDragStart}>
 			<BlankTask data={task} key={task.id}>
 				<BlankTask.ContentCollapse>
@@ -16,5 +16,5 @@ export function Task({ task }: { task: taskModel }) {
 				</BlankTask.ContentCollapse>
 			</BlankTask>
 		</div>
-    )
+	)
 }

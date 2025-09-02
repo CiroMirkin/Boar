@@ -1,6 +1,6 @@
 import { TaskList, TaskListInEachColumn } from '@/modules/taskList/models/taskList'
 import { addTaskInFirstColumn, addTaskInTheLastColumn } from './addTask'
-import { expect } from 'vitest';
+import { expect } from 'vitest'
 
 describe('Crear una tarea.', () => {
 	test('Se debería agregar la tarea recibida a la primer columna del tablero.', () => {

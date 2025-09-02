@@ -5,8 +5,8 @@ import { Column } from '@/modules/columnList/models/column'
 
 export const useCreateColumn = () => {
 	const updateBoardData = useDispatch()
-    return ({ newColumn }: { newColumn: Column }) => {
-        updateBoardData(addColumn(newColumn))
+	return ({ newColumn }: { newColumn: Column }) => {
+		updateBoardData(addColumn(newColumn))
 		updateBoardData(addEmptyTaskListAtTheEnd())
-    }
+	}
 }

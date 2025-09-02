@@ -13,11 +13,11 @@ const columnListRepository: ColumnListRepository = new LocalStorageColumnListRep
 export function ConfigColumns() {
 	const { t } = useTranslation()
 	const columnList = useColumnList()
-	
-	const { session } = useSession() 
+
+	const { session } = useSession()
 	useEffect(() => {
 		// Si el usuario no inicio session (!session)
-		if(!session) columnListRepository.save(columnList)
+		if (!session) columnListRepository.save(columnList)
 	}, [columnList])
 
 	const columns: React.ReactNode[] = columnList.map((column) => (

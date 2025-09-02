@@ -3,13 +3,13 @@ import { Column, isThisColumnNameWithinTheLimitOfLetters } from '../models/colum
 import { useDispatch } from 'react-redux'
 import { changeColumnName } from '@/modules/columnList/state/columnListReducer'
 import { Button } from '../../../ui/atoms/button'
-import { toast } from "sonner"
+import { toast } from 'sonner'
 import { PencilIcon, TrashIcon } from '@/ui/atoms/icons'
 import { Input } from '@/ui/atoms/input'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { useTranslation } from 'react-i18next'
 import { useDeleteColumn } from '../../../sharedByModules/hooks/useDeleteColumn'
-import { useTheme } from '@/App'
+import { useTheme } from '@/sharedByModules/hooks/useTheme'
 
 interface ConfigColumnParams {
 	column: Column
@@ -35,10 +35,9 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 		toast.warning(`${t('settings.columns.delete_column_warning')} "${columnName}"?`, {
 			action: {
 				label: t('task_buttons.delete'),
-				onClick: deleteColumnHandle
+				onClick: deleteColumnHandle,
 			},
 		})
-	
 	}
 
 	const handleClick = (action: () => void) => {
@@ -51,7 +50,10 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 
 	const { task } = useTheme()
 	return (
-		<li key={column.id} className={'w-full p-4 grid grid-cols-4 gap-2 justify-between rounded-lg ' + task}>
+		<li
+			key={column.id}
+			className={'w-full p-4 grid grid-cols-4 gap-2 justify-between rounded-lg ' + task}
+		>
 			<Input
 				className='md:col-span-3 col-span-2'
 				value={columnName}
@@ -70,7 +72,7 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 					variant='destructiveGhost'
 					title={t('settings.columns.delete_column_btn')}
 				>
-					<TrashIcon/>
+					<TrashIcon />
 				</Button>
 			</div>
 		</li>

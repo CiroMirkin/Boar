@@ -1,5 +1,8 @@
 import { taskModel } from '../../modules/taskList/models/task'
-import { getIndexOfColumnInColumnList, isThisTheLastColumn } from '../../modules/columnList/models/column'
+import {
+	getIndexOfColumnInColumnList,
+	isThisTheLastColumn,
+} from '../../modules/columnList/models/column'
 import { useColumnList } from '../../modules/columnList/hooks/useColumnList'
 
 export function useCheckIfTaskIsInTheLastColumn(task: taskModel): boolean {

@@ -2,7 +2,7 @@ import { emptyTask } from '@/modules/taskList/models/task'
 import { archiveThisTask } from './archiveTask'
 import { Archive } from '@/modules/taskList/ArchivedTasks/models/archive'
 import { getFullDate } from '@/sharedByModules/utils/getTime'
-import { expect } from 'vitest';
+import { expect } from 'vitest'
 
 describe('Archivar una tarea.', () => {
 	test('Se debería archivar la tarea indicada.', () => {

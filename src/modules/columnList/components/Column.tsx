@@ -4,7 +4,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/molec
 import { useCheckIfThisColumnIsTheFirst } from '@/modules/columnList/hooks/useCheckIfThisColumnIsTheFirst'
 import { useCheckIfThisColumnIsTheLast } from '@/modules/columnList/hooks/useCheckIfThisColumnIsTheLast'
 
-import { useTheme } from "@/App"
+import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { ColumnsContext } from '../ColumnsContext'
 
 const ColumnContext = createContext(columnNull)
@@ -16,7 +16,7 @@ interface ColumnProps {
 
 export function Column({ data, children }: ColumnProps) {
 	const colorTheme = useTheme()
-	const [ dragOver, setDragOver] = useState(false)
+	const [dragOver, setDragOver] = useState(false)
 	const columnClassName = `h-auto w-auto px-0 flex flex-col justify-between rounded-lg ${colorTheme.column} border-none ${dragOver && colorTheme.task}`
 
 	const handleDragOver = (e: DragEvent) => {
@@ -25,16 +25,20 @@ export function Column({ data, children }: ColumnProps) {
 	}
 
 	return (
-		<div 
-			className="p-0 m-0 h-auto min-w-48 flex-1" 
+		<div
+			className='p-0 m-0 h-auto min-w-48 flex-1'
 			onDragOver={handleDragOver}
-			onDragLeave={() => { setDragOver(false) }}
+			onDragLeave={() => {
+				setDragOver(false)
+			}}
 			onDrop={() => setDragOver(false)}
 		>
 			<ColumnContext.Provider value={data}>
 				<Card className={columnClassName}>
 					<CardHeader className='pb-0 px-4'>
-						<CardTitle className={`opacity-[.70] ${colorTheme.text}`}>{data.name}</CardTitle>
+						<CardTitle className={`opacity-[.70] ${colorTheme.text}`}>
+							{data.name}
+						</CardTitle>
 					</CardHeader>
 					{children}
 				</Card>
@@ -53,8 +57,8 @@ function ColumnFooter() {
 	const { firstColumnFooterContent, lastColumnFooterContent } = useContext(ColumnsContext)
 	return (
 		<CardFooter className='min-h-16'>
-			{useCheckIfThisColumnIsTheFirst(data) && firstColumnFooterContent }
-			{useCheckIfThisColumnIsTheLast(data) && lastColumnFooterContent }
+			{useCheckIfThisColumnIsTheFirst(data) && firstColumnFooterContent}
+			{useCheckIfThisColumnIsTheLast(data) && lastColumnFooterContent}
 		</CardFooter>
 	)
 }

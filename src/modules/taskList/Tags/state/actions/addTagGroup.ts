@@ -1,12 +1,12 @@
-import { AvailableTags, getTagGroup as getNewTagGroup, Tag } from "../../model/tags"
+import { AvailableTags, getTagGroup as getNewTagGroup, Tag } from '../../model/tags'
 
-interface addTagGroupParams  { 
-    tags: Tag[] 
-    actualAvailableTags: AvailableTags
+interface addTagGroupParams {
+	tags: Tag[]
+	actualAvailableTags: AvailableTags
 }
 
 export const addTagGroup = ({ tags, actualAvailableTags }: addTagGroupParams): AvailableTags => {
-    const newTagGroup = getNewTagGroup({ tags })
-    actualAvailableTags.unshift(newTagGroup)
-    return actualAvailableTags
+	const newTagGroup = getNewTagGroup({ tags })
+	actualAvailableTags.unshift(newTagGroup)
+	return actualAvailableTags
 }

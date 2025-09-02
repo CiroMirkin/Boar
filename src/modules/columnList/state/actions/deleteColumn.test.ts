@@ -1,6 +1,6 @@
 import { Column } from '../../models/column.ts'
 import { deleteThisColumn } from './deleteColumn.ts'
-import { expect } from 'vitest';
+import { expect } from 'vitest'
 
 describe('Eliminar columna.', () => {
 	test('Se debería eliminar la columna indicada.', () => {
