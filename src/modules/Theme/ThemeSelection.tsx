@@ -46,7 +46,7 @@ export function ThemeSelection() {
 	const handleClick = (e: MouseEvent<HTMLDivElement>) => {
 		const target = e.target as HTMLElement
 		const parentElement = target.parentElement as HTMLElement
-		
+
 		if (target?.id) {
 			toggleTheme(target.id)
 		} else if (parentElement?.id) {

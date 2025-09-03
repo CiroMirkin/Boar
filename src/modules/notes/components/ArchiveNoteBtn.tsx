@@ -30,7 +30,7 @@ export function ArchiveNoteBtn() {
 				}
 			}
 		}
-		
+
 		void archive()
 	}, [libraryOfArchivedNotes, session, note, persistNotes, taskArchived, setTaskArchived])
 

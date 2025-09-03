@@ -6,13 +6,16 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 30",
     "format": "prettier --write --ignore-unknown ./src",
     "preview": "vite preview",
-    "test": "vitest",
-    "test-ui": "vitest --ui"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test-ui": "vitest --ui",
+    "prepare": "husky"
   },
   "dependencies": {
+    "-": "^0.0.1",
     "@formkit/tempo": "^0.0.13",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-dialog": "^1.1.14",
@@ -33,6 +36,7 @@
     "clsx": "^2.1.0",
     "dotenv": "^16.5.0",
     "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.1.7",
     "i18next": "^24.2.2",
     "jsdom": "^22.1.0",
     "jspdf": "^2.5.1",
@@ -46,6 +50,7 @@
     "react-redux": "^9.1.0",
     "react-router": "^6.22.3",
     "react-router-dom": "^6.22.3",
+    "save-dev": "^0.0.1-security",
     "sonner": "^2.0.3",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",

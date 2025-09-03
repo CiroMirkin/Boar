@@ -15,7 +15,7 @@ import { LANGUAGE_LOCALSTORAGE_KEY } from './language'
 export function LanguageToggle() {
 	const [language, setLanguage] = useLocalStorage(LANGUAGE_LOCALSTORAGE_KEY, 'es')
 	const { t, i18n } = useTranslation()
-	
+
 	const preferredLanguage = usePreferredLanguage().slice(0, 2)
 	if (i18n.language !== language) {
 		if (i18n.language === 'en' && preferredLanguage == 'en') {

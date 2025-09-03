@@ -13,7 +13,7 @@ export const useGetUserArchiveFromSupabase = (session: SessionType) => {
 		const fetchUserArchive = async () => {
 			if (session) {
 				const { data } = await supabase.from('archive').select('*')
-				
+
 				if (data != null && data.length === 0) {
 					const userId = getUserId()
 					const { error } = await supabase.from('archive').insert({

@@ -15,13 +15,13 @@ export const useSavedUserBoardInLocalStorage = (dispatch: Dispatch, session: Ses
 		if (!session) {
 			const columnList = new LocalStorageColumnListRepository()
 			dispatch(setColumnList(columnList.getAll()))
-			
+
 			const eachTaskList = new LocalStorageTaskListInEachColumnRepository()
 			dispatch(setTaskListInEachColumn(eachTaskList.getAll()))
-			
+
 			const board = new LocalStorageBoardRepository()
 			dispatch(setBoar(board.getAll().name))
-			
+
 			const archive = new LocalStorageArchiveRepository()
 			dispatch(setArchive(archive.getAll()))
 		}

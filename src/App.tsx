@@ -31,7 +31,7 @@ function App() {
 	const { loadAndSetNotes } = useLibraryOfArchivedNotesLoader()
 	useEffect(() => {
 		loadAndSetNotes(session, dispatch)
-	},[session, dispatch, loadAndSetNotes])
+	}, [session, dispatch, loadAndSetNotes])
 
 	return (
 		<>
