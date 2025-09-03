@@ -19,10 +19,11 @@ export function ArchiveTaskButton({ handleClick }: ArchiveTaskButtonProps) {
 	const dispatch = useDispatch()
 	const data = useDataOfTheTask()
 	const { session } = useSession()
+	const saveArchive = useSaveArchive()
 	const useArchiveTaskAction = () => {
 		dispatch(archiveTask(data))
 		dispatch(deleteTask(data))
-		useSaveArchive({
+		saveArchive({
 			session,
 			archive: getActalArchive(),
 		})
