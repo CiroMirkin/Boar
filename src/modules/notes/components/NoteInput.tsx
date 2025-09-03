@@ -4,7 +4,7 @@ import { defaultNotes, maxLengthOfNotes, Notes as NotesModel } from '../model/no
 import { useSession } from '@/SessionProvider'
 import { getNotesFromSupabase } from '../repository/getNotesFromSupabase'
 import LocalStorageNotesRepository from '../repository/LocalStorageNotesRepository'
-import { useSaveNotes } from '../repository/useSavedNote'
+import { saveNotes } from '../repository/saveNote'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
 import { useNote } from '../NoteProvider'
@@ -15,14 +15,16 @@ export function NoteInput() {
 
 	const { session } = useSession()
 	useEffect(() => {
-		if (!!session) {
+		if (session) {
 			getNotesFromSupabase({ setNotes: setNote })
 		} else {
 			const lg = new LocalStorageNotesRepository()
 			const notesFromLocalStotage = lg.getAll()
-			notesFromLocalStotage == defaultNotes ? lg.save(note) : setNote(notesFromLocalStotage)
+			if (notesFromLocalStotage !== defaultNotes) {
+				setNote(notesFromLocalStotage)
+			}
 		}
-	}, [session])
+	}, [session, setNote])
 
 	const onChange = (newText: NotesModel) => {
 		if (newText.trim().length <= maxLengthOfNotes) {
@@ -36,8 +38,8 @@ export function NoteInput() {
 		toast.error(t('notes.warning_length_toast'))
 	}
 
-	const handleSaveNotes = (newNote: NotesModel) => {
-		useSaveNotes({ session, notes: newNote })
+	const handleSaveNotes = async (newNote: NotesModel) => {
+		await saveNotes({ session, notes: newNote })
 	}
 
 	return (
@@ -47,8 +49,8 @@ export function NoteInput() {
 				onChange={onChange}
 				rows={5}
 				maxRows={18}
-				saveTextCallback={() => {
-					handleSaveNotes(note)
+				saveTextCallback={async () => {
+					await handleSaveNotes(note)
 					toast.success(t('notes.successful_toast'))
 				}}
 			/>

@@ -4,7 +4,7 @@ import { cleanArchive } from '@/modules/taskList/ArchivedTasks/state/archiveRedu
 import { useArchive } from '@/modules/taskList/ArchivedTasks/hooks/useArchive'
 import { downloadArchiveLikePDF } from '@/modules/taskList/ArchivedTasks/downloadArchiveLikePDF'
 import { useTranslation } from 'react-i18next'
-import { useTheme } from '@/App'
+import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { ArchiveContent } from './components/ArchiveContent'
 import { useEffect, useState } from 'react'
 import { useSaveArchive } from './state/useSaveArchive'
@@ -19,16 +19,17 @@ export function ArchivedTasks() {
 	const boardArchive = useArchive()
 
 	const { session } = useSession()
+	const saveArchive = useSaveArchive()
 	useEffect(() => {
 		if (cleanArchiveSignal) {
 			setCleanArchiveSignal(true)
-			useSaveArchive({
+			saveArchive({
 				session,
 				archive: boardArchive,
 				emptyArchive: true,
 			})
 		}
-	}, [boardArchive])
+	}, [boardArchive, cleanArchiveSignal, session, saveArchive])
 
 	const dispatch = useDispatch()
 	const cleanTheWholeArchive = () => {

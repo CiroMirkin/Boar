@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLibraryOfArchivedNotes } from '../LibraryOfArchiveNotes/state/useLibraryOfArchivedNotes'
 import { useSession } from '@/SessionProvider'
-import { useLibraryOfArchivedNotesRepository } from '../LibraryOfArchiveNotes/repository/useLibraryOfArchivedNotesRepository'
-import { useSaveNotes } from '../repository/useSavedNote'
+import { saveNotes } from '../repository/saveNote'
 import { useDispatch } from 'react-redux'
 import { archiveThisNote } from '../LibraryOfArchiveNotes/state/archivedNotesReducer'
 import { useNote } from '../NoteProvider'
@@ -11,6 +10,7 @@ import { defaultNotes } from '../model/notes'
 import { toast } from 'sonner'
 import { Button } from '@/ui/atoms/button'
 import { ArchiveIcon } from '@/ui/atoms/icons'
+import { useLibraryOfArchivedNotesPersister } from '../LibraryOfArchiveNotes/repository/useLibraryOfArchivedNotesPersister'
 
 export function ArchiveNoteBtn() {
 	const [taskArchived, setTaskArchived] = useState(false)
@@ -18,16 +18,21 @@ export function ArchiveNoteBtn() {
 	const { t } = useTranslation()
 
 	const libraryOfArchivedNotes = useLibraryOfArchivedNotes()
+	const { persistNotes } = useLibraryOfArchivedNotesPersister()
 	const { session } = useSession()
 	useEffect(() => {
-		if (note == '' || note == '<br>') {
-			if (taskArchived) {
-				useLibraryOfArchivedNotesRepository(libraryOfArchivedNotes).send(session)
-				useSaveNotes({ notes: note, session, emptyNote: true })
-				setTaskArchived(false)
+		const archive = async () => {
+			if (note == '' || note == '<br>') {
+				if (taskArchived) {
+					await persistNotes(session, libraryOfArchivedNotes)
+					await saveNotes({ notes: note, session, emptyNote: true })
+					setTaskArchived(false)
+				}
 			}
 		}
-	}, [libraryOfArchivedNotes])
+
+		void archive()
+	}, [libraryOfArchivedNotes, session, note, persistNotes, taskArchived, setTaskArchived])
 
 	const dispatch = useDispatch()
 	const handleArchiveNote = () => {

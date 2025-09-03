@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react'
 import { taskModel, emptyTask } from '@/modules/taskList/models/task'
 import { Card, CardContent, CardFooter } from '../molecules/card'
 import { TextWithURL } from '@/ui/atoms/TextWithURL'
-import { useTheme } from '@/App'
+import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { Badge } from '../atoms/badge'
 
 export const TaskContext = createContext(emptyTask)
@@ -28,11 +28,11 @@ export function BlankTask({ data, children }: BlankTaskProps) {
 					<p className={`whitespace-pre-wrap ${colorTheme.taskText}`}>
 						<TextWithURL text={description}></TextWithURL>
 					</p>
-					{!!data.tags && (
+					{data.tags && data.tags.length !== 0 && (
 						<footer className='w-full pt-2 flex gap-1.5 flex-wrap opacity-80 hover:opacity-100'>
 							{data.tags.map((tag) => (
 								<Badge
-									variant={!!tag.variant ? tag.variant : 'inverted'}
+									variant={tag.variant ? tag.variant : 'inverted'}
 									key={tag.id}
 								>
 									{tag.name}

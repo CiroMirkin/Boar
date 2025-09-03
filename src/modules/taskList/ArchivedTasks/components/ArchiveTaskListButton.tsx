@@ -20,11 +20,13 @@ export function ArchiveTaskListButton() {
 
 	const dispatch = useDispatch()
 	const { session } = useSession()
+
+	const saveArchive = useSaveArchive()
 	const archiveTaskList = () => {
 		try {
 			dispatch(archiveTaskListAtLastColumn(taskListInEachColumn))
 			dispatch(cleanTheLastTaskList())
-			useSaveArchive({
+			saveArchive({
 				session,
 				archive: getActalArchive(),
 			})

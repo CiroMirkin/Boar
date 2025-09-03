@@ -3,14 +3,14 @@ import { sendForSaveNotes } from './sendForSaveNotes'
 import { defaultNotes, Notes } from '../model/notes'
 import LocalStorageNotesRepository from './LocalStorageNotesRepository'
 
-interface useSaveBoardParams {
+interface SaveNotesParams {
 	notes: Notes
 	session: SessionType
 	emptyNote?: boolean
 }
 
-export const useSaveNotes = async ({ notes, session, emptyNote = false }: useSaveBoardParams) => {
-	if (!!session) {
+export const saveNotes = async ({ notes, session, emptyNote = false }: SaveNotesParams) => {
+	if (session) {
 		await sendForSaveNotes({ notes })
 	} else if (notes !== defaultNotes || emptyNote) {
 		new LocalStorageNotesRepository().save(notes)

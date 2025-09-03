@@ -43,7 +43,7 @@ export default function TagGroupSelect() {
 				<CheckboxBadge
 					id={tag.id}
 					key={tag.id}
-					variant={!!tag.variant ? tag.variant : 'inverted'}
+					variant={tag.variant ? tag.variant : 'inverted'}
 					checked={
 						selectedTags.filter((selectedTag) => selectedTag == tag.id)[0]
 							? true

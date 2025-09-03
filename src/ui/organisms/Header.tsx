@@ -22,7 +22,7 @@ import { useTranslation } from 'react-i18next'
 import LogInAndLogOutMenuItem from '../../modules/LanguageToggle/LogInAndLogOutMenuItem'
 import { useSession } from '@/SessionProvider'
 import Notes from '@/modules/notes/Notes'
-import { useTheme } from '@/App'
+import { useTheme } from '@/sharedByModules/hooks/useTheme'
 
 interface HeaderProps {
 	title: string

@@ -4,7 +4,7 @@ import { AvailableTags, eisenhowerTagGroup } from '../model/tags'
 import { useTranslation } from 'react-i18next'
 
 export const useAvailableTags = (): AvailableTags => {
-	let availableTags = useSelector((state: RootState) => state.tags.list)
+	const availableTags = useSelector((state: RootState) => state.tags.list)
 	const { t } = useTranslation()
 	return availableTags.map((tagGroup) => {
 		// Se traducen las Tags por defecto

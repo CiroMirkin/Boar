@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/ui/molecules/card'
 import { ArchivedNote as ArchivedNoteModel } from '../model/archivedNote'
-import { useTheme } from '@/App'
+import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import RichTextViewer from '../../RichTextEditor/RichTextViewer'
 
 interface ArchivedNoteProps {
@@ -18,7 +18,7 @@ export default function ArchivedNote({ note }: ArchivedNoteProps) {
 			<CardContent className='h-auto'>
 				<RichTextViewer
 					value={note.note}
-					className={`${task} ${!!taskText ? taskText : text}`}
+					className={`${task} ${taskText ? taskText : text}`}
 					showBorder={false}
 				/>
 			</CardContent>

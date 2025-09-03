@@ -8,9 +8,10 @@ export function ArchiveContent() {
 	const archive = useArchive()
 
 	const { session } = useSession()
+	const saveArchive = useSaveArchive()
 	useEffect(() => {
-		useSaveArchive({ session, archive })
-	}, [archive])
+		saveArchive({ session, archive })
+	}, [archive, session, saveArchive])
 
 	const archiveView = archive.map(({ tasklist, date }) => (
 		<TaskListArchived taskList={tasklist} date={date} key={date} />

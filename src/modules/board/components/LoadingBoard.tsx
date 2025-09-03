@@ -1,4 +1,4 @@
-import { useTheme } from '@/App'
+import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { Spinner } from '@/ui/atoms/spinner'
 
 export function LoadingBoard() {

@@ -6,18 +6,24 @@ import { setArchive } from '@/modules/taskList/ArchivedTasks/state/archiveReduce
 import LocalStorageArchiveRepository from '@/modules/taskList/ArchivedTasks/state/localStorageArchive'
 import LocalStorageTaskListInEachColumnRepository from '@/modules/taskList/state/localStorageTaskLists'
 import { setTaskListInEachColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
+import { SessionType } from '@/SessionProvider'
 import { Dispatch } from '@reduxjs/toolkit'
+import { useEffect } from 'react'
 
-export const setTheUserBoardSavedInLocalStorage = (dispatch: Dispatch) => {
-	const columnList = new LocalStorageColumnListRepository()
-	dispatch(setColumnList(columnList.getAll()))
+export const useSavedUserBoardInLocalStorage = (dispatch: Dispatch, session: SessionType) => {
+	useEffect(() => {
+		if (!session) {
+			const columnList = new LocalStorageColumnListRepository()
+			dispatch(setColumnList(columnList.getAll()))
 
-	const eachTaskList = new LocalStorageTaskListInEachColumnRepository()
-	dispatch(setTaskListInEachColumn(eachTaskList.getAll()))
+			const eachTaskList = new LocalStorageTaskListInEachColumnRepository()
+			dispatch(setTaskListInEachColumn(eachTaskList.getAll()))
 
-	const board = new LocalStorageBoardRepository()
-	dispatch(setBoar(board.getAll().name))
+			const board = new LocalStorageBoardRepository()
+			dispatch(setBoar(board.getAll().name))
 
-	const archive = new LocalStorageArchiveRepository()
-	dispatch(setArchive(archive.getAll()))
+			const archive = new LocalStorageArchiveRepository()
+			dispatch(setArchive(archive.getAll()))
+		}
+	}, [session, dispatch])
 }
