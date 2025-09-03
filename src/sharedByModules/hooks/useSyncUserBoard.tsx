@@ -5,9 +5,10 @@ import { ColumnList, defaultColumnList } from '@/modules/columnList/models/colum
 import { setColumnList } from '@/modules/columnList/state/columnListReducer'
 import { emptyTaskListInEachColumn, TaskListInEachColumn } from '@/modules/taskList/models/taskList'
 import { setTaskListInEachColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
+import { SessionType } from '@/SessionProvider'
 import { store } from '@/store'
 import { Dispatch } from '@reduxjs/toolkit'
-import { Session } from '@supabase/supabase-js'
+import { useEffect } from 'react'
 
 const sendForSaveUserBoard = async (userBoard: UserBoard) => {
 	try {
@@ -63,16 +64,32 @@ export const checkIfUserHasTheDefaultBoard = async (): Promise<boolean> => {
 }
 
 /** Recupera el tablero del usuario de Supabase y si no existe ninguno guarda el tablero actual en Supabase. */
-export const useSyncUserBoard = async (dispatch: Dispatch, session: Session) => {
-	const actualUserBoard = await getActualUserBoard()
-	const { data } = await supabase.from('boards').select('*')
+export const useSyncUserBoard = (dispatch: Dispatch, session: SessionType) => {
+	useEffect(() => {
+		const syncBoard = async () => {
+		if (!session) return
 
-	if (session) {
-		if (data != null && data.length === 0) {
-			sendForSaveUserBoard(actualUserBoard)
-		} else if (data != null) {
+		try {
+			const actualUserBoard = await getActualUserBoard()
+			const { data, error } = await supabase.from('boards').select('*')
+			
+			if (error) {
+			console.error('Error fetching boards:', error)
+			return
+			}
+
+			if (data != null && data.length === 0) {
+			await sendForSaveUserBoard(actualUserBoard)
+			} 
+			else if (data != null && data.length > 0) {
 			const savedUserBoard = data[0]
 			changeActualBoardBySavedBoard({ dispatch, savedUserBoard })
+			}
+		} catch (error) {
+			console.error('Error syncing user board:', error)
 		}
-	}
+		}
+
+		syncBoard()
+	}, [session, dispatch])
 }

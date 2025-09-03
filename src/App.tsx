@@ -16,6 +16,7 @@ import { useSavedUserBoardInLocalStorage } from './sharedByModules/utils/useSave
 import { useGetUserArchiveFromSupabase } from './modules/taskList/ArchivedTasks/state/useGetUserArchiveFromSupabase'
 import { useLibraryOfArchivedNotesLoader } from './modules/notes/LibraryOfArchiveNotes/repository/useLibraryOfArchivedNotesLoader'
 import { useEffect } from 'react'
+import { useSyncUserBoard } from './sharedByModules/hooks/useSyncUserBoard'
 
 function App() {
 	useSetLanguageSaved()
@@ -28,6 +29,7 @@ function App() {
 	const { session } = useSession()
 	useSavedUserBoardInLocalStorage(dispatch, session)
 	useGetUserArchiveFromSupabase(session)
+	useSyncUserBoard(dispatch, session)
 	const { loadAndSetNotes } = useLibraryOfArchivedNotesLoader()
 	useEffect(() => {
 		loadAndSetNotes(session, dispatch)
