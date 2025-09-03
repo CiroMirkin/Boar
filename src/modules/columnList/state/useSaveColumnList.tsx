@@ -13,10 +13,10 @@ export const useSaveColumnList = ({ columnList }: useSaveColumnListParams) => {
 	useEffect(() => {
 		const localStorage = new LocalStorageColumnListRepository()
 		const localColumnList = localStorage.getAll()
-		
+
 		if (JSON.stringify(columnList) !== JSON.stringify(defaultColumnList)) {
 			const isNotTheLocalColumnList =
-			JSON.stringify(columnList) !== JSON.stringify(localColumnList)
+				JSON.stringify(columnList) !== JSON.stringify(localColumnList)
 			if (!!session && isNotTheLocalColumnList) {
 				sendForSaveColumnList(columnList)
 			} else {

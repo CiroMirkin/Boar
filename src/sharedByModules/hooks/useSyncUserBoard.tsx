@@ -67,7 +67,7 @@ export const useSyncUserBoard = async (dispatch: Dispatch, session: Session) => 
 	const actualUserBoard = await getActualUserBoard()
 	const { data } = await supabase.from('boards').select('*')
 
-	if(session) {
+	if (session) {
 		if (data != null && data.length === 0) {
 			sendForSaveUserBoard(actualUserBoard)
 		} else if (data != null) {

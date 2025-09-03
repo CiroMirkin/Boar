@@ -4,7 +4,7 @@ import { RootState } from '@/store'
 
 export const useActualTagGroup = (): TagGroup => {
 	const actualTagGroup = useSelector((state: RootState) => state.tags.actualTagGroup)
-	return ( actualTagGroup && JSON.stringify(actualTagGroup).length > 2 ) 
-		? actualTagGroup 
+	return actualTagGroup && JSON.stringify(actualTagGroup).length > 2
+		? actualTagGroup
 		: emptyTagGroup
 }

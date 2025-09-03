@@ -13,10 +13,11 @@ export const useLibraryOfArchivedNotesLoader = () => {
 			dispatch(setArchivedNotes(notes))
 			return
 		}
-		
+
 		const notes = await new LibraryOfArchivedNotesLocalStorageRepository().getAll()
-		const isNotDefault = JSON.stringify(notes.archive) !== JSON.stringify(defaultLibraryOfArchivedNotes.archive)
-		
+		const isNotDefault =
+			JSON.stringify(notes.archive) !== JSON.stringify(defaultLibraryOfArchivedNotes.archive)
+
 		if (isNotDefault) {
 			dispatch(setArchivedNotes(notes))
 		}

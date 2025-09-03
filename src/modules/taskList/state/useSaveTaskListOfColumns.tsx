@@ -11,21 +11,21 @@ interface useSaveTaskListOfColumnsParams {
 }
 
 /** Guarda la entidad TaskListInEachColumn */
-export const useSaveTaskListOfColumns = ({
-	data,
-	session,
-}: useSaveTaskListOfColumnsParams) => {
+export const useSaveTaskListOfColumns = ({ data, session }: useSaveTaskListOfColumnsParams) => {
 	const taskListInEachColumnRef = useRef(emptyTaskListInEachColumn)
 
 	useEffect(() => {
 		const taskListInEachColumnLikeString = JSON.stringify(data)
 		// Si la lista de tareas actualmente esta vacia y anteriormente contuvo informacion
-		if (taskListInEachColumnLikeString == JSON.stringify(emptyTaskListInEachColumn) && taskListInEachColumnLikeString !== JSON.stringify(taskListInEachColumnRef.current)) {
-				save({
-					session,
-					data: data,
-					emptyData: true,
-				})
+		if (
+			taskListInEachColumnLikeString == JSON.stringify(emptyTaskListInEachColumn) &&
+			taskListInEachColumnLikeString !== JSON.stringify(taskListInEachColumnRef.current)
+		) {
+			save({
+				session,
+				data: data,
+				emptyData: true,
+			})
 		} else {
 			save({ session, data: data })
 		}
@@ -33,11 +33,7 @@ export const useSaveTaskListOfColumns = ({
 	}, [data])
 }
 
-const save = ({
-	data,
-	session,
-	emptyData = false,
-}: useSaveTaskListOfColumnsParams) => {
+const save = ({ data, session, emptyData = false }: useSaveTaskListOfColumnsParams) => {
 	const localStorage = new LocalStorageTaskListInEachColumnRepository()
 	const localTaskListOfColumns = localStorage.getAll()
 
