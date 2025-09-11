@@ -19,11 +19,16 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 	const { t } = useTranslation()
 	const [showChangeColumnNameInput, setShowChangeColumnNameInput] = useState(false)
 	const [columnName, setColumnName] = useState(column.name)
+
+	const nameToShow = showChangeColumnNameInput ? columnName : column.name
 	const updateBoardData = useDispatch()
 
 	const editColumnNameHandle = () => {
 		if (showChangeColumnNameInput) {
 			updateBoardData(changeColumnName({ column, newColumnName: columnName }))
+		} 
+		else {
+			setColumnName(column.name)
 		}
 		setShowChangeColumnNameInput(!showChangeColumnNameInput)
 	}
@@ -56,7 +61,7 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 		>
 			<Input
 				className='md:col-span-3 col-span-2'
-				value={columnName}
+				value={nameToShow}
 				onChange={(e) =>
 					isThisColumnNameWithinTheLimitOfLetters(e.target.value) &&
 					setColumnName(e.target.value)
