@@ -3,8 +3,8 @@ import { changeBoardName } from '@/modules/board/state/actions/changeBoardName'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 interface InitialState {
-	board: boardModel,
-	isLoading: boolean,
+	board: boardModel
+	isLoading: boolean
 }
 const initialState: InitialState = {
 	board: defaultBoard,
@@ -28,5 +28,5 @@ export const boardSlice = createSlice({
 	},
 })
 
-export const { changeTheNameOfTheBoard, setBoar, setIsLoading, } = boardSlice.actions
+export const { changeTheNameOfTheBoard, setBoar, setIsLoading } = boardSlice.actions
 export default boardSlice.reducer
