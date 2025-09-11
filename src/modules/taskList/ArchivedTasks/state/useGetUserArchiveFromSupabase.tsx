@@ -1,6 +1,6 @@
 import { supabase } from '@/lib/supabase'
 import { setArchive } from './archiveReducer'
-import { getUserId } from '@/sharedByModules/hooks/useSyncUserBoard'
+import { getUserId } from '@/sharedByModules/hooks/useSyncBoard'
 import { store } from '@/store'
 import { SessionType } from '@/SessionProvider'
 import { useEffect } from 'react'
