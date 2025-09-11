@@ -26,7 +26,7 @@ function App() {
 
 	const dispatch = useDispatch()
 	const { session } = useSession()
-	
+
 	useSyncUserBoard()
 	useGetUserArchiveFromSupabase(session)
 	const { loadAndSetNotes } = useLibraryOfArchivedNotesLoader()
