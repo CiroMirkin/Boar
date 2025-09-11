@@ -2,6 +2,8 @@ import { setIsLoading, setBoar } from '@/modules/board/state/boardReducer'
 import LocalStorageBoardRepository from '@/modules/board/state/localstorageBoard'
 import { setColumnList } from '@/modules/columnList/state/columnListReducer'
 import LocalStorageColumnListRepository from '@/modules/columnList/state/localStorageColumnList'
+import { useNote } from '@/modules/notes/NoteProvider'
+import LocalStorageNotesRepository from '@/modules/notes/repository/LocalStorageNotesRepository'
 import { setArchive } from '@/modules/taskList/ArchivedTasks/state/archiveReducer'
 import LocalStorageArchiveRepository from '@/modules/taskList/ArchivedTasks/state/localStorageArchive'
 import LocalStorageTaskListInEachColumnRepository from '@/modules/taskList/state/localStorageTaskLists'
@@ -15,12 +17,13 @@ import { useDispatch } from 'react-redux'
 export const useSyncUserBoard = () => {
 	const dispatch = useDispatch()
 	const { session } = useSession()
+	const { setNote } = useNote()
 
 	useEffect(() => {
 		const initialStorage = async () => {
 			if (session) {
 				dispatch(setIsLoading(true))
-				await syncBoard(dispatch, session)
+				await syncBoard({ dispatch, session, setNote })
 				dispatch(setIsLoading(false))
 			} else {
 				const columnList = new LocalStorageColumnListRepository()
@@ -34,9 +37,13 @@ export const useSyncUserBoard = () => {
 
 				const archive = new LocalStorageArchiveRepository()
 				dispatch(setArchive(archive.getAll()))
+
+				const notes = new LocalStorageNotesRepository()
+				setNote(notes.getAll())
+
 				dispatch(setIsLoading(false))
 			}
 		}
 		initialStorage()
-	}, [session, dispatch])
+	}, [session, dispatch, setNote])
 }
