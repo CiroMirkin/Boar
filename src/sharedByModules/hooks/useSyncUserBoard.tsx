@@ -1,4 +1,4 @@
-import { setBoar } from '@/modules/board/state/boardReducer'
+import { setIsLoading, setBoar } from '@/modules/board/state/boardReducer'
 import LocalStorageBoardRepository from '@/modules/board/state/localstorageBoard'
 import { setColumnList } from '@/modules/columnList/state/columnListReducer'
 import LocalStorageColumnListRepository from '@/modules/columnList/state/localStorageColumnList'
@@ -19,7 +19,9 @@ export const useSyncUserBoard = () => {
 	useEffect(() => {
 		const initialStorage = async () => {
 			if (session) {
+				dispatch(setIsLoading(true))
 				await syncBoard(dispatch, session)
+				dispatch(setIsLoading(false))
 			} else {
 				const columnList = new LocalStorageColumnListRepository()
 				dispatch(setColumnList(columnList.getAll()))
@@ -32,6 +34,7 @@ export const useSyncUserBoard = () => {
 
 				const archive = new LocalStorageArchiveRepository()
 				dispatch(setArchive(archive.getAll()))
+				dispatch(setIsLoading(false))
 			}
 		}
 		initialStorage()
