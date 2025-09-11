@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import { RootState } from '@/store'
-import { AvailableTags, eisenhowerTagGroup } from '../model/tags'
+import { AvailableTags } from '../model/tags'
+import { eisenhowerTagGroup } from "../model/defaultTags"
 import { useTranslation } from 'react-i18next'
 
 export const useAvailableTags = (): AvailableTags => {

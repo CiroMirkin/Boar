@@ -4,8 +4,8 @@ import {
 	Tag,
 	AvailableTags,
 	TagGroup,
-	eisenhowerTagGroup,
 } from '../model/tags'
+import { eisenhowerTagGroup } from "../model/defaultTags"
 import { addTagGroup } from './actions/addTagGroup'
 
 interface InitialState {
