@@ -69,7 +69,8 @@ export const checkIfUserHasTheDefaultBoard = async (): Promise<boolean> => {
 	return (
 		actualUserBoard.name === defaultBoard.name &&
 		JSON.stringify(actualUserBoard.column_list) === JSON.stringify(defaultColumnList) &&
-		JSON.stringify(actualUserBoard.task_list_in_each_column) === JSON.stringify(emptyTaskListInEachColumn) &&
+		JSON.stringify(actualUserBoard.task_list_in_each_column) ===
+			JSON.stringify(emptyTaskListInEachColumn) &&
 		actualUserBoard.notes === defaultNotes
 	)
 }
