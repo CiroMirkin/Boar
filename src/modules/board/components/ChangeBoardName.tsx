@@ -1,5 +1,5 @@
 import { Input } from '@/ui/atoms/input'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { Button } from '@/ui/atoms/button'
 import { useDispatch } from 'react-redux'
 import { changeTheNameOfTheBoard } from '@/modules/board/state/boardReducer'
@@ -12,25 +12,21 @@ import {
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { toast } from 'sonner'
 import { useBoard } from '@/modules/board/hooks/useBoard'
-import { BoardRepository } from '@/modules/board/models/boardRepository'
-import LocalStorageBoardRepository from '@/modules/board/state/localstorageBoard'
 import { useTranslation } from 'react-i18next'
 import { useSession } from '@/SessionProvider'
 import { SettingSection } from '@/ui/organisms/SettingSection'
-
-const boardRepository: BoardRepository = new LocalStorageBoardRepository()
+import { useSaveBoard } from '../state/useSaveBoard'
 
 export function ChangeBoardName() {
 	const boardData = useBoard()
-
 	const { session } = useSession()
-	useEffect(() => {
-		// Si el usuario no inicio session (!session)
-		if (!session) boardRepository.save(boardData)
-	}, [boardData])
+
+	useSaveBoard({ data: boardData, session })
 
 	const [boardName, setBoardName] = useState(boardData.name)
 	const [inputDisabled, setInputDisabled] = useState(true)
+
+	const nameToShow = inputDisabled ? boardData.name : boardName
 
 	const dispatch = useDispatch()
 	const changeName = () => dispatch(changeTheNameOfTheBoard(boardName))
@@ -38,6 +34,7 @@ export function ChangeBoardName() {
 	const handleClick = () => {
 		try {
 			if (inputDisabled) {
+				setBoardName(boardData.name)
 				setInputDisabled(false)
 			} else if (isThisBoardNameValid(boardName)) {
 				changeName()
@@ -69,7 +66,7 @@ export function ChangeBoardName() {
 					<Input
 						type='text'
 						id='board-name'
-						value={boardName}
+						value={nameToShow}
 						onChange={handleChange}
 						disabled={inputDisabled}
 						placeholder={t('settings.board.change_board_name_input_placeholder')}

@@ -1,4 +1,4 @@
-import { getUserId } from '@/sharedByModules/hooks/useSyncUserBoard'
+import { getUserId } from '@/sharedByModules/hooks/useSyncBoard'
 import { TaskListInEachColumn } from '../models/taskList'
 import { supabase } from '@/lib/supabase'
 
