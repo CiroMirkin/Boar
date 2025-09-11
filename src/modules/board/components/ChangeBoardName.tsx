@@ -6,6 +6,7 @@ import { changeTheNameOfTheBoard } from '@/modules/board/state/boardReducer'
 import { PencilIcon } from '@/ui/atoms/icons'
 import { Label } from '@/ui/atoms/label'
 import {
+	defaultBoard,
 	isThisBoardNameValid,
 	isThisBoardNameWithinTheLimitOfLetters,
 } from '@/modules/board/models/board'
@@ -17,6 +18,7 @@ import LocalStorageBoardRepository from '@/modules/board/state/localstorageBoard
 import { useTranslation } from 'react-i18next'
 import { useSession } from '@/SessionProvider'
 import { SettingSection } from '@/ui/organisms/SettingSection'
+import { sendForSaveBoard } from '../state/sendForSaveBoard'
 
 const boardRepository: BoardRepository = new LocalStorageBoardRepository()
 
@@ -25,9 +27,18 @@ export function ChangeBoardName() {
 
 	const { session } = useSession()
 	useEffect(() => {
-		// Si el usuario no inicio session (!session)
-		if (!session) boardRepository.save(boardData)
-	}, [boardData])
+		const localBoard = boardRepository.getAll()
+		const isNotTheLocalBoard = JSON.stringify(boardData) !== JSON.stringify(localBoard)
+		const isNotTheDefaultBoard = JSON.stringify(boardData) !== JSON.stringify(defaultBoard)
+
+		if (isNotTheDefaultBoard) {
+			if (session && isNotTheLocalBoard) {
+				sendForSaveBoard(boardData)
+			} else if (!session) {
+				boardRepository.save(boardData)
+			}
+		}
+	}, [boardData, session])
 
 	const [boardName, setBoardName] = useState(boardData.name)
 	const [inputDisabled, setInputDisabled] = useState(true)
