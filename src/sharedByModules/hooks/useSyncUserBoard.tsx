@@ -1,78 +1,39 @@
-import { supabase } from '@/lib/supabase'
-import { defaultBoard } from '@/modules/board/models/board'
-import { setBoar } from '@/modules/board/state/boardReducer'
-import { ColumnList, defaultColumnList } from '@/modules/columnList/models/columnList'
-import { setColumnList } from '@/modules/columnList/state/columnListReducer'
-import { emptyTaskListInEachColumn, TaskListInEachColumn } from '@/modules/taskList/models/taskList'
-import { setTaskListInEachColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
-import { store } from '@/store'
-import { Dispatch } from '@reduxjs/toolkit'
-import { Session } from '@supabase/supabase-js'
+import { setBoar } from '@/modules/board/state/boardReducer';
+import LocalStorageBoardRepository from '@/modules/board/state/localstorageBoard';
+import { setColumnList } from '@/modules/columnList/state/columnListReducer';
+import LocalStorageColumnListRepository from '@/modules/columnList/state/localStorageColumnList';
+import { setArchive } from '@/modules/taskList/ArchivedTasks/state/archiveReducer';
+import LocalStorageArchiveRepository from '@/modules/taskList/ArchivedTasks/state/localStorageArchive';
+import LocalStorageTaskListInEachColumnRepository from '@/modules/taskList/state/localStorageTaskLists';
+import { setTaskListInEachColumn } from '@/modules/taskList/state/taskListInEachColumnReducer';
 
-const sendForSaveUserBoard = async (userBoard: UserBoard) => {
-	try {
-		const { error } = await supabase.from('boards').insert(userBoard)
-		if (error) throw error
-	} catch (e) {
-		console.error(e)
-	}
-}
+import { syncBoard } from './useSyncBoard';
+import { useSession } from '@/SessionProvider';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
-interface UserBoard {
-	name: string
-	column_list: ColumnList
-	task_list_in_each_column: TaskListInEachColumn
-	user_id: string | undefined
-}
+export const useSyncUserBoard = () => {
+	const dispatch = useDispatch();
+	const { session } = useSession();
 
-const changeActualBoardBySavedBoard = ({
-	dispatch,
-	savedUserBoard,
-}: {
-	dispatch: Dispatch
-	savedUserBoard: UserBoard
-}) => {
-	dispatch(setTaskListInEachColumn(savedUserBoard.task_list_in_each_column))
-	dispatch(setBoar(savedUserBoard.name))
-	dispatch(setColumnList(savedUserBoard.column_list))
-}
+	useEffect(() => {
+		const initialStorage = async () => {
+			if (session) {
+				await syncBoard(dispatch, session);
+			} else {
+				const columnList = new LocalStorageColumnListRepository();
+				dispatch(setColumnList(columnList.getAll()));
 
-export const getUserId = async () => {
-	const {
-		data: { user },
-	} = await supabase.auth.getUser()
-	return user?.id
-}
+				const eachTaskList = new LocalStorageTaskListInEachColumnRepository();
+				dispatch(setTaskListInEachColumn(eachTaskList.getAll()));
 
-const getActualUserBoard = async (): Promise<UserBoard> => ({
-	name: store.getState().board.board.name,
-	column_list: store.getState().columnList.list,
-	task_list_in_each_column: store.getState().taskListInEachColumn.list,
-	user_id: await getUserId(),
-})
+				const board = new LocalStorageBoardRepository();
+				dispatch(setBoar(board.getAll().name));
 
-/** @returns True si el usuario tiene el tablero por defecto (vacio) */
-export const checkIfUserHasTheDefaultBoard = async (): Promise<boolean> => {
-	const actualUserBoard = await getActualUserBoard()
-	return (
-		actualUserBoard.name === defaultBoard.name &&
-		JSON.stringify(actualUserBoard.column_list) === JSON.stringify(defaultColumnList) &&
-		JSON.stringify(actualUserBoard.task_list_in_each_column) ===
-			JSON.stringify(emptyTaskListInEachColumn)
-	)
-}
-
-/** Recupera el tablero del usuario de Supabase y si no existe ninguno guarda el tablero actual en Supabase. */
-export const useSyncUserBoard = async (dispatch: Dispatch, session: Session) => {
-	const actualUserBoard = await getActualUserBoard()
-	const { data } = await supabase.from('boards').select('*')
-
-	if (session) {
-		if (data != null && data.length === 0) {
-			sendForSaveUserBoard(actualUserBoard)
-		} else if (data != null) {
-			const savedUserBoard = data[0]
-			changeActualBoardBySavedBoard({ dispatch, savedUserBoard })
-		}
-	}
-}
+				const archive = new LocalStorageArchiveRepository();
+				dispatch(setArchive(archive.getAll()));
+			}
+		};
+		initialStorage();
+	}, [session, dispatch]);
+};

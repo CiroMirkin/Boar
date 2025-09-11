@@ -12,7 +12,7 @@ import { useSetLanguageSaved } from './modules/LanguageToggle/useSetLanguageSave
 import { useSession } from './SessionProvider'
 import { useDispatch } from 'react-redux'
 import { NoteProvider } from './modules/notes/NoteProvider'
-import { useSavedUserBoardInLocalStorage } from './sharedByModules/utils/useSavedUserBoardInLocalStorage'
+import { useSyncUserBoard } from './sharedByModules/hooks/useSyncUserBoard'
 import { useGetUserArchiveFromSupabase } from './modules/taskList/ArchivedTasks/state/useGetUserArchiveFromSupabase'
 import { useLibraryOfArchivedNotesLoader } from './modules/notes/LibraryOfArchiveNotes/repository/useLibraryOfArchivedNotesLoader'
 import { useEffect } from 'react'
@@ -26,7 +26,8 @@ function App() {
 
 	const dispatch = useDispatch()
 	const { session } = useSession()
-	useSavedUserBoardInLocalStorage(dispatch, session)
+	
+	useSyncUserBoard()
 	useGetUserArchiveFromSupabase(session)
 	const { loadAndSetNotes } = useLibraryOfArchivedNotesLoader()
 	useEffect(() => {
