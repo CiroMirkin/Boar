@@ -43,12 +43,15 @@ export function ChangeBoardName() {
 	const [boardName, setBoardName] = useState(boardData.name)
 	const [inputDisabled, setInputDisabled] = useState(true)
 
+	const nameToShow = inputDisabled ? boardData.name : boardName
+
 	const dispatch = useDispatch()
 	const changeName = () => dispatch(changeTheNameOfTheBoard(boardName))
 
 	const handleClick = () => {
 		try {
 			if (inputDisabled) {
+				setBoardName(boardData.name)
 				setInputDisabled(false)
 			} else if (isThisBoardNameValid(boardName)) {
 				changeName()
@@ -80,7 +83,7 @@ export function ChangeBoardName() {
 					<Input
 						type='text'
 						id='board-name'
-						value={boardName}
+						value={nameToShow}
 						onChange={handleChange}
 						disabled={inputDisabled}
 						placeholder={t('settings.board.change_board_name_input_placeholder')}
