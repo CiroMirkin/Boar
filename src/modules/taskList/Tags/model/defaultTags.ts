@@ -1,5 +1,4 @@
-import { TagGroup } from "./tags";
-
+import { TagGroup } from './tags'
 
 // Este grupo de etiquetas tiene traduccion, tenelo en cuenta al realizar cambios
 
@@ -25,32 +24,32 @@ export const eisenhowerTagGroup: TagGroup = {
 }
 
 export const devTagGroup: TagGroup = {
-		id: 'Dev',
-		tags: [
-			{
-				id: 'Importante',
-				name: 'Importante',
-				variant: 'purple-subtle',
-			},
-			{
-				id: 'Necesario',
-				name: 'Necesario',
-				variant: 'green-subtle',
-			},
-			{
-				id: 'Urgente',
-				name: 'Urgente',
-				variant: 'red-subtle',
-			},
-			{
-				id: 'Explorar',
-				name: 'Explorar',
-				variant: 'blue-subtle',
-			},
-        	{
-				id: 'Resolver',
-				name: 'Resolver',
-				variant: 'amber-subtle',
-            },
-		],
+	id: 'Dev',
+	tags: [
+		{
+			id: 'Importante',
+			name: 'Importante',
+			variant: 'purple-subtle',
+		},
+		{
+			id: 'Necesario',
+			name: 'Necesario',
+			variant: 'green-subtle',
+		},
+		{
+			id: 'Urgente',
+			name: 'Urgente',
+			variant: 'red-subtle',
+		},
+		{
+			id: 'Explorar',
+			name: 'Explorar',
+			variant: 'blue-subtle',
+		},
+		{
+			id: 'Resolver',
+			name: 'Resolver',
+			variant: 'amber-subtle',
+		},
+	],
 }

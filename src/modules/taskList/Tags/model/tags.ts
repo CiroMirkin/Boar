@@ -1,4 +1,4 @@
-import { devTagGroup, eisenhowerTagGroup } from "./defaultTags"
+import { devTagGroup, eisenhowerTagGroup } from './defaultTags'
 
 type TagVariants =
 	| 'gray'
@@ -37,10 +37,7 @@ export const emptyTagGroup = {
 
 export type AvailableTags = TagGroup[]
 
-export const defaultAvialableTags: AvailableTags = [
-	{ ...eisenhowerTagGroup },
-	{ ...devTagGroup },
-]
+export const defaultAvialableTags: AvailableTags = [{ ...eisenhowerTagGroup }, { ...devTagGroup }]
 
 export const getTagGroup = ({ tags }: { tags: Tag[] }): TagGroup => {
 	return {
