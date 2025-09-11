@@ -26,8 +26,7 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 	const editColumnNameHandle = () => {
 		if (showChangeColumnNameInput) {
 			updateBoardData(changeColumnName({ column, newColumnName: columnName }))
-		} 
-		else {
+		} else {
 			setColumnName(column.name)
 		}
 		setShowChangeColumnNameInput(!showChangeColumnNameInput)

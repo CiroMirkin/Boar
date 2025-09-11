@@ -1,44 +1,27 @@
 import { Input } from '@/ui/atoms/input'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { Button } from '@/ui/atoms/button'
 import { useDispatch } from 'react-redux'
 import { changeTheNameOfTheBoard } from '@/modules/board/state/boardReducer'
 import { PencilIcon } from '@/ui/atoms/icons'
 import { Label } from '@/ui/atoms/label'
 import {
-	defaultBoard,
 	isThisBoardNameValid,
 	isThisBoardNameWithinTheLimitOfLetters,
 } from '@/modules/board/models/board'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { toast } from 'sonner'
 import { useBoard } from '@/modules/board/hooks/useBoard'
-import { BoardRepository } from '@/modules/board/models/boardRepository'
-import LocalStorageBoardRepository from '@/modules/board/state/localstorageBoard'
 import { useTranslation } from 'react-i18next'
 import { useSession } from '@/SessionProvider'
 import { SettingSection } from '@/ui/organisms/SettingSection'
-import { sendForSaveBoard } from '../state/sendForSaveBoard'
-
-const boardRepository: BoardRepository = new LocalStorageBoardRepository()
+import { useSaveBoard } from '../state/useSaveBoard'
 
 export function ChangeBoardName() {
 	const boardData = useBoard()
-
 	const { session } = useSession()
-	useEffect(() => {
-		const localBoard = boardRepository.getAll()
-		const isNotTheLocalBoard = JSON.stringify(boardData) !== JSON.stringify(localBoard)
-		const isNotTheDefaultBoard = JSON.stringify(boardData) !== JSON.stringify(defaultBoard)
 
-		if (isNotTheDefaultBoard) {
-			if (session && isNotTheLocalBoard) {
-				sendForSaveBoard(boardData)
-			} else if (!session) {
-				boardRepository.save(boardData)
-			}
-		}
-	}, [boardData, session])
+	useSaveBoard({ data: boardData, session })
 
 	const [boardName, setBoardName] = useState(boardData.name)
 	const [inputDisabled, setInputDisabled] = useState(true)
