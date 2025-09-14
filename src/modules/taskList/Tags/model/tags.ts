@@ -1,3 +1,5 @@
+import { devTagGroup, eisenhowerTagGroup } from './defaultTags'
+
 type TagVariants =
 	| 'gray'
 	| 'gray-subtle'
@@ -33,58 +35,9 @@ export const emptyTagGroup = {
 	tags: [],
 }
 
-// Este grupo de etiquetas tiene traduccion, tenelo en cuenta al realizar cambios
-export const eisenhowerTagGroup: TagGroup = {
-	id: 'Eisenhower',
-	tags: [
-		{
-			id: '1',
-			name: 'Importante',
-			variant: 'purple-subtle',
-		},
-		{
-			id: '2',
-			name: 'Necesario',
-			variant: 'green-subtle',
-		},
-		{
-			id: '3',
-			name: 'Urgente',
-			variant: 'red-subtle',
-		},
-	],
-}
-
 export type AvailableTags = TagGroup[]
 
-export const defaultAvialableTags: AvailableTags = [
-	{ ...eisenhowerTagGroup },
-	{
-		id: 'Others',
-		tags: [
-			{
-				id: 'Importante',
-				name: 'Importante',
-				variant: 'purple-subtle',
-			},
-			{
-				id: 'Urgente',
-				name: 'Urgente',
-				variant: 'red-subtle',
-			},
-			{
-				id: 'Necesario',
-				name: 'Necesario',
-				variant: 'green-subtle',
-			},
-			{
-				id: 'Explorar',
-				name: 'Explorar',
-				variant: 'blue-subtle',
-			},
-		],
-	},
-]
+export const defaultAvialableTags: AvailableTags = [{ ...eisenhowerTagGroup }, { ...devTagGroup }]
 
 export const getTagGroup = ({ tags }: { tags: Tag[] }): TagGroup => {
 	return {

@@ -43,6 +43,14 @@
 		"urgent_tag": "Urgent"
 	},
 
+	"dev_tags": {
+		"important_tag": "Important",
+		"necessary_tag": "Necessary",
+		"urgent_tag": "Urgent",
+		"explore_tag": "Explore",
+		"resolve_tag": "Resolve"
+	},
+
 	"task_buttons": {
 		"next_btn": "Forward",
 		"prev_btn": "Backward",
