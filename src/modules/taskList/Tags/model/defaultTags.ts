@@ -7,17 +7,17 @@ export const eisenhowerTagGroup: TagGroup = {
 	tags: [
 		{
 			id: '1',
-			name: 'Importante',
+			name: '',
 			variant: 'purple-subtle',
 		},
 		{
 			id: '2',
-			name: 'Necesario',
+			name: '',
 			variant: 'green-subtle',
 		},
 		{
 			id: '3',
-			name: 'Urgente',
+			name: '',
 			variant: 'red-subtle',
 		},
 	],
