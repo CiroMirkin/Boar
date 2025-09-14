@@ -5,13 +5,17 @@ import { useDispatch } from 'react-redux'
 import { Tag } from '../model/tags'
 import { setUserSelectedTags } from '../state/tagsReducer'
 import { useUserSelectedTags } from '../hooks/useUserSelectedTags'
+import { translateTagGroup } from '../hooks/useAvailableTags'
+import { useTranslation } from 'react-i18next'
 
 export default function TagGroupSelect() {
 	const [selectedTags, setSelectedTags] = useState<string[]>([])
 	const actualTagGroup = useActualTagGroup()
+	const { t } = useTranslation()
+	const translatedTagGroup = translateTagGroup(actualTagGroup, t)
 
 	const getFullSelectedTags = (listOfTagIds: string[]): Tag[] => {
-		return actualTagGroup.tags.filter((tag) => listOfTagIds.includes(tag.id))
+		return translatedTagGroup.tags.filter((tag) => listOfTagIds.includes(tag.id))
 	}
 
 	const dispatch = useDispatch()
@@ -39,7 +43,7 @@ export default function TagGroupSelect() {
 
 	return (
 		<div className='flex flex-wrap gap-3'>
-			{actualTagGroup.tags.map((tag) => (
+			{translatedTagGroup.tags.map((tag) => (
 				<CheckboxBadge
 					id={tag.id}
 					key={tag.id}

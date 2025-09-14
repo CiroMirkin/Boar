@@ -1,11 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import {
-	defaultAvialableTags,
-	Tag,
-	AvailableTags,
-	TagGroup,
-	eisenhowerTagGroup,
-} from '../model/tags'
+import { defaultAvialableTags, Tag, AvailableTags, TagGroup } from '../model/tags'
+import { eisenhowerTagGroup } from '../model/defaultTags'
 import { addTagGroup } from './actions/addTagGroup'
 
 interface InitialState {
