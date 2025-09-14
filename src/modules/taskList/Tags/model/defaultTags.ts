@@ -23,32 +23,35 @@ export const eisenhowerTagGroup: TagGroup = {
 	],
 }
 
+/**
+ * Este grupo de etiquetas tiene traduccion, tenelo en cuenta al realizar cambios.
+ */
 export const devTagGroup: TagGroup = {
 	id: 'Dev',
 	tags: [
 		{
 			id: 'Importante',
-			name: 'Importante',
+			name: '',
 			variant: 'purple-subtle',
 		},
 		{
 			id: 'Necesario',
-			name: 'Necesario',
+			name: '',
 			variant: 'green-subtle',
 		},
 		{
 			id: 'Urgente',
-			name: 'Urgente',
+			name: '',
 			variant: 'red-subtle',
 		},
 		{
 			id: 'Explorar',
-			name: 'Explorar',
+			name: '',
 			variant: 'blue-subtle',
 		},
 		{
 			id: 'Resolver',
-			name: 'Resolver',
+			name: '',
 			variant: 'amber-subtle',
 		},
 	],
