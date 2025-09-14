@@ -4,6 +4,7 @@ import { Card, CardContent, CardFooter } from '../molecules/card'
 import { TextWithURL } from '@/ui/atoms/TextWithURL'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { Badge } from '../atoms/badge'
+import { useAvailableTags } from '@/modules/taskList/Tags/hooks/useAvailableTags'
 
 export const TaskContext = createContext(emptyTask)
 
@@ -16,6 +17,12 @@ export function BlankTask({ data, children }: BlankTaskProps) {
 	const [show, setShow] = useState(false)
 	const description = data.descriptionText
 	const colorTheme = useTheme()
+	const availableTags = useAvailableTags()
+
+	const taskTags = availableTags
+		.flatMap((group) => group.tags)
+		.filter((tag) => data.tags && data.tags.find((taskTag) => taskTag.id === tag.id))
+
 	const taskClassName = `p-0 rounded-md border-none text-card-foreground shadow-sm hover:shadow-lg ${colorTheme.task}`
 
 	return (
@@ -28,9 +35,9 @@ export function BlankTask({ data, children }: BlankTaskProps) {
 					<p className={`whitespace-pre-wrap ${colorTheme.taskText}`}>
 						<TextWithURL text={description}></TextWithURL>
 					</p>
-					{data.tags && data.tags.length !== 0 && (
+					{taskTags && taskTags.length !== 0 && (
 						<footer className='w-full pt-2 flex gap-1.5 flex-wrap opacity-80 hover:opacity-100'>
-							{data.tags.map((tag) => (
+							{taskTags.map((tag) => (
 								<Badge
 									variant={tag.variant ? tag.variant : 'inverted'}
 									key={tag.id}
