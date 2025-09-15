@@ -26,6 +26,13 @@ export const defaultColumnList: Column[] = [
 	},
 ]
 
+export const isDefaultColumnList = (columnList: ColumnList): boolean => {
+	if (columnList.length !== defaultColumnList.length) {
+		return false
+	}
+	return columnList.every((column, index) => column.id === defaultColumnList[index].id)
+}
+
 const limitOfColumns = 6
 
 export const isItWithinTheLimitOfColumns = (columnList: ColumnList): true | BusinessError => {

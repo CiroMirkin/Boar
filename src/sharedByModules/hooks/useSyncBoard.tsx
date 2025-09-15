@@ -1,7 +1,7 @@
 import { supabase } from '@/lib/supabase'
-import { defaultBoard } from '@/modules/board/models/board'
+import { isDefaultBoardName } from '@/modules/board/models/board'
 import { setBoar } from '@/modules/board/state/boardReducer'
-import { ColumnList, defaultColumnList } from '@/modules/columnList/models/columnList'
+import { ColumnList, isDefaultColumnList } from '@/modules/columnList/models/columnList'
 import { setColumnList } from '@/modules/columnList/state/columnListReducer'
 import { defaultNotes, Notes } from '@/modules/notes/model/notes'
 import LocalStorageNotesRepository from '@/modules/notes/repository/LocalStorageNotesRepository'
@@ -67,8 +67,8 @@ const getActualUserBoard = async (): Promise<UserBoard> => {
 export const checkIfUserHasTheDefaultBoard = async (): Promise<boolean> => {
 	const actualUserBoard = await getActualUserBoard()
 	return (
-		actualUserBoard.name === defaultBoard.name &&
-		JSON.stringify(actualUserBoard.column_list) === JSON.stringify(defaultColumnList) &&
+		isDefaultBoardName(actualUserBoard.name) &&
+		isDefaultColumnList(actualUserBoard.column_list) &&
 		JSON.stringify(actualUserBoard.task_list_in_each_column) ===
 			JSON.stringify(emptyTaskListInEachColumn) &&
 		actualUserBoard.notes === defaultNotes

@@ -17,9 +17,6 @@
 	"password": "Password:",
 
 	"board_name": "Basic board",
-	"first_column": "Standby",
-	"second_column": "In progress",
-	"third_column": "Completed",
 	"empty_first_task_list_copy": "Add your first task and start organizing your day!",
 	"new_task_placeholder": "New task...",
 	"new_task_btn_title": "Create task",
@@ -141,5 +138,11 @@
 		"h2": "What is Boar?",
 		"found_a_problem_section": "Have you found a problem?",
 		"report_btn": "Report it"
+	},
+
+	"default_columns": {
+		"c1": "Pending",
+		"c2": "Processing",
+		"c3": "Finished"
 	}
 }
