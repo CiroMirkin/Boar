@@ -25,6 +25,7 @@ export default function LogInAndLogOutMenuItem({
 	const handleOnClick = async () => {
 		try {
 			const { error } = await supabase.auth.signOut()
+			sessionStorage.removeItem('isInitialLoad')
 			if (error) throw error
 			toast.success(t('successful_log_out_toast'))
 			setUserBoardByDefault(dispatch)

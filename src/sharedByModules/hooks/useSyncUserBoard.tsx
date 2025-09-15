@@ -22,7 +22,11 @@ export const useSyncUserBoard = () => {
 	useEffect(() => {
 		const initialStorage = async () => {
 			if (session) {
-				dispatch(setIsLoading(true))
+				const isInitialLoad = sessionStorage.getItem('isInitialLoad')
+				if (isInitialLoad === null) {
+					dispatch(setIsLoading(true))
+					sessionStorage.setItem('isInitialLoad', 'false')
+				}
 				await syncBoard({ dispatch, session, setNote })
 				dispatch(setIsLoading(false))
 			} else {
