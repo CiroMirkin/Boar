@@ -23,6 +23,7 @@ export interface Tag {
 	id: string
 	name: string
 	variant?: TagVariants
+	priority?: number
 }
 
 export interface TagGroup {
