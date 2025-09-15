@@ -17,9 +17,6 @@
 	"password": "Contraseña:",
 
 	"board_name": "Tablero básico",
-	"first_column": "Pendientes",
-	"second_column": "Procesando",
-	"third_column": "Terminado",
 	"empty_first_task_list_copy": "¡Añade tu primera tarea y comienza a organizar tu jornada!",
 	"new_task_placeholder": "Nueva tarea...",
 	"new_task_btn_title": "Crear tarea",
@@ -140,5 +137,11 @@
 		"h2": "¿Que es Board?",
 		"found_a_problem_section": "¿Ha encontrado un problema?",
 		"report_btn": "Reportalo"
+	},
+
+	"default_columns": {
+		"c1": "Pendientes",
+		"c2": "Procesando",
+		"c3": "Terminado"
 	}
 }
