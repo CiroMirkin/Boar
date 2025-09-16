@@ -21,6 +21,7 @@ import {
 } from './actions/moveThisTaskToThisColumn'
 import { Tag } from '../Tags/model/tags'
 import { addTagInThisTask } from './actions/addTagInThisTask'
+import { sortListOfTasksInColumnsByPriority } from '../models/sortListOfTasksInColumnsByPriority'
 
 interface InitialState {
 	list: TaskListInEachColumn
@@ -38,11 +39,19 @@ export const taskListInEachColumnSlice = createSlice({
 		},
 		addTaskAtFirstColumn: (state, action: PayloadAction<taskModel>) => {
 			const task = action.payload
-			state.list = addTaskInFirstColumn({ taskListInEachColumn: state.list, task })
+			const listOfTasksInColumns = addTaskInFirstColumn({
+				taskListInEachColumn: state.list,
+				task,
+			})
+			state.list = sortListOfTasksInColumnsByPriority(listOfTasksInColumns)
 		},
 		addTaskAtLastColumn: (state, action: PayloadAction<taskModel>) => {
 			const task = action.payload
-			state.list = addTaskInTheLastColumn({ taskListInEachColumn: state.list, task })
+			const listOfTasksInColumns = addTaskInTheLastColumn({
+				taskListInEachColumn: state.list,
+				task,
+			})
+			state.list = sortListOfTasksInColumnsByPriority(listOfTasksInColumns)
 		},
 		deleteTask: (state, action: PayloadAction<taskModel>) => {
 			const task = action.payload
@@ -50,22 +59,31 @@ export const taskListInEachColumnSlice = createSlice({
 		},
 		moveTaskToNextColumn: (state, action: PayloadAction<taskModel>) => {
 			const task = action.payload
-			state.list = moveThisTaskToTheNextColumn({ taskListInEachColumn: state.list, task })
+			const listOfTasksInColumns = moveThisTaskToTheNextColumn({
+				taskListInEachColumn: state.list,
+				task,
+			})
+			state.list = sortListOfTasksInColumnsByPriority(listOfTasksInColumns)
 		},
 		moveTaskToPrevColumn: (state, action: PayloadAction<taskModel>) => {
 			const task = action.payload
-			state.list = moveThisTaskToThePrevColumn({ taskListInEachColumn: state.list, task })
+			const listOfTasksInColumns = moveThisTaskToThePrevColumn({
+				taskListInEachColumn: state.list,
+				task,
+			})
+			state.list = sortListOfTasksInColumnsByPriority(listOfTasksInColumns)
 		},
 		moveThisTaskToThisColumnPosition: (
 			state,
 			action: PayloadAction<DataOfTheTaskForMoveIt>
 		) => {
 			const { task, newColumnPosition } = action.payload
-			state.list = moveThisTaskToThisColumn({
+			const listOfTasksInColumns = moveThisTaskToThisColumn({
 				taskListOfColumns: state.list,
 				task,
 				newColumnPosition,
 			})
+			state.list = sortListOfTasksInColumnsByPriority(listOfTasksInColumns)
 		},
 		cleanTheLastTaskList: (state) => {
 			state.list = cleanLastTaskList({ taskListInEachColumn: state.list })
