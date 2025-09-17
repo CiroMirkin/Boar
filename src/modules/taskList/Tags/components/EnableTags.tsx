@@ -8,6 +8,7 @@ import { toast } from 'sonner'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { useTranslation } from 'react-i18next'
 import { SettingSection } from '@/ui/organisms/SettingSection'
+import { useSaveActualTagGroup } from '../state/useSaveActualTagGroup'
 
 export function EnableTags() {
 	const { t } = useTranslation()
@@ -15,6 +16,7 @@ export function EnableTags() {
 	const actualTagGroup = useActualTagGroup()
 	const { task } = useTheme()
 	const dispatch = useDispatch()
+	useSaveActualTagGroup()
 
 	const handleClick = (tagGroup: TagGroup) => {
 		if (actualTagGroup.id === tagGroup.id) {

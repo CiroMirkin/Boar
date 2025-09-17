@@ -7,6 +7,9 @@ import { defaultNotes, Notes } from '@/modules/notes/model/notes'
 import LocalStorageNotesRepository from '@/modules/notes/repository/LocalStorageNotesRepository'
 import { emptyTaskListInEachColumn, TaskListInEachColumn } from '@/modules/taskList/models/taskList'
 import { setTaskListInEachColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
+import { eisenhowerTagGroup } from '@/modules/taskList/Tags/model/defaultTags'
+import { TagGroup } from '@/modules/taskList/Tags/model/tags'
+import { changeActualTagGroup } from '@/modules/taskList/Tags/state/tagsReducer'
 import { store } from '@/store'
 import { Dispatch } from '@reduxjs/toolkit'
 import { Session } from '@supabase/supabase-js'
@@ -18,6 +21,7 @@ interface UserBoard {
 	task_list_in_each_column: TaskListInEachColumn
 	user_id: string | undefined
 	notes: Notes
+	actual_tag_group: TagGroup
 }
 
 const saveUserBoardOnSupabase = async (userBoard: UserBoard) => {
@@ -43,6 +47,7 @@ const changeActualBoardBySavedBoard = ({
 	dispatch(setBoar(savedUserBoard.name))
 	dispatch(setColumnList(savedUserBoard.column_list))
 	setNote(savedUserBoard.notes)
+	dispatch(changeActualTagGroup(savedUserBoard.actual_tag_group))
 }
 
 export const getUserId = async () => {
@@ -60,6 +65,7 @@ const getActualUserBoard = async (): Promise<UserBoard> => {
 		task_list_in_each_column: store.getState().taskListInEachColumn.list,
 		user_id: await getUserId(),
 		notes,
+		actual_tag_group: eisenhowerTagGroup,
 	}
 }
 
