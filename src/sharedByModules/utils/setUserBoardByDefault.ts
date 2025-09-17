@@ -5,9 +5,12 @@ import { defaultColumnList } from '@/modules/columnList/models/columnList'
 import { setBoar } from '@/modules/board/state/boardReducer'
 import { defaultBoard } from '@/modules/board/models/board'
 import { Dispatch } from '@reduxjs/toolkit'
+import { changeActualTagGroup } from '@/modules/taskList/Tags/state/tagsReducer'
+import { eisenhowerTagGroup } from '@/modules/taskList/Tags/model/defaultTags'
 
 export const setBoardByDefault = (dispatch: Dispatch): void => {
 	dispatch(setTaskListInEachColumn(emptyTaskListInEachColumn))
 	dispatch(setColumnList(defaultColumnList))
 	dispatch(setBoar(defaultBoard.name))
+	dispatch(changeActualTagGroup(eisenhowerTagGroup))
 }
