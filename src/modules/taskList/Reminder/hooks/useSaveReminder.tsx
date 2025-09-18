@@ -3,7 +3,7 @@ import { Reminder } from '../reminder'
 import { useDispatch } from 'react-redux'
 import { setReminder } from '../state/reminderReducer'
 import { useSession } from '@/SessionProvider'
-import { saveReminderInSupabase } from '../state/saveReminderInSupabase'
+import SupabaseReminderRepository from '../state/SupabaseReminderRepository'
 
 type UseSaveReminderReturn = (reminder: Reminder) => void
 
@@ -13,7 +13,7 @@ export const useSaveReminder = (): UseSaveReminderReturn => {
 		if (session) {
 			const localReminder = new LocalStorageReminderRepository().getAll()
 			if (JSON.stringify(localReminder) !== JSON.stringify(reminder)) {
-				saveReminderInSupabase(reminder)
+				new SupabaseReminderRepository().save(reminder)
 			}
 		} else {
 			new LocalStorageReminderRepository().save(reminder)
