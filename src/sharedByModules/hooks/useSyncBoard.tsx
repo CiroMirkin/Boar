@@ -6,6 +6,8 @@ import { setColumnList } from '@/modules/columnList/state/columnListReducer'
 import { defaultNotes, Notes } from '@/modules/notes/model/notes'
 import LocalStorageNotesRepository from '@/modules/notes/repository/LocalStorageNotesRepository'
 import { emptyTaskListInEachColumn, TaskListInEachColumn } from '@/modules/taskList/models/taskList'
+import { Reminder } from '@/modules/taskList/Reminder/reminder'
+import { setReminder } from '@/modules/taskList/Reminder/state/reminderReducer'
 import { setTaskListInEachColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { eisenhowerTagGroup } from '@/modules/taskList/Tags/model/defaultTags'
 import { TagGroup } from '@/modules/taskList/Tags/model/tags'
@@ -22,6 +24,7 @@ interface UserBoard {
 	user_id: string | undefined
 	notes: Notes
 	actual_tag_group: TagGroup
+	reminders: Reminder
 }
 
 const saveUserBoardOnSupabase = async (userBoard: UserBoard) => {
@@ -48,6 +51,7 @@ const changeActualBoardBySavedBoard = ({
 	dispatch(setColumnList(savedUserBoard.column_list))
 	setNote(savedUserBoard.notes)
 	dispatch(changeActualTagGroup(savedUserBoard.actual_tag_group))
+	dispatch(setReminder(savedUserBoard.reminders))
 }
 
 export const getUserId = async () => {
@@ -66,6 +70,7 @@ const getActualUserBoard = async (): Promise<UserBoard> => {
 		user_id: await getUserId(),
 		notes,
 		actual_tag_group: eisenhowerTagGroup,
+		reminders: store.getState().reminder.reminder,
 	}
 }
 
