@@ -13,7 +13,7 @@ import { syncBoard } from './useSyncBoard'
 import { useSession } from '@/SessionProvider'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import LocalStorageReminderRepository from '@/modules/taskList/Reminder/state/LocalStorageReminder'
+import LocalStorageReminderRepository from '@/modules/taskList/Reminder/repository/LocalStorageReminder'
 import { setReminder } from '@/modules/taskList/Reminder/state/reminderReducer'
 
 export const useSyncUserBoard = () => {
