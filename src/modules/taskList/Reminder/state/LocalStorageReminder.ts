@@ -9,7 +9,7 @@ export default class LocalStorageReminderRepository implements ReminderRepositor
 	save(reminder: Reminder): void {
 		localStorage.setItem(this.key, JSON.stringify(reminder))
 	}
-	getAll(): Reminder {
+	getAll() {
 		return localStorage.getItem(this.key)
 			? JSON.parse(localStorage.getItem(this.key) as string)
 			: blankReminder
