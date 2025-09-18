@@ -33,5 +33,5 @@ export const useReminder = (taskListInEachColumn: TaskListInEachColumn) => {
 				)
 			}
 		}
-	}, [taskListInEachColumn])
+	}, [taskListInEachColumn, reminder, copyOfTheLengthOfEachTaskList])
 }
