@@ -1,9 +1,5 @@
 import { blankReminder, Reminder } from '../reminder'
-
-interface ReminderRepository {
-	save(reminder: Reminder): void
-	getAll(): Reminder
-}
+import { ReminderRepository } from './ReminderRepository'
 
 export default class LocalStorageReminderRepository implements ReminderRepository {
 	key
