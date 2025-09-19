@@ -1,5 +1,3 @@
-import { useContext } from 'react'
-import { ReminderContext } from './ReminderContext'
 import { Button } from '@/ui/atoms/button'
 import { TrashIcon } from '@/ui/atoms/icons'
 import { blankReminder } from './reminder'
@@ -8,6 +6,8 @@ import { toast } from 'sonner'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
 import { SettingSection } from '@/ui/organisms/SettingSection'
+import { useSaveReminder } from './hooks/useSaveReminder'
+import { useGetReminder } from './hooks/useGetReminder'
 
 export function ReminderList() {
 	const { t } = useTranslation()
@@ -25,7 +25,8 @@ export function ReminderList() {
 
 const ReminderListContainer = () => {
 	const t = useTranslation().t
-	const { reminder, setReminder } = useContext(ReminderContext)
+	const reminder = useGetReminder()
+	const setReminder = useSaveReminder()
 
 	const deleteReminder = () => {
 		setReminder(blankReminder)
