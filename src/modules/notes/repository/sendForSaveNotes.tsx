@@ -1,5 +1,5 @@
 import { supabase } from '@/lib/supabase'
-import { getUserId } from '@/sharedByModules/hooks/useSyncBoard'
+import { getUserId } from '@/auth/utils/getUserId'
 import { type Notes } from '../model/notes'
 
 export const sendForSaveNotes = async ({ notes }: { notes: Notes }) => {

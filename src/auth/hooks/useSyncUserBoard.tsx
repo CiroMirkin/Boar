@@ -9,8 +9,8 @@ import LocalStorageArchiveRepository from '@/modules/taskList/ArchivedTasks/stat
 import LocalStorageTaskListInEachColumnRepository from '@/modules/taskList/repository/localStorageTaskListsRepository'
 import { setTaskListInEachColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 
-import { syncBoard } from './useSyncBoard'
-import { useSession } from '@/SessionProvider'
+import { setUpUserBoard } from '../utils/setUpUserBoard'
+import { useSession } from './useSession'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import LocalStorageReminderRepository from '@/modules/taskList/Reminder/repository/LocalStorageReminder'
@@ -29,7 +29,7 @@ export const useSyncUserBoard = () => {
 					dispatch(setIsLoading(true))
 					sessionStorage.setItem('isInitialLoad', 'false')
 				}
-				await syncBoard({ dispatch, session, setNote })
+				await setUpUserBoard({ dispatch, session, setNote })
 				dispatch(setIsLoading(false))
 			} else {
 				const columnList = new LocalStorageColumnListRepository()

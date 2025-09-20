@@ -1,4 +1,4 @@
-import { getUserId } from '@/sharedByModules/hooks/useSyncBoard'
+import { getUserId } from '@/auth/utils/getUserId'
 import { supabase } from '@/lib/supabase'
 import { boardModel } from '../models/board'
 

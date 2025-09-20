@@ -1,4 +1,4 @@
-import { SessionType } from '@/SessionProvider'
+import { SessionType } from '@/auth/contexts/SessionProvider'
 import { boardModel, defaultBoard } from '../models/board'
 import LocalStorageBoardRepository from './localstorageBoard'
 import { sendForSaveBoard } from './sendForSaveBoard'

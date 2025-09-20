@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLibraryOfArchivedNotes } from '../LibraryOfArchiveNotes/state/useLibraryOfArchivedNotes'
-import { useSession } from '@/SessionProvider'
+import { useSession } from '@/auth/hooks/useSession'
 import { saveNotes } from '../repository/saveNote'
 import { useDispatch } from 'react-redux'
 import { archiveThisNote } from '../LibraryOfArchiveNotes/state/archivedNotesReducer'

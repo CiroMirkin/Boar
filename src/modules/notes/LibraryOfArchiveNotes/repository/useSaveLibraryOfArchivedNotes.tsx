@@ -1,4 +1,4 @@
-import { SessionType } from '@/SessionProvider'
+import { SessionType } from '@/auth/contexts/SessionProvider'
 import {
 	defaultLibraryOfArchivedNotes,
 	LibraryOfArchivedNotes,

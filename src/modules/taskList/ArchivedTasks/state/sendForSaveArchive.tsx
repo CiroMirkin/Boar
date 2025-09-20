@@ -1,5 +1,5 @@
 import { supabase } from '@/lib/supabase'
-import { getUserId } from '@/sharedByModules/hooks/useSyncBoard'
+import { getUserId } from '@/auth/utils/getUserId'
 import { Archive } from '../models/archive'
 
 export const sendForSaveArchive = async (archive: Archive) => {

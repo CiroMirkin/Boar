@@ -20,7 +20,7 @@ import { USER_IS_IN } from './userIsIn'
 import { LanguageToggle } from '../../modules/LanguageToggle/LanguageToggle'
 import { useTranslation } from 'react-i18next'
 import LogInAndLogOutMenuItem from '../../modules/LanguageToggle/LogInAndLogOutMenuItem'
-import { useSession } from '@/SessionProvider'
+import { useSession } from '@/auth/hooks/useSession'
 import Notes from '@/modules/notes/Notes'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
 
