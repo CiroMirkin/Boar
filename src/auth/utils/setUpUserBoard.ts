@@ -1,13 +1,13 @@
 import { supabase } from '@/lib/supabase'
-import { setUserBoard } from '../utils/setUserBoard'
+import { setUserBoard } from './setUserBoard'
 import { Dispatch } from '@reduxjs/toolkit'
 import { Session } from '@supabase/supabase-js'
 import { Dispatch as ReactDispatch, SetStateAction } from 'react'
-import { getActualUserBoard } from '../utils/getActualUserBoard'
-import { saveUserBoardOnSupabase } from '../utils/saveUserBoardOnSupabase'
+import { getActualUserBoard } from './getActualUserBoard'
+import { saveUserBoardOnSupabase } from './saveUserBoardOnSupabase'
 
 /** Recupera el tablero del usuario de Supabase y si no existe ninguno guarda el tablero actual en Supabase. */
-export const syncBoard = async ({
+export const setUpUserBoard = async ({
 	dispatch,
 	session,
 	setNote,
