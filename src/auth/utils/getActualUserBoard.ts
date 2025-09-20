@@ -2,7 +2,7 @@ import LocalStorageNotesRepository from '@/modules/notes/repository/LocalStorage
 import { eisenhowerTagGroup } from '@/modules/taskList/Tags/model/defaultTags'
 import { store } from '@/store'
 import { UserBoardOnDB } from '../model/UserBoardOnDB'
-import { getUserId } from '../utils/getUserId'
+import { getUserId } from './getUserId'
 
 export const getActualUserBoard = async (): Promise<UserBoardOnDB> => {
 	const notes = new LocalStorageNotesRepository().getAll()
