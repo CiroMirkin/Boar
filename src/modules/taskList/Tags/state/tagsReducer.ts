@@ -5,7 +5,7 @@ import { addTagGroup } from './actions/addTagGroup'
 
 interface InitialState {
 	list: AvailableTags
-	actualTagGroup?: TagGroup
+	actualTagGroup: TagGroup
 	userSelectedTags: Tag[]
 }
 const initialState: InitialState = {

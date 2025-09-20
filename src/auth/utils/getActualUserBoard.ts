@@ -1,5 +1,4 @@
 import LocalStorageNotesRepository from '@/modules/notes/repository/LocalStorageNotesRepository'
-import { eisenhowerTagGroup } from '@/modules/taskList/Tags/model/defaultTags'
 import { store } from '@/store'
 import { UserBoardOnDB } from '../model/UserBoardOnDB'
 import { getUserId } from './getUserId'
@@ -12,7 +11,7 @@ export const getActualUserBoard = async (): Promise<UserBoardOnDB> => {
 		task_list_in_each_column: store.getState().taskListInEachColumn.list,
 		user_id: await getUserId(),
 		notes,
-		actual_tag_group: eisenhowerTagGroup,
+		actual_tag_group: store.getState().tags.actualTagGroup,
 		reminders: store.getState().reminder.reminder,
 	}
 }
