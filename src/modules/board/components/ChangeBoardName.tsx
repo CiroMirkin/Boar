@@ -13,7 +13,7 @@ import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageFo
 import { toast } from 'sonner'
 import { useBoard } from '@/modules/board/hooks/useBoard'
 import { useTranslation } from 'react-i18next'
-import { useSession } from '@/auth/contexts/SessionProvider'
+import { useSession } from '@/auth/hooks/useSession'
 import { SettingSection } from '@/ui/organisms/SettingSection'
 import { useSaveBoard } from '../state/useSaveBoard'
 

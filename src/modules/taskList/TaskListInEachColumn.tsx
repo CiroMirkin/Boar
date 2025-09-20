@@ -2,7 +2,7 @@ import { TaskList } from './components/TaskList'
 import { useReminder } from '@/modules/taskList/Reminder/hooks/useReminder'
 import { useTaskListInEachColumn } from './hooks/useTaskListInEachColumn'
 import { useTranslation } from 'react-i18next'
-import { useSession } from '@/auth/contexts/SessionProvider'
+import { useSession } from '@/auth/hooks/useSession'
 import { useSaveTaskListOfColumns } from './state/useSaveTaskListOfColumns'
 import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
 

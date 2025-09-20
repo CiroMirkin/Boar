@@ -8,7 +8,7 @@ import { useCheckForTasksInLastColumn } from '@/sharedByModules/hooks/useCheckFo
 import { useTranslation } from 'react-i18next'
 import { useTaskListInEachColumn } from '@/modules/taskList/hooks/useTaskListInEachColumn'
 import { useSaveArchive } from '../state/useSaveArchive'
-import { useSession } from '@/auth/contexts/SessionProvider'
+import { useSession } from '@/auth/hooks/useSession'
 import { getActalArchive } from '../state/getActualArchive'
 import { ArchiveIcon } from '@/ui/atoms/icons'
 

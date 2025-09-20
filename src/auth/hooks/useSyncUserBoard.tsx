@@ -10,7 +10,7 @@ import LocalStorageTaskListInEachColumnRepository from '@/modules/taskList/repos
 import { setTaskListInEachColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 
 import { setUpUserBoard } from '../utils/setUpUserBoard'
-import { useSession } from '@/auth/contexts/SessionProvider'
+import { useSession } from './useSession'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import LocalStorageReminderRepository from '@/modules/taskList/Reminder/repository/LocalStorageReminder'

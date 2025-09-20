@@ -1,13 +1,5 @@
 import { Session } from '@supabase/supabase-js'
-import {
-	createContext,
-	Dispatch,
-	ReactNode,
-	SetStateAction,
-	useContext,
-	useEffect,
-	useState,
-} from 'react'
+import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from 'react'
 import { supabase } from '../../lib/supabase'
 
 export type SessionType = Session | null
@@ -15,12 +7,10 @@ interface SessionContextValue {
 	session: SessionType
 	setSession: Dispatch<SetStateAction<SessionType>>
 }
-const SessionContext = createContext({
+export const SessionContext = createContext({
 	session: null,
 	setSession: () => {},
 } as SessionContextValue)
-
-export const useSession = () => useContext(SessionContext)
 
 export default function SessionProvider({ children }: { children: ReactNode }) {
 	const [session, setSession] = useState<SessionType>(null)

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import RichTextEditor from '../RichTextEditor/RichTextEditor'
 import { defaultNotes, maxLengthOfNotes, Notes as NotesModel } from '../model/notes'
-import { useSession } from '@/auth/contexts/SessionProvider'
+import { useSession } from '@/auth/hooks/useSession'
 import { getNotesFromSupabase } from '../repository/getNotesFromSupabase'
 import LocalStorageNotesRepository from '../repository/LocalStorageNotesRepository'
 import { saveNotes } from '../repository/saveNote'
