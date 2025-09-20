@@ -9,7 +9,7 @@ import LocalStorageArchiveRepository from '@/modules/taskList/ArchivedTasks/stat
 import LocalStorageTaskListInEachColumnRepository from '@/modules/taskList/repository/localStorageTaskListsRepository'
 import { setTaskListInEachColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 
-import { syncBoard } from './useSyncBoard'
+import { syncBoard } from '../../auth/hooks/useSyncBoard'
 import { useSession } from '@/SessionProvider'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
