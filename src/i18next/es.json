@@ -1,7 +1,7 @@
 {
 	"board_description": {
-		"p1": "es un aplicación que busca ayudarte con tus tareas diarias o semanales a través de un tablero.",
-		"p2": "En la primer columna del tablero puedes crear tus tareas y cuando lleguen a la última puedes archivarlas."
+		"p1": "es una herramienta personal para ayudarte a gestionar tu trabajo semanal.",
+		"p2": "Está diseñada para uso individual, no para equipos. Organiza tus tareas en un tablero simple y mantente enfocado en lo que importa."
 	},
 
 	"sing_in": "Iniciar Sesión",
