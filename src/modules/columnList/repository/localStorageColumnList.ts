@@ -1,6 +1,6 @@
 import { defaultColumnList } from '../models/columnList'
 import { ColumnList } from '../models/columnList'
-import { ColumnListRepository } from './columnListRepository'
+import { ColumnListRepository } from '../repository/columnListRepository'
 
 export default class LocalStorageColumnListRepository implements ColumnListRepository {
 	key
