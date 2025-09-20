@@ -2,7 +2,7 @@ import { isDefaultBoardName } from '@/modules/board/models/board'
 import { isDefaultColumnList } from '@/modules/columnList/models/columnList'
 import { defaultNotes } from '@/modules/notes/model/notes'
 import { emptyTaskListInEachColumn } from '@/modules/taskList/models/taskList'
-import { getActualUserBoard } from '../utils/getActualUserBoard'
+import { getActualUserBoard } from './getActualUserBoard'
 
 /**
  * Verifica los valores dentro del estado local (Redux).
