@@ -1,7 +1,7 @@
 {
 	"board_description": {
-		"p1": "is an application that aims to help you with your daily or weekly tasks through a dashboard.",
-		"p2": "In the first column of the dashboard you can create your tasks and when they reach the last column you can archive them."
+		"p1": "is a personal tool to help you manage your weekly work.",
+		"p2": "It's designed for individual use, not for teams. Organize your tasks on a simple board and stay focused on what matters."
 	},
 
 	"sing_in": "Sing in",
