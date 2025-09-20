@@ -1,6 +1,6 @@
 import { defaultColumnList } from '../models/columnList'
 import { ColumnList } from '../models/columnList'
-import { ColumnListRepository } from './columnListRepository'
+import { ColumnListRepository } from '../repository/columnListRepository'
 
 export default class LocalStorageColumnListRepository implements ColumnListRepository {
 	key
@@ -10,7 +10,7 @@ export default class LocalStorageColumnListRepository implements ColumnListRepos
 	save(columnList: ColumnList): void {
 		localStorage.setItem(this.key, JSON.stringify(columnList))
 	}
-	getAll(): ColumnList {
+	getAll() {
 		return localStorage.getItem(this.key)
 			? JSON.parse(localStorage.getItem(this.key) as string)
 			: defaultColumnList
