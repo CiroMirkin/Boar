@@ -1,13 +1,9 @@
 import { supabase } from '@/lib/supabase'
 import { isDefaultBoardName } from '@/modules/board/models/board'
-import { setBoar } from '@/modules/board/state/boardReducer'
 import { isDefaultColumnList } from '@/modules/columnList/models/columnList'
-import { setColumnList } from '@/modules/columnList/state/columnListReducer'
 import { defaultNotes } from '@/modules/notes/model/notes'
 import { emptyTaskListInEachColumn } from '@/modules/taskList/models/taskList'
-import { setReminder } from '@/modules/taskList/Reminder/state/reminderReducer'
-import { setTaskListInEachColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
-import { changeActualTagGroup } from '@/modules/taskList/Tags/state/tagsReducer'
+import { setUserBoard } from '../utils/setUserBoard'
 import { Dispatch } from '@reduxjs/toolkit'
 import { Session } from '@supabase/supabase-js'
 import { Dispatch as ReactDispatch, SetStateAction } from 'react'
@@ -21,24 +17,6 @@ const saveUserBoardOnSupabase = async (userBoard: UserBoardOnDB) => {
 	} catch (e) {
 		console.error(e)
 	}
-}
-
-/** Reestablace los datos del tablero dentro de la aplicacion. */
-const changeActualBoardBySavedBoard = ({
-	dispatch,
-	savedUserBoard,
-	setNote,
-}: {
-	dispatch: Dispatch
-	savedUserBoard: UserBoardOnDB
-	setNote: ReactDispatch<SetStateAction<string>>
-}) => {
-	dispatch(setTaskListInEachColumn(savedUserBoard.task_list_in_each_column))
-	dispatch(setBoar(savedUserBoard.name))
-	dispatch(setColumnList(savedUserBoard.column_list))
-	setNote(savedUserBoard.notes)
-	dispatch(changeActualTagGroup(savedUserBoard.actual_tag_group))
-	dispatch(setReminder(savedUserBoard.reminders))
 }
 
 /** @returns True si el usuario tiene el tablero por defecto (vacio) */
@@ -71,7 +49,7 @@ export const syncBoard = async ({
 			saveUserBoardOnSupabase(actualUserBoard)
 		} else if (data != null) {
 			const savedUserBoard = data[0]
-			changeActualBoardBySavedBoard({ dispatch, savedUserBoard, setNote })
+			setUserBoard({ dispatch, savedUserBoard, setNote })
 		}
 	}
 }
