@@ -1,4 +1,4 @@
-import { getUserId } from '@/sharedByModules/hooks/getUserId'
+import { getUserId } from '@/auth/utils/getUserId'
 import { defaultColumnList } from '../models/columnList'
 import { ColumnList } from '../models/columnList'
 import { ColumnListRepository } from '../repository/columnListRepository'

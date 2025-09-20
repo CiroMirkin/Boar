@@ -1,4 +1,4 @@
-import { getUserId } from '@/sharedByModules/hooks/getUserId'
+import { getUserId } from '@/auth/utils/getUserId'
 import { blankReminder, Reminder } from '../reminder'
 import { ReminderRepository } from './ReminderRepository'
 import { supabase } from '@/lib/supabase'

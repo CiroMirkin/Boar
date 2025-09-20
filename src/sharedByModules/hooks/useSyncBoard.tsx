@@ -16,7 +16,7 @@ import { store } from '@/store'
 import { Dispatch } from '@reduxjs/toolkit'
 import { Session } from '@supabase/supabase-js'
 import { Dispatch as ReactDispatch, SetStateAction } from 'react'
-import { getUserId } from './getUserId'
+import { getUserId } from '../../auth/utils/getUserId'
 
 interface UserBoard {
 	name: string

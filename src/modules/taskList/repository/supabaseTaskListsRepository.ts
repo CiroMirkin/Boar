@@ -1,6 +1,6 @@
 import { TaskListInEachColumn, emptyTaskListInEachColumn } from '@/modules/taskList/models/taskList'
 import { TaskListInEachColumnRepository } from './taskListInEachColumnRepository'
-import { getUserId } from '@/sharedByModules/hooks/getUserId'
+import { getUserId } from '@/auth/utils/getUserId'
 import { supabase } from '@/lib/supabase'
 
 export default class SupabaseTaskListInEachColumnRepository

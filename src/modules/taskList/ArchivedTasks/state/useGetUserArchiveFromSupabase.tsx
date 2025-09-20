@@ -1,6 +1,6 @@
 import { supabase } from '@/lib/supabase'
 import { setArchive } from './archiveReducer'
-import { getUserId } from '@/sharedByModules/hooks/getUserId'
+import { getUserId } from '@/auth/utils/getUserId'
 import { store } from '@/store'
 import { SessionType } from '@/SessionProvider'
 import { useEffect } from 'react'
