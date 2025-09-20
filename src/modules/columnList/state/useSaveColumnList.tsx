@@ -1,8 +1,9 @@
 import { useSession } from '@/SessionProvider'
 import { ColumnList, defaultColumnList } from '../models/columnList'
 import LocalStorageColumnListRepository from '../repository/localStorageColumnList'
-import { useEffect } from 'react'
 import SupabaseColumnListRepository from '../repository/supabaseRepository'
+import { useEffect, useRef } from 'react'
+
 
 interface useSaveColumnListParams {
 	columnList: ColumnList
@@ -10,13 +11,20 @@ interface useSaveColumnListParams {
 
 export const useSaveColumnList = ({ columnList }: useSaveColumnListParams) => {
 	const { session } = useSession()
+	const columnListRef = useRef(columnList)
 	useEffect(() => {
 		const localStorage = new LocalStorageColumnListRepository()
 		const localColumnList = localStorage.getAll()
 
-		if (JSON.stringify(columnList) !== JSON.stringify(defaultColumnList)) {
+		const isNotColumnListByDefault =
+			JSON.stringify(columnList) !== JSON.stringify(defaultColumnList)
+		const beforeWasNotColumnListByDefault =
+			JSON.stringify(columnListRef.current) !== JSON.stringify(defaultColumnList)
+
+		if (isNotColumnListByDefault || beforeWasNotColumnListByDefault) {
 			const isNotTheLocalColumnList =
 				JSON.stringify(columnList) !== JSON.stringify(localColumnList)
+			  columnListRef.current = columnList
 			if (!!session && isNotTheLocalColumnList) {
 				const supabaseColumnList = new SupabaseColumnListRepository()
 				supabaseColumnList.save(columnList)
