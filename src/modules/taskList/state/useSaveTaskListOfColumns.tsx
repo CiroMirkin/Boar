@@ -1,7 +1,7 @@
 import { SessionType } from '@/SessionProvider'
 import { emptyTaskListInEachColumn, TaskListInEachColumn } from '../models/taskList'
-import LocalStorageTaskListInEachColumnRepository from './localStorageTaskLists'
-import { sendForSaveTaskListInEachColumn } from './sendForSaveTaskListInEachColumn'
+import LocalStorageTaskListInEachColumnRepository from '../repository/localStorageTaskLists'
+import { sendForSaveTaskListInEachColumn } from '../repository/sendForSaveTaskListInEachColumn'
 import { useEffect, useRef } from 'react'
 
 interface useSaveTaskListOfColumnsParams {

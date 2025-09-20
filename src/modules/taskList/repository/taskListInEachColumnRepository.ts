@@ -1,4 +1,4 @@
-import { TaskListInEachColumn } from './taskList'
+import { TaskListInEachColumn } from "../models/taskList"
 
 export interface TaskListInEachColumnRepository {
 	save(taskListInEachColumn: TaskListInEachColumn): void

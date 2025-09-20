@@ -6,7 +6,7 @@ import { useNote } from '@/modules/notes/NoteProvider'
 import LocalStorageNotesRepository from '@/modules/notes/repository/LocalStorageNotesRepository'
 import { setArchive } from '@/modules/taskList/ArchivedTasks/state/archiveReducer'
 import LocalStorageArchiveRepository from '@/modules/taskList/ArchivedTasks/state/localStorageArchive'
-import LocalStorageTaskListInEachColumnRepository from '@/modules/taskList/state/localStorageTaskLists'
+import LocalStorageTaskListInEachColumnRepository from '@/modules/taskList/repository/localStorageTaskLists'
 import { setTaskListInEachColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 
 import { syncBoard } from './useSyncBoard'
