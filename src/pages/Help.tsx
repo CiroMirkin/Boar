@@ -25,8 +25,8 @@ export function Help() {
 							<AccordionTrigger>Visualización</AccordionTrigger>
 							<AccordionContent>
 								<p>
-									Elige cómo ver tu tablero: en vertical u horizontal. ¡Adapta
-									la vista a tu gusto para organizar mejor tus ideas!
+									Elige cómo ver tu tablero: en vertical u horizontal. ¡Adapta la
+									vista a tu gusto para organizar mejor tus ideas!
 								</p>
 							</AccordionContent>
 						</AccordionItem>
@@ -50,8 +50,8 @@ export function Help() {
 								<p>
 									Añade nuevas tareas en la primera columna para empezar a
 									organizar tu trabajo. Recuerda que cada tarea necesita una
-									descripción (máx. 200 caracteres) y cada columna tiene un
-									límite de 10 tareas.
+									descripción (máx. 200 caracteres) y cada columna tiene un límite
+									de 10 tareas.
 								</p>
 							</AccordionContent>
 						</AccordionItem>
@@ -69,8 +69,8 @@ export function Help() {
 							<AccordionContent>
 								<p>
 									Arrastra y suelta tus tareas para moverlas entre columnas y
-									mantenlas organizadas. Si ya no necesitas una tarea,
-									¡elimínala con un solo clic!
+									mantenlas organizadas. Si ya no necesitas una tarea, ¡elimínala
+									con un solo clic!
 								</p>
 							</AccordionContent>
 						</AccordionItem>
@@ -83,9 +83,9 @@ export function Help() {
 							<AccordionTrigger>Creación y visualización</AccordionTrigger>
 							<AccordionContent>
 								<p>
-									Crea recordatorios en columnas específicas para no olvidar
-									nada importante. Recibirás un aviso cuando una tarea llegue a
-									esa columna.
+									Crea recordatorios en columnas específicas para no olvidar nada
+									importante. Recibirás un aviso cuando una tarea llegue a esa
+									columna.
 								</p>
 							</AccordionContent>
 						</AccordionItem>
@@ -108,9 +108,8 @@ export function Help() {
 							<AccordionTrigger>Prioridad</AccordionTrigger>
 							<AccordionContent>
 								<p>
-									Asigna un nivel de prioridad a tus etiquetas (1 es el más
-									alto) para que tus tareas más importantes siempre estén a la
-									vista.
+									Asigna un nivel de prioridad a tus etiquetas (1 es el más alto)
+									para que tus tareas más importantes siempre estén a la vista.
 								</p>
 							</AccordionContent>
 						</AccordionItem>
@@ -124,8 +123,8 @@ export function Help() {
 							<AccordionContent>
 								<p>
 									Usa el espacio de notas para apuntar ideas, recordatorios o lo
-									que necesites. ¡Tienes hasta 10,000 caracteres! Además,
-									puedes archivar tus notas para consultarlas más tarde.
+									que necesites. ¡Tienes hasta 10,000 caracteres! Además, puedes
+									archivar tus notas para consultarlas más tarde.
 								</p>
 							</AccordionContent>
 						</AccordionItem>
@@ -188,8 +187,8 @@ export function Help() {
 							<AccordionContent>
 								<p>
 									Crea una cuenta para guardar tu tablero y acceder a él desde
-									cualquier lugar. Si ya tienes un tablero, ¡lo guardaremos
-									por ti!
+									cualquier lugar. Si ya tienes un tablero, ¡lo guardaremos por
+									ti!
 								</p>
 							</AccordionContent>
 						</AccordionItem>
@@ -230,8 +229,8 @@ export function Help() {
 							<AccordionTrigger>Temas</AccordionTrigger>
 							<AccordionContent>
 								<p>
-									Personaliza la apariencia de Boar con diferentes temas de
-									color. ¡Elige el que más te guste!
+									Personaliza la apariencia de Boar con diferentes temas de color.
+									¡Elige el que más te guste!
 								</p>
 							</AccordionContent>
 						</AccordionItem>
@@ -249,4 +248,3 @@ export function Help() {
 		</>
 	)
 }
-
