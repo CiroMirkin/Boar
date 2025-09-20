@@ -1,7 +1,7 @@
 import { WelcomeDialog } from './components/WelcomeDialog'
 import { useBoard } from '@/modules/board/hooks/useBoard'
 import { useDocumentTitle } from '@uidotdev/usehooks'
-import { useSession } from '@/SessionProvider'
+import { useSession } from '@/auth/contexts/SessionProvider'
 import { useSaveBoard } from './state/useSaveBoard'
 import { LoadingBoard } from './components/LoadingBoard'
 import { useSelector } from 'react-redux'

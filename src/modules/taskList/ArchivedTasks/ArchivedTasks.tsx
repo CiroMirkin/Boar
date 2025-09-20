@@ -8,7 +8,7 @@ import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { ArchiveContent } from './components/ArchiveContent'
 import { useEffect, useState } from 'react'
 import { useSaveArchive } from './state/useSaveArchive'
-import { useSession } from '@/SessionProvider'
+import { useSession } from '@/auth/contexts/SessionProvider'
 import { toast } from 'sonner'
 import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
 

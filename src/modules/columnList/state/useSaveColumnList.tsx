@@ -1,4 +1,4 @@
-import { useSession } from '@/SessionProvider'
+import { useSession } from '@/auth/contexts/SessionProvider'
 import { ColumnList, defaultColumnList } from '../models/columnList'
 import LocalStorageColumnListRepository from '../repository/localStorageColumnList'
 import SupabaseColumnListRepository from '../repository/supabaseRepository'
