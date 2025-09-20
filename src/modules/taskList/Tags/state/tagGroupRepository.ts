@@ -1,5 +1,5 @@
 import { supabase } from '@/lib/supabase'
-import { getUserId } from '@/sharedByModules/hooks/useSyncBoard'
+import { getUserId } from '@/sharedByModules/hooks/getUserId'
 import { TagGroup } from '../model/tags'
 
 export const saveActualTagGroupInSupabase = async (actualTagGroup: TagGroup) => {

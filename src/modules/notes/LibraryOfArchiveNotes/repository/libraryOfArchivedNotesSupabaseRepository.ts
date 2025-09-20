@@ -3,7 +3,7 @@ import {
 	defaultLibraryOfArchivedNotes,
 	LibraryOfArchivedNotes,
 } from '../model/libraryOfArchivedNotes'
-import { getUserId } from '@/sharedByModules/hooks/useSyncBoard'
+import { getUserId } from '@/sharedByModules/hooks/getUserId'
 import { LibraryOfArchiveNotesRepository } from '../model/libraryOfArchivedNotesRepository'
 
 export default class LibraryOfArchivedNotesSupabaseRepository

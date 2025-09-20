@@ -16,6 +16,7 @@ import { store } from '@/store'
 import { Dispatch } from '@reduxjs/toolkit'
 import { Session } from '@supabase/supabase-js'
 import { Dispatch as ReactDispatch, SetStateAction } from 'react'
+import { getUserId } from './getUserId'
 
 interface UserBoard {
 	name: string
@@ -52,13 +53,6 @@ const changeActualBoardBySavedBoard = ({
 	setNote(savedUserBoard.notes)
 	dispatch(changeActualTagGroup(savedUserBoard.actual_tag_group))
 	dispatch(setReminder(savedUserBoard.reminders))
-}
-
-export const getUserId = async () => {
-	const {
-		data: { user },
-	} = await supabase.auth.getUser()
-	return user?.id
 }
 
 const getActualUserBoard = async (): Promise<UserBoard> => {

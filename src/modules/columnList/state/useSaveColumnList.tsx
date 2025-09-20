@@ -4,7 +4,6 @@ import LocalStorageColumnListRepository from '../repository/localStorageColumnLi
 import SupabaseColumnListRepository from '../repository/supabaseRepository'
 import { useEffect, useRef } from 'react'
 
-
 interface useSaveColumnListParams {
 	columnList: ColumnList
 }
@@ -24,7 +23,7 @@ export const useSaveColumnList = ({ columnList }: useSaveColumnListParams) => {
 		if (isNotColumnListByDefault || beforeWasNotColumnListByDefault) {
 			const isNotTheLocalColumnList =
 				JSON.stringify(columnList) !== JSON.stringify(localColumnList)
-			  columnListRef.current = columnList
+			columnListRef.current = columnList
 			if (!!session && isNotTheLocalColumnList) {
 				const supabaseColumnList = new SupabaseColumnListRepository()
 				supabaseColumnList.save(columnList)
