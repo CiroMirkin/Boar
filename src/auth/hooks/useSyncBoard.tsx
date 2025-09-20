@@ -1,34 +1,20 @@
 import { supabase } from '@/lib/supabase'
 import { isDefaultBoardName } from '@/modules/board/models/board'
 import { setBoar } from '@/modules/board/state/boardReducer'
-import { ColumnList, isDefaultColumnList } from '@/modules/columnList/models/columnList'
+import { isDefaultColumnList } from '@/modules/columnList/models/columnList'
 import { setColumnList } from '@/modules/columnList/state/columnListReducer'
-import { defaultNotes, Notes } from '@/modules/notes/model/notes'
-import LocalStorageNotesRepository from '@/modules/notes/repository/LocalStorageNotesRepository'
-import { emptyTaskListInEachColumn, TaskListInEachColumn } from '@/modules/taskList/models/taskList'
-import { Reminder } from '@/modules/taskList/Reminder/reminder'
+import { defaultNotes } from '@/modules/notes/model/notes'
+import { emptyTaskListInEachColumn } from '@/modules/taskList/models/taskList'
 import { setReminder } from '@/modules/taskList/Reminder/state/reminderReducer'
 import { setTaskListInEachColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
-import { eisenhowerTagGroup } from '@/modules/taskList/Tags/model/defaultTags'
-import { TagGroup } from '@/modules/taskList/Tags/model/tags'
 import { changeActualTagGroup } from '@/modules/taskList/Tags/state/tagsReducer'
-import { store } from '@/store'
 import { Dispatch } from '@reduxjs/toolkit'
 import { Session } from '@supabase/supabase-js'
 import { Dispatch as ReactDispatch, SetStateAction } from 'react'
-import { getUserId } from '../utils/getUserId'
+import { UserBoardOnDB } from '../model/UserBoardOnDB'
+import { getActualUserBoard } from '../utils/getActualUserBoard'
 
-interface UserBoard {
-	name: string
-	column_list: ColumnList
-	task_list_in_each_column: TaskListInEachColumn
-	user_id: string | undefined
-	notes: Notes
-	actual_tag_group: TagGroup
-	reminders: Reminder
-}
-
-const saveUserBoardOnSupabase = async (userBoard: UserBoard) => {
+const saveUserBoardOnSupabase = async (userBoard: UserBoardOnDB) => {
 	try {
 		const { error } = await supabase.from('boards').insert(userBoard)
 		if (error) throw error
@@ -44,7 +30,7 @@ const changeActualBoardBySavedBoard = ({
 	setNote,
 }: {
 	dispatch: Dispatch
-	savedUserBoard: UserBoard
+	savedUserBoard: UserBoardOnDB
 	setNote: ReactDispatch<SetStateAction<string>>
 }) => {
 	dispatch(setTaskListInEachColumn(savedUserBoard.task_list_in_each_column))
@@ -53,19 +39,6 @@ const changeActualBoardBySavedBoard = ({
 	setNote(savedUserBoard.notes)
 	dispatch(changeActualTagGroup(savedUserBoard.actual_tag_group))
 	dispatch(setReminder(savedUserBoard.reminders))
-}
-
-const getActualUserBoard = async (): Promise<UserBoard> => {
-	const notes = new LocalStorageNotesRepository().getAll()
-	return {
-		name: store.getState().board.board.name,
-		column_list: store.getState().columnList.list,
-		task_list_in_each_column: store.getState().taskListInEachColumn.list,
-		user_id: await getUserId(),
-		notes,
-		actual_tag_group: eisenhowerTagGroup,
-		reminders: store.getState().reminder.reminder,
-	}
 }
 
 /** @returns True si el usuario tiene el tablero por defecto (vacio) */
