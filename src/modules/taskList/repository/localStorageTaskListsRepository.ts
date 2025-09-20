@@ -1,5 +1,5 @@
 import { TaskListInEachColumn, emptyTaskListInEachColumn } from '@/modules/taskList/models/taskList'
-import { TaskListInEachColumnRepository } from '@/modules/taskList/models/taskListInEachColumnRepository'
+import { TaskListInEachColumnRepository } from './taskListInEachColumnRepository'
 
 export default class LocalStorageTaskListInEachColumnRepository
 	implements TaskListInEachColumnRepository
@@ -11,7 +11,7 @@ export default class LocalStorageTaskListInEachColumnRepository
 	save(taskListInEachColumn: TaskListInEachColumn): void {
 		localStorage.setItem(this.key, JSON.stringify(taskListInEachColumn))
 	}
-	getAll(): TaskListInEachColumn {
+	getAll() {
 		return localStorage.getItem(this.key)
 			? JSON.parse(localStorage.getItem(this.key) as string)
 			: emptyTaskListInEachColumn
