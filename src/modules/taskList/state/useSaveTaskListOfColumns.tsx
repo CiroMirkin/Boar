@@ -1,8 +1,8 @@
 import { SessionType } from '@/SessionProvider'
 import { emptyTaskListInEachColumn, TaskListInEachColumn } from '../models/taskList'
 import LocalStorageTaskListInEachColumnRepository from '../repository/localStorageTaskListsRepository'
-import { sendForSaveTaskListInEachColumn } from '../repository/sendForSaveTaskListInEachColumn'
 import { useEffect, useRef } from 'react'
+import SupabaseTaskListInEachColumnRepository from '../repository/supabaseTaskListsRepository'
 
 interface useSaveTaskListOfColumnsParams {
 	data: TaskListInEachColumn
@@ -41,7 +41,8 @@ const save = ({ data, session, emptyData = false }: useSaveTaskListOfColumnsPara
 		const isNotTheLocalTaskListOfColumns =
 			JSON.stringify(data) !== JSON.stringify(localTaskListOfColumns)
 		if (!!session && isNotTheLocalTaskListOfColumns) {
-			sendForSaveTaskListInEachColumn(data)
+			const supabase = new SupabaseTaskListInEachColumnRepository()
+			supabase.save(data)
 		} else {
 			localStorage.save(data)
 		}
