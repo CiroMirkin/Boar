@@ -9,7 +9,7 @@ import { toast } from 'sonner'
 import { USER_IS_IN } from '@/ui/organisms/userIsIn'
 import { Navigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
-import { checkIfUserHasTheDefaultBoard } from '@/auth/hooks/useSyncBoard'
+import { checkIfUserHasTheDefaultBoard } from '@/auth/utils/checkIfUserHasTheDefaultBoard'
 import PageContainer from './PageContainer'
 
 export default function Auth() {

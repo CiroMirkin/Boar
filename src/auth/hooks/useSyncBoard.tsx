@@ -1,8 +1,4 @@
 import { supabase } from '@/lib/supabase'
-import { isDefaultBoardName } from '@/modules/board/models/board'
-import { isDefaultColumnList } from '@/modules/columnList/models/columnList'
-import { defaultNotes } from '@/modules/notes/model/notes'
-import { emptyTaskListInEachColumn } from '@/modules/taskList/models/taskList'
 import { setUserBoard } from '../utils/setUserBoard'
 import { Dispatch } from '@reduxjs/toolkit'
 import { Session } from '@supabase/supabase-js'
@@ -17,18 +13,6 @@ const saveUserBoardOnSupabase = async (userBoard: UserBoardOnDB) => {
 	} catch (e) {
 		console.error(e)
 	}
-}
-
-/** @returns True si el usuario tiene el tablero por defecto (vacio) */
-export const checkIfUserHasTheDefaultBoard = async (): Promise<boolean> => {
-	const actualUserBoard = await getActualUserBoard()
-	return (
-		isDefaultBoardName(actualUserBoard.name) &&
-		isDefaultColumnList(actualUserBoard.column_list) &&
-		JSON.stringify(actualUserBoard.task_list_in_each_column) ===
-			JSON.stringify(emptyTaskListInEachColumn) &&
-		actualUserBoard.notes === defaultNotes
-	)
 }
 
 /** Recupera el tablero del usuario de Supabase y si no existe ninguno guarda el tablero actual en Supabase. */
