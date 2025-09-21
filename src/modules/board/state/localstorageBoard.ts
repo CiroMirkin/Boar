@@ -1,5 +1,5 @@
 import { boardModel, defaultBoard } from '@/modules/board/models/board'
-import { BoardRepository } from '@/modules/board/models/boardRepository'
+import { BoardRepository } from '@/modules/board/repository/boardRepository'
 
 export default class LocalStorageBoardRepository implements BoardRepository {
 	key

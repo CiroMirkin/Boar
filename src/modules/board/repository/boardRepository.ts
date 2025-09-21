@@ -1,4 +1,4 @@
-import { boardModel } from './board'
+import { boardModel } from '../models/board'
 
 export interface BoardRepository {
 	save(boards: boardModel): void
