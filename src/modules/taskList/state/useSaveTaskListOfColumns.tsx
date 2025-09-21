@@ -1,4 +1,4 @@
-import { SessionType } from '@/SessionProvider'
+import { SessionType } from '@/auth/contexts/SessionProvider'
 import { emptyTaskListInEachColumn, TaskListInEachColumn } from '../models/taskList'
 import LocalStorageTaskListInEachColumnRepository from '../repository/localStorageTaskListsRepository'
 import { useEffect, useRef } from 'react'

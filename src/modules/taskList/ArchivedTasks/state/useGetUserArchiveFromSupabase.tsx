@@ -1,8 +1,8 @@
 import { supabase } from '@/lib/supabase'
 import { setArchive } from './archiveReducer'
-import { getUserId } from '@/sharedByModules/hooks/useSyncBoard'
+import { getUserId } from '@/auth/utils/getUserId'
 import { store } from '@/store'
-import { SessionType } from '@/SessionProvider'
+import { SessionType } from '@/auth/contexts/SessionProvider'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 

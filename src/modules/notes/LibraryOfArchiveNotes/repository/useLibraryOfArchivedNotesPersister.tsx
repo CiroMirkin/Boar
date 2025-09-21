@@ -4,7 +4,7 @@ import {
 	LibraryOfArchivedNotes,
 } from '../model/libraryOfArchivedNotes'
 import LibraryOfArchivedNotesLocalStorageRepository from './libraryOfArchivedNotesLocalStorageRepository'
-import { SessionType } from '@/SessionProvider'
+import { SessionType } from '@/auth/contexts/SessionProvider'
 
 export const useLibraryOfArchivedNotesPersister = () => {
 	/** Permite guardar las notas para que tengan persistencia (Supabase o LocalStorage). */

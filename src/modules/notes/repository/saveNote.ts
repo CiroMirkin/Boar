@@ -1,4 +1,4 @@
-import { SessionType } from '@/SessionProvider'
+import { SessionType } from '@/auth/contexts/SessionProvider'
 import { sendForSaveNotes } from './sendForSaveNotes'
 import { defaultNotes, Notes } from '../model/notes'
 import LocalStorageNotesRepository from './LocalStorageNotesRepository'

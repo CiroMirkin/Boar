@@ -1,15 +1,15 @@
 import { boardModel, defaultBoard } from '@/modules/board/models/board'
-import { BoardRepository } from '@/modules/board/models/boardRepository'
+import { BoardRepository } from '@/modules/board/repository/boardRepository'
 
 export default class LocalStorageBoardRepository implements BoardRepository {
 	key
 	constructor() {
 		this.key = 'board-boar'
 	}
-	save(archive: boardModel): void {
+	save(archive: boardModel) {
 		localStorage.setItem(this.key, JSON.stringify(archive))
 	}
-	getAll(): boardModel {
+	getAll() {
 		return localStorage.getItem(this.key)
 			? JSON.parse(localStorage.getItem(this.key) as string)
 			: defaultBoard

@@ -1,5 +1,5 @@
 import { TaskListArchived } from './TaskListArchived'
-import { useSession } from '@/SessionProvider'
+import { useSession } from '@/auth/hooks/useSession'
 import { useEffect } from 'react'
 import { useArchive } from '../hooks/useArchive'
 import { useSaveArchive } from '../state/useSaveArchive'
