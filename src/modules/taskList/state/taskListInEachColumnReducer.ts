@@ -1,5 +1,6 @@
 import { Column, getIndexOfColumnInColumnList } from '../../columnList/models/column'
-import { checkMaxLengthOfNotesAndComments, taskModel } from '@/modules/taskList/models/task'
+import { taskModel } from '@/modules/taskList/models/task'
+import { checkMaxLengthOfNotesAndComments } from '../models/NotesAndComments'
 import { emptyTaskListInEachColumn, TaskListInEachColumn } from '@/modules/taskList/models/taskList'
 import {
 	addTaskInFirstColumn,

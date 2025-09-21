@@ -1,7 +1,6 @@
 import BusinessError from '@/sharedByModules/errors/businessError'
 import { Tag } from '../Tags/model/tags'
-
-export type NotesAndComments = string
+import { NotesAndComments } from './NotesAndComments'
 
 export interface taskModel {
 	id: string
@@ -16,13 +15,6 @@ export const emptyTask: taskModel = {
 	descriptionText: '',
 	columnPosition: '1',
 	notesAndComments: '',
-}
-
-export const maxLengthOfNotesAndComments = 5000
-
-/** @returns True si notesAndComments esta dentro del limite de caracteres permitido. */
-export const checkMaxLengthOfNotesAndComments = (notesAndComments: NotesAndComments) => {
-	return notesAndComments.trim().length < maxLengthOfNotesAndComments
 }
 
 export const isThisTaskDescriptionValid = (taskDescription: string): boolean =>
