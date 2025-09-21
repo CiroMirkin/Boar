@@ -15,7 +15,7 @@ import { useBoard } from '@/modules/board/hooks/useBoard'
 import { useTranslation } from 'react-i18next'
 import { useSession } from '@/auth/hooks/useSession'
 import { SettingSection } from '@/ui/organisms/SettingSection'
-import { useSaveBoard } from '../state/useSaveBoard'
+import { useSaveBoard } from '../hooks/useSaveBoard'
 
 export function ChangeBoardName() {
 	const boardData = useBoard()
