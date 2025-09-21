@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLibraryOfArchivedNotes } from '../LibraryOfArchiveNotes/state/useLibraryOfArchivedNotes'
 import { useSession } from '@/auth/hooks/useSession'
-import { saveNotes } from '../repository/saveNote'
 import { useDispatch } from 'react-redux'
 import { archiveThisNote } from '../LibraryOfArchiveNotes/state/archivedNotesReducer'
-import { useNote } from '../NoteProvider'
+import { useNote } from '../hooks/useNote'
 import { defaultNotes } from '../model/notes'
 import { toast } from 'sonner'
 import { Button } from '@/ui/atoms/button'
 import { ArchiveIcon } from '@/ui/atoms/icons'
 import { useLibraryOfArchivedNotesPersister } from '../LibraryOfArchiveNotes/repository/useLibraryOfArchivedNotesPersister'
+import { notesRepositoryFactory } from '../repository/notesRepositoryFactory'
 
 export function ArchiveNoteBtn() {
 	const [taskArchived, setTaskArchived] = useState(false)
@@ -25,7 +25,8 @@ export function ArchiveNoteBtn() {
 			if (note == '' || note == '<br>') {
 				if (taskArchived) {
 					await persistNotes(session, libraryOfArchivedNotes)
-					await saveNotes({ notes: note, session, emptyNote: true })
+					const notesRepository = notesRepositoryFactory(session)
+					notesRepository.save(note)
 					setTaskArchived(false)
 				}
 			}

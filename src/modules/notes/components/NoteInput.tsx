@@ -2,12 +2,10 @@ import { useEffect } from 'react'
 import RichTextEditor from '../RichTextEditor/RichTextEditor'
 import { defaultNotes, maxLengthOfNotes, Notes as NotesModel } from '../model/notes'
 import { useSession } from '@/auth/hooks/useSession'
-import { getNotesFromSupabase } from '../repository/getNotesFromSupabase'
-import LocalStorageNotesRepository from '../repository/LocalStorageNotesRepository'
-import { saveNotes } from '../repository/saveNote'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
-import { useNote } from '../NoteProvider'
+import { useNote } from '../hooks/useNote'
+import { notesRepositoryFactory } from '../repository/notesRepositoryFactory'
 
 export function NoteInput() {
 	const { note, setNote } = useNote()
@@ -15,15 +13,14 @@ export function NoteInput() {
 
 	const { session } = useSession()
 	useEffect(() => {
-		if (session) {
-			getNotesFromSupabase({ setNotes: setNote })
-		} else {
-			const lg = new LocalStorageNotesRepository()
-			const notesFromLocalStotage = lg.getAll()
-			if (notesFromLocalStotage !== defaultNotes) {
-				setNote(notesFromLocalStotage)
+		const notesRepository = notesRepositoryFactory(session)
+		const loadNotes = async () => {
+			const notes = await notesRepository.getAll()
+			if (notes !== defaultNotes) {
+				setNote(notes)
 			}
 		}
+		void loadNotes()
 	}, [session, setNote])
 
 	const onChange = (newText: NotesModel) => {
@@ -39,7 +36,8 @@ export function NoteInput() {
 	}
 
 	const handleSaveNotes = async (newNote: NotesModel) => {
-		await saveNotes({ session, notes: newNote })
+		const notesRepository = notesRepositoryFactory(session)
+		await notesRepository.save(newNote)
 	}
 
 	return (
