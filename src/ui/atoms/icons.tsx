@@ -23,6 +23,7 @@ import {
 	ArrowLeft,
 	Clipboard,
 	CircleCheck,
+	MessageSquareText,
 } from 'lucide-react'
 
 const iconSize: string = '20'
@@ -103,4 +104,7 @@ export const ClipboardIcon = ({ className = '' }: IconProps) => (
 )
 export const CheckIcon = ({ className = '' }: IconProps) => (
 	<CircleCheck size={iconSize} className={className} />
+)
+export const MessageSquareTextIcon = ({ className = '' }: IconProps) => (
+	<MessageSquareText size={iconSize} className={className} />
 )

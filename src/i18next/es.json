@@ -143,5 +143,9 @@
 		"c1": "Pendientes",
 		"c2": "Procesando",
 		"c3": "Terminado"
+	},
+	"task_notes": {
+		"title": "Notas y comentarios",
+		"max_length_toast": "Se alcanzo el máximo de caracteres para una nota."
 	}
 }
