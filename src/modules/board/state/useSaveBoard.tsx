@@ -1,6 +1,6 @@
 import { SessionType } from '@/auth/contexts/SessionProvider'
 import { boardModel, defaultBoard } from '../models/board'
-import LocalStorageBoardRepository from './localstorageBoard'
+import LocalStorageBoardRepository from '../repository/localstorageBoardRepository'
 import { sendForSaveBoard } from './sendForSaveBoard'
 
 interface useSaveBoardParams {

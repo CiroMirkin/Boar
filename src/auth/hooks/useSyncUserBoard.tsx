@@ -1,5 +1,5 @@
 import { setIsLoading, setBoar } from '@/modules/board/state/boardReducer'
-import LocalStorageBoardRepository from '@/modules/board/state/localstorageBoard'
+import LocalStorageBoardRepository from '@/modules/board/repository/localstorageBoardRepository'
 import { setColumnList } from '@/modules/columnList/state/columnListReducer'
 import LocalStorageColumnListRepository from '@/modules/columnList/repository/localStorageColumnList'
 import { useNote } from '@/modules/notes/NoteProvider'
