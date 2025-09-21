@@ -4,7 +4,7 @@ import { useLibraryOfArchivedNotes } from '../LibraryOfArchiveNotes/state/useLib
 import { useSession } from '@/auth/hooks/useSession'
 import { useDispatch } from 'react-redux'
 import { archiveThisNote } from '../LibraryOfArchiveNotes/state/archivedNotesReducer'
-import { useNote } from '../NoteProvider'
+import { useNote } from '../contexts/NoteProvider'
 import { defaultNotes } from '../model/notes'
 import { toast } from 'sonner'
 import { Button } from '@/ui/atoms/button'

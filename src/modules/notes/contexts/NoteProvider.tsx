@@ -1,5 +1,5 @@
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from 'react'
-import { defaultNotes, Notes } from './model/notes'
+import { defaultNotes, Notes } from '../model/notes'
 
 interface UserNote {
 	note: Notes
