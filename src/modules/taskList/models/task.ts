@@ -6,12 +6,14 @@ export interface taskModel {
 	descriptionText: string
 	columnPosition: string
 	tags?: Tag[]
+	notesAndComments?: string
 }
 
 export const emptyTask: taskModel = {
 	id: '',
 	descriptionText: '',
 	columnPosition: '1',
+	notesAndComments: '',
 }
 
 export const isThisTaskDescriptionValid = (taskDescription: string): boolean =>
