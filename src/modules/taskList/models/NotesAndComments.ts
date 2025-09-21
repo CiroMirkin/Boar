@@ -1,4 +1,3 @@
-
 export type NotesAndComments = string
 
 export const maxLengthOfNotesAndComments = 5000
