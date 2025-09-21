@@ -106,6 +106,22 @@ export const taskListInEachColumnSlice = createSlice({
 				task: action.payload.task,
 			})
 		},
+		updateNotesAndCommentsOfThisTask: (
+			state,
+			action: PayloadAction<{ task: taskModel; notes: string }>
+		) => {
+			const { task: taskToUpdate, notes } = action.payload
+			state.list = state.list.map((taskList) => {
+				return taskList.map((task) =>
+					task.id === taskToUpdate.id
+						? {
+								...task,
+								notesAndComments: notes,
+							}
+						: task
+				)
+			})
+		},
 	},
 })
 
@@ -121,5 +137,6 @@ export const {
 	setTaskListInEachColumn,
 	moveThisTaskToThisColumnPosition,
 	addThisTagsInThisTask,
+	updateNotesAndCommentsOfThisTask,
 } = taskListInEachColumnSlice.actions
 export default taskListInEachColumnSlice.reducer
