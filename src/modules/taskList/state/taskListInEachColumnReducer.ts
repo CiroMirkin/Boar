@@ -1,5 +1,5 @@
 import { Column, getIndexOfColumnInColumnList } from '../../columnList/models/column'
-import { taskModel } from '@/modules/taskList/models/task'
+import { checkMaxLengthOfNotesAndComments, taskModel } from '@/modules/taskList/models/task'
 import { emptyTaskListInEachColumn, TaskListInEachColumn } from '@/modules/taskList/models/taskList'
 import {
 	addTaskInFirstColumn,
@@ -113,7 +113,7 @@ export const taskListInEachColumnSlice = createSlice({
 			const { task: taskToUpdate, notes } = action.payload
 			state.list = state.list.map((taskList) => {
 				return taskList.map((task) =>
-					task.id === taskToUpdate.id
+					task.id === taskToUpdate.id && checkMaxLengthOfNotesAndComments(notes)
 						? {
 								...task,
 								notesAndComments: notes,

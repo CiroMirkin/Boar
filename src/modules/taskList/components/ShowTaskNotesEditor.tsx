@@ -6,12 +6,20 @@ import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
 import { MessageSquareTextIcon } from '@/ui/atoms/icons'
 import { useDispatch } from 'react-redux'
 import { updateNotesAndCommentsOfThisTask } from '../state/taskListInEachColumnReducer'
+import { checkMaxLengthOfNotesAndComments } from '../models/task'
+import { toast } from 'sonner'
 
 export default function ShowTaskNotesEditor() {
 	const task = useDataOfTheTask()
 	const dispatch = useDispatch()
 
 	const onChange = (text: string) => {
+		console.log(checkMaxLengthOfNotesAndComments(text), text.length)
+		if (!checkMaxLengthOfNotesAndComments(text)) {
+			toast.error('Se alcanzo el máximo de caracteres para una nota.')
+			return
+		}
+
 		dispatch(
 			updateNotesAndCommentsOfThisTask({
 				task,
