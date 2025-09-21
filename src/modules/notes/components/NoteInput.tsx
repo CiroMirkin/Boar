@@ -4,7 +4,7 @@ import { defaultNotes, maxLengthOfNotes, Notes as NotesModel } from '../model/no
 import { useSession } from '@/auth/hooks/useSession'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
-import { useNote } from '../contexts/NoteProvider'
+import { useNote } from '../hooks/useNote'
 import { notesRepositoryFactory } from '../repository/notesRepositoryFactory'
 
 export function NoteInput() {

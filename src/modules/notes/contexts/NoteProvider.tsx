@@ -1,4 +1,4 @@
-import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from 'react'
+import { createContext, Dispatch, ReactNode, SetStateAction, useState } from 'react'
 import { defaultNotes, Notes } from '../model/notes'
 
 interface UserNote {
@@ -6,12 +6,10 @@ interface UserNote {
 	setNote: Dispatch<SetStateAction<string>>
 }
 
-const NoteContext = createContext({
+export const NoteContext = createContext({
 	note: defaultNotes,
 	setNote: () => {},
 } as UserNote)
-
-export const useNote = () => useContext(NoteContext)
 
 export function NoteProvider({ children }: { children: ReactNode }) {
 	const [note, setNote] = useState(defaultNotes)
