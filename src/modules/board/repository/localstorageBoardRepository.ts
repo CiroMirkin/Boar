@@ -6,10 +6,10 @@ export default class LocalStorageBoardRepository implements BoardRepository {
 	constructor() {
 		this.key = 'board-boar'
 	}
-	save(archive: boardModel): void {
+	save(archive: boardModel) {
 		localStorage.setItem(this.key, JSON.stringify(archive))
 	}
-	getAll(): boardModel {
+	getAll() {
 		return localStorage.getItem(this.key)
 			? JSON.parse(localStorage.getItem(this.key) as string)
 			: defaultBoard
