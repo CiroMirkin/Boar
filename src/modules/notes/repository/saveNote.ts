@@ -1,7 +1,7 @@
 import { SessionType } from '@/auth/contexts/SessionProvider'
-import { sendForSaveNotes } from './sendForSaveNotes'
 import { defaultNotes, Notes } from '../model/notes'
 import LocalStorageNotesRepository from './LocalStorageNotesRepository'
+import SupabaseNotesRepository from './SupabaseNotesRepository'
 
 interface SaveNotesParams {
 	notes: Notes
@@ -11,7 +11,8 @@ interface SaveNotesParams {
 
 export const saveNotes = async ({ notes, session, emptyNote = false }: SaveNotesParams) => {
 	if (session) {
-		await sendForSaveNotes({ notes })
+		const supabseNotes = new SupabaseNotesRepository()
+		await supabseNotes.save(notes)
 	} else if (notes !== defaultNotes || emptyNote) {
 		new LocalStorageNotesRepository().save(notes)
 	}
