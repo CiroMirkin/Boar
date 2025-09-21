@@ -21,7 +21,7 @@ export function TaskInBoardActions() {
 	}
 
 	return (
-		<div className='w-full flex justify-between gap-1.5'>
+		<div className='w-full flex flex-wrap justify-between gap-1.5'>
 			<div className='flex'>
 				<MoveButttons handleClick={handleClick} />
 			</div>
