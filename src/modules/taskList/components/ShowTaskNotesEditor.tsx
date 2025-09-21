@@ -1,5 +1,11 @@
 import { Dialog } from '@radix-ui/react-dialog'
-import { DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/ui/molecules/dialog'
+import {
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from '@/ui/molecules/dialog'
 import { Button } from '@/ui/atoms/button'
 import RichTextEditor from '@/modules/notes/RichTextEditor/RichTextEditor'
 import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
@@ -30,7 +36,7 @@ export default function ShowTaskNotesEditor() {
 
 	return (
 		<Dialog>
-			<DialogTrigger title={'Notas y comentarios'}>
+			<DialogTrigger asChild title={'Notas y comentarios'}>
 				<Button size='sm' variant='ghost' className='w-full'>
 					<MessageSquareTextIcon />
 				</Button>
@@ -38,8 +44,9 @@ export default function ShowTaskNotesEditor() {
 			<DialogContent>
 				<DialogHeader>
 					<DialogTitle>{task.descriptionText}</DialogTitle>
+					<DialogDescription></DialogDescription>
 				</DialogHeader>
-				<div className=''>
+				<div>
 					<RichTextEditor
 						value={task.notesAndComments ? task.notesAndComments : ''}
 						onChange={onChange}
