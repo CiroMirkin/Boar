@@ -6,6 +6,7 @@ import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
 import { CopyTextButton } from './CopyTextButton'
 import { ArchiveTaskButton } from './ArchiveTaskButton'
 import { DeleteTaskButton } from './DeleteTaskButton'
+import ShowTaskNotesEditor from './ShowTaskNotesEditor'
 
 export function TaskInBoardActions() {
 	const data = useDataOfTheTask()
@@ -26,6 +27,7 @@ export function TaskInBoardActions() {
 			</div>
 			<div className='flex'>
 				<CopyTextButton />
+				<ShowTaskNotesEditor />
 				{isTheTaskInTheLastColumn && <ArchiveTaskButton handleClick={handleClick} />}
 				<DeleteTaskButton handleClick={handleClick} />
 			</div>
