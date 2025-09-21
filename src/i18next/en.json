@@ -144,5 +144,9 @@
 		"c1": "Pending",
 		"c2": "Processing",
 		"c3": "Finished"
+	},
+	"task_notes": {
+		"title": "Notes and comments",
+		"max_length_toast": "The maximum number of characters for a note has been reached."
 	}
 }

@@ -14,15 +14,17 @@ import { useDispatch } from 'react-redux'
 import { updateNotesAndCommentsOfThisTask } from '../state/taskListInEachColumnReducer'
 import { checkMaxLengthOfNotesAndComments } from '../models/NotesAndComments'
 import { toast } from 'sonner'
+import { useTranslation } from 'react-i18next'
 
 export default function ShowTaskNotesEditor() {
 	const task = useDataOfTheTask()
 	const dispatch = useDispatch()
+	const { t } = useTranslation()
 
 	const onChange = (text: string) => {
 		console.log(checkMaxLengthOfNotesAndComments(text), text.length)
 		if (!checkMaxLengthOfNotesAndComments(text)) {
-			toast.error('Se alcanzo el máximo de caracteres para una nota.')
+			toast.error(t('task_notes.max_length_toast'))
 			return
 		}
 
@@ -36,7 +38,7 @@ export default function ShowTaskNotesEditor() {
 
 	return (
 		<Dialog>
-			<DialogTrigger asChild title={'Notas y comentarios'}>
+			<DialogTrigger asChild title={t('task_notes.title')}>
 				<Button size='sm' variant='ghost' className='w-full'>
 					<MessageSquareTextIcon />
 				</Button>
