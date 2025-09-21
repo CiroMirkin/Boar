@@ -1,6 +1,6 @@
-import { Notes } from './notes'
+import { Notes } from '../model/notes'
 
 export interface NotesRepository {
 	save(notes: Notes): void
-	getAll(): Notes
+	getAll(): Promise<Notes>
 }
