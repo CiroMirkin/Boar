@@ -12,7 +12,7 @@ import { useDispatch } from 'react-redux'
 import { NoteProvider } from './modules/notes/contexts/NoteProvider'
 import { useSyncUserBoard } from './auth/hooks/useSyncUserBoard'
 import { useGetUserArchiveFromSupabase } from './modules/taskList/ArchivedTasks/state/useGetUserArchiveFromSupabase'
-import { useLibraryOfArchivedNotesLoader } from './modules/notes/LibraryOfArchiveNotes/repository/useLibraryOfArchivedNotesLoader'
+import { useLibraryOfArchivedNotesLoader } from './modules/notes/LibraryOfArchiveNotes/hooks/useLibraryOfArchivedNotesLoader'
 import { useEffect } from 'react'
 
 function App() {
