@@ -9,7 +9,7 @@ import { defaultNotes } from '../model/notes'
 import { toast } from 'sonner'
 import { Button } from '@/ui/atoms/button'
 import { ArchiveIcon } from '@/ui/atoms/icons'
-import { useLibraryOfArchivedNotesPersister } from '../LibraryOfArchiveNotes/repository/useLibraryOfArchivedNotesPersister'
+import { useLibraryOfArchivedNotesPersister } from '../LibraryOfArchiveNotes/hooks/useLibraryOfArchivedNotesPersister'
 import { notesRepositoryFactory } from '../repository/notesRepositoryFactory'
 
 export function ArchiveNoteBtn() {

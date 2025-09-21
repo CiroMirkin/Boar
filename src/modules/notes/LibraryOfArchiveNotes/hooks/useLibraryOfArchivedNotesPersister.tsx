@@ -1,9 +1,9 @@
-import LibraryOfArchivedNotesSupabaseRepository from './libraryOfArchivedNotesSupabaseRepository'
+import LibraryOfArchivedNotesSupabaseRepository from '../repository/libraryOfArchivedNotesSupabaseRepository'
 import {
 	defaultLibraryOfArchivedNotes,
 	LibraryOfArchivedNotes,
 } from '../model/libraryOfArchivedNotes'
-import LibraryOfArchivedNotesLocalStorageRepository from './libraryOfArchivedNotesLocalStorageRepository'
+import LibraryOfArchivedNotesLocalStorageRepository from '../repository/libraryOfArchivedNotesLocalStorageRepository'
 import { SessionType } from '@/auth/contexts/SessionProvider'
 
 export const useLibraryOfArchivedNotesPersister = () => {
