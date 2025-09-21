@@ -22,7 +22,6 @@ export default function ShowTaskNotesEditor() {
 	const { t } = useTranslation()
 
 	const onChange = (text: string) => {
-		console.log(checkMaxLengthOfNotesAndComments(text), text.length)
 		if (!checkMaxLengthOfNotesAndComments(text)) {
 			toast.error(t('task_notes.max_length_toast'))
 			return
