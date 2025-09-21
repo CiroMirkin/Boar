@@ -1,5 +1,5 @@
 import { defaultNotes, Notes } from '../model/notes'
-import { NotesRepository } from '../model/notesRepository'
+import { NotesRepository } from './notesRepository'
 
 export default class LocalStorageNotesRepository implements NotesRepository {
 	key
