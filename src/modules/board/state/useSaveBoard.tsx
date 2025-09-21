@@ -1,7 +1,7 @@
 import { SessionType } from '@/auth/contexts/SessionProvider'
 import { boardModel, defaultBoard } from '../models/board'
 import LocalStorageBoardRepository from '../repository/localstorageBoardRepository'
-import { sendForSaveBoard } from './sendForSaveBoard'
+import SupabaseBoardRepository from '../repository/supabaseBoardRepository'
 
 interface useSaveBoardParams {
 	data: boardModel
@@ -16,7 +16,8 @@ export const useSaveBoard = ({ data, session }: useSaveBoardParams) => {
 	const isNotTheDefaultBoard = JSON.stringify(data) !== JSON.stringify(defaultBoard)
 	if (isNotTheDefaultBoard) {
 		if (!!session && isNotTheLocalBoard) {
-			sendForSaveBoard(data)
+			const supabaseBoard = new SupabaseBoardRepository()
+			supabaseBoard.save(data)
 		} else {
 			localStorage.save(data)
 		}
