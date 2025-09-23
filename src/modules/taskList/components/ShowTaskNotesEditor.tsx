@@ -7,7 +7,7 @@ import {
 	DialogTrigger,
 } from '@/ui/molecules/dialog'
 import { Button } from '@/ui/atoms/button'
-import RichTextEditor from '@/modules/notes/RichTextEditor/RichTextEditor'
+import RichTextEditor from '@/ui/organisms/RichTextEditor/RichTextEditor'
 import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
 import { MessageSquareTextIcon } from '@/ui/atoms/icons'
 import { useDispatch } from 'react-redux'

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import RichTextEditor from '../RichTextEditor/RichTextEditor'
+import RichTextEditor from '@/ui/organisms/RichTextEditor/RichTextEditor'
 import { defaultNotes, maxLengthOfNotes, Notes as NotesModel } from '../model/notes'
 import { useSession } from '@/auth/hooks/useSession'
 import { toast } from 'sonner'
