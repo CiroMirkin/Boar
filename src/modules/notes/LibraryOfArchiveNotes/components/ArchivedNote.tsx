@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/ui/molecules/card'
 import { ArchivedNote as ArchivedNoteModel } from '../model/archivedNote'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
-import RichTextViewer from '../../RichTextEditor/RichTextViewer'
+import RichTextViewer from '@/ui/organisms/RichTextViewer'
 
 interface ArchivedNoteProps {
 	note: ArchivedNoteModel
