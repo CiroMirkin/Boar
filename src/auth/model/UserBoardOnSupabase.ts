@@ -2,6 +2,7 @@ import { ColumnList } from '@/modules/columnList/models/columnList'
 import { TaskListInEachColumn } from '@/modules/taskList/models/taskList'
 
 export interface UserBoardOnSupabase {
+	id: string
 	user_id: string | undefined
 	name: string
 	column_list: ColumnList

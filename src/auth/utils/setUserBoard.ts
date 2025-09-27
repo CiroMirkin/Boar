@@ -18,7 +18,7 @@ export const setUserBoard = ({ dispatch, savedUserBoard, setNote }: SetUserBoard
 	const { board, accessories } = savedUserBoard
 	// Board info
 	dispatch(setTaskListInEachColumn(board.task_list_in_each_column))
-	dispatch(setBoar(board.name))
+	dispatch(setBoar({ name: board.name, id: board.id }))
 	dispatch(setColumnList(board.column_list))
 	// Accessories info
 	setNote(accessories.notes)

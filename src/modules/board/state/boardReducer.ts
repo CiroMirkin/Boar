@@ -18,8 +18,8 @@ export const boardSlice = createSlice({
 		setIsLoading: (state, action: PayloadAction<boolean>) => {
 			state.isLoading = action.payload
 		},
-		setBoar: (state, action: PayloadAction<string>) => {
-			state.board.name = action.payload
+		setBoar: (state, action: PayloadAction<boardModel>) => {
+			state.board = action.payload
 		},
 		changeTheNameOfTheBoard: (state, action: PayloadAction<string>) => {
 			const newName = action.payload

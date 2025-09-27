@@ -5,9 +5,11 @@ import { UserBoard } from '../model/UserBoard'
 
 export const getActualUserBoard = async (): Promise<UserBoard> => {
 	const notes = new LocalStorageNotesRepository().getAll()
+	const actualBoard = store.getState().board.board
 	return {
 		board: {
-			name: store.getState().board.board.name,
+			id: actualBoard.id,
+			name: actualBoard.name,
 			column_list: store.getState().columnList.list,
 			task_list_in_each_column: store.getState().taskListInEachColumn.list,
 			user_id: await getUserId(),

@@ -39,7 +39,7 @@ export const useSyncUserBoard = () => {
 				dispatch(setTaskListInEachColumn(eachTaskList.getAll()))
 
 				const board = new LocalStorageBoardRepository()
-				dispatch(setBoar(board.getAll().name))
+				dispatch(setBoar(board.getAll()))
 
 				const archive = new LocalStorageArchiveRepository()
 				dispatch(setArchive(archive.getAll()))
