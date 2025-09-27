@@ -1,4 +1,4 @@
-import { getUserId } from '@/auth/utils/getUserId'
+import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 import { blankReminder, Reminder } from '../reminder'
 import { ReminderRepository } from './ReminderRepository'
 import { supabase } from '@/lib/supabase'
@@ -8,24 +8,22 @@ export default class SupabaseReminderRepository implements ReminderRepository {
 
 	async save(reminder: Reminder): Promise<void> {
 		if (JSON.stringify(blankReminder) !== JSON.stringify(reminder)) {
-			const user_id = await getUserId()
 			const { error } = await supabase
-				.from('boards')
+				.from('board_accessories')
 				.update({
 					reminders: reminder,
 				})
-				.eq('user_id', user_id)
+				.eq('id', getActualBoardId())
 
 			if (error) throw error
 		}
 	}
 
 	async getAll() {
-		const user_id = await getUserId()
 		const { data, error } = await supabase
-			.from('boards')
+			.from('board_accessories')
 			.select('reminders')
-			.eq('user_id', user_id)
+			.eq('id', getActualBoardId())
 
 		if (error) throw error
 
