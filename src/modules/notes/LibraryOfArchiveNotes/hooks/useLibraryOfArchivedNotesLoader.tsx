@@ -1,6 +1,6 @@
-import LibraryOfArchivedNotesSupabaseRepository from './libraryOfArchivedNotesSupabaseRepository'
+import LibraryOfArchivedNotesSupabaseRepository from '../repository/libraryOfArchivedNotesSupabaseRepository'
 import { defaultLibraryOfArchivedNotes } from '../model/libraryOfArchivedNotes'
-import LibraryOfArchivedNotesLocalStorageRepository from './libraryOfArchivedNotesLocalStorageRepository'
+import LibraryOfArchivedNotesLocalStorageRepository from '../repository/libraryOfArchivedNotesLocalStorageRepository'
 import { SessionType } from '@/auth/contexts/SessionProvider'
 import { Dispatch } from '@reduxjs/toolkit'
 import { setArchivedNotes } from '../state/archivedNotesReducer'
