@@ -25,12 +25,14 @@ export const setUpUserBoard = async ({
 			saveUserBoardOnSupabase(actualUserBoard)
 		} else if (data != null) {
 			const boardFromSupabase = data[0]
-			const { data: boardAccessoriesFromSupabase } = await supabase
+			const { data: boardAccessoriesFromSupabase, error: boardAccessoriesError } = await supabase
 				.from('board_accessories')
 				.select('*')
 				.eq('id', boardFromSupabase.id)
 				.single()
-
+			
+			if(boardAccessoriesError) console.error(boardAccessoriesError)
+			
 			const savedUserBoard: UserBoard = {
 				board: boardFromSupabase,
 				accessories: boardAccessoriesFromSupabase,
