@@ -1,7 +1,7 @@
 import { supabase } from '@/lib/supabase'
-import { UserBoardOnDB } from '../model/UserBoardOnDB'
+import { UserBoardOnSupabase } from '../model/UserBoardOnSupabase'
 
-export const saveUserBoardOnSupabase = async (userBoard: UserBoardOnDB) => {
+export const saveUserBoardOnSupabase = async (userBoard: UserBoardOnSupabase) => {
 	try {
 		const { error } = await supabase.from('boards').insert(userBoard)
 		if (error) throw error

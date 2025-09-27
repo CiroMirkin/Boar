@@ -1,5 +1,5 @@
 import { Dispatch } from '@reduxjs/toolkit'
-import { UserBoardOnDB } from '../model/UserBoardOnDB'
+import { UserBoardOnSupabase } from '../model/UserBoardOnSupabase'
 import { SetStateAction, Dispatch as ReactDispatch } from 'react'
 import { setTaskListInEachColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { setBoar } from '@/modules/board/state/boardReducer'
@@ -9,7 +9,7 @@ import { setReminder } from '@/modules/taskList/Reminder/state/reminderReducer'
 
 interface SetUserBoardParams {
 	dispatch: Dispatch
-	savedUserBoard: UserBoardOnDB
+	savedUserBoard: UserBoardOnSupabase
 	setNote: ReactDispatch<SetStateAction<string>>
 }
 

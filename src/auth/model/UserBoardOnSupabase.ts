@@ -4,7 +4,7 @@ import { TaskListInEachColumn } from '@/modules/taskList/models/taskList'
 import { Reminder } from '@/modules/taskList/Reminder/reminder'
 import { TagGroup } from '@/modules/taskList/Tags/model/tags'
 
-export interface UserBoardOnDB {
+export interface UserBoardOnSupabase {
 	user_id: string | undefined
 	name: string
 	column_list: ColumnList

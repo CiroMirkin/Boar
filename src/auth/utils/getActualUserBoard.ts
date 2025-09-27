@@ -1,9 +1,9 @@
 import LocalStorageNotesRepository from '@/modules/notes/repository/LocalStorageNotesRepository'
 import { store } from '@/store'
-import { UserBoardOnDB } from '../model/UserBoardOnDB'
+import { UserBoardOnSupabase } from '../model/UserBoardOnSupabase'
 import { getUserId } from './getUserId'
 
-export const getActualUserBoard = async (): Promise<UserBoardOnDB> => {
+export const getActualUserBoard = async (): Promise<UserBoardOnSupabase> => {
 	const notes = new LocalStorageNotesRepository().getAll()
 	return {
 		name: store.getState().board.board.name,
