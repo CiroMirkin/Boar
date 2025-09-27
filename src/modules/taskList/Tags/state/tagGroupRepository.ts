@@ -1,19 +1,14 @@
 import { supabase } from '@/lib/supabase'
-import { getUserId } from '@/auth/utils/getUserId'
+import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 import { TagGroup } from '../model/tags'
 
 export const saveActualTagGroupInSupabase = async (actualTagGroup: TagGroup) => {
-	const user_id = await getUserId()
-	if (!user_id) {
-		console.error('User not found')
-		return
-	}
 	const { error } = await supabase
-		.from('boards')
+		.from('board_accessories')
 		.update({
 			actual_tag_group: actualTagGroup,
 		})
-		.eq('user_id', user_id)
+		.eq('id', getActualBoardId())
 
 	if (error) throw error
 }
