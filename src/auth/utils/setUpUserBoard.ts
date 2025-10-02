@@ -35,11 +35,24 @@ export const setUpUserBoard = async ({
 			if (boardAccessoriesError) console.error(boardAccessoriesError)
 
 			const savedUserBoard: UserBoard = {
-				board: boardFromSupabase,
+				board: {
+					id: boardFromSupabase.id, 
+					name: boardFromSupabase.name,
+					column_list: boardFromSupabase.column_list,
+					task_list_in_each_column: boardFromSupabase.task_list_in_each_column,
+					user_id: boardFromSupabase.user_id 
+				},
 				accessories: boardAccessoriesFromSupabase,
 			}
 
-			setUserBoard({ dispatch, savedUserBoard, setNote })
+			const isInitialLoad = sessionStorage.getItem('isInitialLoad')
+			if(isInitialLoad === null) {
+				setUserBoard({ dispatch, savedUserBoard, setNote })
+				return
+			}
+			if (JSON.stringify(savedUserBoard.board) !== JSON.stringify(actualUserBoard.board)) {
+				setUserBoard({ dispatch, savedUserBoard, setNote })
+			}
 		}
 	}
 }

@@ -27,9 +27,9 @@ export const useSyncUserBoard = () => {
 				const isInitialLoad = sessionStorage.getItem('isInitialLoad')
 				if (isInitialLoad === null) {
 					dispatch(setIsLoading(true))
-					sessionStorage.setItem('isInitialLoad', 'false')
 				}
 				await setUpUserBoard({ dispatch, session, setNote })
+				sessionStorage.setItem('isInitialLoad', 'false')
 				dispatch(setIsLoading(false))
 			} else {
 				const columnList = new LocalStorageColumnListRepository()
