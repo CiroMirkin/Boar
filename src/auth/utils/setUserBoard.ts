@@ -1,24 +1,27 @@
 import { Dispatch } from '@reduxjs/toolkit'
-import { UserBoardOnDB } from '../model/UserBoardOnDB'
 import { SetStateAction, Dispatch as ReactDispatch } from 'react'
 import { setTaskListInEachColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { setBoar } from '@/modules/board/state/boardReducer'
 import { setColumnList } from '@/modules/columnList/state/columnListReducer'
 import { changeActualTagGroup } from '@/modules/taskList/Tags/state/tagsReducer'
 import { setReminder } from '@/modules/taskList/Reminder/state/reminderReducer'
+import { UserBoard } from '../model/UserBoard'
 
 interface SetUserBoardParams {
 	dispatch: Dispatch
-	savedUserBoard: UserBoardOnDB
+	savedUserBoard: UserBoard
 	setNote: ReactDispatch<SetStateAction<string>>
 }
 
 /** Reestablace los datos del tablero dentro de la aplicacion. */
 export const setUserBoard = ({ dispatch, savedUserBoard, setNote }: SetUserBoardParams) => {
-	dispatch(setTaskListInEachColumn(savedUserBoard.task_list_in_each_column))
-	dispatch(setBoar(savedUserBoard.name))
-	dispatch(setColumnList(savedUserBoard.column_list))
-	setNote(savedUserBoard.notes)
-	dispatch(changeActualTagGroup(savedUserBoard.actual_tag_group))
-	dispatch(setReminder(savedUserBoard.reminders))
+	const { board, accessories } = savedUserBoard
+	// Board info
+	dispatch(setTaskListInEachColumn(board.task_list_in_each_column))
+	dispatch(setBoar({ name: board.name, id: board.id }))
+	dispatch(setColumnList(board.column_list))
+	// Accessories info
+	setNote(accessories.notes)
+	dispatch(changeActualTagGroup(accessories.actual_tag_group))
+	dispatch(setReminder(accessories.reminders))
 }

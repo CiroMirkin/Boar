@@ -9,12 +9,13 @@ import { getActualUserBoard } from './getActualUserBoard'
  * @returns True si el usuario tiene el tablero por defecto (vacio)
  */
 export const checkIfUserHasTheDefaultBoard = async (): Promise<boolean> => {
-	const actualUserBoard = await getActualUserBoard()
+	const { board: actualUserBoard, accessories: actualUserBoardAccessories } =
+		await getActualUserBoard()
 	return (
 		isDefaultBoardName(actualUserBoard.name) &&
 		isDefaultColumnList(actualUserBoard.column_list) &&
 		JSON.stringify(actualUserBoard.task_list_in_each_column) ===
 			JSON.stringify(emptyTaskListInEachColumn) &&
-		actualUserBoard.notes === defaultNotes
+		actualUserBoardAccessories.notes === defaultNotes
 	)
 }

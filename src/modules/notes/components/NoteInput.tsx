@@ -25,10 +25,8 @@ export function NoteInput() {
 
 	const onChange = (newText: NotesModel) => {
 		if (newText.trim().length <= maxLengthOfNotes) {
-			console.log(newText, newText.trim().length)
 			setNote(newText)
 			handleSaveNotes(newText)
-			console.log(note)
 			return
 		}
 
