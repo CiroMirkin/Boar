@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { TagGroup, emptyTagGroup } from '../model/tags'
 import { useActualTagGroup } from '../hooks/useActualTagGroup'
-import { saveActualTagGroupInSupabase } from './tagGroupRepository'
+import { saveActualTagGroupInSupabase } from './saveActualTagGroupInSupabase'
 
 export const useSaveActualTagGroup = () => {
 	const actualTagGroup = useActualTagGroup()
