@@ -1,5 +1,4 @@
 import BusinessError from '@/sharedByModules/errors/businessError'
-import i18next from '@/i18next'
 
 export interface boardModel {
 	id: string
@@ -8,7 +7,7 @@ export interface boardModel {
 
 export const defaultBoard: boardModel = {
 	id: '1',
-	name: '',
+	name: 'Tablero básico',
 }
 
 export const isThisBoardNameWithinTheLimitOfLetters = (boardName: string): boolean => {
@@ -23,9 +22,5 @@ export const isThisBoardNameValid = (boardName: string): boolean | BusinessError
 }
 
 export const isDefaultBoardName = (boardName: string): boolean => {
-	const translations = i18next.services.resourceStore.data
-	const boardNameTranslations = Object.values(translations).map(
-		(lang) => (lang.translation as { board_name: string }).board_name
-	)
-	return boardNameTranslations.includes(boardName)
+	return boardName === defaultBoard.name
 }

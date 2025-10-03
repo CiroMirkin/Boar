@@ -11,6 +11,6 @@ import { eisenhowerTagGroup } from '@/modules/taskList/Tags/model/defaultTags'
 export const setBoardByDefault = (dispatch: Dispatch): void => {
 	dispatch(setTaskListInEachColumn(emptyTaskListInEachColumn))
 	dispatch(setColumnList(defaultColumnList))
-	dispatch(setBoar(defaultBoard.name))
+	dispatch(setBoar(defaultBoard))
 	dispatch(changeActualTagGroup(eisenhowerTagGroup))
 }

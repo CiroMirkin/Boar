@@ -27,9 +27,9 @@ export const useSyncUserBoard = () => {
 				const isInitialLoad = sessionStorage.getItem('isInitialLoad')
 				if (isInitialLoad === null) {
 					dispatch(setIsLoading(true))
-					sessionStorage.setItem('isInitialLoad', 'false')
 				}
 				await setUpUserBoard({ dispatch, session, setNote })
+				sessionStorage.setItem('isInitialLoad', 'false')
 				dispatch(setIsLoading(false))
 			} else {
 				const columnList = new LocalStorageColumnListRepository()
@@ -39,7 +39,7 @@ export const useSyncUserBoard = () => {
 				dispatch(setTaskListInEachColumn(eachTaskList.getAll()))
 
 				const board = new LocalStorageBoardRepository()
-				dispatch(setBoar(board.getAll().name))
+				dispatch(setBoar(board.getAll()))
 
 				const archive = new LocalStorageArchiveRepository()
 				dispatch(setArchive(archive.getAll()))
