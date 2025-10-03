@@ -1,6 +1,6 @@
 import { Archive } from '../models/archive'
 import { SessionType } from '@/auth/contexts/SessionProvider'
-import { sendForSaveArchive } from './sendForSaveArchive'
+import SupabaseArchivedTasksRepository from '../repository/SupabaseArchivedTasksRepository'
 import LocalStorageArchiveRepository from '../repository/localStorageArchive'
 
 interface useSaveArchiveParams {
@@ -17,7 +17,8 @@ export const useSaveArchive = () => {
 		if (JSON.stringify(archive) !== JSON.stringify([]) || emptyArchive) {
 			const isNotTheLocalArchive = JSON.stringify(archive) !== JSON.stringify(localArchive)
 			if (!!session && isNotTheLocalArchive) {
-				sendForSaveArchive(archive)
+				const supabase = new SupabaseArchivedTasksRepository()
+				supabase.save(archive)
 			} else {
 				localStorage.save(archive)
 			}
