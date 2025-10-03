@@ -24,9 +24,7 @@ export default class LibraryOfArchivedNotesSupabaseRepository
 		if (error) throw error
 	}
 	async getAll(): Promise<LibraryOfArchivedNotes> {
-		const boardId = getActualBoardId()
-		const { data } = await supabase.from(this.tableName).select('notes').eq('board_id', boardId)
-
+		const { data } = await supabase.from('archive').select('notes')
 		if (data !== null) {
 			const notes: LibraryOfArchivedNotes = data[0].notes
 			return notes
