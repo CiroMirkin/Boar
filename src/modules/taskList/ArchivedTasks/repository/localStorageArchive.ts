@@ -6,10 +6,10 @@ export default class LocalStorageArchiveRepository implements ArchiveRepository 
 	constructor() {
 		this.key = 'tasks-archive'
 	}
-	save(archive: Archive): void {
+	save(archive: Archive) {
 		localStorage.setItem(this.key, JSON.stringify(archive))
 	}
-	getAll(): Archive {
+	getAll() {
 		return localStorage.getItem(this.key)
 			? JSON.parse(localStorage.getItem(this.key) as string)
 			: []
