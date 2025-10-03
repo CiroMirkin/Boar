@@ -3,8 +3,8 @@ import {
 	defaultLibraryOfArchivedNotes,
 	LibraryOfArchivedNotes,
 } from '../model/libraryOfArchivedNotes'
-import { getUserId } from '@/auth/utils/getUserId'
 import { LibraryOfArchiveNotesRepository } from '../model/libraryOfArchivedNotesRepository'
+import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 
 export default class LibraryOfArchivedNotesSupabaseRepository
 	implements LibraryOfArchiveNotesRepository
@@ -15,17 +15,16 @@ export default class LibraryOfArchivedNotesSupabaseRepository
 	}
 
 	async save(library: LibraryOfArchivedNotes): Promise<void> {
-		const user_id = await getUserId()
+		const boardId = getActualBoardId()
 		const { error } = await supabase
 			.from(this.tableName)
 			.update({ notes: library })
-			.eq('user_id', user_id)
+			.eq('board_id', boardId)
 
 		if (error) throw error
 	}
 	async getAll(): Promise<LibraryOfArchivedNotes> {
-		const { data } = await supabase.from(this.tableName).select('notes')
-
+		const { data } = await supabase.from('archive').select('notes')
 		if (data !== null) {
 			const notes: LibraryOfArchivedNotes = data[0].notes
 			return notes
