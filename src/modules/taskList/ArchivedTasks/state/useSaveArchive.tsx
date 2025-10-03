@@ -1,7 +1,7 @@
 import { Archive } from '../models/archive'
 import { SessionType } from '@/auth/contexts/SessionProvider'
 import { sendForSaveArchive } from './sendForSaveArchive'
-import LocalStorageArchiveRepository from './localStorageArchive'
+import LocalStorageArchiveRepository from '../repository/localStorageArchive'
 
 interface useSaveArchiveParams {
 	archive: Archive

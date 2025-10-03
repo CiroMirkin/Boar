@@ -5,7 +5,7 @@ import LocalStorageColumnListRepository from '@/modules/columnList/repository/lo
 import { useNote } from '@/modules/notes/hooks/useNote'
 import LocalStorageNotesRepository from '@/modules/notes/repository/LocalStorageNotesRepository'
 import { setArchive } from '@/modules/taskList/ArchivedTasks/state/archiveReducer'
-import LocalStorageArchiveRepository from '@/modules/taskList/ArchivedTasks/state/localStorageArchive'
+import LocalStorageArchiveRepository from '@/modules/taskList/ArchivedTasks/repository/localStorageArchive'
 import LocalStorageTaskListInEachColumnRepository from '@/modules/taskList/repository/localStorageTaskListsRepository'
 import { setTaskListInEachColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 
