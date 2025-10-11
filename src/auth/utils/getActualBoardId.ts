@@ -1,5 +1,8 @@
-import { store } from '@/store'
+import { defaultBoard } from '@/modules/board/models/board'
 
 export const getActualBoardId = (): string => {
-	return store.getState().board.board.id
+	const board = localStorage.getItem('board-boar')
+		? JSON.parse(localStorage.getItem('board-boar') as string)
+		: defaultBoard
+	return board.id
 }

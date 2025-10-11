@@ -1,5 +1,3 @@
-import { setIsLoading, setBoar } from '@/modules/board/state/boardReducer'
-import LocalStorageBoardRepository from '@/modules/board/repository/localstorageBoardRepository'
 import { setColumnList } from '@/modules/columnList/state/columnListReducer'
 import LocalStorageColumnListRepository from '@/modules/columnList/repository/localStorageColumnList'
 import { useNote } from '@/modules/notes/hooks/useNote'
@@ -24,13 +22,8 @@ export const useSyncUserBoard = () => {
 	useEffect(() => {
 		const initialStorage = async () => {
 			if (session) {
-				const isInitialLoad = sessionStorage.getItem('isInitialLoad')
-				if (isInitialLoad === null) {
-					dispatch(setIsLoading(true))
-				}
 				await setUpUserBoard({ dispatch, session, setNote })
 				sessionStorage.setItem('isInitialLoad', 'false')
-				dispatch(setIsLoading(false))
 			} else {
 				const columnList = new LocalStorageColumnListRepository()
 				dispatch(setColumnList(columnList.getAll()))
@@ -38,8 +31,7 @@ export const useSyncUserBoard = () => {
 				const eachTaskList = new LocalStorageTaskListInEachColumnRepository()
 				dispatch(setTaskListInEachColumn(eachTaskList.getAll()))
 
-				const board = new LocalStorageBoardRepository()
-				dispatch(setBoar(board.getAll()))
+				// Board is now handled by React Query, no need to load here
 
 				const archive = new LocalStorageArchiveRepository()
 				dispatch(setArchive(archive.getAll()))
@@ -49,8 +41,6 @@ export const useSyncUserBoard = () => {
 
 				const reminder = new LocalStorageReminderRepository()
 				dispatch(setReminder(reminder.getAll()))
-
-				dispatch(setIsLoading(false))
 			}
 		}
 		initialStorage()
