@@ -2,7 +2,6 @@ import { supabase } from '@/lib/supabase'
 import { setUserBoard } from './setUserBoard'
 import { Dispatch } from '@reduxjs/toolkit'
 import { Session } from '@supabase/supabase-js'
-import { Dispatch as ReactDispatch, SetStateAction } from 'react'
 import { getActualUserBoard } from './getActualUserBoard'
 import { saveUserBoardOnSupabase } from './saveUserBoardOnSupabase'
 import { UserBoard } from '../model/UserBoard'
@@ -11,11 +10,9 @@ import { UserBoard } from '../model/UserBoard'
 export const setUpUserBoard = async ({
 	dispatch,
 	session,
-	setNote,
 }: {
 	dispatch: Dispatch
 	session: Session
-	setNote: ReactDispatch<SetStateAction<string>>
 }) => {
 	const actualUserBoard = await getActualUserBoard()
 	const { data } = await supabase.from('boards').select('*').eq('user_id', session.user.id)
@@ -47,11 +44,11 @@ export const setUpUserBoard = async ({
 
 			const isInitialLoad = sessionStorage.getItem('isInitialLoad')
 			if (isInitialLoad === null) {
-				setUserBoard({ dispatch, savedUserBoard, setNote })
+				setUserBoard({ dispatch, savedUserBoard })
 				return
 			}
 			if (JSON.stringify(savedUserBoard.board) !== JSON.stringify(actualUserBoard.board)) {
-				setUserBoard({ dispatch, savedUserBoard, setNote })
+				setUserBoard({ dispatch, savedUserBoard })
 			}
 		}
 	}
