@@ -1,43 +1,32 @@
 import { Input } from '@/ui/atoms/input'
 import { ChangeEvent, useState } from 'react'
 import { Button } from '@/ui/atoms/button'
-import { useDispatch } from 'react-redux'
-import { changeTheNameOfTheBoard } from '@/modules/board/state/boardReducer'
 import { PencilIcon } from '@/ui/atoms/icons'
 import { Label } from '@/ui/atoms/label'
-import {
-	isThisBoardNameValid,
-	isThisBoardNameWithinTheLimitOfLetters,
-} from '@/modules/board/models/board'
+import { isThisBoardNameWithinTheLimitOfLetters } from '@/modules/board/models/board'
+import { changeBoardName } from '@/modules/board/state/actions/changeBoardName'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { toast } from 'sonner'
-import { useBoard } from '@/modules/board/hooks/useBoard'
+import { useBoardQuery } from '@/modules/board/hooks/useBoardQuery'
 import { useTranslation } from 'react-i18next'
-import { useSession } from '@/auth/hooks/useSession'
 import { SettingSection } from '@/ui/organisms/SettingSection'
-import { useSaveBoard } from '../hooks/useSaveBoard'
 
 export function ChangeBoardName() {
-	const boardData = useBoard()
-	const { session } = useSession()
+	const { board, updateBoard } = useBoardQuery()
 
-	useSaveBoard({ data: boardData, session })
-
-	const [boardName, setBoardName] = useState(boardData.name)
+	const [boardName, setBoardName] = useState(board?.name || '')
 	const [inputDisabled, setInputDisabled] = useState(true)
 
-	const nameToShow = inputDisabled ? boardData.name : boardName
-
-	const dispatch = useDispatch()
-	const changeName = () => dispatch(changeTheNameOfTheBoard(boardName))
+	const nameToShow = inputDisabled ? board?.name || '' : boardName
 
 	const handleClick = () => {
 		try {
 			if (inputDisabled) {
-				setBoardName(boardData.name)
+				setBoardName(board?.name || '')
 				setInputDisabled(false)
-			} else if (isThisBoardNameValid(boardName)) {
-				changeName()
+			} else if (board) {
+				const updatedBoard = changeBoardName({ board, newName: boardName })
+				updateBoard(updatedBoard)
 				setInputDisabled(true)
 			}
 		} catch (e) {

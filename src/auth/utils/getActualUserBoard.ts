@@ -2,10 +2,13 @@ import LocalStorageNotesRepository from '@/modules/notes/repository/LocalStorage
 import { store } from '@/store'
 import { getUserId } from './getUserId'
 import { UserBoard } from '../model/UserBoard'
+import { defaultBoard } from '@/modules/board/models/board'
 
 export const getActualUserBoard = async (): Promise<UserBoard> => {
 	const notes = new LocalStorageNotesRepository().getAll()
-	const actualBoard = store.getState().board.board
+	const actualBoard = localStorage.getItem('board-boar')
+		? JSON.parse(localStorage.getItem('board-boar') as string)
+		: defaultBoard
 	return {
 		board: {
 			id: actualBoard.id,
