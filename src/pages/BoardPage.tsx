@@ -4,7 +4,7 @@ import { ArchiveTaskListButton } from '@/modules/taskList/ArchivedTasks/componen
 import { AddNewTaskInput } from '@/modules/taskList/components/AddNewTaskInput'
 import { TaskListInEachColumn } from '@/modules/taskList/TaskListInEachColumn'
 import PageContainer from './PageContainer'
-import { useBoard } from '@/modules/board/hooks/useBoard'
+import { useBoardQuery } from '@/modules/board/hooks/useBoardQuery'
 import { USER_IS_IN } from '@/ui/organisms/userIsIn'
 import { ListView } from '@/modules/columnList/components/ListView'
 import { TableView } from '@/modules/columnList/components/TableView'
@@ -17,10 +17,10 @@ const columnsData: ColumnsContextContent = {
 }
 
 export function BoardPage() {
-	const data = useBoard()
+	const { board } = useBoardQuery()
 	const typeOfView = useTypeOfView()
 	return (
-		<PageContainer title={data.name} whereUserIs={USER_IS_IN.BOARD}>
+		<PageContainer title={board?.name || 'Board'} whereUserIs={USER_IS_IN.BOARD}>
 			<Board>
 				<ColumnsProvider value={columnsData}>
 					{typeOfView == 'LIST' && (
