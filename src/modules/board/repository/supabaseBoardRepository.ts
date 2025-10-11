@@ -16,7 +16,7 @@ export default class SupabaseBoardRepository implements BoardRepository {
 
 		if (error) throw error
 	}
-	async getAll() {
+	async get() {
 		const user_id = await getUserId()
 		const { data, error } = await supabase
 			.from('boards')
