@@ -1,7 +1,5 @@
 import { setColumnList } from '@/modules/columnList/state/columnListReducer'
 import LocalStorageColumnListRepository from '@/modules/columnList/repository/localStorageColumnList'
-import { useNote } from '@/modules/notes/hooks/useNote'
-import LocalStorageNotesRepository from '@/modules/notes/repository/LocalStorageNotesRepository'
 import { setArchive } from '@/modules/taskList/ArchivedTasks/state/archiveReducer'
 import LocalStorageArchiveRepository from '@/modules/taskList/ArchivedTasks/repository/localStorageArchive'
 import LocalStorageTaskListInEachColumnRepository from '@/modules/taskList/repository/localStorageTaskListsRepository'
@@ -17,12 +15,11 @@ import { setReminder } from '@/modules/taskList/Reminder/state/reminderReducer'
 export const useSyncUserBoard = () => {
 	const dispatch = useDispatch()
 	const { session } = useSession()
-	const { setNote } = useNote()
 
 	useEffect(() => {
 		const initialStorage = async () => {
 			if (session) {
-				await setUpUserBoard({ dispatch, session, setNote })
+				await setUpUserBoard({ dispatch, session })
 				sessionStorage.setItem('isInitialLoad', 'false')
 			} else {
 				const columnList = new LocalStorageColumnListRepository()
@@ -31,18 +28,15 @@ export const useSyncUserBoard = () => {
 				const eachTaskList = new LocalStorageTaskListInEachColumnRepository()
 				dispatch(setTaskListInEachColumn(eachTaskList.getAll()))
 
-				// Board is now handled by React Query, no need to load here
+				// Board and Notes are now handled by React Query, no need to load here
 
 				const archive = new LocalStorageArchiveRepository()
 				dispatch(setArchive(archive.getAll()))
-
-				const notes = new LocalStorageNotesRepository()
-				setNote(notes.getAll())
 
 				const reminder = new LocalStorageReminderRepository()
 				dispatch(setReminder(reminder.getAll()))
 			}
 		}
 		initialStorage()
-	}, [session, dispatch, setNote])
+	}, [session, dispatch])
 }

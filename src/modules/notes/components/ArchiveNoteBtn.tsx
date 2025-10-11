@@ -4,17 +4,16 @@ import { useLibraryOfArchivedNotes } from '../LibraryOfArchiveNotes/state/useLib
 import { useSession } from '@/auth/hooks/useSession'
 import { useDispatch } from 'react-redux'
 import { archiveThisNote } from '../LibraryOfArchiveNotes/state/archivedNotesReducer'
-import { useNote } from '../hooks/useNote'
 import { defaultNotes } from '../model/notes'
 import { toast } from 'sonner'
 import { Button } from '@/ui/atoms/button'
 import { ArchiveIcon } from '@/ui/atoms/icons'
 import { useLibraryOfArchivedNotesPersister } from '../LibraryOfArchiveNotes/hooks/useLibraryOfArchivedNotesPersister'
-import { notesRepositoryFactory } from '../repository/notesRepositoryFactory'
+import { useNotesQuery } from '../hooks/useNotesQuery'
 
 export function ArchiveNoteBtn() {
 	const [taskArchived, setTaskArchived] = useState(false)
-	const { note, setNote } = useNote()
+	const { notes, updateNotes } = useNotesQuery()
 	const { t } = useTranslation()
 
 	const libraryOfArchivedNotes = useLibraryOfArchivedNotes()
@@ -22,23 +21,23 @@ export function ArchiveNoteBtn() {
 	const { session } = useSession()
 	useEffect(() => {
 		const archive = async () => {
-			if (note == '' || note == '<br>') {
+			if (notes == '' || notes == '<br>') {
 				if (taskArchived) {
 					await persistNotes(session, libraryOfArchivedNotes)
-					const notesRepository = notesRepositoryFactory(session)
-					notesRepository.save(note)
+					// The notes are already saved by the useNotesQuery mutation
 					setTaskArchived(false)
 				}
 			}
 		}
 
 		void archive()
-	}, [libraryOfArchivedNotes, session, note, persistNotes, taskArchived, setTaskArchived])
+	}, [libraryOfArchivedNotes, session, notes, persistNotes, taskArchived, setTaskArchived])
 
 	const dispatch = useDispatch()
 	const handleArchiveNote = () => {
-		dispatch(archiveThisNote(note))
-		setNote(defaultNotes)
+		if (!notes) return
+		dispatch(archiveThisNote(notes))
+		updateNotes(defaultNotes)
 		setTaskArchived(true)
 		toast.success(t('archived_note.archive_successful_toast'))
 	}

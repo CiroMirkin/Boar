@@ -14,10 +14,11 @@ export default class SupabaseNotesRepository implements NotesRepository {
 		if (error) throw error
 	}
 	async getAll() {
+		const id = getActualBoardId()
 		const { data, error } = await supabase
 			.from('board_accessories')
 			.select('notes')
-			.eq('id', getActualBoardId())
+			.eq('id', id)
 
 		if (error) throw error
 
