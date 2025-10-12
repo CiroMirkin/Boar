@@ -6,8 +6,7 @@ import { toast } from 'sonner'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
 import { SettingSection } from '@/ui/organisms/SettingSection'
-import { useSaveReminder } from './hooks/useSaveReminder'
-import { useGetReminder } from './hooks/useGetReminder'
+import { useReminderQuery } from './hooks/useReminderQuery'
 
 export function ReminderList() {
 	const { t } = useTranslation()
@@ -25,11 +24,10 @@ export function ReminderList() {
 
 const ReminderListContainer = () => {
 	const t = useTranslation().t
-	const reminder = useGetReminder()
-	const setReminder = useSaveReminder()
+	const { reminder, updateReminder } = useReminderQuery()
 
 	const deleteReminder = () => {
-		setReminder(blankReminder)
+		updateReminder(blankReminder)
 	}
 
 	const askForConfirmationToDeleteTheReminder = () => {
@@ -42,7 +40,7 @@ const ReminderListContainer = () => {
 	}
 
 	const { task } = useTheme()
-	const reminderList = (
+	const reminderList = reminder ? (
 		<li className={`w-full py-1 px-3 flex flex-col gap-2 content-stretch rounded-md ${task}`}>
 			<div className='w-full flex justify-between items-center gap-2'>
 				<p className='text-lg'>{reminder.text}</p>
@@ -55,7 +53,7 @@ const ReminderListContainer = () => {
 				</Button>
 			</div>
 		</li>
-	)
+	) : null
 
 	const blankReminderList = (
 		<EmptySpaceText className={`py-2 px-3 border rounded-md ${task}`} textSize='lg'>
@@ -63,5 +61,5 @@ const ReminderListContainer = () => {
 		</EmptySpaceText>
 	)
 
-	return !reminder.text ? blankReminderList : reminderList
+	return !reminder?.text ? blankReminderList : reminderList
 }
