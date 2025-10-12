@@ -35,8 +35,6 @@ export const useColumnListQuery = () => {
 		},
 		onSettled: () => {
 			queryClient.invalidateQueries({ queryKey: columnListQueryKey })
-			// Invalidate taskList queries when columnList changes
-			queryClient.invalidateQueries({ queryKey: ['taskListInEachColumn'] })
 		},
 	})
 
