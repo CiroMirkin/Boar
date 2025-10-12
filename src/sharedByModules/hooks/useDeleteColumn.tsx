@@ -1,15 +1,16 @@
 import { Column, getIndexOfColumnInColumnList } from '@/modules/columnList/models/column'
 import { useDispatch, useSelector } from 'react-redux'
 import { setTaskListInEachColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
-import { deleteColumn } from '@/modules/columnList/state/columnListReducer'
 import { RootState } from '@/store'
+import { useColumnListQuery } from '@/modules/columnList/hooks/useColumnListQuery'
+import { deleteThisColumn } from '@/modules/columnList/state/actions/deleteColumn'
 
 export const useDeleteColumn = () => {
 	const updateBoardData = useDispatch()
 	const { list: taskListInEachColumn } = useSelector(
 		(state: RootState) => state.taskListInEachColumn
 	)
-
+	const { columnList, updateColumnList } = useColumnListQuery()
 	return ({ column }: { column: Column }) => {
 		const deletedColumnIndex = getIndexOfColumnInColumnList(column.position)
 
@@ -29,7 +30,11 @@ export const useDeleteColumn = () => {
 				})
 			})
 
-		updateBoardData(deleteColumn(column))
+		const updatedColumnList = deleteThisColumn({
+			columnList: columnList || [],
+			column,
+		})
+		updateColumnList(updatedColumnList)
 		updateBoardData(setTaskListInEachColumn(newTaskListInEachColumn))
 	}
 }
