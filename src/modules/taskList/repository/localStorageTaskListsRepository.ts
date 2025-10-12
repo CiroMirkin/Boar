@@ -12,8 +12,11 @@ export default class LocalStorageTaskListInEachColumnRepository
 		localStorage.setItem(this.key, JSON.stringify(taskListInEachColumn))
 	}
 	getAll() {
-		return localStorage.getItem(this.key)
-			? JSON.parse(localStorage.getItem(this.key) as string)
-			: emptyTaskListInEachColumn
+		const stored = localStorage.getItem(this.key)
+		if (stored) {
+			return JSON.parse(stored)
+		}
+		this.save(emptyTaskListInEachColumn)
+		return emptyTaskListInEachColumn
 	}
 }
