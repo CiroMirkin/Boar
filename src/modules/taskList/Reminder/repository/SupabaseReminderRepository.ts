@@ -7,19 +7,17 @@ export default class SupabaseReminderRepository implements ReminderRepository {
 	constructor() {}
 
 	async save(reminder: Reminder): Promise<void> {
-		if (JSON.stringify(blankReminder) !== JSON.stringify(reminder)) {
-			const { error } = await supabase
-				.from('board_accessories')
-				.update({
-					reminders: reminder,
-				})
-				.eq('id', getActualBoardId())
+		const { error } = await supabase
+			.from('board_accessories')
+			.update({
+				reminders: reminder,
+			})
+			.eq('id', getActualBoardId())
 
-			if (error) throw error
-		}
+		if (error) throw error
 	}
 
-	async getAll() {
+	async getAll(): Promise<Reminder> {
 		const { data, error } = await supabase
 			.from('board_accessories')
 			.select('reminders')
