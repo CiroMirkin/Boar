@@ -1,18 +1,15 @@
 import React from 'react'
 import { ConfigColumn } from './ConfigColumn'
 import { AddNewColumnForm } from './AddNewColumnForm'
-import { useColumnList } from '@/modules/columnList/hooks/useColumnList'
+import { useColumnListQuery } from '@/modules/columnList/hooks/useColumnListQuery'
 import { useTranslation } from 'react-i18next'
 import { SettingSection } from '@/ui/organisms/SettingSection'
-import { useSaveColumnList } from '../state/useSaveColumnList'
 
 export function ConfigColumns() {
 	const { t } = useTranslation()
-	const columnList = useColumnList()
+	const { columnList } = useColumnListQuery()
 
-	useSaveColumnList({ columnList })
-
-	const columns: React.ReactNode[] = columnList.map((column) => (
+	const columns: React.ReactNode[] = (columnList || []).map((column) => (
 		<ConfigColumn column={column} key={column.id} />
 	))
 	return (
