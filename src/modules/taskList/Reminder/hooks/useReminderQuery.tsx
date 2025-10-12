@@ -20,7 +20,8 @@ export const useReminderQuery = () => {
 	})
 
 	const { mutate: updateReminder, isPending: isSaving } = useMutation({
-		mutationFn: (updatedReminder: Reminder) => saveReminder({ reminder: updatedReminder, session }),
+		mutationFn: (updatedReminder: Reminder) =>
+			saveReminder({ reminder: updatedReminder, session }),
 		onMutate: async (updatedReminder: Reminder) => {
 			await queryClient.cancelQueries({ queryKey: reminderQueryKey })
 			const previousReminder = queryClient.getQueryData(reminderQueryKey)
