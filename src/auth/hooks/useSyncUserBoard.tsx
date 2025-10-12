@@ -9,8 +9,6 @@ import { setUpUserBoard } from '../utils/setUpUserBoard'
 import { useSession } from './useSession'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import LocalStorageReminderRepository from '@/modules/taskList/Reminder/repository/LocalStorageReminder'
-import { setReminder } from '@/modules/taskList/Reminder/state/reminderReducer'
 
 export const useSyncUserBoard = () => {
 	const dispatch = useDispatch()
@@ -33,8 +31,7 @@ export const useSyncUserBoard = () => {
 				const archive = new LocalStorageArchiveRepository()
 				dispatch(setArchive(archive.getAll()))
 
-				const reminder = new LocalStorageReminderRepository()
-				dispatch(setReminder(reminder.getAll()))
+				// Reminder is now handled by React Query, no need to load here
 			}
 		}
 		initialStorage()
