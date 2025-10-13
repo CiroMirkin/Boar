@@ -1,5 +1,3 @@
-import { setColumnList } from '@/modules/columnList/state/columnListReducer'
-import LocalStorageColumnListRepository from '@/modules/columnList/repository/localStorageColumnList'
 import { setArchive } from '@/modules/taskList/ArchivedTasks/state/archiveReducer'
 import LocalStorageArchiveRepository from '@/modules/taskList/ArchivedTasks/repository/localStorageArchive'
 import LocalStorageTaskListInEachColumnRepository from '@/modules/taskList/repository/localStorageTaskListsRepository'
@@ -20,9 +18,6 @@ export const useSyncUserBoard = () => {
 				await setUpUserBoard({ dispatch, session })
 				sessionStorage.setItem('isInitialLoad', 'false')
 			} else {
-				const columnList = new LocalStorageColumnListRepository()
-				dispatch(setColumnList(columnList.getAll()))
-
 				const eachTaskList = new LocalStorageTaskListInEachColumnRepository()
 				dispatch(setTaskListInEachColumn(eachTaskList.getAll()))
 

@@ -1,8 +1,7 @@
-import { RootState } from '@/store'
-import { useSelector } from 'react-redux'
 import { Column } from '../models/column'
+import { useColumnListQuery } from './useColumnListQuery'
 
 export const useColumnList = (): Column[] => {
-	const columnList = useSelector((state: RootState) => state.columnList.list)
+	const columnList = useColumnListQuery().columnList || []
 	return columnList
 }

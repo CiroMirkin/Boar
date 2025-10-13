@@ -3,10 +3,14 @@ import { columnUseCaseParams } from '../actions'
 import { Column } from '../../models/column'
 
 export function addColumnAtTheEnd({ columnList, column }: columnUseCaseParams): Column[] {
-	if (column.position === '-1') {
-		column.position = JSON.stringify(columnList.length + 1)
+	const nextPosition = column.position === '-1' ? String(columnList.length + 1) : column.position
+
+	const newColumn: Column = {
+		...column,
+		position: nextPosition,
 	}
-	columnList.push(column)
-	isItWithinTheLimitOfColumns(columnList)
-	return columnList
+	const newColumnList = [...columnList, newColumn]
+	isItWithinTheLimitOfColumns(newColumnList)
+
+	return newColumnList
 }

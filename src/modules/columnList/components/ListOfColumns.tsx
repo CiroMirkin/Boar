@@ -1,6 +1,5 @@
 import { Column } from './Column'
-import { useColumnList } from '../hooks/useColumnList'
-import { useSaveColumnList } from '../state/useSaveColumnList'
+import { useColumnListQuery } from '../hooks/useColumnListQuery'
 
 export type ColumnsContent = React.ReactNode[]
 
@@ -9,11 +8,10 @@ interface ListOfColumnProps {
 }
 
 export function ListOfColumn({ children: getColumnsContent }: ListOfColumnProps) {
-	const columns = useColumnList()
-	useSaveColumnList({ columnList: columns })
+	const { columnList: columns } = useColumnListQuery()
 
 	const columnsContent = getColumnsContent()
-	const columnList = columns.map((column, columnIndex) => {
+	const columnList = (columns || []).map((column, columnIndex) => {
 		return (
 			<Column data={column} key={column.id}>
 				<Column.ColumnContent className='h-auto w-full'>
