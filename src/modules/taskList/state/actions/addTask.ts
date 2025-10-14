@@ -1,3 +1,4 @@
+// addTask.ts
 import {
 	TaskListInEachColumn,
 	isThisTaskListWithinTheLimit,
@@ -10,11 +11,17 @@ export function addTaskInFirstColumn({
 	task,
 }: taskUseCaseParams): TaskListInEachColumn {
 	const columnPosition = 0
-	taskList[columnPosition].push(task)
+	
+	const newTaskList: TaskListInEachColumn = taskList.map((column, index) => {
+		if (index === columnPosition) {
+			return [...column, task]
+		}
+		return [...column]
+	})
 
-	isThisTaskListWithinTheLimit({ taskList: taskList[columnPosition] })
+	isThisTaskListWithinTheLimit({ taskList: newTaskList[columnPosition] })
 
-	return taskList
+	return newTaskList
 }
 
 export function addTaskInTheLastColumn({
@@ -22,6 +29,13 @@ export function addTaskInTheLastColumn({
 	task,
 }: taskUseCaseParams): TaskListInEachColumn {
 	const columnIndex = getIndexOfColumnInColumnList(task.columnPosition)
-	taskListInEachColumn[columnIndex].push(task)
-	return taskListInEachColumn
+	
+	const newTaskList: TaskListInEachColumn = taskListInEachColumn.map((column, index) => {
+		if (index === columnIndex) {
+			return [...column, task]
+		}
+		return [...column]
+	})
+	
+	return newTaskList
 }
