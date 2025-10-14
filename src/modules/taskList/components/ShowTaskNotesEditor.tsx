@@ -10,15 +10,15 @@ import { Button } from '@/ui/atoms/button'
 import RichTextEditor from '@/ui/organisms/RichTextEditor/RichTextEditor'
 import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
 import { MessageSquareTextIcon } from '@/ui/atoms/icons'
-import { useDispatch } from 'react-redux'
-import { updateNotesAndCommentsOfThisTask } from '../state/taskListInEachColumnReducer'
 import { checkMaxLengthOfNotesAndComments } from '../models/NotesAndComments'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
+import { updateNotesAndCommentsOfThisTask } from '../state/actions/updateNotesAndCommentsOfThisTask'
+import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
 
 export default function ShowTaskNotesEditor() {
 	const task = useDataOfTheTask()
-	const dispatch = useDispatch()
+	const { listOfTaskInColumns, updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
 	const { t } = useTranslation()
 
 	const onChange = (text: string) => {
@@ -27,12 +27,12 @@ export default function ShowTaskNotesEditor() {
 			return
 		}
 
-		dispatch(
-			updateNotesAndCommentsOfThisTask({
-				task,
-				notes: text,
-			})
-		)
+		const updatedList = updateNotesAndCommentsOfThisTask({
+			listOfTaskInColumns: listOfTaskInColumns || [],
+			taskToUpdate: task,
+			notes: text,
+		})
+		updateListOfTaskInColumns(updatedList)
 	}
 
 	return (

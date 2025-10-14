@@ -1,5 +1,4 @@
 import { getNewTask, isThisTaskDescriptionValid } from '@/modules/taskList/models/task'
-import { addTaskAtFirstColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { toast } from 'sonner'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { KeyboardEvent, useState } from 'react'
@@ -9,23 +8,35 @@ import { TeaxtareaWithActions } from '@/ui/molecules/TextAreaWithActions'
 import TagGroupSelect from '../Tags/components/TagGroupSelect'
 import { useUserSelectedTags } from '../Tags/hooks/useUserSelectedTags'
 import { setUserSelectedTags } from '../Tags/state/tagsReducer'
+import { addTaskInFirstColumn } from '../state/actions/addTask'
+import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
+import { sortListOfTasksInColumnsByPriority } from '../models/sortListOfTasksInColumnsByPriority'
 
 export function AddNewTaskInput() {
 	const [newTaskDescription, setNewTaskDescription] = useState('')
 	const canUserUseTheAddTaskInput = !isThisTaskDescriptionValid(newTaskDescription)
+	const { listOfTaskInColumns, updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
 	const selectedTags = useUserSelectedTags()
 
 	const dispatch = useDispatch()
 
 	const handleClick = () => {
 		try {
-			const task = getNewTask({ descriptionText: newTaskDescription, columnPosition: '1' })
-			dispatch(
-				addTaskAtFirstColumn({
-					...task,
-					tags: selectedTags,
+			const currentList = listOfTaskInColumns || []
+
+			const task = getNewTask({
+				descriptionText: newTaskDescription,
+				columnPosition: '1',
+			})
+
+			const updatedList = sortListOfTasksInColumnsByPriority(
+				addTaskInFirstColumn({
+					task: { ...task, tags: selectedTags },
+					taskListInEachColumn: currentList,
 				})
 			)
+
+			updateListOfTaskInColumns(updatedList)
 			dispatch(setUserSelectedTags([]))
 			setNewTaskDescription('')
 		} catch (error) {

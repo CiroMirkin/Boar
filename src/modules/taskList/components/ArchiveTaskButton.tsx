@@ -3,12 +3,13 @@ import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { archiveTask } from '../ArchivedTasks/state/archiveReducer'
-import { deleteTask } from '../state/taskListInEachColumnReducer'
 import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
 import { useSession } from '@/auth/hooks/useSession'
 import { useSaveArchive } from '../ArchivedTasks/state/useSaveArchive'
 import { getActalArchive } from '../ArchivedTasks/state/getActualArchive'
 import { ArchiveIcon } from '@/ui/atoms/icons'
+import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
+import { deleteThisTask } from '../state/actions/deleteTask'
 
 interface ArchiveTaskButtonProps {
 	handleClick: (action: () => void) => void
@@ -19,10 +20,15 @@ export function ArchiveTaskButton({ handleClick }: ArchiveTaskButtonProps) {
 	const dispatch = useDispatch()
 	const data = useDataOfTheTask()
 	const { session } = useSession()
+	const { listOfTaskInColumns, updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
 	const saveArchive = useSaveArchive()
 	const useArchiveTaskAction = () => {
 		dispatch(archiveTask(data))
-		dispatch(deleteTask(data))
+		const updatedList = deleteThisTask({
+			taskListInEachColumn: listOfTaskInColumns || [],
+			task: data,
+		})
+		updateListOfTaskInColumns(updatedList)
 		saveArchive({
 			session,
 			archive: getActalArchive(),
