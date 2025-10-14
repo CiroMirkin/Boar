@@ -9,15 +9,19 @@ export const useListOfTasksInColumnsQuery = () => {
 	const { session } = useSession()
 	const queryClient = useQueryClient()
 
+	const userId = session?.user.id ?? 'guest'
+	const fullQueryKey = [...taskListInEachColumnsQueryKey, userId]
+
 	const {
 		data: listOfTaskInColumns,
 		isLoading,
 		isError,
 		error,
 	} = useQuery({
-		queryKey: [...taskListInEachColumnsQueryKey, session?.user.id],
+		queryKey: fullQueryKey,
 		queryFn: () => fetchTaskListInEachColumn(session),
 	})
+
 	const { mutate: updateListOfTaskInColumns, isPending: isSaving } = useMutation({
 		mutationFn: (updatedTaskListInEachColumn: TaskListInEachColumn) =>
 			saveTaskListInEachColumn({
@@ -25,23 +29,22 @@ export const useListOfTasksInColumnsQuery = () => {
 				session,
 			}),
 		onMutate: async (updatedTaskListInEachColumn: TaskListInEachColumn) => {
-			await queryClient.cancelQueries({ queryKey: taskListInEachColumnsQueryKey })
-			const previousTaskListInEachColumn = queryClient.getQueryData(
-				taskListInEachColumnsQueryKey
-			)
-			queryClient.setQueryData(taskListInEachColumnsQueryKey, updatedTaskListInEachColumn)
+			await queryClient.cancelQueries({ queryKey: fullQueryKey })
+
+			const previousTaskListInEachColumn =
+				queryClient.getQueryData<TaskListInEachColumn>(fullQueryKey)
+
+			queryClient.setQueryData(fullQueryKey, updatedTaskListInEachColumn)
+
 			return { previousTaskListInEachColumn }
 		},
 		onError: (_err, _newTaskListInEachColumn, context) => {
 			if (context?.previousTaskListInEachColumn) {
-				queryClient.setQueryData(
-					taskListInEachColumnsQueryKey,
-					context.previousTaskListInEachColumn
-				)
+				queryClient.setQueryData(fullQueryKey, context.previousTaskListInEachColumn)
 			}
 		},
 		onSettled: () => {
-			queryClient.invalidateQueries({ queryKey: taskListInEachColumnsQueryKey })
+			queryClient.invalidateQueries({ queryKey: fullQueryKey })
 		},
 	})
 
