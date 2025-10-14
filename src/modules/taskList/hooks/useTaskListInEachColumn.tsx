@@ -1,7 +1,11 @@
-import { TaskListInEachColumn } from '@/modules/taskList/models/taskList'
-import { RootState } from '@/store'
-import { useSelector } from 'react-redux'
+import { emptyTaskListInEachColumn, TaskListInEachColumn } from '@/modules/taskList/models/taskList'
+import { useListOfTasksInColumnsQuery } from './useListOfTasksInColumnsQuery'
 
 export const useTaskListInEachColumn = (): TaskListInEachColumn => {
-	return useSelector((state: RootState) => state.taskListInEachColumn.list)
+	const { listOfTaskInColumns } = useListOfTasksInColumnsQuery()
+
+	if (!listOfTaskInColumns) {
+		return emptyTaskListInEachColumn
+	}
+	return listOfTaskInColumns
 }

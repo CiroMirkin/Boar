@@ -39,7 +39,13 @@ export function TaskListInEachColumn() {
 	}
 
 	taskListInEachColumn.forEach((taskList, index) => {
-		columnsContent.push(<TaskList tasks={taskList} columnPosition={getColumnPosition(index)} />)
+		columnsContent.push(
+			<TaskList
+				key={`column-${index}`}
+				tasks={taskList}
+				columnPosition={getColumnPosition(index)}
+			/>
+		)
 	})
 
 	return columnsContent

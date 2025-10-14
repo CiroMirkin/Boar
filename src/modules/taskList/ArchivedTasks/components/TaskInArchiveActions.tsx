@@ -4,8 +4,10 @@ import { Button } from '@/ui/atoms/button'
 import { useDispatch } from 'react-redux'
 import { deleteArchivedTask } from '@/modules/taskList/ArchivedTasks/state/archiveReducer'
 import { toast } from 'sonner'
-import { addTaskAtLastColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { useTranslation } from 'react-i18next'
+import { useListOfTasksInColumnsQuery } from '../../hooks/useListOfTasksInColumnsQuery'
+import { addTaskInTheLastColumn } from '../../state/actions/addTask'
+import { sortListOfTasksInColumnsByPriority } from '../../models/sortListOfTasksInColumnsByPriority'
 
 export function TaskInArchiveActions() {
 	const { t } = useTranslation()
@@ -46,12 +48,19 @@ const useActionsForTaskInArchive = () => {
 	const { t } = useTranslation()
 	const data = useContext(TaskContext)
 	const dispatch = useDispatch()
+	const { listOfTaskInColumns, updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
 
 	const deleteTaskAction = () => {
 		dispatch(deleteArchivedTask(data))
 	}
 	const returnTaskToLastColumnAction = () => {
-		dispatch(addTaskAtLastColumn(data))
+		const updatedListOfTaskInColumns = sortListOfTasksInColumnsByPriority(
+			addTaskInTheLastColumn({
+				taskListInEachColumn: listOfTaskInColumns || [],
+				task: data,
+			})
+		)
+		updateListOfTaskInColumns(updatedListOfTaskInColumns)
 		dispatch(deleteArchivedTask(data))
 		toast.info(t('archive.return_task_to_board_toast'))
 	}

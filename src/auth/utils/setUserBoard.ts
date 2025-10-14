@@ -1,5 +1,4 @@
 import { Dispatch } from '@reduxjs/toolkit'
-import { setTaskListInEachColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { changeActualTagGroup } from '@/modules/taskList/Tags/state/tagsReducer'
 import { UserBoard } from '../model/UserBoard'
 
@@ -10,9 +9,7 @@ interface SetUserBoardParams {
 
 /** Reestablace los datos del tablero dentro de la aplicacion. */
 export const setUserBoard = ({ dispatch, savedUserBoard }: SetUserBoardParams) => {
-	const { board, accessories } = savedUserBoard
-	// Board and Notes info are now handled by React Query, no need to set in Redux
-	dispatch(setTaskListInEachColumn(board.task_list_in_each_column))
+	const { accessories } = savedUserBoard
 	// Accessories info
 	dispatch(changeActualTagGroup(accessories.actual_tag_group))
 }

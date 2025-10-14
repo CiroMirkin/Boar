@@ -1,21 +1,23 @@
 import { archiveTaskListAtLastColumn } from '@/modules/taskList/ArchivedTasks/state/archiveReducer'
-import { cleanTheLastTaskList } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { toast } from 'sonner'
 import { useDispatch } from 'react-redux'
 import { Button } from '@/ui/atoms/button'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { useCheckForTasksInLastColumn } from '@/sharedByModules/hooks/useCheckForTasksInLastColumn'
 import { useTranslation } from 'react-i18next'
-import { useTaskListInEachColumn } from '@/modules/taskList/hooks/useTaskListInEachColumn'
 import { useSaveArchive } from '../state/useSaveArchive'
 import { useSession } from '@/auth/hooks/useSession'
 import { getActalArchive } from '../state/getActualArchive'
 import { ArchiveIcon } from '@/ui/atoms/icons'
+import { useListOfTasksInColumnsQuery } from '../../hooks/useListOfTasksInColumnsQuery'
+import { cleanLastTaskList } from '../../state/actions/deleteTaskList'
 
 export function ArchiveTaskListButton() {
 	const { t } = useTranslation()
 
-	const taskListInEachColumn = useTaskListInEachColumn()
+	const { listOfTaskInColumns: taskListInEachColumn, updateListOfTaskInColumns } =
+		useListOfTasksInColumnsQuery()
+
 	const canUserArchiveTask = useCheckForTasksInLastColumn()
 
 	const dispatch = useDispatch()
@@ -24,8 +26,11 @@ export function ArchiveTaskListButton() {
 	const saveArchive = useSaveArchive()
 	const archiveTaskList = () => {
 		try {
-			dispatch(archiveTaskListAtLastColumn(taskListInEachColumn))
-			dispatch(cleanTheLastTaskList())
+			dispatch(archiveTaskListAtLastColumn(taskListInEachColumn || []))
+			const updatedList = cleanLastTaskList({
+				taskListInEachColumn: taskListInEachColumn || [],
+			})
+			updateListOfTaskInColumns(updatedList)
 			saveArchive({
 				session,
 				archive: getActalArchive(),

@@ -4,6 +4,7 @@ import { getUserId } from './getUserId'
 import { UserBoard } from '../model/UserBoard'
 import { defaultBoard } from '@/modules/board/models/board'
 import LocalStorageColumnListRepository from '@/modules/columnList/repository/localStorageColumnList'
+import LocalStorageTaskListInEachColumnRepository from '@/modules/taskList/repository/localStorageTaskListsRepository'
 
 export const getActualUserBoard = async (): Promise<UserBoard> => {
 	const notes = await new LocalStorageNotesRepository().getAll()
@@ -11,12 +12,13 @@ export const getActualUserBoard = async (): Promise<UserBoard> => {
 		? JSON.parse(localStorage.getItem('board-boar') as string)
 		: defaultBoard
 	const columnList = await new LocalStorageColumnListRepository().getAll()
+	const taskList = await new LocalStorageTaskListInEachColumnRepository().getAll()
 	return {
 		board: {
 			id: actualBoard.id,
 			name: actualBoard.name,
 			column_list: columnList,
-			task_list_in_each_column: store.getState().taskListInEachColumn.list,
+			task_list_in_each_column: taskList,
 			user_id: await getUserId(),
 		},
 		accessories: {

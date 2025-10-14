@@ -1,7 +1,5 @@
 import { setArchive } from '@/modules/taskList/ArchivedTasks/state/archiveReducer'
 import LocalStorageArchiveRepository from '@/modules/taskList/ArchivedTasks/repository/localStorageArchive'
-import LocalStorageTaskListInEachColumnRepository from '@/modules/taskList/repository/localStorageTaskListsRepository'
-import { setTaskListInEachColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 
 import { setUpUserBoard } from '../utils/setUpUserBoard'
 import { useSession } from './useSession'
@@ -18,15 +16,8 @@ export const useSyncUserBoard = () => {
 				await setUpUserBoard({ dispatch, session })
 				sessionStorage.setItem('isInitialLoad', 'false')
 			} else {
-				const eachTaskList = new LocalStorageTaskListInEachColumnRepository()
-				dispatch(setTaskListInEachColumn(eachTaskList.getAll()))
-
-				// Board and Notes are now handled by React Query, no need to load here
-
 				const archive = new LocalStorageArchiveRepository()
 				dispatch(setArchive(archive.getAll()))
-
-				// Reminder is now handled by React Query, no need to load here
 			}
 		}
 		initialStorage()
