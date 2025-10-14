@@ -28,7 +28,7 @@ export function archiveTaskListInTheLastColumn({
 
 	if (firstArchivedDate === date) {
 		const mergedTaskList: TaskList = [...taskListToArchive, ...archive[0].tasklist]
-		
+
 		if (isItWithinTheDailyArchiveLimit(mergedTaskList)) {
 			return archive.map((archi) => {
 				if (archi.date === date) {
@@ -47,7 +47,7 @@ export function archiveTaskListInTheLastColumn({
 			date,
 			tasklist: [...taskListToArchive],
 		}
-		
+
 		return [newArchiveEntry, ...archive]
 	}
 

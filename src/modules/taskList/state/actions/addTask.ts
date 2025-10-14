@@ -11,7 +11,7 @@ export function addTaskInFirstColumn({
 	task,
 }: taskUseCaseParams): TaskListInEachColumn {
 	const columnPosition = 0
-	
+
 	const newTaskList: TaskListInEachColumn = taskList.map((column, index) => {
 		if (index === columnPosition) {
 			return [...column, task]
@@ -29,13 +29,13 @@ export function addTaskInTheLastColumn({
 	task,
 }: taskUseCaseParams): TaskListInEachColumn {
 	const columnIndex = getIndexOfColumnInColumnList(task.columnPosition)
-	
+
 	const newTaskList: TaskListInEachColumn = taskListInEachColumn.map((column, index) => {
 		if (index === columnIndex) {
 			return [...column, task]
 		}
 		return [...column]
 	})
-	
+
 	return newTaskList
 }
