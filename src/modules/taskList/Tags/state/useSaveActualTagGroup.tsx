@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import { TagGroup, emptyTagGroup } from '../model/tags'
+import { TagGroup, defaultAvialableTags, emptyTagGroup } from '../model/tags'
 import { useActualTagGroup } from '../hooks/useActualTagGroup'
-import { saveActualTagGroupInSupabase } from './saveActualTagGroupInSupabase'
+import SupabaseTagRepository from '../repository/supabaseTagRepository'
 
 export const useSaveActualTagGroup = () => {
 	const actualTagGroup = useActualTagGroup()
@@ -10,7 +10,11 @@ export const useSaveActualTagGroup = () => {
 		if (actualTagGroup.id === emptyTagGroup.id) return
 
 		const save = async (tagGroup: TagGroup) => {
-			saveActualTagGroupInSupabase(tagGroup)
+			const supabase = new SupabaseTagRepository()
+			supabase.save({
+				actualTagGroup: tagGroup,
+				tags: defaultAvialableTags,
+			})
 		}
 		save(actualTagGroup)
 	}, [actualTagGroup])
