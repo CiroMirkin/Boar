@@ -7,7 +7,7 @@ import {
 	DialogTrigger,
 } from '@/ui/molecules/dialog'
 import { Button } from '@/ui/atoms/button'
-import { MinimalTiptapEditor } from '@/ui/organisms/MinimalTiptapProps'
+import { MinimalTiptapEditor } from '@/ui/organisms/MinimalTiptapEditor'
 import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
 import { MessageSquareTextIcon } from '@/ui/atoms/icons'
 import { checkMaxLengthOfNotesAndComments } from '../models/NotesAndComments'

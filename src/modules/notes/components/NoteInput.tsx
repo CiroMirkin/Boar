@@ -1,4 +1,4 @@
-import { MinimalTiptapEditor } from '@/ui/organisms/MinimalTiptapProps'
+import { MinimalTiptapEditor } from '@/ui/organisms/MinimalTiptapEditor'
 import { maxLengthOfNotes, Notes as NotesModel } from '../model/notes'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
