@@ -4,7 +4,7 @@ import { BlankTask } from '../../../../ui/organisms/BlankTask'
 import { Card, CardContent, CardHeader, CardTitle } from '@/ui/molecules/card'
 import { TaskInArchiveActions } from './TaskInArchiveActions'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
-import RichTextViewer from '@/ui/organisms/RichTextViewer'
+import { MinimalTiptapViewer } from '@/ui/organisms/MinimalTiptapViewer'
 
 interface TaskListArchivedProps {
 	taskList: taskList
@@ -33,7 +33,9 @@ function TaskList({ taskList }: { taskList: taskList }) {
 			<BlankTask.ContentCollapse>
 				{task.notesAndComments && (
 					<div>
-						<RichTextViewer value={task.notesAndComments} />
+						<MinimalTiptapViewer
+							value={task.notesAndComments ? task.notesAndComments : ''}
+						/>
 					</div>
 				)}
 				<TaskInArchiveActions />

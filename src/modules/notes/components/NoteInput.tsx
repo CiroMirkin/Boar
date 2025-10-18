@@ -1,4 +1,4 @@
-import RichTextEditor from '@/ui/organisms/RichTextEditor/RichTextEditor'
+import { MinimalTiptapEditor } from '@/ui/organisms/MinimalTiptapEditor'
 import { maxLengthOfNotes, Notes as NotesModel } from '../model/notes'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
@@ -21,7 +21,7 @@ export function NoteInput() {
 
 	return (
 		<>
-			<RichTextEditor
+			<MinimalTiptapEditor
 				value={notes || ''}
 				onChange={onChange}
 				rows={5}

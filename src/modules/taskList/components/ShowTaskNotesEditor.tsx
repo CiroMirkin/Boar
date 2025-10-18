@@ -7,7 +7,7 @@ import {
 	DialogTrigger,
 } from '@/ui/molecules/dialog'
 import { Button } from '@/ui/atoms/button'
-import RichTextEditor from '@/ui/organisms/RichTextEditor/RichTextEditor'
+import { MinimalTiptapEditor } from '@/ui/organisms/MinimalTiptapEditor'
 import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
 import { MessageSquareTextIcon } from '@/ui/atoms/icons'
 import { checkMaxLengthOfNotesAndComments } from '../models/NotesAndComments'
@@ -48,7 +48,7 @@ export default function ShowTaskNotesEditor() {
 					<DialogDescription></DialogDescription>
 				</DialogHeader>
 				<div>
-					<RichTextEditor
+					<MinimalTiptapEditor
 						value={task.notesAndComments ? task.notesAndComments : ''}
 						onChange={onChange}
 					/>
