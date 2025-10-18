@@ -1,3 +1,19 @@
 #root {
 	width: 100%;
 }
+
+.prose h1 {
+	font-size: 2.2em;
+	margin-bottom: 0.5em;
+	font-weight: 700;
+}
+.prose h2 {
+	font-size: 1.8em;
+	margin-bottom: 0.5em;
+	font-weight: 700;
+}
+.prose h3 {
+	font-size: 1.4em;
+	margin-bottom: 0.5em;
+	font-weight: 700;
+}
