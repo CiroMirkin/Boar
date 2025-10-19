@@ -3,6 +3,8 @@ import { Dispatch } from '@reduxjs/toolkit'
 import { Session } from '@supabase/supabase-js'
 import { getActualUserBoard } from './getActualUserBoard'
 import { saveUserBoardOnSupabase } from './saveUserBoardOnSupabase'
+import { defaultBoard } from '@/modules/board/models/board'
+import { v4 as uuidv4 } from 'uuid'
 
 /** Recupera el tablero del usuario de Supabase y si no existe ninguno guarda el tablero actual en Supabase. */
 export const setUpUserBoard = async ({ session }: { dispatch: Dispatch; session: Session }) => {
@@ -11,7 +13,11 @@ export const setUpUserBoard = async ({ session }: { dispatch: Dispatch; session:
 
 	if (session) {
 		if (data != null && data.length === 0) {
-			saveUserBoardOnSupabase(actualUserBoard)
+			const boardForNewUser = {
+				...actualUserBoard,
+			}
+			if (boardForNewUser.board.id === defaultBoard.id) boardForNewUser.board.id = uuidv4()
+			saveUserBoardOnSupabase(boardForNewUser)
 		}
 	}
 }
