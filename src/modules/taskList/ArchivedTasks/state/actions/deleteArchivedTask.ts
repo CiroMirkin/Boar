@@ -7,9 +7,8 @@ interface deleteArchivedTaskParams {
 }
 
 export const deleteThisArchivedTask = ({ task, archive }: deleteArchivedTaskParams): Archive => {
-	const updatedArchive = archive.map((archived) => {
-		archived.tasklist = archived.tasklist.filter((archivedTask) => archivedTask.id !== task.id)
-		return archived
-	})
-	return updatedArchive
+	return archive.map((archived) => ({
+		...archived,
+		tasklist: archived.tasklist.filter((archivedTask) => archivedTask.id !== task.id),
+	}))
 }
