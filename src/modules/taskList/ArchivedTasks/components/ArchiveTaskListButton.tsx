@@ -1,40 +1,34 @@
-import { archiveTaskListAtLastColumn } from '@/modules/taskList/ArchivedTasks/state/archiveReducer'
 import { toast } from 'sonner'
-import { useDispatch } from 'react-redux'
 import { Button } from '@/ui/atoms/button'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { useCheckForTasksInLastColumn } from '@/sharedByModules/hooks/useCheckForTasksInLastColumn'
 import { useTranslation } from 'react-i18next'
-import { useSaveArchive } from '../state/useSaveArchive'
-import { useSession } from '@/auth/hooks/useSession'
-import { getActalArchive } from '../state/getActualArchive'
 import { ArchiveIcon } from '@/ui/atoms/icons'
 import { useListOfTasksInColumnsQuery } from '../../hooks/useListOfTasksInColumnsQuery'
 import { cleanLastTaskList } from '../../state/actions/deleteTaskList'
+import { archiveTaskListInTheLastColumn } from '../state/actions/archiveTaskList'
+import { useArchivedTasksQuery } from '../hooks/useArchivedTasksQuery'
+import { emptyTaskListInEachColumn } from '../../models/taskList'
 
 export function ArchiveTaskListButton() {
 	const { t } = useTranslation()
 
 	const { listOfTaskInColumns: taskListInEachColumn, updateListOfTaskInColumns } =
 		useListOfTasksInColumnsQuery()
-
 	const canUserArchiveTask = useCheckForTasksInLastColumn()
+	const { updateArchivedTasks, archivedTasks } = useArchivedTasksQuery()
 
-	const dispatch = useDispatch()
-	const { session } = useSession()
-
-	const saveArchive = useSaveArchive()
 	const archiveTaskList = () => {
 		try {
-			dispatch(archiveTaskListAtLastColumn(taskListInEachColumn || []))
+			const updatedArchive = archiveTaskListInTheLastColumn({
+				archive: archivedTasks,
+				taskListInEachColumn: taskListInEachColumn || emptyTaskListInEachColumn,
+			})
+			updateArchivedTasks(updatedArchive)
 			const updatedList = cleanLastTaskList({
 				taskListInEachColumn: taskListInEachColumn || [],
 			})
 			updateListOfTaskInColumns(updatedList)
-			saveArchive({
-				session,
-				archive: getActalArchive(),
-			})
 			toast.info(t('archive_task_list_toast'))
 		} catch (error) {
 			toast.error(getErrorMessageForTheUser(error))
