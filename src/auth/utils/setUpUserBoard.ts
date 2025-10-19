@@ -18,8 +18,10 @@ export const setUpUserBoard = async ({ session }: { dispatch: Dispatch; session:
 				...actualUserBoard,
 			}
 			if (boardForNewUser.board.id === defaultBoard.id) {
-				boardForNewUser.board.id = uuidv4()
-				saveActualBoardId(boardForNewUser.board.id)
+				const newBoardId = uuidv4()
+				boardForNewUser.board.id = newBoardId
+				boardForNewUser.archive.board_id = newBoardId
+				saveActualBoardId(newBoardId)
 			}
 			saveUserBoardOnSupabase(boardForNewUser)
 		}

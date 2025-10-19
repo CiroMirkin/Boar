@@ -17,6 +17,12 @@ export const saveUserBoardOnSupabase = async (userBoard: UserBoard) => {
 		})
 
 		if (accessories_error) throw accessories_error
+
+		const { error: archive_error } = await supabase.from('archive').insert({
+			...userBoard.archive,
+			board_id: boardFromSupabase.id,
+		})
+		if (archive_error) throw archive_error
 	} catch (e) {
 		console.error(e)
 	}
