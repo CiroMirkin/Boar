@@ -12,6 +12,7 @@ interface archiveTaskListParams {
 	taskListInEachColumn: TaskList[]
 	archive: Archive
 }
+
 export function archiveTaskListInTheLastColumn({
 	taskListInEachColumn,
 	archive,
@@ -30,14 +31,14 @@ export function archiveTaskListInTheLastColumn({
 		const mergedTaskList: TaskList = [...taskListToArchive, ...archive[0].tasklist]
 
 		if (isItWithinTheDailyArchiveLimit(mergedTaskList)) {
-			return archive.map((archi) => {
-				if (archi.date === date) {
+			return archive.map((archi, index) => {
+				if (index === 0) {
 					return {
 						...archi,
 						tasklist: mergedTaskList,
 					}
 				}
-				return { ...archi }
+				return archi
 			})
 		}
 	}
