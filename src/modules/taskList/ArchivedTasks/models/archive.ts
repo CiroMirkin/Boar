@@ -8,6 +8,8 @@ export interface taskListArchived {
 
 export type Archive = taskListArchived[]
 
+export const emptyArchivedTasks = []
+
 const archiveLimit = 60
 const dailyArchiveLimit = 30
 
