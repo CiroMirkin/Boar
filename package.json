@@ -59,6 +59,7 @@
     "sonner": "^2.0.3",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
+    "uuid": "^13.0.0",
     "vitest": "^0.34.6"
   },
   "devDependencies": {
