@@ -1,30 +1,33 @@
 import { useAvailableTags } from '../hooks/useAvailableTags'
-import { useActualTagGroup } from '../hooks/useActualTagGroup'
 import { Badge } from '@/ui/atoms/badge'
-import { emptyTagGroup, TagGroup } from '../model/tags'
-import { useDispatch } from 'react-redux'
-import { changeActualTagGroup } from '../state/tagsReducer'
+import { TagGroup } from '../model/tags'
 import { toast } from 'sonner'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { useTranslation } from 'react-i18next'
 import { SettingSection } from '@/ui/organisms/SettingSection'
-import { useSaveActualTagGroup } from '../state/useSaveActualTagGroup'
+import { useTagsQuery } from '../hooks/useTagsQuery'
+import { useActualTagGroup } from '../hooks/useActualTagGroup'
 
 export function EnableTags() {
 	const { t } = useTranslation()
 	const availableTags = useAvailableTags()
-	const actualTagGroup = useActualTagGroup()
+	const { updateTags } = useTagsQuery()
+	const { tags, actualTagGroup } = useActualTagGroup()
 	const { task } = useTheme()
-	const dispatch = useDispatch()
-	useSaveActualTagGroup()
 
 	const handleClick = (tagGroup: TagGroup) => {
 		if (actualTagGroup.id === tagGroup.id) {
-			dispatch(changeActualTagGroup(emptyTagGroup))
+			updateTags({
+				tags,
+				actualTagGroup: tagGroup,
+			})
 			toast.info(t('settings.tags.disble_tags_toast'))
 			return
 		}
-		dispatch(changeActualTagGroup(tagGroup))
+		updateTags({
+			tags: tags,
+			actualTagGroup: tagGroup,
+		})
 		toast.success(t('settings.tags.enable_tags_toast'))
 	}
 

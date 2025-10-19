@@ -5,6 +5,7 @@ import { UserBoard } from '../model/UserBoard'
 import { defaultBoard } from '@/modules/board/models/board'
 import LocalStorageColumnListRepository from '@/modules/columnList/repository/localStorageColumnList'
 import LocalStorageTaskListInEachColumnRepository from '@/modules/taskList/repository/localStorageTaskListsRepository'
+import LocalStorageTagRepository from '@/modules/taskList/Tags/repository/localstorageTagRepository'
 
 export const getActualUserBoard = async (): Promise<UserBoard> => {
 	const notes = await new LocalStorageNotesRepository().getAll()
@@ -13,6 +14,7 @@ export const getActualUserBoard = async (): Promise<UserBoard> => {
 		: defaultBoard
 	const columnList = await new LocalStorageColumnListRepository().getAll()
 	const taskList = await new LocalStorageTaskListInEachColumnRepository().getAll()
+	const actualTagGroup = (await new LocalStorageTagRepository().get()).actualTagGroup
 	return {
 		board: {
 			id: actualBoard.id,
@@ -23,7 +25,7 @@ export const getActualUserBoard = async (): Promise<UserBoard> => {
 		},
 		accessories: {
 			notes,
-			actual_tag_group: store.getState().tags.actualTagGroup,
+			actual_tag_group: actualTagGroup,
 			reminders: store.getState().reminder.reminder,
 		},
 	}
