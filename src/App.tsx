@@ -11,7 +11,6 @@ import { useSession } from './auth/hooks/useSession'
 import { useDispatch } from 'react-redux'
 
 import { useSyncUserBoard } from './auth/hooks/useSyncUserBoard'
-import { useGetUserArchiveFromSupabase } from './modules/taskList/ArchivedTasks/state/useGetUserArchiveFromSupabase'
 import { useLibraryOfArchivedNotesLoader } from './modules/notes/LibraryOfArchiveNotes/hooks/useLibraryOfArchivedNotesLoader'
 import { useEffect } from 'react'
 
@@ -25,7 +24,6 @@ function App() {
 	const { session } = useSession()
 
 	useSyncUserBoard()
-	useGetUserArchiveFromSupabase(session)
 	const { loadAndSetNotes } = useLibraryOfArchivedNotesLoader()
 	useEffect(() => {
 		loadAndSetNotes(session, dispatch)

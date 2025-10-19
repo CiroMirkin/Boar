@@ -1,41 +1,24 @@
 import { Button } from '@/ui/atoms/button'
-import { useDispatch } from 'react-redux'
-import { cleanArchive } from '@/modules/taskList/ArchivedTasks/state/archiveReducer'
 import { useArchive } from '@/modules/taskList/ArchivedTasks/hooks/useArchive'
 import { downloadArchiveLikePDF } from '@/modules/taskList/ArchivedTasks/downloadArchiveLikePDF'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { ArchiveContent } from './components/ArchiveContent'
-import { useEffect, useState } from 'react'
-import { useSaveArchive } from './state/useSaveArchive'
-import { useSession } from '@/auth/hooks/useSession'
 import { toast } from 'sonner'
 import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
+import { useArchivedTasksQuery } from './hooks/useArchivedTasksQuery'
+import { emptyArchivedTasks } from './models/archive'
 
 export function ArchivedTasks() {
-	const [cleanArchiveSignal, setCleanArchiveSignal] = useState(false)
 	const { t } = useTranslation()
 	const { column } = useTheme()
 	const boardArchive = useArchive()
 
-	const { session } = useSession()
-	const saveArchive = useSaveArchive()
-	useEffect(() => {
-		if (cleanArchiveSignal) {
-			setCleanArchiveSignal(true)
-			saveArchive({
-				session,
-				archive: boardArchive,
-				emptyArchive: true,
-			})
-		}
-	}, [boardArchive, cleanArchiveSignal, session, saveArchive])
-
-	const dispatch = useDispatch()
+	const { updateArchivedTasks } = useArchivedTasksQuery()
 	const cleanTheWholeArchive = () => {
-		dispatch(cleanArchive())
-		setCleanArchiveSignal(true)
+		updateArchivedTasks(emptyArchivedTasks)
 	}
+
 	const askForConfirmationToCleanTheWholeArchive = () => {
 		toast.warning(t('archive.clean_archive_warning'), {
 			action: {
