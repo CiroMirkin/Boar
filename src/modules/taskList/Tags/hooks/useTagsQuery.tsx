@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { fetchTags, saveTags } from '../repository'
 import { useSession } from '@/auth/hooks/useSession'
-import { AvailableTags } from '../model/tags'
+import { TagRepositoryGetReturn } from '../repository/tagRepository'
 
 const tagsQueryKey = ['tags']
 
@@ -23,11 +23,16 @@ export const useTagsQuery = () => {
 	})
 
 	const { mutate: updateTags, isPending: isSaving } = useMutation({
-		mutationFn: (updatedTags: AvailableTags) => saveTags({ tags: updatedTags, session }),
-		onMutate: async (updatedTags: AvailableTags) => {
+		mutationFn: (updatedTags: TagRepositoryGetReturn) =>
+			saveTags({
+				session,
+				tags: updatedTags.tags,
+				actualTags: updatedTags.actualTagGroup,
+			}),
+		onMutate: async (updatedTags: TagRepositoryGetReturn) => {
 			await queryClient.cancelQueries({ queryKey: fullQueryKey })
 
-			const previousTags = queryClient.getQueryData<AvailableTags>(fullQueryKey)
+			const previousTags = queryClient.getQueryData<TagRepositoryGetReturn>(fullQueryKey)
 
 			queryClient.setQueryData(fullQueryKey, updatedTags)
 
