@@ -5,6 +5,7 @@ import { getActualUserBoard } from './getActualUserBoard'
 import { saveUserBoardOnSupabase } from './saveUserBoardOnSupabase'
 import { defaultBoard } from '@/modules/board/models/board'
 import { v4 as uuidv4 } from 'uuid'
+import { saveActualBoardId } from './getActualBoardId'
 
 /** Recupera el tablero del usuario de Supabase y si no existe ninguno guarda el tablero actual en Supabase. */
 export const setUpUserBoard = async ({ session }: { dispatch: Dispatch; session: Session }) => {
@@ -16,7 +17,10 @@ export const setUpUserBoard = async ({ session }: { dispatch: Dispatch; session:
 			const boardForNewUser = {
 				...actualUserBoard,
 			}
-			if (boardForNewUser.board.id === defaultBoard.id) boardForNewUser.board.id = uuidv4()
+			if (boardForNewUser.board.id === defaultBoard.id) {
+				boardForNewUser.board.id = uuidv4()
+				saveActualBoardId(boardForNewUser.board.id)
+			}
 			saveUserBoardOnSupabase(boardForNewUser)
 		}
 	}
