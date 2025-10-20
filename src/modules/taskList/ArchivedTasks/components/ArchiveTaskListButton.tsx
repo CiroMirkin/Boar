@@ -20,15 +20,18 @@ export function ArchiveTaskListButton() {
 
 	const archiveTaskList = () => {
 		try {
+			const currentTaskList = taskListInEachColumn ?? emptyTaskListInEachColumn
 			const updatedArchive = archiveTaskListInTheLastColumn({
 				archive: archivedTasks,
-				taskListInEachColumn: taskListInEachColumn || emptyTaskListInEachColumn,
+				taskListInEachColumn: currentTaskList,
 			})
-			updateArchivedTasks(updatedArchive)
 			const updatedList = cleanLastTaskList({
-				taskListInEachColumn: taskListInEachColumn || [],
+				taskListInEachColumn: currentTaskList,
 			})
+
+			updateArchivedTasks(updatedArchive)
 			updateListOfTaskInColumns(updatedList)
+
 			toast.info(t('archive_task_list_toast'))
 		} catch (error) {
 			toast.error(getErrorMessageForTheUser(error))
