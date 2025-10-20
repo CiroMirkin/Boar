@@ -1,4 +1,3 @@
-// addTask.ts
 import {
 	TaskListInEachColumn,
 	isThisTaskListWithinTheLimit,
@@ -16,7 +15,7 @@ export function addTaskInFirstColumn({
 		if (index === columnPosition) {
 			return [...column, task]
 		}
-		return [...column]
+		return column
 	})
 
 	isThisTaskListWithinTheLimit({ taskList: newTaskList[columnPosition] })
@@ -34,7 +33,7 @@ export function addTaskInTheLastColumn({
 		if (index === columnIndex) {
 			return [...column, task]
 		}
-		return [...column]
+		return column
 	})
 
 	return newTaskList
