@@ -7,6 +7,7 @@ import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQu
 import { deleteThisTask } from '../state/actions/deleteTask'
 import { useArchivedTasksQuery } from '../ArchivedTasks/hooks/useArchivedTasksQuery'
 import { archiveThisTask } from '../ArchivedTasks/state/actions/archiveTask'
+import { useCallback } from 'react'
 
 interface ArchiveTaskButtonProps {
 	handleClick: (action: () => void) => void
@@ -18,27 +19,36 @@ export function ArchiveTaskButton({ handleClick }: ArchiveTaskButtonProps) {
 	const { listOfTaskInColumns, updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
 	const { updateArchivedTasks, archivedTasks } = useArchivedTasksQuery()
 
-	const useArchiveTaskAction = () => {
-		const archive = archiveThisTask({
+	const archiveTaskAction = useCallback(() => {
+		const currentTaskList = listOfTaskInColumns ?? []
+		const updatedArchive = archiveThisTask({
 			task: data,
 			archive: archivedTasks,
 		})
-		updateArchivedTasks(archive)
-
 		const updatedList = deleteThisTask({
-			taskListInEachColumn: listOfTaskInColumns || [],
+			taskListInEachColumn: currentTaskList,
 			task: data,
 		})
+
+		updateArchivedTasks(updatedArchive)
 		updateListOfTaskInColumns(updatedList)
+
 		toast.info(t('task_buttons.archive_toast'))
-	}
+	}, [
+		data,
+		archivedTasks,
+		listOfTaskInColumns,
+		updateArchivedTasks,
+		updateListOfTaskInColumns,
+		t,
+	])
 
 	return (
 		<Button
 			size='sm'
 			variant='ghost'
 			className='w-full'
-			onClick={() => handleClick(useArchiveTaskAction)}
+			onClick={() => handleClick(archiveTaskAction)}
 			title={t('task_buttons.archive')}
 		>
 			<ArchiveIcon />
