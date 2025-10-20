@@ -1,35 +1,37 @@
-import { archiveTaskListAtLastColumn } from '@/modules/taskList/ArchivedTasks/state/archiveReducer'
-import { cleanTheLastTaskList } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { toast } from 'sonner'
-import { useDispatch } from 'react-redux'
 import { Button } from '@/ui/atoms/button'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { useCheckForTasksInLastColumn } from '@/sharedByModules/hooks/useCheckForTasksInLastColumn'
 import { useTranslation } from 'react-i18next'
-import { useTaskListInEachColumn } from '@/modules/taskList/hooks/useTaskListInEachColumn'
-import { useSaveArchive } from '../state/useSaveArchive'
-import { useSession } from '@/auth/hooks/useSession'
-import { getActalArchive } from '../state/getActualArchive'
 import { ArchiveIcon } from '@/ui/atoms/icons'
+import { useListOfTasksInColumnsQuery } from '../../hooks/useListOfTasksInColumnsQuery'
+import { cleanLastTaskList } from '../../state/actions/deleteTaskList'
+import { archiveTaskListInTheLastColumn } from '../state/actions/archiveTaskList'
+import { useArchivedTasksQuery } from '../hooks/useArchivedTasksQuery'
+import { emptyTaskListInEachColumn } from '../../models/taskList'
 
 export function ArchiveTaskListButton() {
 	const { t } = useTranslation()
 
-	const taskListInEachColumn = useTaskListInEachColumn()
+	const { listOfTaskInColumns: taskListInEachColumn, updateListOfTaskInColumns } =
+		useListOfTasksInColumnsQuery()
 	const canUserArchiveTask = useCheckForTasksInLastColumn()
+	const { updateArchivedTasks, archivedTasks } = useArchivedTasksQuery()
 
-	const dispatch = useDispatch()
-	const { session } = useSession()
-
-	const saveArchive = useSaveArchive()
 	const archiveTaskList = () => {
 		try {
-			dispatch(archiveTaskListAtLastColumn(taskListInEachColumn))
-			dispatch(cleanTheLastTaskList())
-			saveArchive({
-				session,
-				archive: getActalArchive(),
+			const currentTaskList = taskListInEachColumn ?? emptyTaskListInEachColumn
+			const updatedArchive = archiveTaskListInTheLastColumn({
+				archive: archivedTasks,
+				taskListInEachColumn: currentTaskList,
 			})
+			const updatedList = cleanLastTaskList({
+				taskListInEachColumn: currentTaskList,
+			})
+
+			updateArchivedTasks(updatedArchive)
+			updateListOfTaskInColumns(updatedList)
+
 			toast.info(t('archive_task_list_toast'))
 		} catch (error) {
 			toast.error(getErrorMessageForTheUser(error))

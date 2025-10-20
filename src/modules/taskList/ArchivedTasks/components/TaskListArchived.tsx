@@ -4,6 +4,7 @@ import { BlankTask } from '../../../../ui/organisms/BlankTask'
 import { Card, CardContent, CardHeader, CardTitle } from '@/ui/molecules/card'
 import { TaskInArchiveActions } from './TaskInArchiveActions'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
+import { MinimalTiptapViewer } from '@/ui/organisms/MinimalTiptapViewer'
 
 interface TaskListArchivedProps {
 	taskList: taskList
@@ -30,6 +31,13 @@ function TaskList({ taskList }: { taskList: taskList }) {
 	const tasks: React.ReactNode[] = taskList.map((task) => (
 		<BlankTask data={task} key={task.id}>
 			<BlankTask.ContentCollapse>
+				{task.notesAndComments && (
+					<div>
+						<MinimalTiptapViewer
+							value={task.notesAndComments ? task.notesAndComments : ''}
+						/>
+					</div>
+				)}
 				<TaskInArchiveActions />
 			</BlankTask.ContentCollapse>
 		</BlankTask>

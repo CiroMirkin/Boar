@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/ui/molecules/card'
 import { ArchivedNote as ArchivedNoteModel } from '../model/archivedNote'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
-import RichTextViewer from '@/ui/organisms/RichTextViewer'
+import { MinimalTiptapViewer } from '@/ui/organisms/MinimalTiptapViewer'
 
 interface ArchivedNoteProps {
 	note: ArchivedNoteModel
@@ -16,10 +16,9 @@ export default function ArchivedNote({ note }: ArchivedNoteProps) {
 				<CardTitle className='text-2xl'>{note.date}</CardTitle>
 			</CardHeader>
 			<CardContent className='h-auto'>
-				<RichTextViewer
+				<MinimalTiptapViewer
 					value={note.note}
 					className={`${task} ${taskText ? taskText : text}`}
-					showBorder={false}
 				/>
 			</CardContent>
 		</Card>

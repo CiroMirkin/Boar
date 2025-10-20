@@ -8,12 +8,15 @@ export default class LocalStorageTaskListInEachColumnRepository
 	constructor() {
 		this.key = 'taskListInEachColumn'
 	}
-	save(taskListInEachColumn: TaskListInEachColumn): void {
+	async save(taskListInEachColumn: TaskListInEachColumn): Promise<void> {
 		localStorage.setItem(this.key, JSON.stringify(taskListInEachColumn))
 	}
-	getAll() {
-		return localStorage.getItem(this.key)
-			? JSON.parse(localStorage.getItem(this.key) as string)
-			: emptyTaskListInEachColumn
+	async getAll() {
+		const stored = localStorage.getItem(this.key)
+		if (stored) {
+			return JSON.parse(stored)
+		}
+		await this.save(emptyTaskListInEachColumn)
+		return emptyTaskListInEachColumn
 	}
 }

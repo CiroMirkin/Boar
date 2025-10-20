@@ -1,3 +1,4 @@
+import { saveActualBoardId } from '@/auth/utils/getActualBoardId'
 import { getUserId } from '@/auth/utils/getUserId'
 import { supabase } from '@/lib/supabase'
 import { boardModel, defaultBoard } from '@/modules/board/models/board'
@@ -16,7 +17,7 @@ export default class SupabaseBoardRepository implements BoardRepository {
 
 		if (error) throw error
 	}
-	async getAll() {
+	async get() {
 		const user_id = await getUserId()
 		const { data, error } = await supabase
 			.from('boards')
@@ -29,6 +30,9 @@ export default class SupabaseBoardRepository implements BoardRepository {
 			name: data[0].name,
 			id: data[0].id,
 		}
+
+		saveActualBoardId(board.id)
+
 		return board ? board : defaultBoard
 	}
 }

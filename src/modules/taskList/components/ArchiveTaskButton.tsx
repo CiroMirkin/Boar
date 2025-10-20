@@ -1,14 +1,13 @@
 import { Button } from '@/ui/atoms/button'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
-import { archiveTask } from '../ArchivedTasks/state/archiveReducer'
-import { deleteTask } from '../state/taskListInEachColumnReducer'
 import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
-import { useSession } from '@/auth/hooks/useSession'
-import { useSaveArchive } from '../ArchivedTasks/state/useSaveArchive'
-import { getActalArchive } from '../ArchivedTasks/state/getActualArchive'
 import { ArchiveIcon } from '@/ui/atoms/icons'
+import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
+import { deleteThisTask } from '../state/actions/deleteTask'
+import { useArchivedTasksQuery } from '../ArchivedTasks/hooks/useArchivedTasksQuery'
+import { archiveThisTask } from '../ArchivedTasks/state/actions/archiveTask'
+import { useCallback } from 'react'
 
 interface ArchiveTaskButtonProps {
 	handleClick: (action: () => void) => void
@@ -16,26 +15,40 @@ interface ArchiveTaskButtonProps {
 
 export function ArchiveTaskButton({ handleClick }: ArchiveTaskButtonProps) {
 	const { t } = useTranslation()
-	const dispatch = useDispatch()
 	const data = useDataOfTheTask()
-	const { session } = useSession()
-	const saveArchive = useSaveArchive()
-	const useArchiveTaskAction = () => {
-		dispatch(archiveTask(data))
-		dispatch(deleteTask(data))
-		saveArchive({
-			session,
-			archive: getActalArchive(),
+	const { listOfTaskInColumns, updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const { updateArchivedTasks, archivedTasks } = useArchivedTasksQuery()
+
+	const archiveTaskAction = useCallback(() => {
+		const currentTaskList = listOfTaskInColumns ?? []
+		const updatedArchive = archiveThisTask({
+			task: data,
+			archive: archivedTasks,
 		})
+		const updatedList = deleteThisTask({
+			taskListInEachColumn: currentTaskList,
+			task: data,
+		})
+
+		updateArchivedTasks(updatedArchive)
+		updateListOfTaskInColumns(updatedList)
+
 		toast.info(t('task_buttons.archive_toast'))
-	}
+	}, [
+		data,
+		archivedTasks,
+		listOfTaskInColumns,
+		updateArchivedTasks,
+		updateListOfTaskInColumns,
+		t,
+	])
 
 	return (
 		<Button
 			size='sm'
 			variant='ghost'
 			className='w-full'
-			onClick={() => handleClick(useArchiveTaskAction)}
+			onClick={() => handleClick(archiveTaskAction)}
 			title={t('task_buttons.archive')}
 		>
 			<ArchiveIcon />

@@ -1,10 +1,13 @@
-import { useSelector } from 'react-redux'
-import { emptyTagGroup, TagGroup } from '../model/tags'
-import { RootState } from '@/store'
+import { defaultAvialableTags, emptyTagGroup } from '../model/tags'
+import { TagRepositoryGetReturn } from '../repository/tagRepository'
+import { useTagsQuery } from './useTagsQuery'
 
-export const useActualTagGroup = (): TagGroup => {
-	const actualTagGroup = useSelector((state: RootState) => state.tags.actualTagGroup)
-	return actualTagGroup && JSON.stringify(actualTagGroup).length > 2
-		? actualTagGroup
-		: emptyTagGroup
+export const useActualTagGroup = (): TagRepositoryGetReturn => {
+	const { tags } = useTagsQuery()
+	const actualTagGroup = tags?.actualTagGroup
+	const availableTags = tags?.tags
+	return {
+		tags: availableTags ? availableTags : defaultAvialableTags,
+		actualTagGroup: actualTagGroup ? actualTagGroup : emptyTagGroup,
+	}
 }

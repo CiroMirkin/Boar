@@ -17,23 +17,24 @@ export const archiveThisTask = ({
 
 	if (getDateOfTheFirstTaskListArchived(archive) === date) {
 		const indexOfTheTaskListArchived = 0
-		const indexOfTheTaskInTheTaskListArchived = 0
-		const itemsToBeRemovedOrReplaced = 0
-		archive[indexOfTheTaskListArchived].tasklist.splice(
-			indexOfTheTaskInTheTaskListArchived,
-			itemsToBeRemovedOrReplaced,
-			task
-		)
 
-		if (isItWithinTheDailyArchiveLimit(archive[indexOfTheTaskListArchived].tasklist)) {
-			return archive
+		const updatedArchive = [...archive]
+		const updatedTaskList = [...updatedArchive[indexOfTheTaskListArchived].tasklist]
+
+		const indexOfTheTaskInTheTaskListArchived = 0
+		updatedTaskList.splice(indexOfTheTaskInTheTaskListArchived, 0, task)
+
+		updatedArchive[indexOfTheTaskListArchived] = {
+			...updatedArchive[indexOfTheTaskListArchived],
+			tasklist: updatedTaskList,
 		}
+
+		if (isItWithinTheDailyArchiveLimit(updatedTaskList)) {
+			return updatedArchive
+		}
+
+		return [{ date, tasklist: [task] }, ...updatedArchive]
 	}
-	const indexOfTheNewTaskListArchived = 0
-	const itemsToBeRemovedOrReplaced = 0
-	archive.splice(indexOfTheNewTaskListArchived, itemsToBeRemovedOrReplaced, {
-		date,
-		tasklist: [task],
-	})
-	return archive
+
+	return [{ date, tasklist: [task] }, ...archive]
 }

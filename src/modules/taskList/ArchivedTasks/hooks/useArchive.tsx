@@ -1,7 +1,7 @@
 import { Archive } from '@/modules/taskList/ArchivedTasks/models/archive'
-import { RootState } from '@/store'
-import { useSelector } from 'react-redux'
+import { useArchivedTasksQuery } from './useArchivedTasksQuery'
 
 export const useArchive = (): Archive => {
-	return useSelector((state: RootState) => state.archive.list)
+	const { archivedTasks } = useArchivedTasksQuery()
+	return archivedTasks
 }

@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next'
 
 export default function TagGroupSelect() {
 	const [selectedTags, setSelectedTags] = useState<string[]>([])
-	const actualTagGroup = useActualTagGroup()
+	const { actualTagGroup } = useActualTagGroup()
 	const { t } = useTranslation()
 	const translatedTagGroup = translateTagGroup(actualTagGroup, t)
 

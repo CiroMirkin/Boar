@@ -2,10 +2,10 @@ import { useCheckIfThisTaskIsInTheFirstColumn } from '@/sharedByModules/hooks/us
 import { Button } from '@/ui/atoms/button'
 import { useTranslation } from 'react-i18next'
 import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
-import { useDispatch } from 'react-redux'
-import { deleteTask } from '../state/taskListInEachColumnReducer'
 import { toast } from 'sonner'
 import { TrashIcon } from '@/ui/atoms/icons'
+import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
+import { deleteThisTask } from '../state/actions/deleteTask'
 
 interface DeleteButtonProps {
 	handleClick: (action: () => void) => void
@@ -15,8 +15,15 @@ export function DeleteTaskButton({ handleClick }: DeleteButtonProps) {
 	const { t } = useTranslation()
 	const data = useDataOfTheTask()
 	const isTheTaskInTheFirstColumn = useCheckIfThisTaskIsInTheFirstColumn(data)
-	const dispatch = useDispatch()
-	const deleteTaskAction = () => dispatch(deleteTask(data))
+	const { listOfTaskInColumns, updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+
+	const deleteTaskAction = () => {
+		const updatedList = deleteThisTask({
+			taskListInEachColumn: listOfTaskInColumns || [],
+			task: data,
+		})
+		updateListOfTaskInColumns(updatedList)
+	}
 
 	const askForConfirmationToDeleteTheTask = () => {
 		isTheTaskInTheFirstColumn

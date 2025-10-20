@@ -1,22 +1,24 @@
 import { WelcomeDialog } from './components/WelcomeDialog'
-import { useBoard } from '@/modules/board/hooks/useBoard'
+import { useBoardQuery } from '@/modules/board/hooks/useBoardQuery' // Importar el nuevo hook
 import { useDocumentTitle } from '@uidotdev/usehooks'
-import { useSession } from '@/auth/hooks/useSession'
-import { useSaveBoard } from './hooks/useSaveBoard'
 import { LoadingBoard } from './components/LoadingBoard'
-import { useSelector } from 'react-redux'
-import { RootState } from '@/store'
 
 export function Board({ children }: { children: React.ReactNode }) {
-	const isLoading = useSelector((state: RootState) => state.board.isLoading)
-	const data = useBoard()
-	useDocumentTitle(data.name + ' - Boar')
+	// Usar el nuevo hook
+	const { board, isLoading, isError } = useBoardQuery()
 
-	const { session } = useSession()
-	useSaveBoard({ data, session })
+	// useDocumentTitle ahora necesita manejar el caso en que `board` es undefined
+	useDocumentTitle(board ? `${board.name} - Boar` : 'Boar')
+
+	// El hook `useSaveBoard` ya no es necesario, la mutación se encarga de guardar.
+	// Deberás llamar a `updateBoard(nuevoEstadoDelBoard)` desde donde sea que modifiques el board.
 
 	if (isLoading) {
 		return <LoadingBoard />
+	}
+
+	if (isError) {
+		return <div>Ha ocurrido un error al cargar el tablero.</div>
 	}
 
 	return (

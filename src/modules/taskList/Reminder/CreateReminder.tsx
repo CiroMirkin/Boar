@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react'
+import { useState, ChangeEvent, useEffect } from 'react'
 import { Button } from '@/ui/atoms/button'
 import { Input } from '@/ui/atoms/input'
 import { Label } from '@/ui/atoms/label'
@@ -8,8 +8,7 @@ import { toast } from 'sonner'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { useTranslation } from 'react-i18next'
 import { SettingSection } from '@/ui/organisms/SettingSection'
-import { useSaveReminder } from './hooks/useSaveReminder'
-import { useGetReminder } from './hooks/useGetReminder'
+import { useReminderQuery } from './hooks/useReminderQuery'
 
 interface ReminderColumn {
 	name: string
@@ -19,12 +18,18 @@ interface ReminderColumn {
 
 function CreateReminder({ columnList }: { columnList: ReminderColumn[] }) {
 	const { t } = useTranslation()
-	const setReminder = useSaveReminder()
-	const reminder = useGetReminder()
-	const [reminderText, setReminderText] = useState(reminder.text as string)
+	const { reminder, updateReminder } = useReminderQuery()
+	const [reminderText, setReminderText] = useState(reminder?.text as string)
 	const [reminderColumnPosition, setReminderColumnPosition] = useState(
-		reminder.columnPosition as string
+		reminder?.columnPosition as string
 	)
+
+	useEffect(() => {
+		if (reminder) {
+			setReminderText(reminder.text)
+			setReminderColumnPosition(reminder.columnPosition)
+		}
+	}, [reminder])
 
 	const handleClick = () => {
 		const newReminder: reminder = {
@@ -33,7 +38,7 @@ function CreateReminder({ columnList }: { columnList: ReminderColumn[] }) {
 		}
 
 		try {
-			setReminder(newReminder)
+			updateReminder(newReminder)
 			toast.success(t('settings.reminder.created_toast'))
 		} catch (error) {
 			toast.error(getErrorMessageForTheUser(error))

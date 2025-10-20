@@ -11,8 +11,11 @@ export default class LocalStorageColumnListRepository implements ColumnListRepos
 		localStorage.setItem(this.key, JSON.stringify(columnList))
 	}
 	getAll() {
-		return localStorage.getItem(this.key)
-			? JSON.parse(localStorage.getItem(this.key) as string)
-			: defaultColumnList
+		const storedColumnList = localStorage.getItem(this.key)
+		if (storedColumnList) {
+			return JSON.parse(storedColumnList)
+		}
+		this.save(defaultColumnList)
+		return defaultColumnList
 	}
 }

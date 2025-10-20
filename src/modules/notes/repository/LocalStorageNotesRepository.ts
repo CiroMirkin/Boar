@@ -6,11 +6,11 @@ export default class LocalStorageNotesRepository implements NotesRepository {
 	constructor() {
 		this.key = 'boar-notes'
 	}
-	save(notes: Notes) {
+	async save(notes: Notes): Promise<void> {
 		const notesForSave = { notes }
 		localStorage.setItem(this.key, JSON.stringify(notesForSave))
 	}
-	getAll() {
+	async getAll(): Promise<Notes> {
 		return localStorage.getItem(this.key)
 			? JSON.parse(localStorage.getItem(this.key) as string).notes
 			: defaultNotes

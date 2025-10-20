@@ -1,58 +1,29 @@
 import { supabase } from '@/lib/supabase'
-import { setUserBoard } from './setUserBoard'
 import { Dispatch } from '@reduxjs/toolkit'
 import { Session } from '@supabase/supabase-js'
-import { Dispatch as ReactDispatch, SetStateAction } from 'react'
 import { getActualUserBoard } from './getActualUserBoard'
 import { saveUserBoardOnSupabase } from './saveUserBoardOnSupabase'
-import { UserBoard } from '../model/UserBoard'
+import { defaultBoard } from '@/modules/board/models/board'
+import { v4 as uuidv4 } from 'uuid'
+import { saveActualBoardId } from './getActualBoardId'
 
 /** Recupera el tablero del usuario de Supabase y si no existe ninguno guarda el tablero actual en Supabase. */
-export const setUpUserBoard = async ({
-	dispatch,
-	session,
-	setNote,
-}: {
-	dispatch: Dispatch
-	session: Session
-	setNote: ReactDispatch<SetStateAction<string>>
-}) => {
+export const setUpUserBoard = async ({ session }: { dispatch: Dispatch; session: Session }) => {
 	const actualUserBoard = await getActualUserBoard()
 	const { data } = await supabase.from('boards').select('*').eq('user_id', session.user.id)
 
 	if (session) {
 		if (data != null && data.length === 0) {
-			saveUserBoardOnSupabase(actualUserBoard)
-		} else if (data != null) {
-			const boardFromSupabase = data[0]
-			const { data: boardAccessoriesFromSupabase, error: boardAccessoriesError } =
-				await supabase
-					.from('board_accessories')
-					.select('*')
-					.eq('id', boardFromSupabase.id)
-					.single()
-
-			if (boardAccessoriesError) console.error(boardAccessoriesError)
-
-			const savedUserBoard: UserBoard = {
-				board: {
-					id: boardFromSupabase.id,
-					name: boardFromSupabase.name,
-					column_list: boardFromSupabase.column_list,
-					task_list_in_each_column: boardFromSupabase.task_list_in_each_column,
-					user_id: boardFromSupabase.user_id,
-				},
-				accessories: boardAccessoriesFromSupabase,
+			const boardForNewUser = {
+				...actualUserBoard,
 			}
-
-			const isInitialLoad = sessionStorage.getItem('isInitialLoad')
-			if (isInitialLoad === null) {
-				setUserBoard({ dispatch, savedUserBoard, setNote })
-				return
+			if (boardForNewUser.board.id === defaultBoard.id) {
+				const newBoardId = uuidv4()
+				boardForNewUser.board.id = newBoardId
+				boardForNewUser.archive.board_id = newBoardId
+				saveActualBoardId(newBoardId)
 			}
-			if (JSON.stringify(savedUserBoard.board) !== JSON.stringify(actualUserBoard.board)) {
-				setUserBoard({ dispatch, savedUserBoard, setNote })
-			}
+			saveUserBoardOnSupabase(boardForNewUser)
 		}
 	}
 }

@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import { Column, isThisColumnNameWithinTheLimitOfLetters } from '../models/column'
-import { useDispatch } from 'react-redux'
-import { changeColumnName } from '@/modules/columnList/state/columnListReducer'
 import { Button } from '../../../ui/atoms/button'
 import { toast } from 'sonner'
 import { PencilIcon, TrashIcon } from '@/ui/atoms/icons'
@@ -10,6 +8,8 @@ import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageFo
 import { useTranslation } from 'react-i18next'
 import { useDeleteColumn } from '../../../sharedByModules/hooks/useDeleteColumn'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
+import { useColumnListQuery } from '../hooks/useColumnListQuery'
+import { changeNameOfColumn } from '../state/actions/changeColumnName'
 
 interface ConfigColumnParams {
 	column: Column
@@ -21,11 +21,16 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 	const [columnName, setColumnName] = useState(column.name)
 
 	const nameToShow = showChangeColumnNameInput ? columnName : column.name
-	const updateBoardData = useDispatch()
+	const { columnList, updateColumnList } = useColumnListQuery()
 
 	const editColumnNameHandle = () => {
 		if (showChangeColumnNameInput) {
-			updateBoardData(changeColumnName({ column, newColumnName: columnName }))
+			const updatedColumnList = changeNameOfColumn({
+				columnList: columnList || [],
+				column,
+				newName: columnName,
+			})
+			updateColumnList(updatedColumnList)
 		} else {
 			setColumnName(column.name)
 		}

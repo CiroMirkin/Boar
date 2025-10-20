@@ -1,52 +1,33 @@
-import { useEffect } from 'react'
-import RichTextEditor from '@/ui/organisms/RichTextEditor/RichTextEditor'
-import { defaultNotes, maxLengthOfNotes, Notes as NotesModel } from '../model/notes'
-import { useSession } from '@/auth/hooks/useSession'
+import { MinimalTiptapEditor } from '@/ui/organisms/MinimalTiptapEditor'
+import { maxLengthOfNotes, Notes as NotesModel } from '../model/notes'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
-import { useNote } from '../hooks/useNote'
-import { notesRepositoryFactory } from '../repository/notesRepositoryFactory'
+import { useNotesQuery } from '../hooks/useNotesQuery'
 
 export function NoteInput() {
-	const { note, setNote } = useNote()
 	const { t } = useTranslation()
-
-	const { session } = useSession()
-	useEffect(() => {
-		const notesRepository = notesRepositoryFactory(session)
-		const loadNotes = async () => {
-			const notes = await notesRepository.getAll()
-			if (notes !== defaultNotes) {
-				setNote(notes)
-			}
-		}
-		void loadNotes()
-	}, [session, setNote])
+	const { notes, updateNotes, isLoading } = useNotesQuery()
 
 	const onChange = (newText: NotesModel) => {
 		if (newText.trim().length <= maxLengthOfNotes) {
-			setNote(newText)
-			handleSaveNotes(newText)
+			updateNotes(newText)
 			return
 		}
 
 		toast.error(t('notes.warning_length_toast'))
 	}
 
-	const handleSaveNotes = async (newNote: NotesModel) => {
-		const notesRepository = notesRepositoryFactory(session)
-		await notesRepository.save(newNote)
-	}
+	if (isLoading) return <div>{t('common.loading')}...</div>
 
 	return (
 		<>
-			<RichTextEditor
-				value={note}
+			<MinimalTiptapEditor
+				value={notes || ''}
 				onChange={onChange}
 				rows={5}
 				maxRows={18}
 				saveTextCallback={async () => {
-					await handleSaveNotes(note)
+					// The mutation is already happening on change, but we can show a toast here.
 					toast.success(t('notes.successful_toast'))
 				}}
 			/>

@@ -1,15 +1,19 @@
 import { useContext } from 'react'
 import { TaskContext } from '../../../../ui/organisms/BlankTask'
 import { Button } from '@/ui/atoms/button'
-import { useDispatch } from 'react-redux'
-import { deleteArchivedTask } from '@/modules/taskList/ArchivedTasks/state/archiveReducer'
 import { toast } from 'sonner'
-import { addTaskAtLastColumn } from '@/modules/taskList/state/taskListInEachColumnReducer'
 import { useTranslation } from 'react-i18next'
+import { useListOfTasksInColumnsQuery } from '../../hooks/useListOfTasksInColumnsQuery'
+import { addTaskInTheLastColumn } from '../../state/actions/addTask'
+import { sortListOfTasksInColumnsByPriority } from '../../models/sortListOfTasksInColumnsByPriority'
+import { useArchivedTasksQuery } from '../hooks/useArchivedTasksQuery'
+import { deleteThisArchivedTask } from '../state/actions/deleteArchivedTask'
 
 export function TaskInArchiveActions() {
 	const { t } = useTranslation()
-	const { deleteTaskAction, returnTaskToLastColumnAction } = useActionsForTaskInArchive()
+	const task = useContext(TaskContext)
+	const { listOfTaskInColumns, updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const { archivedTasks, updateArchivedTasks } = useArchivedTasksQuery()
 
 	const askForConfirmationToDeleteTheTask = () => {
 		toast.warning(t('archive.delete_task_warning'), {
@@ -18,6 +22,32 @@ export function TaskInArchiveActions() {
 				onClick: deleteTaskAction,
 			},
 		})
+	}
+
+	const deleteTaskAction = () => {
+		const updatedArchivedTasks = deleteThisArchivedTask({
+			task,
+			archive: archivedTasks,
+		})
+		updateArchivedTasks(updatedArchivedTasks)
+	}
+
+	const returnTaskToLastColumnAction = () => {
+		const updatedListOfTaskInColumns = sortListOfTasksInColumnsByPriority(
+			addTaskInTheLastColumn({
+				taskListInEachColumn: listOfTaskInColumns || [],
+				task,
+			})
+		)
+		updateListOfTaskInColumns(updatedListOfTaskInColumns)
+
+		const updatedArchivedTasks = deleteThisArchivedTask({
+			task,
+			archive: archivedTasks,
+		})
+		updateArchivedTasks(updatedArchivedTasks)
+
+		toast.info(t('archive.return_task_to_board_toast'))
 	}
 
 	return (
@@ -40,24 +70,4 @@ export function TaskInArchiveActions() {
 			</Button>
 		</>
 	)
-}
-
-const useActionsForTaskInArchive = () => {
-	const { t } = useTranslation()
-	const data = useContext(TaskContext)
-	const dispatch = useDispatch()
-
-	const deleteTaskAction = () => {
-		dispatch(deleteArchivedTask(data))
-	}
-	const returnTaskToLastColumnAction = () => {
-		dispatch(addTaskAtLastColumn(data))
-		dispatch(deleteArchivedTask(data))
-		toast.info(t('archive.return_task_to_board_toast'))
-	}
-
-	return {
-		deleteTaskAction,
-		returnTaskToLastColumnAction,
-	}
 }

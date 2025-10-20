@@ -2,8 +2,9 @@ import React, { DragEvent } from 'react'
 import { TaskList as taskList } from '@/modules/taskList/models/taskList'
 import { Task } from './Task'
 import { taskModel } from '../models/task'
-import { useDispatch } from 'react-redux'
-import { moveThisTaskToThisColumnPosition } from '../state/taskListInEachColumnReducer'
+import { moveThisTaskToThisColumn } from '../state/actions/moveThisTaskToThisColumn'
+import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
+import { sortListOfTasksInColumnsByPriority } from '../models/sortListOfTasksInColumnsByPriority'
 
 interface TaskListProps {
 	tasks: taskList
@@ -17,18 +18,21 @@ export function TaskList({ tasks, columnPosition }: TaskListProps) {
 		taskList.push(<Task task={task} key={task.id} />)
 	})
 
-	const dispatch = useDispatch()
-
+	const { listOfTaskInColumns, updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
 	const handleDrop = (e: DragEvent) => {
 		const dropData = e.dataTransfer.getData('task')
 		if (dropData != null) {
+			const currentList = listOfTaskInColumns || []
 			const taskDragged: taskModel = JSON.parse(dropData)
-			dispatch(
-				moveThisTaskToThisColumnPosition({
+
+			const updatedList = sortListOfTasksInColumnsByPriority(
+				moveThisTaskToThisColumn({
+					taskListOfColumns: currentList,
 					task: taskDragged,
 					newColumnPosition: columnPosition,
 				})
 			)
+			updateListOfTaskInColumns(updatedList)
 		}
 	}
 

@@ -1,5 +1,6 @@
 import { TaskList } from './components/TaskList'
 import { useReminder } from '@/modules/taskList/Reminder/hooks/useReminder'
+import { useReminderQuery } from '@/modules/taskList/Reminder/hooks/useReminderQuery'
 import { useTaskListInEachColumn } from './hooks/useTaskListInEachColumn'
 import { useTranslation } from 'react-i18next'
 import { useSession } from '@/auth/hooks/useSession'
@@ -12,9 +13,10 @@ const getColumnPosition = (taskListIndex: number): string => `${taskListIndex + 
 export function TaskListInEachColumn() {
 	const taskListInEachColumn = useTaskListInEachColumn()
 	const { session } = useSession()
+	const { reminder } = useReminderQuery()
 	useSaveTaskListOfColumns({ session, data: taskListInEachColumn })
 
-	useReminder(taskListInEachColumn)
+	useReminder(taskListInEachColumn, reminder)
 	const { t } = useTranslation()
 
 	const columnsContent: React.ReactNode[] = []
@@ -37,7 +39,13 @@ export function TaskListInEachColumn() {
 	}
 
 	taskListInEachColumn.forEach((taskList, index) => {
-		columnsContent.push(<TaskList tasks={taskList} columnPosition={getColumnPosition(index)} />)
+		columnsContent.push(
+			<TaskList
+				key={`column-${index}`}
+				tasks={taskList}
+				columnPosition={getColumnPosition(index)}
+			/>
+		)
 	})
 
 	return columnsContent

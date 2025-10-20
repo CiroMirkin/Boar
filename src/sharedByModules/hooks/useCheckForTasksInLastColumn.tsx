@@ -1,8 +1,7 @@
-import { RootState } from '@/store'
-import { useSelector } from 'react-redux'
+import { useTaskListInEachColumn } from '@/modules/taskList/hooks/useTaskListInEachColumn'
 
 export const useCheckForTasksInLastColumn = (): boolean => {
-	const taskListInEachColumn = useSelector((state: RootState) => state.taskListInEachColumn.list)
+	const taskListInEachColumn = useTaskListInEachColumn()
 	const taskListInTheLastColumn = taskListInEachColumn[taskListInEachColumn.length - 1]
 	return !taskListInTheLastColumn.length
 }

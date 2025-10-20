@@ -7,10 +7,18 @@ interface deleteLastTaskListParams {
 export const cleanLastTaskList = ({
 	taskListInEachColumn,
 }: deleteLastTaskListParams): TaskListInEachColumn => {
-	if (taskListInEachColumn.length > 1) {
-		taskListInEachColumn[taskListInEachColumn.length - 1] = []
+	if (taskListInEachColumn.length <= 1) {
+		return taskListInEachColumn.map((column) => [...column])
 	}
-	return taskListInEachColumn
+
+	const lastColumnIndex = taskListInEachColumn.length - 1
+
+	return taskListInEachColumn.map((column, index) => {
+		if (index === lastColumnIndex) {
+			return []
+		}
+		return [...column]
+	})
 }
 
 interface deleteTheTaskListInThisIndexParams {
@@ -22,8 +30,7 @@ export const deleteTheTaskListInThisIndex = ({
 	index,
 	taskListInEachColumn,
 }: deleteTheTaskListInThisIndexParams): TaskListInEachColumn => {
-	const newTaskListInEachColumn = taskListInEachColumn.filter(
-		(taskList) => taskListInEachColumn.indexOf(taskList) !== index
-	)
-	return newTaskListInEachColumn
+	return taskListInEachColumn
+		.filter((_, currentIndex) => currentIndex !== index)
+		.map((column) => [...column])
 }

@@ -12,39 +12,47 @@ interface archiveTaskListParams {
 	taskListInEachColumn: TaskList[]
 	archive: Archive
 }
+
 export function archiveTaskListInTheLastColumn({
 	taskListInEachColumn,
 	archive,
 }: archiveTaskListParams): Archive {
 	const date = getFullDate()
-	const taskListToArchive: TaskList = taskListInEachColumn[taskListInEachColumn.length - 1]
+	const lastColumnIndex = taskListInEachColumn.length - 1
+	const taskListToArchive: TaskList = taskListInEachColumn[lastColumnIndex]
 
-	if (AreThereTasksToBeArchive(taskListToArchive))
+	if (isTaskListEmpty(taskListToArchive)) {
 		throw new BusinessError('No hay tareas que archivar.')
+	}
 
-	if (getDateOfTheFirstTaskListArchived(archive) === date) {
-		const toArchive: TaskList = [...taskListToArchive, ...archive[0].tasklist]
-		if (isItWithinTheDailyArchiveLimit(toArchive)) {
-			archive = archive.map((archi) => {
-				if (archi.date === date) {
-					archi.tasklist = toArchive
-					return archi
+	const firstArchivedDate = getDateOfTheFirstTaskListArchived(archive)
+
+	if (firstArchivedDate === date) {
+		const mergedTaskList: TaskList = [...taskListToArchive, ...archive[0].tasklist]
+
+		if (isItWithinTheDailyArchiveLimit(mergedTaskList)) {
+			return archive.map((archi, index) => {
+				if (index === 0) {
+					return {
+						...archi,
+						tasklist: mergedTaskList,
+					}
 				}
 				return archi
 			})
-			return archive
 		}
 	}
 
 	if (isItWithinTheArchiveLimit(archive) && isItWithinTheDailyArchiveLimit(taskListToArchive)) {
-		const itemsToBeRemovedOrReplaced = 0
-		const indexWhereWillBe = 0
-		archive.splice(indexWhereWillBe, itemsToBeRemovedOrReplaced, {
+		const newArchiveEntry = {
 			date,
-			tasklist: taskListToArchive,
-		})
+			tasklist: [...taskListToArchive],
+		}
+
+		return [newArchiveEntry, ...archive]
 	}
+
 	return archive
 }
 
-const AreThereTasksToBeArchive = (taskList: TaskList): boolean => !taskList.length
+const isTaskListEmpty = (taskList: TaskList): boolean => taskList.length === 0
