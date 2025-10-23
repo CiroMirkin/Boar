@@ -66,6 +66,9 @@ const MinimalTiptapEditor = ({
 		editorProps: {
 			attributes: {
 				class: 'focus:outline-none',
+				spellcheck: 'false',
+				autocorrect: 'off',
+				autocapitalize: 'off',
 			},
 		},
 		onFocus: () => setIsFocused(true),
