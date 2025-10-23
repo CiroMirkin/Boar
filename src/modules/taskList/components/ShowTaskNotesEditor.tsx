@@ -42,7 +42,7 @@ export default function ShowTaskNotesEditor() {
 					<MessageSquareTextIcon />
 				</Button>
 			</DialogTrigger>
-			<DialogContent>
+			<DialogContent className='!max-w-3xl'>
 				<DialogHeader>
 					<DialogTitle>{task.descriptionText}</DialogTitle>
 					<DialogDescription></DialogDescription>
