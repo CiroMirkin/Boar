@@ -65,18 +65,31 @@ describe('Mover una tarea entre columnas', () => {
 })
 
 describe('Se respetan los limites de una lista de tareas', () => {
-	test('No se debería poder mover una tarea a una columna llena. PRUEBA POCO CONFIABLE.', () => {
+	test('No se debería poder mover una tarea a una columna llena.', () => {
 		const task = {
-			id: '',
+			id: '1',
 			descriptionText: 'tarea',
 			columnPosition: '1',
 		}
-		const taskListInEachColumn: TaskListInEachColumn = [[], [], []]
-		const secondColumnContent = new Array(10).fill(task)
-		taskListInEachColumn[1] = secondColumnContent
+
+		// Crear una columna con la tarea que queremos mover
+		const firstColumn = [{ ...task }]
+
+		// Crear una segunda columna llena (9 tareas, porque al mover una más llegará a 10)
+		const dummyTask = {
+			id: '2',
+			descriptionText: 'tarea dummy',
+			columnPosition: '2',
+		}
+		const secondColumnContent = new Array(10).fill(null).map((_, i) => ({
+			...dummyTask,
+			id: `dummy-${i}`,
+		}))
+
+		const taskListInEachColumn: TaskListInEachColumn = [firstColumn, secondColumnContent, []]
 
 		expect(() => {
-			return moveThisTaskToTheNextColumn({ taskListInEachColumn, task })
+			moveThisTaskToTheNextColumn({ taskListInEachColumn, task })
 		}).toThrow('La columna esta llena.')
 	})
 })

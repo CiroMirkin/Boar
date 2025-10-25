@@ -1,6 +1,6 @@
 import { getIndexOfColumnInColumnList } from '../../columnList/models/column'
 import { taskUseCaseParams } from './actions'
-import { getNewTask } from '@/modules/taskList/models/task'
+import { getNewTask, taskModel } from '@/modules/taskList/models/task'
 import { TaskList, isThisTaskListWithinTheLimit } from '@/modules/taskList/models/taskList'
 
 export type moveToType = 'next-column' | 'prev-column'
@@ -10,51 +10,50 @@ interface moveTaskParams extends taskUseCaseParams {
 }
 
 export const moveThisTask = ({ task, to, taskListInEachColumn }: moveTaskParams): TaskList[] => {
-	const newTaskListInEachColumn = taskListInEachColumn
-	const indexOfTheColumnWhereTheTaskIs: number = getIndexOfColumnInColumnList(task.columnPosition)
-	let oldTaskIndexInList = 0
-
-	newTaskListInEachColumn[indexOfTheColumnWhereTheTaskIs] = newTaskListInEachColumn[
-		indexOfTheColumnWhereTheTaskIs
-	].filter((t, index) => {
-		if (t.id === task.id) {
-			oldTaskIndexInList = index
-			return false
-		}
-		return true
-	})
-
-	const nextColumnIndex = indexOfTheColumnWhereTheTaskIs + 1
-	const prevColumnIndex = indexOfTheColumnWhereTheTaskIs - 1
-	const indexOfTheColumnWhereTheTaskWillBe =
-		to === 'next-column' ? nextColumnIndex : prevColumnIndex
-	if (
-		indexOfTheColumnWhereTheTaskWillBe < newTaskListInEachColumn.length &&
-		indexOfTheColumnWhereTheTaskWillBe > -1
-	) {
-		const newTask = getNewTask({
-			descriptionText: task.descriptionText,
-			columnPosition: `${indexOfTheColumnWhereTheTaskWillBe + 1}`,
-		})
-		newTask.id = task.id
-
-		newTaskListInEachColumn[indexOfTheColumnWhereTheTaskWillBe].push(newTask)
-		if (
-			isThisTaskListWithinTheLimit({
-				taskList: newTaskListInEachColumn[indexOfTheColumnWhereTheTaskWillBe],
-			})
-		) {
-			return newTaskListInEachColumn
-		}
+	const currentColumnIndex = getIndexOfColumnInColumnList(task.columnPosition)
+	const targetColumnIndex = to === 'next-column' ? currentColumnIndex + 1 : currentColumnIndex - 1
+	if (!isValidColumnIndex(targetColumnIndex, taskListInEachColumn.length)) {
+		return taskListInEachColumn
 	}
 
-	const itemsToBeRemovedOrReplaced = 0
-	newTaskListInEachColumn[indexOfTheColumnWhereTheTaskIs].splice(
-		oldTaskIndexInList,
-		itemsToBeRemovedOrReplaced,
-		task
+	const taskIndexInCurrentColumn = findTaskIndex(
+		taskListInEachColumn[currentColumnIndex],
+		task.id
 	)
-	return taskListInEachColumn
+	if (taskIndexInCurrentColumn === -1) {
+		return taskListInEachColumn
+	}
+
+	const newTaskListInEachColumn = structuredClone(taskListInEachColumn)
+	removeTaskFromColumn(newTaskListInEachColumn[currentColumnIndex], taskIndexInCurrentColumn)
+	const movedTask = createTaskForNewColumn(task, targetColumnIndex)
+	newTaskListInEachColumn[targetColumnIndex].push(movedTask)
+
+	const targetColumnIsWithinLimit = isThisTaskListWithinTheLimit({
+		taskList: newTaskListInEachColumn[targetColumnIndex],
+	})
+	return targetColumnIsWithinLimit ? newTaskListInEachColumn : targetColumnIsWithinLimit
+}
+
+const isValidColumnIndex = (index: number, maxLength: number): boolean => {
+	return index >= 0 && index < maxLength
+}
+
+const findTaskIndex = (taskList: TaskList, taskId: string): number => {
+	return taskList.findIndex((t) => t.id === taskId)
+}
+
+const removeTaskFromColumn = (taskList: TaskList, index: number): void => {
+	taskList.splice(index, 1)
+}
+
+const createTaskForNewColumn = (originalTask: taskModel, columnIndex: number): taskModel => {
+	const newTask = getNewTask({
+		descriptionText: originalTask.descriptionText,
+		columnPosition: `${columnIndex + 1}`,
+	})
+
+	return { ...originalTask, ...newTask, id: originalTask.id }
 }
 
 export const moveThisTaskToTheNextColumn = ({
@@ -63,6 +62,7 @@ export const moveThisTaskToTheNextColumn = ({
 }: taskUseCaseParams): TaskList[] => {
 	return moveThisTask({ task, to: 'next-column', taskListInEachColumn })
 }
+
 export const moveThisTaskToThePrevColumn = ({
 	task,
 	taskListInEachColumn,
