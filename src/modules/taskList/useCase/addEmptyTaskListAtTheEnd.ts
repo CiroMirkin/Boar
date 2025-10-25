@@ -1,4 +1,4 @@
-import { TaskListInEachColumn } from '../../models/taskList'
+import { TaskListInEachColumn } from '../models/taskList'
 
 export const addEmptyTaskListAtTheEnd = ({
 	listOfTaskInColumns,

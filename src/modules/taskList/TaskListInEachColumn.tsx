@@ -4,7 +4,7 @@ import { useReminderQuery } from '@/modules/taskList/Reminder/hooks/useReminderQ
 import { useTaskListInEachColumn } from './hooks/useTaskListInEachColumn'
 import { useTranslation } from 'react-i18next'
 import { useSession } from '@/auth/hooks/useSession'
-import { useSaveTaskListOfColumns } from './state/useSaveTaskListOfColumns'
+import { useSaveTaskListOfColumns } from './useCase/useSaveTaskListOfColumns'
 import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
 
 /** La propiedad columnPosition es el indice de la columna mas uno */

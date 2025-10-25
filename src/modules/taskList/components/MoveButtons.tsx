@@ -6,7 +6,7 @@ import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
 import { ArrowLeftIcon, ArrowRightIcon } from '@/ui/atoms/icons'
 import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
 import { sortListOfTasksInColumnsByPriority } from '../models/sortListOfTasksInColumnsByPriority'
-import { moveThisTaskToTheNextColumn, moveThisTaskToThePrevColumn } from '../state/actions/moveTask'
+import { moveThisTaskToTheNextColumn, moveThisTaskToThePrevColumn } from '../useCase/moveTask'
 
 interface MoveButtonsProps {
 	handleClick: (action: () => void) => void

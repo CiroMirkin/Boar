@@ -5,7 +5,7 @@ import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
 import { toast } from 'sonner'
 import { TrashIcon } from '@/ui/atoms/icons'
 import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
-import { deleteThisTask } from '../state/actions/deleteTask'
+import { deleteThisTask } from '../useCase/deleteTask'
 
 interface DeleteButtonProps {
 	handleClick: (action: () => void) => void

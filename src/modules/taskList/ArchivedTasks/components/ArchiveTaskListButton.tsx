@@ -5,7 +5,7 @@ import { useCheckForTasksInLastColumn } from '@/sharedByModules/hooks/useCheckFo
 import { useTranslation } from 'react-i18next'
 import { ArchiveIcon } from '@/ui/atoms/icons'
 import { useListOfTasksInColumnsQuery } from '../../hooks/useListOfTasksInColumnsQuery'
-import { cleanLastTaskList } from '../../state/actions/deleteTaskList'
+import { cleanLastTaskList } from '../../useCase/deleteTaskList'
 import { archiveTaskListInTheLastColumn } from '../useCase/archiveTaskList'
 import { useArchivedTasksQuery } from '../hooks/useArchivedTasksQuery'
 import { emptyTaskListInEachColumn } from '../../models/taskList'

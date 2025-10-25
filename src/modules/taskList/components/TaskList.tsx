@@ -2,7 +2,7 @@ import React, { DragEvent } from 'react'
 import { TaskList as taskList } from '@/modules/taskList/models/taskList'
 import { Task } from './Task'
 import { taskModel } from '../models/task'
-import { moveThisTaskToThisColumn } from '../state/actions/moveThisTaskToThisColumn'
+import { moveThisTaskToThisColumn } from '../useCase/moveThisTaskToThisColumn'
 import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
 import { sortListOfTasksInColumnsByPriority } from '../models/sortListOfTasksInColumnsByPriority'
 

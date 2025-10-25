@@ -13,7 +13,7 @@ import { MessageSquareTextIcon } from '@/ui/atoms/icons'
 import { checkMaxLengthOfNotesAndComments } from '../models/NotesAndComments'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
-import { updateNotesAndCommentsOfThisTask } from '../state/actions/updateNotesAndCommentsOfThisTask'
+import { updateNotesAndCommentsOfThisTask } from '../useCase/updateNotesAndCommentsOfThisTask'
 import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
 
 export default function ShowTaskNotesEditor() {
