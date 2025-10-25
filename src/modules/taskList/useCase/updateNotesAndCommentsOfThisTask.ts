@@ -1,6 +1,6 @@
-import { checkMaxLengthOfNotesAndComments } from '../../models/NotesAndComments'
-import { taskModel } from '../../models/task'
-import { TaskListInEachColumn } from '../../models/taskList'
+import { checkMaxLengthOfNotesAndComments } from '../models/NotesAndComments'
+import { taskModel } from '../models/task'
+import { TaskListInEachColumn } from '../models/taskList'
 
 interface updateNotesAndCommentsOfThisTaskParams {
 	taskToUpdate: taskModel

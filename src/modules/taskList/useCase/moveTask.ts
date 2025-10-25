@@ -1,5 +1,5 @@
-import { getIndexOfColumnInColumnList } from '../../../columnList/models/column'
-import { taskUseCaseParams } from '../actions'
+import { getIndexOfColumnInColumnList } from '../../columnList/models/column'
+import { taskUseCaseParams } from './actions'
 import { getNewTask } from '@/modules/taskList/models/task'
 import { TaskList, isThisTaskListWithinTheLimit } from '@/modules/taskList/models/taskList'
 

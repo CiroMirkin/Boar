@@ -1,6 +1,6 @@
 import { Column, getIndexOfColumnInColumnList } from '@/modules/columnList/models/column'
 import { useColumnListQuery } from '@/modules/columnList/hooks/useColumnListQuery'
-import { deleteThisColumn } from '@/modules/columnList/state/actions/deleteColumn'
+import { deleteThisColumn } from '@/modules/columnList/useCase/deleteColumn'
 import { useListOfTasksInColumnsQuery } from '@/modules/taskList/hooks/useListOfTasksInColumnsQuery'
 
 export const useDeleteColumn = () => {

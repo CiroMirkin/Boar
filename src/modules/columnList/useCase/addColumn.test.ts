@@ -1,4 +1,4 @@
-import { Column } from '../../models/column'
+import { Column } from '../models/column'
 import { addColumnAtTheEnd } from './addColumn'
 import { expect } from 'vitest'
 

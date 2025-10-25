@@ -1,8 +1,8 @@
 import BusinessError from '@/sharedByModules/errors/businessError'
-import { boardModel } from '../../models/board'
-import { boardUseCaseParams } from '../actions'
+import { boardModel } from '../models/board'
 
-interface changeNameParams extends boardUseCaseParams {
+interface changeNameParams {
+	board: boardModel
 	newName: string
 }
 

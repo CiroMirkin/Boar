@@ -1,5 +1,5 @@
-import { getIndexOfColumnInColumnList } from '../../../columnList/models/column'
-import { taskUseCaseParams } from '../actions'
+import { getIndexOfColumnInColumnList } from '../../columnList/models/column'
+import { taskUseCaseParams } from './actions'
 import { TaskList } from '@/modules/taskList/models/taskList'
 
 export function deleteThisTask({ taskListInEachColumn, task }: taskUseCaseParams): TaskList[] {

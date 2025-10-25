@@ -1,6 +1,6 @@
 import { isItWithinTheLimitOfColumns } from '@/modules/columnList/models/columnList'
-import { columnUseCaseParams } from '../actions'
-import { Column } from '../../models/column'
+import { columnUseCaseParams } from './actions'
+import { Column } from '../models/column'
 
 export function addColumnAtTheEnd({ columnList, column }: columnUseCaseParams): Column[] {
 	const nextPosition = column.position === '-1' ? String(columnList.length + 1) : column.position

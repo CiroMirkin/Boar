@@ -1,6 +1,6 @@
 import { getIndexOfColumnInColumnList } from '@/modules/columnList/models/column'
-import { taskModel } from '../../models/task'
-import { isThisTaskListWithinTheLimit, TaskListInEachColumn } from '../../models/taskList'
+import { taskModel } from '../models/task'
+import { isThisTaskListWithinTheLimit, TaskListInEachColumn } from '../models/taskList'
 import { deleteThisTask } from './deleteTask'
 
 export interface DataOfTheTaskForMoveIt {

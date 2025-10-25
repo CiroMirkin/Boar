@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next'
 import { useDeleteColumn } from '../../../sharedByModules/hooks/useDeleteColumn'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { useColumnListQuery } from '../hooks/useColumnListQuery'
-import { changeNameOfColumn } from '../state/actions/changeColumnName'
+import { changeNameOfColumn } from '../useCase/changeColumnName'
 
 interface ConfigColumnParams {
 	column: Column

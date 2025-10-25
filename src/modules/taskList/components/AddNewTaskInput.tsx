@@ -8,7 +8,7 @@ import { TeaxtareaWithActions } from '@/ui/molecules/TextAreaWithActions'
 import TagGroupSelect from '../Tags/components/TagGroupSelect'
 import { useUserSelectedTags } from '../Tags/hooks/useUserSelectedTags'
 import { setUserSelectedTags } from '../Tags/state/tagsReducer'
-import { addTaskInFirstColumn } from '../state/actions/addTask'
+import { addTaskInFirstColumn } from '../useCase/addTask'
 import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
 import { sortListOfTasksInColumnsByPriority } from '../models/sortListOfTasksInColumnsByPriority'
 
