@@ -1,5 +1,5 @@
 import { Column } from '../models/column'
-import { addColumnAtTheEnd } from './actions/addColumn'
+import { addColumnAtTheEnd } from './addColumn'
 import { expect } from 'vitest'
 
 describe('Crear una columna.', () => {
