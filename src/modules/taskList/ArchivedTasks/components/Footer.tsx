@@ -6,6 +6,8 @@ import { downloadArchiveLikePDF } from '@/modules/taskList/ArchivedTasks/downloa
 import { useArchivedTasksQuery } from '../hooks/useArchivedTasksQuery'
 import { emptyArchivedTasks } from '../models/archive'
 import { useArchive } from '../hooks/useArchive'
+import { useExportJson } from '@/sharedByModules/hooks/useExportJson'
+import type { Archive } from '../models/archive'
 
 export default function Footer() {
 	const archive = useArchive()
@@ -13,6 +15,7 @@ export default function Footer() {
 	const { t } = useTranslation()
 
 	const { updateArchivedTasks } = useArchivedTasksQuery()
+
 	const cleanTheWholeArchive = () => {
 		updateArchivedTasks(emptyArchivedTasks)
 	}
@@ -25,10 +28,27 @@ export default function Footer() {
 			},
 		})
 	}
+
+	const { exportJson } = useExportJson<Archive>({
+		filename: 'archived-tasks.json',
+		indent: 2,
+	})
+	const handleExportJson = () => {
+		const success = exportJson(archive)
+		if (success) {
+			toast.success(t('archive.export_success'))
+		} else {
+			toast.error(t('archive.export_error'))
+		}
+	}
+
 	return (
 		<footer className={`mb-4 p-4 rounded-lg flex flex-col gap-2 ${column}`}>
 			<Button variant='outline' onClick={() => downloadArchiveLikePDF({ archive })}>
 				{t('archive.archive_to_pdf_btn')}
+			</Button>
+			<Button variant='outline' onClick={handleExportJson}>
+				{t('archive.archive_to_json_btn')}
 			</Button>
 			<Button variant='destructiveGhost' onClick={askForConfirmationToCleanTheWholeArchive}>
 				{t('archive.clean_archive_btn')}
