@@ -7,7 +7,7 @@ import { useListOfTasksInColumnsQuery } from '../../hooks/useListOfTasksInColumn
 import { addTaskInTheLastColumn } from '../../state/actions/addTask'
 import { sortListOfTasksInColumnsByPriority } from '../../models/sortListOfTasksInColumnsByPriority'
 import { useArchivedTasksQuery } from '../hooks/useArchivedTasksQuery'
-import { deleteThisArchivedTask } from '../state/actions/deleteArchivedTask'
+import { deleteThisArchivedTask } from '../useCase/deleteArchivedTask'
 
 export function TaskInArchiveActions() {
 	const { t } = useTranslation()

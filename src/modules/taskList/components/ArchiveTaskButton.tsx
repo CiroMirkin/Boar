@@ -6,7 +6,7 @@ import { ArchiveIcon } from '@/ui/atoms/icons'
 import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
 import { deleteThisTask } from '../state/actions/deleteTask'
 import { useArchivedTasksQuery } from '../ArchivedTasks/hooks/useArchivedTasksQuery'
-import { archiveThisTask } from '../ArchivedTasks/state/actions/archiveTask'
+import { archiveThisTask } from '../ArchivedTasks/useCase/archiveTask'
 import { useCallback } from 'react'
 
 interface ArchiveTaskButtonProps {
