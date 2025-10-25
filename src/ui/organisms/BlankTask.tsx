@@ -5,6 +5,7 @@ import { TextWithURL } from '@/ui/atoms/TextWithURL'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { Badge } from '../atoms/badge'
 import { useAvailableTags } from '@/modules/taskList/Tags/hooks/useAvailableTags'
+import { CollapseTransition } from '../atoms/CollapseTransition'
 
 export const TaskContext = createContext(emptyTask)
 
@@ -48,13 +49,9 @@ export function BlankTask({ data, children }: BlankTaskProps) {
 						</footer>
 					)}
 				</CardContent>
-				<div
-					className={`grid transition-all duration-300 ease-in-out ${
-						show ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
-					}`}
-				>
-					<div className='overflow-hidden'>{children}</div>
-				</div>
+				<CollapseTransition isOpen={show} duration={300}>
+					{children}
+				</CollapseTransition>
 			</Card>
 		</TaskContext.Provider>
 	)
