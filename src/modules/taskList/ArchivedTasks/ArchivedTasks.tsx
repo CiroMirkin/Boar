@@ -1,6 +1,6 @@
 import { useArchive } from '@/modules/taskList/ArchivedTasks/hooks/useArchive'
 import { useTranslation } from 'react-i18next'
-import { ArchiveContent } from './components/ArchiveContent'
+import { Content } from './components/Content'
 import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
 import Footer from './components/Footer'
 
@@ -15,7 +15,7 @@ export function ArchivedTasks() {
 					<EmptySpaceText> {t('archive.empty_archive')} </EmptySpaceText>
 				) : (
 					<div className='max-w-3xl flex flex-col gap-y-2'>
-						<ArchiveContent />
+						<Content />
 						<Footer />
 					</div>
 				)}
