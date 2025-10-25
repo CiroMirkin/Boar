@@ -2,9 +2,10 @@ import React from 'react'
 import { TaskList as taskList } from '@/modules/taskList/models/taskList'
 import { BlankTask } from '../../../../ui/organisms/BlankTask'
 import { Card, CardContent, CardHeader, CardTitle } from '@/ui/molecules/card'
-import { TaskInArchiveActions } from './TaskInArchiveActions'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { MinimalTiptapViewer } from '@/ui/organisms/MinimalTiptapViewer'
+import { ReturnTaskToBoardButton } from './ReturnTaskToBoardButton'
+import { DeleteArchivedTaskButton } from './DeleteArchivedTaskButton'
 
 interface TaskListArchivedProps {
 	taskList: taskList
@@ -38,7 +39,10 @@ function TaskList({ taskList }: { taskList: taskList }) {
 						/>
 					</div>
 				)}
-				<TaskInArchiveActions />
+				<>
+					<ReturnTaskToBoardButton />
+					<DeleteArchivedTaskButton />
+				</>
 			</BlankTask.ContentCollapse>
 		</BlankTask>
 	))
