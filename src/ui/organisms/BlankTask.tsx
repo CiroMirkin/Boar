@@ -5,6 +5,7 @@ import { TextWithURL } from '@/ui/atoms/TextWithURL'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { Badge } from '../atoms/badge'
 import { useAvailableTags } from '@/modules/taskList/Tags/hooks/useAvailableTags'
+import { CollapseTransition } from '../atoms/CollapseTransition'
 
 export const TaskContext = createContext(emptyTask)
 
@@ -48,7 +49,9 @@ export function BlankTask({ data, children }: BlankTaskProps) {
 						</footer>
 					)}
 				</CardContent>
-				{show && children}
+				<CollapseTransition isOpen={show} duration={300}>
+					{children}
+				</CollapseTransition>
 			</Card>
 		</TaskContext.Provider>
 	)
