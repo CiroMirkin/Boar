@@ -1,4 +1,4 @@
-import { Column } from '../../models/column.ts'
+import { Column } from '../models/column.ts'
 import { deleteThisColumn } from './deleteColumn.ts'
 import { expect } from 'vitest'
 

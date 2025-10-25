@@ -1,5 +1,5 @@
-import { columnUseCaseParams } from '../actions'
-import { Column, isThisColumnNameValid } from '../../models/column'
+import { columnUseCaseParams } from './actions'
+import { Column, isThisColumnNameValid } from '../models/column'
 
 interface changeNameOfColumnParams extends columnUseCaseParams {
 	newName: string
