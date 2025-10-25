@@ -1,6 +1,7 @@
 import BusinessError from '@/sharedByModules/errors/businessError'
 import { Tag } from '../Tags/model/tags'
 import { NotesAndComments } from './NotesAndComments'
+import { TaskTimelineHistory } from './taskTimelineHistory'
 
 export interface taskModel {
 	id: string
@@ -8,6 +9,7 @@ export interface taskModel {
 	columnPosition: string
 	tags?: Tag[]
 	notesAndComments?: NotesAndComments
+	timelineHistory?: TaskTimelineHistory
 }
 
 export const emptyTask: taskModel = {
