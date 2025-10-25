@@ -5,6 +5,8 @@ import { taskModel } from '../models/task'
 import { moveThisTaskToThisColumn } from '../useCase/moveThisTaskToThisColumn'
 import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
 import { sortListOfTasksInColumnsByPriority } from '../models/sortListOfTasksInColumnsByPriority'
+import { addChangeToTaskTimelineHistory } from '../useCase/addChangeToTaskTimelineHistory'
+import { useGetColumnName } from '@/sharedByModules/hooks/useGetColumnName'
 
 interface TaskListProps {
 	tasks: taskList
@@ -19,16 +21,24 @@ export function TaskList({ tasks, columnPosition }: TaskListProps) {
 	})
 
 	const { listOfTaskInColumns, updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const getColumnName = useGetColumnName()
 	const handleDrop = (e: DragEvent) => {
 		const dropData = e.dataTransfer.getData('task')
 		if (dropData != null) {
 			const currentList = listOfTaskInColumns || []
 			const taskDragged: taskModel = JSON.parse(dropData)
+			const task: taskModel = {
+				...taskDragged,
+				timelineHistory: addChangeToTaskTimelineHistory({
+					task: taskDragged,
+					columnName: getColumnName(columnPosition),
+				}),
+			}
 
 			const updatedList = sortListOfTasksInColumnsByPriority(
 				moveThisTaskToThisColumn({
 					taskListOfColumns: currentList,
-					task: taskDragged,
+					task,
 					newColumnPosition: columnPosition,
 				})
 			)
