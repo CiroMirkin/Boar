@@ -6,6 +6,7 @@ import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { MinimalTiptapViewer } from '@/ui/organisms/MinimalTiptapViewer'
 import { ReturnTaskToBoardButton } from './ReturnTaskToBoardButton'
 import { DeleteArchivedTaskButton } from './DeleteArchivedTaskButton'
+import TaskTimeline from './TaskTimeline'
 
 interface TaskListArchivedProps {
 	taskList: taskList
@@ -39,6 +40,7 @@ function TaskList({ taskList }: { taskList: taskList }) {
 						/>
 					</div>
 				)}
+				{task.timelineHistory && <TaskTimeline timelineHistory={task.timelineHistory} />}
 				<>
 					<ReturnTaskToBoardButton />
 					<DeleteArchivedTaskButton />
