@@ -5,6 +5,7 @@ import { TextWithURL } from '@/ui/atoms/TextWithURL'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { Badge } from '../atoms/badge'
 import { useAvailableTags } from '@/modules/taskList/Tags/hooks/useAvailableTags'
+import { CollapseTransition } from '../atoms/CollapseTransition'
 
 export const TaskContext = createContext(emptyTask)
 
@@ -23,20 +24,20 @@ export function BlankTask({ data, children }: BlankTaskProps) {
 		.flatMap((group) => group.tags)
 		.filter((tag) => data.tags && data.tags.find((taskTag) => taskTag.id === tag.id))
 
-	const taskClassName = `p-0 rounded-md border-none text-card-foreground shadow-sm hover:shadow-lg ${colorTheme.task}`
+	const taskClassName = `p-0 rounded-md border-none text-card-foreground shadow-sm hover:shadow-lg transition-shadow duration-200 ${colorTheme.task}`
 
 	return (
 		<TaskContext.Provider value={data}>
 			<Card className={taskClassName}>
 				<CardContent
 					onClick={() => setShow(!show)}
-					className='rounded-md px-3 py-2 text-xl leading-6 font-semibold'
+					className='rounded-md px-3 py-2 text-xl leading-6 font-semibold cursor-pointer'
 				>
 					<p className={`whitespace-pre-wrap ${colorTheme.taskText}`}>
 						<TextWithURL text={description}></TextWithURL>
 					</p>
 					{taskTags && taskTags.length !== 0 && (
-						<footer className='w-full pt-2 flex gap-1.5 flex-wrap opacity-80 hover:opacity-100'>
+						<footer className='w-full pt-2 flex gap-1.5 flex-wrap opacity-80 hover:opacity-100 transition-opacity duration-200'>
 							{taskTags.map((tag) => (
 								<Badge
 									variant={tag.variant ? tag.variant : 'inverted'}
@@ -48,7 +49,9 @@ export function BlankTask({ data, children }: BlankTaskProps) {
 						</footer>
 					)}
 				</CardContent>
-				{show && children}
+				<CollapseTransition isOpen={show} duration={300}>
+					{children}
+				</CollapseTransition>
 			</Card>
 		</TaskContext.Provider>
 	)

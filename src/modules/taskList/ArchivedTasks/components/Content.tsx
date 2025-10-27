@@ -1,7 +1,7 @@
 import { TaskListArchived } from './TaskListArchived'
 import { useArchive } from '../hooks/useArchive'
 
-export function ArchiveContent() {
+export function Content() {
 	const archive = useArchive()
 
 	const archiveView = archive.map(({ tasklist, date }) => (

@@ -80,7 +80,12 @@
 		"delete_task_btn": "Delete",
 		"delete_task_warning": "Are you sure you want to delete this task? This action cannot be undone.",
 		"clean_archive_btn": "Clean archive",
-		"clean_archive_warning": "Are you sure you want to delete all archived tasks? This action cannot be undone."
+		"clean_archive_warning": "Are you sure you want to delete all archived tasks? This action cannot be undone.",
+		"archive_to_json_btn": "Download file as json",
+		"export_success": "The file has been exported successfully.",
+		"export_error": "There was an error exporting the file.",
+		"archived": "Archived",
+		"unarchived": "Unarchived"
 	},
 
 	"archived_note": {

@@ -80,7 +80,12 @@
 		"delete_task_btn": "Eliminar",
 		"delete_task_warning": "¿Seguro desea eliminar esta tarea? No es posible deshacer esta acción.",
 		"clean_archive_btn": "Vaciar archivo",
-		"clean_archive_warning": "¿Seguro desea eliminar todas las tareas archivadas? No es posible deshacer esta acción."
+		"clean_archive_warning": "¿Seguro desea eliminar todas las tareas archivadas? No es posible deshacer esta acción.",
+		"archive_to_json_btn": "Descargar archivo como json",
+		"export_success": "El archivo se ha exportado con éxito.",
+		"export_error": "Hubo un error al exportar el archivo.",
+		"archived": "Archivado",
+		"unarchived": "Desarchivado"
 	},
 	"archived_note": {
 		"archive_note_btn": "Archivar nota",

@@ -11,12 +11,15 @@ import { setUserSelectedTags } from '../Tags/state/tagsReducer'
 import { addTaskInFirstColumn } from '../useCase/addTask'
 import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
 import { sortListOfTasksInColumnsByPriority } from '../models/sortListOfTasksInColumnsByPriority'
+import { addChangeToTaskTimelineHistory } from '../useCase/addChangeToTaskTimelineHistory'
+import { useGetColumnName } from '@/sharedByModules/hooks/useGetColumnName'
 
 export function AddNewTaskInput() {
 	const [newTaskDescription, setNewTaskDescription] = useState('')
 	const canUserUseTheAddTaskInput = !isThisTaskDescriptionValid(newTaskDescription)
 	const { listOfTaskInColumns, updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
 	const selectedTags = useUserSelectedTags()
+	const getColumnName = useGetColumnName()
 
 	const dispatch = useDispatch()
 
@@ -31,7 +34,14 @@ export function AddNewTaskInput() {
 
 			const updatedList = sortListOfTasksInColumnsByPriority(
 				addTaskInFirstColumn({
-					task: { ...task, tags: selectedTags },
+					task: {
+						...task,
+						tags: selectedTags,
+						timelineHistory: addChangeToTaskTimelineHistory({
+							task: task,
+							columnName: getColumnName('1'),
+						}),
+					},
 					taskListInEachColumn: currentList,
 				})
 			)
