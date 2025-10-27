@@ -24,7 +24,7 @@ export function ArchiveTaskButton({ handleClick }: ArchiveTaskButtonProps) {
 		const currentTaskList = listOfTaskInColumns ?? []
 		const timelineHistory = addChangeToTaskTimelineHistory({
 			task: data,
-			columnName: 'Archivado',
+			columnName: t('archive.archived'),
 		})
 		const updatedArchive = archiveThisTask({
 			task: { ...data, timelineHistory },

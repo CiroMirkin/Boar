@@ -27,7 +27,7 @@ export function ArchiveTaskListButton() {
 				taskListInEachColumn: addChangeToEachTaskInList({
 					listOfTasksInColumns: currentTaskList,
 					taskListIndex: currentTaskList.length - 1,
-					columnName: 'Archivado',
+					columnName: t('archive.archived'),
 				}),
 			})
 			const updatedList = cleanLastTaskList({

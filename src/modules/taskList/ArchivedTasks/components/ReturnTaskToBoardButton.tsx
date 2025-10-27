@@ -19,7 +19,7 @@ export function ReturnTaskToBoardButton() {
 	const returnTaskToLastColumnAction = () => {
 		const timelineHistory = addChangeToTaskTimelineHistory({
 			task,
-			columnName: 'Desarchivado',
+			columnName: t('archive.unarchived'),
 		})
 		const updatedListOfTaskInColumns = sortListOfTasksInColumnsByPriority(
 			addTaskInTheLastColumn({
