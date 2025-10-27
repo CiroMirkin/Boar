@@ -9,6 +9,7 @@ import { cleanLastTaskList } from '../../useCase/deleteTaskList'
 import { archiveTaskListInTheLastColumn } from '../useCase/archiveTaskList'
 import { useArchivedTasksQuery } from '../hooks/useArchivedTasksQuery'
 import { emptyTaskListInEachColumn } from '../../models/taskList'
+import { addChangeToEachTaskInList } from '../../useCase/addChangeToEachTaskInList'
 
 export function ArchiveTaskListButton() {
 	const { t } = useTranslation()
@@ -23,7 +24,11 @@ export function ArchiveTaskListButton() {
 			const currentTaskList = taskListInEachColumn ?? emptyTaskListInEachColumn
 			const updatedArchive = archiveTaskListInTheLastColumn({
 				archive: archivedTasks,
-				taskListInEachColumn: currentTaskList,
+				taskListInEachColumn: addChangeToEachTaskInList({
+					listOfTasksInColumns: currentTaskList,
+					taskListIndex: currentTaskList.length - 1,
+					columnName: 'Archivado',
+				}),
 			})
 			const updatedList = cleanLastTaskList({
 				taskListInEachColumn: currentTaskList,
