@@ -3,8 +3,6 @@ import { useReminder } from '@/modules/taskList/Reminder/hooks/useReminder'
 import { useReminderQuery } from '@/modules/taskList/Reminder/hooks/useReminderQuery'
 import { useTaskListInEachColumn } from './hooks/useTaskListInEachColumn'
 import { useTranslation } from 'react-i18next'
-import { useSession } from '@/auth/hooks/useSession'
-import { useSaveTaskListOfColumns } from './useCase/useSaveTaskListOfColumns'
 import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
 
 /** La propiedad columnPosition es el indice de la columna mas uno */
@@ -12,9 +10,7 @@ const getColumnPosition = (taskListIndex: number): string => `${taskListIndex + 
 
 export function TaskListInEachColumn() {
 	const taskListInEachColumn = useTaskListInEachColumn()
-	const { session } = useSession()
 	const { reminder } = useReminderQuery()
-	useSaveTaskListOfColumns({ session, data: taskListInEachColumn })
 
 	useReminder(taskListInEachColumn, reminder)
 	const { t } = useTranslation()
