@@ -1,13 +1,27 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { fetchBoard, saveBoard } from '../repository/boardRepository'
 import { useSession } from '@/auth/hooks/useSession'
-import { boardModel } from '../models/board'
+import { boardModel, defaultBoard, isDefaultBoard } from '../models/board'
+import { useTranslation } from 'react-i18next'
+import { useCallback } from 'react'
 
 const boardQueryKey = ['board']
 
 export const useBoardQuery = () => {
 	const { session } = useSession()
 	const queryClient = useQueryClient()
+	const { t, i18n } = useTranslation()
+
+	const select = useCallback(
+		(rawData: boardModel | undefined) => {
+			const data = rawData ?? defaultBoard
+			if (isDefaultBoard(data)) {
+				return { ...data, name: t(data.name) }
+			}
+			return data
+		},
+		[t, i18n.language] // eslint-disable-line react-hooks/exhaustive-deps
+	)
 
 	const {
 		data: board,
@@ -17,9 +31,18 @@ export const useBoardQuery = () => {
 	} = useQuery({
 		queryKey: [...boardQueryKey, session?.user.id],
 		queryFn: () => fetchBoard(session),
+		initialData: defaultBoard,
+		select,
 	})
+
 	const { mutate: updateBoard, isPending: isSaving } = useMutation({
-		mutationFn: (updatedBoard: boardModel) => saveBoard({ board: updatedBoard, session }),
+		mutationFn: (updatedBoard: boardModel) => {
+			let toSave = updatedBoard
+			if (updatedBoard.name === t(defaultBoard.name)) {
+				toSave = { ...updatedBoard, name: defaultBoard.name }
+			}
+			return saveBoard({ board: toSave, session })
+		},
 		onMutate: async (updatedBoard: boardModel) => {
 			await queryClient.cancelQueries({ queryKey: boardQueryKey })
 			const previousBoard = queryClient.getQueryData(boardQueryKey)

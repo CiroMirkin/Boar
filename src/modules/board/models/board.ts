@@ -7,7 +7,7 @@ export interface boardModel {
 
 export const defaultBoard: boardModel = {
 	id: '1',
-	name: 'Tablero básico',
+	name: 'board_name',
 }
 
 export const isThisBoardNameWithinTheLimitOfLetters = (boardName: string): boolean => {
@@ -21,6 +21,6 @@ export const isThisBoardNameValid = (boardName: string): boolean | BusinessError
 	return true
 }
 
-export const isDefaultBoardName = (boardName: string): boolean => {
-	return boardName === defaultBoard.name
+export const isDefaultBoard = (board: boardModel): boolean => {
+	return board.id === defaultBoard.id && board.name === defaultBoard.name
 }
