@@ -52,7 +52,7 @@ export default function ShowTaskNotesEditor() {
 						value={task.notesAndComments ? task.notesAndComments : ''}
 						onChange={onChange}
 						saveTextCallback={() => {
-							toast(t('task_notes.save_toast'))
+							toast.success(t('task_notes.save_toast'))
 						}}
 					/>
 				</div>
