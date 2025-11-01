@@ -21,12 +21,18 @@ export const addChangeToTaskTimelineHistory = ({
 		throw new BusinessError('columnName no puede estar vacio')
 	}
 
+	const actualTaskTimelineHistory = task.timelineHistory || defaultTaskTimelineHistory
+
+	const lastChange = actualTaskTimelineHistory[actualTaskTimelineHistory.length - 1]
+	const lastColumnName = lastChange ? lastChange.columnName : ''
+	if (columnName === lastColumnName) {
+		return actualTaskTimelineHistory
+	}
+
 	const newChange: TaskColumnChange = {
 		date: new Date(),
 		columnName,
 	}
-
-	const actualTaskTimelineHistory = task.timelineHistory || defaultTaskTimelineHistory
 
 	return [...actualTaskTimelineHistory, newChange]
 }

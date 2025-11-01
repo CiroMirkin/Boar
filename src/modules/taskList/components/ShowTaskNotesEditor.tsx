@@ -51,6 +51,9 @@ export default function ShowTaskNotesEditor() {
 					<MinimalTiptapEditor
 						value={task.notesAndComments ? task.notesAndComments : ''}
 						onChange={onChange}
+						saveTextCallback={() => {
+							toast.success(t('task_notes.save_toast'))
+						}}
 					/>
 				</div>
 			</DialogContent>

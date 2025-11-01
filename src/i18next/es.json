@@ -151,6 +151,7 @@
 	},
 	"task_notes": {
 		"title": "Notas y comentarios",
-		"max_length_toast": "Se alcanzo el máximo de caracteres para una nota."
+		"max_length_toast": "Se alcanzo el máximo de caracteres para una nota.",
+		"save_toast": "¡Los cambios se guardaron exitosamente!"
 	}
 }

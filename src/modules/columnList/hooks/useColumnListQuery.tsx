@@ -1,13 +1,30 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { fetchColumnList, saveColumnList } from '../repository'
 import { useSession } from '@/auth/hooks/useSession'
-import { ColumnList } from '../models/columnList'
+import { ColumnList, defaultColumnList, isDefaultColumnList } from '../models/columnList'
+import { useTranslation } from 'react-i18next'
+import { useCallback } from 'react'
 
 const columnListQueryKey = ['columnList']
 
 export const useColumnListQuery = () => {
 	const { session } = useSession()
 	const queryClient = useQueryClient()
+	const { t, i18n } = useTranslation()
+
+	const select = useCallback(
+		(rawData: ColumnList | undefined) => {
+			const data = rawData ?? defaultColumnList
+			if (isDefaultColumnList(data)) {
+				return data.map((column) => ({
+					...column,
+					name: t(`default_columns.${column.id}`),
+				}))
+			}
+			return data
+		},
+		[t, i18n.language] // eslint-disable-line react-hooks/exhaustive-deps
+	)
 
 	const {
 		data: columnList,
@@ -17,6 +34,8 @@ export const useColumnListQuery = () => {
 	} = useQuery({
 		queryKey: [...columnListQueryKey, session?.user.id],
 		queryFn: () => fetchColumnList(session),
+		initialData: defaultColumnList,
+		select,
 	})
 
 	const { mutate: updateColumnList, isPending: isSaving } = useMutation({

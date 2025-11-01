@@ -11,17 +11,17 @@ export type ColumnList = Column[]
 export const defaultColumnList: Column[] = [
 	{
 		id: 'c1',
-		name: 'Pendientes',
+		name: 'default_columns.c1',
 		position: '1',
 	},
 	{
 		id: 'c2',
-		name: 'Procesando',
+		name: 'default_columns.c2',
 		position: '2',
 	},
 	{
 		id: 'c3',
-		name: 'Terminado',
+		name: 'default_columns.c3',
 		position: '3',
 	},
 ]
@@ -30,7 +30,11 @@ export const isDefaultColumnList = (columnList: ColumnList): boolean => {
 	if (columnList.length !== defaultColumnList.length) {
 		return false
 	}
-	return columnList.every((column, index) => column.id === defaultColumnList[index].id)
+	return columnList.every(
+		(column, index) =>
+			column.id === defaultColumnList[index].id &&
+			column.name === defaultColumnList[index].name
+	)
 }
 
 const limitOfColumns = 6
