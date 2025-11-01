@@ -276,7 +276,7 @@ export const themesList: readonly Theme[] = Object.freeze([
 		reminder: 'bg-[#D3B0F5]',
 	},
 	{
-		id: 'violet',
+		id: 'gradient-violet',
 		bg: 'bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-[#9d174d] via-[#d946ef] to-[#f0abfc]',
 		text: 'text-black',
 		column: 'bg-[#EDE7DA]',
