@@ -78,6 +78,13 @@ const MinimalTiptapEditor = ({
 		},
 	})
 
+	React.useEffect(() => {
+		if (!editor) return
+		if (value === editor.getHTML()) return
+
+		editor.commands.setContent(value || '')
+	}, [editor, value])
+
 	if (!editor) return null
 
 	// Approximate line height and padding (adjust as needed)
