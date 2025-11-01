@@ -1,4 +1,4 @@
-import { isDefaultBoardName } from '@/modules/board/models/board'
+import { isDefaultBoard } from '@/modules/board/models/board'
 import { isDefaultColumnList } from '@/modules/columnList/models/columnList'
 import { defaultNotes } from '@/modules/notes/model/notes'
 import { emptyTaskListInEachColumn } from '@/modules/taskList/models/taskList'
@@ -12,7 +12,7 @@ export const checkIfUserHasTheDefaultBoard = async (): Promise<boolean> => {
 	const { board: actualUserBoard, accessories: actualUserBoardAccessories } =
 		await getActualUserBoard()
 	return (
-		isDefaultBoardName(actualUserBoard.name) &&
+		isDefaultBoard(actualUserBoard) &&
 		isDefaultColumnList(actualUserBoard.column_list) &&
 		JSON.stringify(actualUserBoard.task_list_in_each_column) ===
 			JSON.stringify(emptyTaskListInEachColumn) &&
