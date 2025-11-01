@@ -3,6 +3,7 @@ import { maxLengthOfNotes, Notes as NotesModel } from '../model/notes'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
 import { useNotesQuery } from '../hooks/useNotesQuery'
+import { Spinner } from '@/ui/atoms/spinner'
 
 export function NoteInput() {
 	const { t } = useTranslation()
@@ -17,7 +18,7 @@ export function NoteInput() {
 		toast.error(t('notes.warning_length_toast'))
 	}
 
-	if (isLoading) return <div>{t('common.loading')}...</div>
+	if (isLoading) return <Spinner size={30} />
 
 	return (
 		<>
@@ -26,8 +27,7 @@ export function NoteInput() {
 				onChange={onChange}
 				rows={5}
 				maxRows={18}
-				saveTextCallback={async () => {
-					// The mutation is already happening on change, but we can show a toast here.
+				saveTextCallback={() => {
 					toast.success(t('notes.successful_toast'))
 				}}
 			/>
