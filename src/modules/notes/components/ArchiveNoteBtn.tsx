@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLibraryOfArchivedNotes } from '../LibraryOfArchiveNotes/state/useLibraryOfArchivedNotes'
 import { useSession } from '@/auth/hooks/useSession'
@@ -12,34 +11,23 @@ import { useLibraryOfArchivedNotesPersister } from '../LibraryOfArchiveNotes/hoo
 import { useNotesQuery } from '../hooks/useNotesQuery'
 
 export function ArchiveNoteBtn() {
-	const [taskArchived, setTaskArchived] = useState(false)
 	const { notes, updateNotes } = useNotesQuery()
 	const { t } = useTranslation()
 
 	const libraryOfArchivedNotes = useLibraryOfArchivedNotes()
 	const { persistNotes } = useLibraryOfArchivedNotesPersister()
 	const { session } = useSession()
-	useEffect(() => {
-		const archive = async () => {
-			if (notes == '' || notes == '<br>') {
-				if (taskArchived) {
-					await persistNotes(session, libraryOfArchivedNotes)
-					// The notes are already saved by the useNotesQuery mutation
-					setTaskArchived(false)
-				}
-			}
-		}
-
-		void archive()
-	}, [libraryOfArchivedNotes, session, notes, persistNotes, taskArchived, setTaskArchived])
-
 	const dispatch = useDispatch()
 	const handleArchiveNote = () => {
-		if (!notes) return
+		if (!notes || notes === '' || notes === '<br>') return
+
 		dispatch(archiveThisNote(notes))
-		updateNotes(defaultNotes)
-		setTaskArchived(true)
-		toast.success(t('archived_note.archive_successful_toast'))
+		updateNotes(defaultNotes, {
+			onSuccess: () => {
+				persistNotes(session, libraryOfArchivedNotes)
+				toast.success(t('archived_note.archive_successful_toast'))
+			},
+		})
 	}
 
 	return (
