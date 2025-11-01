@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { fetchTaskListInEachColumn, saveTaskListInEachColumn } from '../repository'
 import { useSession } from '@/auth/hooks/useSession'
-import { TaskListInEachColumn } from '../models/taskList'
+import { emptyTaskListInEachColumn, TaskListInEachColumn } from '../models/taskList'
 
 const taskListInEachColumnsQueryKey = ['taskListInEachColumns']
 
@@ -13,13 +13,14 @@ export const useListOfTasksInColumnsQuery = () => {
 	const fullQueryKey = [...taskListInEachColumnsQueryKey, userId]
 
 	const {
-		data: listOfTaskInColumns,
+		data: listOfTaskInColumns = emptyTaskListInEachColumn,
 		isLoading,
 		isError,
 		error,
 	} = useQuery({
 		queryKey: fullQueryKey,
 		queryFn: () => fetchTaskListInEachColumn(session),
+		initialData: emptyTaskListInEachColumn,
 	})
 
 	const { mutate: updateListOfTaskInColumns, isPending: isSaving } = useMutation({
