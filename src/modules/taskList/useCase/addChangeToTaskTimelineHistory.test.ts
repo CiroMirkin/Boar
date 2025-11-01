@@ -87,6 +87,33 @@ describe('addChangeToTaskTimelineHistory', () => {
 		})
 	})
 
+	test('No se debe agregar un nuevo registro al historial si el columnName es identico al columnName del ultimo registro existente.', () => {
+		const mockDate1 = new Date('2024-01-15T10:00:00.000Z')
+		const mockDate2 = new Date('2024-01-15T11:00:00.000Z')
+
+		const task: taskModel = {
+			timelineHistory: [
+				{
+					date: mockDate1,
+					columnName: 'En Progreso',
+				},
+			],
+		} as taskModel
+
+		vi.spyOn(global, 'Date').mockImplementation(() => mockDate2 as Date)
+
+		const result = addChangeToTaskTimelineHistory({
+			task,
+			columnName: 'En Progreso',
+		})
+
+		expect(result).toHaveLength(1)
+		expect(result[0]).toEqual({
+			date: mockDate1,
+			columnName: 'En Progreso',
+		})
+	})
+
 	test('No debe mutar el historial original de la tarea.', () => {
 		const mockDate1 = new Date('2024-01-15T10:00:00.000Z')
 		const mockDate2 = new Date('2024-01-15T11:00:00.000Z')
