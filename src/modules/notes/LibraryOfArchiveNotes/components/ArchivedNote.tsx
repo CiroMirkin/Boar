@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/ui/molecules/card'
 import { ArchivedNote as ArchivedNoteModel } from '../model/archivedNote'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { MinimalTiptapViewer } from '@/ui/organisms/MinimalTiptapViewer'
+import { format } from '@formkit/tempo'
 
 interface ArchivedNoteProps {
 	note: ArchivedNoteModel
@@ -13,7 +14,11 @@ export default function ArchivedNote({ note }: ArchivedNoteProps) {
 	return (
 		<Card className={archivedNoteClassName}>
 			<CardHeader>
-				<CardTitle className='text-2xl'>{note.date}</CardTitle>
+				<CardTitle className='text-2xl'>
+					{format(note.date, {
+						date: 'short',
+					})}
+				</CardTitle>
 			</CardHeader>
 			<CardContent className='h-auto'>
 				<MinimalTiptapViewer
