@@ -10,28 +10,30 @@ import LocalStorageArchiveRepository from '@/modules/taskList/ArchivedTasks/repo
 import LibraryOfArchivedNotesLocalStorageRepository from '@/modules/notes/LibraryOfArchiveNotes/repository/libraryOfArchivedNotesLocalStorageRepository'
 
 export const getActualUserBoard = async (): Promise<UserBoard> => {
-	const notes = await new LocalStorageNotesRepository().getAll()
 	const actualBoard = localStorage.getItem('board-boar')
 		? JSON.parse(localStorage.getItem('board-boar') as string)
 		: defaultBoard
-	const columnList = await new LocalStorageColumnListRepository().getAll()
-	const taskList = await new LocalStorageTaskListInEachColumnRepository().getAll()
-	const actualTagGroup = (await new LocalStorageTagRepository().get()).actualTagGroup
-
-	const archivedTaskList = await new LocalStorageArchiveRepository().getAll()
-	const archivedNotes = await new LibraryOfArchivedNotesLocalStorageRepository().getAll()
-
+	const [notes, columnList, taskList, tagGroup, archivedTaskList, archivedNotes, userId] =
+		await Promise.all([
+			new LocalStorageNotesRepository().getAll(),
+			new LocalStorageColumnListRepository().getAll(),
+			new LocalStorageTaskListInEachColumnRepository().getAll(),
+			new LocalStorageTagRepository().get(),
+			new LocalStorageArchiveRepository().getAll(),
+			new LibraryOfArchivedNotesLocalStorageRepository().getAll(),
+			getUserId(),
+		])
 	return {
 		board: {
 			id: actualBoard.id,
 			name: actualBoard.name,
 			column_list: columnList,
 			task_list_in_each_column: taskList,
-			user_id: await getUserId(),
+			user_id: userId,
 		},
 		accessories: {
 			notes,
-			actual_tag_group: actualTagGroup,
+			actual_tag_group: tagGroup.actualTagGroup,
 			reminders: store.getState().reminder.reminder,
 		},
 		archive: {
