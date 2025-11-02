@@ -11,6 +11,7 @@ import { Navigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { checkIfUserHasTheDefaultBoard } from '@/auth/utils/checkIfUserHasTheDefaultBoard'
 import PageContainer from './PageContainer'
+import { setUpUserBoard } from '@/auth/utils/setUpUserBoard'
 
 export default function Auth() {
 	const [loading, setLoading] = useState(false)
@@ -44,24 +45,33 @@ export default function Auth() {
 		setLoading(true)
 
 		try {
+			let data
 			if (isRegister) {
-				const { error } = await supabase.auth.signUp({
+				const response = await supabase.auth.signUp({
 					email,
 					password,
 				})
-				if (error) throw error
+				data = response.data
+				if (response.error) throw response.error
 
 				toast.success(t('successful_log_in_toast'))
 			} else {
-				const { error } = await supabase.auth.signInWithPassword({
+				const response = await supabase.auth.signInWithPassword({
 					email,
 					password,
 				})
-				if (error) throw error
+				data = response.data
+				if (response.error) throw response.error
 
 				toast.success(t('sing_in_toast'))
-				setIsSubmitted(true)
 			}
+
+			// Despues de autenticación exitosa
+			if (data?.session) {
+				await setUpUserBoard({ session: data.session })
+			}
+
+			setIsSubmitted(true)
 		} catch (error) {
 			const authError = error as AuthUnknownError
 			toast.error(authError.message)

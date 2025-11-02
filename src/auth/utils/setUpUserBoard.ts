@@ -7,6 +7,10 @@ import { v4 as uuidv4 } from 'uuid'
 import { saveActualBoardId } from './getActualBoardId'
 
 export const setUpUserBoard = async ({ session }: { session: Session }) => {
+	if (sessionStorage.getItem('isInitialLoad') === 'false') {
+		return
+	}
+
 	const actualUserBoard = await getActualUserBoard()
 	const { data, error } = await supabase
 		.from('boards')
@@ -29,6 +33,7 @@ export const setUpUserBoard = async ({ session }: { session: Session }) => {
 			boardForNewUser.archive.board_id = newBoardId
 			saveActualBoardId(newBoardId)
 		}
-		saveUserBoardOnSupabase(boardForNewUser)
+		await saveUserBoardOnSupabase(boardForNewUser)
 	}
+	sessionStorage.setItem('isInitialLoad', 'false')
 }
