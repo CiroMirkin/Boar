@@ -49,6 +49,7 @@ const MinimalTiptapEditor = ({
 	saveTextCallback = () => {},
 }: MinimalTiptapProps) => {
 	const [isFocused, setIsFocused] = React.useState(false)
+	const isInternalUpdate = React.useRef(false)
 
 	const editor = useEditor({
 		extensions: [
@@ -61,6 +62,7 @@ const MinimalTiptapEditor = ({
 		content: value,
 		editable,
 		onUpdate: ({ editor }) => {
+			isInternalUpdate.current = true
 			onChange?.(editor.getHTML())
 		},
 		editorProps: {
@@ -80,10 +82,19 @@ const MinimalTiptapEditor = ({
 
 	React.useEffect(() => {
 		if (!editor) return
-		if (value === editor.getHTML()) return
 
-		editor.commands.setContent(value || '')
-	}, [editor, value])
+		if (isInternalUpdate.current) {
+			isInternalUpdate.current = false
+			return
+		}
+
+		const currentContent = editor.getHTML()
+		if (value === currentContent) return
+
+		if (!isFocused) {
+			editor.commands.setContent(value || '')
+		}
+	}, [editor, value, isFocused])
 
 	if (!editor) return null
 
