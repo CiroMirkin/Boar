@@ -4,6 +4,7 @@ interface TimeTracking {
 	currentPage: string
 	pageStartTime: number
 	totalTimeByPage: { [page: string]: number }
+	lastSaveTime: number
 }
 
 interface UseTimeTrackingReturn {
@@ -16,13 +17,22 @@ const initialTracking: TimeTracking = {
 	currentPage: '/',
 	pageStartTime: Date.now(),
 	totalTimeByPage: {},
+	lastSaveTime: Date.now(),
 }
 
 export const useTimeTracking = (): UseTimeTrackingReturn => {
 	const [tracking, setTracking] = useState<TimeTracking>(() => {
 		try {
 			const saved = localStorage.getItem('timeTracking')
-			return saved ? JSON.parse(saved) : initialTracking
+			if (saved) {
+				const parsed = JSON.parse(saved)
+				return {
+					...parsed,
+					pageStartTime: Date.now(),
+					lastSaveTime: Date.now(),
+				}
+			}
+			return initialTracking
 		} catch {
 			return initialTracking
 		}
@@ -35,7 +45,11 @@ export const useTimeTracking = (): UseTimeTrackingReturn => {
 	}, [tracking])
 
 	useEffect(() => {
-		localStorage.setItem('timeTracking', JSON.stringify(tracking))
+		const trackingToSave = {
+			...tracking,
+			lastSaveTime: Date.now(),
+		}
+		localStorage.setItem('timeTracking', JSON.stringify(trackingToSave))
 	}, [tracking])
 
 	const navigateToPage = useCallback((page: string) => {
@@ -52,6 +66,7 @@ export const useTimeTracking = (): UseTimeTrackingReturn => {
 				[prev.currentPage]:
 					(prev.totalTimeByPage[prev.currentPage] || 0) + timeSpentOnCurrentPage,
 			},
+			lastSaveTime: prev.lastSaveTime,
 		}))
 	}, [])
 
@@ -61,8 +76,9 @@ export const useTimeTracking = (): UseTimeTrackingReturn => {
 
 	useEffect(() => {
 		const handleVisibilityChange = () => {
+			const now = Date.now()
+
 			if (document.visibilityState === 'hidden') {
-				const now = Date.now()
 				const timeSpent = now - trackingRef.current.pageStartTime
 
 				setTracking((prev) => ({
@@ -73,9 +89,9 @@ export const useTimeTracking = (): UseTimeTrackingReturn => {
 							(prev.totalTimeByPage[prev.currentPage] || 0) + timeSpent,
 					},
 					pageStartTime: now,
+					lastSaveTime: now,
 				}))
 			} else {
-				// Cuando la página vuelve a ser visible, reiniciar el contador
 				setTracking((prev) => ({
 					...prev,
 					pageStartTime: Date.now(),
@@ -83,8 +99,31 @@ export const useTimeTracking = (): UseTimeTrackingReturn => {
 			}
 		}
 
+		const handleBeforeUnload = () => {
+			const now = Date.now()
+			const timeSpent = now - trackingRef.current.pageStartTime
+
+			const finalTracking = {
+				...trackingRef.current,
+				totalTimeByPage: {
+					...trackingRef.current.totalTimeByPage,
+					[trackingRef.current.currentPage]:
+						(trackingRef.current.totalTimeByPage[trackingRef.current.currentPage] ||
+							0) + timeSpent,
+				},
+				lastSaveTime: now,
+			}
+
+			localStorage.setItem('timeTracking', JSON.stringify(finalTracking))
+		}
+
 		document.addEventListener('visibilitychange', handleVisibilityChange)
-		return () => document.removeEventListener('visibilitychange', handleVisibilityChange)
+		window.addEventListener('beforeunload', handleBeforeUnload)
+
+		return () => {
+			document.removeEventListener('visibilitychange', handleVisibilityChange)
+			window.removeEventListener('beforeunload', handleBeforeUnload)
+		}
 	}, [])
 
 	return {
