@@ -1,10 +1,7 @@
-'use client'
-
 import * as React from 'react'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
-import Underline from '@tiptap/extension-underline'
 import { Button } from '@/ui/atoms/button'
 import { Separator } from '@/ui/atoms/separator'
 import { Toggle } from '@/ui/atoms/toggle'
@@ -54,7 +51,6 @@ const MinimalTiptapEditor = ({
 	const editor = useEditor({
 		extensions: [
 			StarterKit,
-			Underline,
 			Placeholder.configure({
 				placeholder,
 			}),
@@ -67,6 +63,7 @@ const MinimalTiptapEditor = ({
 		},
 		editorProps: {
 			attributes: {
+				role: 'textbox',
 				class: 'focus:outline-none',
 				spellcheck: 'false',
 				autocorrect: 'off',
@@ -91,10 +88,8 @@ const MinimalTiptapEditor = ({
 		const currentContent = editor.getHTML()
 		if (value === currentContent) return
 
-		if (!isFocused) {
-			editor.commands.setContent(value || '')
-		}
-	}, [editor, value, isFocused])
+		editor.commands.setContent(value || '')
+	}, [editor, value])
 
 	if (!editor) return null
 
@@ -150,6 +145,7 @@ const MinimalTiptapEditor = ({
 						onPressedChange={() =>
 							editor.chain().focus().toggleHeading({ level: 1 }).run()
 						}
+						aria-label='H1'
 					>
 						<Heading1 size={16} />
 					</Toggle>
@@ -158,6 +154,7 @@ const MinimalTiptapEditor = ({
 						onPressedChange={() =>
 							editor.chain().focus().toggleHeading({ level: 2 }).run()
 						}
+						aria-label='H2'
 					>
 						<Heading2 size={16} />
 					</Toggle>
@@ -166,6 +163,7 @@ const MinimalTiptapEditor = ({
 						onPressedChange={() =>
 							editor.chain().focus().toggleHeading({ level: 3 }).run()
 						}
+						aria-label='H3'
 					>
 						<Heading3 size={16} />
 					</Toggle>
