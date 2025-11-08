@@ -177,4 +177,53 @@ test.describe('Persistencia de datos en localStorage', () => {
 			}
 		})
 	})
+
+	test('Puedo archivar  y devolver una tarea al tablero', async ({ page }) => {
+		const taskText = `Tarea de prueba ${Date.now()}`
+		await test.step('Puedo crear una tarea', async () => {
+			await page.fill('#add_new_task_btn', taskText)
+			await page.click('#plus_btn')
+			await expect(page.getByText(taskText)).toBeVisible()
+			await page.getByText(taskText).click()
+		})
+
+		await test.step('Arrastrar la tarea a "Terminado"', async () => {
+			const tareaEnPendientes = page.locator('[aria-label="Pendientes"]').getByText(taskText)
+			await tareaEnPendientes.dragTo(page.locator('[aria-label="Terminado"]'))
+		})
+
+		await test.step('La tarea archivada desaparece del tablero', async () => {
+			await page.getByText(taskText).click()
+			await page.getByTestId('BotonParaArchivarUnaTarea').click()
+			await expect(page.getByText(taskText)).not.toBeVisible()
+		})
+
+		await test.step('La tarea archivada esta en el archivo', async () => {
+			await page.goto('/archive')
+			await expect(page.getByText(taskText)).toBeVisible()
+		})
+
+		await test.step('Al desarchivar una tarea esta desaparece del archivo', async () => {
+			const archivedTasks = page.getByText(taskText)
+			archivedTasks.click()
+			page.getByTestId('BotonParaDevolverUnaTareaArchivadaAlTablero').click()
+			await expect(page.getByText(taskText)).not.toBeVisible()
+		})
+
+		await test.step('La tarea desarchivada esta en el tablero', async () => {
+			await page.goto('/')
+			await expect(page.getByText(taskText)).toBeVisible()
+		})
+
+		await test.step('Luego de recargar la tarea sigue en el tablero', async () => {
+			await page.reload()
+			await expect(page.getByText(taskText)).toBeVisible()
+		})
+
+		await test.step('Luego de recargar la tarea sigue sin estar dentro del archivo', async () => {
+			await page.reload()
+			await page.goto('/archive')
+			await expect(page.getByText(taskText)).not.toBeVisible()
+		})
+	})
 })
