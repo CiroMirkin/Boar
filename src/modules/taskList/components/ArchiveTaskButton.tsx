@@ -54,6 +54,7 @@ export function ArchiveTaskButton({ handleClick }: ArchiveTaskButtonProps) {
 			size='sm'
 			variant='ghost'
 			className='w-full'
+			data-testid='BotonParaArchivarUnaTarea'
 			onClick={() => handleClick(archiveTaskAction)}
 			title={t('task_buttons.archive')}
 		>

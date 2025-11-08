@@ -39,7 +39,13 @@ export function ReturnTaskToBoardButton() {
 	}
 
 	return (
-		<Button size='sm' onClick={returnTaskToLastColumnAction} variant='ghost' className='w-full'>
+		<Button
+			size='sm'
+			onClick={returnTaskToLastColumnAction}
+			variant='ghost'
+			className='w-full'
+			data-testid='BotonParaDevolverUnaTareaArchivadaAlTablero'
+		>
 			{t('archive.return_task_to_board_btn')}
 		</Button>
 	)
