@@ -61,6 +61,7 @@ export function AddNewColumnForm() {
 				onClick={() => handleClick(addNewColumn)}
 				title={t('settings.columns.new_column_btn')}
 				disabled={theNewColumnNameIsValid}
+				data-testid='BotonParaCrearUnaColumna'
 			>
 				<PlusIcon />
 			</Button>
