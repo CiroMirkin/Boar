@@ -1,34 +1,35 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-
-interface TimeTracking {
-	currentPage: string
-	pageStartTime: number
-	totalTimeByPage: { [page: string]: number }
-	lastSaveTime: number
-}
+import { UsageDuration } from './model/usageHistory'
 
 interface UseTimeTrackingReturn {
-	totalTimeByPage: { [page: string]: number }
-	navigateToPage: (page: string) => void
-	getTotalTime: () => number
+	totalSessionTime: UsageDuration
+	getTotalTime: () => UsageDuration
 }
 
-const initialTracking: TimeTracking = {
-	currentPage: '/',
-	pageStartTime: Date.now(),
-	totalTimeByPage: {},
+interface UserSessionTracking {
+	sessionStartTime: number
+	totalAccumulatedTime: UsageDuration
+	lastSaveTime: number
+	isActive: boolean
+}
+
+const initialTracking: UserSessionTracking = {
+	sessionStartTime: Date.now(),
+	totalAccumulatedTime: 0,
 	lastSaveTime: Date.now(),
+	isActive: true,
 }
 
 export const useTimeTracking = (): UseTimeTrackingReturn => {
-	const [tracking, setTracking] = useState<TimeTracking>(() => {
+	const [tracking, setTracking] = useState<UserSessionTracking>(() => {
 		try {
 			const saved = localStorage.getItem('timeTracking')
 			if (saved) {
 				const parsed = JSON.parse(saved)
 				return {
 					...parsed,
-					pageStartTime: Date.now(),
+					sessionStartTime: Date.now(),
+					isActive: true,
 					lastSaveTime: Date.now(),
 				}
 			}
@@ -45,76 +46,55 @@ export const useTimeTracking = (): UseTimeTrackingReturn => {
 	}, [tracking])
 
 	useEffect(() => {
-		const trackingToSave = {
-			...tracking,
-			lastSaveTime: Date.now(),
-		}
-		localStorage.setItem('timeTracking', JSON.stringify(trackingToSave))
+		localStorage.setItem('timeTracking', JSON.stringify(tracking))
 	}, [tracking])
 
-	const navigateToPage = useCallback((page: string) => {
+	const getTotalTime = useCallback((): UsageDuration => {
 		const now = Date.now()
-		const currentTracking = trackingRef.current
-
-		const timeSpentOnCurrentPage = now - currentTracking.pageStartTime
-
-		setTracking((prev) => ({
-			currentPage: page,
-			pageStartTime: now,
-			totalTimeByPage: {
-				...prev.totalTimeByPage,
-				[prev.currentPage]:
-					(prev.totalTimeByPage[prev.currentPage] || 0) + timeSpentOnCurrentPage,
-			},
-			lastSaveTime: prev.lastSaveTime,
-		}))
-	}, [])
-
-	const getTotalTime = useCallback(() => {
-		return Object.values(tracking.totalTimeByPage).reduce((total, time) => total + time, 0)
-	}, [tracking.totalTimeByPage])
+		if (tracking.isActive) {
+			return tracking.totalAccumulatedTime + (now - tracking.sessionStartTime)
+		}
+		return tracking.totalAccumulatedTime
+	}, [tracking.totalAccumulatedTime, tracking.sessionStartTime, tracking.isActive])
 
 	useEffect(() => {
 		const handleVisibilityChange = () => {
 			const now = Date.now()
 
 			if (document.visibilityState === 'hidden') {
-				const timeSpent = now - trackingRef.current.pageStartTime
-
 				setTracking((prev) => ({
 					...prev,
-					totalTimeByPage: {
-						...prev.totalTimeByPage,
-						[prev.currentPage]:
-							(prev.totalTimeByPage[prev.currentPage] || 0) + timeSpent,
-					},
-					pageStartTime: now,
+					totalAccumulatedTime: prev.totalAccumulatedTime + (now - prev.sessionStartTime),
+					isActive: false,
 					lastSaveTime: now,
 				}))
 			} else {
 				setTracking((prev) => ({
 					...prev,
-					pageStartTime: Date.now(),
+					sessionStartTime: Date.now(),
+					isActive: true,
+					lastSaveTime: now,
 				}))
 			}
 		}
 
 		const handleBeforeUnload = () => {
 			const now = Date.now()
-			const timeSpent = now - trackingRef.current.pageStartTime
+			const currentTracking = trackingRef.current
 
-			const finalTracking = {
-				...trackingRef.current,
-				totalTimeByPage: {
-					...trackingRef.current.totalTimeByPage,
-					[trackingRef.current.currentPage]:
-						(trackingRef.current.totalTimeByPage[trackingRef.current.currentPage] ||
-							0) + timeSpent,
-				},
-				lastSaveTime: now,
+			if (currentTracking.isActive) {
+				const finalTime: UsageDuration =
+					currentTracking.totalAccumulatedTime + (now - currentTracking.sessionStartTime)
+
+				const finalTracking = {
+					...currentTracking,
+					totalAccumulatedTime: finalTime,
+					isActive: false,
+					lastSaveTime: now,
+				}
+
+				localStorage.setItem('timeTracking', JSON.stringify(finalTracking))
 			}
-
-			localStorage.setItem('timeTracking', JSON.stringify(finalTracking))
 		}
 
 		document.addEventListener('visibilitychange', handleVisibilityChange)
@@ -127,8 +107,7 @@ export const useTimeTracking = (): UseTimeTrackingReturn => {
 	}, [])
 
 	return {
-		totalTimeByPage: tracking.totalTimeByPage,
-		navigateToPage,
+		totalSessionTime: getTotalTime(),
 		getTotalTime,
 	}
 }
