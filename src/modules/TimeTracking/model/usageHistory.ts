@@ -4,9 +4,15 @@
  */
 export type UsageDuration = number
 
-export interface DailyTracking {
-	date: number
-	time: UsageDuration
+export interface UsageSession {
+	startTimestamp: number
+	duration: UsageDuration
 }
 
-export type UsageHistory = DailyTracking[]
+export interface DailyUsage {
+	/** Llamada a Date.now() */
+	date: number
+	periods: UsageSession[]
+}
+
+export type UsageHistory = DailyUsage[]

@@ -1,27 +1,37 @@
+import { needsNewUsageSession } from '../model/needsNewUsageSession'
 import { UsageHistory, UsageDuration } from '../model/usageHistory'
 import { isTheSameDay } from '../utils/isTheSameDay'
 import { sumUsageDurations } from '../utils/sumUsageDurations'
 
 interface Params {
-	time: UsageDuration
+	duration: UsageDuration
 	usageHistory: UsageHistory
 }
 
-export function updateDailyUsageRecord({ time, usageHistory }: Params): UsageHistory {
+export function updateDailyUsageRecord({ duration, usageHistory }: Params): UsageHistory {
 	const today = Date.now()
-	if (usageHistory.length >= 1) {
-		const lastDayTracking = usageHistory[usageHistory.length - 1]
-		if (isTheSameDay(lastDayTracking.date, today)) {
-			lastDayTracking.time = sumUsageDurations(lastDayTracking.time, time)
-			usageHistory[usageHistory.length - 1] = lastDayTracking
-			return [...usageHistory]
-		}
+	const newPeriod = {
+		startTimestamp: Date.now(),
+		duration,
 	}
 
-	usageHistory.push({
-		date: today,
-		time,
-	})
+	const lastDayTracking = usageHistory[usageHistory.length - 1]
+	if (usageHistory.length <= 1 || !isTheSameDay(lastDayTracking.date, today)) {
+		usageHistory.push({
+			date: today,
+			periods: [{ ...newPeriod }],
+		})
 
+		return [...usageHistory]
+	}
+
+	if (needsNewUsageSession(lastDayTracking)) {
+		lastDayTracking.periods.push(newPeriod)
+	} else {
+		const lastPeriod = lastDayTracking.periods[lastDayTracking.periods.length - 1]
+		lastPeriod.duration = sumUsageDurations(lastPeriod.duration, duration)
+		lastDayTracking.periods[lastDayTracking.periods.length - 1] = lastPeriod
+	}
+	usageHistory[usageHistory.length - 1] = lastDayTracking
 	return [...usageHistory]
 }
