@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import { UsageDuration } from './model/usageHistory'
 
 interface UseTimeTrackingReturn {
@@ -13,6 +13,9 @@ interface UserSessionTracking {
 	isActive: boolean
 }
 
+const STORAGE_KEY = 'timeTracking'
+const SAVE_INTERVAL = 60000
+
 const initialTracking: UserSessionTracking = {
 	sessionStartTime: Date.now(),
 	totalAccumulatedTime: 0,
@@ -20,10 +23,48 @@ const initialTracking: UserSessionTracking = {
 	isActive: true,
 }
 
-export const useTimeTracking = (): UseTimeTrackingReturn => {
+interface UseTimeTrackingOptions {
+	/**
+	 * Controla si el contador de tiempo se pausa cuando la pestaña no está visible.
+	 * - true (por defecto): Pausa el contador cuando el usuario cambia de pestaña o minimiza la ventana.
+	 * - false: El contador continúa corriendo incluso cuando la pestaña está en segundo plano.
+	 * @default true
+	 */
+	pauseOnTabHidden?: boolean
+	/**
+	 * Intervalo en milisegundos para guardar automáticamente el progreso en localStorage.
+	 * Nota: El guardado también ocurre inmediatamente en eventos críticos (cambio de
+	 * visibilidad de pestaña y cierre de ventana), independientemente de este intervalo.
+	 * @default 60000 (1 minuto)
+	 */
+	saveInterval?: number
+}
+
+/**
+ * Hook para rastrear el tiempo total de uso activo en la aplicación.
+ 
+ * @description
+ * - Acumula el tiempo de sesión del usuario y lo persiste en localStorage
+ * - Guarda automáticamente el progreso a intervalos regulares (por defecto cada 60s)
+ * - Opcionalmente pausa el contador cuando la pestaña está oculta
+ * - Maneja correctamente el cierre de la ventana para no perder datos
+ * - Recupera el tiempo acumulado de sesiones anteriores al iniciar
+ 
+ * @example
+ * const { totalSessionTime, getTotalTime } = useTimeTracking()
+ * 
+ * @example
+ * const { getTotalTime } = useTimeTracking({ 
+ *   pauseOnTabHidden: false,
+ *   saveInterval: 30000 
+ * })
+ */
+export const useTimeTracking = (options: UseTimeTrackingOptions = {}): UseTimeTrackingReturn => {
+	const { pauseOnTabHidden = true, saveInterval = SAVE_INTERVAL } = options
+
 	const [tracking, setTracking] = useState<UserSessionTracking>(() => {
 		try {
-			const saved = localStorage.getItem('timeTracking')
+			const saved = localStorage.getItem(STORAGE_KEY)
 			if (saved) {
 				const parsed = JSON.parse(saved)
 				return {
@@ -33,10 +74,10 @@ export const useTimeTracking = (): UseTimeTrackingReturn => {
 					lastSaveTime: Date.now(),
 				}
 			}
-			return initialTracking
-		} catch {
-			return initialTracking
+		} catch (error) {
+			console.error('Error loading time tracking:', error)
 		}
+		return initialTracking
 	})
 
 	const trackingRef = useRef(tracking)
@@ -46,8 +87,39 @@ export const useTimeTracking = (): UseTimeTrackingReturn => {
 	}, [tracking])
 
 	useEffect(() => {
-		localStorage.setItem('timeTracking', JSON.stringify(tracking))
-	}, [tracking])
+		const intervalId = setInterval(() => {
+			const current = trackingRef.current
+
+			if (!current.isActive) {
+				return
+			}
+
+			const now = Date.now()
+			const newAccumulatedTime =
+				current.totalAccumulatedTime + (now - current.sessionStartTime)
+
+			setTracking((prev) => {
+				if (!prev.isActive) return prev
+
+				const updated = {
+					...prev,
+					totalAccumulatedTime: newAccumulatedTime,
+					sessionStartTime: now,
+					lastSaveTime: now,
+				}
+
+				try {
+					localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
+				} catch (error) {
+					console.error('Error saving time tracking:', error)
+				}
+
+				return updated
+			})
+		}, saveInterval)
+
+		return () => clearInterval(intervalId)
+	}, [saveInterval])
 
 	const getTotalTime = useCallback((): UsageDuration => {
 		const now = Date.now()
@@ -57,21 +129,36 @@ export const useTimeTracking = (): UseTimeTrackingReturn => {
 		return tracking.totalAccumulatedTime
 	}, [tracking.totalAccumulatedTime, tracking.sessionStartTime, tracking.isActive])
 
+	const totalSessionTime = useMemo(() => getTotalTime(), [getTotalTime])
+
 	useEffect(() => {
+		if (!pauseOnTabHidden) return
+
 		const handleVisibilityChange = () => {
 			const now = Date.now()
 
 			if (document.visibilityState === 'hidden') {
-				setTracking((prev) => ({
-					...prev,
-					totalAccumulatedTime: prev.totalAccumulatedTime + (now - prev.sessionStartTime),
-					isActive: false,
-					lastSaveTime: now,
-				}))
+				setTracking((prev) => {
+					const updated = {
+						...prev,
+						totalAccumulatedTime:
+							prev.totalAccumulatedTime + (now - prev.sessionStartTime),
+						isActive: false,
+						lastSaveTime: now,
+					}
+
+					try {
+						localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
+					} catch (error) {
+						console.error('Error saving time tracking:', error)
+					}
+
+					return updated
+				})
 			} else {
 				setTracking((prev) => ({
 					...prev,
-					sessionStartTime: Date.now(),
+					sessionStartTime: now,
 					isActive: true,
 					lastSaveTime: now,
 				}))
@@ -80,20 +167,22 @@ export const useTimeTracking = (): UseTimeTrackingReturn => {
 
 		const handleBeforeUnload = () => {
 			const now = Date.now()
-			const currentTracking = trackingRef.current
+			const current = trackingRef.current
 
-			if (currentTracking.isActive) {
-				const finalTime: UsageDuration =
-					currentTracking.totalAccumulatedTime + (now - currentTracking.sessionStartTime)
-
+			if (current.isActive) {
 				const finalTracking = {
-					...currentTracking,
-					totalAccumulatedTime: finalTime,
+					...current,
+					totalAccumulatedTime:
+						current.totalAccumulatedTime + (now - current.sessionStartTime),
 					isActive: false,
 					lastSaveTime: now,
 				}
 
-				localStorage.setItem('timeTracking', JSON.stringify(finalTracking))
+				try {
+					localStorage.setItem(STORAGE_KEY, JSON.stringify(finalTracking))
+				} catch (error) {
+					console.error('Error saving time tracking:', error)
+				}
 			}
 		}
 
@@ -104,10 +193,10 @@ export const useTimeTracking = (): UseTimeTrackingReturn => {
 			document.removeEventListener('visibilitychange', handleVisibilityChange)
 			window.removeEventListener('beforeunload', handleBeforeUnload)
 		}
-	}, [])
+	}, [pauseOnTabHidden])
 
 	return {
-		totalSessionTime: getTotalTime(),
+		totalSessionTime,
 		getTotalTime,
 	}
 }
