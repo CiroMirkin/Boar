@@ -1,8 +1,7 @@
-import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { UsageDuration } from './model/usageHistory'
 
 interface UseTimeTrackingReturn {
-	totalSessionTime: UsageDuration
 	getTotalTime: () => UsageDuration
 }
 
@@ -51,7 +50,7 @@ interface UseTimeTrackingOptions {
  * - Recupera el tiempo acumulado de sesiones anteriores al iniciar
  
  * @example
- * const { totalSessionTime, getTotalTime } = useTimeTracking()
+ * const { getTotalTime } = useTimeTracking()
  * 
  * @example
  * const { getTotalTime } = useTimeTracking({ 
@@ -123,13 +122,12 @@ export const useTimeTracking = (options: UseTimeTrackingOptions = {}): UseTimeTr
 
 	const getTotalTime = useCallback((): UsageDuration => {
 		const now = Date.now()
-		if (tracking.isActive) {
-			return tracking.totalAccumulatedTime + (now - tracking.sessionStartTime)
+		const current = trackingRef.current
+		if (current.isActive) {
+			return current.totalAccumulatedTime + (now - current.sessionStartTime)
 		}
-		return tracking.totalAccumulatedTime
-	}, [tracking.totalAccumulatedTime, tracking.sessionStartTime, tracking.isActive])
-
-	const totalSessionTime = useMemo(() => getTotalTime(), [getTotalTime])
+		return current.totalAccumulatedTime
+	}, [])
 
 	useEffect(() => {
 		if (!pauseOnTabHidden) return
@@ -196,7 +194,6 @@ export const useTimeTracking = (options: UseTimeTrackingOptions = {}): UseTimeTr
 	}, [pauseOnTabHidden])
 
 	return {
-		totalSessionTime,
 		getTotalTime,
 	}
 }
