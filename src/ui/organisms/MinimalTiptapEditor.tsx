@@ -100,6 +100,7 @@ const MinimalTiptapEditor = ({
 		saveTextCallback()
 
 		requestAnimationFrame(() => {
+			if (editor.isDestroyed) return
 			editor.commands.focus(from)
 		})
 	}, [editor, saveTextCallback])
