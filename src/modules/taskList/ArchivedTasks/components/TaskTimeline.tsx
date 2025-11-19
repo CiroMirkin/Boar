@@ -8,10 +8,7 @@ interface TaskTimelineProps {
 
 export default function TaskTimeline({ timelineHistory }: TaskTimelineProps) {
 	const timeLine = timelineHistory.map((timeHistory, index) => {
-		const date = format(timeHistory.date, {
-			time: 'short',
-			date: 'short',
-		})
+		const date = format(timeHistory.date, 'DD/MM/YY, HH:mm')
 		const key = `${timeHistory.date}`
 
 		return (
