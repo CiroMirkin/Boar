@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
+import Underline from '@tiptap/extension-underline'
 import Placeholder from '@tiptap/extension-placeholder'
 import { Button } from '@/ui/atoms/button'
 import { Separator } from '@/ui/atoms/separator'
@@ -51,6 +52,7 @@ const MinimalTiptapEditor = ({
 	const editor = useEditor({
 		extensions: [
 			StarterKit,
+			Underline,
 			Placeholder.configure({
 				placeholder,
 			}),
@@ -91,6 +93,17 @@ const MinimalTiptapEditor = ({
 		editor.commands.setContent(value || '')
 	}, [editor, value])
 
+	const handleSave = React.useCallback(() => {
+		if (!editor) return
+
+		const { from } = editor.state.selection
+		saveTextCallback()
+
+		requestAnimationFrame(() => {
+			editor.commands.focus(from)
+		})
+	}, [editor, saveTextCallback])
+
 	if (!editor) return null
 
 	// Approximate line height and padding (adjust as needed)
@@ -115,7 +128,6 @@ const MinimalTiptapEditor = ({
 		>
 			{editable && (
 				<div className='flex flex-wrap items-center gap-1 p-1 border-b bg-muted/50'>
-					{/* Basic formatting */}
 					<Toggle
 						pressed={editor.isActive('bold')}
 						onPressedChange={() => editor.chain().focus().toggleBold().run()}
@@ -170,7 +182,6 @@ const MinimalTiptapEditor = ({
 
 					<Separator orientation='vertical' className='mx-2 h-6' />
 
-					{/* Lists */}
 					<Toggle
 						pressed={editor.isActive('bulletList')}
 						onPressedChange={() => editor.chain().focus().toggleBulletList().run()}
@@ -188,7 +199,6 @@ const MinimalTiptapEditor = ({
 
 					<Separator orientation='vertical' className='mx-2 h-6' />
 
-					{/* History */}
 					<Button
 						variant='ghost'
 						size='icon'
@@ -210,11 +220,10 @@ const MinimalTiptapEditor = ({
 
 					<Separator orientation='vertical' className='mx-2 h-6' />
 
-					{/* Save */}
 					<Button
 						variant='ghost'
 						size='icon'
-						onClick={saveTextCallback}
+						onClick={handleSave}
 						aria-label='Guardar texto'
 					>
 						<Save size={16} />
