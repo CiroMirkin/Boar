@@ -105,6 +105,7 @@ export default function AuthCard() {
 						<Input
 							id='email'
 							type='email'
+							name='email'
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
 							disabled={loading}
@@ -118,6 +119,7 @@ export default function AuthCard() {
 						<Input
 							id='password'
 							type='password'
+							name='password'
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 							disabled={loading}

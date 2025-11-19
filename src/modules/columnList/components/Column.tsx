@@ -34,7 +34,7 @@ export function Column({ data, children }: ColumnProps) {
 			onDrop={() => setDragOver(false)}
 		>
 			<ColumnContext.Provider value={data}>
-				<Card className={columnClassName}>
+				<Card className={columnClassName} aria-label={data.name}>
 					<CardHeader className='pb-0 px-4'>
 						<CardTitle className={`opacity-[.70] ${colorTheme.text}`}>
 							{data.name}

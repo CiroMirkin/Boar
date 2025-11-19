@@ -60,6 +60,7 @@ export function MoveButttons({ handleClick }: MoveButtonsProps) {
 				size='sm'
 				disabled={isTheTaskInTheFirstColumn}
 				variant='ghost'
+				data-testid='BotonParaRetrocederTarea'
 				onClick={() => handleClick(moveTaskToPrevColumnAction)}
 				title={t('task_buttons.prev_btn')}
 			>
@@ -69,6 +70,7 @@ export function MoveButttons({ handleClick }: MoveButtonsProps) {
 				size='sm'
 				disabled={isTheTaskInTheLastColumn}
 				variant='ghost'
+				data-testid='BotonParaAvanzarTarea'
 				onClick={() => handleClick(moveTaskToNextColumnAction)}
 				title={t('task_buttons.next_btn')}
 			>

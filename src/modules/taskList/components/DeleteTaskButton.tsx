@@ -42,6 +42,7 @@ export function DeleteTaskButton({ handleClick }: DeleteButtonProps) {
 			variant='destructiveGhost'
 			className='w-full'
 			onClick={askForConfirmationToDeleteTheTask}
+			data-testid='BotonEliminarTarea'
 			title={t('task_buttons.delete')}
 		>
 			<TrashIcon />

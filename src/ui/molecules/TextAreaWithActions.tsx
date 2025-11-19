@@ -128,6 +128,7 @@ export function TeaxtareaWithActions({
 						<div className='flex items-center gap-2'>
 							<button
 								type='button'
+								id='plus_btn'
 								title={btnTitle}
 								disabled={btnDisabled}
 								onClick={(e) => {

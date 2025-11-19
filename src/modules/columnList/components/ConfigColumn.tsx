@@ -66,6 +66,7 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 			<Input
 				className='md:col-span-3 col-span-2'
 				value={nameToShow}
+				name={nameToShow}
 				onChange={(e) =>
 					isThisColumnNameWithinTheLimitOfLetters(e.target.value) &&
 					setColumnName(e.target.value)
@@ -73,12 +74,17 @@ export function ConfigColumn({ column }: ConfigColumnParams) {
 				disabled={!showChangeColumnNameInput}
 			/>
 			<div className='w-full flex gap-2'>
-				<Button onClick={() => handleClick(editColumnNameHandle)} variant='ghost'>
+				<Button
+					onClick={() => handleClick(editColumnNameHandle)}
+					variant='ghost'
+					data-testid='BotonParaCambiarElNombreDeUnaColumna'
+				>
 					<PencilIcon />
 				</Button>
 				<Button
 					onClick={() => handleClick(askForConfirmationToDeleteTheColumn)}
 					variant='destructiveGhost'
+					data-testid='BotonParaEliminarUnaColumna'
 					title={t('settings.columns.delete_column_btn')}
 				>
 					<TrashIcon />

@@ -117,7 +117,7 @@
 		},
 		"columns": {
 			"section_title": "Columnas",
-			"delete_column_btn": "Eliminar",
+			"delete_column_btn": "Eliminar Columna",
 			"delete_column_warning": "¿Seguro desea borrar la columna",
 			"new_column_btn": "Crear columna",
 			"new_column_input_placeholder": "Nombre de la columna"
