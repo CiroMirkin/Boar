@@ -1,8 +1,7 @@
 import { DailyUsage } from './usageHistory'
 
-const ONE_HOUR = 60 * 60 * 1000
 /** Se especifica en milisegundos */
-const TIME_LIMIT: number = ONE_HOUR
+const TIME_LIMIT: number = 1500000 // 25 minutos
 
 /**
  * @description Primero se calcula el tiempo final del último período (startTimestamp + duration)
