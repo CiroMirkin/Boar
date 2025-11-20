@@ -3,11 +3,9 @@ import { updateDailyUsageRecord } from './updateDailyUsageRecord'
 import { UsageHistory } from '../model/usageHistory'
 import { needsNewUsageSession } from '../model/needsNewUsageSession'
 import { isTheSameDay } from '../utils/isTheSameDay'
-import { sumUsageDurations } from '../utils/sumUsageDurations'
 
 vi.mock('../model/needsNewUsageSession')
 vi.mock('../utils/isTheSameDay')
-vi.mock('../utils/sumUsageDurations')
 
 describe('updateDailyUsageRecord', () => {
 	beforeEach(() => {
@@ -101,7 +99,6 @@ describe('updateDailyUsageRecord', () => {
 		vi.spyOn(Date, 'now').mockReturnValue(mockToday)
 		vi.mocked(isTheSameDay).mockReturnValue(true)
 		vi.mocked(needsNewUsageSession).mockReturnValue(false)
-		vi.mocked(sumUsageDurations).mockReturnValue(15000)
 
 		const usageHistory: UsageHistory = [
 			{
@@ -115,13 +112,12 @@ describe('updateDailyUsageRecord', () => {
 		]
 
 		const result = updateDailyUsageRecord({
-			duration: 5000,
+			duration: 15000,
 			usageHistory,
 		})
 
 		expect(result[1].periods).toHaveLength(1)
 		expect(result[1].periods[0].duration).toBe(15000)
-		expect(sumUsageDurations).toHaveBeenCalledWith(10000, 5000)
 		expect(needsNewUsageSession).toHaveBeenCalledWith(usageHistory[1])
 	})
 })
