@@ -12,6 +12,7 @@ import {
 	CircleHelpIcon,
 	ColumnsIcon,
 	GithubIcon,
+	HourglassIcon,
 	MenuIcon,
 	SettingsIcon,
 } from '@/ui/atoms/icons'
@@ -23,6 +24,7 @@ import LogInAndLogOutMenuItem from '../../modules/LanguageToggle/LogInAndLogOutM
 import { useSession } from '@/auth/hooks/useSession'
 import Notes from '@/modules/notes/Notes'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
+import { useDurationOfTheLastPeriod } from '@/modules/UsageHistory/hooks/useDurationOfTheLastPeriod'
 
 interface HeaderProps {
 	title: string
@@ -32,7 +34,8 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 	const { t } = useTranslation()
 	const { session } = useSession()
 	const { text } = useTheme()
-
+	const duration = useDurationOfTheLastPeriod()
+	
 	return (
 		<header className='w-full px-6 md:px-11 pt-6 pb-4 flex justify-between items-center'>
 			<h1 className='text-2xl font-medium'>{title}</h1>
@@ -76,6 +79,12 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 							>
 								<GithubIcon className='mr-2' /> GitHub
 							</a>
+						</DropdownMenuItem>
+						<DropdownMenuSeparator />
+						<DropdownMenuItem>
+							<div className='px-2 py-1.5 flex items-center'>
+								<HourglassIcon className='mr-2' /> {duration}
+							</div>
 						</DropdownMenuItem>
 						<DropdownMenuSeparator />
 						<LogInAndLogOutMenuItem whereUserIs={whereUserIs} session={session} />
