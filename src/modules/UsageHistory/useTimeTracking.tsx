@@ -12,7 +12,6 @@ interface UserSessionTracking {
 	isActive: boolean
 }
 
-const STORAGE_KEY = 'timeTracking'
 const SAVE_INTERVAL = 60000
 
 const initialTracking: UserSessionTracking = {
@@ -63,7 +62,7 @@ export const useTimeTracking = (options: UseTimeTrackingOptions = {}): UseTimeTr
 
 	const [tracking, setTracking] = useState<UserSessionTracking>(() => {
 		try {
-			const saved = localStorage.getItem(STORAGE_KEY)
+			const saved = getUserSessionTracking()
 			if (saved) {
 				const parsed = JSON.parse(saved)
 				return {
@@ -108,7 +107,7 @@ export const useTimeTracking = (options: UseTimeTrackingOptions = {}): UseTimeTr
 				}
 
 				try {
-					localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
+					saveUserSessionTracking(updated)
 				} catch (error) {
 					console.error('Error saving time tracking:', error)
 				}
@@ -146,7 +145,7 @@ export const useTimeTracking = (options: UseTimeTrackingOptions = {}): UseTimeTr
 					}
 
 					try {
-						localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
+						saveUserSessionTracking(updated)
 					} catch (error) {
 						console.error('Error saving time tracking:', error)
 					}
@@ -177,7 +176,7 @@ export const useTimeTracking = (options: UseTimeTrackingOptions = {}): UseTimeTr
 				}
 
 				try {
-					localStorage.setItem(STORAGE_KEY, JSON.stringify(finalTracking))
+					saveUserSessionTracking(finalTracking)
 				} catch (error) {
 					console.error('Error saving time tracking:', error)
 				}
@@ -196,4 +195,14 @@ export const useTimeTracking = (options: UseTimeTrackingOptions = {}): UseTimeTr
 	return {
 		getTotalTime,
 	}
+}
+
+const STORAGE_KEY = 'timeTracking'
+
+const getUserSessionTracking = () => {
+	return localStorage.getItem(STORAGE_KEY)
+}
+
+const saveUserSessionTracking = (updated: UserSessionTracking) => {
+	localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
 }
