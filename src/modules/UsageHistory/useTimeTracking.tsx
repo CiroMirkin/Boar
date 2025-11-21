@@ -200,9 +200,9 @@ export const useTimeTracking = (options: UseTimeTrackingOptions = {}): UseTimeTr
 const STORAGE_KEY = 'timeTracking'
 
 const getUserSessionTracking = () => {
-	return localStorage.getItem(STORAGE_KEY)
+	return sessionStorage.getItem(STORAGE_KEY)
 }
 
 const saveUserSessionTracking = (updated: UserSessionTracking) => {
-	localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
+	sessionStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
 }
