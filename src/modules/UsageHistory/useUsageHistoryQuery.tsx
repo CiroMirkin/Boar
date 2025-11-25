@@ -27,7 +27,7 @@ export const useUsageHistoryQuery = ({ onSuccess, onError }: UseUsageHistoryQuer
 			return await localStorageUsageHistoryRepository.getAll()
 		},
 		enabled: !!userId,
-		initialData: [],
+		placeholderData: [],
 	})
 
 	const customMutationFn = useMutation({
