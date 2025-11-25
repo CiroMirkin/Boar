@@ -1,26 +1,32 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useTimeTracking } from './useTimeTracking'
 import { useUsageHistoryQuery } from './useUsageHistoryQuery'
 import { updateDailyUsageRecord } from './useCase/updateDailyUsageRecord'
 
 export const useSaveTimeTracking = () => {
 	const { getTotalTime } = useTimeTracking({ pauseOnTabHidden: false })
-	const { updateUsageHistory, usageHistory } = useUsageHistoryQuery()
-	const [displayTime, setDisplayTime] = useState(0)
+	const { updateUsageHistory, usageHistory, isSaving } = useUsageHistoryQuery()
+	const lastSavedTimeRef = useRef(0)
 
 	useEffect(() => {
 		const intervalId = setInterval(() => {
+			if (isSaving) {
+				return
+			}
+
 			const totalTime = getTotalTime()
-			if (totalTime !== displayTime) {
+			if (totalTime !== lastSavedTimeRef.current) {
+				console.log('Current usage history:', usageHistory)
+
 				const newUsageHistory = updateDailyUsageRecord({
 					duration: totalTime,
 					usageHistory,
 				})
 				updateUsageHistory(newUsageHistory)
-				setDisplayTime(totalTime)
+				lastSavedTimeRef.current = totalTime
 			}
 		}, 60500)
 
 		return () => clearInterval(intervalId)
-	}, [getTotalTime, displayTime])
+	}, [getTotalTime, updateUsageHistory, usageHistory, isSaving])
 }
