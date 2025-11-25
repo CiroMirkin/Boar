@@ -16,8 +16,6 @@ export const useSaveTimeTracking = () => {
 
 			const totalTime = getTotalTime()
 			if (totalTime !== lastSavedTimeRef.current) {
-				console.log('Current usage history:', usageHistory)
-
 				const newUsageHistory = updateDailyUsageRecord({
 					duration: totalTime,
 					usageHistory,

@@ -8,7 +8,6 @@ interface Params {
 }
 
 export function updateDailyUsageRecord({ duration, usageHistory }: Params): UsageHistory {
-	console.log(usageHistory)
 	const today = Date.now()
 	const newPeriod = {
 		startTimestamp: today,
