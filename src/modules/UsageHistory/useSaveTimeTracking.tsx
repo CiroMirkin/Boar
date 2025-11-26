@@ -2,29 +2,43 @@ import { useEffect, useRef } from 'react'
 import { useTimeTracking } from './useTimeTracking'
 import { useUsageHistoryQuery } from './useUsageHistoryQuery'
 import { updateDailyUsageRecord } from './useCase/updateDailyUsageRecord'
+import { useSession } from '@/auth/hooks/useSession'
 
 export const useSaveTimeTracking = () => {
-	const { getTotalTime } = useTimeTracking({ pauseOnTabHidden: false })
+	const { getTotalTime, resetTimeTracking } = useTimeTracking({ pauseOnTabHidden: false })
 	const { updateUsageHistory, usageHistory, isSaving } = useUsageHistoryQuery()
 	const lastSavedTimeRef = useRef(0)
 
 	useEffect(() => {
 		const intervalId = setInterval(() => {
-			if (isSaving) {
-				return
-			}
+			try {
+				if (isSaving) {
+					return
+				}
 
-			const totalTime = getTotalTime()
-			if (totalTime !== lastSavedTimeRef.current) {
-				const newUsageHistory = updateDailyUsageRecord({
-					duration: totalTime,
-					usageHistory,
-				})
-				updateUsageHistory(newUsageHistory)
-				lastSavedTimeRef.current = totalTime
+				const totalTime = getTotalTime()
+				if (totalTime !== lastSavedTimeRef.current) {
+					const newUsageHistory = updateDailyUsageRecord({
+						duration: totalTime,
+						usageHistory,
+					})
+					updateUsageHistory(newUsageHistory)
+					lastSavedTimeRef.current = totalTime
+				}
+			} catch (e) {
+				console.error()
 			}
 		}, 60500)
 
 		return () => clearInterval(intervalId)
 	}, [getTotalTime, updateUsageHistory, usageHistory, isSaving])
+
+	const { session } = useSession()
+	const sessionRef = useRef(Boolean(session))
+	useEffect(() => {
+		if (Boolean(session) !== sessionRef.current) {
+			sessionRef.current = Boolean(session)
+			resetTimeTracking()
+		}
+	}, [session])
 }
