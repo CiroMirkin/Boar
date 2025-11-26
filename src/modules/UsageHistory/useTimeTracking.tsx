@@ -3,6 +3,7 @@ import { UsageDuration } from './model/usageHistory'
 
 interface UseTimeTrackingReturn {
 	getTotalTime: () => UsageDuration
+	resetTimeTracking: () => void
 }
 
 interface UserSessionTracking {
@@ -192,8 +193,21 @@ export const useTimeTracking = (options: UseTimeTrackingOptions = {}): UseTimeTr
 		}
 	}, [pauseOnTabHidden])
 
+	const resetTimeTracking = useCallback(() => {
+		const newInitialTracking: UserSessionTracking = {
+			sessionStartTime: Date.now(),
+			totalAccumulatedTime: 0,
+			lastSaveTime: Date.now(),
+			isActive: true,
+		}
+		resetUserSessionTracking()
+		setTracking(newInitialTracking)
+		trackingRef.current = newInitialTracking
+	}, [])
+
 	return {
 		getTotalTime,
+		resetTimeTracking,
 	}
 }
 
@@ -206,3 +220,5 @@ const getUserSessionTracking = () => {
 const saveUserSessionTracking = (updated: UserSessionTracking) => {
 	sessionStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
 }
+
+const resetUserSessionTracking = () => sessionStorage.removeItem(STORAGE_KEY)
