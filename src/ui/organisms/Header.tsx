@@ -81,10 +81,14 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 							</a>
 						</DropdownMenuItem>
 						<DropdownMenuSeparator />
-						<DropdownMenuItem>
-							<div className='px-2 py-1.5 flex items-center'>
+						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.TIME && true}>
+							<Link
+								title='Registro de uso'
+								to='/time'
+								className='px-2 py-1.5 flex items-center'
+							>
 								<HourglassIcon className='mr-2' /> {duration}
-							</div>
+							</Link>
 						</DropdownMenuItem>
 						<DropdownMenuSeparator />
 						<LogInAndLogOutMenuItem whereUserIs={whereUserIs} session={session} />
