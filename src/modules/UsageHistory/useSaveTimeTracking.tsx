@@ -40,5 +40,5 @@ export const useSaveTimeTracking = () => {
 			sessionRef.current = Boolean(session)
 			resetTimeTracking()
 		}
-	}, [session])
+	}, [session, resetTimeTracking])
 }

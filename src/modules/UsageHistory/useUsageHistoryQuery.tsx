@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { UsageHistory } from './model/usageHistory'
 import { localStorageUsageHistoryRepository } from './repository/localstorageUsageHistoryRepository'
 import { useSession } from '@/auth/hooks/useSession'
+import { supabaseUsageHistoryRepository } from './repository/supabaseUsageHistoryRepository'
 
 const QUERY_KEY = ['usage-history']
 
@@ -24,6 +25,7 @@ export const useUsageHistoryQuery = ({ onSuccess, onError }: UseUsageHistoryQuer
 	} = useQuery({
 		queryKey: fullQueryKey,
 		queryFn: async (): Promise<UsageHistory> => {
+			if (session) return await supabaseUsageHistoryRepository.getAll()
 			return await localStorageUsageHistoryRepository.getAll()
 		},
 		enabled: !!userId,
@@ -32,6 +34,7 @@ export const useUsageHistoryQuery = ({ onSuccess, onError }: UseUsageHistoryQuer
 
 	const customMutationFn = useMutation({
 		mutationFn: async (newUsageHistory: UsageHistory): Promise<UsageHistory> => {
+			if (session) return await supabaseUsageHistoryRepository.save(newUsageHistory)
 			return await localStorageUsageHistoryRepository.save(newUsageHistory)
 		},
 		onSuccess: (data) => {
