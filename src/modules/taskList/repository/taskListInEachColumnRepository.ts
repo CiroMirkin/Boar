@@ -1,6 +1,6 @@
-import { TaskListInEachColumn } from '../models/taskList'
+import { TaskBoard } from '../models/taskBoard'
 
 export interface TaskListInEachColumnRepository {
-	save(taskListInEachColumn: TaskListInEachColumn): void
-	getAll(): Promise<TaskListInEachColumn>
+	save(taskListInEachColumn: TaskBoard): void
+	getAll(): Promise<TaskBoard>
 }
