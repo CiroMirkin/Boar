@@ -13,11 +13,13 @@ import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQu
 import { sortListOfTasksInColumnsByPriority } from '../models/sortListOfTasksInColumnsByPriority'
 import { addChangeToTaskTimelineHistory } from '../useCase/addChangeToTaskTimelineHistory'
 import { useGetColumnName } from '@/sharedByModules/hooks/useGetColumnName'
+import { useTaskListInEachColumn } from '../hooks/useTaskListInEachColumn'
 
 export function AddNewTaskInput() {
 	const [newTaskDescription, setNewTaskDescription] = useState('')
 	const canUserUseTheAddTaskInput = !isThisTaskDescriptionValid(newTaskDescription)
-	const { listOfTaskInColumns, updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const { updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const listOfTaskInColumns = useTaskListInEachColumn()
 	const selectedTags = useUserSelectedTags()
 	const getColumnName = useGetColumnName()
 
@@ -25,8 +27,6 @@ export function AddNewTaskInput() {
 
 	const handleClick = () => {
 		try {
-			const currentList = listOfTaskInColumns || []
-
 			const task = getNewTask({
 				descriptionText: newTaskDescription,
 				columnPosition: '1',
@@ -42,7 +42,7 @@ export function AddNewTaskInput() {
 							columnName: getColumnName('1'),
 						}),
 					},
-					taskListInEachColumn: currentList,
+					taskListInEachColumn: listOfTaskInColumns,
 				})
 			)
 

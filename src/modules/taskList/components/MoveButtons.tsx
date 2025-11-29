@@ -9,6 +9,7 @@ import { sortListOfTasksInColumnsByPriority } from '../models/sortListOfTasksInC
 import { moveThisTaskToTheNextColumn, moveThisTaskToThePrevColumn } from '../useCase/moveTask'
 import { addChangeToTaskTimelineHistory } from '../useCase/addChangeToTaskTimelineHistory'
 import { useGetColumnName } from '@/sharedByModules/hooks/useGetColumnName'
+import { useTaskListInEachColumn } from '../hooks/useTaskListInEachColumn'
 
 interface MoveButtonsProps {
 	handleClick: (action: () => void) => void
@@ -18,7 +19,8 @@ export function MoveButttons({ handleClick }: MoveButtonsProps) {
 	const { t } = useTranslation()
 	const data = useDataOfTheTask()
 	const getColumnName = useGetColumnName()
-	const { listOfTaskInColumns, updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const { updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const listOfTaskInColumns = useTaskListInEachColumn()
 	const isTheTaskInTheFirstColumn = useCheckIfThisTaskIsInTheFirstColumn(data)
 	const isTheTaskInTheLastColumn = useCheckIfTaskIsInTheLastColumn(data)
 	const moveTaskToNextColumnAction = () => {

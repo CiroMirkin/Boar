@@ -7,6 +7,7 @@ import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQu
 import { sortListOfTasksInColumnsByPriority } from '../models/sortListOfTasksInColumnsByPriority'
 import { addChangeToTaskTimelineHistory } from '../useCase/addChangeToTaskTimelineHistory'
 import { useGetColumnName } from '@/sharedByModules/hooks/useGetColumnName'
+import { useTaskListInEachColumn } from '../hooks/useTaskListInEachColumn'
 
 interface TaskListProps {
 	tasks: taskList
@@ -20,7 +21,8 @@ export function TaskList({ tasks, columnPosition }: TaskListProps) {
 		taskList.push(<Task task={task} key={task.id} />)
 	})
 
-	const { listOfTaskInColumns, updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const { updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const listOfTaskInColumns = useTaskListInEachColumn()
 	const getColumnName = useGetColumnName()
 	const handleDrop = (e: DragEvent) => {
 		const dropData = e.dataTransfer.getData('task')
