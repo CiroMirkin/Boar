@@ -1,6 +1,6 @@
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { ListOfColumn, ColumnsContent } from './ListOfColumns'
-import { emptyTaskBoard } from '../models/taskBoard'
+import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
 
 export function ListView({
 	children,
@@ -9,7 +9,7 @@ export function ListView({
 	children: () => ColumnsContent
 	className?: string
 }) {
-	const listOfTaskInColumns = emptyTaskBoard
+	const { listOfTaskInColumns } = useListOfTasksInColumnsQuery()
 	const columns: string[] = listOfTaskInColumns.map((list) => list.status)
 	const colorTheme = useTheme()
 
