@@ -1,5 +1,5 @@
 import { format } from '@formkit/tempo'
-import { TaskTimelineHistory } from '../../models/taskTimelineHistory'
+import { TaskTimelineHistory } from '@/modules/taskList/models/taskTimelineHistory'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
 
 interface TaskTimelineProps {

@@ -1,4 +1,4 @@
-import { Archive } from '@/modules/taskList/ArchivedTasks/models/archive'
+import { Archive } from '../models/archive'
 import { ArchiveRepository } from './archiveRepository'
 import { supabase } from '@/lib/supabase'
 import { getActualBoardId } from '@/auth/utils/getActualBoardId'

@@ -1,4 +1,4 @@
-import { useArchive } from '@/modules/taskList/ArchivedTasks/hooks/useArchive'
+import { useArchive } from '@/modules/taskList/components/ArchivedTasks/hooks/useArchive'
 import { useTranslation } from 'react-i18next'
 import { Content } from './components/Content'
 import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'

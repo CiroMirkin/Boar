@@ -1,4 +1,4 @@
-import { Archive } from '@/modules/taskList/ArchivedTasks/models/archive'
+import { Archive } from '../models/archive'
 import { deleteThisArchivedTask } from './deleteArchivedTask'
 import { getFullDate } from '@/sharedByModules/utils/getTime'
 import { emptyTask } from '@/modules/taskList/models/task'
