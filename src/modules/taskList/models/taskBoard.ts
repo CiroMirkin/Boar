@@ -6,7 +6,7 @@ export type TaskBoard = TaskColumn[]
 
 export const emptyTaskBoard: TaskBoard = [
 	{
-		id: '2',
+		id: '1',
 		status: 'Pendientes',
 		tasks: [],
 	},
