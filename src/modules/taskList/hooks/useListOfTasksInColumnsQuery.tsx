@@ -2,7 +2,14 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { fetchTaskListInEachColumn, saveTaskListInEachColumn } from '../repository'
 import { useSession } from '@/auth/hooks/useSession'
 import { isThisArrayOfTypeTaskListInEachColumn, TaskListInEachColumn } from '../models/taskList'
-import { emptyTaskBoard, joinTaskListsAndTaskBoard, TaskBoard } from '../models/taskBoard'
+import {
+	emptyTaskBoard,
+	isDefaultTaskBoard,
+	joinTaskListsAndTaskBoard,
+	TaskBoard,
+} from '../models/taskBoard'
+import { useTranslation } from 'react-i18next'
+import { useCallback } from 'react'
 
 const taskListInEachColumnsQueryKey = ['taskListInEachColumns']
 
@@ -13,6 +20,21 @@ export const useListOfTasksInColumnsQuery = () => {
 	const userId = session?.user.id ?? 'guest'
 	const fullQueryKey = [...taskListInEachColumnsQueryKey, userId]
 
+	const { t, i18n } = useTranslation()
+	const select = useCallback(
+		(rawData: TaskBoard | undefined) => {
+			const data = rawData ?? emptyTaskBoard
+			if (isDefaultTaskBoard(data)) {
+				return data.map((taskColumn) => ({
+					...taskColumn,
+					status: t(`default_columns.${taskColumn.id}`),
+				}))
+			}
+			return data
+		},
+		[t, i18n.language] // eslint-disable-line react-hooks/exhaustive-deps
+	)
+
 	const {
 		data: listOfTaskInColumns = emptyTaskBoard,
 		isLoading,
@@ -21,7 +43,8 @@ export const useListOfTasksInColumnsQuery = () => {
 	} = useQuery({
 		queryKey: fullQueryKey,
 		queryFn: () => fetchTaskListInEachColumn(session),
-		initialData: emptyTaskBoard,
+		placeholderData: emptyTaskBoard,
+		select,
 	})
 
 	const { mutate: updateListOfTaskInColumns, isPending: isSaving } = useMutation({

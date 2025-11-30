@@ -6,21 +6,31 @@ export type TaskBoard = TaskColumn[]
 
 export const emptyTaskBoard: TaskBoard = [
 	{
-		id: '1',
-		status: 'Pendientes',
+		id: 'c1',
+		status: 'default_columns.c1',
 		tasks: [],
 	},
 	{
-		id: '2',
-		status: 'Procesando',
+		id: 'c2',
+		status: 'default_columns.c2',
 		tasks: [],
 	},
 	{
-		id: '3',
-		status: 'Terminado',
+		id: 'c3',
+		status: 'default_columns.c3',
 		tasks: [],
 	},
 ]
+
+export const isDefaultTaskBoard = (taskBoard: TaskBoard): boolean => {
+	if (taskBoard.length !== emptyTaskBoard.length) {
+		return false
+	}
+	return taskBoard.every(
+		(column, index) =>
+			column.id === emptyTaskBoard[index].id && column.status === emptyTaskBoard[index].status
+	)
+}
 
 export const joinTaskListsAndTaskBoard = (
 	taskLists: TaskLists,

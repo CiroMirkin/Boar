@@ -3,6 +3,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/molec
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { ColumnsFooterContext } from '../context/ColumnsFooter/ColumnsFooterContext'
 import { ColumnPosition } from '../model/columnPosition'
+import { useTranslation } from 'react-i18next'
 
 const ColumnContext = createContext('' as ColumnPosition)
 
@@ -13,6 +14,7 @@ interface ColumnProps {
 }
 
 export function Column({ columnName, columnPosition, children }: ColumnProps) {
+	const { t } = useTranslation()
 	const colorTheme = useTheme()
 	const [dragOver, setDragOver] = useState(false)
 	const columnClassName = `h-auto w-auto px-0 flex flex-col justify-between rounded-lg ${colorTheme.column} border-none ${dragOver && colorTheme.task}`
@@ -32,10 +34,10 @@ export function Column({ columnName, columnPosition, children }: ColumnProps) {
 			onDrop={() => setDragOver(false)}
 		>
 			<ColumnContext.Provider value={columnPosition}>
-				<Card className={columnClassName} aria-label={columnName}>
+				<Card className={columnClassName} aria-label={t(columnName)}>
 					<CardHeader className='pb-0 px-4'>
 						<CardTitle className={`opacity-[.70] ${colorTheme.text}`}>
-							{columnName}
+							{t(columnName)}
 						</CardTitle>
 					</CardHeader>
 					{children}
