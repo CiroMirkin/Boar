@@ -1,17 +1,18 @@
 import { Board } from '@/modules/board/Board'
-import { ColumnsProvider, ColumnsContextContent } from '@/modules/taskList/Columns/ColumnsContext'
+import { ColumnsFooterContentProvider } from '@/modules/taskList/Columns/context/ColumnsFooterContentProvider'
+import { ColumnsFooterContent } from '@/modules/taskList/Columns/context/columnsFooterContent'
 import { ArchiveTaskListButton } from '@/modules/taskList/ArchivedTasks/components/ArchiveTaskListButton'
 import { AddNewTaskInput } from '@/modules/taskList/components/AddNewTaskInput'
 import { TaskListInEachColumn } from '@/modules/taskList/TaskListInEachColumn'
 import PageContainer from './PageContainer'
 import { useBoardQuery } from '@/modules/board/hooks/useBoardQuery'
 import { USER_IS_IN } from '@/ui/organisms/userIsIn'
-import { ListView } from '@/modules/taskList/Columns/ListView'
-import { TableView } from '@/modules/taskList/Columns/TableView'
+import { ListView } from '@/modules/taskList/components/ListView'
+import { TableView } from '@/modules/taskList/components/TableView'
 import { useTypeOfView } from '@/modules/TypeOfView/useTypeOfView'
 import { NoteInput } from '@/modules/notes/components/NoteInput'
 
-const columnsData: ColumnsContextContent = {
+const columnsData: ColumnsFooterContent = {
 	firstColumnFooterContent: <AddNewTaskInput />,
 	lastColumnFooterContent: <ArchiveTaskListButton />,
 }
@@ -22,7 +23,7 @@ export function BoardPage() {
 	return (
 		<PageContainer title={board?.name || 'Board'} whereUserIs={USER_IS_IN.BOARD}>
 			<Board>
-				<ColumnsProvider value={columnsData}>
+				<ColumnsFooterContentProvider value={columnsData}>
 					{typeOfView == 'LIST' && (
 						<div className='p-5'>
 							<ListView>{TaskListInEachColumn}</ListView>
@@ -37,7 +38,7 @@ export function BoardPage() {
 							</div>
 						</div>
 					)}
-				</ColumnsProvider>
+				</ColumnsFooterContentProvider>
 			</Board>
 		</PageContainer>
 	)
