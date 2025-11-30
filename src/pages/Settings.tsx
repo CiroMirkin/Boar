@@ -6,7 +6,7 @@ import { ThemeSelection } from '../modules/Theme/ThemeSelection'
 import { ReminderList } from '@/modules/taskList/Reminder/ReminderList'
 import PageContainer from './PageContainer'
 import { ToggleTypeOfView } from '@/modules/TypeOfView/ToggleTypeOfView'
-import { EnableTags } from '@/modules/taskList/Tags/components/EnableTags'
+import { EnableTags } from '@/modules/taskList/components/Tags/components/EnableTags'
 
 import { ConfigColumns } from '@/modules/taskList/components/Columns/components/ConfigColumns'
 import { useListOfTasksInColumnsQuery } from '@/modules/taskList/hooks/useListOfTasksInColumnsQuery'
