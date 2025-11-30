@@ -1,10 +1,8 @@
-import { ColumnList } from '@/modules/columnList/models/columnList'
-import { TaskListInEachColumn } from '@/modules/taskList/models/taskList'
+import { TaskBoard } from '@/modules/taskList/models/taskBoard'
 
 export interface UserBoardOnSupabase {
 	id: string
 	user_id: string | undefined
 	name: string
-	column_list: ColumnList
-	task_list_in_each_column: TaskListInEachColumn
+	task_list_in_each_column: TaskBoard
 }
