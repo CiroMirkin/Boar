@@ -9,11 +9,13 @@ import { sortListOfTasksInColumnsByPriority } from '../../models/sortListOfTasks
 import { useArchivedTasksQuery } from '../hooks/useArchivedTasksQuery'
 import { deleteThisArchivedTask } from '../useCase/deleteArchivedTask'
 import { addChangeToTaskTimelineHistory } from '../../useCase/addChangeToTaskTimelineHistory'
+import { useTaskListInEachColumn } from '../../hooks/useTaskListInEachColumn'
 
 export function ReturnTaskToBoardButton() {
 	const { t } = useTranslation()
 	const task = useContext(TaskContext)
-	const { listOfTaskInColumns, updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const { updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const listOfTaskInColumns = useTaskListInEachColumn()
 	const { archivedTasks, updateArchivedTasks } = useArchivedTasksQuery()
 
 	const returnTaskToLastColumnAction = () => {
@@ -23,7 +25,7 @@ export function ReturnTaskToBoardButton() {
 		})
 		const updatedListOfTaskInColumns = sortListOfTasksInColumnsByPriority(
 			addTaskInTheLastColumn({
-				taskListInEachColumn: listOfTaskInColumns || [],
+				taskListInEachColumn: listOfTaskInColumns,
 				task: { ...task, timelineHistory },
 			})
 		)

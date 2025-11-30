@@ -1,4 +1,5 @@
 import { TaskListInEachColumn } from '@/modules/taskList/models/taskList'
+import { TaskBoard } from '../models/taskBoard'
 
 interface deleteLastTaskListParams {
 	taskListInEachColumn: TaskListInEachColumn
@@ -21,16 +22,11 @@ export const cleanLastTaskList = ({
 	})
 }
 
-interface deleteTheTaskListInThisIndexParams {
-	index: number
-	taskListInEachColumn: TaskListInEachColumn
+interface deleteTheTaskColumnParams {
+	id: string
+	taskBoard: TaskBoard
 }
 
-export const deleteTheTaskListInThisIndex = ({
-	index,
-	taskListInEachColumn,
-}: deleteTheTaskListInThisIndexParams): TaskListInEachColumn => {
-	return taskListInEachColumn
-		.filter((_, currentIndex) => currentIndex !== index)
-		.map((column) => [...column])
+export const deleteThisTaskColumn = ({ id, taskBoard }: deleteTheTaskColumnParams): TaskBoard => {
+	return taskBoard.filter((taskColumn) => taskColumn.id !== id)
 }

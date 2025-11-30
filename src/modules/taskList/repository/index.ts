@@ -1,5 +1,5 @@
 import { Session } from '@supabase/supabase-js'
-import { TaskListInEachColumn } from '../models/taskList'
+import { TaskBoard } from '../models/taskBoard'
 import { TaskListInEachColumnRepository } from './taskListInEachColumnRepository'
 import LocalStorageTaskListInEachColumnRepository from './localStorageTaskListsRepository'
 import SupabaseTaskListInEachColumnRepository from './supabaseTaskListsRepository'
@@ -14,9 +14,7 @@ const getTaskListInEachColumnRepository = (
 	return new LocalStorageTaskListInEachColumnRepository()
 }
 
-export const fetchTaskListInEachColumn = async (
-	session: Session | null
-): Promise<TaskListInEachColumn> => {
+export const fetchTaskListInEachColumn = async (session: Session | null): Promise<TaskBoard> => {
 	const repository = getTaskListInEachColumnRepository(session)
 	return repository.getAll()
 }
@@ -25,7 +23,7 @@ export const saveTaskListInEachColumn = async ({
 	taskListInEachColumn,
 	session,
 }: {
-	taskListInEachColumn: TaskListInEachColumn
+	taskListInEachColumn: TaskBoard
 	session: Session | null
 }): Promise<void> => {
 	const repository = getTaskListInEachColumnRepository(session)

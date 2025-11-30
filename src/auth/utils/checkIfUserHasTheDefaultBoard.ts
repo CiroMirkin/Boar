@@ -1,8 +1,7 @@
 import { isDefaultBoardName } from '@/modules/board/models/board'
-import { isDefaultColumnList } from '@/modules/columnList/models/columnList'
 import { defaultNotes } from '@/modules/notes/model/notes'
-import { emptyTaskListInEachColumn } from '@/modules/taskList/models/taskList'
 import { getActualUserBoard } from './getActualUserBoard'
+import { emptyTaskBoard } from '@/modules/taskList/models/taskBoard'
 
 /**
  * Verifica los valores dentro del estado local (Redux).
@@ -13,9 +12,8 @@ export const checkIfUserHasTheDefaultBoard = async (): Promise<boolean> => {
 		await getActualUserBoard()
 	return (
 		isDefaultBoardName(actualUserBoard.name) &&
-		isDefaultColumnList(actualUserBoard.column_list) &&
 		JSON.stringify(actualUserBoard.task_list_in_each_column) ===
-			JSON.stringify(emptyTaskListInEachColumn) &&
+			JSON.stringify(emptyTaskBoard) &&
 		actualUserBoardAccessories.notes === defaultNotes
 	)
 }

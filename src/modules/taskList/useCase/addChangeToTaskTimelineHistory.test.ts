@@ -5,7 +5,6 @@ import { vi } from 'vitest'
 const emptyTaskForTest: taskModel = {
 	id: '',
 	descriptionText: '',
-	columnPosition: '1',
 }
 
 describe('addChangeToTaskTimelineHistory', () => {

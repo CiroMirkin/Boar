@@ -7,7 +7,6 @@ describe('Actualizar las notas de una tarea.', () => {
 		const taskToUpdate: taskModel = {
 			id: '1',
 			descriptionText: 'Task 1',
-			columnPosition: '1',
 			notesAndComments: '',
 		}
 
@@ -28,7 +27,6 @@ describe('Actualizar las notas de una tarea.', () => {
 		const taskToUpdate: taskModel = {
 			id: '1',
 			descriptionText: 'Task 1',
-			columnPosition: '1',
 			notesAndComments: '',
 		}
 
@@ -49,7 +47,6 @@ describe('Actualizar las notas de una tarea.', () => {
 		const taskToUpdate: taskModel = {
 			id: '1',
 			descriptionText: 'Task 1',
-			columnPosition: '1',
 			notesAndComments: '',
 		}
 
@@ -72,7 +69,6 @@ describe('Actualizar las notas de una tarea.', () => {
 		const taskToUpdate: taskModel = {
 			id: '1',
 			descriptionText: 'Task 1',
-			columnPosition: '1',
 			notesAndComments: 'Old notes',
 		}
 
@@ -93,7 +89,6 @@ describe('Actualizar las notas de una tarea.', () => {
 		const taskToUpdate: taskModel = {
 			id: '1',
 			descriptionText: 'Task 1',
-			columnPosition: '1',
 			notesAndComments: '',
 		}
 
@@ -114,7 +109,6 @@ describe('Actualizar las notas de una tarea.', () => {
 		const taskToUpdate: taskModel = {
 			id: '1',
 			descriptionText: 'Task 1',
-			columnPosition: '1',
 			notesAndComments: '',
 		}
 
@@ -135,7 +129,6 @@ describe('Actualizar las notas de una tarea.', () => {
 		const taskToUpdate: taskModel = {
 			id: '1',
 			descriptionText: 'Task 1',
-			columnPosition: '1',
 			// notesAndComments es undefined
 		}
 

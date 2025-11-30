@@ -1,10 +1,15 @@
-import { getIndexOfColumnInColumnList } from '../../columnList/models/column'
-import { taskUseCaseParams } from './actions'
-import { TaskList } from '@/modules/taskList/models/taskList'
+import { TaskList, TaskListInEachColumn } from '@/modules/taskList/models/taskList'
+import { findTaskColumnIndex } from './moveTask'
+import { taskModel } from '../models/task'
 
-export function deleteThisTask({ taskListInEachColumn, task }: taskUseCaseParams): TaskList[] {
+interface DeleteThisTaskParams {
+	taskListInEachColumn: TaskListInEachColumn
+	task: taskModel
+}
+
+export function deleteThisTask({ taskListInEachColumn, task }: DeleteThisTaskParams): TaskList[] {
 	const taskId = task.id
-	const columnIndex = getIndexOfColumnInColumnList(task.columnPosition)
+	const columnIndex = findTaskColumnIndex(taskListInEachColumn, task.id)
 
 	const newTaskListInEachColumn = taskListInEachColumn.map((taskList, index) => {
 		if (index === columnIndex) {

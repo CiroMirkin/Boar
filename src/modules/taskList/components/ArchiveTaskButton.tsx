@@ -9,6 +9,7 @@ import { useArchivedTasksQuery } from '../ArchivedTasks/hooks/useArchivedTasksQu
 import { archiveThisTask } from '../ArchivedTasks/useCase/archiveTask'
 import { useCallback } from 'react'
 import { addChangeToTaskTimelineHistory } from '../useCase/addChangeToTaskTimelineHistory'
+import { useTaskListInEachColumn } from '../hooks/useTaskListInEachColumn'
 
 interface ArchiveTaskButtonProps {
 	handleClick: (action: () => void) => void
@@ -17,11 +18,11 @@ interface ArchiveTaskButtonProps {
 export function ArchiveTaskButton({ handleClick }: ArchiveTaskButtonProps) {
 	const { t } = useTranslation()
 	const data = useDataOfTheTask()
-	const { listOfTaskInColumns, updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const { updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const listOfTaskInColumns = useTaskListInEachColumn()
 	const { updateArchivedTasks, archivedTasks } = useArchivedTasksQuery()
 
 	const archiveTaskAction = useCallback(() => {
-		const currentTaskList = listOfTaskInColumns ?? []
 		const timelineHistory = addChangeToTaskTimelineHistory({
 			task: data,
 			columnName: t('archive.archived'),
@@ -32,7 +33,7 @@ export function ArchiveTaskButton({ handleClick }: ArchiveTaskButtonProps) {
 		})
 
 		const updatedList = deleteThisTask({
-			taskListInEachColumn: currentTaskList,
+			taskListInEachColumn: listOfTaskInColumns,
 			task: data,
 		})
 

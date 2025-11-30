@@ -1,5 +1,5 @@
 import { toast } from 'sonner'
-import { useCheckIfTaskIsInTheLastColumn } from '@/sharedByModules/hooks/useCheckIfTaskIsInTheLastColumn'
+import { useCheckIfTaskIsInTheLastColumn } from '@/modules/taskList/components/Columns/hooks/useCheckIfTaskIsInTheLastColumn'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
 import { MoveButttons } from './MoveButtons'
 import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
