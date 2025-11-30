@@ -1,6 +1,6 @@
 import { Board } from '@/modules/board/Board'
-import { ColumnsFooterContentProvider } from '@/modules/taskList/Columns/context/ColumnsFooterContentProvider'
-import { ColumnsFooterContent } from '@/modules/taskList/Columns/context/columnsFooterContent'
+import { ColumnsFooterContentProvider } from '@/modules/taskList/Columns/context/ColumnsFooter/ColumnsFooterContentProvider'
+import { ColumnsFooterContent } from '@/modules/taskList/Columns/context/ColumnsFooter/columnsFooterContent'
 import { ArchiveTaskListButton } from '@/modules/taskList/ArchivedTasks/components/ArchiveTaskListButton'
 import { AddNewTaskInput } from '@/modules/taskList/components/AddNewTaskInput'
 import { TaskListInEachColumn } from '@/modules/taskList/TaskListInEachColumn'

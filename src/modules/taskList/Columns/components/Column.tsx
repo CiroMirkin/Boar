@@ -1,7 +1,7 @@
 import React, { createContext, DragEvent, useContext, useState } from 'react'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/molecules/card'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
-import { ColumnsFooterContext } from '../context/ColumnsFooterContext'
+import { ColumnsFooterContext } from '../context/ColumnsFooter/ColumnsFooterContext'
 import { ColumnPosition } from '../model/columnPosition'
 
 const ColumnContext = createContext('' as ColumnPosition)
