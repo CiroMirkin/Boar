@@ -1,4 +1,4 @@
-import { Archive } from '@/modules/taskList/ArchivedTasks/models/archive'
+import { Archive } from '../models/archive'
 import { ArchiveRepository } from './archiveRepository'
 
 export default class LocalStorageArchiveRepository implements ArchiveRepository {

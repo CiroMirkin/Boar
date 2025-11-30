@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { TaskContext } from '../../../../ui/organisms/BlankTask'
+import { TaskContext } from '@/ui/organisms/BlankTask'
 import { Button } from '@/ui/atoms/button'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'

@@ -1,15 +1,15 @@
 import { toast } from 'sonner'
 import { Button } from '@/ui/atoms/button'
 import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
-import { useCheckForTasksInLastColumn } from '../../components/Columns/hooks/useCheckForTasksInLastColumn'
+import { useCheckForTasksInLastColumn } from '../../Columns/hooks/useCheckForTasksInLastColumn'
 import { useTranslation } from 'react-i18next'
 import { ArchiveIcon } from '@/ui/atoms/icons'
-import { useListOfTasksInColumnsQuery } from '../../hooks/useListOfTasksInColumnsQuery'
-import { cleanLastTaskList } from '../../useCase/deleteTaskList'
+import { useListOfTasksInColumnsQuery } from '@/modules/taskList/hooks/useListOfTasksInColumnsQuery'
+import { cleanLastTaskList } from '@/modules/taskList/useCase/deleteTaskList'
 import { archiveTaskListInTheLastColumn } from '../useCase/archiveTaskList'
 import { useArchivedTasksQuery } from '../hooks/useArchivedTasksQuery'
-import { addChangeToEachTaskInList } from '../../useCase/addChangeToEachTaskInList'
-import { useTaskListInEachColumn } from '../../hooks/useTaskListInEachColumn'
+import { addChangeToEachTaskInList } from '@/modules/taskList/useCase/addChangeToEachTaskInList'
+import { useTaskListInEachColumn } from '@/modules/taskList/hooks/useTaskListInEachColumn'
 
 export function ArchiveTaskListButton() {
 	const { t } = useTranslation()

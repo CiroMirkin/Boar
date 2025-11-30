@@ -1,310 +1,279 @@
 import { emptyTask } from '@/modules/taskList/models/task'
-import { TaskList } from '@/modules/taskList/models/taskList'
-import { archiveTaskListInTheLastColumn } from './archiveTaskList'
-import { getFullDate } from '../../../../sharedByModules/utils/getTime'
+import { archiveThisTask } from './archiveTask'
+import { Archive } from '../models/archive'
+import { getFullDate } from '@/sharedByModules/utils/getTime'
 import { expect } from 'vitest'
 
-describe('Archivar lista de tareas.', () => {
-	test('Se deberían archivar todas las tareas de la columna indicada.', () => {
+describe('Archivar una tarea.', () => {
+	test('Se debería archivar la tarea indicada.', () => {
 		const task = { ...emptyTask }
-		const taskListInEachColumn: TaskList[] = [[{ ...task }]]
-		expect(archiveTaskListInTheLastColumn({ taskListInEachColumn, archive: [] })).toStrictEqual(
-			[
-				{
-					date: getFullDate(),
-					tasklist: [{ ...task }],
-				},
-			]
-		)
+		const archive: Archive = []
+		expect(archiveThisTask({ task, archive })).toStrictEqual([
+			{
+				date: getFullDate(),
+				tasklist: [
+					{
+						...task,
+					},
+				],
+			},
+		])
 	})
 
-	test('No se debería poder archivar una lista de tareas vacía.', () => {
-		expect(() => {
-			return archiveTaskListInTheLastColumn({ taskListInEachColumn: [[]], archive: [] })
-		}).toThrow('No hay tareas que archivar.')
+	test('La tarea archivada debería estar al inicio de la lista de tareas archivadas.', () => {
+		const task = {
+			id: '',
+			descriptionText: 'pipi',
+		}
+		const archive: Archive = [
+			{
+				date: getFullDate(),
+				tasklist: [
+					{
+						id: '',
+						descriptionText: 'pupu',
+					},
+				],
+			},
+		]
+		expect(archiveThisTask({ task, archive })).toStrictEqual([
+			{
+				date: getFullDate(),
+				tasklist: [
+					{
+						id: '',
+						descriptionText: 'pipi',
+					},
+					{
+						id: '',
+						descriptionText: 'pupu',
+					},
+				],
+			},
+		])
 	})
 
-	test('No debería haber mas de 30 tareas diarias archivadas.', () => {
+	test('Se archiva la tarea y ya hay tareas archivadas ese mismo dia y otros.', () => {
+		const task = {
+			id: '',
+			descriptionText: 'tarea',
+		}
+		const archive: Archive = [
+			{
+				date: getFullDate(),
+				tasklist: [
+					{
+						id: '',
+						descriptionText: 'tarea que ya estaba archivada',
+					},
+				],
+			},
+			{
+				date: 'sábado, 20 de abril de 2024',
+				tasklist: [
+					{
+						id: 'f2c65892-00d3-40b9-adc7-d00da0d16bd6',
+						descriptionText: 'cafe https://lucide.dev/icons/circle-help',
+					},
+					{
+						id: '7054954d-2d6a-44db-9e84-f6e0b7d82876',
+						descriptionText: 'taskDescriptionWithURL',
+					},
+					{
+						id: '12ca76a7-2f02-4c14-8860-f3c6614b3ccf',
+						descriptionText: 'https://lucide.dev/icons/circle-help',
+					},
+				],
+			},
+			{
+				date: 'domingo, 14 de abril de 2024',
+				tasklist: [
+					{
+						id: '7f1a444c-2f48-41fe-97cf-9ca6d56db9e7',
+						descriptionText: 'cafe4',
+					},
+					{
+						id: '36dfee79-0a8e-4b2f-b38b-3b75565192c2',
+						descriptionText: 'cafe3',
+					},
+					{
+						id: '093686ec-3085-42bd-bc12-874f10246406',
+						descriptionText: 'cafe3',
+					},
+					{
+						id: '2c73dfc6-f325-4e06-8a22-12946a2d8f44',
+						descriptionText: 'cafe2',
+					},
+				],
+			},
+		]
+
+		expect(archiveThisTask({ task, archive })).toStrictEqual([
+			{
+				date: getFullDate(),
+				tasklist: [
+					{
+						id: '',
+						descriptionText: 'tarea',
+					},
+					{
+						id: '',
+						descriptionText: 'tarea que ya estaba archivada',
+					},
+				],
+			},
+			{
+				date: 'sábado, 20 de abril de 2024',
+				tasklist: [
+					{
+						id: 'f2c65892-00d3-40b9-adc7-d00da0d16bd6',
+						descriptionText: 'cafe https://lucide.dev/icons/circle-help',
+					},
+					{
+						id: '7054954d-2d6a-44db-9e84-f6e0b7d82876',
+						descriptionText: 'taskDescriptionWithURL',
+					},
+					{
+						id: '12ca76a7-2f02-4c14-8860-f3c6614b3ccf',
+						descriptionText: 'https://lucide.dev/icons/circle-help',
+					},
+				],
+			},
+			{
+				date: 'domingo, 14 de abril de 2024',
+				tasklist: [
+					{
+						id: '7f1a444c-2f48-41fe-97cf-9ca6d56db9e7',
+						descriptionText: 'cafe4',
+					},
+					{
+						id: '36dfee79-0a8e-4b2f-b38b-3b75565192c2',
+						descriptionText: 'cafe3',
+					},
+					{
+						id: '093686ec-3085-42bd-bc12-874f10246406',
+						descriptionText: 'cafe3',
+					},
+					{
+						id: '2c73dfc6-f325-4e06-8a22-12946a2d8f44',
+						descriptionText: 'cafe2',
+					},
+				],
+			},
+		])
+	})
+
+	test('Se archiva la primer tarea del dia y hay tareas archivadas de otros días.', () => {
+		const task = {
+			id: '',
+			descriptionText: 'Primer tarea del dia',
+		}
+		const archive: Archive = [
+			{
+				date: 'sábado, 20 de abril de 2024',
+				tasklist: [
+					{
+						id: 'f2c65892-00d3-40b9-adc7-d00da0d16bd6',
+						descriptionText: 'cafe https://lucide.dev/icons/circle-help',
+					},
+					{
+						id: '7054954d-2d6a-44db-9e84-f6e0b7d82876',
+						descriptionText: 'taskDescriptionWithURL',
+					},
+					{
+						id: '12ca76a7-2f02-4c14-8860-f3c6614b3ccf',
+						descriptionText: 'https://lucide.dev/icons/circle-help',
+					},
+				],
+			},
+			{
+				date: 'domingo, 14 de abril de 2024',
+				tasklist: [
+					{
+						id: '7f1a444c-2f48-41fe-97cf-9ca6d56db9e7',
+						descriptionText: 'cafe4',
+					},
+					{
+						id: '36dfee79-0a8e-4b2f-b38b-3b75565192c2',
+						descriptionText: 'cafe3',
+					},
+					{
+						id: '093686ec-3085-42bd-bc12-874f10246406',
+						descriptionText: 'cafe3',
+					},
+					{
+						id: '2c73dfc6-f325-4e06-8a22-12946a2d8f44',
+						descriptionText: 'cafe2',
+					},
+				],
+			},
+		]
+
+		expect(archiveThisTask({ task, archive })).toStrictEqual([
+			{
+				date: getFullDate(),
+				tasklist: [
+					{
+						id: '',
+						descriptionText: 'Primer tarea del dia',
+					},
+				],
+			},
+			{
+				date: 'sábado, 20 de abril de 2024',
+				tasklist: [
+					{
+						id: 'f2c65892-00d3-40b9-adc7-d00da0d16bd6',
+						descriptionText: 'cafe https://lucide.dev/icons/circle-help',
+					},
+					{
+						id: '7054954d-2d6a-44db-9e84-f6e0b7d82876',
+						descriptionText: 'taskDescriptionWithURL',
+					},
+					{
+						id: '12ca76a7-2f02-4c14-8860-f3c6614b3ccf',
+						descriptionText: 'https://lucide.dev/icons/circle-help',
+					},
+				],
+			},
+			{
+				date: 'domingo, 14 de abril de 2024',
+				tasklist: [
+					{
+						id: '7f1a444c-2f48-41fe-97cf-9ca6d56db9e7',
+						descriptionText: 'cafe4',
+					},
+					{
+						id: '36dfee79-0a8e-4b2f-b38b-3b75565192c2',
+						descriptionText: 'cafe3',
+					},
+					{
+						id: '093686ec-3085-42bd-bc12-874f10246406',
+						descriptionText: 'cafe3',
+					},
+					{
+						id: '2c73dfc6-f325-4e06-8a22-12946a2d8f44',
+						descriptionText: 'cafe2',
+					},
+				],
+			},
+		])
+	})
+
+	test('No se debería poder archivar la tarea si ya hay 30 tareas archivadas.', () => {
 		const task = {
 			id: '',
 			descriptionText: '',
 		}
-		const taskListInEachColumn: TaskList[] = [[], [], []]
-		const firstColumnContent = new Array(31).fill(task)
-		taskListInEachColumn[2] = firstColumnContent
+		const archive: Archive = [
+			{
+				date: getFullDate(),
+				tasklist: new Array(30).fill({ ...emptyTask }),
+			},
+		]
+
 		expect(() => {
-			return archiveTaskListInTheLastColumn({ taskListInEachColumn, archive: [] })
+			return archiveThisTask({ task, archive })
 		}).toThrow('El archivo diario esta lleno :(')
-	})
-
-	test('No debería haber mas de 60 días archivados.', () => {
-		const task = {
-			id: '',
-			descriptionText: '',
-		}
-		const taskListInEachColumn: TaskList[] = [[], [], [{ ...task }]]
-		const archive = new Array(60).fill({
-			date: '',
-			tasklist: [[]],
-		})
-
-		expect(() => {
-			return archiveTaskListInTheLastColumn({ taskListInEachColumn, archive })
-		}).toThrow('El archivo esta lleno :(')
-	})
-})
-
-describe('Si se archivan varias tareas el mismo dia, estas deberían archivarse juntas.', () => {
-	test('Hay tareas archivadas y se archivan mas. Todo en el mismo dia.', () => {
-		const task = {
-			id: '',
-			descriptionText: 'Nueva tarea para archivar',
-		}
-		const taskListInEachColumn: TaskList[] = [[{ ...task }]]
-		const archive = [
-			{
-				date: getFullDate(),
-				tasklist: [
-					{
-						id: '',
-						descriptionText: 'Tarea que ya estaba archivada',
-					},
-				],
-			},
-		]
-		expect(archiveTaskListInTheLastColumn({ taskListInEachColumn, archive })).toStrictEqual([
-			{
-				date: getFullDate(),
-				tasklist: [
-					{
-						id: '',
-						descriptionText: 'Nueva tarea para archivar',
-					},
-					{
-						id: '',
-						descriptionText: 'Tarea que ya estaba archivada',
-					},
-				],
-			},
-		])
-	})
-
-	test('Hay tareas archivadas de otro dia. Hoy se archivan mas.', () => {
-		const taskListInEachColumn: TaskList[] = [
-			[],
-			[
-				{
-					id: '',
-					descriptionText: 'tarea1',
-				},
-				{
-					id: '',
-					descriptionText: 'Tarea2',
-				},
-			],
-		]
-		const archive = [
-			{
-				date: 'sábado, 20 de abril de 2024',
-				tasklist: [
-					{
-						id: 'f2c65892-00d3-40b9-adc7-d00da0d16bd6',
-						descriptionText: 'cafe https://lucide.dev/icons/circle-help',
-					},
-					{
-						id: '7054954d-2d6a-44db-9e84-f6e0b7d82876',
-						descriptionText: 'taskDescriptionWithURL',
-					},
-					{
-						id: '12ca76a7-2f02-4c14-8860-f3c6614b3ccf',
-						descriptionText: 'https://lucide.dev/icons/circle-help',
-					},
-				],
-			},
-			{
-				date: 'domingo, 14 de abril de 2024',
-				tasklist: [
-					{
-						id: '7f1a444c-2f48-41fe-97cf-9ca6d56db9e7',
-						descriptionText: 'cafe4',
-					},
-					{
-						id: '36dfee79-0a8e-4b2f-b38b-3b75565192c2',
-						descriptionText: 'cafe3',
-					},
-					{
-						id: '093686ec-3085-42bd-bc12-874f10246406',
-						descriptionText: 'cafe3',
-					},
-					{
-						id: '2c73dfc6-f325-4e06-8a22-12946a2d8f44',
-						descriptionText: 'cafe2',
-					},
-				],
-			},
-		]
-		expect(archiveTaskListInTheLastColumn({ taskListInEachColumn, archive })).toStrictEqual([
-			{
-				date: getFullDate(),
-				tasklist: [
-					{
-						id: '',
-						descriptionText: 'tarea1',
-					},
-					{
-						id: '',
-						descriptionText: 'Tarea2',
-					},
-				],
-			},
-			{
-				date: 'sábado, 20 de abril de 2024',
-				tasklist: [
-					{
-						id: 'f2c65892-00d3-40b9-adc7-d00da0d16bd6',
-						descriptionText: 'cafe https://lucide.dev/icons/circle-help',
-					},
-					{
-						id: '7054954d-2d6a-44db-9e84-f6e0b7d82876',
-						descriptionText: 'taskDescriptionWithURL',
-					},
-					{
-						id: '12ca76a7-2f02-4c14-8860-f3c6614b3ccf',
-						descriptionText: 'https://lucide.dev/icons/circle-help',
-					},
-				],
-			},
-			{
-				date: 'domingo, 14 de abril de 2024',
-				tasklist: [
-					{
-						id: '7f1a444c-2f48-41fe-97cf-9ca6d56db9e7',
-						descriptionText: 'cafe4',
-					},
-					{
-						id: '36dfee79-0a8e-4b2f-b38b-3b75565192c2',
-						descriptionText: 'cafe3',
-					},
-					{
-						id: '093686ec-3085-42bd-bc12-874f10246406',
-						descriptionText: 'cafe3',
-					},
-					{
-						id: '2c73dfc6-f325-4e06-8a22-12946a2d8f44',
-						descriptionText: 'cafe2',
-					},
-				],
-			},
-		])
-	})
-
-	test('Hay tareas archivadas de otro dia. Hoy ya hay tareas archivadas y se archivan mas.', () => {
-		const task = {
-			id: '',
-			descriptionText: 'tarea1',
-		}
-		const taskListInEachColumn: TaskList[] = [[], [{ ...task }]]
-		const archive = [
-			{
-				date: getFullDate(),
-				tasklist: [
-					{
-						id: '',
-						descriptionText: 'Tarea que ya estaba archivada',
-					},
-				],
-			},
-			{
-				date: 'sábado, 20 de abril de 2024',
-				tasklist: [
-					{
-						id: 'f2c65892-00d3-40b9-adc7-d00da0d16bd6',
-						descriptionText: 'cafe https://lucide.dev/icons/circle-help',
-					},
-					{
-						id: '7054954d-2d6a-44db-9e84-f6e0b7d82876',
-						descriptionText: 'taskDescriptionWithURL',
-					},
-					{
-						id: '12ca76a7-2f02-4c14-8860-f3c6614b3ccf',
-						descriptionText: 'https://lucide.dev/icons/circle-help',
-					},
-				],
-			},
-			{
-				date: 'domingo, 14 de abril de 2024',
-				tasklist: [
-					{
-						id: '7f1a444c-2f48-41fe-97cf-9ca6d56db9e7',
-						descriptionText: 'cafe4',
-					},
-					{
-						id: '36dfee79-0a8e-4b2f-b38b-3b75565192c2',
-						descriptionText: 'cafe3',
-					},
-					{
-						id: '093686ec-3085-42bd-bc12-874f10246406',
-						descriptionText: 'cafe3',
-					},
-					{
-						id: '2c73dfc6-f325-4e06-8a22-12946a2d8f44',
-						descriptionText: 'cafe2',
-					},
-				],
-			},
-		]
-		expect(archiveTaskListInTheLastColumn({ taskListInEachColumn, archive })).toStrictEqual([
-			{
-				date: getFullDate(),
-				tasklist: [
-					{
-						id: '',
-						descriptionText: 'tarea1',
-					},
-					{
-						id: '',
-						descriptionText: 'Tarea que ya estaba archivada',
-					},
-				],
-			},
-			{
-				date: 'sábado, 20 de abril de 2024',
-				tasklist: [
-					{
-						id: 'f2c65892-00d3-40b9-adc7-d00da0d16bd6',
-						descriptionText: 'cafe https://lucide.dev/icons/circle-help',
-					},
-					{
-						id: '7054954d-2d6a-44db-9e84-f6e0b7d82876',
-						descriptionText: 'taskDescriptionWithURL',
-					},
-					{
-						id: '12ca76a7-2f02-4c14-8860-f3c6614b3ccf',
-						descriptionText: 'https://lucide.dev/icons/circle-help',
-					},
-				],
-			},
-			{
-				date: 'domingo, 14 de abril de 2024',
-				tasklist: [
-					{
-						id: '7f1a444c-2f48-41fe-97cf-9ca6d56db9e7',
-						descriptionText: 'cafe4',
-					},
-					{
-						id: '36dfee79-0a8e-4b2f-b38b-3b75565192c2',
-						descriptionText: 'cafe3',
-					},
-					{
-						id: '093686ec-3085-42bd-bc12-874f10246406',
-						descriptionText: 'cafe3',
-					},
-					{
-						id: '2c73dfc6-f325-4e06-8a22-12946a2d8f44',
-						descriptionText: 'cafe2',
-					},
-				],
-			},
-		])
 	})
 })

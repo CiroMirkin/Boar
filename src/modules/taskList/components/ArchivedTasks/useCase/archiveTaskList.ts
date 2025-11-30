@@ -1,12 +1,12 @@
 import BusinessError from '@/sharedByModules/errors/businessError'
 import { TaskList } from '@/modules/taskList/models/taskList'
-import { getFullDate } from '../../../../sharedByModules/utils/getTime'
+import { getFullDate } from '@/sharedByModules/utils/getTime'
 import {
 	Archive,
 	isItWithinTheArchiveLimit,
 	isItWithinTheDailyArchiveLimit,
-} from '@/modules/taskList/ArchivedTasks/models/archive'
-import { getDateOfTheFirstTaskListArchived } from '@/modules/taskList/ArchivedTasks/models/archive'
+} from '../models/archive'
+import { getDateOfTheFirstTaskListArchived } from '../models/archive'
 
 interface archiveTaskListParams {
 	taskListInEachColumn: TaskList[]
