@@ -1,5 +1,5 @@
 import BusinessError from '@/sharedByModules/errors/businessError'
-import { Tag } from '../Tags/model/tags'
+import { Tag } from '../components/Tags/model/tags'
 import { NotesAndComments } from './NotesAndComments'
 import { TaskTimelineHistory } from './taskTimelineHistory'
 

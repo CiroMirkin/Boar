@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import tagsReducer from './modules/taskList/Tags/state/tagsReducer'
+import tagsReducer from './modules/taskList/components/Tags/state/tagsReducer'
 import reminderReducer from './modules/taskList/Reminder/state/reminderReducer'
 
 export const store = configureStore({
