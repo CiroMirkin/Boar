@@ -12,7 +12,7 @@ import { addTaskInFirstColumn } from '../useCase/addTask'
 import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
 import { sortListOfTasksInColumnsByPriority } from '../models/sortListOfTasksInColumnsByPriority'
 import { addChangeToTaskTimelineHistory } from '../useCase/addChangeToTaskTimelineHistory'
-import { useGetColumnName } from '@/sharedByModules/hooks/useGetColumnName'
+import { useGetColumnNameFromPosition } from '@/modules/taskList/Columns/hooks/useGetColumnNameFromPosition'
 import { useTaskListInEachColumn } from '../hooks/useTaskListInEachColumn'
 
 export function AddNewTaskInput() {
@@ -21,7 +21,7 @@ export function AddNewTaskInput() {
 	const { updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
 	const listOfTaskInColumns = useTaskListInEachColumn()
 	const selectedTags = useUserSelectedTags()
-	const getColumnName = useGetColumnName()
+	const getColumnName = useGetColumnNameFromPosition()
 
 	const dispatch = useDispatch()
 
@@ -29,7 +29,6 @@ export function AddNewTaskInput() {
 		try {
 			const task = getNewTask({
 				descriptionText: newTaskDescription,
-				columnPosition: '1',
 			})
 
 			const updatedList = sortListOfTasksInColumnsByPriority(
