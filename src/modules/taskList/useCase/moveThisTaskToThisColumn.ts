@@ -1,4 +1,3 @@
-import { getIndexOfColumnInColumnList } from '@/modules/columnList/models/column'
 import { taskModel } from '../models/task'
 import { isThisTaskListWithinTheLimit, TaskListInEachColumn } from '../models/taskList'
 import { deleteThisTask } from './deleteTask'
@@ -22,7 +21,7 @@ export const moveThisTaskToThisColumn = (params: Params): TaskListInEachColumn =
 		task,
 	})
 
-	const indexOfTheNewTaskColumn = getIndexOfColumnInColumnList(newColumnPosition)
+	const indexOfTheNewTaskColumn = parseInt(newColumnPosition) - 1
 	const canMoveTheTask = isThisTaskListWithinTheLimit({
 		taskList: newTaskListOfColumns[indexOfTheNewTaskColumn],
 	})
@@ -30,7 +29,6 @@ export const moveThisTaskToThisColumn = (params: Params): TaskListInEachColumn =
 	if (canMoveTheTask) {
 		const movingTask: taskModel = {
 			...task,
-			columnPosition: newColumnPosition,
 		}
 		newTaskListOfColumns[indexOfTheNewTaskColumn].unshift(movingTask)
 
