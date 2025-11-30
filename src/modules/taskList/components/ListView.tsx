@@ -1,7 +1,6 @@
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
-import { ListOfColumn, ColumnsContent } from '../Columns/ListOfColumns'
+import { ListOfColumn, ColumnsContent } from './Columns/ListOfColumns'
 import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
-import { Column } from '../Columns/model/column'
 
 export function ListView({
 	children,
@@ -11,7 +10,7 @@ export function ListView({
 	className?: string
 }) {
 	const { listOfTaskInColumns } = useListOfTasksInColumnsQuery()
-	const columns: Column[] = listOfTaskInColumns.map((list) => ({
+	const columns = listOfTaskInColumns.map((list) => ({
 		name: list.status,
 		id: list.id,
 	}))

@@ -12,7 +12,7 @@ import { addTaskInFirstColumn } from '../useCase/addTask'
 import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
 import { sortListOfTasksInColumnsByPriority } from '../models/sortListOfTasksInColumnsByPriority'
 import { addChangeToTaskTimelineHistory } from '../useCase/addChangeToTaskTimelineHistory'
-import { useGetColumnNameFromPosition } from '@/modules/taskList/Columns/hooks/useGetColumnNameFromPosition'
+import { useGetColumnNameFromPosition } from '@/modules/taskList/components/Columns/hooks/useGetColumnNameFromPosition'
 import { useTaskListInEachColumn } from '../hooks/useTaskListInEachColumn'
 
 export function AddNewTaskInput() {

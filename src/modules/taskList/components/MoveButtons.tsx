@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import { useCheckIfThisTaskIsInTheFirstColumn } from '@/modules/taskList/Columns/hooks/useCheckIfThisTaskIsInTheFirstColumn'
-import { useCheckIfTaskIsInTheLastColumn } from '@/modules/taskList/Columns/hooks/useCheckIfTaskIsInTheLastColumn'
+import { useCheckIfThisTaskIsInTheFirstColumn } from '@/modules/taskList/components/Columns/hooks/useCheckIfThisTaskIsInTheFirstColumn'
+import { useCheckIfTaskIsInTheLastColumn } from '@/modules/taskList/components/Columns/hooks/useCheckIfTaskIsInTheLastColumn'
 import { Button } from '@/ui/atoms/button'
 import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
 import { ArrowLeftIcon, ArrowRightIcon } from '@/ui/atoms/icons'
@@ -9,7 +9,7 @@ import { sortListOfTasksInColumnsByPriority } from '../models/sortListOfTasksInC
 import { moveThisTaskToTheNextColumn, moveThisTaskToThePrevColumn } from '../useCase/moveTask'
 import { addChangeToTaskTimelineHistory } from '../useCase/addChangeToTaskTimelineHistory'
 import { useTaskListInEachColumn } from '../hooks/useTaskListInEachColumn'
-import { useGetColumnNameFromTask } from '../Columns/hooks/useGetColumnNameFromTask'
+import { useGetColumnNameFromTask } from './Columns/hooks/useGetColumnNameFromTask'
 
 interface MoveButtonsProps {
 	handleClick: (action: () => void) => void

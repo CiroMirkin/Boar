@@ -8,7 +8,7 @@ import PageContainer from './PageContainer'
 import { ToggleTypeOfView } from '@/modules/TypeOfView/ToggleTypeOfView'
 import { EnableTags } from '@/modules/taskList/Tags/components/EnableTags'
 
-import { ConfigColumns } from '@/modules/taskList/Columns/components/ConfigColumns'
+import { ConfigColumns } from '@/modules/taskList/components/Columns/components/ConfigColumns'
 import { useListOfTasksInColumnsQuery } from '@/modules/taskList/hooks/useListOfTasksInColumnsQuery'
 const useColumnListForReminders = (): { name: string; id: string; position: string }[] => {
 	const { listOfTaskInColumns } = useListOfTasksInColumnsQuery()
