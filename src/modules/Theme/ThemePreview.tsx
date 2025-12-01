@@ -3,7 +3,7 @@ import { useMediaQuery } from '@uidotdev/usehooks'
 import { useTranslation } from 'react-i18next'
 
 function ThemePreview() {
-	const { bg, column, task, taskText } = useTheme()
+	const { bg, column, task, taskText, columnText } = useTheme()
 	const { t } = useTranslation()
 	const isSmallDevice = useMediaQuery('only screen and (max-width : 768px)')
 
@@ -17,7 +17,7 @@ function ThemePreview() {
 			<div className={boardClass}>
 				{!isSmallDevice && (
 					<div className={columnClass}>
-						<div className={`text-sm`}>{t('default_columns.c1')}</div>
+						<div className={`text-sm ${columnText}`}>{t('default_columns.c1')}</div>
 						<div className='mt-1 flex flex-col gap-2'>
 							<div className={cardClass}>
 								<div className={cardTextClass}>
@@ -35,7 +35,7 @@ function ThemePreview() {
 				)}
 
 				<div className={columnClass}>
-					<div className={`text-sm`}>{t('default_columns.c2')}</div>
+					<div className={`text-sm ${columnText}`}>{t('default_columns.c2')}</div>
 					<div className='mt-1 flex flex-col gap-2'>
 						<div className={cardClass}>
 							<div className={cardTextClass}>
@@ -57,7 +57,7 @@ function ThemePreview() {
 				</div>
 				{!isSmallDevice && (
 					<div className={columnClass}>
-						<div className={`text-sm`}>{t('default_columns.c3')}</div>
+						<div className={`text-sm ${columnText}`}>{t('default_columns.c3')}</div>
 						<div className='mt-1 flex flex-col gap-2'>
 							<div className={cardClass}>
 								<div

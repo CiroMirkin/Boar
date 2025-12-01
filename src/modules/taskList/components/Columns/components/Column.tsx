@@ -36,7 +36,7 @@ export function Column({ columnName, columnPosition, children }: ColumnProps) {
 			<ColumnContext.Provider value={columnPosition}>
 				<Card className={columnClassName} aria-label={t(columnName)}>
 					<CardHeader className='pb-0 px-4'>
-						<CardTitle className={`opacity-[.70] ${colorTheme.text}`}>
+						<CardTitle className={`opacity-[.70] ${colorTheme.columnText || ''}`}>
 							{t(columnName)}
 						</CardTitle>
 					</CardHeader>
