@@ -7,6 +7,7 @@ import { useChangeTheme } from './ThemeContext'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
 import { CheckIcon } from '@/ui/atoms/icons'
 import { SettingSection } from '@/ui/organisms/SettingSection'
+import ThemePreview from './ThemePreview'
 
 const getColorThemeFromId = (id: string): Theme => JSON.parse(id)
 
@@ -60,8 +61,11 @@ export function ThemeSelection() {
 				{t('settings.board.board_theme_section_title')}
 			</SettingSection.Title>
 			<SettingSection.Content className='py-0 px-0 grid gap-3 bg-transparent'>
-				<div className='flex justify-around flex-wrap gap-2' onClick={handleClick}>
-					{themes}
+				<div className='flex flex-col gap-4'>
+					<ThemePreview />
+					<div className='flex justify-around flex-wrap gap-2' onClick={handleClick}>
+						{themes}
+					</div>
 				</div>
 			</SettingSection.Content>
 		</SettingSection>
