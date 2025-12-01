@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { fetchBoard, saveBoard } from '../repository/boardRepository'
 import { useSession } from '@/auth/hooks/useSession'
-import { boardModel, defaultBoard, isDefaultBoard } from '../models/board'
+import { boardModel, defaultBoard, isDefaultBoardName } from '../models/board'
 import { useTranslation } from 'react-i18next'
 import { useCallback } from 'react'
 
@@ -15,8 +15,8 @@ export const useBoardQuery = () => {
 	const select = useCallback(
 		(rawData: boardModel | undefined) => {
 			const data = rawData ?? defaultBoard
-			if (isDefaultBoard(data)) {
-				return { ...data, name: t(data.name) }
+			if (isDefaultBoardName(data.name)) {
+				return { ...data, name: t('board_name') }
 			}
 			return data
 		},

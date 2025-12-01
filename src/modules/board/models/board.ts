@@ -7,7 +7,7 @@ export interface boardModel {
 
 export const defaultBoard: boardModel = {
 	id: '1',
-	name: 'board_name',
+	name: 'Tablero básico',
 }
 
 export const isThisBoardNameWithinTheLimitOfLetters = (boardName: string): boolean => {
