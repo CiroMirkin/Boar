@@ -5,7 +5,8 @@ export interface Theme {
 	column: string
 	text: string
 	taskText?: string
-	reminder: string
+	columnText?: string
+	reminder?: string
 }
 
 export const themesList: readonly Theme[] = Object.freeze([
@@ -146,6 +147,14 @@ export const themesList: readonly Theme[] = Object.freeze([
 		reminder: 'bg-[#F5B46C]',
 	},
 	{
+		id: 'Planner',
+		bg: 'bg-[#016BFF]',
+		text: 'text-black',
+		column: 'bg-[#EFE8D2]',
+		task: 'bg-[#F5B46C]',
+		reminder: 'bg-[#F5B46C]',
+	},
+	{
 		id: 'soft',
 		bg: 'bg-[#4D8BC7]',
 		text: 'text-black',
@@ -218,15 +227,6 @@ export const themesList: readonly Theme[] = Object.freeze([
 		reminder: 'bg-[#18894ABB]',
 	},
 	{
-		id: 'dark-gray',
-		bg: 'bg-gray-900',
-		text: 'text-white',
-		column: 'bg-slate-700',
-		task: 'bg-slate-400',
-		reminder: 'bg-slate-400',
-		taskText: 'text-black',
-	},
-	{
 		id: 'Artaud',
 		bg: 'bg-gradient-to-tr from-[#eab308] via-[#15803d] to-[#166534] backdrop-blur-sm',
 		text: 'text-black',
@@ -235,12 +235,28 @@ export const themesList: readonly Theme[] = Object.freeze([
 		reminder: 'bg-[#18894ABB]',
 	},
 	{
+		id: 'marino-lago',
+		bg: 'bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#00a388] via-[#79bd8f] to-[#beeb9f]',
+		text: 'text-black',
+		column: 'bg-[#FEF3E3]',
+		task: 'bg-[#9ABFEF]',
+		reminder: 'bg-[#9ABFEF]',
+	},
+	{
 		id: 'industrial-vintage',
 		bg: 'bg-[#C84632]',
 		text: 'text-black',
 		column: 'bg-[#F4E8C1]',
-		task: 'bg-[#CDA434]',
+		task: 'bg-[#ffbe0cb0]',
 		reminder: 'bg-[#CDA434]',
+	},
+	{
+		id: 'violet-evergarden',
+		bg: 'bg-[#3F73CC]',
+		text: 'text-black',
+		column: 'bg-[#EDE7DA]',
+		task: 'bg-[#D3B0F5]',
+		reminder: 'bg-[#D3B0F5]',
 	},
 	{
 		id: 'berry-delight',
@@ -250,6 +266,14 @@ export const themesList: readonly Theme[] = Object.freeze([
 		task: 'bg-[#d979c1]',
 		reminder: 'bg-[#FFD4A3]',
 		taskText: 'text-black',
+	},
+	{
+		id: 'gradient-violet',
+		bg: 'bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-[#9d174d] via-[#d946ef] to-[#f0abfc]',
+		text: 'text-black',
+		column: 'bg-[#EDE7DA]',
+		task: 'bg-[#D3B0F5]',
+		reminder: 'bg-[#E68B70]',
 	},
 	{
 		id: 'retro-gaming',
@@ -268,28 +292,59 @@ export const themesList: readonly Theme[] = Object.freeze([
 		reminder: 'bg-[#E68B70]',
 	},
 	{
-		id: 'violet-evergarden',
-		bg: 'bg-[#3F73CC]',
-		text: 'text-black',
-		column: 'bg-[#EDE7DA]',
-		task: 'bg-[#D3B0F5]',
-		reminder: 'bg-[#D3B0F5]',
-	},
-	{
-		id: 'gradient-violet',
-		bg: 'bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-[#9d174d] via-[#d946ef] to-[#f0abfc]',
-		text: 'text-black',
-		column: 'bg-[#EDE7DA]',
-		task: 'bg-[#D3B0F5]',
+		id: 'dan',
+		bg: 'bg-[#C78F82]',
+		text: 'text-white',
+		column: 'bg-[#242424]',
+		task: 'bg-[#D66662]',
+		columnText: 'text-white',
 		reminder: 'bg-[#E68B70]',
 	},
 	{
-		id: 'marino-lago',
-		bg: 'bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#00a388] via-[#79bd8f] to-[#beeb9f]',
-		text: 'text-black',
-		column: 'bg-[#FEF3E3]',
-		task: 'bg-[#9ABFEF]',
-		reminder: 'bg-[#9ABFEF]',
+		id: 'pin',
+		bg: 'bg-[#389078]',
+		text: 'text-white',
+		column: 'bg-[#21273D]',
+		task: 'bg-slate-400',
+		reminder: 'bg-slate-400',
+		taskText: 'text-black',
+	},
+	{
+		id: 'dark-gray',
+		bg: 'bg-[#21273D]',
+		text: 'text-white',
+		column: 'bg-slate-700',
+		task: 'bg-slate-400',
+		reminder: 'bg-slate-400',
+		taskText: 'text-black',
+	},
+	{
+		id: 'fleuri',
+		bg: 'bg-[#363f5b]',
+		text: 'text-white',
+		column: 'bg-[#1E1F24]',
+		task: 'bg-[#6198FD]',
+		taskText: 'text-black',
+		columnText: 'text-white',
+		reminder: 'bg-[#E68B70]',
+	},
+	{
+		id: 'wolf',
+		bg: 'bg-[#0C9B99]',
+		text: 'text-white',
+		column: 'bg-[#363f5b]',
+		task: 'bg-[#EADCD9]',
+		taskText: 'text-black',
+		columnText: 'text-white',
+		reminder: 'bg-[#E68B70]',
+	},
+	{
+		id: 'mary',
+		bg: 'bg-[#77B0B9]',
+		text: 'text-white',
+		column: 'bg-[#1c1b1b]',
+		columnText: 'text-white',
+		task: 'bg-[#4A845E]',
 	},
 ])
 
