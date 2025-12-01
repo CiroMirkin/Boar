@@ -94,7 +94,7 @@ export const themesList: readonly Theme[] = Object.freeze([
 		bg: 'bg-slate-400',
 		text: 'text-black',
 		column: 'bg-slate-100',
-		task: 'bg-slate-200',
+		task: 'bg-stone-300',
 		reminder: 'bg-slate-200',
 	},
 	{
@@ -102,7 +102,7 @@ export const themesList: readonly Theme[] = Object.freeze([
 		bg: 'bg-stone-400',
 		text: 'text-black',
 		column: 'bg-stone-100',
-		task: 'bg-stone-200',
+		task: 'bg-slate-300',
 		reminder: 'bg-stone-200',
 	},
 	{
@@ -158,7 +158,7 @@ export const themesList: readonly Theme[] = Object.freeze([
 		bg: 'bg-[#8159A7]',
 		text: 'text-black',
 		column: 'bg-[#FDE1FF]',
-		task: 'bg-[#DB6BCC]',
+		task: 'bg-[#db6bccc9]',
 		reminder: 'bg-[#DB6BCC]',
 	},
 	{
@@ -166,7 +166,7 @@ export const themesList: readonly Theme[] = Object.freeze([
 		bg: 'bg-[#FF4DA2]',
 		text: 'text-black',
 		column: 'bg-[#FFE6D9]',
-		task: 'bg-[#F1AE2B]',
+		task: 'bg-[#ffc663]',
 		reminder: 'bg-[#F1AE2B]',
 	},
 	{
@@ -214,7 +214,7 @@ export const themesList: readonly Theme[] = Object.freeze([
 		bg: 'bg-[#F3B659]',
 		text: 'text-black',
 		column: 'bg-[#F2E4B8]',
-		task: 'bg-[#18894ABB]',
+		task: 'bg-[#38b56fd4]',
 		reminder: 'bg-[#18894ABB]',
 	},
 	{
@@ -231,7 +231,7 @@ export const themesList: readonly Theme[] = Object.freeze([
 		bg: 'bg-gradient-to-tr from-[#eab308] via-[#15803d] to-[#166534] backdrop-blur-sm',
 		text: 'text-black',
 		column: 'bg-[#F2E4B8]',
-		task: 'bg-[#18894ABB]',
+		task: 'bg-[#25b967d9]',
 		reminder: 'bg-[#18894ABB]',
 	},
 	{
@@ -247,7 +247,7 @@ export const themesList: readonly Theme[] = Object.freeze([
 		bg: 'bg-[#E98BAF]',
 		text: 'text-black',
 		column: 'bg-[#E8DFF0]',
-		task: 'bg-[#CC66B2]',
+		task: 'bg-[#d979c1]',
 		reminder: 'bg-[#FFD4A3]',
 		taskText: 'text-black',
 	},
@@ -264,7 +264,7 @@ export const themesList: readonly Theme[] = Object.freeze([
 		bg: 'bg-[#F3BF4B]',
 		text: 'text-black',
 		column: 'bg-[#F8EEDB]',
-		task: 'bg-[#E68B70]',
+		task: 'bg-[#e68b70e3]',
 		reminder: 'bg-[#E68B70]',
 	},
 	{
