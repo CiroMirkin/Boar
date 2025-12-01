@@ -1,10 +1,8 @@
-'use client'
-
 import * as React from 'react'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import Placeholder from '@tiptap/extension-placeholder'
 import Underline from '@tiptap/extension-underline'
+import Placeholder from '@tiptap/extension-placeholder'
 import { Button } from '@/ui/atoms/button'
 import { Separator } from '@/ui/atoms/separator'
 import { Toggle } from '@/ui/atoms/toggle'
@@ -67,6 +65,7 @@ const MinimalTiptapEditor = ({
 		},
 		editorProps: {
 			attributes: {
+				role: 'textbox',
 				class: 'focus:outline-none',
 				spellcheck: 'false',
 				autocorrect: 'off',
@@ -91,10 +90,20 @@ const MinimalTiptapEditor = ({
 		const currentContent = editor.getHTML()
 		if (value === currentContent) return
 
-		if (!isFocused) {
-			editor.commands.setContent(value || '')
-		}
-	}, [editor, value, isFocused])
+		editor.commands.setContent(value || '')
+	}, [editor, value])
+
+	const handleSave = React.useCallback(() => {
+		if (!editor) return
+
+		const { from } = editor.state.selection
+		saveTextCallback()
+
+		requestAnimationFrame(() => {
+			if (editor.isDestroyed) return
+			editor.commands.focus(from)
+		})
+	}, [editor, saveTextCallback])
 
 	if (!editor) return null
 
@@ -120,7 +129,6 @@ const MinimalTiptapEditor = ({
 		>
 			{editable && (
 				<div className='flex flex-wrap items-center gap-1 p-1 border-b bg-muted/50'>
-					{/* Basic formatting */}
 					<Toggle
 						pressed={editor.isActive('bold')}
 						onPressedChange={() => editor.chain().focus().toggleBold().run()}
@@ -150,6 +158,7 @@ const MinimalTiptapEditor = ({
 						onPressedChange={() =>
 							editor.chain().focus().toggleHeading({ level: 1 }).run()
 						}
+						aria-label='H1'
 					>
 						<Heading1 size={16} />
 					</Toggle>
@@ -158,6 +167,7 @@ const MinimalTiptapEditor = ({
 						onPressedChange={() =>
 							editor.chain().focus().toggleHeading({ level: 2 }).run()
 						}
+						aria-label='H2'
 					>
 						<Heading2 size={16} />
 					</Toggle>
@@ -166,13 +176,13 @@ const MinimalTiptapEditor = ({
 						onPressedChange={() =>
 							editor.chain().focus().toggleHeading({ level: 3 }).run()
 						}
+						aria-label='H3'
 					>
 						<Heading3 size={16} />
 					</Toggle>
 
 					<Separator orientation='vertical' className='mx-2 h-6' />
 
-					{/* Lists */}
 					<Toggle
 						pressed={editor.isActive('bulletList')}
 						onPressedChange={() => editor.chain().focus().toggleBulletList().run()}
@@ -190,7 +200,6 @@ const MinimalTiptapEditor = ({
 
 					<Separator orientation='vertical' className='mx-2 h-6' />
 
-					{/* History */}
 					<Button
 						variant='ghost'
 						size='icon'
@@ -212,11 +221,10 @@ const MinimalTiptapEditor = ({
 
 					<Separator orientation='vertical' className='mx-2 h-6' />
 
-					{/* Save */}
 					<Button
 						variant='ghost'
 						size='icon'
-						onClick={saveTextCallback}
+						onClick={handleSave}
 						aria-label='Guardar texto'
 					>
 						<Save size={16} />

@@ -1,4 +1,4 @@
-import { cleanLastTaskList, deleteTheTaskListInThisIndex } from './deleteTaskList'
+import { cleanLastTaskList, deleteThisTaskColumn } from './deleteTaskList'
 import { expect } from 'vitest'
 
 describe('Eliminar una lista de tareas.', () => {
@@ -18,20 +18,39 @@ describe('Eliminar una lista de tareas.', () => {
 	})
 
 	test('Se debería eliminar la lista de tareas indicada.', () => {
-		const taskListInEachColumn = [
-			[],
-			[
-				{
-					id: '',
-					descriptionText: '',
-					columnPosition: '1',
-				},
-			],
-			[],
+		const taskBoard = [
+			{
+				id: '1',
+				status: '',
+				tasks: [],
+			},
+			{
+				id: '2',
+				status: '',
+				tasks: [
+					{
+						id: '',
+						descriptionText: '',
+					},
+				],
+			},
+			{
+				id: '3',
+				status: '',
+				tasks: [],
+			},
 		]
-		expect(deleteTheTaskListInThisIndex({ taskListInEachColumn, index: 1 })).toStrictEqual([
-			[],
-			[],
+		expect(deleteThisTaskColumn({ taskBoard, id: '2' })).toStrictEqual([
+			{
+				id: '1',
+				status: '',
+				tasks: [],
+			},
+			{
+				id: '3',
+				status: '',
+				tasks: [],
+			},
 		])
 	})
 })

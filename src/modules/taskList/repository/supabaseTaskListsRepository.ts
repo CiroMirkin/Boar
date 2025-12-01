@@ -1,4 +1,4 @@
-import { TaskListInEachColumn, emptyTaskListInEachColumn } from '@/modules/taskList/models/taskList'
+import { emptyTaskBoard, TaskBoard } from '../models/taskBoard'
 import { TaskListInEachColumnRepository } from './taskListInEachColumnRepository'
 import { getUserId } from '@/auth/utils/getUserId'
 import { supabase } from '@/lib/supabase'
@@ -6,7 +6,7 @@ import { supabase } from '@/lib/supabase'
 export default class SupabaseTaskListInEachColumnRepository
 	implements TaskListInEachColumnRepository
 {
-	async save(taskListInEachColumn: TaskListInEachColumn) {
+	async save(taskListInEachColumn: TaskBoard) {
 		const user_id = await getUserId()
 		const { error } = await supabase
 			.from('boards')
@@ -28,6 +28,6 @@ export default class SupabaseTaskListInEachColumnRepository
 		if (error) throw error
 
 		const taskListInColumns = data[0].task_list_in_each_column
-		return taskListInColumns ? taskListInColumns : emptyTaskListInEachColumn
+		return taskListInColumns ? taskListInColumns : emptyTaskBoard
 	}
 }

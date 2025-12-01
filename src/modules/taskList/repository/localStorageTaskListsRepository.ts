@@ -1,4 +1,4 @@
-import { TaskListInEachColumn, emptyTaskListInEachColumn } from '@/modules/taskList/models/taskList'
+import { emptyTaskBoard, TaskBoard } from '../models/taskBoard'
 import { TaskListInEachColumnRepository } from './taskListInEachColumnRepository'
 
 export default class LocalStorageTaskListInEachColumnRepository
@@ -8,15 +8,15 @@ export default class LocalStorageTaskListInEachColumnRepository
 	constructor() {
 		this.key = 'taskListInEachColumn'
 	}
-	async save(taskListInEachColumn: TaskListInEachColumn): Promise<void> {
-		localStorage.setItem(this.key, JSON.stringify(taskListInEachColumn))
+	async save(taskBoard: TaskBoard): Promise<void> {
+		localStorage.setItem(this.key, JSON.stringify(taskBoard))
 	}
 	async getAll() {
 		const stored = localStorage.getItem(this.key)
 		if (stored) {
 			return JSON.parse(stored)
 		}
-		await this.save(emptyTaskListInEachColumn)
-		return emptyTaskListInEachColumn
+		await this.save(emptyTaskBoard)
+		return emptyTaskBoard
 	}
 }

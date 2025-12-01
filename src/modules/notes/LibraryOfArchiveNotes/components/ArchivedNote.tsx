@@ -14,11 +14,7 @@ export default function ArchivedNote({ note }: ArchivedNoteProps) {
 	return (
 		<Card className={archivedNoteClassName}>
 			<CardHeader>
-				<CardTitle className='text-2xl'>
-					{format(note.date, {
-						date: 'short',
-					})}
-				</CardTitle>
+				<CardTitle className='text-2xl'>{format(note.date, 'DD/MM/YY')}</CardTitle>
 			</CardHeader>
 			<CardContent className='h-auto'>
 				<MinimalTiptapViewer

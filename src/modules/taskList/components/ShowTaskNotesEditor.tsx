@@ -15,10 +15,12 @@ import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
 import { updateNotesAndCommentsOfThisTask } from '../useCase/updateNotesAndCommentsOfThisTask'
 import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
+import { useTaskListInEachColumn } from '../hooks/useTaskListInEachColumn'
 
 export default function ShowTaskNotesEditor() {
 	const task = useDataOfTheTask()
-	const { listOfTaskInColumns, updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const { updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const listOfTaskInColumns = useTaskListInEachColumn()
 	const { t } = useTranslation()
 
 	const onChange = (text: string) => {
@@ -28,7 +30,7 @@ export default function ShowTaskNotesEditor() {
 		}
 
 		const updatedList = updateNotesAndCommentsOfThisTask({
-			listOfTaskInColumns: listOfTaskInColumns || [],
+			listOfTaskInColumns: listOfTaskInColumns,
 			taskToUpdate: task,
 			notes: text,
 		})

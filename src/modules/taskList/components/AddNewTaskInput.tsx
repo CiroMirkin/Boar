@@ -5,31 +5,30 @@ import { KeyboardEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { TeaxtareaWithActions } from '@/ui/molecules/TextAreaWithActions'
-import TagGroupSelect from '../Tags/components/TagGroupSelect'
-import { useUserSelectedTags } from '../Tags/hooks/useUserSelectedTags'
-import { setUserSelectedTags } from '../Tags/state/tagsReducer'
+import TagGroupSelect from './Tags/components/TagGroupSelect'
+import { useUserSelectedTags } from './Tags/hooks/useUserSelectedTags'
+import { setUserSelectedTags } from './Tags/state/tagsReducer'
 import { addTaskInFirstColumn } from '../useCase/addTask'
 import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
 import { sortListOfTasksInColumnsByPriority } from '../models/sortListOfTasksInColumnsByPriority'
 import { addChangeToTaskTimelineHistory } from '../useCase/addChangeToTaskTimelineHistory'
-import { useGetColumnName } from '@/sharedByModules/hooks/useGetColumnName'
+import { useGetColumnNameFromPosition } from '@/modules/taskList/components/Columns/hooks/useGetColumnNameFromPosition'
+import { useTaskListInEachColumn } from '../hooks/useTaskListInEachColumn'
 
 export function AddNewTaskInput() {
 	const [newTaskDescription, setNewTaskDescription] = useState('')
 	const canUserUseTheAddTaskInput = !isThisTaskDescriptionValid(newTaskDescription)
-	const { listOfTaskInColumns, updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const { updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const listOfTaskInColumns = useTaskListInEachColumn()
 	const selectedTags = useUserSelectedTags()
-	const getColumnName = useGetColumnName()
+	const getColumnName = useGetColumnNameFromPosition()
 
 	const dispatch = useDispatch()
 
 	const handleClick = () => {
 		try {
-			const currentList = listOfTaskInColumns || []
-
 			const task = getNewTask({
 				descriptionText: newTaskDescription,
-				columnPosition: '1',
 			})
 
 			const updatedList = sortListOfTasksInColumnsByPriority(
@@ -42,7 +41,7 @@ export function AddNewTaskInput() {
 							columnName: getColumnName('1'),
 						}),
 					},
-					taskListInEachColumn: currentList,
+					taskListInEachColumn: listOfTaskInColumns,
 				})
 			)
 

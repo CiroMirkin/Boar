@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import { useCheckIfThisTaskIsInTheFirstColumn } from '@/sharedByModules/hooks/useCheckIfThisTaskIsInTheFirstColumn'
-import { useCheckIfTaskIsInTheLastColumn } from '@/sharedByModules/hooks/useCheckIfTaskIsInTheLastColumn'
+import { useCheckIfThisTaskIsInTheFirstColumn } from '@/modules/taskList/components/Columns/hooks/useCheckIfThisTaskIsInTheFirstColumn'
+import { useCheckIfTaskIsInTheLastColumn } from '@/modules/taskList/components/Columns/hooks/useCheckIfTaskIsInTheLastColumn'
 import { Button } from '@/ui/atoms/button'
 import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
 import { ArrowLeftIcon, ArrowRightIcon } from '@/ui/atoms/icons'
@@ -8,7 +8,8 @@ import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQu
 import { sortListOfTasksInColumnsByPriority } from '../models/sortListOfTasksInColumnsByPriority'
 import { moveThisTaskToTheNextColumn, moveThisTaskToThePrevColumn } from '../useCase/moveTask'
 import { addChangeToTaskTimelineHistory } from '../useCase/addChangeToTaskTimelineHistory'
-import { useGetColumnName } from '@/sharedByModules/hooks/useGetColumnName'
+import { useTaskListInEachColumn } from '../hooks/useTaskListInEachColumn'
+import { useGetColumnNameFromTask } from './Columns/hooks/useGetColumnNameFromTask'
 
 interface MoveButtonsProps {
 	handleClick: (action: () => void) => void
@@ -17,8 +18,9 @@ interface MoveButtonsProps {
 export function MoveButttons({ handleClick }: MoveButtonsProps) {
 	const { t } = useTranslation()
 	const data = useDataOfTheTask()
-	const getColumnName = useGetColumnName()
-	const { listOfTaskInColumns, updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const getColumnName = useGetColumnNameFromTask()
+	const { updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const listOfTaskInColumns = useTaskListInEachColumn()
 	const isTheTaskInTheFirstColumn = useCheckIfThisTaskIsInTheFirstColumn(data)
 	const isTheTaskInTheLastColumn = useCheckIfTaskIsInTheLastColumn(data)
 	const moveTaskToNextColumnAction = () => {
@@ -26,7 +28,7 @@ export function MoveButttons({ handleClick }: MoveButtonsProps) {
 			...data,
 			timelineHistory: addChangeToTaskTimelineHistory({
 				task: data,
-				columnName: getColumnName(`${Number(data.columnPosition) + 1}`),
+				columnName: getColumnName(data),
 			}),
 		}
 		const updatedList = sortListOfTasksInColumnsByPriority(
@@ -42,7 +44,7 @@ export function MoveButttons({ handleClick }: MoveButtonsProps) {
 			...data,
 			timelineHistory: addChangeToTaskTimelineHistory({
 				task: data,
-				columnName: getColumnName(`${Number(data.columnPosition) - 1}`),
+				columnName: getColumnName(data),
 			}),
 		}
 		const updatedList = sortListOfTasksInColumnsByPriority(
@@ -60,6 +62,7 @@ export function MoveButttons({ handleClick }: MoveButtonsProps) {
 				size='sm'
 				disabled={isTheTaskInTheFirstColumn}
 				variant='ghost'
+				data-testid='BotonParaRetrocederTarea'
 				onClick={() => handleClick(moveTaskToPrevColumnAction)}
 				title={t('task_buttons.prev_btn')}
 			>
@@ -69,6 +72,7 @@ export function MoveButttons({ handleClick }: MoveButtonsProps) {
 				size='sm'
 				disabled={isTheTaskInTheLastColumn}
 				variant='ghost'
+				data-testid='BotonParaAvanzarTarea'
 				onClick={() => handleClick(moveTaskToNextColumnAction)}
 				title={t('task_buttons.next_btn')}
 			>

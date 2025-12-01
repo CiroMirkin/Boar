@@ -1,6 +1,6 @@
 import { TaskList } from './components/TaskList'
-import { useReminder } from '@/modules/taskList/Reminder/hooks/useReminder'
-import { useReminderQuery } from '@/modules/taskList/Reminder/hooks/useReminderQuery'
+import { useReminder } from '@/modules/taskList/components/Reminder/hooks/useReminder'
+import { useReminderQuery } from '@/modules/taskList/components/Reminder/hooks/useReminderQuery'
 import { useTaskListInEachColumn } from './hooks/useTaskListInEachColumn'
 import { useTranslation } from 'react-i18next'
 import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'

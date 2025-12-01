@@ -1,4 +1,4 @@
-import { getHighestPriority } from '../Tags/model/getHighestPriority'
+import { getHighestPriority } from '../components/Tags/model/getHighestPriority'
 import { taskModel } from './task'
 
 /**

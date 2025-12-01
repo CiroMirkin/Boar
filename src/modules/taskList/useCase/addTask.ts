@@ -3,7 +3,6 @@ import {
 	isThisTaskListWithinTheLimit,
 } from '@/modules/taskList/models/taskList'
 import { taskUseCaseParams } from './actions'
-import { getIndexOfColumnInColumnList } from '../../columnList/models/column'
 
 export function addTaskInFirstColumn({
 	taskListInEachColumn: taskList,
@@ -27,7 +26,7 @@ export function addTaskInTheLastColumn({
 	taskListInEachColumn,
 	task,
 }: taskUseCaseParams): TaskListInEachColumn {
-	const columnIndex = getIndexOfColumnInColumnList(task.columnPosition)
+	const columnIndex = taskListInEachColumn.length - 1
 
 	const newTaskList: TaskListInEachColumn = taskListInEachColumn.map((column, index) => {
 		if (index === columnIndex) {

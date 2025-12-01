@@ -7,7 +7,6 @@ describe('Mover una tarea entre columnas', () => {
 		const task = {
 			id: '1',
 			descriptionText: 'pipi',
-			columnPosition: '1',
 		}
 		const taskListInEachColumn = [[{ ...task }], []]
 
@@ -17,7 +16,6 @@ describe('Mover una tarea entre columnas', () => {
 				{
 					id: '1',
 					descriptionText: 'pipi',
-					columnPosition: '2',
 				},
 			],
 		])
@@ -27,7 +25,6 @@ describe('Mover una tarea entre columnas', () => {
 		const task = {
 			id: '1',
 			descriptionText: 'pipi',
-			columnPosition: '2',
 		}
 		const taskListInEachColumn = [[], [{ ...task }]]
 
@@ -36,7 +33,6 @@ describe('Mover una tarea entre columnas', () => {
 				{
 					id: '1',
 					descriptionText: 'pipi',
-					columnPosition: '1',
 				},
 			],
 			[],
@@ -47,7 +43,6 @@ describe('Mover una tarea entre columnas', () => {
 		const task = {
 			id: '1',
 			descriptionText: 'pipi',
-			columnPosition: '1',
 		}
 		const taskListInEachColumn = [[{ ...task }], []]
 
@@ -56,7 +51,6 @@ describe('Mover una tarea entre columnas', () => {
 				{
 					id: '1',
 					descriptionText: 'pipi',
-					columnPosition: '1',
 				},
 			],
 			[],
@@ -69,7 +63,6 @@ describe('Se respetan los limites de una lista de tareas', () => {
 		const task = {
 			id: '1',
 			descriptionText: 'tarea',
-			columnPosition: '1',
 		}
 
 		// Crear una columna con la tarea que queremos mover
@@ -79,7 +72,6 @@ describe('Se respetan los limites de una lista de tareas', () => {
 		const dummyTask = {
 			id: '2',
 			descriptionText: 'tarea dummy',
-			columnPosition: '2',
 		}
 		const secondColumnContent = new Array(10).fill(null).map((_, i) => ({
 			...dummyTask,

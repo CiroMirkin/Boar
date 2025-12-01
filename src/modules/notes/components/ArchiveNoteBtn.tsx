@@ -38,7 +38,7 @@ export function ArchiveNoteBtn() {
 	}
 
 	return (
-		<Button variant='ghost' onClick={handleArchiveNote}>
+		<Button variant='ghost' onClick={handleArchiveNote} data-testid='BotonParaArchiarUnaNota'>
 			<ArchiveIcon className='mr-2' />
 			{t('archived_note.archive_note_btn')}
 		</Button>
