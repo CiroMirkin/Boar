@@ -1,4 +1,4 @@
-import { useUsageHistoryQuery } from '../useUsageHistoryQuery'
+import { useUsageHistoryQuery } from './useUsageHistoryQuery'
 import { isTheSameDay } from '../utils/isTheSameDay'
 import { parseDuration } from '../utils/parseDuration'
 

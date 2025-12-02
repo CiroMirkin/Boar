@@ -7,7 +7,7 @@ import { ThemeProvider } from './modules/Theme/ThemeContext'
 import { useLocalStorage } from '@uidotdev/usehooks'
 import { useUserSystemTheme } from './modules/Theme/useUserSystemTheme'
 import { useSetLanguageSaved } from './modules/LanguageToggle/useSetLanguageSaved'
-import { useSaveTimeTracking } from './modules/UsageHistory/useSaveTimeTracking'
+import { useSaveTimeTracking } from './modules/UsageHistory/hooks/useSaveTimeTracking'
 
 function App() {
 	useSaveTimeTracking()

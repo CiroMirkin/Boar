@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
-import { useTimeTracking } from './hooks/useTimeTracking'
-import { useUsageHistoryQuery } from './hooks/useUsageHistoryQuery'
-import { updateDailyUsageRecord } from './useCase/updateDailyUsageRecord'
+import { useTimeTracking } from './useTimeTracking'
+import { useUsageHistoryQuery } from './useUsageHistoryQuery'
+import { updateDailyUsageRecord } from '../useCase/updateDailyUsageRecord'
 import { useSession } from '@/auth/hooks/useSession'
 
 export const useSaveTimeTracking = () => {
