@@ -10,9 +10,11 @@ import { archiveTaskListInTheLastColumn } from '../useCase/archiveTaskList'
 import { useArchivedTasksQuery } from '../hooks/useArchivedTasksQuery'
 import { addChangeToEachTaskInList } from '@/modules/taskList/useCase/addChangeToEachTaskInList'
 import { useTaskListInEachColumn } from '@/modules/taskList/hooks/useTaskListInEachColumn'
+import { useTheme } from '@/sharedByModules/hooks/useTheme'
 
 export function ArchiveTaskListButton() {
 	const { t } = useTranslation()
+	const color = useTheme()
 
 	const { updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
 	const taskListInEachColumn = useTaskListInEachColumn()
@@ -48,7 +50,7 @@ export function ArchiveTaskListButton() {
 			data-testid='BotonParaArchivarUnaListaDeTareas'
 			onClick={archiveTaskList}
 			variant='ghost'
-			className='w-full mx-4'
+			className={`w-full mx-4 ${color.columnText}`}
 			disabled={canUserArchiveTask}
 		>
 			<ArchiveIcon className='mr-2' /> {t('archive_task_list_btn')}
