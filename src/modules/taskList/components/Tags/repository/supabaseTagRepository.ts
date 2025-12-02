@@ -1,10 +1,12 @@
 import { getActualBoardId } from '@/auth/utils/getActualBoardId'
-import { supabase } from '@/lib/supabase'
+import { isSupabaseConfigured, supabase } from '@/lib/supabase'
 import { defaultAvialableTags, emptyTagGroup } from '../model/tags'
 import { TagRepository, TagRepositoryGetReturn, TagRepositorySaveParams } from './tagRepository'
 
 export default class SupabaseTagRepository implements TagRepository {
 	async save({ actualTagGroup, tags }: TagRepositorySaveParams): Promise<void> {
+		if (!isSupabaseConfigured || !supabase) return
+
 		const boardId = getActualBoardId()
 		console.info(tags)
 		const { error } = await supabase
@@ -17,6 +19,13 @@ export default class SupabaseTagRepository implements TagRepository {
 	}
 
 	async get(): Promise<TagRepositoryGetReturn> {
+		if (!isSupabaseConfigured || !supabase) {
+			return {
+				tags: defaultAvialableTags,
+				actualTagGroup: emptyTagGroup,
+			}
+		}
+
 		const boardId = getActualBoardId()
 		const { data, error } = await supabase
 			.from('board_accessories')

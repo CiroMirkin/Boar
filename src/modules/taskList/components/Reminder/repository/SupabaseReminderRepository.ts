@@ -1,12 +1,14 @@
 import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 import { blankReminder, Reminder } from '../reminder'
 import { ReminderRepository } from './ReminderRepository'
-import { supabase } from '@/lib/supabase'
+import { isSupabaseConfigured, supabase } from '@/lib/supabase'
 
 export default class SupabaseReminderRepository implements ReminderRepository {
 	constructor() {}
 
 	async save(reminder: Reminder): Promise<void> {
+		if (!isSupabaseConfigured || !supabase) return
+
 		const { error } = await supabase
 			.from('board_accessories')
 			.update({
@@ -17,7 +19,9 @@ export default class SupabaseReminderRepository implements ReminderRepository {
 		if (error) throw error
 	}
 
-	async getAll(): Promise<Reminder> {
+	async getAll() {
+		if (!isSupabaseConfigured || !supabase) return
+
 		const { data, error } = await supabase
 			.from('board_accessories')
 			.select('reminders')

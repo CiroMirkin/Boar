@@ -1,12 +1,14 @@
 import { saveActualBoardId } from '@/auth/utils/getActualBoardId'
 import { getUserId } from '@/auth/utils/getUserId'
-import { supabase } from '@/lib/supabase'
+import { isSupabaseConfigured, supabase } from '@/lib/supabase'
 import { boardModel, defaultBoard } from '@/modules/board/models/board'
 import { BoardRepository } from '@/modules/board/repository/boardRepository'
 
 export default class SupabaseBoardRepository implements BoardRepository {
 	constructor() {}
 	async save(board: boardModel) {
+		if (!isSupabaseConfigured || !supabase) return
+
 		const user_id = await getUserId()
 		const { error } = await supabase
 			.from('boards')
@@ -18,6 +20,8 @@ export default class SupabaseBoardRepository implements BoardRepository {
 		if (error) throw error
 	}
 	async get() {
+		if (!isSupabaseConfigured || !supabase) return defaultBoard
+
 		const user_id = await getUserId()
 		const { data, error } = await supabase
 			.from('boards')

@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase'
+import { isSupabaseConfigured, supabase } from '@/lib/supabase'
 import {
 	defaultLibraryOfArchivedNotes,
 	LibraryOfArchivedNotes,
@@ -15,6 +15,8 @@ export default class LibraryOfArchivedNotesSupabaseRepository
 	}
 
 	async save(library: LibraryOfArchivedNotes): Promise<void> {
+		if (!isSupabaseConfigured || !supabase) return
+
 		const boardId = getActualBoardId()
 		const { error } = await supabase
 			.from(this.tableName)
@@ -24,6 +26,8 @@ export default class LibraryOfArchivedNotesSupabaseRepository
 		if (error) throw error
 	}
 	async getAll(): Promise<LibraryOfArchivedNotes> {
+		if (!isSupabaseConfigured || !supabase) return defaultLibraryOfArchivedNotes
+
 		const { data } = await supabase.from('archive').select('notes')
 		if (data !== null) {
 			const notes: LibraryOfArchivedNotes = data[0].notes
