@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { UsageDuration } from './model/usageHistory'
+import { UsageDuration } from '../model/usageHistory'
 
 interface UseTimeTrackingReturn {
 	getTotalTime: () => UsageDuration
