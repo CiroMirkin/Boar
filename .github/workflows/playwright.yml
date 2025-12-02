@@ -1,27 +1,50 @@
 name: Playwright Tests
+
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    
     steps:
     - uses: actions/checkout@v4
+    
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
+        cache: 'npm'
+    
     - name: Install dependencies
       run: npm ci
+    
     - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
+      run: npx playwright install --with-deps chromium firefox
+
+    - name: Cache Playwright browsers
+    uses: actions/cache@v4
+    with:
+      path: ~/.cache/ms-playwright
+      key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}
+    
     - name: Run Playwright tests
       run: npx playwright test
+    
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+    
+    - name: Publish Test Results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results
+        path: test-results/
+        retention-days: 7

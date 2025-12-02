@@ -16,7 +16,7 @@ export default class LocalStorageTaskListInEachColumnRepository
 		const stored = localStorage.getItem(this.key)
 		if (stored) {
 			const parsed = JSON.parse(stored)
-			
+
 			// Detecta y migra el formato legacy (array de TaskList) al nuevo formato TaskBoard
 			if (isThisArrayOfTypeTaskListInEachColumn(parsed)) {
 				const storedColumns = localStorage.getItem('columnList')
