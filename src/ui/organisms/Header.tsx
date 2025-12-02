@@ -83,7 +83,7 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 						<DropdownMenuSeparator />
 						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.TIME && true}>
 							<Link
-								title='Registro de uso'
+								title={t('usage_history.title')}
 								to='/time'
 								className='px-2 py-1.5 flex items-center'
 							>

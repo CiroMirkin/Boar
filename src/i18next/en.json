@@ -154,5 +154,9 @@
 		"title": "Notes and comments",
 		"max_length_toast": "The maximum number of characters for a note has been reached.",
 		"save_toast": "Changes saved successfully!"
+	},
+	"usage_history": {
+		"empty": "There are no time records yet.",
+		"title": "Usage history"
 	}
 }
