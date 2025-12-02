@@ -81,6 +81,7 @@ export const useTimeTracking = (options: UseTimeTrackingOptions = {}): UseTimeTr
 		} catch (error) {
 			console.error('Error loading time tracking:', error)
 		}
+		saveUserSessionTracking(initialTracking)
 		return initialTracking
 	})
 
