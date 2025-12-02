@@ -5,7 +5,7 @@ import { LogInIcon, LogOutIcon } from '@/ui/atoms/icons'
 import { useTranslation } from 'react-i18next'
 import { AuthError, Session } from '@supabase/supabase-js'
 import { toast } from 'sonner'
-import { supabase } from '@/lib/supabase'
+import { isSupabaseConfigured, supabase } from '@/lib/supabase'
 
 interface LogInAndLogOutMenuItemProps {
 	whereUserIs?: USER_IS_IN
@@ -21,6 +21,8 @@ export default function LogInAndLogOutMenuItem({
 	// Handle log out
 	const handleOnClick = async () => {
 		try {
+			if (!isSupabaseConfigured || !supabase) return
+
 			const { error } = await supabase.auth.signOut()
 			sessionStorage.removeItem('isInitialLoad')
 			if (error) throw error
