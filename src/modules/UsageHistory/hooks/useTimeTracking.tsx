@@ -1,12 +1,17 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { UsageDuration } from '../model/usageHistory'
+import {
+	getUserSessionTracking,
+	saveUserSessionTracking,
+	resetUserSessionTracking,
+} from './userSessionTracking'
 
 interface UseTimeTrackingReturn {
 	getTotalTime: () => UsageDuration
 	resetTimeTracking: () => void
 }
 
-interface UserSessionTracking {
+export interface UserSessionTracking {
 	sessionStartTime: number
 	totalAccumulatedTime: UsageDuration
 	lastSaveTime: number
@@ -210,15 +215,3 @@ export const useTimeTracking = (options: UseTimeTrackingOptions = {}): UseTimeTr
 		resetTimeTracking,
 	}
 }
-
-const STORAGE_KEY = 'timeTracking'
-
-const getUserSessionTracking = () => {
-	return sessionStorage.getItem(STORAGE_KEY)
-}
-
-const saveUserSessionTracking = (updated: UserSessionTracking) => {
-	sessionStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
-}
-
-const resetUserSessionTracking = () => sessionStorage.removeItem(STORAGE_KEY)
