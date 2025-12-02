@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useTimeTracking } from './hooks/useTimeTracking'
-import { useUsageHistoryQuery } from './useUsageHistoryQuery'
+import { useUsageHistoryQuery } from './hooks/useUsageHistoryQuery'
 import { updateDailyUsageRecord } from './useCase/updateDailyUsageRecord'
 import { useSession } from '@/auth/hooks/useSession'
 

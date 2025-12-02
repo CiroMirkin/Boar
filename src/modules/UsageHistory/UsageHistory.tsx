@@ -1,4 +1,4 @@
-import { useUsageHistoryQuery } from './useUsageHistoryQuery'
+import { useUsageHistoryQuery } from './hooks/useUsageHistoryQuery'
 import UsageRecord from './components/UsageRecord'
 import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
 import { Spinner } from '@/ui/atoms/spinner'

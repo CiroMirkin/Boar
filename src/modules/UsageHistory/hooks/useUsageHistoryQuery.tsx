@@ -1,8 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { UsageHistory } from './model/usageHistory'
-import { localStorageUsageHistoryRepository } from './repository/localstorageUsageHistoryRepository'
+import { UsageHistory } from '../model/usageHistory'
+import { localStorageUsageHistoryRepository } from '../repository/localstorageUsageHistoryRepository'
+import { supabaseUsageHistoryRepository } from '../repository/supabaseUsageHistoryRepository'
 import { useSession } from '@/auth/hooks/useSession'
-import { supabaseUsageHistoryRepository } from './repository/supabaseUsageHistoryRepository'
 
 const QUERY_KEY = ['usage-history']
 
