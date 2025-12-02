@@ -10,9 +10,11 @@ import { toast } from 'sonner'
 import { useBoardQuery } from '@/modules/board/hooks/useBoardQuery'
 import { useTranslation } from 'react-i18next'
 import { SettingSection } from '@/ui/organisms/SettingSection'
+import { useTheme } from '@/sharedByModules/hooks/useTheme'
 
 export function ChangeBoardName() {
 	const { board, updateBoard } = useBoardQuery()
+	const color = useTheme()
 
 	const [boardName, setBoardName] = useState(board?.name || '')
 	const [inputDisabled, setInputDisabled] = useState(true)
@@ -49,7 +51,7 @@ export function ChangeBoardName() {
 			</SettingSection.Title>
 			<SettingSection.Content className={`flex items-end `}>
 				<div className='grid mr-2 w-full max-w-sm items-center gap-1.5'>
-					<Label htmlFor='board-name'>
+					<Label htmlFor='board-name' className={color.taskText || 'text-black'}>
 						{t('settings.board.change_board_name_input_label')}
 					</Label>
 					<Input

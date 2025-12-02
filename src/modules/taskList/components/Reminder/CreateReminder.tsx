@@ -9,6 +9,7 @@ import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageFo
 import { useTranslation } from 'react-i18next'
 import { SettingSection } from '@/ui/organisms/SettingSection'
 import { useReminderQuery } from './hooks/useReminderQuery'
+import { useTheme } from '@/sharedByModules/hooks/useTheme'
 
 interface ReminderColumn {
 	name: string
@@ -18,6 +19,7 @@ interface ReminderColumn {
 
 function CreateReminder({ columnList }: { columnList: ReminderColumn[] }) {
 	const { t } = useTranslation()
+	const color = useTheme()
 	const { reminder, updateReminder } = useReminderQuery()
 	const [reminderText, setReminderText] = useState(reminder?.text as string)
 	const [reminderColumnPosition, setReminderColumnPosition] = useState(
@@ -58,7 +60,9 @@ function CreateReminder({ columnList }: { columnList: ReminderColumn[] }) {
 			</SettingSection.Description>
 			<SettingSection.Content className={` grid gap-3`}>
 				<div className={`grid mr-2 w-full items-center gap-1.5`}>
-					<Label>{t('settings.reminder.select_column_label')}</Label>
+					<Label className={color.taskText || 'text-black'}>
+						{t('settings.reminder.select_column_label')}
+					</Label>
 					<Select
 						value={reminderColumnPosition}
 						onValueChange={(value) => setReminderColumnPosition(value)}
@@ -79,7 +83,7 @@ function CreateReminder({ columnList }: { columnList: ReminderColumn[] }) {
 				</div>
 
 				<div className='grid mr-2 w-full items-center gap-1.5'>
-					<Label htmlFor='reminder-text'>
+					<Label htmlFor='reminder-text' className={color.taskText || 'text-black'}>
 						{t('settings.reminder.reminder_description_input_label')}
 					</Label>
 					<Input
