@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import { useVisibilityChange } from '@uidotdev/usehooks'
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -24,7 +26,7 @@ import LogInAndLogOutMenuItem from '../../modules/LanguageToggle/LogInAndLogOutM
 import { useSession } from '@/auth/hooks/useSession'
 import Notes from '@/modules/notes/Notes'
 import { useTheme } from '@/sharedByModules/hooks/useTheme'
-import { useDurationOfTheLastPeriod } from '@/modules/UsageHistory/hooks/useDurationOfTheLastPeriod'
+import { useLastDurationPeriod } from '@/modules/UsageHistory/hooks/useLastDurationPeriod'
 
 interface HeaderProps {
 	title: string
@@ -34,14 +36,19 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 	const { t } = useTranslation()
 	const { session } = useSession()
 	const { text } = useTheme()
-	const duration = useDurationOfTheLastPeriod()
+
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+	const documentVisible = useVisibilityChange()
+
+	const isVisible = isDropdownOpen && documentVisible
+	const duration = useLastDurationPeriod({ isVisible })
 
 	return (
 		<header className='w-full px-6 md:px-11 pt-6 pb-4 flex justify-between items-center'>
 			<h1 className='text-2xl font-medium'>{title}</h1>
 			<div className='flex gap-2 items-center'>
 				<Notes />
-				<DropdownMenu>
+				<DropdownMenu onOpenChange={setIsDropdownOpen}>
 					<DropdownMenuTrigger asChild>
 						<Button variant='ghost' className={text}>
 							<MenuIcon />
