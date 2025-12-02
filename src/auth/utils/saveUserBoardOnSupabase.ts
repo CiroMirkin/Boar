@@ -1,8 +1,10 @@
-import { supabase } from '@/lib/supabase'
+import { isSupabaseConfigured, supabase } from '@/lib/supabase'
 import { UserBoard } from '../model/UserBoard'
 
 export const saveUserBoardOnSupabase = async (userBoard: UserBoard) => {
 	try {
+		if (!isSupabaseConfigured || !supabase) return
+
 		const { error: board_error, data: boardFromSupabase } = await supabase
 			.from('boards')
 			.insert(userBoard.board)
