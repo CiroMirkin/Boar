@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase'
+import { isSupabaseConfigured, supabase } from '@/lib/supabase'
 import { UsageHistory } from '../model/usageHistory'
 import { UsageHistoryRepository } from './usageHistoryRepository'
 import { getActualBoardId } from '@/auth/utils/getActualBoardId'
@@ -7,6 +7,8 @@ export class SupabaseUsageHistoryRepository implements UsageHistoryRepository {
 	private readonly tableName = 'board_accessories'
 
 	async getAll(): Promise<UsageHistory> {
+		if (!isSupabaseConfigured || !supabase) return []
+
 		const id = getActualBoardId()
 		const { data, error } = await supabase
 			.from(this.tableName)
@@ -19,6 +21,9 @@ export class SupabaseUsageHistoryRepository implements UsageHistoryRepository {
 	}
 
 	async save(history: UsageHistory): Promise<UsageHistory> {
+		if (!isSupabaseConfigured || !supabase) return []
+
+
 		const id = getActualBoardId()
 		const { data, error } = await supabase
 			.from(this.tableName)
