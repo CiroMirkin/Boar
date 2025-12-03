@@ -13,8 +13,7 @@ function Period({ period }: PeriodProps) {
 
 	return (
 		<li className='pr-10 pb-2 border-b border-gray-600 last:border-b-0'>
-			{/* El tiempo esta al reves a proposito, para mostrar 13:30 - 11:10 en vez de 11:10 - 13:30 */}
-			<span className='font-semibold'>{`${endTime} - ${startTime}`}</span>
+			<span className='font-semibold'>{`${startTime} - ${endTime}`}</span>
 			<div>{duration}</div>
 		</li>
 	)
