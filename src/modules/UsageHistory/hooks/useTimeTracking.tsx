@@ -208,6 +208,7 @@ export const useTimeTracking = (options: UseTimeTrackingOptions = {}): UseTimeTr
 		}
 		resetUserSessionTracking()
 		setTracking(newInitialTracking)
+		saveUserSessionTracking(newInitialTracking)
 		trackingRef.current = newInitialTracking
 	}, [])
 
