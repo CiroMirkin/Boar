@@ -5,4 +5,5 @@ export enum USER_IS_IN {
 	CONFIG = 'configs',
 	HELP = 'help',
 	AUTH = 'auth',
+	TIME = 'time',
 }

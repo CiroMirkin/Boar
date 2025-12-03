@@ -31,7 +31,7 @@ export const useBoardQuery = () => {
 	} = useQuery({
 		queryKey: [...boardQueryKey, session?.user.id],
 		queryFn: () => fetchBoard(session),
-		initialData: defaultBoard,
+		placeholderData: defaultBoard,
 		select,
 	})
 

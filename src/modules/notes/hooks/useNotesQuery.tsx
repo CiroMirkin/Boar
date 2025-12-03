@@ -10,10 +10,10 @@ export const useNotesQuery = () => {
 	const queryClient = useQueryClient()
 	const fullQueryKey = [...notesQueryKey, session?.user.id]
 
-	const { data: notes, isLoading } = useQuery({
+	const { data: notes = defaultNotes, isLoading } = useQuery({
 		queryKey: fullQueryKey,
 		queryFn: () => fetchNotes(session),
-		initialData: defaultNotes,
+		placeholderData: defaultNotes,
 	})
 
 	const { mutate: updateNotes, isPending: isSaving } = useMutation({
