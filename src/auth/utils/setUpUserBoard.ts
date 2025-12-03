@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase'
+import { isSupabaseConfigured, supabase } from '@/lib/supabase'
 import { Session } from '@supabase/supabase-js'
 import { getActualUserBoard } from './getActualUserBoard'
 import { saveUserBoardOnSupabase } from './saveUserBoardOnSupabase'
@@ -7,6 +7,8 @@ import { v4 as uuidv4 } from 'uuid'
 import { saveActualBoardId } from './getActualBoardId'
 
 export const setUpUserBoard = async ({ session }: { session: Session }) => {
+	if (!isSupabaseConfigured || !supabase) return
+
 	if (sessionStorage.getItem('isInitialLoad') === 'false') {
 		return
 	}

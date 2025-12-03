@@ -4,7 +4,7 @@ import { Input } from '@/ui/atoms/input'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/molecules/card'
 import { Label } from '@/ui/atoms/label'
 import type { AuthUnknownError } from '@supabase/supabase-js'
-import { supabase } from '@/lib/supabase'
+import { supabase, isSupabaseConfigured } from '@/lib/supabase'
 import { toast } from 'sonner'
 import { Navigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
@@ -50,6 +50,8 @@ export default function AuthCard() {
 		setLoading(true)
 
 		try {
+			if (!isSupabaseConfigured || !supabase) return
+
 			const { data, error } = isRegister
 				? await supabase.auth.signUp({ email, password })
 				: await supabase.auth.signInWithPassword({ email, password })

@@ -1,12 +1,14 @@
 import { emptyTaskBoard, TaskBoard } from '../models/taskBoard'
 import { TaskListInEachColumnRepository } from './taskListInEachColumnRepository'
 import { getUserId } from '@/auth/utils/getUserId'
-import { supabase } from '@/lib/supabase'
+import { isSupabaseConfigured, supabase } from '@/lib/supabase'
 
 export default class SupabaseTaskListInEachColumnRepository
 	implements TaskListInEachColumnRepository
 {
 	async save(taskListInEachColumn: TaskBoard) {
+		if (!isSupabaseConfigured || !supabase) return
+
 		const user_id = await getUserId()
 		const { error } = await supabase
 			.from('boards')
@@ -19,6 +21,8 @@ export default class SupabaseTaskListInEachColumnRepository
 	}
 
 	async getAll() {
+		if (!isSupabaseConfigured || !supabase) return
+
 		const user_id = await getUserId()
 		const { error, data } = await supabase
 			.from('boards')
