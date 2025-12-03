@@ -24,6 +24,8 @@ import {
 	Clipboard,
 	CircleCheck,
 	MessageSquareText,
+	Clock4,
+	Hourglass,
 } from 'lucide-react'
 
 const iconSize: string = '20'
@@ -107,4 +109,10 @@ export const CheckIcon = ({ className = '' }: IconProps) => (
 )
 export const MessageSquareTextIcon = ({ className = '' }: IconProps) => (
 	<MessageSquareText size={iconSize} className={className} />
+)
+export const ClockIcon = ({ className = '' }: IconProps) => (
+	<Clock4 size={iconSize} className={className} />
+)
+export const HourglassIcon = ({ className = '' }: IconProps) => (
+	<Hourglass size={iconSize} className={className} />
 )

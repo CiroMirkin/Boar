@@ -6,6 +6,7 @@ import Auth from './pages/Auth'
 import { BoardArchive } from './pages/BoardArchive'
 import { BoardPage } from './pages/BoardPage'
 import ErrorBoundary from './ErrorBoundary'
+import { TimeTracking } from './pages/TimeTracking'
 
 const router = createBrowserRouter([
 	{
@@ -29,6 +30,14 @@ const router = createBrowserRouter([
 		element: (
 			<ErrorBoundary>
 				<Settings />
+			</ErrorBoundary>
+		),
+	},
+	{
+		path: '/time',
+		element: (
+			<ErrorBoundary>
+				<TimeTracking />
 			</ErrorBoundary>
 		),
 	},
