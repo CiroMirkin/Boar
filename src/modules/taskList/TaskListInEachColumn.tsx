@@ -4,6 +4,7 @@ import { useReminderQuery } from '@/modules/taskList/components/Reminder/hooks/u
 import { useTaskListInEachColumn } from './hooks/useTaskListInEachColumn'
 import { useTranslation } from 'react-i18next'
 import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
+import { useTheme } from '@/sharedByModules/hooks/useTheme'
 
 /** La propiedad columnPosition es el indice de la columna mas uno */
 const getColumnPosition = (taskListIndex: number): string => `${taskListIndex + 1}`
@@ -11,6 +12,7 @@ const getColumnPosition = (taskListIndex: number): string => `${taskListIndex + 
 export function TaskListInEachColumn() {
 	const taskListInEachColumn = useTaskListInEachColumn()
 	const { reminder } = useReminderQuery()
+	const colors = useTheme()
 
 	useReminder(taskListInEachColumn, reminder)
 	const { t } = useTranslation()
@@ -23,7 +25,7 @@ export function TaskListInEachColumn() {
 		taskListInEachColumn.forEach((taskList, index) => {
 			columnsContent.push(
 				index == 0 ? (
-					<EmptySpaceText className='min-h-64 md:min-h-[60vh] pt-4 px-4'>
+					<EmptySpaceText className={`min-h-64 md:min-h-[60vh] pt-4 px-4 ${colors.columnText || 'text-black'}`}>
 						{t('empty_first_task_list_copy')}
 					</EmptySpaceText>
 				) : (
