@@ -1,7 +1,7 @@
 import { emptyTask } from '@/modules/taskList/models/task'
 import { archiveThisTask } from './archiveTask'
 import { Archive } from '../models/archive'
-import { getFullDate } from '@/sharedByModules/utils/getTime'
+import { getFullDate } from '@/commond/utils/getTime'
 import { expect } from 'vitest'
 
 describe('Archivar una tarea.', () => {

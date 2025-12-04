@@ -1,6 +1,6 @@
 import { toast } from 'sonner'
 import { useCheckIfTaskIsInTheLastColumn } from '@/modules/taskList/components/Columns/hooks/useCheckIfTaskIsInTheLastColumn'
-import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
+import getErrorMessageForTheUser from '@/commond/utils/getErrorMessageForTheUser'
 import { MoveButttons } from './MoveButtons'
 import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
 import { CopyTextButton } from './CopyTextButton'

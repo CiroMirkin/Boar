@@ -25,7 +25,7 @@ import { useTranslation } from 'react-i18next'
 import LogInAndLogOutMenuItem from '../../modules/LanguageToggle/LogInAndLogOutMenuItem'
 import { useSession } from '@/auth/hooks/useSession'
 import Notes from '@/modules/notes/Notes'
-import { useTheme } from '@/sharedByModules/hooks/useTheme'
+import { useTheme } from '@/commond/hooks/useTheme'
 import { useLastDurationPeriod } from '@/modules/UsageHistory/hooks/useLastDurationPeriod'
 
 interface HeaderProps {

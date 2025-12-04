@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/ui/atoms/button'
-import { useTheme } from '@/sharedByModules/hooks/useTheme'
+import { useTheme } from '@/commond/hooks/useTheme'
 import { toast } from 'sonner'
 import { downloadArchiveLikePDF } from '@/modules/taskList/components/ArchivedTasks/downloadArchiveLikePDF'
 import { useArchivedTasksQuery } from '../hooks/useArchivedTasksQuery'
 import { emptyArchivedTasks } from '../models/archive'
 import { useArchive } from '../hooks/useArchive'
-import { useExportJson } from '@/sharedByModules/hooks/useExportJson'
+import { useExportJson } from '@/commond/hooks/useExportJson'
 import type { Archive } from '../models/archive'
 
 export default function Footer() {

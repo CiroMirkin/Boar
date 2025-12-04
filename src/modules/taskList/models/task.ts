@@ -1,4 +1,4 @@
-import BusinessError from '@/sharedByModules/errors/businessError'
+import BusinessError from '@/commond/errors/businessError'
 import { Tag } from '../components/Tags/model/tags'
 import { NotesAndComments } from './NotesAndComments'
 import { TaskTimelineHistory } from './taskTimelineHistory'

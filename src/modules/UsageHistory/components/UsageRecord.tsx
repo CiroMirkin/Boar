@@ -1,8 +1,8 @@
 import { DailyUsage } from '../model/usageHistory'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/ui/molecules/card'
-import { formatDate } from '@/sharedByModules/utils/formatDate'
+import { formatDate } from '@/commond/utils/formatDate'
 import Period from './Period'
-import { useTheme } from '@/sharedByModules/hooks/useTheme'
+import { useTheme } from '@/commond/hooks/useTheme'
 import { parseDuration } from '../utils/parseDuration'
 
 interface UsageRecordProps {

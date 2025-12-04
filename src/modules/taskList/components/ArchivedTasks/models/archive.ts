@@ -1,4 +1,4 @@
-import BusinessError from '@/sharedByModules/errors/businessError'
+import BusinessError from '@/commond/errors/businessError'
 import { TaskList } from '@/modules/taskList/models/taskList'
 
 export interface taskListArchived {

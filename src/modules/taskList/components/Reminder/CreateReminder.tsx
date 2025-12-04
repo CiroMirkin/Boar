@@ -5,11 +5,11 @@ import { Label } from '@/ui/atoms/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/ui/atoms/select'
 import { Reminder as reminder } from './reminder'
 import { toast } from 'sonner'
-import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
+import getErrorMessageForTheUser from '@/commond/utils/getErrorMessageForTheUser'
 import { useTranslation } from 'react-i18next'
 import { SettingSection } from '@/ui/organisms/SettingSection'
 import { useReminderQuery } from './hooks/useReminderQuery'
-import { useTheme } from '@/sharedByModules/hooks/useTheme'
+import { useTheme } from '@/commond/hooks/useTheme'
 
 interface ReminderColumn {
 	name: string

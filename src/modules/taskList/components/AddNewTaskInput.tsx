@@ -1,6 +1,6 @@
 import { getNewTask, isThisTaskDescriptionValid } from '@/modules/taskList/models/task'
 import { toast } from 'sonner'
-import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
+import getErrorMessageForTheUser from '@/commond/utils/getErrorMessageForTheUser'
 import { KeyboardEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'

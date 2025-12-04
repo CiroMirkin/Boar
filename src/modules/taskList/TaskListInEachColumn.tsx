@@ -4,7 +4,7 @@ import { useReminderQuery } from '@/modules/taskList/components/Reminder/hooks/u
 import { useTaskListInEachColumn } from './hooks/useTaskListInEachColumn'
 import { useTranslation } from 'react-i18next'
 import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
-import { useTheme } from '@/sharedByModules/hooks/useTheme'
+import { useTheme } from '@/commond/hooks/useTheme'
 
 /** La propiedad columnPosition es el indice de la columna mas uno */
 const getColumnPosition = (taskListIndex: number): string => `${taskListIndex + 1}`
