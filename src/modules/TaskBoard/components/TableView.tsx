@@ -1,9 +1,9 @@
-import { useListOfTasksInColumnsQuery } from '../../taskList/hooks/useListOfTasksInColumnsQuery'
+import { useTaskBoardQuery } from '../hooks/useTaskBoardQuery'
 import { ListOfColumn, ColumnsContent } from '../../taskList/components/Columns/ListOfColumns'
 
 export function TableView({ children }: { children: () => ColumnsContent }) {
-	const { listOfTaskInColumns } = useListOfTasksInColumnsQuery()
-	const columns = listOfTaskInColumns.map((list) => ({
+	const { taskBoard } = useTaskBoardQuery()
+	const columns = taskBoard.map((list) => ({
 		name: list.status,
 		id: list.id,
 	}))

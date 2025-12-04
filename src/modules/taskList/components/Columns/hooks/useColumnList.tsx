@@ -1,10 +1,10 @@
-import { useListOfTasksInColumnsQuery } from '@/modules/taskList/hooks/useListOfTasksInColumnsQuery'
+import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 import { Column } from '../model/column'
 
 export const useColumnList = (): Column[] => {
-	const { listOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const { taskBoard } = useTaskBoardQuery()
 
-	return listOfTaskInColumns.map((list) => ({
+	return taskBoard.map((list) => ({
 		id: list.id,
 		name: list.status,
 	}))

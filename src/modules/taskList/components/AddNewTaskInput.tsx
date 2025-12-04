@@ -9,7 +9,7 @@ import TagGroupSelect from './Tags/components/TagGroupSelect'
 import { useUserSelectedTags } from './Tags/hooks/useUserSelectedTags'
 import { setUserSelectedTags } from './Tags/state/tagsReducer'
 import { addTaskInFirstColumn } from '../useCase/addTask'
-import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
+import { useTaskBoardQuery } from '../../TaskBoard/hooks/useTaskBoardQuery'
 import { sortListOfTasksInColumnsByPriority } from '../models/sortListOfTasksInColumnsByPriority'
 import { addChangeToTaskTimelineHistory } from '../useCase/addChangeToTaskTimelineHistory'
 import { useGetColumnNameFromPosition } from '@/modules/taskList/components/Columns/hooks/useGetColumnNameFromPosition'
@@ -18,7 +18,7 @@ import { useTaskListInEachColumn } from '../hooks/useTaskListInEachColumn'
 export function AddNewTaskInput() {
 	const [newTaskDescription, setNewTaskDescription] = useState('')
 	const canUserUseTheAddTaskInput = !isThisTaskDescriptionValid(newTaskDescription)
-	const { updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const { updateTaskBoard } = useTaskBoardQuery()
 	const listOfTaskInColumns = useTaskListInEachColumn()
 	const selectedTags = useUserSelectedTags()
 	const getColumnName = useGetColumnNameFromPosition()
@@ -45,7 +45,7 @@ export function AddNewTaskInput() {
 				})
 			)
 
-			updateListOfTaskInColumns(updatedList)
+			updateTaskBoard(updatedList)
 			dispatch(setUserSelectedTags([]))
 			setNewTaskDescription('')
 		} catch (error) {

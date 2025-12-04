@@ -3,7 +3,7 @@ import { TaskList as taskList } from '../../TaskBoard/model/TaskList'
 import { Task } from './Task'
 import { taskModel } from '../../TaskBoard/model/task'
 import { moveThisTaskToThisColumn } from '../useCase/moveThisTaskToThisColumn'
-import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
+import { useTaskBoardQuery } from '../../TaskBoard/hooks/useTaskBoardQuery'
 import { sortListOfTasksInColumnsByPriority } from '../models/sortListOfTasksInColumnsByPriority'
 import { addChangeToTaskTimelineHistory } from '../useCase/addChangeToTaskTimelineHistory'
 import { useGetColumnNameFromPosition } from '@/modules/taskList/components/Columns/hooks/useGetColumnNameFromPosition'
@@ -21,7 +21,7 @@ export function TaskList({ tasks, columnPosition }: TaskListProps) {
 		taskList.push(<Task task={task} key={task.id} />)
 	})
 
-	const { updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const { updateTaskBoard } = useTaskBoardQuery()
 	const listOfTaskInColumns = useTaskListInEachColumn()
 	const getColumnName = useGetColumnNameFromPosition()
 	const handleDrop = (e: DragEvent) => {
@@ -43,7 +43,7 @@ export function TaskList({ tasks, columnPosition }: TaskListProps) {
 					newColumnPosition: columnPosition,
 				})
 			)
-			updateListOfTaskInColumns(updatedList)
+			updateTaskBoard(updatedList)
 		}
 	}
 

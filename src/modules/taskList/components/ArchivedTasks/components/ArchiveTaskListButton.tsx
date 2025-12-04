@@ -4,7 +4,7 @@ import getErrorMessageForTheUser from '@/commond/utils/getErrorMessageForTheUser
 import { useCheckForTasksInLastColumn } from '../../Columns/hooks/useCheckForTasksInLastColumn'
 import { useTranslation } from 'react-i18next'
 import { ArchiveIcon } from '@/ui/atoms/icons'
-import { useListOfTasksInColumnsQuery } from '@/modules/taskList/hooks/useListOfTasksInColumnsQuery'
+import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 import { cleanLastTaskList } from '@/modules/taskList/useCase/deleteTaskList'
 import { archiveTaskListInTheLastColumn } from '../useCase/archiveTaskList'
 import { useArchivedTasksQuery } from '../hooks/useArchivedTasksQuery'
@@ -16,7 +16,7 @@ export function ArchiveTaskListButton() {
 	const { t } = useTranslation()
 	const color = useTheme()
 
-	const { updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const { updateTaskBoard } = useTaskBoardQuery()
 	const taskListInEachColumn = useTaskListInEachColumn()
 	const canUserArchiveTask = useCheckForTasksInLastColumn()
 	const { updateArchivedTasks, archivedTasks } = useArchivedTasksQuery()
@@ -36,7 +36,7 @@ export function ArchiveTaskListButton() {
 			})
 
 			updateArchivedTasks(updatedArchive)
-			updateListOfTaskInColumns(updatedList)
+			updateTaskBoard(updatedList)
 
 			toast.info(t('archive_task_list_toast'))
 		} catch (error) {

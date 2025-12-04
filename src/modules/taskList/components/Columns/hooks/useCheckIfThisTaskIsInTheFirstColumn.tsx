@@ -1,9 +1,9 @@
 import { taskModel } from '@/modules/TaskBoard/model/task'
-import { useListOfTasksInColumnsQuery } from '@/modules/taskList/hooks/useListOfTasksInColumnsQuery'
+import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 
 export function useCheckIfThisTaskIsInTheFirstColumn(task: taskModel): boolean {
-	const { listOfTaskInColumns } = useListOfTasksInColumnsQuery()
-	const taskColumnIndex = listOfTaskInColumns.findIndex((column) =>
+	const { taskBoard } = useTaskBoardQuery()
+	const taskColumnIndex = taskBoard.findIndex((column) =>
 		column.tasks.some((t) => t.id === task.id)
 	)
 	if (taskColumnIndex === -1) return false

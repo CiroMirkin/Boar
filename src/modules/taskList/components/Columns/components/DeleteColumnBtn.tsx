@@ -2,18 +2,18 @@ import { Button } from '@/ui/atoms/button'
 import { TrashIcon } from '@/ui/atoms/icons'
 import { useTranslation } from 'react-i18next'
 import { deleteThisTaskColumn } from '@/modules/taskList/useCase/deleteTaskList'
-import { useListOfTasksInColumnsQuery } from '@/modules/taskList/hooks/useListOfTasksInColumnsQuery'
+import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 import { Column } from '../model/column'
 import { toast } from 'sonner'
 
 function DeleteColumnBtn({ column }: { column: Column }) {
 	const { t } = useTranslation()
-	const { updateListOfTaskInColumns, listOfTaskInColumns: taskBoard } =
-		useListOfTasksInColumnsQuery()
+	const { updateTaskBoard, taskBoard } =
+		useTaskBoardQuery()
 
 	const deleteColumnHandle = () => {
 		const updatedTaskBoard = deleteThisTaskColumn({ id: column.id, taskBoard })
-		updateListOfTaskInColumns(updatedTaskBoard)
+		updateTaskBoard(updatedTaskBoard)
 	}
 
 	const askForConfirmationToDeleteTheColumn = () => {

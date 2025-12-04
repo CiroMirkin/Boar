@@ -9,10 +9,10 @@ import { ToggleTypeOfView } from '@/modules/TypeOfView/ToggleTypeOfView'
 import { EnableTags } from '@/modules/taskList/components/Tags/components/EnableTags'
 
 import { ConfigColumns } from '@/modules/taskList/components/Columns/components/ConfigColumns'
-import { useListOfTasksInColumnsQuery } from '@/modules/taskList/hooks/useListOfTasksInColumnsQuery'
+import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 const useColumnListForReminders = (): { name: string; id: string; position: string }[] => {
-	const { listOfTaskInColumns } = useListOfTasksInColumnsQuery()
-	return listOfTaskInColumns.map((list, i) => ({
+	const { taskBoard } = useTaskBoardQuery()
+	return taskBoard.map((list, i) => ({
 		name: list.status,
 		id: list.id,
 		position: i + 1 + '',

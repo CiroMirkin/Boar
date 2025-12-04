@@ -3,7 +3,7 @@ import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
 import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
 import { ArchiveIcon } from '@/ui/atoms/icons'
-import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
+import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 import { deleteThisTask } from '../useCase/deleteTask'
 import { useArchivedTasksQuery } from '../components/ArchivedTasks/hooks/useArchivedTasksQuery'
 import { archiveThisTask } from '../components/ArchivedTasks/useCase/archiveTask'
@@ -18,7 +18,7 @@ interface ArchiveTaskButtonProps {
 export function ArchiveTaskButton({ handleClick }: ArchiveTaskButtonProps) {
 	const { t } = useTranslation()
 	const data = useDataOfTheTask()
-	const { updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const { updateTaskBoard } = useTaskBoardQuery()
 	const listOfTaskInColumns = useTaskListInEachColumn()
 	const { updateArchivedTasks, archivedTasks } = useArchivedTasksQuery()
 
@@ -38,7 +38,7 @@ export function ArchiveTaskButton({ handleClick }: ArchiveTaskButtonProps) {
 		})
 
 		updateArchivedTasks(updatedArchive)
-		updateListOfTaskInColumns(updatedList)
+		updateTaskBoard(updatedList)
 
 		toast.info(t('task_buttons.archive_toast'))
 	}, [
@@ -46,7 +46,7 @@ export function ArchiveTaskButton({ handleClick }: ArchiveTaskButtonProps) {
 		archivedTasks,
 		listOfTaskInColumns,
 		updateArchivedTasks,
-		updateListOfTaskInColumns,
+		updateTaskBoard,
 		t,
 	])
 

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
 import { toast } from 'sonner'
 import { TrashIcon } from '@/ui/atoms/icons'
-import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
+import { useTaskBoardQuery } from '../../TaskBoard/hooks/useTaskBoardQuery'
 import { deleteThisTask } from '../useCase/deleteTask'
 import { useTaskListInEachColumn } from '../hooks/useTaskListInEachColumn'
 
@@ -16,7 +16,7 @@ export function DeleteTaskButton({ handleClick }: DeleteButtonProps) {
 	const { t } = useTranslation()
 	const data = useDataOfTheTask()
 	const isTheTaskInTheFirstColumn = useCheckIfThisTaskIsInTheFirstColumn(data)
-	const { updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const { updateTaskBoard } = useTaskBoardQuery()
 	const listOfTaskInColumns = useTaskListInEachColumn()
 
 	const deleteTaskAction = () => {
@@ -24,7 +24,7 @@ export function DeleteTaskButton({ handleClick }: DeleteButtonProps) {
 			taskListInEachColumn: listOfTaskInColumns,
 			task: data,
 		})
-		updateListOfTaskInColumns(updatedList)
+		updateTaskBoard(updatedList)
 	}
 
 	const askForConfirmationToDeleteTheTask = () => {

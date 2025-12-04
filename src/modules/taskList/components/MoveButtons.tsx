@@ -4,7 +4,7 @@ import { useCheckIfTaskIsInTheLastColumn } from '@/modules/taskList/components/C
 import { Button } from '@/ui/atoms/button'
 import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
 import { ArrowLeftIcon, ArrowRightIcon } from '@/ui/atoms/icons'
-import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
+import { useTaskBoardQuery } from '../../TaskBoard/hooks/useTaskBoardQuery'
 import { sortListOfTasksInColumnsByPriority } from '../models/sortListOfTasksInColumnsByPriority'
 import { moveThisTaskToTheNextColumn, moveThisTaskToThePrevColumn } from '../useCase/moveTask'
 import { addChangeToTaskTimelineHistory } from '../useCase/addChangeToTaskTimelineHistory'
@@ -19,7 +19,7 @@ export function MoveButttons({ handleClick }: MoveButtonsProps) {
 	const { t } = useTranslation()
 	const data = useDataOfTheTask()
 	const getColumnName = useGetColumnNameFromTask()
-	const { updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const { updateTaskBoard } = useTaskBoardQuery()
 	const listOfTaskInColumns = useTaskListInEachColumn()
 	const isTheTaskInTheFirstColumn = useCheckIfThisTaskIsInTheFirstColumn(data)
 	const isTheTaskInTheLastColumn = useCheckIfTaskIsInTheLastColumn(data)
@@ -37,7 +37,7 @@ export function MoveButttons({ handleClick }: MoveButtonsProps) {
 				task,
 			})
 		)
-		updateListOfTaskInColumns(updatedList)
+		updateTaskBoard(updatedList)
 	}
 	const moveTaskToPrevColumnAction = () => {
 		const task = {
@@ -53,7 +53,7 @@ export function MoveButttons({ handleClick }: MoveButtonsProps) {
 				task,
 			})
 		)
-		updateListOfTaskInColumns(updatedList)
+		updateTaskBoard(updatedList)
 	}
 
 	return (

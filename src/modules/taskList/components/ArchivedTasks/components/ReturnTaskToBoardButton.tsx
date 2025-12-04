@@ -3,7 +3,7 @@ import { TaskContext } from '@/ui/organisms/BlankTask'
 import { Button } from '@/ui/atoms/button'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
-import { useListOfTasksInColumnsQuery } from '@/modules/taskList/hooks/useListOfTasksInColumnsQuery'
+import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 import { addTaskInTheLastColumn } from '@/modules/taskList/useCase/addTask'
 import { sortListOfTasksInColumnsByPriority } from '@/modules/taskList/models/sortListOfTasksInColumnsByPriority'
 import { useArchivedTasksQuery } from '../hooks/useArchivedTasksQuery'
@@ -14,7 +14,7 @@ import { useTaskListInEachColumn } from '@/modules/taskList/hooks/useTaskListInE
 export function ReturnTaskToBoardButton() {
 	const { t } = useTranslation()
 	const task = useContext(TaskContext)
-	const { updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const { updateTaskBoard } = useTaskBoardQuery()
 	const listOfTaskInColumns = useTaskListInEachColumn()
 	const { archivedTasks, updateArchivedTasks } = useArchivedTasksQuery()
 
@@ -29,7 +29,7 @@ export function ReturnTaskToBoardButton() {
 				task: { ...task, timelineHistory },
 			})
 		)
-		updateListOfTaskInColumns(updatedListOfTaskInColumns)
+		updateTaskBoard(updatedListOfTaskInColumns)
 
 		const updatedArchivedTasks = deleteThisArchivedTask({
 			task,

@@ -5,7 +5,7 @@ import LocalStorageTaskListInEachColumnRepository from './localStorageTaskListsR
 import SupabaseTaskListInEachColumnRepository from './supabaseTaskListsRepository'
 
 // Factory para obtener el repositorio adecuado segun el estado del usuario
-const getTaskListInEachColumnRepository = (
+const getTaskBoardRepository = (
 	session: Session | null
 ): TaskListInEachColumnRepository => {
 	if (session) {
@@ -14,18 +14,18 @@ const getTaskListInEachColumnRepository = (
 	return new LocalStorageTaskListInEachColumnRepository()
 }
 
-export const fetchTaskListInEachColumn = async (session: Session | null): Promise<TaskBoard> => {
-	const repository = getTaskListInEachColumnRepository(session)
+export const fetchTaskBoard = async (session: Session | null): Promise<TaskBoard> => {
+	const repository = getTaskBoardRepository(session)
 	return repository.getAll()
 }
 
-export const saveTaskListInEachColumn = async ({
-	taskListInEachColumn,
+export const saveTaskBoard = async ({
+	taskBoard,
 	session,
 }: {
-	taskListInEachColumn: TaskBoard
+	taskBoard: TaskBoard
 	session: Session | null
 }): Promise<void> => {
-	const repository = getTaskListInEachColumnRepository(session)
-	await repository.save(taskListInEachColumn)
+	const repository = getTaskBoardRepository(session)
+	await repository.save(taskBoard)
 }

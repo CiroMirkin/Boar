@@ -1,24 +1,24 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { fetchTaskListInEachColumn, saveTaskListInEachColumn } from '@/modules/TaskBoard/repository'
+import { fetchTaskBoard, saveTaskBoard } from '@/modules/TaskBoard/repository'
 import { useSession } from '@/auth/hooks/useSession'
-import { isThisArrayOfTypeTaskListInEachColumn, TaskListInEachColumn } from '../models/taskList'
+import { isThisArrayOfTypeTaskListInEachColumn, TaskListInEachColumn } from '../../taskList/models/taskList'
 import {
 	emptyTaskBoard,
 	isDefaultTaskBoard,
 	joinTaskListsAndTaskBoard,
 	TaskBoard,
-} from '../../TaskBoard/model/taskBoard'
+} from '../model/taskBoard'
 import { useTranslation } from 'react-i18next'
 import { useCallback } from 'react'
 
-const taskListInEachColumnsQueryKey = ['taskListInEachColumns']
+const taskBoardQueryKey = ['taskBoard']
 
-export const useListOfTasksInColumnsQuery = () => {
+export const useTaskBoardQuery = () => {
 	const { session } = useSession()
 	const queryClient = useQueryClient()
 
 	const userId = session?.user.id ?? 'guest'
-	const fullQueryKey = [...taskListInEachColumnsQueryKey, userId]
+	const fullQueryKey = [...taskBoardQueryKey, userId]
 
 	const { t, i18n } = useTranslation()
 	const select = useCallback(
@@ -36,58 +36,58 @@ export const useListOfTasksInColumnsQuery = () => {
 	)
 
 	const {
-		data: listOfTaskInColumns = emptyTaskBoard,
+		data: taskBoard = emptyTaskBoard,
 		isLoading,
 		isError,
 		error,
 	} = useQuery({
 		queryKey: fullQueryKey,
-		queryFn: () => fetchTaskListInEachColumn(session),
+		queryFn: () => fetchTaskBoard(session),
 		placeholderData: emptyTaskBoard,
 		select,
 	})
 
-	const { mutate: updateListOfTaskInColumns, isPending: isSaving } = useMutation({
-		mutationFn: (updatedTaskLists: TaskListInEachColumn | TaskBoard) => {
-			if (isThisArrayOfTypeTaskListInEachColumn(updatedTaskLists)) {
+	const { mutate: updateTaskBoard, isPending: isSaving } = useMutation({
+		mutationFn: (updatedTaskBoard: TaskListInEachColumn | TaskBoard) => {
+			if (isThisArrayOfTypeTaskListInEachColumn(updatedTaskBoard)) {
 				const previousTaskBoard =
 					queryClient.getQueryData<TaskBoard>(fullQueryKey) ?? emptyTaskBoard
 				const newUpdated = joinTaskListsAndTaskBoard(
-					updatedTaskLists as TaskListInEachColumn,
+					updatedTaskBoard as TaskListInEachColumn,
 					previousTaskBoard
 				)
 
-				return saveTaskListInEachColumn({
-					taskListInEachColumn: newUpdated,
+				return saveTaskBoard({
+					taskBoard: newUpdated,
 					session,
 				})
 			}
 
-			return saveTaskListInEachColumn({
-				taskListInEachColumn: updatedTaskLists as TaskBoard,
+			return saveTaskBoard({
+				taskBoard: updatedTaskBoard as TaskBoard,
 				session,
 			})
 		},
-		onMutate: async (updatedTaskLists: TaskListInEachColumn | TaskBoard) => {
+		onMutate: async (updatedTaskBoard: TaskListInEachColumn | TaskBoard) => {
 			await queryClient.cancelQueries({ queryKey: fullQueryKey })
 			const previousTaskBoard =
 				queryClient.getQueryData<TaskBoard>(fullQueryKey) ?? emptyTaskBoard
 
-			if (isThisArrayOfTypeTaskListInEachColumn(updatedTaskLists)) {
+			if (isThisArrayOfTypeTaskListInEachColumn(updatedTaskBoard)) {
 				const newUpdated = joinTaskListsAndTaskBoard(
-					updatedTaskLists as TaskListInEachColumn,
+					updatedTaskBoard as TaskListInEachColumn,
 					previousTaskBoard
 				)
 				queryClient.setQueryData(fullQueryKey, newUpdated)
-				return { previousTaskListInEachColumn: previousTaskBoard }
+				return { previousTaskBoard: previousTaskBoard }
 			}
 
-			queryClient.setQueryData(fullQueryKey, updatedTaskLists)
-			return { previousTaskListInEachColumn: previousTaskBoard }
+			queryClient.setQueryData(fullQueryKey, updatedTaskBoard)
+			return { previousTaskBoard: previousTaskBoard }
 		},
-		onError: (_err, _newTaskListInEachColumn, context) => {
-			if (context?.previousTaskListInEachColumn) {
-				queryClient.setQueryData(fullQueryKey, context.previousTaskListInEachColumn)
+		onError: (_err, _newTaskBoard, context) => {
+			if (context?.previousTaskBoard) {
+				queryClient.setQueryData(fullQueryKey, context.previousTaskBoard)
 			}
 		},
 		onSettled: () => {
@@ -96,11 +96,11 @@ export const useListOfTasksInColumnsQuery = () => {
 	})
 
 	return {
-		listOfTaskInColumns,
+		taskBoard,
 		isLoading,
 		isError,
 		error,
-		updateListOfTaskInColumns,
+		updateTaskBoard,
 		isSaving,
 	}
 }

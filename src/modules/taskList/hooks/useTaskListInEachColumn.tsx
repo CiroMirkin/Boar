@@ -1,11 +1,11 @@
 import { emptyTaskListInEachColumn, TaskListInEachColumn } from '@/modules/taskList/models/taskList'
-import { useListOfTasksInColumnsQuery } from './useListOfTasksInColumnsQuery'
+import { useTaskBoardQuery } from '../../TaskBoard/hooks/useTaskBoardQuery'
 
 export const useTaskListInEachColumn = (): TaskListInEachColumn => {
-	const { listOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const { taskBoard } = useTaskBoardQuery()
 
-	if (!listOfTaskInColumns || listOfTaskInColumns.length === 0) {
+	if (!taskBoard || taskBoard.length === 0) {
 		return emptyTaskListInEachColumn
 	}
-	return listOfTaskInColumns.map((column) => column.tasks || [])
+	return taskBoard.map((column) => column.tasks || [])
 }

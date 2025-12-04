@@ -14,12 +14,12 @@ import { checkMaxLengthOfNotesAndComments } from '../models/NotesAndComments'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
 import { updateNotesAndCommentsOfThisTask } from '../useCase/updateNotesAndCommentsOfThisTask'
-import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
+import { useTaskBoardQuery } from '../../TaskBoard/hooks/useTaskBoardQuery'
 import { useTaskListInEachColumn } from '../hooks/useTaskListInEachColumn'
 
 export default function ShowTaskNotesEditor() {
 	const task = useDataOfTheTask()
-	const { updateListOfTaskInColumns } = useListOfTasksInColumnsQuery()
+	const { updateTaskBoard } = useTaskBoardQuery()
 	const listOfTaskInColumns = useTaskListInEachColumn()
 	const { t } = useTranslation()
 
@@ -34,7 +34,7 @@ export default function ShowTaskNotesEditor() {
 			taskToUpdate: task,
 			notes: text,
 		})
-		updateListOfTaskInColumns(updatedList)
+		updateTaskBoard(updatedList)
 	}
 
 	return (

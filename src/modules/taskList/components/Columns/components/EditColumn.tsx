@@ -5,7 +5,7 @@ import { Input } from '@/ui/atoms/input'
 import { useTheme } from '@/commond/hooks/useTheme'
 import { isThisColumnNameWithinTheLimitOfLetters } from '@/modules/TaskBoard/model/taskColumn'
 import { Column } from '../model/column'
-import { useListOfTasksInColumnsQuery } from '@/modules/taskList/hooks/useListOfTasksInColumnsQuery'
+import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 import { changeStatusName } from '@/modules/taskList/useCase/changeStatusName'
 import DeleteColumnBtn from './DeleteColumnBtn'
 
@@ -19,8 +19,8 @@ export function EditColumn({ column }: EditColumnParams) {
 	const [columnName, setColumnName] = useState(column.name)
 
 	const nameToShow = showChangeColumnNameInput ? columnName : column.name
-	const { updateListOfTaskInColumns, listOfTaskInColumns: taskBoard } =
-		useListOfTasksInColumnsQuery()
+	const { updateTaskBoard, taskBoard } =
+		useTaskBoardQuery()
 
 	const editColumnNameHandle = () => {
 		if (showChangeColumnNameInput) {
@@ -29,7 +29,7 @@ export function EditColumn({ column }: EditColumnParams) {
 				id,
 				newName: columnName,
 			})
-			updateListOfTaskInColumns(updatedColumnList)
+			updateTaskBoard(updatedColumnList)
 		} else {
 			setColumnName(column.name)
 		}

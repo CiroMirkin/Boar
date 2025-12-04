@@ -6,13 +6,13 @@ import { Input } from '@/ui/atoms/input'
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { isThisColumnNameWithinTheLimitOfLetters } from '@/modules/TaskBoard/model/taskColumn'
-import { useListOfTasksInColumnsQuery } from '@/modules/taskList/hooks/useListOfTasksInColumnsQuery'
+import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 import { addNewTaskColumn } from '@/modules/taskList/useCase/addNewTaskColumn'
 
 export function AddNewColumnForm() {
 	const [newColumnName, setNewColumnName] = useState('')
-	const { updateListOfTaskInColumns, listOfTaskInColumns: taskBoard } =
-		useListOfTasksInColumnsQuery()
+	const { updateTaskBoard, taskBoard } =
+		useTaskBoardQuery()
 
 	const theNewColumnNameIsBlank = !newColumnName.trim()
 	const theNewColumnNameIsOffLimits = !isThisColumnNameWithinTheLimitOfLetters(newColumnName)
@@ -24,7 +24,7 @@ export function AddNewColumnForm() {
 				status: newColumnName,
 				taskBoard,
 			})
-			updateListOfTaskInColumns(updatedTaskBoard)
+			updateTaskBoard(updatedTaskBoard)
 			setNewColumnName('')
 		} catch (error) {
 			toast.error(getErrorMessageForTheUser(error))
