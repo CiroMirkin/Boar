@@ -1,6 +1,6 @@
 import BusinessError from '@/commond/errors/businessError'
 import { TaskColumn } from './taskColumn'
-import { TaskListInEachColumn as TaskLists } from './taskList'
+import { TaskListInEachColumn as TaskLists } from '../../taskList/models/taskList'
 
 export type TaskBoard = TaskColumn[]
 

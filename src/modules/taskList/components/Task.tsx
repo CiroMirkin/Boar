@@ -1,5 +1,5 @@
 import { BlankTask } from '@/ui/organisms/BlankTask'
-import { taskModel } from '../models/task'
+import { taskModel } from '../../TaskBoard/model/task'
 import { TaskInBoardActions } from './TaskInBoardActions'
 import { DragEvent } from 'react'
 

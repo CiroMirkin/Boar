@@ -1,5 +1,5 @@
 import { getHighestPriority } from '../components/Tags/model/getHighestPriority'
-import { taskModel } from './task'
+import { taskModel } from '../../TaskBoard/model/task'
 
 /**
  * Ordena un array de tareas según la prioridad de sus etiquetas

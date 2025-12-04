@@ -1,5 +1,5 @@
 import { useListOfTasksInColumnsQuery } from '@/modules/taskList/hooks/useListOfTasksInColumnsQuery'
-import { taskModel } from '@/modules/taskList/models/task'
+import { taskModel } from '@/modules/TaskBoard/model/task'
 
 export const useGetColumnNameFromTask = (): ((task: taskModel) => string) => {
 	const { listOfTaskInColumns } = useListOfTasksInColumnsQuery()

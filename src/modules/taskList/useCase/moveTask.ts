@@ -1,5 +1,6 @@
 import { taskUseCaseParams } from './actions'
-import { TaskList, isThisTaskListWithinTheLimit } from '@/modules/taskList/models/taskList'
+import { isThisTaskListWithinTheLimit } from '@/modules/taskList/models/taskList'
+import { TaskList } from '../../TaskBoard/model/TaskList'
 
 export type moveToType = 'next-column' | 'prev-column'
 

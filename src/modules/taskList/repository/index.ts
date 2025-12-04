@@ -1,5 +1,5 @@
 import { Session } from '@supabase/supabase-js'
-import { TaskBoard } from '../models/taskBoard'
+import { TaskBoard } from '../../TaskBoard/model/taskBoard'
 import { TaskListInEachColumnRepository } from './taskListInEachColumnRepository'
 import LocalStorageTaskListInEachColumnRepository from './localStorageTaskListsRepository'
 import SupabaseTaskListInEachColumnRepository from './supabaseTaskListsRepository'

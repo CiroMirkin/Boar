@@ -1,5 +1,5 @@
 import { addChangeToTaskTimelineHistory } from './addChangeToTaskTimelineHistory'
-import { taskModel } from '../models/task'
+import { taskModel } from '../../TaskBoard/model/task'
 import { vi } from 'vitest'
 
 const emptyTaskForTest: taskModel = {

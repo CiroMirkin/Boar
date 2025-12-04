@@ -1,5 +1,5 @@
 import BusinessError from '@/commond/errors/businessError'
-import { TaskList } from './taskList'
+import { TaskList } from './TaskList'
 
 export type TaskColumn = {
 	tasks: TaskList

@@ -1,5 +1,5 @@
-import { taskModel } from '../models/task'
-import { TaskList } from '../models/taskList'
+import { taskModel } from '../../TaskBoard/model/task'
+import { TaskList } from '../../TaskBoard/model/TaskList'
 
 export interface taskUseCaseParams {
 	taskListInEachColumn: TaskList[]

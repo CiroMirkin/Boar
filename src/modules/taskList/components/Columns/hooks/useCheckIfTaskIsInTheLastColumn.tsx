@@ -1,4 +1,4 @@
-import { taskModel } from '@/modules/taskList/models/task'
+import { taskModel } from '@/modules/TaskBoard/model/task'
 import { useTaskListInEachColumn } from '@/modules/taskList/hooks/useTaskListInEachColumn'
 
 export function useCheckIfTaskIsInTheLastColumn(task: taskModel): boolean {

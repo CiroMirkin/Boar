@@ -1,4 +1,4 @@
-import { TaskBoard } from '../models/taskBoard'
+import { TaskBoard } from '../../TaskBoard/model/taskBoard'
 
 interface changeStatusNameParams {
 	newName: string

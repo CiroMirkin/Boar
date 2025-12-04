@@ -1,5 +1,5 @@
-import { TaskBoard } from '../models/taskBoard'
-import { getNewTaskColumn } from '../models/taskColumn'
+import { TaskBoard } from '../../TaskBoard/model/taskBoard'
+import { getNewTaskColumn } from '../../TaskBoard/model/taskColumn'
 
 interface addNewTaskColumnParams {
 	taskBoard: TaskBoard

@@ -5,7 +5,7 @@ import getErrorMessageForTheUser from '@/commond/utils/getErrorMessageForTheUser
 import { Input } from '@/ui/atoms/input'
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { isThisColumnNameWithinTheLimitOfLetters } from '@/modules/taskList/models/taskColumn'
+import { isThisColumnNameWithinTheLimitOfLetters } from '@/modules/TaskBoard/model/taskColumn'
 import { useListOfTasksInColumnsQuery } from '@/modules/taskList/hooks/useListOfTasksInColumnsQuery'
 import { addNewTaskColumn } from '@/modules/taskList/useCase/addNewTaskColumn'
 

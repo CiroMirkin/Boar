@@ -1,5 +1,5 @@
 import BusinessError from '@/commond/errors/businessError'
-import { taskModel } from '../models/task'
+import { taskModel } from '../../TaskBoard/model/task'
 import {
 	TaskTimelineHistory,
 	TaskColumnChange,

@@ -1,7 +1,7 @@
 import { Archive } from '../models/archive'
 import { deleteThisArchivedTask } from './deleteArchivedTask'
 import { getFullDate } from '@/commond/utils/getTime'
-import { emptyTask } from '@/modules/taskList/models/task'
+import { emptyTask } from '@/modules/TaskBoard/model/task'
 import { expect } from 'vitest'
 
 describe('Eliminar una tarea del archivo.', () => {

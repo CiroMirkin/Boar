@@ -1,4 +1,4 @@
-import { taskModel } from '../models/task'
+import { taskModel } from '../../TaskBoard/model/task'
 import { TaskListInEachColumn } from '../models/taskList'
 import { Tag } from '../components/Tags/model/tags'
 

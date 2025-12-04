@@ -1,4 +1,4 @@
-import { taskModel } from '../models/task'
+import { taskModel } from '../../TaskBoard/model/task'
 import { isThisTaskListWithinTheLimit, TaskListInEachColumn } from '../models/taskList'
 import { deleteThisTask } from './deleteTask'
 

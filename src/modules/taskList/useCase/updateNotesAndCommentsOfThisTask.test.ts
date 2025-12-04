@@ -1,5 +1,5 @@
 import { updateNotesAndCommentsOfThisTask } from './updateNotesAndCommentsOfThisTask'
-import { taskModel } from '../models/task'
+import { taskModel } from '../../TaskBoard/model/task'
 import { TaskListInEachColumn } from '../models/taskList'
 
 describe('Actualizar las notas de una tarea.', () => {

@@ -1,4 +1,4 @@
-import { emptyTask } from '../models/task'
+import { emptyTask } from '../../TaskBoard/model/task'
 import { addChangeToEachTaskInList } from './addChangeToEachTaskInList'
 import { describe, test, expect } from 'vitest'
 

@@ -1,4 +1,4 @@
-import { getNewTask, isThisTaskDescriptionValid } from '@/modules/taskList/models/task'
+import { getNewTask, isThisTaskDescriptionValid } from '@/modules/TaskBoard/model/task'
 import { toast } from 'sonner'
 import getErrorMessageForTheUser from '@/commond/utils/getErrorMessageForTheUser'
 import { KeyboardEvent, useState } from 'react'

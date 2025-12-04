@@ -1,8 +1,7 @@
 import BusinessError from '@/commond/errors/businessError'
-import { taskModel } from './task'
-import { TaskBoard } from './taskBoard'
+import { TaskBoard } from '../../TaskBoard/model/taskBoard'
+import { TaskList } from '../../TaskBoard/model/TaskList'
 
-export type TaskList = taskModel[]
 export type TaskListInEachColumn = TaskList[]
 export const emptyTaskListInEachColumn: TaskListInEachColumn = [[], [], []]
 

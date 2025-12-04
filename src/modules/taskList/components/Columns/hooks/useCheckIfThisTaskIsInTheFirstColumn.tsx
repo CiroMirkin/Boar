@@ -1,4 +1,4 @@
-import { taskModel } from '@/modules/taskList/models/task'
+import { taskModel } from '@/modules/TaskBoard/model/task'
 import { useListOfTasksInColumnsQuery } from '@/modules/taskList/hooks/useListOfTasksInColumnsQuery'
 
 export function useCheckIfThisTaskIsInTheFirstColumn(task: taskModel): boolean {

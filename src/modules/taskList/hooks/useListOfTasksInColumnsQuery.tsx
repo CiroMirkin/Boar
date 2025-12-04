@@ -7,7 +7,7 @@ import {
 	isDefaultTaskBoard,
 	joinTaskListsAndTaskBoard,
 	TaskBoard,
-} from '../models/taskBoard'
+} from '../../TaskBoard/model/taskBoard'
 import { useTranslation } from 'react-i18next'
 import { useCallback } from 'react'
 

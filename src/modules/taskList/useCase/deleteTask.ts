@@ -1,6 +1,7 @@
-import { TaskList, TaskListInEachColumn } from '@/modules/taskList/models/taskList'
+import { TaskListInEachColumn } from '@/modules/taskList/models/taskList'
+import { TaskList } from '../../TaskBoard/model/TaskList'
 import { findTaskColumnIndex } from './moveTask'
-import { taskModel } from '../models/task'
+import { taskModel } from '../../TaskBoard/model/task'
 
 interface DeleteThisTaskParams {
 	taskListInEachColumn: TaskListInEachColumn
