@@ -1,3 +1,3 @@
-import { taskModel } from './task';
+import { taskModel } from './task'
 
-export type TaskList = taskModel[];
+export type TaskList = taskModel[]

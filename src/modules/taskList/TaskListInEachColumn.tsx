@@ -25,7 +25,9 @@ export function TaskListInEachColumn() {
 		taskListInEachColumn.forEach((taskList, index) => {
 			columnsContent.push(
 				index == 0 ? (
-					<EmptySpaceText className={`min-h-64 md:min-h-[60vh] pt-4 px-4 ${colors.columnText || 'text-black'}`}>
+					<EmptySpaceText
+						className={`min-h-64 md:min-h-[60vh] pt-4 px-4 ${colors.columnText || 'text-black'}`}
+					>
 						{t('empty_first_task_list_copy')}
 					</EmptySpaceText>
 				) : (
