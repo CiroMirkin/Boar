@@ -19,8 +19,7 @@ export function EditColumn({ column }: EditColumnParams) {
 	const [columnName, setColumnName] = useState(column.name)
 
 	const nameToShow = showChangeColumnNameInput ? columnName : column.name
-	const { updateTaskBoard, taskBoard } =
-		useTaskBoardQuery()
+	const { updateTaskBoard, taskBoard } = useTaskBoardQuery()
 
 	const editColumnNameHandle = () => {
 		if (showChangeColumnNameInput) {

@@ -1,7 +1,10 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { fetchTaskBoard, saveTaskBoard } from '@/modules/TaskBoard/repository'
 import { useSession } from '@/auth/hooks/useSession'
-import { isThisArrayOfTypeTaskListInEachColumn, TaskListInEachColumn } from '../../taskList/models/taskList'
+import {
+	isThisArrayOfTypeTaskListInEachColumn,
+	TaskListInEachColumn,
+} from '../../taskList/models/taskList'
 import {
 	emptyTaskBoard,
 	isDefaultTaskBoard,

@@ -11,8 +11,7 @@ import { addNewTaskColumn } from '@/modules/taskList/useCase/addNewTaskColumn'
 
 export function AddNewColumnForm() {
 	const [newColumnName, setNewColumnName] = useState('')
-	const { updateTaskBoard, taskBoard } =
-		useTaskBoardQuery()
+	const { updateTaskBoard, taskBoard } = useTaskBoardQuery()
 
 	const theNewColumnNameIsBlank = !newColumnName.trim()
 	const theNewColumnNameIsOffLimits = !isThisColumnNameWithinTheLimitOfLetters(newColumnName)

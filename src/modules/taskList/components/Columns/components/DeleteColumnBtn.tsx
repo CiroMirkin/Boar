@@ -8,8 +8,7 @@ import { toast } from 'sonner'
 
 function DeleteColumnBtn({ column }: { column: Column }) {
 	const { t } = useTranslation()
-	const { updateTaskBoard, taskBoard } =
-		useTaskBoardQuery()
+	const { updateTaskBoard, taskBoard } = useTaskBoardQuery()
 
 	const deleteColumnHandle = () => {
 		const updatedTaskBoard = deleteThisTaskColumn({ id: column.id, taskBoard })

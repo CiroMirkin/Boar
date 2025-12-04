@@ -5,9 +5,7 @@ import LocalStorageTaskListInEachColumnRepository from './localStorageTaskListsR
 import SupabaseTaskListInEachColumnRepository from './supabaseTaskListsRepository'
 
 // Factory para obtener el repositorio adecuado segun el estado del usuario
-const getTaskBoardRepository = (
-	session: Session | null
-): TaskListInEachColumnRepository => {
+const getTaskBoardRepository = (session: Session | null): TaskListInEachColumnRepository => {
 	if (session) {
 		return new SupabaseTaskListInEachColumnRepository()
 	}

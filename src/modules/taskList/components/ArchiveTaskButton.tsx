@@ -41,14 +41,7 @@ export function ArchiveTaskButton({ handleClick }: ArchiveTaskButtonProps) {
 		updateTaskBoard(updatedList)
 
 		toast.info(t('task_buttons.archive_toast'))
-	}, [
-		data,
-		archivedTasks,
-		listOfTaskInColumns,
-		updateArchivedTasks,
-		updateTaskBoard,
-		t,
-	])
+	}, [data, archivedTasks, listOfTaskInColumns, updateArchivedTasks, updateTaskBoard, t])
 
 	return (
 		<Button
