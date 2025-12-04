@@ -1,4 +1,4 @@
-import { useColumnList } from '@/modules/taskList/components/Columns/hooks/useColumnList'
+import { useColumnList } from '@/modules/TaskBoard/components/Columns/hooks/useColumnList'
 import { Column } from '../model/column'
 
 export function useCheckIfThisColumnIsTheLast(column: Column): boolean {

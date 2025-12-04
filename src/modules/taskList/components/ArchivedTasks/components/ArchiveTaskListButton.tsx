@@ -1,7 +1,7 @@
 import { toast } from 'sonner'
 import { Button } from '@/ui/atoms/button'
 import getErrorMessageForTheUser from '@/commond/utils/getErrorMessageForTheUser'
-import { useCheckForTasksInLastColumn } from '../../Columns/hooks/useCheckForTasksInLastColumn'
+import { useCheckForTasksInLastColumn } from '@/modules/TaskBoard/components/Columns/hooks/useCheckForTasksInLastColumn'
 import { useTranslation } from 'react-i18next'
 import { ArchiveIcon } from '@/ui/atoms/icons'
 import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'

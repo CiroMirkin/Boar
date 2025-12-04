@@ -8,7 +8,7 @@ import PageContainer from './PageContainer'
 import { ToggleTypeOfView } from '@/modules/TypeOfView/ToggleTypeOfView'
 import { EnableTags } from '@/modules/taskList/components/Tags/components/EnableTags'
 
-import { ConfigColumns } from '@/modules/taskList/components/Columns/components/ConfigColumns'
+import { ConfigColumns } from '@/modules/TaskBoard/components/Columns/components/ConfigColumns'
 import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 const useColumnListForReminders = (): { name: string; id: string; position: string }[] => {
 	const { taskBoard } = useTaskBoardQuery()

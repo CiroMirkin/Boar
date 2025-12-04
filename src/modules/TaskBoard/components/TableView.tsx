@@ -1,5 +1,5 @@
 import { useTaskBoardQuery } from '../hooks/useTaskBoardQuery'
-import { ListOfColumn, ColumnsContent } from '../../taskList/components/Columns/ListOfColumns'
+import { ListOfColumn, ColumnsContent } from '@/modules/TaskBoard/components/Columns/ListOfColumns'
 
 export function TableView({ children }: { children: () => ColumnsContent }) {
 	const { taskBoard } = useTaskBoardQuery()

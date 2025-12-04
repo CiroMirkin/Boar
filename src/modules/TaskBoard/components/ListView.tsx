@@ -1,5 +1,5 @@
 import { useTheme } from '@/commond/hooks/useTheme'
-import { ListOfColumn, ColumnsContent } from '../../taskList/components/Columns/ListOfColumns'
+import { ListOfColumn, ColumnsContent } from '@/modules/TaskBoard/components/Columns/ListOfColumns'
 import { useTaskBoardQuery } from '../hooks/useTaskBoardQuery'
 
 export function ListView({

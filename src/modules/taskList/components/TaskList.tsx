@@ -6,7 +6,7 @@ import { moveThisTaskToThisColumn } from '../useCase/moveThisTaskToThisColumn'
 import { useTaskBoardQuery } from '../../TaskBoard/hooks/useTaskBoardQuery'
 import { sortListOfTasksInColumnsByPriority } from '../models/sortListOfTasksInColumnsByPriority'
 import { addChangeToTaskTimelineHistory } from '../useCase/addChangeToTaskTimelineHistory'
-import { useGetColumnNameFromPosition } from '@/modules/taskList/components/Columns/hooks/useGetColumnNameFromPosition'
+import { useGetColumnNameFromPosition } from '@/modules/TaskBoard/components/Columns/hooks/useGetColumnNameFromPosition'
 import { useTaskListInEachColumn } from '../hooks/useTaskListInEachColumn'
 
 interface TaskListProps {
