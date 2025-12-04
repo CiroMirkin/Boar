@@ -31,7 +31,7 @@ export function BlankTask({ data, children }: BlankTaskProps) {
 			<Card className={taskClassName}>
 				<CardContent
 					onClick={() => setShow(!show)}
-					className='rounded-md px-3 py-2 text-xl leading-6 font-semibold cursor-pointer'
+					className='rounded-md px-3 py-2 text-xl leading-tight font-semibold cursor-pointer'
 				>
 					<p className={`whitespace-pre-wrap ${colorTheme.taskText}`}>
 						<TextWithURL text={description}></TextWithURL>
