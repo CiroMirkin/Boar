@@ -1,5 +1,5 @@
+import { isThisArrayOfTypeTaskListInEachColumn } from '@/modules/taskList/models/taskList'
 import { emptyTaskBoard, TaskBoard } from '../../TaskBoard/model/taskBoard'
-import { isThisArrayOfTypeTaskListInEachColumn } from '../models/taskList'
 import { TaskList } from '../../TaskBoard/model/TaskList'
 import { TaskListInEachColumnRepository } from './taskListInEachColumnRepository'
 
