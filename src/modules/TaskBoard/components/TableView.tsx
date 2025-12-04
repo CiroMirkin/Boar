@@ -1,5 +1,5 @@
-import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
-import { ListOfColumn, ColumnsContent } from './Columns/ListOfColumns'
+import { useListOfTasksInColumnsQuery } from '../../taskList/hooks/useListOfTasksInColumnsQuery'
+import { ListOfColumn, ColumnsContent } from '../../taskList/components/Columns/ListOfColumns'
 
 export function TableView({ children }: { children: () => ColumnsContent }) {
 	const { listOfTaskInColumns } = useListOfTasksInColumnsQuery()

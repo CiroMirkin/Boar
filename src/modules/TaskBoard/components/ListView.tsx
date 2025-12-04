@@ -1,6 +1,6 @@
 import { useTheme } from '@/commond/hooks/useTheme'
-import { ListOfColumn, ColumnsContent } from './Columns/ListOfColumns'
-import { useListOfTasksInColumnsQuery } from '../hooks/useListOfTasksInColumnsQuery'
+import { ListOfColumn, ColumnsContent } from '../../taskList/components/Columns/ListOfColumns'
+import { useListOfTasksInColumnsQuery } from '../../taskList/hooks/useListOfTasksInColumnsQuery'
 
 export function ListView({
 	children,
