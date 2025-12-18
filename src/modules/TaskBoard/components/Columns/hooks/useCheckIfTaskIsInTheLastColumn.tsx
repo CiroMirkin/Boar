@@ -1,11 +1,13 @@
 import { taskModel } from '@/modules/TaskBoard/model/task'
-import { useTaskListInEachColumn } from '@/modules/TaskBoard/components/taskList/hooks/useTaskListInEachColumn'
+import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 
 export function useCheckIfTaskIsInTheLastColumn(task: taskModel): boolean {
-	const tasklists = useTaskListInEachColumn()
+	const { taskBoard } = useTaskBoardQuery()
+	const tasklists = taskBoard.map((list) => list.tasks)
 	const taskColumnIndex = tasklists.findIndex((taskList) =>
 		taskList.some((t) => t.id === task.id)
 	)
+
 	if (taskColumnIndex === -1) return false
 	return taskColumnIndex === tasklists.length - 1
 }

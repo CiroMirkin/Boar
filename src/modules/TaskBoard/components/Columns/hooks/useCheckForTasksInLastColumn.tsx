@@ -1,7 +1,8 @@
-import { useTaskListInEachColumn } from '@/modules/TaskBoard/components/taskList/hooks/useTaskListInEachColumn'
+import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 
 export const useCheckForTasksInLastColumn = (): boolean => {
-	const taskListInEachColumn = useTaskListInEachColumn()
+	const { taskBoard } = useTaskBoardQuery()
+	const taskListInEachColumn = taskBoard.map((list) => list.tasks)
 	const taskListInTheLastColumn = taskListInEachColumn[taskListInEachColumn.length - 1]
 	return !taskListInTheLastColumn.length
 }
