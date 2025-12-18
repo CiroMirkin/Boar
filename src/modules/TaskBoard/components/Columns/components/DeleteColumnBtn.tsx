@@ -1,7 +1,7 @@
 import { Button } from '@/ui/atoms/button'
 import { TrashIcon } from '@/ui/atoms/icons'
 import { useTranslation } from 'react-i18next'
-import { deleteThisTaskColumn } from '@/modules/taskList/useCase/deleteTaskList'
+import { deleteThisTaskColumn } from '@/modules/TaskBoard/components/taskList/useCase/deleteTaskList'
 import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 import { Column } from '../model/column'
 import { toast } from 'sonner'

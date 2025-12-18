@@ -1,7 +1,7 @@
 import BusinessError from '@/commond/errors/businessError'
-import { Tag } from '../../taskList/components/Tags/model/tags'
-import { NotesAndComments } from '../../taskList/models/NotesAndComments'
-import { TaskTimelineHistory } from '../../taskList/models/taskTimelineHistory'
+import { Tag } from '@/modules/TaskBoard/components/taskList/components/Tags/model/tags'
+import { NotesAndComments } from '@/modules/TaskBoard/components/taskList/models/NotesAndComments'
+import { TaskTimelineHistory } from '@/modules/TaskBoard/components/taskList/models/taskTimelineHistory'
 
 export interface taskModel {
 	id: string

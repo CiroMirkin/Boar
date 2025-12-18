@@ -1,4 +1,4 @@
-import { emptyTaskBoard, TaskBoard } from '../../TaskBoard/model/taskBoard'
+import { emptyTaskBoard, TaskBoard } from '@/modules/TaskBoard/model/taskBoard'
 import { TaskListInEachColumnRepository } from './taskListInEachColumnRepository'
 import { getUserId } from '@/auth/utils/getUserId'
 import { isSupabaseConfigured, supabase } from '@/lib/supabase'

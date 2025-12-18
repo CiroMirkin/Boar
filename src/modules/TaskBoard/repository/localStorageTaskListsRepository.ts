@@ -1,6 +1,6 @@
-import { isThisArrayOfTypeTaskListInEachColumn } from '@/modules/taskList/models/taskList'
-import { emptyTaskBoard, TaskBoard } from '../../TaskBoard/model/taskBoard'
-import { TaskList } from '../../TaskBoard/model/TaskList'
+import { isThisArrayOfTypeTaskListInEachColumn } from '@/modules/TaskBoard/components/taskList/models/taskList'
+import { emptyTaskBoard, TaskBoard } from '@/modules/TaskBoard/model/taskBoard'
+import { TaskList } from '@/modules/TaskBoard/model/TaskList'
 import { TaskListInEachColumnRepository } from './taskListInEachColumnRepository'
 
 export default class LocalStorageTaskListInEachColumnRepository

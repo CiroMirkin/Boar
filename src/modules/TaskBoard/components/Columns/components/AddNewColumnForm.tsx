@@ -7,7 +7,7 @@ import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { isThisColumnNameWithinTheLimitOfLetters } from '@/modules/TaskBoard/model/taskColumn'
 import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
-import { addNewTaskColumn } from '@/modules/taskList/useCase/addNewTaskColumn'
+import { addNewTaskColumn } from '@/modules/TaskBoard/components/taskList/useCase/addNewTaskColumn'
 
 export function AddNewColumnForm() {
 	const [newColumnName, setNewColumnName] = useState('')

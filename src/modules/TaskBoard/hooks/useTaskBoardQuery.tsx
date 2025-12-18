@@ -4,7 +4,7 @@ import { useSession } from '@/auth/hooks/useSession'
 import {
 	isThisArrayOfTypeTaskListInEachColumn,
 	TaskListInEachColumn,
-} from '../../taskList/models/taskList'
+} from '@/modules/TaskBoard/components/taskList/models/taskList'
 import {
 	emptyTaskBoard,
 	isDefaultTaskBoard,
