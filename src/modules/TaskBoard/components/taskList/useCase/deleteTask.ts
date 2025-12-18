@@ -1,4 +1,4 @@
-import { TaskListInEachColumn } from '@/modules/TaskBoard/components/taskList/models/taskList'
+import { TaskListInEachColumn } from '@/modules/TaskBoard/components/taskList/models/taskListInEachColumn'
 import { TaskList } from '@/modules/TaskBoard/model/TaskList'
 import { findTaskColumnIndex } from './moveTask'
 import { taskModel } from '@/modules/TaskBoard/model/task'

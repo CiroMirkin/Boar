@@ -1,4 +1,4 @@
-import { TaskListInEachColumn } from '@/modules/TaskBoard/components/taskList/models/taskList'
+import { TaskListInEachColumn } from '@/modules/TaskBoard/components/taskList/models/taskListInEachColumn'
 import { TaskBoard } from '@/modules/TaskBoard/model/taskBoard'
 
 interface deleteLastTaskListParams {

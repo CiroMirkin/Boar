@@ -1,5 +1,5 @@
 import { taskModel } from '@/modules/TaskBoard/model/task'
-import { isThisTaskListWithinTheLimit, TaskListInEachColumn } from '../models/taskList'
+import { isThisTaskListWithinTheLimit, TaskListInEachColumn } from '../models/taskListInEachColumn'
 import { deleteThisTask } from './deleteTask'
 
 export interface DataOfTheTaskForMoveIt {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
-import { TaskListInEachColumn } from '@/modules/TaskBoard/components/taskList/models/taskList'
+import { TaskListInEachColumn } from '@/modules/TaskBoard/components/taskList/models/taskListInEachColumn'
 import { Reminder } from '../reminder'
 
 /** Si existe un recordatorio observa la columna indicada por el usuario y al ingresar una nueva tarea muestra el recordatorio en el tablero.  */

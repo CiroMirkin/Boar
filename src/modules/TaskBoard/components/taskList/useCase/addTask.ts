@@ -1,7 +1,7 @@
 import {
 	TaskListInEachColumn,
 	isThisTaskListWithinTheLimit,
-} from '@/modules/TaskBoard/components/taskList/models/taskList'
+} from '@/modules/TaskBoard/components/taskList/models/taskListInEachColumn'
 import { taskUseCaseParams } from './actions'
 
 export function addTaskInFirstColumn({

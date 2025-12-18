@@ -1,6 +1,6 @@
 import BusinessError from '@/common/errors/businessError'
 import { TaskColumn } from './taskColumn'
-import { TaskListInEachColumn as TaskLists } from '@/modules/TaskBoard/components/taskList/models/taskList'
+import { TaskListInEachColumn as TaskLists } from '@/modules/TaskBoard/components/taskList/models/taskListInEachColumn'
 
 export type TaskBoard = TaskColumn[]
 

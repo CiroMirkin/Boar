@@ -1,7 +1,7 @@
 import {
 	emptyTaskListInEachColumn,
 	TaskListInEachColumn,
-} from '@/modules/TaskBoard/components/taskList/models/taskList'
+} from '@/modules/TaskBoard/components/taskList/models/taskListInEachColumn'
 import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 
 export const useTaskListInEachColumn = (): TaskListInEachColumn => {

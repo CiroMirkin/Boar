@@ -1,6 +1,6 @@
 import { updateNotesAndCommentsOfThisTask } from './updateNotesAndCommentsOfThisTask'
 import { taskModel } from '@/modules/TaskBoard/model/task'
-import { TaskListInEachColumn } from '../models/taskList'
+import { TaskListInEachColumn } from '../models/taskListInEachColumn'
 
 describe('Actualizar las notas de una tarea.', () => {
 	it('Se deberia actualizar el contenido de las notas de una tarea.', () => {

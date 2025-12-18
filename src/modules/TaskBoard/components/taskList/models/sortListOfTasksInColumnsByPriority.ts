@@ -1,5 +1,5 @@
 import { sortTasksByPriority } from './sortTasksByPriority'
-import { TaskListInEachColumn } from './taskList'
+import { TaskListInEachColumn } from './taskListInEachColumn'
 
 /**
  * Ordena las tareas de cada lista segun la prioridad de sus etiquetas (Tags)

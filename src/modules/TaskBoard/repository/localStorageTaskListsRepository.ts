@@ -1,4 +1,4 @@
-import { isThisArrayOfTypeTaskListInEachColumn } from '@/modules/TaskBoard/components/taskList/models/taskList'
+import { isThisArrayOfTypeTaskListInEachColumn } from '@/modules/TaskBoard/components/taskList/models/taskListInEachColumn'
 import { emptyTaskBoard, TaskBoard } from '@/modules/TaskBoard/model/taskBoard'
 import { TaskList } from '@/modules/TaskBoard/model/TaskList'
 import { TaskListInEachColumnRepository } from './taskListInEachColumnRepository'

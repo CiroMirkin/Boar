@@ -1,4 +1,4 @@
-import { TaskListInEachColumn } from '@/modules/TaskBoard/components/taskList/models/taskList'
+import { TaskListInEachColumn } from '@/modules/TaskBoard/components/taskList/models/taskListInEachColumn'
 import { TaskList } from '@/modules/TaskBoard/model/TaskList'
 import { addTaskInFirstColumn, addTaskInTheLastColumn } from './addTask'
 import { expect } from 'vitest'
