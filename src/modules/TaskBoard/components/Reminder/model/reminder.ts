@@ -7,3 +7,5 @@ export const blankReminder: Reminder = Object.freeze({
 	columnPosition: '',
 	text: '',
 })
+
+export type TaskListArray<T> = T[][]

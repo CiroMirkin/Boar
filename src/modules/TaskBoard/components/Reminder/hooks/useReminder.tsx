@@ -1,11 +1,13 @@
 import { useEffect, useRef } from 'react'
 import { toast } from 'sonner'
-import { Reminder } from '../model/reminder'
+import { TaskListArray } from '../model/reminder'
+import { useReminderQuery } from './useReminderQuery'
 
-type TaskListArray<T> = T[][]
-
-export const useReminder = <T,>(tasksList: TaskListArray<T>, reminder: Reminder | undefined) => {
+/** Observa la lista de tareas y muestra el recordatorio definido por el usuario. */
+export const useReminder = <T,>(tasksList: TaskListArray<T>) => {
 	const previousLengthsRef = useRef<Array<number>>([0, 0, 0])
+	const { reminder } = useReminderQuery()
+
 	useEffect(() => {
 		if (!reminder) return
 
