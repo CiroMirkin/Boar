@@ -1,6 +1,4 @@
 import { TaskList } from './components/TaskList'
-import { useReminder } from '@/modules/TaskBoard/components/taskList/components/Reminder/hooks/useReminder'
-import { useReminderQuery } from '@/modules/TaskBoard/components/taskList/components/Reminder/hooks/useReminderQuery'
 import { useTaskListInEachColumn } from './hooks/useTaskListInEachColumn'
 import { useTranslation } from 'react-i18next'
 import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
@@ -11,10 +9,8 @@ const getColumnPosition = (taskListIndex: number): string => `${taskListIndex + 
 
 export function TaskListInEachColumn() {
 	const taskListInEachColumn = useTaskListInEachColumn()
-	const { reminder } = useReminderQuery()
 	const colors = useTheme()
 
-	useReminder(taskListInEachColumn, reminder)
 	const { t } = useTranslation()
 
 	const columnsContent: React.ReactNode[] = []

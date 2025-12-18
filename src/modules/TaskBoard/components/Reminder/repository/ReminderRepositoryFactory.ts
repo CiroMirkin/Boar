@@ -1,4 +1,4 @@
-import { Reminder } from '../reminder'
+import { Reminder } from '../model/reminder'
 import LocalStorageReminderRepository from './LocalStorageReminder'
 import SupabaseReminderRepository from './SupabaseReminderRepository'
 import { Session } from '@supabase/supabase-js'

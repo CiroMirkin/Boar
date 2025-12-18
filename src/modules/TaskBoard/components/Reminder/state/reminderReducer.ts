@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { blankReminder, Reminder } from '../reminder'
+import { blankReminder, Reminder } from '../model/reminder'
 
 interface InitialState {
 	reminder: Reminder

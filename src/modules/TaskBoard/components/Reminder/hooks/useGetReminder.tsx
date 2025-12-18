@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { Reminder } from '../reminder'
+import { Reminder } from '../model/reminder'
 import { RootState } from '@/store'
 
 export const useGetReminder = (): Reminder => {

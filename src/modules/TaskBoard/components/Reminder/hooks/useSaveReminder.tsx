@@ -1,5 +1,5 @@
 import LocalStorageReminderRepository from '../repository/LocalStorageReminder'
-import { Reminder } from '../reminder'
+import { Reminder } from '../model/reminder'
 import { useDispatch } from 'react-redux'
 import { setReminder } from '../state/reminderReducer'
 import { useSession } from '@/auth/hooks/useSession'

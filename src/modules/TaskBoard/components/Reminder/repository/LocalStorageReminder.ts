@@ -1,4 +1,4 @@
-import { blankReminder, Reminder } from '../reminder'
+import { blankReminder, Reminder } from '../model/reminder'
 import { ReminderRepository } from './ReminderRepository'
 
 export default class LocalStorageReminderRepository implements ReminderRepository {

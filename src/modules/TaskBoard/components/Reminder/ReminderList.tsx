@@ -1,6 +1,6 @@
 import { Button } from '@/ui/atoms/button'
 import { TrashIcon } from '@/ui/atoms/icons'
-import { blankReminder } from './reminder'
+import { blankReminder } from './model/reminder'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { useTheme } from '@/common/hooks/useTheme'

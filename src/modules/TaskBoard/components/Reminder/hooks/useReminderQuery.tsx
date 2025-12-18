@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { fetchReminder, saveReminder } from '../repository/ReminderRepositoryFactory'
 import { useSession } from '@/auth/hooks/useSession'
-import { Reminder } from '../reminder'
+import { Reminder } from '../model/reminder'
 
 const reminderQueryKey = ['reminder']
 

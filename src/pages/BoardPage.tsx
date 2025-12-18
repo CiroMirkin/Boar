@@ -11,6 +11,9 @@ import { ListView } from '@/modules/TaskBoard/components/ListView'
 import { TableView } from '@/modules/TaskBoard/components/TableView'
 import { useTypeOfView } from '@/modules/TypeOfView/useTypeOfView'
 import { NoteInput } from '@/modules/notes/components/NoteInput'
+import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
+import { useReminderQuery } from '@/modules/TaskBoard/components/Reminder/hooks/useReminderQuery'
+import { useReminder } from '@/modules/TaskBoard/components/Reminder/hooks/useReminder'
 
 const columnsData: ColumnsFooterContent = {
 	firstColumnFooterContent: <AddNewTaskInput />,
@@ -20,6 +23,12 @@ const columnsData: ColumnsFooterContent = {
 export function BoardPage() {
 	const { board } = useBoardQuery()
 	const typeOfView = useTypeOfView()
+
+	const { taskBoard } = useTaskBoardQuery()
+	const tasksList = taskBoard.map((column) => column.tasks)
+	const { reminder } = useReminderQuery()
+	useReminder(tasksList, reminder)
+
 	return (
 		<PageContainer title={board?.name || 'Board'} whereUserIs={USER_IS_IN.BOARD}>
 			<Board>

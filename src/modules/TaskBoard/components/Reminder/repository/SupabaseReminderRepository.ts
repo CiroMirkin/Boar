@@ -1,5 +1,5 @@
 import { getActualBoardId } from '@/auth/utils/getActualBoardId'
-import { blankReminder, Reminder } from '../reminder'
+import { blankReminder, Reminder } from '../model/reminder'
 import { ReminderRepository } from './ReminderRepository'
 import { isSupabaseConfigured, supabase } from '@/lib/supabase'
 
