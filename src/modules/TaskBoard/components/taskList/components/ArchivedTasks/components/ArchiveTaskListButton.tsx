@@ -5,7 +5,7 @@ import { useCheckForTasksInLastColumn } from '@/modules/TaskBoard/components/Col
 import { useTranslation } from 'react-i18next'
 import { ArchiveIcon } from '@/ui/atoms/icons'
 import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
-import { cleanLastTaskList } from '@/modules/TaskBoard/components/taskList/useCase/deleteTaskList'
+import { cleanLastTaskList } from '@/modules/TaskBoard/useCase/deleteTaskList'
 import { archiveTaskListInTheLastColumn } from '../useCase/archiveTaskList'
 import { useArchivedTasksQuery } from '../hooks/useArchivedTasksQuery'
 import { addChangeToEachTaskInList } from '@/modules/TaskBoard/components/taskList/useCase/addChangeToEachTaskInList'

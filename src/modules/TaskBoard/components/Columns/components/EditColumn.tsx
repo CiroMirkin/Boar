@@ -6,7 +6,7 @@ import { useTheme } from '@/commond/hooks/useTheme'
 import { isThisColumnNameWithinTheLimitOfLetters } from '@/modules/TaskBoard/model/taskColumn'
 import { Column } from '../model/column'
 import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
-import { changeStatusName } from '@/modules/TaskBoard/components/taskList/useCase/changeStatusName'
+import { changeStatusName } from '@/modules/TaskBoard/useCase/changeStatusName'
 import DeleteColumnBtn from './DeleteColumnBtn'
 
 interface EditColumnParams {
