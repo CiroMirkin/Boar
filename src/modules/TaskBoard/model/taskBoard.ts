@@ -1,4 +1,4 @@
-import BusinessError from '@/commond/errors/businessError'
+import BusinessError from '@/common/errors/businessError'
 import { TaskColumn } from './taskColumn'
 import { TaskListInEachColumn as TaskLists } from '@/modules/TaskBoard/components/taskList/models/taskList'
 

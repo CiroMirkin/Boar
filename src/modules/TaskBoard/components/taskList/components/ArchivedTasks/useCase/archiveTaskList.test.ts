@@ -1,7 +1,7 @@
 import { emptyTask } from '@/modules/TaskBoard/model/task'
 import { TaskList } from '@/modules/TaskBoard/model/TaskList'
 import { archiveTaskListInTheLastColumn } from './archiveTaskList'
-import { getFullDate } from '@/commond/utils/getTime'
+import { getFullDate } from '@/common/utils/getTime'
 import { expect } from 'vitest'
 
 describe('Archivar lista de tareas.', () => {

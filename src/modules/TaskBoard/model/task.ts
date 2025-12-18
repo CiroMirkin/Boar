@@ -1,4 +1,4 @@
-import BusinessError from '@/commond/errors/businessError'
+import BusinessError from '@/common/errors/businessError'
 import { Tag } from '@/modules/TaskBoard/components/taskList/components/Tags/model/tags'
 import { NotesAndComments } from '@/modules/TaskBoard/components/taskList/models/NotesAndComments'
 import { TaskTimelineHistory } from '@/modules/TaskBoard/components/taskList/models/taskTimelineHistory'

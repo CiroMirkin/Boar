@@ -1,4 +1,4 @@
-import BusinessError from '@/commond/errors/businessError'
+import BusinessError from '@/common/errors/businessError'
 
 function getErrorMessageForTheUser(error: unknown): string {
 	if (error instanceof BusinessError) {

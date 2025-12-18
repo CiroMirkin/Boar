@@ -1,4 +1,4 @@
-import BusinessError from '@/commond/errors/businessError'
+import BusinessError from '@/common/errors/businessError'
 import { TaskListInEachColumn } from '../models/taskList'
 import { addChangeToTaskTimelineHistory } from './addChangeToTaskTimelineHistory'
 

@@ -1,7 +1,7 @@
 import { Button } from '@/ui/atoms/button'
 import { toast } from 'sonner'
 import { PlusIcon } from '@/ui/atoms/icons'
-import getErrorMessageForTheUser from '@/commond/utils/getErrorMessageForTheUser'
+import getErrorMessageForTheUser from '@/common/utils/getErrorMessageForTheUser'
 import { Input } from '@/ui/atoms/input'
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'

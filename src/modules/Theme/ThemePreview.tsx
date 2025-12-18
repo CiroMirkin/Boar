@@ -1,4 +1,4 @@
-import { useTheme } from '@/commond/hooks/useTheme'
+import { useTheme } from '@/common/hooks/useTheme'
 import { useMediaQuery } from '@uidotdev/usehooks'
 import { useTranslation } from 'react-i18next'
 

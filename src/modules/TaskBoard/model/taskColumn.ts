@@ -1,4 +1,4 @@
-import BusinessError from '@/commond/errors/businessError'
+import BusinessError from '@/common/errors/businessError'
 import { TaskList } from './TaskList'
 
 export type TaskColumn = {

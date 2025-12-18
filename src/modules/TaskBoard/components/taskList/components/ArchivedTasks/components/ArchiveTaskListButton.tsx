@@ -1,6 +1,6 @@
 import { toast } from 'sonner'
 import { Button } from '@/ui/atoms/button'
-import getErrorMessageForTheUser from '@/commond/utils/getErrorMessageForTheUser'
+import getErrorMessageForTheUser from '@/common/utils/getErrorMessageForTheUser'
 import { useCheckForTasksInLastColumn } from '@/modules/TaskBoard/components/Columns/hooks/useCheckForTasksInLastColumn'
 import { useTranslation } from 'react-i18next'
 import { ArchiveIcon } from '@/ui/atoms/icons'
@@ -10,7 +10,7 @@ import { archiveTaskListInTheLastColumn } from '../useCase/archiveTaskList'
 import { useArchivedTasksQuery } from '../hooks/useArchivedTasksQuery'
 import { addChangeToEachTaskInList } from '@/modules/TaskBoard/components/taskList/useCase/addChangeToEachTaskInList'
 import { useTaskListInEachColumn } from '@/modules/TaskBoard/components/taskList/hooks/useTaskListInEachColumn'
-import { useTheme } from '@/commond/hooks/useTheme'
+import { useTheme } from '@/common/hooks/useTheme'
 
 export function ArchiveTaskListButton() {
 	const { t } = useTranslation()
