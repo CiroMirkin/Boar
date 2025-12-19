@@ -1,4 +1,4 @@
-import { createContext, Dispatch, SetStateAction, useContext } from 'react'
+import { createContext, Dispatch, SetStateAction } from 'react'
 import { Theme, lightTheme } from './themesList'
 
 interface ThemeContextContent {
@@ -12,8 +12,6 @@ const defaultThemeContextValue: ThemeContextContent = {
 }
 
 export const ThemeContext = createContext(defaultThemeContextValue)
-
-export const useChangeTheme = () => useContext(ThemeContext).changeTheme
 
 interface ThemeProviderProps {
 	children: React.ReactNode
