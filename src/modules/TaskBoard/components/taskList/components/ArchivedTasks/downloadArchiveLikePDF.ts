@@ -1,113 +1,241 @@
 import { Archive } from '@/modules/TaskBoard/components/taskList/components/ArchivedTasks/models/archive'
 import { jsPDF } from 'jspdf'
 
+interface ArchivedTag {
+	id: string
+	name: string
+	variant?: string
+	priority?: number
+}
+
+interface ArchivedTaskColumnChange {
+	date: Date
+	columnName: string
+}
+
+interface ArchivedTask {
+	id: string
+	descriptionText: string
+	tags?: ArchivedTag[]
+	notesAndComments?: string
+	timelineHistory?: ArchivedTaskColumnChange[]
+}
+
 interface PDFConfig {
 	pageMargin: number
 	headerFontSize: number
 	dateFontSize: number
 	taskFontSize: number
+	labelFontSize: number
+	contentFontSize: number
 	lineHeight: number
 	maxCharsPerLine: number
-	maxTasksPerPage: number
 	initialY: number
 }
 
-const DEFAULT_CONFIG: PDFConfig = {
-	pageMargin: 10,
-	headerFontSize: 10,
-	dateFontSize: 26,
-	taskFontSize: 18,
-	lineHeight: 14,
-	maxCharsPerLine: 63,
-	maxTasksPerPage: 12,
-	initialY: 16,
+const BRUTALISTA_CONFIG: PDFConfig = {
+	pageMargin: 15,
+	headerFontSize: 24,
+	dateFontSize: 18,
+	taskFontSize: 12,
+	labelFontSize: 10,
+	contentFontSize: 9,
+	lineHeight: 6,
+	maxCharsPerLine: 85,
+	initialY: 35,
 }
 
 export const downloadArchiveLikePDF = ({
 	archive,
-	config = DEFAULT_CONFIG,
+	config = BRUTALISTA_CONFIG,
 }: {
 	archive: Archive
 	config?: Partial<PDFConfig>
 }): void => {
-	const finalConfig = { ...DEFAULT_CONFIG, ...config }
-	const doc = new jsPDF('portrait')
+	const finalConfig = { ...BRUTALISTA_CONFIG, ...config }
+	const doc = new jsPDF('portrait', 'mm', 'a4')
+	const pageWidth = doc.internal.pageSize.getWidth()
+	const pageHeight = doc.internal.pageSize.getHeight()
 
-	setupDocument(doc, finalConfig)
+	setupBrutalistaDocument(doc, finalConfig, pageWidth, pageHeight)
 
-	archive.forEach((archiveEntry, entryIndex) => {
-		if (entryIndex > 0) {
-			doc.addPage('letter', 'portrait')
+	let currentY = finalConfig.initialY
+	let isFirstEntry = true
+
+	archive.forEach((archiveEntry) => {
+		if (!isFirstEntry && currentY + 25 > pageHeight - 20) {
+			doc.addPage('a4', 'portrait')
+			setupBrutalistaDocument(doc, finalConfig, pageWidth, pageHeight)
+			currentY = finalConfig.initialY
 		}
 
-		processArchiveEntry(doc, archiveEntry, finalConfig)
+		doc.setFillColor(0, 0, 0)
+		doc.rect(
+			finalConfig.pageMargin,
+			currentY - 6,
+			pageWidth - finalConfig.pageMargin * 2,
+			8,
+			'F'
+		)
+		doc.setTextColor(255, 255, 255)
+		doc.setFontSize(finalConfig.dateFontSize)
+		doc.setFont('helvetica', 'bold')
+		doc.text(archiveEntry.date.toUpperCase(), finalConfig.pageMargin + 2, currentY)
+		currentY += 15
+
+		archiveEntry.tasklist.forEach((task) => {
+			const taskHeight = calculateTaskHeight(task, finalConfig)
+
+			if (currentY + taskHeight > pageHeight - 20) {
+				doc.addPage('a4', 'portrait')
+				setupBrutalistaDocument(doc, finalConfig, pageWidth, pageHeight)
+				currentY = finalConfig.initialY
+			}
+
+			currentY = processTaskWithFullInfo(
+				doc,
+				task,
+				finalConfig,
+				pageWidth,
+				pageHeight,
+				currentY
+			)
+			currentY += 10
+		})
+
+		isFirstEntry = false
 	})
 
 	doc.save('archivo_Boar.pdf')
 }
 
-const setupDocument = (doc: jsPDF, config: PDFConfig): void => {
-	doc.setTextColor('#000000')
-	doc.setFontSize(config.headerFontSize)
-	doc.text('Boar', config.pageMargin, 6)
-}
-
-const processArchiveEntry = (
+const setupBrutalistaDocument = (
 	doc: jsPDF,
-	{ date, tasklist }: { date: string; tasklist: Array<{ descriptionText: string }> },
-	config: PDFConfig
-): void => {
-	let currentY = config.initialY
-
-	// Add date header
-	doc.setFontSize(config.dateFontSize)
-	doc.text(date, config.pageMargin, currentY)
-	doc.setFontSize(config.taskFontSize)
-
-	// Process tasks
-	tasklist.forEach((task, taskIndex) => {
-		const linesAdded = addTaskText(
-			doc,
-			task.descriptionText,
-			config,
-			currentY + config.lineHeight,
-			taskIndex
-		)
-		currentY += linesAdded * config.lineHeight
-
-		// Check if we need a new page
-		if (shouldAddNewPage(taskIndex, tasklist.length, config.maxTasksPerPage)) {
-			doc.addPage('letter', 'portrait')
-			currentY = config.initialY
-		}
-	})
-}
-
-const addTaskText = (
-	doc: jsPDF,
-	text: string,
 	config: PDFConfig,
-	startY: number,
-	taskIndex: number
+	pageWidth: number,
+	pageHeight: number
+): void => {
+	doc.setFillColor(0, 0, 0)
+	doc.rect(0, 0, pageWidth, 25, 'F')
+
+	doc.setTextColor(255, 255, 255)
+	doc.setFontSize(config.headerFontSize)
+	doc.setFont('helvetica', 'bold')
+	doc.text('BOAR', config.pageMargin, 17)
+
+	doc.setDrawColor(0, 0, 0)
+	doc.setLineWidth(3)
+	doc.rect(5, 5, pageWidth - 10, pageHeight - 10)
+}
+
+const calculateTaskHeight = (task: ArchivedTask, config: PDFConfig): number => {
+	let height = 25
+
+	const taskLines = wrapText(task.descriptionText || '', config.maxCharsPerLine - 5)
+	height += taskLines.length * config.lineHeight + 5
+
+	if (task.notesAndComments) {
+		const cleanNotes = stripHtmlTags(task.notesAndComments)
+		const noteLines = wrapText(cleanNotes, config.maxCharsPerLine - 5)
+		height += 15 + Math.min(noteLines.length * config.lineHeight, 50)
+	}
+
+	if (task.timelineHistory && task.timelineHistory.length > 0) {
+		height += 15 + Math.min(task.timelineHistory.length * 5, 60)
+	}
+
+	return height
+}
+
+const processTaskWithFullInfo = (
+	doc: jsPDF,
+	task: ArchivedTask,
+	config: PDFConfig,
+	pageWidth: number,
+	pageHeight: number,
+	startY: number
 ): number => {
-	const bulletPoint = `${taskIndex + 1}. `
-	const adjustedMaxChars = config.maxCharsPerLine - bulletPoint.length
-	const lines = wrapText(text, adjustedMaxChars)
 	let currentY = startY
 
-	lines.forEach((line, lineIndex) => {
-		const prefix = lineIndex === 0 ? bulletPoint : '   ' // Indent continuation lines
-		doc.text(prefix + line, config.pageMargin, currentY)
-		currentY += 10 // Spacing between wrapped lines
-	})
+	doc.setTextColor(0, 0, 0)
+	doc.setFontSize(config.taskFontSize)
+	doc.setFont('helvetica', 'bold')
 
-	return lines.length
+	let tareaHeader = 'TAREA'
+	if (task.tags && task.tags.length > 0) {
+		const tagNames = task.tags.map((tag: ArchivedTag) => tag.name.toUpperCase()).join(', ')
+		tareaHeader = `TAREA ( ${tagNames} )`
+	}
+	doc.text(tareaHeader + ':', config.pageMargin, currentY)
+	currentY += 6
+
+	doc.setFont('helvetica', 'normal')
+	const taskLines = wrapText(task.descriptionText || '', config.maxCharsPerLine - 5)
+	taskLines.forEach((line) => {
+		doc.text(line, config.pageMargin + 5, currentY)
+		currentY += config.lineHeight
+	})
+	currentY += 5
+
+	if (task.notesAndComments) {
+		doc.setFont('helvetica', 'bold')
+		doc.setFontSize(config.labelFontSize)
+		doc.text('NOTAS Y COMENTARIOS:', config.pageMargin, currentY)
+		currentY += 5
+
+		doc.setFont('helvetica', 'normal')
+		doc.setFontSize(config.contentFontSize)
+		const cleanNotes = stripHtmlTags(task.notesAndComments)
+		const noteLines = wrapText(cleanNotes, config.maxCharsPerLine - 5)
+
+		const maxNotesLines = Math.floor((pageHeight - currentY - 30) / config.lineHeight)
+		const displayLines = noteLines.slice(0, maxNotesLines)
+
+		displayLines.forEach((line) => {
+			doc.text(line, config.pageMargin + 5, currentY)
+			currentY += config.lineHeight
+		})
+		currentY += 3
+	}
+
+	if (task.timelineHistory && task.timelineHistory.length > 0) {
+		doc.setFont('helvetica', 'bold')
+		doc.setFontSize(config.labelFontSize)
+		doc.text('HISTORIAL:', config.pageMargin, currentY)
+		currentY += 5
+
+		doc.setFont('courier', 'normal')
+		doc.setFontSize(config.contentFontSize - 1)
+
+		const maxTimelineEntries = Math.floor((pageHeight - currentY - 15) / 5)
+		const displayEntries = task.timelineHistory.slice(-maxTimelineEntries)
+
+		displayEntries.forEach((entry: ArchivedTaskColumnChange) => {
+			const formattedDate = new Date(entry.date).toLocaleString('es-AR', {
+				day: '2-digit',
+				month: '2-digit',
+				year: 'numeric',
+				hour: '2-digit',
+				minute: '2-digit',
+			})
+
+			const timelineText = `* ${formattedDate} ------ ${entry.columnName.toUpperCase()}`
+			doc.text(timelineText, config.pageMargin + 5, currentY)
+			currentY += 5
+		})
+
+		currentY += 3
+		doc.setDrawColor(0, 0, 0)
+		doc.setLineWidth(1)
+		doc.line(config.pageMargin, currentY, pageWidth - config.pageMargin, currentY)
+	}
+
+	return currentY
 }
 
 const wrapText = (text: string, maxCharsPerLine: number): string[] => {
-	if (text.length <= maxCharsPerLine) {
-		return [text]
-	}
+	if (!text || text.length === 0) return []
+	if (text.length <= maxCharsPerLine) return [text]
 
 	const lines: string[] = []
 	let remainingText = text
@@ -118,7 +246,6 @@ const wrapText = (text: string, maxCharsPerLine: number): string[] => {
 			break
 		}
 
-		// Find the best break point (prefer breaking at spaces)
 		let breakPoint = maxCharsPerLine
 		const lastSpaceIndex = remainingText.lastIndexOf(' ', maxCharsPerLine)
 
@@ -133,69 +260,14 @@ const wrapText = (text: string, maxCharsPerLine: number): string[] => {
 	return lines
 }
 
-const shouldAddNewPage = (
-	currentTaskIndex: number,
-	totalTasks: number,
-	maxTasksPerPage: number
-): boolean => {
-	if (totalTasks <= maxTasksPerPage) {
-		return false
-	}
-
-	// Add page at regular intervals
-	const pageBreakPoints = Array.from(
-		{ length: Math.ceil(totalTasks / maxTasksPerPage) },
-		(_, i) => (i + 1) * maxTasksPerPage - 1
-	)
-
-	return pageBreakPoints.includes(currentTaskIndex) && currentTaskIndex < totalTasks - 1
+const stripHtmlTags = (html: string): string => {
+	return html
+		.replace(/<[^>]*>/g, ' ')
+		.replace(/&nbsp;/g, ' ')
+		.replace(/\s+/g, ' ')
+		.trim()
 }
 
-// Alternative simplified version for basic use cases
 export const downloadArchiveLikePDFSimple = ({ archive }: { archive: Archive }): void => {
-	const doc = new jsPDF('portrait')
-	doc.setTextColor('#000000')
-	doc.setFontSize(8)
-	doc.text('Boar', 10, 6)
-
-	archive.forEach(({ date, tasklist }, archiveIndex) => {
-		if (archiveIndex > 0) doc.addPage('letter', 'portrait')
-
-		let yPosition = 16
-		doc.setFontSize(26)
-		doc.text(date, 10, yPosition)
-		doc.setFontSize(18)
-
-		tasklist.forEach(({ descriptionText }, taskIndex) => {
-			yPosition += 14
-
-			const bulletPoint = `${taskIndex + 1}. `
-			const maxLength = 63 - bulletPoint.length
-
-			// Simple text wrapping with bullet points
-			if (descriptionText.length > maxLength) {
-				const lines = [
-					descriptionText.slice(0, maxLength),
-					descriptionText.slice(maxLength, maxLength * 2).trimStart(),
-					descriptionText.slice(maxLength * 2).trimStart(),
-				].filter((line) => line.length > 0)
-
-				lines.forEach((line, lineIndex) => {
-					const prefix = lineIndex === 0 ? bulletPoint : '   '
-					doc.text(prefix + line, 10, yPosition)
-					yPosition += 10
-				})
-			} else {
-				doc.text(bulletPoint + descriptionText, 10, yPosition)
-			}
-
-			// Page break logic
-			if (tasklist.length > 12 && [11, 23, 35, 47].includes(taskIndex)) {
-				doc.addPage('letter', 'portrait')
-				yPosition = 16
-			}
-		})
-	})
-
-	doc.save('archivo_Boar.pdf')
+	downloadArchiveLikePDF({ archive })
 }
