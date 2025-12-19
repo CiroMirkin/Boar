@@ -46,7 +46,7 @@ export const useTaskBoardQuery = () => {
 	} = useQuery({
 		queryKey: fullQueryKey,
 		queryFn: () => fetchTaskBoard(session),
-		placeholderData: emptyTaskBoard,
+		staleTime: 30000,
 		select,
 	})
 
