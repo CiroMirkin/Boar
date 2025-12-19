@@ -1,7 +1,7 @@
 import { isDefaultBoardName } from '@/modules/board/models/board'
 import { defaultNotes } from '@/modules/notes/model/notes'
 import { getActualUserBoard } from './getActualUserBoard'
-import { emptyTaskBoard } from '@/modules/taskList/models/taskBoard'
+import { emptyTaskBoard } from '@/modules/TaskBoard/model/taskBoard'
 
 /**
  * Verifica los valores dentro del estado local (Redux).

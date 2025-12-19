@@ -1,16 +1,18 @@
 import { Board } from '@/modules/board/Board'
-import { ColumnsFooterContentProvider } from '@/modules/taskList/components/Columns/context/ColumnsFooter/ColumnsFooterContentProvider'
-import { ColumnsFooterContent } from '@/modules/taskList/components/Columns/context/ColumnsFooter/columnsFooterContent'
-import { ArchiveTaskListButton } from '@/modules/taskList/components/ArchivedTasks/components/ArchiveTaskListButton'
-import { AddNewTaskInput } from '@/modules/taskList/components/AddNewTaskInput'
-import { TaskListInEachColumn } from '@/modules/taskList/TaskListInEachColumn'
+import { ColumnsFooterContentProvider } from '@/modules/TaskBoard/components/Columns/context/ColumnsFooter/ColumnsFooterContentProvider'
+import { ColumnsFooterContent } from '@/modules/TaskBoard/components/Columns/context/ColumnsFooter/columnsFooterContent'
+import { ArchiveTaskListButton } from '@/modules/TaskBoard/components/taskList/components/ArchivedTasks/components/ArchiveTaskListButton'
+import { AddNewTaskInput } from '@/modules/TaskBoard/components/taskList/components/AddNewTaskInput'
+import { TaskListInEachColumn } from '@/modules/TaskBoard/components/taskList/TaskListInEachColumn'
 import PageContainer from './PageContainer'
 import { useBoardQuery } from '@/modules/board/hooks/useBoardQuery'
 import { USER_IS_IN } from '@/ui/organisms/userIsIn'
-import { ListView } from '@/modules/taskList/components/ListView'
-import { TableView } from '@/modules/taskList/components/TableView'
+import { ListView } from '@/modules/TaskBoard/components/ListView'
+import { TableView } from '@/modules/TaskBoard/components/TableView'
 import { useTypeOfView } from '@/modules/TypeOfView/useTypeOfView'
 import { NoteInput } from '@/modules/notes/components/NoteInput'
+import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
+import { useReminder } from '@/modules/TaskBoard/components/Reminder/hooks/useReminder'
 
 const columnsData: ColumnsFooterContent = {
 	firstColumnFooterContent: <AddNewTaskInput />,
@@ -20,6 +22,11 @@ const columnsData: ColumnsFooterContent = {
 export function BoardPage() {
 	const { board } = useBoardQuery()
 	const typeOfView = useTypeOfView()
+
+	const { taskBoard } = useTaskBoardQuery()
+	const tasksList = taskBoard.map((column) => column.tasks)
+	useReminder(tasksList)
+
 	return (
 		<PageContainer title={board?.name || 'Board'} whereUserIs={USER_IS_IN.BOARD}>
 			<Board>

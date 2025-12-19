@@ -1,4 +1,4 @@
-import { useTheme } from '@/commond/hooks/useTheme'
+import { useTheme } from '@/common/hooks/useTheme'
 import { Spinner } from '@/ui/atoms/spinner'
 
 export function LoadingBoard() {

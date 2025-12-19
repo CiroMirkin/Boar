@@ -1,4 +1,4 @@
-import { useTheme } from '@/commond/hooks/useTheme'
+import { useTheme } from '@/common/hooks/useTheme'
 import { ReactNode } from 'react'
 
 export function SettingSection({ children }: { children: ReactNode }) {

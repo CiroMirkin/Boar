@@ -1,10 +1,10 @@
 import React, { createContext, useState } from 'react'
-import { taskModel, emptyTask } from '@/modules/taskList/models/task'
+import { taskModel, emptyTask } from '@/modules/TaskBoard/model/task'
 import { Card, CardContent, CardFooter } from '../molecules/card'
 import { TextWithURL } from '@/ui/atoms/TextWithURL'
-import { useTheme } from '@/commond/hooks/useTheme'
+import { useTheme } from '@/common/hooks/useTheme'
 import { Badge } from '../atoms/badge'
-import { useAvailableTags } from '@/modules/taskList/components/Tags/hooks/useAvailableTags'
+import { useAvailableTags } from '@/modules/TaskBoard/components/taskList/components/Tags/hooks/useAvailableTags'
 import { CollapseTransition } from '../atoms/CollapseTransition'
 
 export const TaskContext = createContext(emptyTask)
