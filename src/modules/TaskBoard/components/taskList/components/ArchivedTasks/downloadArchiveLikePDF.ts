@@ -1,8 +1,25 @@
 import { Archive } from '@/modules/TaskBoard/components/taskList/components/ArchivedTasks/models/archive'
-import { taskModel } from '@/modules/TaskBoard/model/task'
 import { jsPDF } from 'jspdf'
-import { Tag } from '../Tags/model/tags'
-import { TaskColumnChange } from '../../models/taskTimelineHistory'
+
+interface ArchivedTag {
+	id: string
+	name: string
+	variant?: string
+	priority?: number
+}
+
+interface ArchivedTaskColumnChange {
+	date: Date
+	columnName: string
+}
+
+interface ArchivedTask {
+	id: string
+	descriptionText: string
+	tags?: ArchivedTag[]
+	notesAndComments?: string
+	timelineHistory?: ArchivedTaskColumnChange[]
+}
 
 interface PDFConfig {
 	pageMargin: number
@@ -111,7 +128,7 @@ const setupBrutalistaDocument = (
 	doc.rect(5, 5, pageWidth - 10, pageHeight - 10)
 }
 
-const calculateTaskHeight = (task: taskModel, config: PDFConfig): number => {
+const calculateTaskHeight = (task: ArchivedTask, config: PDFConfig): number => {
 	let height = 25
 
 	const taskLines = wrapText(task.descriptionText || '', config.maxCharsPerLine - 5)
@@ -132,7 +149,7 @@ const calculateTaskHeight = (task: taskModel, config: PDFConfig): number => {
 
 const processTaskWithFullInfo = (
 	doc: jsPDF,
-	task: taskModel,
+	task: ArchivedTask,
 	config: PDFConfig,
 	pageWidth: number,
 	pageHeight: number,
@@ -146,7 +163,7 @@ const processTaskWithFullInfo = (
 
 	let tareaHeader = 'TAREA'
 	if (task.tags && task.tags.length > 0) {
-		const tagNames = task.tags.map((tag: Tag) => tag.name.toUpperCase()).join(', ')
+		const tagNames = task.tags.map((tag: ArchivedTag) => tag.name.toUpperCase()).join(', ')
 		tareaHeader = `TAREA ( ${tagNames} )`
 	}
 	doc.text(tareaHeader + ':', config.pageMargin, currentY)
@@ -193,7 +210,7 @@ const processTaskWithFullInfo = (
 		const maxTimelineEntries = Math.floor((pageHeight - currentY - 15) / 5)
 		const displayEntries = task.timelineHistory.slice(-maxTimelineEntries)
 
-		displayEntries.forEach((entry: TaskColumnChange) => {
+		displayEntries.forEach((entry: ArchivedTaskColumnChange) => {
 			const formattedDate = new Date(entry.date).toLocaleString('es-AR', {
 				day: '2-digit',
 				month: '2-digit',
