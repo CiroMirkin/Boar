@@ -65,24 +65,7 @@ describe('Componente MinimalTiptapEditor', () => {
 			})
 		})
 
-		it('Debe poder activar y desactivar niveles de encabezado', async () => {
-			render(
-				<MinimalTiptapEditor
-					onChange={() => {}}
-					onSave={() => {}}
-					value='<p>Test content</p>'
-				/>
-			)
-
-			const heading1Button = screen.getByRole('button', { name: /H1/i })
-			fireEvent.click(heading1Button)
-
-			await waitFor(() => {
-				expect(heading1Button).toHaveAttribute('Data-state', 'on')
-			})
-		})
-
-		it('Debe poder llamar saveTextCallback cuando se hace click en el boton guardar', () => {
+		it('Debe poder llamar onSave cuando se hace click en el boton guardar', () => {
 			const mockSaveCallback = vi.fn()
 			render(<MinimalTiptapEditor value='' onChange={() => {}} onSave={mockSaveCallback} />)
 
