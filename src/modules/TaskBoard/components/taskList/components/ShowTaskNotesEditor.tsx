@@ -16,14 +16,16 @@ import { useTranslation } from 'react-i18next'
 import { updateNotesAndCommentsOfThisTask } from '../useCase/updateNotesAndCommentsOfThisTask'
 import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 import { useTaskListInEachColumn } from '../hooks/useTaskListInEachColumn'
+import { useState } from 'react'
 
 export default function ShowTaskNotesEditor() {
 	const task = useDataOfTheTask()
 	const { updateTaskBoard } = useTaskBoardQuery()
 	const listOfTaskInColumns = useTaskListInEachColumn()
 	const { t } = useTranslation()
+	const [text, setText] = useState(task.notesAndComments || '')
 
-	const onChange = (text: string) => {
+	const saveText = () => {
 		if (!checkMaxLengthOfNotesAndComments(text)) {
 			toast.error(t('task_notes.max_length_toast'))
 			return
@@ -37,8 +39,13 @@ export default function ShowTaskNotesEditor() {
 		updateTaskBoard(updatedList)
 	}
 
+	const handleDialogOpenChange = (isOpen: boolean) => {
+		if (!isOpen) {
+			saveText()
+		}
+	}
 	return (
-		<Dialog>
+		<Dialog onOpenChange={handleDialogOpenChange}>
 			<DialogTrigger asChild title={t('task_notes.title')}>
 				<Button size='sm' variant='ghost' className='w-full'>
 					<MessageSquareTextIcon />
@@ -51,9 +58,10 @@ export default function ShowTaskNotesEditor() {
 				</DialogHeader>
 				<div>
 					<MinimalTiptapEditor
-						value={task.notesAndComments ? task.notesAndComments : ''}
-						onChange={onChange}
-						saveTextCallback={() => {
+						value={text}
+						onChange={setText}
+						onSave={() => {
+							saveText()
 							toast.success(t('task_notes.save_toast'))
 						}}
 					/>
