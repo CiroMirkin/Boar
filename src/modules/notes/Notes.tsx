@@ -4,7 +4,6 @@ import {
 	Sheet,
 	SheetContent,
 	SheetDescription,
-	SheetFooter,
 	SheetHeader,
 	SheetTitle,
 	SheetTrigger,
@@ -12,7 +11,6 @@ import {
 import { useTranslation } from 'react-i18next'
 import { useTheme } from '@/common/hooks/useTheme'
 import { NoteInput } from './components/NoteInput'
-import { ArchiveNoteBtn } from './components/ArchiveNoteBtn'
 
 export default function Notes() {
 	const { t } = useTranslation()
@@ -37,9 +35,6 @@ export default function Notes() {
 							<NoteInput />
 						</main>
 					</ScrollArea>
-					<SheetFooter className={textColor}>
-						<ArchiveNoteBtn />
-					</SheetFooter>
 				</SheetContent>
 			</Sheet>
 		</>

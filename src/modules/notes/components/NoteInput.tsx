@@ -5,16 +5,19 @@ import { useTranslation } from 'react-i18next'
 import { useNotesQuery } from '../hooks/useNotesQuery'
 import { Spinner } from '@/ui/atoms/spinner'
 import { useCallback, useEffect, useState } from 'react'
+import { ArchiveNoteBtn } from './ArchiveNoteBtn'
+import { useTheme } from '@/common/hooks/useTheme'
 
 export function NoteInput() {
 	const { t } = useTranslation()
+	const { text: textColor } = useTheme()
+
 	const { notes, updateNotes, isLoading } = useNotesQuery()
 	const [notesValue, setNotesValue] = useState(notes)
 
 	const saveNotes = useCallback(() => {
 		if (notesValue.trim().length <= maxLengthOfNotes) {
 			updateNotes(notesValue)
-			toast.success(t('notes.successful_toast'))
 			return
 		}
 
@@ -35,12 +38,18 @@ export function NoteInput() {
 	return (
 		<>
 			<MinimalTiptapEditor
-				value={notes}
+				value={notesValue}
 				onChange={setNotesValue}
 				rows={5}
 				maxRows={18}
-				onSave={saveNotes}
+				onSave={() => {
+					saveNotes()
+					toast.success(t('notes.successful_toast'))
+				}}
 			/>
+			<div className={`w-full py-2 ${textColor}`}>
+				<ArchiveNoteBtn setNotesValue={setNotesValue} />
+			</div>
 		</>
 	)
 }
