@@ -27,6 +27,7 @@ import { useSession } from '@/auth/hooks/useSession'
 import Notes from '@/modules/notes/Notes'
 import { useTheme } from '@/common/hooks/useTheme'
 import { useLastDurationPeriod } from '@/modules/UsageHistory/hooks/useLastDurationPeriod'
+import { useTypeOfView } from '@/modules/TypeOfView/useTypeOfView'
 
 interface HeaderProps {
 	title: string
@@ -36,6 +37,7 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 	const { t } = useTranslation()
 	const { session } = useSession()
 	const { text } = useTheme()
+	const typeOfView = useTypeOfView()
 
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 	const documentVisible = useVisibilityChange()
@@ -47,7 +49,7 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 		<header className='w-full px-6 md:px-11 pt-6 pb-4 flex justify-between items-center'>
 			<h1 className='text-2xl font-medium'>{title}</h1>
 			<div className='flex gap-2 items-center'>
-				<Notes />
+				{typeOfView !== 'NOTE-LIST' && <Notes />}
 				<DropdownMenu onOpenChange={setIsDropdownOpen}>
 					<DropdownMenuTrigger asChild>
 						<Button variant='ghost' className={text}>
