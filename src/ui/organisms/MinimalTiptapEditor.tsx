@@ -92,6 +92,13 @@ const MinimalTiptapEditor = ({
 		},
 	})
 
+	// Parece una linea redundante, pero permite actualizar el valor de "editor" cuando "value" cambia externamente
+	React.useEffect(() => {
+		if (value !== editor.getHTML()) {
+			editor.commands.setContent(value)
+		}
+	}, [editor, value])
+
 	const handleSave = React.useCallback(() => {
 		if (!editor) return
 		onSave()
