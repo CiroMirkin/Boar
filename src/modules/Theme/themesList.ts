@@ -301,6 +301,15 @@ export const themesList: readonly Theme[] = Object.freeze([
 		reminder: 'bg-[#E68B70]',
 	},
 	{
+		id: 'fleuri',
+		bg: 'bg-[#F3BF4B]',
+		text: 'text-white',
+		column: 'bg-[#21273D]',
+		columnText: 'text-white',
+		task: 'bg-[#F8EEDB]',
+		reminder: 'bg-[#E68B70]',
+	},
+	{
 		id: 'pin',
 		bg: 'bg-[#389078]',
 		text: 'text-white',
@@ -350,4 +359,4 @@ export const themesList: readonly Theme[] = Object.freeze([
 
 export const lightTheme: Theme = { ...themesList.filter((theme) => theme.id == 'retro')[0] }
 
-export const darkTheme: Theme = { ...themesList.filter((theme) => theme.id == 'soft-bear')[0] }
+export const darkTheme: Theme = { ...themesList.filter((theme) => theme.id == 'fleuri')[0] }

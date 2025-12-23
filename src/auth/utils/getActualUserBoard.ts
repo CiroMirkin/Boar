@@ -3,9 +3,9 @@ import { store } from '@/store'
 import { getUserId } from './getUserId'
 import { UserBoard } from '../model/UserBoard'
 import { defaultBoard } from '@/modules/board/models/board'
-import LocalStorageTaskListInEachColumnRepository from '@/modules/taskList/repository/localStorageTaskListsRepository'
-import LocalStorageTagRepository from '@/modules/taskList/components/Tags/repository/localstorageTagRepository'
-import LocalStorageArchiveRepository from '@/modules/taskList/components/ArchivedTasks/repository/localStorageArchive'
+import LocalStorageTaskListInEachColumnRepository from '@/modules/TaskBoard/repository/localStorageTaskListsRepository'
+import LocalStorageTagRepository from '@/modules/TaskBoard/components/taskList/components/Tags/repository/localstorageTagRepository'
+import LocalStorageArchiveRepository from '@/modules/TaskBoard/components/taskList/components/ArchivedTasks/repository/localStorageArchive'
 import LibraryOfArchivedNotesLocalStorageRepository from '@/modules/notes/LibraryOfArchiveNotes/repository/libraryOfArchivedNotesLocalStorageRepository'
 
 export const getActualUserBoard = async (): Promise<UserBoard> => {

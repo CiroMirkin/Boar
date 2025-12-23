@@ -4,6 +4,7 @@ import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
 import Underline from '@tiptap/extension-underline'
+import Highlight from '@tiptap/extension-highlight'
 import { cn } from '@/lib/utils'
 
 interface MinimalTiptapViewerProps {
@@ -26,6 +27,7 @@ const MinimalTiptapViewer = ({
 			Placeholder.configure({
 				placeholder: '',
 			}),
+			Highlight.configure({ multicolor: true }),
 		],
 		content: value,
 		editable: false,

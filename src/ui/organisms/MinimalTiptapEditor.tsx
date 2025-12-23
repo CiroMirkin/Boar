@@ -1,29 +1,36 @@
 import * as React from 'react'
 import { EditorContent, useEditor } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
+import Paragraph from '@tiptap/extension-paragraph'
+import Document from '@tiptap/extension-document'
+import Highlight from '@tiptap/extension-highlight'
+import Text from '@tiptap/extension-text'
+import { UndoRedo } from '@tiptap/extensions'
+import Bold from '@tiptap/extension-bold'
+import Italic from '@tiptap/extension-italic'
+import BulletList from '@tiptap/extension-bullet-list'
+import OrderedList from '@tiptap/extension-ordered-list'
+import ListItem from '@tiptap/extension-list-item'
 import Underline from '@tiptap/extension-underline'
 import Placeholder from '@tiptap/extension-placeholder'
 import { Button } from '@/ui/atoms/button'
 import { Separator } from '@/ui/atoms/separator'
 import { Toggle } from '@/ui/atoms/toggle'
 import {
-	Bold,
-	Italic,
+	Bold as BoldIcon,
+	Italic as ItalicIcon,
 	Underline as UnderlineIcon,
 	List,
 	ListOrdered,
 	Undo,
 	Redo,
 	Save,
-	Heading1,
-	Heading2,
-	Heading3,
+	HighlighterIcon,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface MinimalTiptapProps {
-	value?: string
-	onChange?: (value: string) => void
+	value: string
+	onChange: (value: string) => void
 	onBlur?: () => void
 	className?: string
 	editable?: boolean
@@ -31,12 +38,12 @@ interface MinimalTiptapProps {
 	editorContentClassName?: string
 	rows?: number
 	maxRows?: number
-	saveTextCallback?: () => void
+	onSave: () => void
 }
 
 const MinimalTiptapEditor = ({
-	value,
-	onChange,
+	value = '',
+	onChange = () => {},
 	onBlur,
 	className,
 	editable = true,
@@ -44,24 +51,30 @@ const MinimalTiptapEditor = ({
 	editorContentClassName,
 	rows = 3,
 	maxRows = 10,
-	saveTextCallback = () => {},
+	onSave = () => {},
 }: MinimalTiptapProps) => {
 	const [isFocused, setIsFocused] = React.useState(false)
-	const isInternalUpdate = React.useRef(false)
-
 	const editor = useEditor({
 		extensions: [
-			StarterKit,
+			Document,
+			Paragraph,
+			Text,
+			Bold,
+			Italic,
+			UndoRedo,
+			BulletList,
+			OrderedList,
+			ListItem,
 			Underline,
 			Placeholder.configure({
 				placeholder,
 			}),
+			Highlight.configure({ multicolor: true }),
 		],
 		content: value,
 		editable,
 		onUpdate: ({ editor }) => {
-			isInternalUpdate.current = true
-			onChange?.(editor.getHTML())
+			onChange(editor.getHTML())
 		},
 		editorProps: {
 			attributes: {
@@ -79,31 +92,17 @@ const MinimalTiptapEditor = ({
 		},
 	})
 
+	// Parece una linea redundante, pero permite actualizar el valor de "editor" cuando "value" cambia externamente
 	React.useEffect(() => {
-		if (!editor) return
-
-		if (isInternalUpdate.current) {
-			isInternalUpdate.current = false
-			return
+		if (value !== editor.getHTML()) {
+			editor.commands.setContent(value)
 		}
-
-		const currentContent = editor.getHTML()
-		if (value === currentContent) return
-
-		editor.commands.setContent(value || '')
 	}, [editor, value])
 
 	const handleSave = React.useCallback(() => {
 		if (!editor) return
-
-		const { from } = editor.state.selection
-		saveTextCallback()
-
-		requestAnimationFrame(() => {
-			if (editor.isDestroyed) return
-			editor.commands.focus(from)
-		})
-	}, [editor, saveTextCallback])
+		onSave()
+	}, [editor, onSave])
 
 	if (!editor) return null
 
@@ -134,14 +133,14 @@ const MinimalTiptapEditor = ({
 						onPressedChange={() => editor.chain().focus().toggleBold().run()}
 						aria-label='Negrita'
 					>
-						<Bold size={16} />
+						<BoldIcon size={16} />
 					</Toggle>
 					<Toggle
 						pressed={editor.isActive('italic')}
 						onPressedChange={() => editor.chain().focus().toggleItalic().run()}
 						aria-label='Itálica'
 					>
-						<Italic size={16} />
+						<ItalicIcon size={16} />
 					</Toggle>
 					<Toggle
 						pressed={editor.isActive('underline')}
@@ -151,34 +150,14 @@ const MinimalTiptapEditor = ({
 						<UnderlineIcon size={16} />
 					</Toggle>
 
-					<Separator orientation='vertical' className='mx-2 h-6' />
-
 					<Toggle
-						pressed={editor.isActive('heading', { level: 1 })}
+						pressed={editor.isActive('highlight', { color: '#ffc078' })}
 						onPressedChange={() =>
-							editor.chain().focus().toggleHeading({ level: 1 }).run()
+							editor.chain().focus().toggleHighlight({ color: '#ffc078' }).run()
 						}
-						aria-label='H1'
+						aria-label='Resaltado'
 					>
-						<Heading1 size={16} />
-					</Toggle>
-					<Toggle
-						pressed={editor.isActive('heading', { level: 2 })}
-						onPressedChange={() =>
-							editor.chain().focus().toggleHeading({ level: 2 }).run()
-						}
-						aria-label='H2'
-					>
-						<Heading2 size={16} />
-					</Toggle>
-					<Toggle
-						pressed={editor.isActive('heading', { level: 3 })}
-						onPressedChange={() =>
-							editor.chain().focus().toggleHeading({ level: 3 }).run()
-						}
-						aria-label='H3'
-					>
-						<Heading3 size={16} />
+						<HighlighterIcon size={16} />
 					</Toggle>
 
 					<Separator orientation='vertical' className='mx-2 h-6' />

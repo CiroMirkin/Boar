@@ -1,4 +1,4 @@
-import { TaskBoard } from '@/modules/taskList/models/taskBoard'
+import { TaskBoard } from '@/modules/TaskBoard/model/taskBoard'
 
 export interface UserBoardOnSupabase {
 	id: string

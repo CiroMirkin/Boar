@@ -1,10 +1,10 @@
 import React, { createContext, useState } from 'react'
-import { taskModel, emptyTask } from '@/modules/taskList/models/task'
+import { taskModel, emptyTask } from '@/modules/TaskBoard/model/task'
 import { Card, CardContent, CardFooter } from '../molecules/card'
 import { TextWithURL } from '@/ui/atoms/TextWithURL'
-import { useTheme } from '@/sharedByModules/hooks/useTheme'
+import { useTheme } from '@/common/hooks/useTheme'
 import { Badge } from '../atoms/badge'
-import { useAvailableTags } from '@/modules/taskList/components/Tags/hooks/useAvailableTags'
+import { useAvailableTags } from '@/modules/TaskBoard/components/taskList/components/Tags/hooks/useAvailableTags'
 import { CollapseTransition } from '../atoms/CollapseTransition'
 
 export const TaskContext = createContext(emptyTask)
@@ -31,7 +31,7 @@ export function BlankTask({ data, children }: BlankTaskProps) {
 			<Card className={taskClassName}>
 				<CardContent
 					onClick={() => setShow(!show)}
-					className='rounded-md px-3 py-2 text-xl leading-6 font-semibold cursor-pointer'
+					className='rounded-md px-3 py-2 text-xl leading-tight font-semibold cursor-pointer'
 				>
 					<p className={`whitespace-pre-wrap ${colorTheme.taskText}`}>
 						<TextWithURL text={description}></TextWithURL>

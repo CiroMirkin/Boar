@@ -9,7 +9,11 @@ import { useLibraryOfArchivedNotesQuery } from '../LibraryOfArchiveNotes/hooks/u
 import { ArchivedNote } from '../LibraryOfArchiveNotes/model/archivedNote'
 import { v4 as uuidv4 } from 'uuid'
 
-export function ArchiveNoteBtn() {
+interface ArchiveNoteBtnProps {
+	setNotesValue: (text: string) => void
+}
+
+export function ArchiveNoteBtn({ setNotesValue }: ArchiveNoteBtnProps) {
 	const { notes, updateNotes } = useNotesQuery()
 	const { t } = useTranslation()
 
@@ -32,13 +36,19 @@ export function ArchiveNoteBtn() {
 		updateNotes(defaultNotes, {
 			onSuccess: () => {
 				updateArchivedNotes(newLibrary)
+				setNotesValue(defaultNotes)
 				toast.success(t('archived_note.archive_successful_toast'))
 			},
 		})
 	}
 
 	return (
-		<Button variant='ghost' onClick={handleArchiveNote} data-testid='BotonParaArchiarUnaNota'>
+		<Button
+			variant='secondary'
+			onClick={handleArchiveNote}
+			className='w-full'
+			data-testid='BotonParaArchiarUnaNota'
+		>
 			<ArchiveIcon className='mr-2' />
 			{t('archived_note.archive_note_btn')}
 		</Button>

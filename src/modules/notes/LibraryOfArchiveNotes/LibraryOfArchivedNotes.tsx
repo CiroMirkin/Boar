@@ -1,4 +1,4 @@
-import { useTheme } from '@/sharedByModules/hooks/useTheme'
+import { useTheme } from '@/common/hooks/useTheme'
 import { ListOfArchivedNotes } from './components/ListOfArchivedNotes'
 
 export default function LibraryOfArchiveNotes() {

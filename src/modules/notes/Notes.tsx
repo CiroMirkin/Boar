@@ -4,15 +4,13 @@ import {
 	Sheet,
 	SheetContent,
 	SheetDescription,
-	SheetFooter,
 	SheetHeader,
 	SheetTitle,
 	SheetTrigger,
 } from '@/ui/molecules/sheet'
 import { useTranslation } from 'react-i18next'
-import { useTheme } from '@/sharedByModules/hooks/useTheme'
+import { useTheme } from '@/common/hooks/useTheme'
 import { NoteInput } from './components/NoteInput'
-import { ArchiveNoteBtn } from './components/ArchiveNoteBtn'
 
 export default function Notes() {
 	const { t } = useTranslation()
@@ -37,9 +35,6 @@ export default function Notes() {
 							<NoteInput />
 						</main>
 					</ScrollArea>
-					<SheetFooter className={textColor}>
-						<ArchiveNoteBtn />
-					</SheetFooter>
 				</SheetContent>
 			</Sheet>
 		</>

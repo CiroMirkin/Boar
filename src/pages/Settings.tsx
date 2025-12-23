@@ -1,18 +1,18 @@
 import { useTranslation } from 'react-i18next'
 import { USER_IS_IN } from '../ui/organisms/userIsIn'
 import { ChangeBoardName } from '../modules/board/components/ChangeBoardName'
-import CreateReminder from '../modules/taskList/components/Reminder/CreateReminder'
+import CreateReminder from '@/modules/TaskBoard/components/Reminder/CreateReminder'
 import { ThemeSelection } from '../modules/Theme/ThemeSelection'
-import { ReminderList } from '@/modules/taskList/components/Reminder/ReminderList'
+import { ReminderList } from '@/modules/TaskBoard/components/Reminder/ReminderList'
 import PageContainer from './PageContainer'
 import { ToggleTypeOfView } from '@/modules/TypeOfView/ToggleTypeOfView'
-import { EnableTags } from '@/modules/taskList/components/Tags/components/EnableTags'
+import { EnableTags } from '@/modules/TaskBoard/components/taskList/components/Tags/components/EnableTags'
 
-import { ConfigColumns } from '@/modules/taskList/components/Columns/components/ConfigColumns'
-import { useListOfTasksInColumnsQuery } from '@/modules/taskList/hooks/useListOfTasksInColumnsQuery'
+import { ConfigColumns } from '@/modules/TaskBoard/components/Columns/components/ConfigColumns'
+import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 const useColumnListForReminders = (): { name: string; id: string; position: string }[] => {
-	const { listOfTaskInColumns } = useListOfTasksInColumnsQuery()
-	return listOfTaskInColumns.map((list, i) => ({
+	const { taskBoard } = useTaskBoardQuery()
+	return taskBoard.map((list, i) => ({
 		name: list.status,
 		id: list.id,
 		position: i + 1 + '',

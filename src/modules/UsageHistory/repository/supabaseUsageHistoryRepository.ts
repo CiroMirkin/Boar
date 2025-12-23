@@ -23,7 +23,6 @@ export class SupabaseUsageHistoryRepository implements UsageHistoryRepository {
 	async save(history: UsageHistory): Promise<UsageHistory> {
 		if (!isSupabaseConfigured || !supabase) return []
 
-
 		const id = getActualBoardId()
 		const { data, error } = await supabase
 			.from(this.tableName)

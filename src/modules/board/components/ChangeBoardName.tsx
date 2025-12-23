@@ -5,12 +5,12 @@ import { PencilIcon } from '@/ui/atoms/icons'
 import { Label } from '@/ui/atoms/label'
 import { isThisBoardNameWithinTheLimitOfLetters } from '@/modules/board/models/board'
 import { changeBoardName } from '@/modules/board/useCase/changeBoardName'
-import getErrorMessageForTheUser from '@/sharedByModules/utils/getErrorMessageForTheUser'
+import getErrorMessageForTheUser from '@/common/utils/getErrorMessageForTheUser'
 import { toast } from 'sonner'
 import { useBoardQuery } from '@/modules/board/hooks/useBoardQuery'
 import { useTranslation } from 'react-i18next'
 import { SettingSection } from '@/ui/organisms/SettingSection'
-import { useTheme } from '@/sharedByModules/hooks/useTheme'
+import { useTheme } from '@/common/hooks/useTheme'
 
 export function ChangeBoardName() {
 	const { board, updateBoard } = useBoardQuery()

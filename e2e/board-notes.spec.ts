@@ -21,7 +21,8 @@ test.describe('Crear y archivar notas dentro del tablero', () => {
 
 		await test.step('Puedo archivar una nota', async () => {
 			await page.getByTestId('BotonParaArchiarUnaNota').click()
-			await expect(page.getByText(noteText)).not.toBeVisible()
+			await page.getByTestId('BotonParaArchiarUnaNota').click()
+			await expect(page.getByText(noteText)).toBeHidden({ timeout: 5000 })
 		})
 
 		await test.step('La nota archivada esta en el archivo', async () => {
