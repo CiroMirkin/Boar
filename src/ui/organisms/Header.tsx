@@ -18,7 +18,6 @@ import {
 	MenuIcon,
 	SettingsIcon,
 } from '@/ui/atoms/icons'
-import { Link } from 'react-router-dom'
 import { USER_IS_IN } from './userIsIn'
 import { LanguageToggle } from '../../modules/LanguageToggle/LanguageToggle'
 import { useTranslation } from 'react-i18next'
@@ -28,6 +27,7 @@ import Notes from '@/modules/notes/Notes'
 import { useTheme } from '@/common/hooks/useTheme'
 import { useLastDurationPeriod } from '@/modules/UsageHistory/hooks/useLastDurationPeriod'
 import { useTypeOfView } from '@/modules/TypeOfView/useTypeOfView'
+import { TransitionLink } from '../atoms/TransitionLink'
 
 interface HeaderProps {
 	title: string
@@ -60,26 +60,38 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 						<DropdownMenuLabel>Boar</DropdownMenuLabel>
 						<DropdownMenuSeparator />
 						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.BOARD && true}>
-							<Link to='/' className='px-2 py-1.5 flex items-center'>
+							<TransitionLink
+								to='/'
+								unstable_viewTransition
+								className='px-2 py-1.5 flex items-center'
+							>
 								<ColumnsIcon className='mr-2' /> {t('menu.board')}
-							</Link>
+							</TransitionLink>
 						</DropdownMenuItem>
 						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.ARCHIVE && true}>
-							<Link to='/archive' className='px-2 py-1.5 flex items-center'>
+							<TransitionLink
+								to='/archive'
+								unstable_viewTransition
+								className='px-2 py-1.5 flex items-center'
+							>
 								<ArchiveIcon className='mr-2' /> {t('menu.archive')}
-							</Link>
+							</TransitionLink>
 						</DropdownMenuItem>
 						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.CONFIG && true}>
-							<Link to='/settings' className='px-2 py-1.5 flex items-center'>
+							<TransitionLink
+								to='/settings'
+								unstable_viewTransition
+								className='px-2 py-1.5 flex items-center'
+							>
 								<SettingsIcon className='mr-2' /> {t('menu.configs')}
-							</Link>
+							</TransitionLink>
 						</DropdownMenuItem>
 						<DropdownMenuSeparator />
 						<LanguageToggle />
 						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.HELP && true}>
-							<Link to='/help' className='px-2 py-1.5 flex items-center'>
+							<TransitionLink to='/help' className='px-2 py-1.5 flex items-center'>
 								<CircleHelpIcon className='mr-2' /> {t('menu.help')}
-							</Link>
+							</TransitionLink>
 						</DropdownMenuItem>
 						<DropdownMenuItem>
 							<a
@@ -91,13 +103,13 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 						</DropdownMenuItem>
 						<DropdownMenuSeparator />
 						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.TIME && true}>
-							<Link
+							<TransitionLink
 								title={t('usage_history.title')}
 								to='/time'
 								className='px-2 py-1.5 flex items-center'
 							>
 								<HourglassIcon className='mr-2' /> {duration}
-							</Link>
+							</TransitionLink>
 						</DropdownMenuItem>
 						<DropdownMenuSeparator />
 						<LogInAndLogOutMenuItem whereUserIs={whereUserIs} session={session} />
