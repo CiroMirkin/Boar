@@ -1,6 +1,6 @@
 import { DropdownMenuItem } from '@/ui/molecules/dropdown-menu'
 import { USER_IS_IN } from '../../ui/organisms/userIsIn'
-import { Link } from 'react-router-dom'
+import { TransitionLink } from '@/ui/atoms/TransitionLink'
 import { LogInIcon, LogOutIcon } from '@/ui/atoms/icons'
 import { useTranslation } from 'react-i18next'
 import { AuthError, Session } from '@supabase/supabase-js'
@@ -36,10 +36,10 @@ export default function LogInAndLogOutMenuItem({
 	return (
 		<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.AUTH && true}>
 			{!session ? (
-				<Link to='/auth' className='px-2 py-1.5 flex items-center'>
+				<TransitionLink to='/auth' className='px-2 py-1.5 flex items-center'>
 					<LogInIcon className='mr-2' />
 					{t('sing_in')}
-				</Link>
+				</TransitionLink>
 			) : (
 				<span onClick={handleOnClick} className='px-2 py-1.5 flex items-center'>
 					<LogOutIcon className='mr-2' />
