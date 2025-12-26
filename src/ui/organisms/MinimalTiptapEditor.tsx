@@ -90,12 +90,15 @@ const MinimalTiptapEditor = ({
 			setIsFocused(false)
 			onBlur?.()
 		},
+		onPaste: () => {
+			onSave()
+		},
 	})
 
 	// Parece una linea redundante, pero permite actualizar el valor de "editor" cuando "value" cambia externamente
 	React.useEffect(() => {
-		if (value !== editor.getHTML()) {
-			editor.commands.setContent(value)
+		if (editor && value !== editor.getHTML()) {
+			editor.commands.setContent(value, { emitUpdate: false })
 		}
 	}, [editor, value])
 
