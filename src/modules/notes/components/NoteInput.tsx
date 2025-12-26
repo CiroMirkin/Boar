@@ -4,7 +4,7 @@ import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
 import { useNotesQuery } from '../hooks/useNotesQuery'
 import { Spinner } from '@/ui/atoms/spinner'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { ArchiveNoteBtn } from './ArchiveNoteBtn'
 import { useTheme } from '@/common/hooks/useTheme'
 
@@ -14,8 +14,14 @@ export function NoteInput() {
 
 	const { notes, updateNotes, isLoading } = useNotesQuery()
 	const [notesValue, setNotesValue] = useState(notes)
+	const isFirstRender = useRef(true)
 
 	const saveNotes = useCallback(() => {
+		if (isFirstRender.current) {
+			isFirstRender.current = false
+			return
+		}
+
 		if (notesValue.trim().length <= maxLengthOfNotes) {
 			updateNotes(notesValue)
 			return
@@ -26,12 +32,14 @@ export function NoteInput() {
 
 	useEffect(() => {
 		if (notesValue !== notes) {
-			const timeoutId = setTimeout(() => {
-				saveNotes()
-			}, 500)
+			const timeoutId = setTimeout(saveNotes, 500)
 			return () => clearTimeout(timeoutId)
 		}
 	}, [notesValue, notes, saveNotes])
+
+	useEffect(() => {
+		setNotesValue(notes)
+	}, [notes])
 
 	if (isLoading) return <Spinner size={30} />
 
