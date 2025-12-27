@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { Tag } from '../model/tags'
 import { setUserSelectedTags } from '../state/tagsReducer'
 import { useUserSelectedTags } from '../hooks/useUserSelectedTags'
-import { translateTagGroup } from '../hooks/useAvailableTags'
+import { translateTagGroup } from '../utils/translateTagGroup'
 import { useTranslation } from 'react-i18next'
 
 export default function TagGroupSelect() {
