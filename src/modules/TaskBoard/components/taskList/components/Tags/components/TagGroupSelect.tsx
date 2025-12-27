@@ -1,11 +1,10 @@
 import { CheckboxBadge } from '@/ui/molecules/CheckboxBadge'
 import { useEffect, useState } from 'react'
 import { useActualTagGroup } from '../hooks/useActualTagGroup'
-import { useDispatch } from 'react-redux'
+import { useTagStore } from '../state/store'
 import { Tag } from '../model/tags'
-import { setUserSelectedTags } from '../state/tagsReducer'
 import { useUserSelectedTags } from '../hooks/useUserSelectedTags'
-import { translateTagGroup } from '../hooks/useAvailableTags'
+import { translateTagGroup } from '../utils/translateTagGroup'
 import { useTranslation } from 'react-i18next'
 
 export default function TagGroupSelect() {
@@ -18,18 +17,18 @@ export default function TagGroupSelect() {
 		return translatedTagGroup.tags.filter((tag) => listOfTagIds.includes(tag.id))
 	}
 
-	const dispatch = useDispatch()
+	const setUserSelectedTags = useTagStore((state) => state.setUserSelectedTags)
 	const handleCheckboxChange = (checked: boolean, id: string) => {
 		setSelectedTags((prev) => {
 			if (checked) {
 				const newSelectedTags = [...prev, id]
 				const tags = getFullSelectedTags(newSelectedTags)
-				dispatch(setUserSelectedTags(tags))
+				setUserSelectedTags(tags)
 				return newSelectedTags
 			}
 			const newSelectedTags = prev.filter((item) => item !== id)
 			const tags = getFullSelectedTags(newSelectedTags)
-			dispatch(setUserSelectedTags(tags))
+			setUserSelectedTags(tags)
 			return newSelectedTags
 		})
 	}

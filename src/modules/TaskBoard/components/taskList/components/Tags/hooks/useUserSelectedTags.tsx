@@ -1,8 +1,7 @@
-import { useSelector } from 'react-redux'
+import { useTagStore } from '../state/store'
 import { Tag } from '../model/tags'
-import { RootState } from '@/store'
 
 export const useUserSelectedTags = (): Tag[] => {
-	const selectedTags = useSelector((state: RootState) => state.tags.userSelectedTags)
+	const selectedTags = useTagStore((state) => state.userSelectedTags)
 	return selectedTags ? selectedTags : []
 }
