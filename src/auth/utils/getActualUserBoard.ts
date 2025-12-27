@@ -1,5 +1,4 @@
 import LocalStorageNotesRepository from '@/modules/notes/repository/LocalStorageNotesRepository'
-import { store } from '@/store'
 import { getUserId } from './getUserId'
 import { UserBoard } from '../model/UserBoard'
 import { defaultBoard } from '@/modules/board/models/board'
@@ -7,6 +6,7 @@ import LocalStorageTaskListInEachColumnRepository from '@/modules/TaskBoard/repo
 import LocalStorageTagRepository from '@/modules/TaskBoard/components/taskList/components/Tags/repository/localstorageTagRepository'
 import LocalStorageArchiveRepository from '@/modules/TaskBoard/components/taskList/components/ArchivedTasks/repository/localStorageArchive'
 import LibraryOfArchivedNotesLocalStorageRepository from '@/modules/notes/LibraryOfArchiveNotes/repository/libraryOfArchivedNotesLocalStorageRepository'
+import { useReminderStore } from '@/modules/TaskBoard/components/Reminder/state/store'
 
 export const getActualUserBoard = async (): Promise<UserBoard> => {
 	const actualBoard = localStorage.getItem('board-boar')
@@ -20,6 +20,7 @@ export const getActualUserBoard = async (): Promise<UserBoard> => {
 		new LibraryOfArchivedNotesLocalStorageRepository().getAll(),
 		getUserId(),
 	])
+
 	return {
 		board: {
 			id: actualBoard.id,
@@ -30,7 +31,7 @@ export const getActualUserBoard = async (): Promise<UserBoard> => {
 		accessories: {
 			notes,
 			actual_tag_group: tagGroup.actualTagGroup,
-			reminders: store.getState().reminder.reminder,
+			reminders: useReminderStore.getState().reminder,
 		},
 		archive: {
 			task_list: archivedTaskList,
