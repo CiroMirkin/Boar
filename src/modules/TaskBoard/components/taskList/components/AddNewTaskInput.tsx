@@ -2,12 +2,11 @@ import { getNewTask, isThisTaskDescriptionValid } from '@/modules/TaskBoard/mode
 import { toast } from 'sonner'
 import getErrorMessageForTheUser from '@/common/utils/getErrorMessageForTheUser'
 import { KeyboardEvent, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useTagStore } from './Tags/state/store'
 import { useTranslation } from 'react-i18next'
 import { TeaxtareaWithActions } from '@/ui/molecules/TextAreaWithActions'
 import TagGroupSelect from './Tags/components/TagGroupSelect'
 import { useUserSelectedTags } from './Tags/hooks/useUserSelectedTags'
-import { setUserSelectedTags } from './Tags/state/tagsReducer'
 import { addTaskInFirstColumn } from '../useCase/addTask'
 import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 import { sortListOfTasksInColumnsByPriority } from '../models/sortListOfTasksInColumnsByPriority'
@@ -22,8 +21,7 @@ export function AddNewTaskInput() {
 	const listOfTaskInColumns = useTaskListInEachColumn()
 	const selectedTags = useUserSelectedTags()
 	const getColumnName = useGetColumnNameFromPosition()
-
-	const dispatch = useDispatch()
+	const setUserSelectedTags = useTagStore((state) => state.setUserSelectedTags)
 
 	const handleClick = () => {
 		try {
@@ -46,7 +44,7 @@ export function AddNewTaskInput() {
 			)
 
 			updateTaskBoard(updatedList)
-			dispatch(setUserSelectedTags([]))
+			setUserSelectedTags([])
 			setNewTaskDescription('')
 		} catch (error) {
 			toast.error(getErrorMessageForTheUser(error))
