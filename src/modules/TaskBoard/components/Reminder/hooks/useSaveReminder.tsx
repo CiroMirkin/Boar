@@ -1,7 +1,6 @@
 import LocalStorageReminderRepository from '../repository/LocalStorageReminder'
 import { Reminder } from '../model/reminder'
-import { useDispatch } from 'react-redux'
-import { setReminder } from '../state/reminderReducer'
+import { useReminderStore } from '../state/store'
 import { useSession } from '@/auth/hooks/useSession'
 import SupabaseReminderRepository from '../repository/SupabaseReminderRepository'
 
@@ -20,9 +19,9 @@ export const useSaveReminder = (): UseSaveReminderReturn => {
 		}
 	}
 
-	const dispatch = useDispatch()
+	const setReminder = useReminderStore((store) => store.setReminder)
 	return (reminder: Reminder) => {
-		dispatch(setReminder(reminder))
+		setReminder(reminder)
 		saveInRepository(reminder)
 	}
 }
