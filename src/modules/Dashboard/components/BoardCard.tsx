@@ -1,9 +1,10 @@
 import { useTheme } from '@/common/hooks/useTheme'
 import { Button } from '@/ui/atoms/button'
-import { ClockIcon } from '@/ui/atoms/icons'
-import { RefreshCw } from 'lucide-react'
+import { TrashIcon } from '@/ui/atoms/icons'
 import { useMemo } from 'react'
 import { TransitionLink } from '@/ui/atoms/TransitionLink'
+import { useDashboardQuery } from '../hooks/useDashboardQuery'
+import { toast } from 'sonner'
 
 interface Board {
 	name: string
@@ -14,42 +15,40 @@ function BoardCard({ board }: { board: Board }) {
 	const color = useTheme()
 	const hero = useMemo(RandomHero, [])
 
+	const { deleteBoard } = useDashboardQuery()
+	const handleDeleteBoard = () => {
+		toast.warning('¿Deseas eliminar este tablero? Esta acción no se podrá deshacer.', {
+			action: {
+				label: 'Eliminar',
+				onClick: () => {
+					deleteBoard(board.id)
+					toast.success('¡El tablero se elimino exitosamente!')
+				},
+			},
+		})
+	}
+
 	return (
 		<li
 			className={`w-[18rem] flex flex-col rounded-md shadow-lg hover:shadow-xl transition-all ease-in`}
 		>
 			<div className={`h-28 w-full ${color.column} rounded-t-md`}>{hero}</div>
-			<div className={`text-left p-3 pt-2 ${color.task} rounded-b-md`}>
-				<TransitionLink to={`/board/${board.id}`}>
-					<header className='py-2 flex justify-between items-center hover:underline'>
-						<h2 className='pl-1 text-base font-semibold'>{board.name}</h2>
-					</header>
-				</TransitionLink>
-
-				<div className='my-2 flex items-center justify-around rounded-lg bg-background/20 p-2'>
-					<div className='flex flex-1 flex-col items-center justify-center text-center'>
-						<div className='flex items-center gap-1'>
-							<ClockIcon className='h-4 w-4 opacity-60' />
-							<span className='text-sm font-semibold text-card-foreground'>5</span>
-						</div>
-						<span className='text-xs capitalize opacity-60'>Pendientes</span>
-					</div>
-					<div className='h-10 w-px bg-border' />
-					<div className='flex flex-1 flex-col items-center justify-center text-center'>
-						<div className='flex items-center gap-1'>
-							<RefreshCw className='h-4 w-4 opacity-60' />
-							<span className='text-sm font-semibold text-card-foreground'>2</span>
-						</div>
-						<span className='text-xs capitalize opacity-60'>Realizando</span>
-					</div>
-				</div>
-				<footer className='flex flex-col gap-2'>
-					<TransitionLink to={`/board/${board.id}`}>
-						<Button variant='secondary' className={`w-full hover:underline`}>
-							Ver tablero
-						</Button>
+			<div className={`text-left ${color.task} rounded-b-md`}>
+				<div className='flex justify-between items-center pr-3'>
+					<TransitionLink to={`/board/${board.id}`} title={`Abrir tablero ${board.name}`}>
+						<h2 className='w-[12rem] py-4 pl-4 text-base font-semibold rounded-b-md hover:underline'>
+							{board.name}
+						</h2>
 					</TransitionLink>
-				</footer>
+					<Button
+						className='py-1 px-4'
+						variant='destructiveGhost'
+						title='Eliminar tablero'
+						onClick={handleDeleteBoard}
+					>
+						<TrashIcon />
+					</Button>
+				</div>
 			</div>
 		</li>
 	)
