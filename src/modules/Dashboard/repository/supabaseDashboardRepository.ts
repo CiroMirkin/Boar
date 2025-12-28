@@ -43,6 +43,23 @@ class SupabaseDashboardRepository implements DashboardRepository {
 		return boards || []
 	}
 
+	async getAmountOfBoards(): Promise<number> {
+		if (!isSupabaseConfigured || !supabase) return 0
+
+		const user_id = await getUserId()    
+		const { count, error: countError } = await supabase
+			.from(this.tableName)
+			.select('*', { count: 'exact', head: true })
+			.eq('user_id', user_id)
+		
+		if (countError) {
+			console.error(countError)
+			return 0
+		}
+
+		return count ?? 0
+	}
+
 	async deleteBoard({ boardId }: { boardId: string }): Promise<void> {
 		if (!isSupabaseConfigured || !supabase || !boardId) return
 
@@ -55,6 +72,12 @@ class SupabaseDashboardRepository implements DashboardRepository {
 			throw new BusinessError(
 				'El nombre de un tablero debe tener mas de 2 caracteres y menos de 15.'
 			)
+		}
+
+		const maxOfBoards = 5
+		const amountOfBoards = await this.getAmountOfBoards()
+		if(amountOfBoards >= maxOfBoards) {
+			throw new BusinessError('Has alcanzado el límite de 5 tableros por usuario.')
 		}
 
 		const user_id = await getUserId()
