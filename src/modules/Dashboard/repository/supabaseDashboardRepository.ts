@@ -3,7 +3,6 @@ import { Board } from '../model/board'
 import { DashboardRepository } from './dashboardRepository'
 import { getUserId } from '@/auth/utils/getUserId'
 import BusinessError from '@/common/errors/businessError'
-import { saveActualBoardId } from '@/auth/utils/getActualBoardId'
 import { getDefaultSupabaseBoard } from '@/auth/model/UserBoardOnSupabase'
 
 class SupabaseDashboardRepository implements DashboardRepository {
@@ -64,18 +63,12 @@ class SupabaseDashboardRepository implements DashboardRepository {
 			user_id,
 		})
 
-		const { error, data: newBoardId } = await supabase
-			.from(this.tableName)
-			.insert(newBoard)
-			.select('id')
-			.single()
+		const { error } = await supabase.from(this.tableName).insert(newBoard).select('id').single()
 
 		if (error) {
 			console.error(error)
 			return
 		}
-
-		saveActualBoardId(newBoardId.id)
 	}
 }
 
