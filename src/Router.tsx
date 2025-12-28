@@ -7,10 +7,19 @@ import { BoardArchive } from './pages/BoardArchive'
 import { BoardPage } from './pages/BoardPage'
 import ErrorBoundary from './ErrorBoundary'
 import { TimeTracking } from './pages/TimeTracking'
+import UserDashboard from './pages/UserDashboard'
 
 const router = createBrowserRouter([
 	{
 		path: '/',
+		element: (
+			<ErrorBoundary>
+				<UserDashboard />
+			</ErrorBoundary>
+		),
+	},
+	{
+		path: '/board/:id',
 		element: (
 			<ErrorBoundary>
 				<BoardPage />

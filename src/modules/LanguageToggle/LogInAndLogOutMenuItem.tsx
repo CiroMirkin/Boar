@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { AuthError, Session } from '@supabase/supabase-js'
 import { toast } from 'sonner'
 import { isSupabaseConfigured, supabase } from '@/lib/supabase'
+import { Navigate } from 'react-router'
 
 interface LogInAndLogOutMenuItemProps {
 	whereUserIs?: USER_IS_IN
@@ -24,9 +25,12 @@ export default function LogInAndLogOutMenuItem({
 			if (!isSupabaseConfigured || !supabase) return
 
 			const { error } = await supabase.auth.signOut()
-			sessionStorage.removeItem('isInitialLoad')
 			if (error) throw error
+
+			sessionStorage.removeItem('isInitialLoad')
 			toast.success(t('successful_log_out_toast'))
+
+			return <Navigate to='/' replace />
 		} catch (error) {
 			const authError = error as AuthError
 			toast.error(authError.message)
