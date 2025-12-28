@@ -28,14 +28,20 @@ function BoardCard({ board }: { board: Board }) {
 		})
 	}
 
+	const boardUrl = `/board/${board.id}`
+
 	return (
 		<li
 			className={`w-[18rem] flex flex-col rounded-md shadow-lg hover:shadow-xl transition-all ease-in`}
 		>
-			<div className={`h-28 w-full ${color.column} rounded-t-md`}>{hero}</div>
+			<div className={`h-28 w-full ${color.column} rounded-t-md`}>
+				<TransitionLink to={boardUrl} title={`Abrir tablero ${board.name}`}>
+					{hero}
+				</TransitionLink>
+			</div>
 			<div className={`text-left ${color.task} rounded-b-md`}>
 				<div className='flex justify-between items-center pr-3'>
-					<TransitionLink to={`/board/${board.id}`} title={`Abrir tablero ${board.name}`}>
+					<TransitionLink to={boardUrl} title={`Abrir tablero ${board.name}`}>
 						<h2 className='w-[12rem] py-4 pl-4 text-base font-semibold rounded-b-md hover:underline'>
 							{board.name}
 						</h2>
