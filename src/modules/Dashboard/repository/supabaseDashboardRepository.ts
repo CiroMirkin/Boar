@@ -62,8 +62,22 @@ class SupabaseDashboardRepository implements DashboardRepository {
 
 	async deleteBoard({ boardId }: { boardId: string }): Promise<void> {
 		if (!isSupabaseConfigured || !supabase || !boardId) return
+		const user_id = await getUserId()
+		if (!user_id) {
+			console.error('user_id faltante')
+			return
+		}
 
-		await supabase.from(this.tableName).delete().eq('id', boardId)
+		const { error, count } = await supabase
+			.from(this.tableName)
+			.delete({ count: 'exact' })
+			.eq('id', boardId)
+			.eq('user_id', user_id)
+
+		if (error || count === 0) {
+			console.error('Error al eliminar tablero:', error)
+			throw new BusinessError('No fue posible eliminar el tablero.')
+		}
 	}
 
 	async createAnEmptyBoard({ name }: { name: string }): Promise<void> {
