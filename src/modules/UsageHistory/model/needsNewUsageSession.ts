@@ -14,9 +14,9 @@ export function needsNewUsageSession(lastDayTracking: DailyUsage): boolean {
 	}
 
 	const lastPeriod = lastDayTracking.periods[lastDayTracking.periods.length - 1]
-	const lastUpdateEndTime = lastPeriod.startTimestamp + lastPeriod.duration
+	const lastActivityEndTime = lastPeriod.startTimestamp + lastPeriod.duration
 	const currentTime = Date.now()
-	const timeSinceLastUpdate = currentTime - lastUpdateEndTime
+	const inactivityDuration = currentTime - lastActivityEndTime
 
-	return timeSinceLastUpdate > TIME_LIMIT
+	return inactivityDuration > TIME_LIMIT
 }
