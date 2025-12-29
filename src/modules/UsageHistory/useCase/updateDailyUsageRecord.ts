@@ -8,27 +8,27 @@ interface Params {
 }
 
 export function updateDailyUsageRecord({ duration, usageHistory }: Params): UsageHistory {
-	const today = Date.now()
+	const currentTimestamp = Date.now()
 	const newPeriod = {
-		startTimestamp: today,
+		startTimestamp: currentTimestamp,
 		duration,
 	}
 
 	if (usageHistory.length === 0) {
 		return [
 			{
-				date: today,
+				date: currentTimestamp,
 				periods: [{ ...newPeriod }],
 			},
 		]
 	}
 
 	const lastDayTracking = usageHistory[usageHistory.length - 1]
-	if (usageHistory.length === 0 || !isTheSameDay(lastDayTracking.date, today)) {
+	if (usageHistory.length === 0 || !isTheSameDay(lastDayTracking.date, currentTimestamp)) {
 		return [
 			...usageHistory,
 			{
-				date: today,
+				date: currentTimestamp,
 				periods: [{ ...newPeriod }],
 			},
 		]
