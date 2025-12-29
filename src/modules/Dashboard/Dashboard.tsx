@@ -41,7 +41,7 @@ function Dashboard() {
 				</div>
 			)}
 
-			<ul className='px-2 list-none flex gap-6'>
+			<ul className='px-2 list-none flex flex-wrap gap-6'>
 				{boards.map((board) => (
 					<BoardCard board={board} key={board.id} />
 				))}
