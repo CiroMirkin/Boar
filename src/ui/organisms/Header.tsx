@@ -28,6 +28,7 @@ import { useTheme } from '@/common/hooks/useTheme'
 import { useLastDurationPeriod } from '@/modules/UsageHistory/hooks/useLastDurationPeriod'
 import { useTypeOfView } from '@/modules/TypeOfView/useTypeOfView'
 import { TransitionLink } from '../atoms/TransitionLink'
+import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 
 interface HeaderProps {
 	title: string
@@ -38,6 +39,7 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 	const { session } = useSession()
 	const { text } = useTheme()
 	const typeOfView = useTypeOfView()
+	const boardURl = `/board/${getActualBoardId()}}`
 
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 	const documentVisible = useVisibilityChange()
@@ -57,30 +59,28 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 						</Button>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent>
-						<DropdownMenuLabel>Boar</DropdownMenuLabel>
+						<DropdownMenuLabel className={`${session && 'rounded-sm hover:bg-accent'}`}>
+							{session && (
+								<TransitionLink to='/' className='block w-full hover:underline'>
+									Inicio
+								</TransitionLink>
+							)}
+							{!session && 'Boar'}
+						</DropdownMenuLabel>
 						<DropdownMenuSeparator />
 						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.BOARD && true}>
-							<TransitionLink
-								to='/'
-								unstable_viewTransition
-								className='px-2 py-1.5 flex items-center'
-							>
+							<TransitionLink to={boardURl} className='px-2 py-1.5 flex items-center'>
 								<ColumnsIcon className='mr-2' /> {t('menu.board')}
 							</TransitionLink>
 						</DropdownMenuItem>
 						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.ARCHIVE && true}>
-							<TransitionLink
-								to='/archive'
-								unstable_viewTransition
-								className='px-2 py-1.5 flex items-center'
-							>
+							<TransitionLink to='/archive' className='px-2 py-1.5 flex items-center'>
 								<ArchiveIcon className='mr-2' /> {t('menu.archive')}
 							</TransitionLink>
 						</DropdownMenuItem>
 						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.CONFIG && true}>
 							<TransitionLink
 								to='/settings'
-								unstable_viewTransition
 								className='px-2 py-1.5 flex items-center'
 							>
 								<SettingsIcon className='mr-2' /> {t('menu.configs')}
