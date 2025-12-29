@@ -1,5 +1,5 @@
 import { useDashboardQuery } from '../hooks/useDashboardQuery'
-import { PlusCircle } from 'lucide-react'
+import { PlusIcon } from '@/ui/atoms/icons'
 import { Button } from '@/ui/atoms/button'
 import {
 	Dialog,
@@ -17,7 +17,11 @@ import { useState } from 'react'
 import { useTheme } from '@/common/hooks/useTheme'
 import { toast } from 'sonner'
 
-function CreateBoardDialog() {
+interface CreateBoardDialogProps {
+	hasNoBoards?: boolean
+}
+
+function CreateBoardDialog({ hasNoBoards = false }: CreateBoardDialogProps) {
 	const colors = useTheme()
 	const { createAnEmptyBoard } = useDashboardQuery()
 	const [newBoardName, setNewBoardName] = useState('')
@@ -38,7 +42,8 @@ function CreateBoardDialog() {
 		<Dialog onOpenChange={(isOpen) => isOpen && setNewBoardName('')}>
 			<DialogTrigger asChild>
 				<Button variant='secondary' className='flex items-center'>
-					<PlusCircle className='mr-2' /> Crear tablero
+					<PlusIcon className='mr-2' />{' '}
+					{hasNoBoards ? 'Crear mi primer tablero' : 'Crear Tablero'}
 				</Button>
 			</DialogTrigger>
 			<DialogContent className={`sm:max-w-md ${colors.column} ${colors.columnText}`}>
