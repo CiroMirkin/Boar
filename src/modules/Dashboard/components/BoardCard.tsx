@@ -32,7 +32,7 @@ function BoardCard({ board }: { board: Board }) {
 
 	return (
 		<li
-			className={`w-[18rem] flex flex-col rounded-md shadow-lg hover:shadow-xl transition-all ease-in`}
+			className={`w-[18rem] flex flex-col rounded-md shadow-lg hover:shadow-xl transition-all ease-in group`}
 		>
 			<div className={`h-28 w-full ${color.column} rounded-t-md`}>
 				<TransitionLink to={boardUrl} title={`Abrir tablero ${board.name}`}>
@@ -47,7 +47,7 @@ function BoardCard({ board }: { board: Board }) {
 						</h2>
 					</TransitionLink>
 					<Button
-						className='py-1 px-4'
+						className='py-1 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300'
 						variant='destructiveGhost'
 						title='Eliminar tablero'
 						onClick={handleDeleteBoard}
