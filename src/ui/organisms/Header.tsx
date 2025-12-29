@@ -39,7 +39,14 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 	const { session } = useSession()
 	const { text } = useTheme()
 	const typeOfView = useTypeOfView()
-	const boardURl = `/board/${getActualBoardId()}}`
+
+	const BOARD_ID = getActualBoardId()
+	const URLs = {
+		board: `/board/${BOARD_ID}`,
+		archive: `/archive/${BOARD_ID}`,
+		settings: `/settings/${BOARD_ID}`,
+		time: `/time/${BOARD_ID}`,
+	}
 
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 	const documentVisible = useVisibilityChange()
@@ -69,18 +76,24 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 						</DropdownMenuLabel>
 						<DropdownMenuSeparator />
 						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.BOARD && true}>
-							<TransitionLink to={boardURl} className='px-2 py-1.5 flex items-center'>
+							<TransitionLink
+								to={URLs.board}
+								className='px-2 py-1.5 flex items-center'
+							>
 								<ColumnsIcon className='mr-2' /> {t('menu.board')}
 							</TransitionLink>
 						</DropdownMenuItem>
 						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.ARCHIVE && true}>
-							<TransitionLink to='/archive' className='px-2 py-1.5 flex items-center'>
+							<TransitionLink
+								to={URLs.archive}
+								className='px-2 py-1.5 flex items-center'
+							>
 								<ArchiveIcon className='mr-2' /> {t('menu.archive')}
 							</TransitionLink>
 						</DropdownMenuItem>
 						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.CONFIG && true}>
 							<TransitionLink
-								to='/settings'
+								to={URLs.settings}
 								className='px-2 py-1.5 flex items-center'
 							>
 								<SettingsIcon className='mr-2' /> {t('menu.configs')}
@@ -105,7 +118,7 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.TIME && true}>
 							<TransitionLink
 								title={t('usage_history.title')}
-								to='/time'
+								to={URLs.time}
 								className='px-2 py-1.5 flex items-center'
 							>
 								<HourglassIcon className='mr-2' /> {duration}

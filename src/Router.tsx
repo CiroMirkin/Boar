@@ -27,7 +27,7 @@ const router = createBrowserRouter([
 		),
 	},
 	{
-		path: '/archive',
+		path: '/archive/:id',
 		element: (
 			<ErrorBoundary>
 				<BoardArchive />
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
 		),
 	},
 	{
-		path: '/settings',
+		path: '/settings/:id',
 		element: (
 			<ErrorBoundary>
 				<Settings />
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
 		),
 	},
 	{
-		path: '/time',
+		path: '/time/:id',
 		element: (
 			<ErrorBoundary>
 				<TimeTracking />
