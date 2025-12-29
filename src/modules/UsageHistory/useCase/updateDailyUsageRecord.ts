@@ -14,6 +14,15 @@ export function updateDailyUsageRecord({ duration, usageHistory }: Params): Usag
 		duration,
 	}
 
+	if (usageHistory.length === 0) {
+		return [
+			{
+				date: today,
+				periods: [{ ...newPeriod }],
+			},
+		]
+	}
+
 	const lastDayTracking = usageHistory[usageHistory.length - 1]
 	if (usageHistory.length === 0 || !isTheSameDay(lastDayTracking.date, today)) {
 		return [
