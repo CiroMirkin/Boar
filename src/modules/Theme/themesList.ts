@@ -301,7 +301,7 @@ export const themesList: readonly Theme[] = Object.freeze([
 		reminder: 'bg-[#E68B70]',
 	},
 	{
-		id: 'fleuri',
+		id: 'dark-taxi',
 		bg: 'bg-[#F3BF4B]',
 		text: 'text-white',
 		column: 'bg-[#21273D]',
