@@ -26,7 +26,9 @@ function CreateBoardDialog({ hasNoBoards = false }: CreateBoardDialogProps) {
 	const { createAnEmptyBoard } = useDashboardQuery()
 	const [newBoardName, setNewBoardName] = useState('')
 
-	const handleCreateBoard = () => {
+	const handleCreateBoard = (e: React.FormEvent) => {
+		e.preventDefault()
+
 		const promise = createAnEmptyBoard(newBoardName)
 		toast.promise(promise, {
 			loading: 'Creando tablero...',
@@ -55,7 +57,10 @@ function CreateBoardDialog({ hasNoBoards = false }: CreateBoardDialogProps) {
 					</DialogDescription>
 				</DialogHeader>
 				<div>
-					<div className={`grid mr-2 w-full items-center gap-1.5`}>
+					<form
+						className={`grid mr-2 w-full items-center gap-1.5`}
+						onSubmit={handleCreateBoard}
+					>
 						<Label
 							className={`${colors.taskText || 'text-black'} ${colors.columnText}`}
 						>
@@ -66,8 +71,9 @@ function CreateBoardDialog({ hasNoBoards = false }: CreateBoardDialogProps) {
 							placeholder='Trabajo...'
 							value={newBoardName}
 							onChange={(e) => setNewBoardName(e.target.value)}
+							autoFocus
 						/>
-					</div>
+					</form>
 				</div>
 				<DialogFooter className='sm:justify-start'>
 					<DialogClose asChild>
