@@ -2,9 +2,9 @@ import { useTheme } from '@/common/hooks/useTheme'
 import { ReactNode } from 'react'
 
 export function SettingSection({ children }: { children: ReactNode }) {
-	const { column } = useTheme()
+	const { column, columnText } = useTheme()
 	return (
-		<section className={`max-w-2xl rounded-lg py-4 md:px-11 px-6 ${column}`}>
+		<section className={`max-w-2xl rounded-lg py-4 md:px-11 px-6 ${column} ${columnText}`}>
 			<div className='w-full'>{children}</div>
 		</section>
 	)
