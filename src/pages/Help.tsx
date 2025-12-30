@@ -11,7 +11,11 @@ export function Help() {
 	const { t } = useTranslation()
 	return (
 		<>
-			<Header title={t('menu.help')} whereUserIs={USER_IS_IN.HELP} />
+			<Header
+				title={t('menu.help')}
+				whereUserIs={USER_IS_IN.HELP}
+				showBoardNavigation={false}
+			/>
 			<div className='w-full px-6 md:px-11'>
 				<section className='mb-4'>
 					<h2 className='mb-2 text-2xl'>{t('help.h2')}</h2>
