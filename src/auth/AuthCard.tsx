@@ -49,8 +49,10 @@ export default function AuthCard() {
 		e.preventDefault()
 		setLoading(true)
 
-		try {
-			if (!isSupabaseConfigured || !supabase) return
+		const authPromise = async () => {
+			if (!isSupabaseConfigured || !supabase) {
+				throw new Error('Supabase no configurado')
+			}
 
 			const { data, error } = isRegister
 				? await supabase.auth.signUp({ email, password })
@@ -58,23 +60,24 @@ export default function AuthCard() {
 
 			if (error) throw error
 
-			const successMessage = isRegister ? t('successful_log_in_toast') : t('sing_in_toast')
-			toast.success(successMessage)
-
 			if (data?.session) {
 				await setUpUserBoard({ session: data.session })
 			}
 
 			setIsSubmitted(true)
-		} catch (error) {
-			const authError = error as AuthUnknownError
-			const errorMessage =
-				authError.message || t('auth_error', { defaultValue: 'Error de autenticación' })
-			toast.error(errorMessage)
-			console.error('Authentication error:', error)
-		} finally {
-			setLoading(false)
+			return data
 		}
+
+		toast.promise(authPromise(), {
+			loading: t('loading', { defaultValue: 'Cargando...' }),
+			success: isRegister ? t('successful_log_in_toast') : t('sing_in_toast'),
+			error: (error: AuthUnknownError) => {
+				return error.message || t('auth_error', { defaultValue: 'Error de autenticación' })
+			},
+			finally: () => {
+				setLoading(false)
+			},
+		})
 	}
 
 	const toggleAuthMode = () => {
