@@ -24,7 +24,7 @@ export const useDashboardQuery = () => {
 		enabled: !!session,
 	})
 
-	const { mutate: deleteBoard } = useMutation({
+	const { mutateAsync: deleteBoard } = useMutation({
 		mutationFn: async (boardId: string) => {
 			if (!session) {
 				throw new BusinessError('No hay sesión activa')
@@ -43,7 +43,6 @@ export const useDashboardQuery = () => {
 
 	const { mutateAsync: createAnEmptyBoard } = useMutation({
 		mutationFn: async (boardName: string) => {
-			console.log(!session, boardName)
 			if (!session) {
 				throw new BusinessError('No hay sesión activa')
 			}

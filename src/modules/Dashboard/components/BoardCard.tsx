@@ -21,8 +21,12 @@ function BoardCard({ board }: { board: Board }) {
 			action: {
 				label: 'Eliminar',
 				onClick: () => {
-					deleteBoard(board.id)
-					toast.success('¡El tablero se elimino exitosamente!')
+					const promise = deleteBoard(board.id)
+					toast.promise(promise, {
+						loading: 'Eliminando tablero...',
+						success: () => 'Tablero eliminado con éxito',
+						error: (e) => e.message || 'Error al eliminar el tablero',
+					})
 				},
 			},
 		})
