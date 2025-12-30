@@ -39,9 +39,11 @@ const ReminderListContainer = () => {
 		})
 	}
 
-	const { task } = useTheme()
+	const { task, taskText } = useTheme()
 	const reminderList = reminder ? (
-		<li className={`w-full py-1 px-3 flex flex-col gap-2 content-stretch rounded-md ${task}`}>
+		<li
+			className={`w-full py-1 px-3 flex flex-col gap-2 content-stretch rounded-md ${task}  ${taskText || 'text-black'}`}
+		>
 			<div className='w-full flex justify-between items-center gap-2'>
 				<p className='text-lg'>{reminder.text}</p>
 				<Button
