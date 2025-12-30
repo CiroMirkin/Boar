@@ -67,7 +67,7 @@ export function Header({ title, whereUserIs, showBoardNavigation = true }: Heade
 				{showNotes && <Notes />}
 				<DropdownMenu onOpenChange={setIsDropdownOpen}>
 					<DropdownMenuTrigger asChild>
-						<Button variant='ghost' className={text}>
+						<Button variant='ghost' className={text} data-testid='NavBtn'>
 							<MenuIcon />
 						</Button>
 					</DropdownMenuTrigger>
