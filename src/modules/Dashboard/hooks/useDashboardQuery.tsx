@@ -41,7 +41,7 @@ export const useDashboardQuery = () => {
 		},
 	})
 
-	const { mutate: createAnEmptyBoard } = useMutation({
+	const { mutateAsync: createAnEmptyBoard } = useMutation({
 		mutationFn: async (boardName: string) => {
 			console.log(!session, boardName)
 			if (!session) {

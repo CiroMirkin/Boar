@@ -27,14 +27,14 @@ function CreateBoardDialog({ hasNoBoards = false }: CreateBoardDialogProps) {
 	const [newBoardName, setNewBoardName] = useState('')
 
 	const handleCreateBoard = () => {
-		createAnEmptyBoard(newBoardName, {
-			onSuccess: () => {
-				toast.success('Tablero creado exitosamente')
+		const promise = createAnEmptyBoard(newBoardName)
+		toast.promise(promise, {
+			loading: 'Creando tablero...',
+			success: () => {
 				setNewBoardName('')
+				return 'Tablero creado exitosamente :D'
 			},
-			onError: (error) => {
-				toast.error(error.message)
-			},
+			error: (error) => error.message || 'Error al crear el tablero',
 		})
 	}
 
