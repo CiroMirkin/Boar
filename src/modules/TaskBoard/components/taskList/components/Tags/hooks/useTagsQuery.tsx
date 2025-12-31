@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { fetchTags, saveTags } from '../repository'
 import { useSession } from '@/auth/hooks/useSession'
 import { TagRepositoryGetReturn } from '../repository/tagRepository'
+import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 
 const tagsQueryKey = ['tags']
 
@@ -10,7 +11,8 @@ export const useTagsQuery = () => {
 	const queryClient = useQueryClient()
 
 	const userId = session?.user.id ?? 'guest'
-	const fullQueryKey = [...tagsQueryKey, userId]
+	const boardId = getActualBoardId()
+	const fullQueryKey = [...tagsQueryKey, userId, boardId] as const
 
 	const {
 		data: tags,
