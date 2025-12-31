@@ -1,14 +1,11 @@
 import { Archive } from '../models/archive'
 import { ArchiveRepository } from './archiveRepository'
 import { isSupabaseConfigured, supabase } from '@/lib/supabase'
-import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 
 export default class SupabaseArchivedTasksRepository implements ArchiveRepository {
-	constructor() {}
-	async save(archive: Archive) {
+	async save(archive: Archive, boardId: string) {
 		if (!isSupabaseConfigured || !supabase) return
 
-		const boardId = getActualBoardId()
 		const { error } = await supabase
 			.from('archive')
 			.update({
@@ -19,10 +16,9 @@ export default class SupabaseArchivedTasksRepository implements ArchiveRepositor
 		if (error) throw error
 	}
 
-	async getAll() {
-		if (!isSupabaseConfigured || !supabase) return
+	async getAll(boardId: string) {
+		if (!isSupabaseConfigured || !supabase) return []
 
-		const boardId = getActualBoardId()
 		const { data, error } = await supabase
 			.from('archive')
 			.select('task_list')
