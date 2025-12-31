@@ -46,7 +46,8 @@ export function Header({ title, whereUserIs, showBoardNavigation = true }: Heade
 	const URLs = {
 		board: `/board/${BOARD_ID}`,
 		archive: `/archive/${BOARD_ID}`,
-		settings: `/settings/${BOARD_ID}`,
+		boardSettings: `/settings/${BOARD_ID}`,
+		settings: '/settings',
 		time: `/time/${BOARD_ID}`,
 	}
 
@@ -83,6 +84,16 @@ export function Header({ title, whereUserIs, showBoardNavigation = true }: Heade
 							{!showDashboardLink && 'Boar'}
 						</DropdownMenuLabel>
 						<DropdownMenuSeparator />
+						{!showBoardLinks && (
+							<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.CONFIG}>
+								<TransitionLink
+									to={URLs.settings}
+									className='px-2 py-1.5 flex items-center'
+								>
+									<SettingsIcon className='mr-2' /> {t('menu.configs')}
+								</TransitionLink>
+							</DropdownMenuItem>
+						)}
 						{showBoardLinks && (
 							<>
 								<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.BOARD}>
@@ -103,7 +114,7 @@ export function Header({ title, whereUserIs, showBoardNavigation = true }: Heade
 								</DropdownMenuItem>
 								<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.CONFIG}>
 									<TransitionLink
-										to={URLs.settings}
+										to={URLs.boardSettings}
 										className='px-2 py-1.5 flex items-center'
 									>
 										<SettingsIcon className='mr-2' /> {t('menu.configs')}

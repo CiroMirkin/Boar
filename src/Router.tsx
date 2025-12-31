@@ -8,6 +8,7 @@ import { BoardPage } from './pages/BoardPage'
 import ErrorBoundary from './ErrorBoundary'
 import { TimeTracking } from './pages/TimeTracking'
 import UserDashboard from './pages/UserDashboard'
+import UserDashboardSettings from './pages/UserDashboardSettings'
 
 const router = createBrowserRouter([
 	{
@@ -15,6 +16,14 @@ const router = createBrowserRouter([
 		element: (
 			<ErrorBoundary>
 				<UserDashboard />
+			</ErrorBoundary>
+		),
+	},
+	{
+		path: '/settings',
+		element: (
+			<ErrorBoundary>
+				<UserDashboardSettings />
 			</ErrorBoundary>
 		),
 	},

@@ -8,6 +8,7 @@ interface PageContainerProps {
 	whereUserIs: USER_IS_IN
 	title?: string
 	className?: string
+	showBoardNavigation?: boolean
 }
 
 export default function PageContainer({
@@ -15,11 +16,16 @@ export default function PageContainer({
 	whereUserIs,
 	title = 'Boar',
 	className = '',
+	showBoardNavigation = true,
 }: PageContainerProps) {
 	const { bg, text } = useTheme()
 	return (
 		<div className={`${bg} ${text}`}>
-			<Header title={title} whereUserIs={whereUserIs} />
+			<Header
+				title={title}
+				whereUserIs={whereUserIs}
+				showBoardNavigation={showBoardNavigation}
+			/>
 			<main className={`w-full min-h-[calc(100vh-5rem)] ${className}`}>{children}</main>
 		</div>
 	)
