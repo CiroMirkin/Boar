@@ -25,6 +25,7 @@ function CreateBoardDialog({ hasNoBoards = false }: CreateBoardDialogProps) {
 	const colors = useTheme()
 	const { createAnEmptyBoard } = useDashboardQuery()
 	const [newBoardName, setNewBoardName] = useState('')
+	const [isOpen, setIsOpen] = useState(false)
 
 	const handleCreateBoard = (e: React.FormEvent) => {
 		e.preventDefault()
@@ -34,14 +35,20 @@ function CreateBoardDialog({ hasNoBoards = false }: CreateBoardDialogProps) {
 			loading: 'Creando tablero...',
 			success: () => {
 				setNewBoardName('')
+				setIsOpen(false)
 				return 'Tablero creado exitosamente :D'
 			},
 			error: (error) => error.message || 'Error al crear el tablero',
 		})
 	}
 
+	const hadnleOpenChange = (open: boolean) => {
+		setIsOpen(open)
+		if (open) setNewBoardName('')
+	}
+
 	return (
-		<Dialog onOpenChange={(isOpen) => isOpen && setNewBoardName('')}>
+		<Dialog open={isOpen} onOpenChange={hadnleOpenChange}>
 			<DialogTrigger asChild>
 				<Button variant='secondary' className='flex items-center'>
 					<PlusIcon className='mr-2' />{' '}
