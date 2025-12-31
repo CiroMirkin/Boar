@@ -13,6 +13,7 @@ import {
 } from '../model/taskBoard'
 import { useTranslation } from 'react-i18next'
 import { useCallback } from 'react'
+import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 
 const taskBoardQueryKey = ['taskBoard']
 
@@ -21,7 +22,8 @@ export const useTaskBoardQuery = () => {
 	const queryClient = useQueryClient()
 
 	const userId = session?.user.id ?? 'guest'
-	const fullQueryKey = [...taskBoardQueryKey, userId]
+	const boardId = getActualBoardId()
+	const fullQueryKey = [...taskBoardQueryKey, userId, boardId] as const
 
 	const { t, i18n } = useTranslation()
 	const select = useCallback(
