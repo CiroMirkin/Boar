@@ -7,7 +7,6 @@ export default class SupabaseTaskListInEachColumnRepository
 {
 	async save(taskListInEachColumn: TaskBoard, boardId: string) {
 		if (!isSupabaseConfigured || !supabase) return
-		console.log(boardId)
 		const { error } = await supabase
 			.from('boards')
 			.update({
@@ -25,7 +24,6 @@ export default class SupabaseTaskListInEachColumnRepository
 			.from('boards')
 			.select('task_list_in_each_column')
 			.eq('id', boardId)
-		console.log(boardId)
 
 		if (error) throw error
 
