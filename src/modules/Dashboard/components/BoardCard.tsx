@@ -43,7 +43,7 @@ function BoardCard({ board }: { board: Board }) {
 					{hero}
 				</TransitionLink>
 			</div>
-			<div className={`text-left ${color.task} rounded-b-md`}>
+			<div className={`text-left ${color.task} ${color.taskText} rounded-b-md`}>
 				<div className='flex justify-between items-center pr-3'>
 					<TransitionLink to={boardUrl} title={`Abrir tablero ${board.name}`}>
 						<h2 className='w-[12rem] py-4 pl-4 text-base font-semibold rounded-b-md hover:underline'>
