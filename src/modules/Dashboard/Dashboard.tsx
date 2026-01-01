@@ -19,7 +19,7 @@ function Dashboard() {
 	}
 
 	return (
-		<section className={`min-w-48 pt-6 h-full ${colors.text}`}>
+		<section className={`min-w-48 pt-4 h-full ${colors.text}`}>
 			{hasNoBoards && (
 				<div className='grid place-items-center h-full px-4 md:pt-12 gap-2 text-center'>
 					<div className='relative mb-4'>
