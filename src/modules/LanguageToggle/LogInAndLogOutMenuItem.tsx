@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { AuthError, Session } from '@supabase/supabase-js'
 import { toast } from 'sonner'
 import { isSupabaseConfigured, supabase } from '@/lib/supabase'
-import { Navigate } from 'react-router'
+import { useNavigate } from 'react-router'
 
 interface LogInAndLogOutMenuItemProps {
 	whereUserIs?: USER_IS_IN
@@ -18,7 +18,7 @@ export default function LogInAndLogOutMenuItem({
 	session,
 }: LogInAndLogOutMenuItemProps) {
 	const { t } = useTranslation()
-
+	const navigate = useNavigate()
 	const handleOnClick = async () => {
 		const logOutPromise = async () => {
 			if (!isSupabaseConfigured || !supabase) {
@@ -29,14 +29,14 @@ export default function LogInAndLogOutMenuItem({
 			if (error) throw error
 
 			sessionStorage.removeItem('isInitialLoad')
-			toast.success(t('successful_log_out_toast'))
-
-			return <Navigate to='/' replace />
 		}
 
 		toast.promise(logOutPromise(), {
 			loading: t('loading', { defaultValue: 'Cargando...' }),
-			success: t('successful_log_out_toast'),
+			success: () => {
+				navigate('/', { replace: true })
+				return t('successful_log_out_toast')
+			},
 			error: (error: AuthError) => {
 				return (
 					error.message || t('log_out_error', { defaultValue: 'Error al cerrar sesión' })
