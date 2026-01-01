@@ -18,7 +18,7 @@ export default class LibraryOfArchivedNotesSupabaseRepository
 
 		const { error } = await supabase
 			.from(this.tableName)
-			.update({ notes: library })
+			.upsert({ notes: library, board_id: boardId })
 			.eq('board_id', boardId)
 
 		if (error) throw error
@@ -33,6 +33,7 @@ export default class LibraryOfArchivedNotesSupabaseRepository
 			return notes
 		}
 
+		this.save(defaultLibraryOfArchivedNotes, boardId)
 		return defaultLibraryOfArchivedNotes
 	}
 }
