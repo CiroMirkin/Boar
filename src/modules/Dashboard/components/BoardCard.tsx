@@ -5,6 +5,7 @@ import { useMemo } from 'react'
 import { TransitionLink } from '@/ui/atoms/TransitionLink'
 import { useDashboardQuery } from '../hooks/useDashboardQuery'
 import { toast } from 'sonner'
+import { useTranslation } from 'react-i18next'
 
 interface Board {
 	name: string
@@ -12,20 +13,21 @@ interface Board {
 }
 
 function BoardCard({ board }: { board: Board }) {
+	const { t } = useTranslation()
 	const color = useTheme()
 	const hero = useMemo(RandomHero, [])
 
 	const { deleteBoard } = useDashboardQuery()
 	const handleDeleteBoard = () => {
-		toast.warning('¿Deseas eliminar este tablero? Esta acción no se podrá deshacer.', {
+		toast.warning(t('dashboard.delete_warning'), {
 			action: {
-				label: 'Eliminar',
+				label: t('dashboard.delete_button'),
 				onClick: () => {
 					const promise = deleteBoard(board.id)
 					toast.promise(promise, {
-						loading: 'Eliminando tablero...',
-						success: () => 'Tablero eliminado con éxito',
-						error: (e) => e.message || 'Error al eliminar el tablero',
+						loading: t('dashboard.deleting_board'),
+						success: () => t('dashboard.delete_success'),
+						error: (e) => e.message || t('dashboard.delete_error'),
 					})
 				},
 			},
@@ -39,13 +41,19 @@ function BoardCard({ board }: { board: Board }) {
 			className={`w-[18rem] flex flex-col rounded-md shadow-lg hover:shadow-xl transition-all ease-in group`}
 		>
 			<div className={`h-28 w-full ${color.column} rounded-t-md`}>
-				<TransitionLink to={boardUrl} title={`Abrir tablero ${board.name}`}>
+				<TransitionLink
+					to={boardUrl}
+					title={t('dashboard.open_board', { boardName: board.name })}
+				>
 					{hero}
 				</TransitionLink>
 			</div>
 			<div className={`text-left ${color.task} ${color.taskText} rounded-b-md`}>
 				<div className='flex justify-between items-center pr-3'>
-					<TransitionLink to={boardUrl} title={`Abrir tablero ${board.name}`}>
+					<TransitionLink
+						to={boardUrl}
+						title={t('dashboard.open_board', { boardName: board.name })}
+					>
 						<h2 className='w-[12rem] py-4 pl-4 text-base font-semibold rounded-b-md hover:underline'>
 							{board.name}
 						</h2>
@@ -53,7 +61,7 @@ function BoardCard({ board }: { board: Board }) {
 					<Button
 						className='py-1 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300'
 						variant='destructiveGhost'
-						title='Eliminar tablero'
+						title={t('dashboard.delete_board_title')}
 						onClick={handleDeleteBoard}
 					>
 						<TrashIcon />

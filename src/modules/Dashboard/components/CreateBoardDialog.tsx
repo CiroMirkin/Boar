@@ -16,12 +16,14 @@ import { Input } from '@/ui/atoms/input'
 import { useState } from 'react'
 import { useTheme } from '@/common/hooks/useTheme'
 import { toast } from 'sonner'
+import { useTranslation } from 'react-i18next'
 
 interface CreateBoardDialogProps {
 	hasNoBoards?: boolean
 }
 
 function CreateBoardDialog({ hasNoBoards = false }: CreateBoardDialogProps) {
+	const { t } = useTranslation()
 	const colors = useTheme()
 	const { createAnEmptyBoard } = useDashboardQuery()
 	const [dialogState, setDialogState] = useState({
@@ -34,12 +36,12 @@ function CreateBoardDialog({ hasNoBoards = false }: CreateBoardDialogProps) {
 
 		const promise = createAnEmptyBoard(dialogState.boardName)
 		toast.promise(promise, {
-			loading: 'Creando tablero...',
+			loading: t('dashboard.creating_board'),
 			success: () => {
 				setDialogState({ isOpen: false, boardName: '' })
-				return 'Tablero creado exitosamente :D'
+				return t('dashboard.create_success')
 			},
-			error: (error) => error.message || 'Error al crear el tablero',
+			error: (error) => error.message || t('dashboard.create_error'),
 		})
 	}
 
@@ -53,16 +55,13 @@ function CreateBoardDialog({ hasNoBoards = false }: CreateBoardDialogProps) {
 			<DialogTrigger asChild>
 				<Button variant='secondary' className='flex items-center'>
 					<PlusIcon className='mr-2' />{' '}
-					{hasNoBoards ? 'Crear mi primer tablero' : 'Crear Tablero'}
+					{hasNoBoards ? t('dashboard.create_first_board') : t('dashboard.create_board')}
 				</Button>
 			</DialogTrigger>
 			<DialogContent className={`sm:max-w-md ${colors.column} ${colors.columnText}`}>
 				<DialogHeader>
-					<DialogTitle>Nuevo tablero</DialogTitle>
-					<DialogDescription>
-						El nuevo tablero estara vacio, una vez creado podras configurarlo y cambiar
-						su nombre si lo deseas.
-					</DialogDescription>
+					<DialogTitle>{t('dashboard.new_board_title')}</DialogTitle>
+					<DialogDescription>{t('dashboard.new_board_description')}</DialogDescription>
 				</DialogHeader>
 				<div>
 					<form
@@ -72,11 +71,11 @@ function CreateBoardDialog({ hasNoBoards = false }: CreateBoardDialogProps) {
 						<Label
 							className={`${colors.taskText || 'text-black'} ${colors.columnText}`}
 						>
-							Nombre:
+							{t('dashboard.name_label')}
 						</Label>
 						<Input
 							type='text'
-							placeholder='Trabajo...'
+							placeholder={t('dashboard.name_placeholder')}
 							value={dialogState.boardName}
 							onChange={(e) =>
 								setDialogState({ ...dialogState, boardName: e.target.value })
@@ -88,7 +87,7 @@ function CreateBoardDialog({ hasNoBoards = false }: CreateBoardDialogProps) {
 				<DialogFooter className='sm:justify-start'>
 					<DialogClose asChild>
 						<Button type='button' variant='default' onClick={handleCreateBoard}>
-							Crear Tablero
+							{t('dashboard.create_board')}
 						</Button>
 					</DialogClose>
 				</DialogFooter>
