@@ -19,10 +19,11 @@ export default function LogInAndLogOutMenuItem({
 }: LogInAndLogOutMenuItemProps) {
 	const { t } = useTranslation()
 
-	// Handle log out
 	const handleOnClick = async () => {
-		try {
-			if (!isSupabaseConfigured || !supabase) return
+		const logOutPromise = async () => {
+			if (!isSupabaseConfigured || !supabase) {
+				throw new Error('Supabase no configurado')
+			}
 
 			const { error } = await supabase.auth.signOut()
 			if (error) throw error
@@ -35,6 +36,16 @@ export default function LogInAndLogOutMenuItem({
 			const authError = error as AuthError
 			toast.error(authError.message)
 		}
+
+		toast.promise(logOutPromise(), {
+			loading: t('loading', { defaultValue: 'Cargando...' }),
+			success: t('successful_log_out_toast'),
+			error: (error: AuthError) => {
+				return (
+					error.message || t('log_out_error', { defaultValue: 'Error al cerrar sesión' })
+				)
+			},
+		})
 	}
 
 	return (
