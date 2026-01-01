@@ -2,9 +2,10 @@ import { Reminder } from '../model/reminder'
 import LocalStorageReminderRepository from './LocalStorageReminder'
 import SupabaseReminderRepository from './SupabaseReminderRepository'
 import { Session } from '@supabase/supabase-js'
+import { getActualBoardId } from '@/auth/utils/getActualBoardId'
+import { ReminderRepository } from './ReminderRepository'
 
-// Permite obtener el repositorio correcto segun el estado del usuario
-const getReminderRepository = (session: Session | null) => {
+const getReminderRepository = (session: Session | null): ReminderRepository => {
 	if (session) {
 		return new SupabaseReminderRepository()
 	}
@@ -13,7 +14,8 @@ const getReminderRepository = (session: Session | null) => {
 
 export const fetchReminder = async (session: Session | null): Promise<Reminder> => {
 	const repository = getReminderRepository(session)
-	return repository.getAll()
+	const boardId = getActualBoardId()
+	return repository.getAll(boardId)
 }
 
 export const saveReminder = async ({
@@ -24,5 +26,6 @@ export const saveReminder = async ({
 	session: Session | null
 }): Promise<void> => {
 	const repository = getReminderRepository(session)
-	await repository.save(reminder)
+	const boardId = getActualBoardId()
+	await repository.save(reminder, boardId)
 }

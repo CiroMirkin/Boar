@@ -3,6 +3,7 @@ import { TaskBoard } from '@/modules/TaskBoard/model/taskBoard'
 import { TaskListInEachColumnRepository } from './taskListInEachColumnRepository'
 import LocalStorageTaskListInEachColumnRepository from './localStorageTaskListsRepository'
 import SupabaseTaskListInEachColumnRepository from './supabaseTaskListsRepository'
+import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 
 // Factory para obtener el repositorio adecuado segun el estado del usuario
 const getTaskBoardRepository = (session: Session | null): TaskListInEachColumnRepository => {
@@ -14,7 +15,8 @@ const getTaskBoardRepository = (session: Session | null): TaskListInEachColumnRe
 
 export const fetchTaskBoard = async (session: Session | null): Promise<TaskBoard> => {
 	const repository = getTaskBoardRepository(session)
-	return repository.getAll()
+	const boardId = getActualBoardId()
+	return repository.getAll(boardId)
 }
 
 export const saveTaskBoard = async ({
@@ -25,5 +27,6 @@ export const saveTaskBoard = async ({
 	session: Session | null
 }): Promise<void> => {
 	const repository = getTaskBoardRepository(session)
-	await repository.save(taskBoard)
+	const boardId = getActualBoardId()
+	await repository.save(taskBoard, boardId)
 }

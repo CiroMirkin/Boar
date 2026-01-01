@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSession } from '@/auth/hooks/useSession'
 import { Archive, emptyArchivedTasks } from '../models/archive'
 import { fetchArchivedTasks, saveArchivedTasks } from '../repository'
+import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 
 const archivedTasksQueryKey = ['archived-tasks']
 
@@ -10,7 +11,8 @@ export const useArchivedTasksQuery = () => {
 	const queryClient = useQueryClient()
 
 	const userId = session?.user.id ?? 'guest'
-	const fullQueryKey = [...archivedTasksQueryKey, userId]
+	const boardId = getActualBoardId()
+	const fullQueryKey = [...archivedTasksQueryKey, userId, boardId] as const
 
 	const {
 		data: archivedTasks = emptyArchivedTasks,

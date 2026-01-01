@@ -24,24 +24,32 @@ interface CreateBoardDialogProps {
 function CreateBoardDialog({ hasNoBoards = false }: CreateBoardDialogProps) {
 	const colors = useTheme()
 	const { createAnEmptyBoard } = useDashboardQuery()
-	const [newBoardName, setNewBoardName] = useState('')
+	const [dialogState, setDialogState] = useState({
+		isOpen: false,
+		boardName: '',
+	})
 
 	const handleCreateBoard = (e: React.FormEvent) => {
 		e.preventDefault()
 
-		const promise = createAnEmptyBoard(newBoardName)
+		const promise = createAnEmptyBoard(dialogState.boardName)
 		toast.promise(promise, {
 			loading: 'Creando tablero...',
 			success: () => {
-				setNewBoardName('')
+				setDialogState({ isOpen: false, boardName: '' })
 				return 'Tablero creado exitosamente :D'
 			},
 			error: (error) => error.message || 'Error al crear el tablero',
 		})
 	}
 
+	const hadnleOpenChange = (open: boolean) => {
+		const boardName = open ? '' : dialogState.boardName
+		setDialogState({ isOpen: open, boardName })
+	}
+
 	return (
-		<Dialog onOpenChange={(isOpen) => isOpen && setNewBoardName('')}>
+		<Dialog open={dialogState.isOpen} onOpenChange={hadnleOpenChange}>
 			<DialogTrigger asChild>
 				<Button variant='secondary' className='flex items-center'>
 					<PlusIcon className='mr-2' />{' '}
@@ -69,8 +77,10 @@ function CreateBoardDialog({ hasNoBoards = false }: CreateBoardDialogProps) {
 						<Input
 							type='text'
 							placeholder='Trabajo...'
-							value={newBoardName}
-							onChange={(e) => setNewBoardName(e.target.value)}
+							value={dialogState.boardName}
+							onChange={(e) =>
+								setDialogState({ ...dialogState, boardName: e.target.value })
+							}
 							autoFocus
 						/>
 					</form>

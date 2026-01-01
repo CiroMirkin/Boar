@@ -4,7 +4,6 @@ import {
 	LibraryOfArchivedNotes,
 } from '../model/libraryOfArchivedNotes'
 import { LibraryOfArchiveNotesRepository } from '../model/libraryOfArchivedNotesRepository'
-import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 
 export default class LibraryOfArchivedNotesSupabaseRepository
 	implements LibraryOfArchiveNotesRepository
@@ -14,26 +13,27 @@ export default class LibraryOfArchivedNotesSupabaseRepository
 		this.tableName = 'archive'
 	}
 
-	async save(library: LibraryOfArchivedNotes): Promise<void> {
+	async save(library: LibraryOfArchivedNotes, boardId: string): Promise<void> {
 		if (!isSupabaseConfigured || !supabase) return
 
-		const boardId = getActualBoardId()
 		const { error } = await supabase
 			.from(this.tableName)
-			.update({ notes: library })
+			.upsert({ notes: library, board_id: boardId })
 			.eq('board_id', boardId)
 
 		if (error) throw error
 	}
-	async getAll(): Promise<LibraryOfArchivedNotes> {
+	async getAll(boardId: string): Promise<LibraryOfArchivedNotes> {
 		if (!isSupabaseConfigured || !supabase) return defaultLibraryOfArchivedNotes
 
-		const { data } = await supabase.from('archive').select('notes')
-		if (data !== null) {
+		const { data } = await supabase.from('archive').select('notes').eq('board_id', boardId)
+
+		if (data !== null && data.length > 0) {
 			const notes: LibraryOfArchivedNotes = data[0].notes
 			return notes
 		}
 
+		this.save(defaultLibraryOfArchivedNotes, boardId)
 		return defaultLibraryOfArchivedNotes
 	}
 }

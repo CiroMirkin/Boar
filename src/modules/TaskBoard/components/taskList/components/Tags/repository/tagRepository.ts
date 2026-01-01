@@ -3,6 +3,7 @@ import { AvailableTags, TagGroup } from '../model/tags'
 export interface TagRepositorySaveParams {
 	actualTagGroup: TagGroup
 	tags: AvailableTags
+	boardId: string
 }
 
 export interface TagRepositoryGetReturn {
@@ -11,6 +12,6 @@ export interface TagRepositoryGetReturn {
 }
 
 export interface TagRepository {
-	save({ actualTagGroup, tags }: TagRepositorySaveParams): Promise<void>
-	get(): Promise<TagRepositoryGetReturn>
+	save({ actualTagGroup, tags, boardId }: TagRepositorySaveParams): Promise<void>
+	get(boardId: string): Promise<TagRepositoryGetReturn>
 }

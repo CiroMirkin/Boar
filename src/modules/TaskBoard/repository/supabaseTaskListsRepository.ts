@@ -1,31 +1,29 @@
 import { emptyTaskBoard, TaskBoard } from '@/modules/TaskBoard/model/taskBoard'
 import { TaskListInEachColumnRepository } from './taskListInEachColumnRepository'
 import { isSupabaseConfigured, supabase } from '@/lib/supabase'
-import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 
 export default class SupabaseTaskListInEachColumnRepository
 	implements TaskListInEachColumnRepository
 {
-	async save(taskListInEachColumn: TaskBoard) {
+	async save(taskListInEachColumn: TaskBoard, boardId: string) {
 		if (!isSupabaseConfigured || !supabase) return
-
 		const { error } = await supabase
 			.from('boards')
 			.update({
 				task_list_in_each_column: taskListInEachColumn,
 			})
-			.eq('id', getActualBoardId())
+			.eq('id', boardId)
 
 		if (error) throw error
 	}
 
-	async getAll() {
+	async getAll(boardId: string) {
 		if (!isSupabaseConfigured || !supabase) return
 
 		const { error, data } = await supabase
 			.from('boards')
 			.select('task_list_in_each_column')
-			.eq('id', getActualBoardId())
+			.eq('id', boardId)
 
 		if (error) throw error
 

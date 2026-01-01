@@ -3,8 +3,9 @@ import { UsageHistory } from '../model/usageHistory'
 import { localStorageUsageHistoryRepository } from '../repository/localstorageUsageHistoryRepository'
 import { supabaseUsageHistoryRepository } from '../repository/supabaseUsageHistoryRepository'
 import { useSession } from '@/auth/hooks/useSession'
+import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 
-const QUERY_KEY = ['usage-history']
+const QUERY_KEY = ['usage-history'] as const
 
 interface UseUsageHistoryQueryOptions {
 	onSuccess?: (data: UsageHistory) => void
@@ -15,8 +16,8 @@ export const useUsageHistoryQuery = ({ onSuccess, onError }: UseUsageHistoryQuer
 	const { session } = useSession()
 	const queryClient = useQueryClient()
 	const userId = session?.user.id ?? 'guest'
-
-	const fullQueryKey = [...QUERY_KEY, userId]
+	const boardId = getActualBoardId()
+	const fullQueryKey = [...QUERY_KEY, userId, boardId] as const
 
 	const {
 		data: usageHistory = [],
@@ -25,7 +26,7 @@ export const useUsageHistoryQuery = ({ onSuccess, onError }: UseUsageHistoryQuer
 	} = useQuery({
 		queryKey: fullQueryKey,
 		queryFn: async (): Promise<UsageHistory> => {
-			if (session) return await supabaseUsageHistoryRepository.getAll()
+			if (session) return await supabaseUsageHistoryRepository.getAll(boardId)
 			return await localStorageUsageHistoryRepository.getAll()
 		},
 		enabled: !!userId,
@@ -34,7 +35,7 @@ export const useUsageHistoryQuery = ({ onSuccess, onError }: UseUsageHistoryQuer
 
 	const customMutationFn = useMutation({
 		mutationFn: async (newUsageHistory: UsageHistory): Promise<UsageHistory> => {
-			if (session) return await supabaseUsageHistoryRepository.save(newUsageHistory)
+			if (session) return await supabaseUsageHistoryRepository.save(newUsageHistory, boardId)
 			return await localStorageUsageHistoryRepository.save(newUsageHistory)
 		},
 		onSuccess: (data) => {
