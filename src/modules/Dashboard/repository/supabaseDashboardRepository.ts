@@ -1,0 +1,111 @@
+import { isSupabaseConfigured, supabase } from '@/lib/supabase'
+import { Board } from '../model/board'
+import { DashboardRepository } from './dashboardRepository'
+import { getUserId } from '@/auth/utils/getUserId'
+import BusinessError from '@/common/errors/businessError'
+import { getDefaultSupabaseBoard } from '@/auth/model/UserBoardOnSupabase'
+import i18next from '@/i18next'
+
+class SupabaseDashboardRepository implements DashboardRepository {
+	private readonly tableName = 'boards'
+	constructor() {}
+
+	async getBoards(): Promise<Board[]> {
+		if (!isSupabaseConfigured || !supabase) return []
+
+		const user_id = await getUserId()
+		if (!user_id || user_id === undefined) {
+			console.error('user_id faltante')
+			return []
+		}
+
+		const { data, error } = await supabase
+			.from(this.tableName)
+			.select(
+				`
+					name,
+					id,
+                    created_at
+				`
+			)
+			.eq('user_id', user_id)
+
+		if (error) {
+			console.error(error)
+			return []
+		}
+
+		const boards: Board[] = data.map((board) => ({
+			id: board.id,
+			name: board.name,
+			date: new Date(board.created_at),
+		}))
+
+		return boards || []
+	}
+
+	async getAmountOfBoards(): Promise<number> {
+		if (!isSupabaseConfigured || !supabase) return 0
+
+		const user_id = await getUserId()
+		const { count, error: countError } = await supabase
+			.from(this.tableName)
+			.select('*', { count: 'exact', head: true })
+			.eq('user_id', user_id)
+
+		if (countError) {
+			console.error(countError)
+			return 0
+		}
+
+		return count ?? 0
+	}
+
+	async deleteBoard({ boardId }: { boardId: string }): Promise<void> {
+		if (!isSupabaseConfigured || !supabase || !boardId) return
+		const user_id = await getUserId()
+		if (!user_id) {
+			console.error('user_id faltante')
+			return
+		}
+
+		const { error, count } = await supabase
+			.from(this.tableName)
+			.delete({ count: 'exact' })
+			.eq('id', boardId)
+			.eq('user_id', user_id)
+
+		if (error || count === 0) {
+			console.error('Error al eliminar tablero:', error)
+			throw new BusinessError(i18next.t('dashboard.delete_error'))
+		}
+	}
+
+	async createAnEmptyBoard({ name }: { name: string }): Promise<void> {
+		if (!isSupabaseConfigured || !supabase || !name) return
+		if (name.length <= 2 || name.length >= 15) {
+			throw new BusinessError(i18next.t('dashboard.board_name_length_error'))
+		}
+
+		const maxOfBoards = 5
+		const amountOfBoards = await this.getAmountOfBoards()
+		if (amountOfBoards >= maxOfBoards) {
+			throw new BusinessError(i18next.t('dashboard.board_limit_error'))
+		}
+
+		const user_id = await getUserId()
+		const newBoard = getDefaultSupabaseBoard({
+			name,
+			user_id,
+		})
+
+		const { error } = await supabase.from(this.tableName).insert(newBoard).select('id').single()
+
+		if (error) {
+			console.error(error)
+			return
+		}
+	}
+}
+
+export const supabaseDashboard = new SupabaseDashboardRepository()

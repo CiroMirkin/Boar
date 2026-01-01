@@ -3,6 +3,7 @@ import { LibraryOfArchivedNotes } from '../model/libraryOfArchivedNotes'
 import LibraryOfArchivedNotesLocalStorageRepository from './libraryOfArchivedNotesLocalStorageRepository'
 import LibraryOfArchivedNotesSupabaseRepository from './libraryOfArchivedNotesSupabaseRepository'
 import { LibraryOfArchiveNotesRepository } from '../model/libraryOfArchivedNotesRepository'
+import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 
 export const libraryOfArchivedNotesRepositoryFactory = (
 	session: Session | null
@@ -17,7 +18,8 @@ export const fetchLibraryOfArchivedNotes = async (
 	session: Session | null
 ): Promise<LibraryOfArchivedNotes> => {
 	const repository = libraryOfArchivedNotesRepositoryFactory(session)
-	const notes = await repository.getAll()
+	const boardId = getActualBoardId()
+	const notes = await repository.getAll(boardId)
 	return notes
 }
 
@@ -29,5 +31,6 @@ export const saveLibraryOfArchivedNotes = async ({
 	session: Session | null
 }): Promise<void> => {
 	const repository = libraryOfArchivedNotesRepositoryFactory(session)
-	await repository.save(notes)
+	const boardId = getActualBoardId()
+	await repository.save(notes, boardId)
 }

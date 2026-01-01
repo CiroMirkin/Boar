@@ -157,5 +157,30 @@
 	"usage_history": {
 		"empty": "Aún no hay registros de tiempo.",
 		"title": "Registro de uso"
+	},
+	"dashboard": {
+		"title": "Aquí nacen tus proyectos",
+		"description": "Tu espacio de trabajo está listo. Crea tableros para organizar ideas, proyectos y todo lo que imagines.",
+		"delete_warning": "¿Deseas eliminar este tablero? Esta acción no se podrá deshacer.",
+		"delete_button": "Eliminar",
+		"deleting_board": "Eliminando tablero...",
+		"delete_success": "Tablero eliminado con éxito",
+		"delete_error": "Error al eliminar el tablero",
+		"open_board": "Abrir tablero {{boardName}}",
+		"delete_board_title": "Eliminar tablero",
+		"creating_board": "Creando tablero...",
+		"create_success": "Tablero creado exitosamente :D",
+		"create_error": "Error al crear el tablero",
+		"create_first_board": "Crear mi primer tablero",
+		"create_board": "Crear Tablero",
+		"new_board_title": "Nuevo tablero",
+		"new_board_description": "El nuevo tablero estará vacío, una vez creado podrás configurarlo y cambiar su nombre si lo deseas.",
+		"name_label": "Nombre:",
+		"name_placeholder": "Trabajo...",
+		"no_active_session": "No hay sesión activa",
+		"board_id_required": "Es necesario el ID del tablero para poder eliminarlo",
+		"board_name_required": "El nombre del tablero no puede estar vacío",
+		"board_name_length_error": "El nombre de un tablero debe tener mas de 2 caracteres y menos de 15.",
+		"board_limit_error": "Has alcanzado el límite de 5 tableros por usuario."
 	}
 }

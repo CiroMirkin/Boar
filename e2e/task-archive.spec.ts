@@ -1,4 +1,5 @@
 import test, { expect } from '@playwright/test'
+import { navigateToMenuItem } from './utils/navigation'
 
 test.describe('Archivar tareas', () => {
 	test.beforeEach(async ({ page }) => {
@@ -32,7 +33,7 @@ test.describe('Archivar tareas', () => {
 		})
 
 		await test.step('La tarea archivada ensta en el archivo', async () => {
-			await page.goto('/archive')
+			await navigateToMenuItem(page, 'Archivo')
 			await expect(page.getByText(taskText)).toBeVisible()
 		})
 	})
@@ -72,7 +73,7 @@ test.describe('Archivar tareas', () => {
 		})
 
 		await test.step('La tarea archivada ensta en el archivo', async () => {
-			await page.goto('/archive')
+			await navigateToMenuItem(page, 'Archivo')
 			await expect(page.getByText(taskText1)).toBeVisible()
 			await expect(page.getByText(taskText2)).toBeVisible()
 		})
@@ -99,7 +100,7 @@ test.describe('Archivar tareas', () => {
 		})
 
 		await test.step('La tarea archivada esta en el archivo', async () => {
-			await page.goto('/archive')
+			await navigateToMenuItem(page, 'Archivo')
 			await expect(page.getByText(taskText)).toBeVisible()
 		})
 

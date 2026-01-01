@@ -8,13 +8,15 @@ import {
 	fetchLibraryOfArchivedNotes,
 	saveLibraryOfArchivedNotes,
 } from '../repository/libraryOfArchivedNotesRepositoryFactory'
+import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 
 const libraryOfArchivedNotesQueryKey = ['libraryOfArchivedNotes']
 
 export const useLibraryOfArchivedNotesQuery = () => {
 	const { session } = useSession()
 	const queryClient = useQueryClient()
-	const fullQueryKey = [...libraryOfArchivedNotesQueryKey, session?.user.id]
+	const boardId = getActualBoardId()
+	const fullQueryKey = [...libraryOfArchivedNotesQueryKey, session?.user.id, boardId]
 
 	const { data: archivedNotes, isLoading } = useQuery({
 		queryKey: fullQueryKey,

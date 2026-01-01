@@ -158,5 +158,30 @@
 	"usage_history": {
 		"empty": "There are no time records yet.",
 		"title": "Usage history"
+	},
+	"dashboard": {
+		"title": "This is where your projects are born",
+		"description": "Your workspace is ready. Create boards to organize ideas, projects, and everything you can imagine.",
+		"delete_warning": "Are you sure you want to delete this board? This action cannot be undone.",
+		"delete_button": "Delete",
+		"deleting_board": "Deleting board...",
+		"delete_success": "Board deleted successfully",
+		"delete_error": "Error deleting board",
+		"open_board": "Open board {{boardName}}",
+		"delete_board_title": "Delete board",
+		"creating_board": "Creating board...",
+		"create_success": "Board created successfully :D",
+		"create_error": "Error creating board",
+		"create_first_board": "Create my first board",
+		"create_board": "Create Board",
+		"new_board_title": "New board",
+		"new_board_description": "The new board will be empty. Once created, you can configure it and change its name if you wish.",
+		"name_label": "Name:",
+		"name_placeholder": "Work...",
+		"no_active_session": "No active session",
+		"board_id_required": "Board ID is required to delete it",
+		"board_name_required": "Board name cannot be empty",
+		"board_name_length_error": "The name of a board must have more than 2 characters and less than 15.",
+		"board_limit_error": "You have reached the limit of 5 boards per user."
 	}
 }

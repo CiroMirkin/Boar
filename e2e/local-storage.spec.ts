@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { navigateToMenuItem } from './utils/navigation'
 
 test.describe('Persistencia de datos en localStorage', () => {
 	test.beforeEach(async ({ page }) => {
@@ -199,7 +200,7 @@ test.describe('Persistencia de datos en localStorage', () => {
 		})
 
 		await test.step('La tarea archivada esta en el archivo', async () => {
-			await page.goto('/archive')
+			await navigateToMenuItem(page, 'Archivo')
 			await expect(page.getByText(taskText)).toBeVisible()
 		})
 
@@ -222,7 +223,7 @@ test.describe('Persistencia de datos en localStorage', () => {
 
 		await test.step('Luego de recargar la tarea sigue sin estar dentro del archivo', async () => {
 			await page.reload()
-			await page.goto('/archive')
+			await navigateToMenuItem(page, 'Archivo')
 			await expect(page.getByText(taskText)).not.toBeVisible()
 		})
 	})

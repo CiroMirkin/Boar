@@ -10,7 +10,7 @@ interface UsageRecordProps {
 }
 
 function UsageRecord({ usageRecord }: UsageRecordProps) {
-	const { column } = useTheme()
+	const { column, columnText } = useTheme()
 	const date = formatDate(new Date(usageRecord.date))
 	let totalDuration = 0
 	const periods = [...usageRecord.periods].reverse().map((period) => {
@@ -19,7 +19,7 @@ function UsageRecord({ usageRecord }: UsageRecordProps) {
 	})
 
 	return (
-		<Card className={'pt-4 rounded-md shadow-sm ' + column}>
+		<Card className={`pt-4 rounded-md shadow-sm ${column} ${columnText || 'text-black'}`}>
 			<CardHeader className='p-0'>
 				<CardTitle className='text-2xl'>{date}</CardTitle>
 				<CardDescription className='text-base !m-0' title='Total de tiempo'>
