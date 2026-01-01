@@ -2,15 +2,20 @@ import { useEffect, useRef } from 'react'
 import { useTimeTracking } from './useTimeTracking'
 import { useUsageHistoryQuery } from './useUsageHistoryQuery'
 import { updateDailyUsageRecord } from '../useCase/updateDailyUsageRecord'
-import { getActualBoardId } from '@/auth/utils/getActualBoardId'
+import { useBoardId } from '@/auth/state/store'
 import { useSession } from '@/auth/hooks/useSession'
 
 export const useSaveTimeTracking = () => {
 	const { getTotalTime, resetTimeTracking } = useTimeTracking({ pauseOnTabHidden: false })
 	const { updateUsageHistory, usageHistory, isSaving } = useUsageHistoryQuery()
 	const lastSavedTimeRef = useRef(0)
-	const boardId = getActualBoardId()
+	const boardId = useBoardId((state) => state.board_id)
 	const boardIdRef = useRef(boardId)
+	const isSavingRef = useRef(isSaving)
+
+	useEffect(() => {
+		isSavingRef.current = isSaving
+	}, [isSaving])
 
 	useEffect(() => {
 		const outsideBoard = !boardId
@@ -18,7 +23,7 @@ export const useSaveTimeTracking = () => {
 
 		const intervalId = setInterval(() => {
 			try {
-				if (isSaving) {
+				if (isSavingRef.current) {
 					return
 				}
 
@@ -32,20 +37,24 @@ export const useSaveTimeTracking = () => {
 					lastSavedTimeRef.current = totalTime
 				}
 			} catch (e) {
-				console.error()
+				console.error('Error saving time tracking:', e)
 			}
 		}, 60500)
 
 		return () => clearInterval(intervalId)
-	}, [getTotalTime, updateUsageHistory, usageHistory, isSaving, boardId])
+	}, [getTotalTime, updateUsageHistory, usageHistory, boardId])
 
 	const { session } = useSession()
 	const sessionRef = useRef(Boolean(session))
+
 	useEffect(() => {
-		if (Boolean(session) !== sessionRef.current || boardId !== boardIdRef.current) {
+		const sessionChanged = Boolean(session) !== sessionRef.current
+		const boardChanged = boardIdRef.current !== boardId
+		if (sessionChanged || boardChanged) {
 			sessionRef.current = Boolean(session)
 			boardIdRef.current = boardId
+			lastSavedTimeRef.current = 0
 			resetTimeTracking()
 		}
-	}, [session, resetTimeTracking, boardId])
+	}, [session, boardId, resetTimeTracking])
 }
