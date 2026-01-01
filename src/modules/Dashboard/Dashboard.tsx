@@ -4,8 +4,10 @@ import CreateBoardDialog from './components/CreateBoardDialog'
 import { Spinner } from '@/ui/atoms/spinner'
 import { Layout } from 'lucide-react'
 import { useTheme } from '@/common/hooks/useTheme'
+import { useTranslation } from 'react-i18next'
 
 function Dashboard() {
+	const { t } = useTranslation()
 	const { boards, isLoading } = useDashboardQuery()
 	const hasNoBoards = boards.length === 0
 	const colors = useTheme()
@@ -30,11 +32,10 @@ function Dashboard() {
 					</div>
 					<div>
 						<h2 className='opacity-90 text-3xl font-semibold text-foreground mb-3'>
-							Aquí nacen tus proyectos
+							{t('dashboard.title')}
 						</h2>
 						<p className='opacity-70 max-w-md mb-8 text-lg'>
-							Tu espacio de trabajo está listo. Crea tableros para organizar ideas,
-							proyectos y todo lo que imagines.
+							{t('dashboard.description')}
 						</p>
 					</div>
 					<CreateBoardDialog hasNoBoards />

@@ -2,10 +2,12 @@ import { useSession } from '@/auth/hooks/useSession'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { supabaseDashboard } from '../repository/supabaseDashboardRepository'
 import BusinessError from '@/common/errors/businessError'
+import { useTranslation } from 'react-i18next'
 
 const queryKey = ['board-dashboard']
 
 export const useDashboardQuery = () => {
+	const { t } = useTranslation()
 	const { session } = useSession()
 	const queryClient = useQueryClient()
 
@@ -27,11 +29,11 @@ export const useDashboardQuery = () => {
 	const { mutateAsync: deleteBoard } = useMutation({
 		mutationFn: async (boardId: string) => {
 			if (!session) {
-				throw new BusinessError('No hay sesión activa')
+				throw new BusinessError(t('dashboard.no_active_session'))
 			}
 
 			if (!boardId.trim()) {
-				throw new BusinessError('Es necesario el ID del tablero para poder eliminarlo')
+				throw new BusinessError(t('dashboard.board_id_required'))
 			}
 
 			return await supabaseDashboard.deleteBoard({ boardId })
@@ -44,11 +46,11 @@ export const useDashboardQuery = () => {
 	const { mutateAsync: createAnEmptyBoard } = useMutation({
 		mutationFn: async (boardName: string) => {
 			if (!session) {
-				throw new BusinessError('No hay sesión activa')
+				throw new BusinessError(t('dashboard.no_active_session'))
 			}
 
 			if (!boardName.trim()) {
-				throw new BusinessError('El nombre del tablero no puede estar vacío')
+				throw new BusinessError(t('dashboard.board_name_required'))
 			}
 
 			return await supabaseDashboard.createAnEmptyBoard({ name: boardName })

@@ -4,6 +4,7 @@ import { DashboardRepository } from './dashboardRepository'
 import { getUserId } from '@/auth/utils/getUserId'
 import BusinessError from '@/common/errors/businessError'
 import { getDefaultSupabaseBoard } from '@/auth/model/UserBoardOnSupabase'
+import i18next from '@/i18next'
 
 class SupabaseDashboardRepository implements DashboardRepository {
 	private readonly tableName = 'boards'
@@ -76,22 +77,20 @@ class SupabaseDashboardRepository implements DashboardRepository {
 
 		if (error || count === 0) {
 			console.error('Error al eliminar tablero:', error)
-			throw new BusinessError('No fue posible eliminar el tablero.')
+			throw new BusinessError(i18next.t('dashboard.delete_error'))
 		}
 	}
 
 	async createAnEmptyBoard({ name }: { name: string }): Promise<void> {
 		if (!isSupabaseConfigured || !supabase || !name) return
 		if (name.length <= 2 || name.length >= 15) {
-			throw new BusinessError(
-				'El nombre de un tablero debe tener mas de 2 caracteres y menos de 15.'
-			)
+			throw new BusinessError(i18next.t('dashboard.board_name_length_error'))
 		}
 
 		const maxOfBoards = 5
 		const amountOfBoards = await this.getAmountOfBoards()
 		if (amountOfBoards >= maxOfBoards) {
-			throw new BusinessError('Has alcanzado el límite de 5 tableros por usuario.')
+			throw new BusinessError(i18next.t('dashboard.board_limit_error'))
 		}
 
 		const user_id = await getUserId()
