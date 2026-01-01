@@ -9,63 +9,52 @@ import ErrorBoundary from './ErrorBoundary'
 import { TimeTracking } from './pages/TimeTracking'
 import UserDashboard from './pages/UserDashboard'
 import UserDashboardSettings from './pages/UserDashboardSettings'
+import { useUpdateBoardId } from './auth/hooks/useUpdateBoardId'
+import { Outlet } from 'react-router-dom'
+
+function Layout() {
+	useUpdateBoardId()
+	return (
+		<ErrorBoundary>
+			<Outlet />
+		</ErrorBoundary>
+	)
+}
 
 const router = createBrowserRouter([
 	{
 		path: '/',
-		element: (
-			<ErrorBoundary>
-				<UserDashboard />
-			</ErrorBoundary>
-		),
-	},
-	{
-		path: '/settings',
-		element: (
-			<ErrorBoundary>
-				<UserDashboardSettings />
-			</ErrorBoundary>
-		),
-	},
-	{
-		path: '/board/:id',
-		element: (
-			<ErrorBoundary>
-				<BoardPage />
-			</ErrorBoundary>
-		),
-	},
-	{
-		path: '/archive/:id',
-		element: (
-			<ErrorBoundary>
-				<BoardArchive />
-			</ErrorBoundary>
-		),
-	},
-	{
-		path: '/settings/:id',
-		element: (
-			<ErrorBoundary>
-				<Settings />
-			</ErrorBoundary>
-		),
-	},
-	{
-		path: '/time/:id',
-		element: (
-			<ErrorBoundary>
-				<TimeTracking />
-			</ErrorBoundary>
-		),
-	},
-	{
-		path: '/help',
-		element: (
-			<ErrorBoundary>
-				<Help />
-			</ErrorBoundary>
-		),
+		element: <Layout />,
+		children: [
+			{
+				index: true,
+				element: <UserDashboard />,
+			},
+			{
+				path: 'settings',
+				element: <UserDashboardSettings />,
+			},
+			{
+				path: 'board/:id',
+				element: <BoardPage />,
+			},
+			{
+				path: 'archive/:id',
+				element: <BoardArchive />,
+			},
+			{
+				path: 'settings/:id',
+				element: <Settings />,
+			},
+			{
+				path: 'time/:id',
+				element: <TimeTracking />,
+			},
+			{
+				path: 'help',
+				element: <Help />,
+			},
+		],
 	},
 	{
 		path: '/auth',
