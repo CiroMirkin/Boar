@@ -32,9 +32,6 @@ export default function LogInAndLogOutMenuItem({
 			toast.success(t('successful_log_out_toast'))
 
 			return <Navigate to='/' replace />
-		} catch (error) {
-			const authError = error as AuthError
-			toast.error(authError.message)
 		}
 
 		toast.promise(logOutPromise(), {

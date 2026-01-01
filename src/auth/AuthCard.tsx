@@ -53,14 +53,11 @@ export default function AuthCard() {
 				throw new Error('Supabase no configurado')
 			}
 
-			const { error } = isRegister
+			const { data, error } = isRegister
 				? await supabase.auth.signUp({ email, password })
 				: await supabase.auth.signInWithPassword({ email, password })
 
 			if (error) throw error
-
-			const successMessage = isRegister ? t('successful_log_in_toast') : t('sing_in_toast')
-			toast.success(successMessage)
 
 			setIsSubmitted(true)
 			return data
