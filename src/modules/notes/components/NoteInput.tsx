@@ -32,7 +32,7 @@ export function NoteInput() {
 
 	useEffect(() => {
 		if (notesValue !== notes) {
-			const timeoutId = setTimeout(saveNotes, 500)
+			const timeoutId = setTimeout(saveNotes, 100)
 			return () => clearTimeout(timeoutId)
 		}
 	}, [notesValue, notes, saveNotes])
