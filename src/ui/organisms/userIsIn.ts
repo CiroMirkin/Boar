@@ -6,4 +6,5 @@ export enum USER_IS_IN {
 	HELP = 'help',
 	AUTH = 'auth',
 	TIME = 'time',
+	DASHBOARD = 'user-dashboard',
 }

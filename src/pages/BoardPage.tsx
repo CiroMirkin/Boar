@@ -25,18 +25,19 @@ const columnsData: ColumnsFooterContent = {
 export function BoardPage() {
 	const { board } = useBoardQuery()
 	const typeOfView = useTypeOfView()
-
 	const { taskBoard, isLoading: isTaskBoardLoading } = useTaskBoardQuery()
+	const { session, isLoading: isLoadingSession } = useSession()
+
 	const tasksList = taskBoard.map((column) => column.tasks)
 	useReminder(tasksList)
 
-	const { session } = useSession()
 	const showSpinner = useLoadingTimeout({
 		session,
 		isLoading: isTaskBoardLoading,
+		timeout: 500,
 	})
 
-	if (showSpinner) {
+	if (isLoadingSession || showSpinner) {
 		return (
 			<PageContainer title='Board' whereUserIs={USER_IS_IN.BOARD}>
 				<div className='min-w-48 min-h-64 md:min-h-[60vh] flex items-center justify-center'>

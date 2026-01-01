@@ -7,21 +7,15 @@ import { BoardArchive } from './pages/BoardArchive'
 import { BoardPage } from './pages/BoardPage'
 import ErrorBoundary from './ErrorBoundary'
 import { TimeTracking } from './pages/TimeTracking'
+import UserDashboard from './pages/UserDashboard'
+import UserDashboardSettings from './pages/UserDashboardSettings'
 
 const router = createBrowserRouter([
 	{
 		path: '/',
 		element: (
 			<ErrorBoundary>
-				<BoardPage />
-			</ErrorBoundary>
-		),
-	},
-	{
-		path: '/archive',
-		element: (
-			<ErrorBoundary>
-				<BoardArchive />
+				<UserDashboard />
 			</ErrorBoundary>
 		),
 	},
@@ -29,12 +23,36 @@ const router = createBrowserRouter([
 		path: '/settings',
 		element: (
 			<ErrorBoundary>
+				<UserDashboardSettings />
+			</ErrorBoundary>
+		),
+	},
+	{
+		path: '/board/:id',
+		element: (
+			<ErrorBoundary>
+				<BoardPage />
+			</ErrorBoundary>
+		),
+	},
+	{
+		path: '/archive/:id',
+		element: (
+			<ErrorBoundary>
+				<BoardArchive />
+			</ErrorBoundary>
+		),
+	},
+	{
+		path: '/settings/:id',
+		element: (
+			<ErrorBoundary>
 				<Settings />
 			</ErrorBoundary>
 		),
 	},
 	{
-		path: '/time',
+		path: '/time/:id',
 		element: (
 			<ErrorBoundary>
 				<TimeTracking />

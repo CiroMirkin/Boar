@@ -3,6 +3,7 @@ import { ArchiveRepository } from './archiveRepository'
 import SupabaseArchivedTasksRepository from './SupabaseArchivedTasksRepository'
 import LocalStorageArchiveRepository from './localStorageArchive'
 import { Archive } from '../models/archive'
+import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 
 const getArchivedTasksRepository = (session: Session | null): ArchiveRepository => {
 	if (session) {
@@ -13,7 +14,8 @@ const getArchivedTasksRepository = (session: Session | null): ArchiveRepository 
 
 export const fetchArchivedTasks = async (session: Session | null): Promise<Archive> => {
 	const repository = getArchivedTasksRepository(session)
-	return repository.getAll()
+	const boardId = getActualBoardId()
+	return repository.getAll(boardId)
 }
 
 export const saveArchivedTasks = async ({
@@ -24,5 +26,6 @@ export const saveArchivedTasks = async ({
 	archivedTasks: Archive
 }): Promise<void> => {
 	const repository = getArchivedTasksRepository(session)
-	await repository.save(archivedTasks)
+	const boardId = getActualBoardId()
+	await repository.save(archivedTasks, boardId)
 }

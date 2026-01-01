@@ -28,16 +28,28 @@ import { useTheme } from '@/common/hooks/useTheme'
 import { useLastDurationPeriod } from '@/modules/UsageHistory/hooks/useLastDurationPeriod'
 import { useTypeOfView } from '@/modules/TypeOfView/useTypeOfView'
 import { TransitionLink } from '../atoms/TransitionLink'
+import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 
 interface HeaderProps {
 	title: string
 	whereUserIs?: USER_IS_IN
+	showBoardNavigation?: boolean
 }
-export function Header({ title, whereUserIs }: HeaderProps) {
+
+export function Header({ title, whereUserIs, showBoardNavigation = true }: HeaderProps) {
 	const { t } = useTranslation()
 	const { session } = useSession()
 	const { text } = useTheme()
 	const typeOfView = useTypeOfView()
+
+	const BOARD_ID = getActualBoardId()
+	const URLs = {
+		board: `/board/${BOARD_ID}`,
+		archive: `/archive/${BOARD_ID}`,
+		boardSettings: `/settings/${BOARD_ID}`,
+		settings: '/settings',
+		time: `/time/${BOARD_ID}`,
+	}
 
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 	const documentVisible = useVisibilityChange()
@@ -45,50 +57,74 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 	const isVisible = isDropdownOpen && documentVisible
 	const duration = useLastDurationPeriod({ isVisible })
 
+	const showDashboardLink = session && whereUserIs !== USER_IS_IN.DASHBOARD
+	const showBoardLinks = showBoardNavigation && whereUserIs !== USER_IS_IN.DASHBOARD
+	const showNotes = showBoardNavigation && typeOfView !== 'NOTE-LIST'
+
 	return (
 		<header className='w-full px-6 md:px-11 pt-6 pb-4 flex justify-between items-center'>
 			<h1 className='text-2xl font-medium'>{title}</h1>
 			<div className='flex gap-2 items-center'>
-				{typeOfView !== 'NOTE-LIST' && <Notes />}
+				{showNotes && <Notes />}
 				<DropdownMenu onOpenChange={setIsDropdownOpen}>
 					<DropdownMenuTrigger asChild>
-						<Button variant='ghost' className={text}>
+						<Button variant='ghost' className={text} data-testid='NavBtn'>
 							<MenuIcon />
 						</Button>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent>
-						<DropdownMenuLabel>Boar</DropdownMenuLabel>
+						<DropdownMenuLabel
+							className={`${showDashboardLink && 'rounded-sm hover:bg-accent'}`}
+						>
+							{showDashboardLink && (
+								<TransitionLink to='/' className='block w-full hover:underline'>
+									Inicio
+								</TransitionLink>
+							)}
+							{!showDashboardLink && 'Boar'}
+						</DropdownMenuLabel>
 						<DropdownMenuSeparator />
-						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.BOARD && true}>
-							<TransitionLink
-								to='/'
-								unstable_viewTransition
-								className='px-2 py-1.5 flex items-center'
-							>
-								<ColumnsIcon className='mr-2' /> {t('menu.board')}
-							</TransitionLink>
-						</DropdownMenuItem>
-						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.ARCHIVE && true}>
-							<TransitionLink
-								to='/archive'
-								unstable_viewTransition
-								className='px-2 py-1.5 flex items-center'
-							>
-								<ArchiveIcon className='mr-2' /> {t('menu.archive')}
-							</TransitionLink>
-						</DropdownMenuItem>
-						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.CONFIG && true}>
-							<TransitionLink
-								to='/settings'
-								unstable_viewTransition
-								className='px-2 py-1.5 flex items-center'
-							>
-								<SettingsIcon className='mr-2' /> {t('menu.configs')}
-							</TransitionLink>
-						</DropdownMenuItem>
-						<DropdownMenuSeparator />
+						{!showBoardLinks && (
+							<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.CONFIG}>
+								<TransitionLink
+									to={URLs.settings}
+									className='px-2 py-1.5 flex items-center'
+								>
+									<SettingsIcon className='mr-2' /> {t('menu.configs')}
+								</TransitionLink>
+							</DropdownMenuItem>
+						)}
+						{showBoardLinks && (
+							<>
+								<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.BOARD}>
+									<TransitionLink
+										to={URLs.board}
+										className='px-2 py-1.5 flex items-center'
+									>
+										<ColumnsIcon className='mr-2' /> {t('menu.board')}
+									</TransitionLink>
+								</DropdownMenuItem>
+								<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.ARCHIVE}>
+									<TransitionLink
+										to={URLs.archive}
+										className='px-2 py-1.5 flex items-center'
+									>
+										<ArchiveIcon className='mr-2' /> {t('menu.archive')}
+									</TransitionLink>
+								</DropdownMenuItem>
+								<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.CONFIG}>
+									<TransitionLink
+										to={URLs.boardSettings}
+										className='px-2 py-1.5 flex items-center'
+									>
+										<SettingsIcon className='mr-2' /> {t('menu.configs')}
+									</TransitionLink>
+								</DropdownMenuItem>
+								<DropdownMenuSeparator />
+							</>
+						)}
 						<LanguageToggle />
-						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.HELP && true}>
+						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.HELP}>
 							<TransitionLink to='/help' className='px-2 py-1.5 flex items-center'>
 								<CircleHelpIcon className='mr-2' /> {t('menu.help')}
 							</TransitionLink>
@@ -101,16 +137,20 @@ export function Header({ title, whereUserIs }: HeaderProps) {
 								<GithubIcon className='mr-2' /> GitHub
 							</a>
 						</DropdownMenuItem>
-						<DropdownMenuSeparator />
-						<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.TIME && true}>
-							<TransitionLink
-								title={t('usage_history.title')}
-								to='/time'
-								className='px-2 py-1.5 flex items-center'
-							>
-								<HourglassIcon className='mr-2' /> {duration}
-							</TransitionLink>
-						</DropdownMenuItem>
+						{showBoardLinks && (
+							<>
+								<DropdownMenuSeparator />
+								<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.TIME}>
+									<TransitionLink
+										title={t('usage_history.title')}
+										to={URLs.time}
+										className='px-2 py-1.5 flex items-center'
+									>
+										<HourglassIcon className='mr-2' /> {duration}
+									</TransitionLink>
+								</DropdownMenuItem>
+							</>
+						)}
 						<DropdownMenuSeparator />
 						<LogInAndLogOutMenuItem whereUserIs={whereUserIs} session={session} />
 					</DropdownMenuContent>

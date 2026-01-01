@@ -1,32 +1,25 @@
-import { saveActualBoardId } from '@/auth/utils/getActualBoardId'
-import { getUserId } from '@/auth/utils/getUserId'
 import { isSupabaseConfigured, supabase } from '@/lib/supabase'
 import { boardModel, defaultBoard } from '@/modules/board/models/board'
 import { BoardRepository } from '@/modules/board/repository/boardRepository'
 
 export default class SupabaseBoardRepository implements BoardRepository {
 	constructor() {}
-	async save(board: boardModel) {
+	async save(board: boardModel, boardId: string) {
 		if (!isSupabaseConfigured || !supabase) return
 
-		const user_id = await getUserId()
 		const { error } = await supabase
 			.from('boards')
 			.update({
 				name: board.name,
 			})
-			.eq('user_id', user_id)
+			.eq('id', boardId)
 
 		if (error) throw error
 	}
-	async get() {
+	async get(boardId: string) {
 		if (!isSupabaseConfigured || !supabase) return defaultBoard
 
-		const user_id = await getUserId()
-		const { data, error } = await supabase
-			.from('boards')
-			.select('id, name')
-			.eq('user_id', user_id)
+		const { data, error } = await supabase.from('boards').select('id, name').eq('id', boardId)
 
 		if (error) throw error
 
@@ -34,8 +27,6 @@ export default class SupabaseBoardRepository implements BoardRepository {
 			name: data[0].name,
 			id: data[0].id,
 		}
-
-		saveActualBoardId(board.id)
 
 		return board ? board : defaultBoard
 	}

@@ -9,7 +9,6 @@ import { toast } from 'sonner'
 import { Navigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { checkIfUserHasTheDefaultBoard } from './utils/checkIfUserHasTheDefaultBoard'
-import { setUpUserBoard } from './utils/setUpUserBoard'
 
 export default function AuthCard() {
 	const [loading, setLoading] = useState(false)
@@ -59,10 +58,6 @@ export default function AuthCard() {
 				: await supabase.auth.signInWithPassword({ email, password })
 
 			if (error) throw error
-
-			if (data?.session) {
-				await setUpUserBoard({ session: data.session })
-			}
 
 			setIsSubmitted(true)
 			return data

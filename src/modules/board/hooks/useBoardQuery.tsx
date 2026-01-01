@@ -4,6 +4,7 @@ import { useSession } from '@/auth/hooks/useSession'
 import { boardModel, defaultBoard, isDefaultBoardName } from '../models/board'
 import { useTranslation } from 'react-i18next'
 import { useCallback } from 'react'
+import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 
 const boardQueryKey = ['board']
 
@@ -23,13 +24,15 @@ export const useBoardQuery = () => {
 		[t, i18n.language] // eslint-disable-line react-hooks/exhaustive-deps
 	)
 
+	const boardId = getActualBoardId()
+	const userId = session?.user.id
 	const {
 		data: board,
 		isLoading,
 		isError,
 		error,
 	} = useQuery({
-		queryKey: [...boardQueryKey, session?.user.id],
+		queryKey: [...boardQueryKey, userId, boardId],
 		queryFn: () => fetchBoard(session),
 		placeholderData: defaultBoard,
 		select,

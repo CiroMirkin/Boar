@@ -2,13 +2,15 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { fetchNotes, saveNotes } from '../repository/notesRepositoryFactory'
 import { useSession } from '@/auth/hooks/useSession'
 import { defaultNotes, Notes } from '../model/notes'
+import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 
 const notesQueryKey = ['notes']
 
 export const useNotesQuery = () => {
 	const { session } = useSession()
 	const queryClient = useQueryClient()
-	const fullQueryKey = [...notesQueryKey, session?.user.id]
+	const boardId = getActualBoardId()
+	const fullQueryKey = [...notesQueryKey, session?.user.id, boardId]
 
 	const { data: notes = defaultNotes, isLoading } = useQuery({
 		queryKey: fullQueryKey,

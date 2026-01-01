@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { navigateToMenuItem } from './utils/navigation'
 
 test.describe('Creacion y eliminacion de columnas', () => {
 	test.beforeEach(async ({ page }) => {
@@ -12,7 +13,7 @@ test.describe('Creacion y eliminacion de columnas', () => {
 	})
 
 	test('Puedo crear una columna', async ({ page }) => {
-		await page.goto('/settings')
+		await navigateToMenuItem(page, 'Ajustes')
 		const columnName = `Prueba ${Date.now()}`
 
 		await test.step('Crear una nueva columna', async () => {
@@ -32,7 +33,7 @@ test.describe('Creacion y eliminacion de columnas', () => {
 	})
 
 	test('Crear una columna y eliminar otra', async ({ page }) => {
-		await page.goto('/settings')
+		await navigateToMenuItem(page, 'Ajustes')
 
 		await test.step('Eliminar columna "Procesando"', async () => {
 			await page
@@ -65,7 +66,7 @@ test.describe('Creacion y eliminacion de columnas', () => {
 	test('Al crear y eliminar tareas se mantiene la consistencia entre las tareas creadas y las columnas', async ({
 		page,
 	}) => {
-		await page.goto('/settings')
+		await navigateToMenuItem(page, 'Ajustes')
 		const columnName = `Columna Prueba ${Date.now()}`
 		const taskName = `Tarea Prueba ${Date.now()}`
 
@@ -90,7 +91,7 @@ test.describe('Creacion y eliminacion de columnas', () => {
 		})
 
 		await test.step('Elimino la segunda columna', async () => {
-			await page.goto('/settings')
+			await navigateToMenuItem(page, 'Ajustes')
 			await page.locator('li').nth(1).getByTestId('BotonParaEliminarUnaColumna').click()
 			await page.getByRole('button', { name: 'Eliminar', exact: true }).click()
 			await expect(page.locator('li').nth(1)).not.toHaveText('Procesando')
