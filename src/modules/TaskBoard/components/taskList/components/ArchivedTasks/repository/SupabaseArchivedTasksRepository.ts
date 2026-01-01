@@ -8,8 +8,9 @@ export default class SupabaseArchivedTasksRepository implements ArchiveRepositor
 
 		const { error } = await supabase
 			.from('archive')
-			.update({
+			.upsert({
 				task_list: archive,
+				board_id: boardId,
 			})
 			.eq('board_id', boardId)
 
@@ -24,9 +25,15 @@ export default class SupabaseArchivedTasksRepository implements ArchiveRepositor
 			.select('task_list')
 			.eq('board_id', boardId)
 
-		if (error) throw error
+		if (!data) {
+			await this.save([], boardId)
+			return []
+		}
 
-		const archivedTasks = data[0].task_list
-		return archivedTasks ? archivedTasks : []
+		if (error) {
+			throw error
+		}
+		const archivedTasks = data[0].task_list || []
+		return archivedTasks
 	}
 }
