@@ -26,7 +26,8 @@ export const useUsageHistoryQuery = ({ onSuccess, onError }: UseUsageHistoryQuer
 	} = useQuery({
 		queryKey: fullQueryKey,
 		queryFn: async (): Promise<UsageHistory> => {
-			if (session) return await supabaseUsageHistoryRepository.getAll(boardId)
+			if (session && getActualBoardId())
+				return await supabaseUsageHistoryRepository.getAll(boardId)
 			return await localStorageUsageHistoryRepository.getAll()
 		},
 		enabled: !!userId,
