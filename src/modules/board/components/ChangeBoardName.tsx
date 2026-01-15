@@ -1,5 +1,5 @@
 import { Input } from '@/ui/atoms/input'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { Button } from '@/ui/atoms/button'
 import { PencilIcon } from '@/ui/atoms/icons'
 import { Label } from '@/ui/atoms/label'
@@ -21,16 +21,22 @@ export function ChangeBoardName() {
 
 	const nameToShow = inputDisabled ? board?.name || '' : boardName
 
+	const saveNewBoardName = () => {
+		if (board) {
+			const updatedBoard = changeBoardName({ board, newName: boardName })
+			updateBoard(updatedBoard)
+			setInputDisabled(true)
+		}
+	}
+
 	const handleClick = () => {
 		try {
 			if (inputDisabled) {
 				setBoardName(board?.name || '')
 				setInputDisabled(false)
-			} else if (board) {
-				const updatedBoard = changeBoardName({ board, newName: boardName })
-				updateBoard(updatedBoard)
-				setInputDisabled(true)
+				return
 			}
+			saveNewBoardName()
 		} catch (e) {
 			toast.error(getErrorMessageForTheUser(e))
 		}
@@ -40,6 +46,12 @@ export function ChangeBoardName() {
 		const newBoardName = e.target.value
 		if (isThisBoardNameWithinTheLimitOfLetters(newBoardName)) {
 			setBoardName(newBoardName)
+		}
+	}
+
+	const handleSaveShortcut = (e: KeyboardEvent<HTMLInputElement>) => {
+		if (e.key === 'Enter') {
+			saveNewBoardName()
 		}
 	}
 
@@ -59,6 +71,7 @@ export function ChangeBoardName() {
 						id='board-name'
 						value={nameToShow}
 						onChange={handleChange}
+						onKeyDown={handleSaveShortcut}
 						disabled={inputDisabled}
 						placeholder={t('settings.board.change_board_name_input_placeholder')}
 					/>
