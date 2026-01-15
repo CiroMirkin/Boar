@@ -5,8 +5,10 @@ import { Spinner } from '@/ui/atoms/spinner'
 import { USER_IS_IN } from '@/ui/organisms/userIsIn'
 import { Navigate } from 'react-router-dom'
 import PageContainer from './PageContainer'
+import { useDocumentTitle } from '@uidotdev/usehooks'
 
 function UserDashboard() {
+	useDocumentTitle('Tableros - Boar')
 	const { bg } = useTheme()
 	const whereUserIs = USER_IS_IN.DASHBOARD
 	const { session, isLoading } = useSession()
