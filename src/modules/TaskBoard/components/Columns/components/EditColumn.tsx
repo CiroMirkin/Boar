@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { KeyboardEvent, useState } from 'react'
 import { Button } from '@/ui/atoms/button'
 import { PencilIcon } from '@/ui/atoms/icons'
 import { Input } from '@/ui/atoms/input'
@@ -35,6 +35,12 @@ export function EditColumn({ column }: EditColumnParams) {
 		setShowChangeColumnNameInput(!showChangeColumnNameInput)
 	}
 
+	const handleSaveShortcut = (e: KeyboardEvent<HTMLInputElement>) => {
+		if (e.key === 'Enter' && showChangeColumnNameInput) {
+			editColumnNameHandle()
+		}
+	}
+
 	const { task } = useTheme()
 	return (
 		<li
@@ -49,6 +55,7 @@ export function EditColumn({ column }: EditColumnParams) {
 					isThisColumnNameWithinTheLimitOfLetters(e.target.value) &&
 					setColumnName(e.target.value)
 				}
+				onKeyDown={handleSaveShortcut}
 				disabled={!showChangeColumnNameInput}
 			/>
 			<div className='w-full flex gap-2'>

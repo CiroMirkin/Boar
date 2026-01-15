@@ -42,7 +42,7 @@ function Dashboard() {
 				</div>
 			)}
 
-			<ul className='px-2 list-none flex flex-wrap gap-6'>
+			<ul className='px-2 list-none flex justify-center md:justify-start flex-wrap gap-6'>
 				{boards.map((board) => (
 					<BoardCard board={board} key={board.id} />
 				))}
