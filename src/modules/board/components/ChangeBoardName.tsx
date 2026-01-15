@@ -76,7 +76,11 @@ export function ChangeBoardName() {
 						placeholder={t('settings.board.change_board_name_input_placeholder')}
 					/>
 				</div>
-				<Button onClick={handleClick} variant='ghost'>
+				<Button
+					onClick={handleClick}
+					variant='ghost'
+					data-testid='BotonParaCambiarElNombreDelTablero'
+				>
 					<PencilIcon />
 				</Button>
 			</SettingSection.Content>
