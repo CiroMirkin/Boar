@@ -28,9 +28,10 @@ export const useSaveTimeTracking = () => {
 				}
 
 				const totalTime = getTotalTime()
-				if (totalTime !== lastSavedTimeRef.current) {
+				const incrementalDuration = totalTime - lastSavedTimeRef.current
+				if (incrementalDuration > 0) {
 					const newUsageHistory = updateDailyUsageRecord({
-						duration: totalTime,
+						duration: incrementalDuration,
 						usageHistory,
 					})
 					updateUsageHistory(newUsageHistory)

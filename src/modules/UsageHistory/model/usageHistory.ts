@@ -13,6 +13,12 @@ export interface UsageSession {
 	startTimestamp: number
 
 	/**
+	 * Timestamp de cuando terminó este período de actividad.
+	 * Puede ser calculado como startTimestamp + duration para sesiones pasadas.
+	 */
+	endTimestamp: number
+
+	/**
 	 * Duración en milisegundos de este período de ACTIVIDAD.
 	 */
 	duration: UsageDuration
@@ -25,3 +31,17 @@ export interface DailyUsage {
 }
 
 export type UsageHistory = DailyUsage[]
+
+/**
+ * Migra datos antiguos del historial de uso que no tienen la propiedad endTimestamp.
+ * Para sesiones sin endTimestamp, lo calcula como startTimestamp + duration.
+ */
+export function migrateUsageHistory(history: UsageHistory): UsageHistory {
+	return history.map((day) => ({
+		...day,
+		periods: day.periods.map((session) => ({
+			...session,
+			endTimestamp: session.endTimestamp ?? session.startTimestamp + session.duration,
+		})),
+	}))
+}

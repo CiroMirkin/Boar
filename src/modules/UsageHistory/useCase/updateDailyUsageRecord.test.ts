@@ -28,7 +28,7 @@ describe('updateDailyUsageRecord', () => {
 		expect(result).toEqual([
 			{
 				date: mockToday,
-				periods: [{ startTimestamp: mockToday, duration: 10000 }],
+				periods: [{ startTimestamp: mockToday, endTimestamp: mockToday, duration: 10000 }],
 			},
 		])
 		expect(usageHistory).toEqual(originalHistory)
@@ -44,11 +44,15 @@ describe('updateDailyUsageRecord', () => {
 		const usageHistory: UsageHistory = [
 			{
 				date: 1698000000000,
-				periods: [{ startTimestamp: 1698000000000, duration: 3000 }],
+				periods: [
+					{ startTimestamp: 1698000000000, endTimestamp: 1698000003000, duration: 3000 },
+				],
 			},
 			{
 				date: 1699000000000,
-				periods: [{ startTimestamp: 1699000000000, duration: 5000 }],
+				periods: [
+					{ startTimestamp: 1699000000000, endTimestamp: 1699000005000, duration: 5000 },
+				],
 			},
 		]
 		const originalHistory = structuredClone(usageHistory)
@@ -63,7 +67,7 @@ describe('updateDailyUsageRecord', () => {
 			...originalHistory,
 			{
 				date: mockToday,
-				periods: [{ startTimestamp: mockToday, duration: 10000 }],
+				periods: [{ startTimestamp: mockToday, endTimestamp: mockToday, duration: 10000 }],
 			},
 		])
 		expect(usageHistory).toEqual(originalHistory)
@@ -78,11 +82,23 @@ describe('updateDailyUsageRecord', () => {
 		const usageHistory: UsageHistory = [
 			{
 				date: mockToday - 20000,
-				periods: [{ startTimestamp: mockToday - 10000, duration: 5000 }],
+				periods: [
+					{
+						startTimestamp: mockToday - 10000,
+						endTimestamp: mockToday - 5000,
+						duration: 5000,
+					},
+				],
 			},
 			{
 				date: mockToday,
-				periods: [{ startTimestamp: mockToday - 5000, duration: 3000 }],
+				periods: [
+					{
+						startTimestamp: mockToday - 5000,
+						endTimestamp: mockToday - 2000,
+						duration: 3000,
+					},
+				],
 			},
 		]
 		const originalHistory = structuredClone(usageHistory)
@@ -99,7 +115,7 @@ describe('updateDailyUsageRecord', () => {
 				...originalHistory[1],
 				periods: [
 					...originalHistory[1].periods,
-					{ startTimestamp: mockToday, duration: 8000 },
+					{ startTimestamp: mockToday, endTimestamp: mockToday, duration: 8000 },
 				],
 			},
 		])
@@ -116,11 +132,23 @@ describe('updateDailyUsageRecord', () => {
 		const usageHistory: UsageHistory = [
 			{
 				date: mockToday - 20000,
-				periods: [{ startTimestamp: mockToday - 10000, duration: 5000 }],
+				periods: [
+					{
+						startTimestamp: mockToday - 10000,
+						endTimestamp: mockToday - 5000,
+						duration: 5000,
+					},
+				],
 			},
 			{
 				date: mockToday,
-				periods: [{ startTimestamp: mockToday - 5000, duration: 3000 }],
+				periods: [
+					{
+						startTimestamp: mockToday - 5000,
+						endTimestamp: mockToday - 2000,
+						duration: 3000,
+					},
+				],
 			},
 		]
 		const originalHistory = structuredClone(usageHistory)
@@ -137,7 +165,7 @@ describe('updateDailyUsageRecord', () => {
 				...originalHistory[1],
 				periods: [
 					...originalHistory[1].periods,
-					{ startTimestamp: mockToday, duration: 8000 },
+					{ startTimestamp: mockToday, endTimestamp: mockToday, duration: 8000 },
 				],
 			},
 		])
@@ -152,10 +180,34 @@ describe('updateDailyUsageRecord', () => {
 		vi.mocked(needsNewUsageSession).mockReturnValue(false)
 
 		const usageHistory: UsageHistory = [
-			{ date: 1698000000000, periods: [{ startTimestamp: 1698000000000, duration: 1000 }] },
-			{ date: 1699000000000, periods: [{ startTimestamp: 1699000000000, duration: 2000 }] },
-			{ date: 1699500000000, periods: [{ startTimestamp: 1699500000000, duration: 3000 }] },
-			{ date: mockToday, periods: [{ startTimestamp: mockToday - 1000, duration: 4000 }] },
+			{
+				date: 1698000000000,
+				periods: [
+					{ startTimestamp: 1698000000000, endTimestamp: 1698000001000, duration: 1000 },
+				],
+			},
+			{
+				date: 1699000000000,
+				periods: [
+					{ startTimestamp: 1699000000000, endTimestamp: 1699000002000, duration: 2000 },
+				],
+			},
+			{
+				date: 1699500000000,
+				periods: [
+					{ startTimestamp: 1699500000000, endTimestamp: 1699500003000, duration: 3000 },
+				],
+			},
+			{
+				date: mockToday,
+				periods: [
+					{
+						startTimestamp: mockToday - 1000,
+						endTimestamp: mockToday - 1000 + 4000,
+						duration: 4000,
+					},
+				],
+			},
 		]
 		const originalHistory = structuredClone(usageHistory)
 
@@ -168,6 +220,19 @@ describe('updateDailyUsageRecord', () => {
 		expect(result[0]).toEqual(originalHistory[0])
 		expect(result[1]).toEqual(originalHistory[1])
 		expect(result[2]).toEqual(originalHistory[2])
+		expect(result).toEqual([
+			originalHistory[0],
+			originalHistory[1],
+			originalHistory[2],
+			{
+				...originalHistory[3],
+				periods: [
+					{ startTimestamp: mockToday - 1000, endTimestamp: mockToday, duration: 9000 },
+				],
+			},
+		])
+		expect(usageHistory).toEqual(originalHistory)
+		expect(needsNewUsageSession).toHaveBeenCalledWith(usageHistory[3])
 	})
 
 	test('Debería actualizar (no insertar) el último día cuando es el mismo día', () => {
@@ -179,15 +244,33 @@ describe('updateDailyUsageRecord', () => {
 		const usageHistory: UsageHistory = [
 			{
 				date: mockToday - 100000,
-				periods: [{ startTimestamp: mockToday - 100000, duration: 1000 }],
+				periods: [
+					{
+						startTimestamp: mockToday - 100000,
+						endTimestamp: mockToday - 99000,
+						duration: 1000,
+					},
+				],
 			},
 			{
 				date: mockToday - 50000,
-				periods: [{ startTimestamp: mockToday - 50000, duration: 2000 }],
+				periods: [
+					{
+						startTimestamp: mockToday - 50000,
+						endTimestamp: mockToday - 48000,
+						duration: 2000,
+					},
+				],
 			},
 			{
 				date: mockToday,
-				periods: [{ startTimestamp: mockToday - 5000, duration: 3000 }],
+				periods: [
+					{
+						startTimestamp: mockToday - 5000,
+						endTimestamp: mockToday - 2000,
+						duration: 3000,
+					},
+				],
 			},
 		]
 		const originalHistory = structuredClone(usageHistory)
@@ -217,14 +300,32 @@ describe('updateDailyUsageRecord', () => {
 		const usageHistory: UsageHistory = [
 			{
 				date: mockToday - 100000,
-				periods: [{ startTimestamp: mockToday - 100000, duration: 1000 }],
+				periods: [
+					{
+						startTimestamp: mockToday - 100000,
+						endTimestamp: mockToday - 99000,
+						duration: 1000,
+					},
+				],
 			},
 			{
 				date: mockToday,
 				periods: [
-					{ startTimestamp: mockToday - 10000, duration: 2000 },
-					{ startTimestamp: mockToday - 8000, duration: 3000 },
-					{ startTimestamp: mockToday - 5000, duration: 4000 },
+					{
+						startTimestamp: mockToday - 10000,
+						endTimestamp: mockToday - 8000,
+						duration: 2000,
+					},
+					{
+						startTimestamp: mockToday - 8000,
+						endTimestamp: mockToday - 5000,
+						duration: 3000,
+					},
+					{
+						startTimestamp: mockToday - 5000,
+						endTimestamp: mockToday - 1000,
+						duration: 4000,
+					},
 				],
 			},
 		]
@@ -242,7 +343,8 @@ describe('updateDailyUsageRecord', () => {
 		expect(result[1].periods[1]).toEqual(originalHistory[1].periods[1])
 		expect(result[1].periods[2]).toEqual({
 			startTimestamp: mockToday - 5000,
-			duration: 9000,
+			endTimestamp: mockToday,
+			duration: 13000,
 		})
 	})
 })
