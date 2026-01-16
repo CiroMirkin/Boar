@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/molecules/card'
 import { Button } from '@/ui/atoms/button'
 import { AuthForm } from './components/AuthForm'
+import { OAuthProviders } from './components/OAuthProviders'
 import { useAuth } from './hooks/useAuth'
 import { useDefaultBoardCheck } from './hooks/useDefaultBoardCheck'
 
@@ -15,7 +16,7 @@ export default function AuthCard() {
 
 	useDefaultBoardCheck()
 
-	const { loading, email, setEmail, password, setPassword, handleAuth, resetForm } = useAuth(
+	const { loading, formData, handleAuth, handleGitHubAuth, resetForm } = useAuth(
 		isRegister,
 		setIsSubmitted
 	)
@@ -41,12 +42,10 @@ export default function AuthCard() {
 				<AuthForm
 					isRegister={isRegister}
 					loading={loading}
-					email={email}
-					setEmail={setEmail}
-					password={password}
-					setPassword={setPassword}
+					formData={formData}
 					onSubmit={handleAuth}
 				/>
+				<OAuthProviders loading={loading} onGitHubAuth={handleGitHubAuth} />
 			</CardContent>
 			<CardFooter>
 				<Button onClick={toggleAuthMode} variant='link' disabled={loading} type='button'>

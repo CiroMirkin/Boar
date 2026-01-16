@@ -10,6 +10,13 @@ interface FormState {
 	password: string
 }
 
+export interface AuthFormData {
+	email: string
+	password: string
+	setEmail: (email: string) => void
+	setPassword: (password: string) => void
+}
+
 export function useAuth(isRegister: boolean, setIsSubmitted: (submitted: boolean) => void) {
 	const [formState, setFormState] = useState<FormState>({
 		loading: false,
@@ -64,17 +71,55 @@ export function useAuth(isRegister: boolean, setIsSubmitted: (submitted: boolean
 		setFormState((prev) => ({ ...prev, password }))
 	}
 
+	const handleGitHubAuth = async () => {
+		setFormState((prev) => ({ ...prev, loading: true }))
+
+		const authPromise = async () => {
+			if (!isSupabaseConfigured || !supabase) {
+				throw new Error('Supabase no configurado')
+			}
+
+			const { data, error } = await supabase.auth.signInWithOAuth({
+				provider: 'github',
+				options: {
+					redirectTo: `${window.location.origin}/`,
+				},
+			})
+
+			if (error) throw error
+
+			setIsSubmitted(true)
+			return data
+		}
+
+		toast.promise(authPromise(), {
+			loading: t('loading', { defaultValue: 'Cargando...' }),
+			success: t('sing_in_toast'),
+			error: (error: AuthUnknownError) => {
+				return error.message || t('auth_error', { defaultValue: 'Error de autenticación' })
+			},
+			finally: () => {
+				setFormState((prev) => ({ ...prev, loading: false }))
+			},
+		})
+	}
+
 	const resetForm = () => {
 		setFormState((prev) => ({ ...prev, email: '', password: '' }))
 	}
 
+	const formData: AuthFormData = {
+		email: formState.email,
+		password: formState.password,
+		setEmail,
+		setPassword,
+	}
+
 	return {
 		loading: formState.loading,
-		email: formState.email,
-		setEmail,
-		password: formState.password,
-		setPassword,
+		formData,
 		handleAuth,
+		handleGitHubAuth,
 		resetForm,
 	}
 }

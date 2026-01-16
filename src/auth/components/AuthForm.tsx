@@ -3,26 +3,16 @@ import { Button } from '@/ui/atoms/button'
 import { Input } from '@/ui/atoms/input'
 import { Label } from '@/ui/atoms/label'
 import { useTranslation } from 'react-i18next'
+import type { AuthFormData } from '../hooks/useAuth'
 
 interface AuthFormProps {
 	isRegister: boolean
 	loading: boolean
-	email: string
-	setEmail: (email: string) => void
-	password: string
-	setPassword: (password: string) => void
+	formData: AuthFormData
 	onSubmit: (e: FormEvent<HTMLFormElement>) => void
 }
 
-export function AuthForm({
-	isRegister,
-	loading,
-	email,
-	setEmail,
-	password,
-	setPassword,
-	onSubmit,
-}: AuthFormProps) {
+export function AuthForm({ isRegister, loading, formData, onSubmit }: AuthFormProps) {
 	const { t } = useTranslation()
 
 	const submitText = loading
@@ -39,8 +29,8 @@ export function AuthForm({
 					id='email'
 					type='email'
 					name='email'
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
+					value={formData.email}
+					onChange={(e) => formData.setEmail(e.target.value)}
 					disabled={loading}
 					autoComplete='email'
 					required
@@ -53,8 +43,8 @@ export function AuthForm({
 					id='password'
 					type='password'
 					name='password'
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
+					value={formData.password}
+					onChange={(e) => formData.setPassword(e.target.value)}
 					disabled={loading}
 					autoComplete={isRegister ? 'new-password' : 'current-password'}
 					minLength={6}
