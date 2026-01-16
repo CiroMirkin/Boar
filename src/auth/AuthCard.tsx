@@ -1,84 +1,28 @@
-import { useEffect, useRef, useState, type FormEvent } from 'react'
-import { Button } from '@/ui/atoms/button'
-import { Input } from '@/ui/atoms/input'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/molecules/card'
-import { Label } from '@/ui/atoms/label'
-import type { AuthUnknownError } from '@supabase/supabase-js'
-import { supabase, isSupabaseConfigured } from '@/lib/supabase'
-import { toast } from 'sonner'
+import { useState } from 'react'
 import { Navigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
-import { checkIfUserHasTheDefaultBoard } from './utils/checkIfUserHasTheDefaultBoard'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/molecules/card'
+import { Button } from '@/ui/atoms/button'
+import { AuthForm } from './components/AuthForm'
+import { useAuth } from './hooks/useAuth'
+import { useDefaultBoardCheck } from './hooks/useDefaultBoardCheck'
 
 export default function AuthCard() {
-	const [loading, setLoading] = useState(false)
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
-
 	const [isRegister, setIsRegister] = useState(false)
 	const [isSubmitted, setIsSubmitted] = useState(false)
 
 	const { t } = useTranslation()
 
-	const showToast = useRef<boolean>(false)
-	useEffect(() => {
-		const checkDefaultBoard = async () => {
-			if (showToast.current) return
-			showToast.current = true
+	useDefaultBoardCheck()
 
-			try {
-				const hasUserDefaultBoard = await checkIfUserHasTheDefaultBoard()
-				if (!hasUserDefaultBoard) {
-					toast.warning(
-						t('board_will_be_lost_warning', {
-							defaultValue:
-								'El tablero actual se perderá si inicia sesión, para conservarlo debe crear una nueva cuenta.',
-						})
-					)
-				}
-			} catch (error) {
-				console.error('Error checking default board:', error)
-			}
-		}
-
-		checkDefaultBoard()
-	}, [t])
-
-	const handleAuth = async (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault()
-		setLoading(true)
-
-		const authPromise = async () => {
-			if (!isSupabaseConfigured || !supabase) {
-				throw new Error('Supabase no configurado')
-			}
-
-			const { data, error } = isRegister
-				? await supabase.auth.signUp({ email, password })
-				: await supabase.auth.signInWithPassword({ email, password })
-
-			if (error) throw error
-
-			setIsSubmitted(true)
-			return data
-		}
-
-		toast.promise(authPromise(), {
-			loading: t('loading', { defaultValue: 'Cargando...' }),
-			success: isRegister ? t('successful_log_in_toast') : t('sing_in_toast'),
-			error: (error: AuthUnknownError) => {
-				return error.message || t('auth_error', { defaultValue: 'Error de autenticación' })
-			},
-			finally: () => {
-				setLoading(false)
-			},
-		})
-	}
+	const { loading, email, setEmail, password, setPassword, handleAuth, resetForm } = useAuth(
+		isRegister,
+		setIsSubmitted
+	)
 
 	const toggleAuthMode = () => {
 		setIsRegister(!isRegister)
-		setEmail('')
-		setPassword('')
+		resetForm()
 	}
 
 	if (isSubmitted) {
@@ -86,11 +30,6 @@ export default function AuthCard() {
 	}
 
 	const title = isRegister ? t('log_in_form_title') : t('sing_in')
-	const submitText = loading
-		? t('loading', { defaultValue: 'Cargando...' })
-		: isRegister
-			? t('log_out_btn')
-			: t('sing_in')
 	const toggleText = isRegister ? t('already_have_an_account') : t('dont_have_an_account')
 
 	return (
@@ -99,47 +38,15 @@ export default function AuthCard() {
 				<CardTitle>{title}</CardTitle>
 			</CardHeader>
 			<CardContent>
-				<form onSubmit={handleAuth} className='flex flex-col justify-evenly gap-4'>
-					<div className='space-y-2'>
-						<Label htmlFor='email'>{t('email')}</Label>
-						<Input
-							id='email'
-							type='email'
-							name='email'
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-							disabled={loading}
-							autoComplete='email'
-							required
-							aria-required='true'
-						/>
-					</div>
-					<div className='space-y-2'>
-						<Label htmlFor='password'>{t('password')}</Label>
-						<Input
-							id='password'
-							type='password'
-							name='password'
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-							disabled={loading}
-							autoComplete={isRegister ? 'new-password' : 'current-password'}
-							minLength={6}
-							required
-							aria-required='true'
-						/>
-					</div>
-					<div>
-						<Button
-							type='submit'
-							disabled={loading}
-							className='w-full'
-							aria-busy={loading}
-						>
-							{submitText}
-						</Button>
-					</div>
-				</form>
+				<AuthForm
+					isRegister={isRegister}
+					loading={loading}
+					email={email}
+					setEmail={setEmail}
+					password={password}
+					setPassword={setPassword}
+					onSubmit={handleAuth}
+				/>
 			</CardContent>
 			<CardFooter>
 				<Button onClick={toggleAuthMode} variant='link' disabled={loading} type='button'>
