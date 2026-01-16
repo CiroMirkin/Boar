@@ -34,7 +34,7 @@ export default function AuthCard() {
 	const toggleText = isRegister ? t('already_have_an_account') : t('dont_have_an_account')
 
 	return (
-		<Card className='rounded-lg px-6 py-2'>
+		<Card className='rounded-lg px-6 py-2  shadow-2xl p-8 md:p-12 w-full max-w-md'>
 			<CardHeader>
 				<CardTitle>{title}</CardTitle>
 			</CardHeader>
@@ -47,7 +47,7 @@ export default function AuthCard() {
 				/>
 				<OAuthProviders loading={loading} onGitHubAuth={handleGitHubAuth} />
 			</CardContent>
-			<CardFooter>
+			<CardFooter className='flex justify-center'>
 				<Button onClick={toggleAuthMode} variant='link' disabled={loading} type='button'>
 					{toggleText}
 				</Button>
