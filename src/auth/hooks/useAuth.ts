@@ -10,6 +10,13 @@ interface FormState {
 	password: string
 }
 
+export interface AuthFormData {
+	email: string
+	password: string
+	setEmail: (email: string) => void
+	setPassword: (password: string) => void
+}
+
 export function useAuth(isRegister: boolean, setIsSubmitted: (submitted: boolean) => void) {
 	const [formState, setFormState] = useState<FormState>({
 		loading: false,
@@ -101,12 +108,16 @@ export function useAuth(isRegister: boolean, setIsSubmitted: (submitted: boolean
 		setFormState((prev) => ({ ...prev, email: '', password: '' }))
 	}
 
+	const formData: AuthFormData = {
+		email: formState.email,
+		password: formState.password,
+		setEmail,
+		setPassword,
+	}
+
 	return {
 		loading: formState.loading,
-		email: formState.email,
-		setEmail,
-		password: formState.password,
-		setPassword,
+		formData,
 		handleAuth,
 		handleGitHubAuth,
 		resetForm,

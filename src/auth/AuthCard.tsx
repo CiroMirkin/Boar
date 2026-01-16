@@ -16,16 +16,10 @@ export default function AuthCard() {
 
 	useDefaultBoardCheck()
 
-	const {
-		loading,
-		email,
-		setEmail,
-		password,
-		setPassword,
-		handleAuth,
-		handleGitHubAuth,
-		resetForm,
-	} = useAuth(isRegister, setIsSubmitted)
+	const { loading, formData, handleAuth, handleGitHubAuth, resetForm } = useAuth(
+		isRegister,
+		setIsSubmitted
+	)
 
 	const toggleAuthMode = () => {
 		setIsRegister(!isRegister)
@@ -48,10 +42,7 @@ export default function AuthCard() {
 				<AuthForm
 					isRegister={isRegister}
 					loading={loading}
-					email={email}
-					setEmail={setEmail}
-					password={password}
-					setPassword={setPassword}
+					formData={formData}
 					onSubmit={handleAuth}
 				/>
 				<OAuthProviders loading={loading} onGitHubAuth={handleGitHubAuth} />
