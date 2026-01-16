@@ -2,6 +2,7 @@ import { type FormEvent } from 'react'
 import { Button } from '@/ui/atoms/button'
 import { Input } from '@/ui/atoms/input'
 import { Label } from '@/ui/atoms/label'
+import { PasswordInput } from '@/ui/molecules/password-input'
 import { useTranslation } from 'react-i18next'
 import type { AuthFormData } from '../hooks/useAuth'
 
@@ -39,9 +40,8 @@ export function AuthForm({ isRegister, loading, formData, onSubmit }: AuthFormPr
 			</div>
 			<div className='space-y-2'>
 				<Label htmlFor='password'>{t('password')}</Label>
-				<Input
+				<PasswordInput
 					id='password'
-					type='password'
 					name='password'
 					value={formData.password}
 					onChange={(e) => formData.setPassword(e.target.value)}

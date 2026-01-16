@@ -26,6 +26,8 @@ import {
 	MessageSquareText,
 	Clock4,
 	Hourglass,
+	Eye,
+	EyeOff,
 } from 'lucide-react'
 
 const iconSize: string = '20'
@@ -115,4 +117,10 @@ export const ClockIcon = ({ className = '' }: IconProps) => (
 )
 export const HourglassIcon = ({ className = '' }: IconProps) => (
 	<Hourglass size={iconSize} className={className} />
+)
+export const EyeIcon = ({ className = '' }: IconProps) => (
+	<Eye size={iconSize} className={className} />
+)
+export const EyeOffIcon = ({ className = '' }: IconProps) => (
+	<EyeOff size={iconSize} className={className} />
 )

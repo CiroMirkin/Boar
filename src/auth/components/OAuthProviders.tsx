@@ -11,7 +11,7 @@ export function OAuthProviders({ loading, onGitHubAuth }: OAuthProvidersProps) {
 
 	return (
 		<>
-			<div className='mt-4 flex items-center justify-center'>
+			<div className='mt-4 flex items-center justify-center text-center'>
 				<div className='flex-1 border-t border-muted' />
 				<span className='px-3 text-sm text-muted-foreground'>{t('or_continue_with')}</span>
 				<div className='flex-1 border-t border-muted' />
