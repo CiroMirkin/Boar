@@ -6,6 +6,7 @@ import { Button } from '@/ui/atoms/button'
 import { AuthForm } from './components/AuthForm'
 import { useAuth } from './hooks/useAuth'
 import { useDefaultBoardCheck } from './hooks/useDefaultBoardCheck'
+import { GithubIcon } from '@/ui/atoms/icons'
 
 export default function AuthCard() {
 	const [isRegister, setIsRegister] = useState(false)
@@ -15,10 +16,16 @@ export default function AuthCard() {
 
 	useDefaultBoardCheck()
 
-	const { loading, email, setEmail, password, setPassword, handleAuth, resetForm } = useAuth(
-		isRegister,
-		setIsSubmitted
-	)
+	const {
+		loading,
+		email,
+		setEmail,
+		password,
+		setPassword,
+		handleAuth,
+		handleGitHubAuth,
+		resetForm,
+	} = useAuth(isRegister, setIsSubmitted)
 
 	const toggleAuthMode = () => {
 		setIsRegister(!isRegister)
@@ -47,6 +54,25 @@ export default function AuthCard() {
 					setPassword={setPassword}
 					onSubmit={handleAuth}
 				/>
+				<div className='mt-4 flex items-center justify-center'>
+					<div className='flex-1 border-t border-muted' />
+					<span className='px-3 text-sm text-muted-foreground'>
+						{t('or_continue_with')}
+					</span>
+					<div className='flex-1 border-t border-muted' />
+				</div>
+				<div className='mt-4'>
+					<Button
+						type='button'
+						variant='outline'
+						disabled={loading}
+						onClick={handleGitHubAuth}
+						className='w-full'
+					>
+						<GithubIcon className='mr-2 h-4 w-4' />
+						{t('continue_with_github')}
+					</Button>
+				</div>
 			</CardContent>
 			<CardFooter>
 				<Button onClick={toggleAuthMode} variant='link' disabled={loading} type='button'>

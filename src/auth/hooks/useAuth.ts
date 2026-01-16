@@ -64,6 +64,39 @@ export function useAuth(isRegister: boolean, setIsSubmitted: (submitted: boolean
 		setFormState((prev) => ({ ...prev, password }))
 	}
 
+	const handleGitHubAuth = async () => {
+		setFormState((prev) => ({ ...prev, loading: true }))
+
+		const authPromise = async () => {
+			if (!isSupabaseConfigured || !supabase) {
+				throw new Error('Supabase no configurado')
+			}
+
+			const { data, error } = await supabase.auth.signInWithOAuth({
+				provider: 'github',
+				options: {
+					redirectTo: `${window.location.origin}/`,
+				},
+			})
+
+			if (error) throw error
+
+			setIsSubmitted(true)
+			return data
+		}
+
+		toast.promise(authPromise(), {
+			loading: t('loading', { defaultValue: 'Cargando...' }),
+			success: t('sing_in_toast'),
+			error: (error: AuthUnknownError) => {
+				return error.message || t('auth_error', { defaultValue: 'Error de autenticación' })
+			},
+			finally: () => {
+				setFormState((prev) => ({ ...prev, loading: false }))
+			},
+		})
+	}
+
 	const resetForm = () => {
 		setFormState((prev) => ({ ...prev, email: '', password: '' }))
 	}
@@ -75,6 +108,7 @@ export function useAuth(isRegister: boolean, setIsSubmitted: (submitted: boolean
 		password: formState.password,
 		setPassword,
 		handleAuth,
+		handleGitHubAuth,
 		resetForm,
 	}
 }
