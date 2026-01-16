@@ -7,6 +7,7 @@ import { AuthError, Session } from '@supabase/supabase-js'
 import { toast } from 'sonner'
 import { isSupabaseConfigured, supabase } from '@/lib/supabase'
 import { useNavigate } from 'react-router'
+import { useBoardId } from '@/auth/state/store'
 
 interface LogInAndLogOutMenuItemProps {
 	whereUserIs?: USER_IS_IN
@@ -19,6 +20,8 @@ export default function LogInAndLogOutMenuItem({
 }: LogInAndLogOutMenuItemProps) {
 	const { t } = useTranslation()
 	const navigate = useNavigate()
+	const { board_id } = useBoardId()
+
 	const handleOnClick = async () => {
 		const logOutPromise = async () => {
 			if (!isSupabaseConfigured || !supabase) {
@@ -48,7 +51,7 @@ export default function LogInAndLogOutMenuItem({
 	return (
 		<DropdownMenuItem disabled={whereUserIs === USER_IS_IN.AUTH && true}>
 			{!session ? (
-				<TransitionLink to='/auth' className='px-2 py-1.5 flex items-center'>
+				<TransitionLink to={`/auth/${board_id}`} className='px-2 py-1.5 flex items-center'>
 					<LogInIcon className='mr-2' />
 					{t('sing_in')}
 				</TransitionLink>
