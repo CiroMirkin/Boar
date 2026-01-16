@@ -1,5 +1,6 @@
 {
 	"branches": ["main"],
+	"repositoryUrl": "https://github.com/CiroMirkin/Boar",
 	"plugins": [
 		[
 			"@semantic-release/commit-analyzer",
