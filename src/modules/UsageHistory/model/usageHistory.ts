@@ -13,6 +13,12 @@ export interface UsageSession {
 	startTimestamp: number
 
 	/**
+	 * Timestamp de cuando terminó este período de actividad.
+	 * Puede ser calculado como startTimestamp + duration para sesiones pasadas.
+	 */
+	endTimestamp: number
+
+	/**
 	 * Duración en milisegundos de este período de ACTIVIDAD.
 	 */
 	duration: UsageDuration

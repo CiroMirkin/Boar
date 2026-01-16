@@ -11,6 +11,7 @@ export function updateDailyUsageRecord({ duration, usageHistory }: Params): Usag
 	const currentTimestamp = Date.now()
 	const newPeriod = {
 		startTimestamp: currentTimestamp,
+		endTimestamp: currentTimestamp,
 		duration,
 	}
 
@@ -44,6 +45,7 @@ export function updateDailyUsageRecord({ duration, usageHistory }: Params): Usag
 		]
 	}
 
+	const lastPeriod = lastDayTracking.periods[lastDayTracking.periods.length - 1]
 	return [
 		...usageHistory.slice(0, -1),
 		{
@@ -51,8 +53,9 @@ export function updateDailyUsageRecord({ duration, usageHistory }: Params): Usag
 			periods: [
 				...lastDayTracking.periods.slice(0, -1),
 				{
-					...lastDayTracking.periods[lastDayTracking.periods.length - 1],
-					duration,
+					...lastPeriod,
+					duration: lastPeriod.duration + duration,
+					endTimestamp: currentTimestamp,
 				},
 			],
 		},
