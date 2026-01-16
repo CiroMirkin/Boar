@@ -1,5 +1,5 @@
 import { isSupabaseConfigured, supabase } from '@/lib/supabase'
-import { UsageHistory } from '../model/usageHistory'
+import { UsageHistory, migrateUsageHistory } from '../model/usageHistory'
 import { UsageHistoryRepository } from './usageHistoryRepository'
 
 export class SupabaseUsageHistoryRepository implements UsageHistoryRepository {
@@ -15,7 +15,7 @@ export class SupabaseUsageHistoryRepository implements UsageHistoryRepository {
 			.single()
 
 		if (error && error.code !== 'PGRST116') throw error
-		return data?.usage_history || []
+		return migrateUsageHistory(data?.usage_history || [])
 	}
 
 	async save(history: UsageHistory, id: string): Promise<UsageHistory> {

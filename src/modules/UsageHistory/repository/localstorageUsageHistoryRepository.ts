@@ -1,4 +1,4 @@
-import { UsageHistory } from '../model/usageHistory'
+import { UsageHistory, migrateUsageHistory } from '../model/usageHistory'
 import { UsageHistoryRepository } from './usageHistoryRepository'
 
 export class LocalStorageUsageHistoryRepository implements UsageHistoryRepository {
@@ -7,9 +7,10 @@ export class LocalStorageUsageHistoryRepository implements UsageHistoryRepositor
 		this.key = 'boar-usage-history'
 	}
 	async getAll(): Promise<UsageHistory> {
-		return localStorage.getItem(this.key)
+		const rawData = localStorage.getItem(this.key)
 			? JSON.parse(localStorage.getItem(this.key) as string)
 			: []
+		return migrateUsageHistory(rawData)
 	}
 
 	async save(history: UsageHistory): Promise<UsageHistory> {
