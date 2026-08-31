@@ -1,3 +1,5 @@
+'use client'
+
 import { createContext, Dispatch, SetStateAction } from 'react'
 import { Theme, lightTheme } from './themesList'
 

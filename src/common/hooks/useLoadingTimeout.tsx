@@ -1,3 +1,5 @@
+'use client'
+
 import { SessionType } from '@/auth/contexts/SessionProvider'
 import { useEffect, useState } from 'react'
 

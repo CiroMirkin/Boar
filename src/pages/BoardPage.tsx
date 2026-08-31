@@ -1,3 +1,5 @@
+'use client'
+
 import { Board } from '@/modules/board/Board'
 import { ColumnsFooterContentProvider } from '@/modules/TaskBoard/components/Columns/context/ColumnsFooter/ColumnsFooterContentProvider'
 import { ColumnsFooterContent } from '@/modules/TaskBoard/components/Columns/context/ColumnsFooter/columnsFooterContent'
@@ -22,8 +24,8 @@ const columnsData: ColumnsFooterContent = {
 	lastColumnFooterContent: <ArchiveTaskListButton />,
 }
 
-export function BoardPage() {
-	const { board } = useBoardQuery()
+export function BoardPage({ boardId }: { boardId: string }) {
+	const { board } = useBoardQuery(boardId)
 	const typeOfView = useTypeOfView()
 	const { taskBoard, isLoading: isTaskBoardLoading } = useTaskBoardQuery()
 	const { session, isLoading: isLoadingSession } = useSession()
@@ -49,7 +51,7 @@ export function BoardPage() {
 
 	return (
 		<PageContainer title={board?.name || 'Board'} whereUserIs={USER_IS_IN.BOARD}>
-			<Board>
+			<Board id={boardId}>
 				<ColumnsFooterContentProvider value={columnsData}>
 					{typeOfView == 'LIST' && (
 						<div className='p-5'>

@@ -1,17 +1,18 @@
+'use client'
+
 import { DropdownMenuItem } from '@/ui/molecules/dropdown-menu'
 import { USER_IS_IN } from '../../ui/organisms/userIsIn'
 import { TransitionLink } from '@/ui/atoms/TransitionLink'
 import { LogInIcon, LogOutIcon } from '@/ui/atoms/icons'
 import { useTranslation } from 'react-i18next'
-import { AuthError, Session } from '@supabase/supabase-js'
+import { signOut } from 'next-auth/react'
 import { toast } from 'sonner'
-import { isSupabaseConfigured, supabase } from '@/lib/supabase'
-import { useNavigate } from 'react-router'
 import { useBoardId } from '@/auth/state/store'
+import type { SessionType } from '@/auth/contexts/SessionProvider'
 
 interface LogInAndLogOutMenuItemProps {
 	whereUserIs?: USER_IS_IN
-	session: Session | null
+	session: SessionType
 }
 
 export default function LogInAndLogOutMenuItem({
@@ -19,28 +20,18 @@ export default function LogInAndLogOutMenuItem({
 	session,
 }: LogInAndLogOutMenuItemProps) {
 	const { t } = useTranslation()
-	const navigate = useNavigate()
 	const { board_id } = useBoardId()
 
 	const handleOnClick = async () => {
 		const logOutPromise = async () => {
-			if (!isSupabaseConfigured || !supabase) {
-				throw new Error('Supabase no configurado')
-			}
-
-			const { error } = await supabase.auth.signOut()
-			if (error) throw error
-
 			sessionStorage.removeItem('isInitialLoad')
+			await signOut({ callbackUrl: '/' })
 		}
 
 		toast.promise(logOutPromise(), {
 			loading: t('loading', { defaultValue: 'Cargando...' }),
-			success: () => {
-				navigate('/', { replace: true })
-				return t('successful_log_out_toast')
-			},
-			error: (error: AuthError) => {
+			success: t('successful_log_out_toast'),
+			error: (error: Error) => {
 				return (
 					error.message || t('log_out_error', { defaultValue: 'Error al cerrar sesión' })
 				)

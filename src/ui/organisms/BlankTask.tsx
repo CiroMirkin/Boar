@@ -1,3 +1,5 @@
+'use client'
+
 import React, { createContext, useState } from 'react'
 import { taskModel, emptyTask } from '@/modules/TaskBoard/model/task'
 import { Card, CardContent, CardFooter } from '../molecules/card'

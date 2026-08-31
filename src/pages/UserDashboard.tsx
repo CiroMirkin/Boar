@@ -1,9 +1,12 @@
+'use client'
+
 import { useSession } from '@/auth/hooks/useSession'
 import { useTheme } from '@/common/hooks/useTheme'
 import Dashboard from '@/modules/Dashboard/Dashboard'
 import { Spinner } from '@/ui/atoms/spinner'
 import { USER_IS_IN } from '@/ui/organisms/userIsIn'
-import { Navigate } from 'react-router-dom'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 import PageContainer from './PageContainer'
 import { useDocumentTitle } from '@uidotdev/usehooks'
 
@@ -12,6 +15,13 @@ function UserDashboard() {
 	const { bg } = useTheme()
 	const whereUserIs = USER_IS_IN.DASHBOARD
 	const { session, isLoading } = useSession()
+	const router = useRouter()
+
+	useEffect(() => {
+		if (!isLoading && !session) {
+			router.replace('/board/1')
+		}
+	}, [isLoading, session, router])
 
 	if (isLoading) {
 		return (
@@ -24,7 +34,7 @@ function UserDashboard() {
 	}
 
 	if (!session) {
-		return <Navigate to='/board/1' replace />
+		return null
 	}
 
 	return (

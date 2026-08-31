@@ -1,3 +1,5 @@
+'use client'
+
 import { useTranslation } from 'react-i18next'
 import { USER_IS_IN } from '../ui/organisms/userIsIn'
 import { ChangeBoardName } from '../modules/board/components/ChangeBoardName'
@@ -10,6 +12,8 @@ import { EnableTags } from '@/modules/TaskBoard/components/taskList/components/T
 
 import { ConfigColumns } from '@/modules/TaskBoard/components/Columns/components/ConfigColumns'
 import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
+import { useBoardQuery } from '@/modules/board/hooks/useBoardQuery'
+
 const useColumnListForReminders = (): { name: string; id: string; position: string }[] => {
 	const { taskBoard } = useTaskBoardQuery()
 	return taskBoard.map((list, i) => ({
@@ -19,9 +23,14 @@ const useColumnListForReminders = (): { name: string; id: string; position: stri
 	}))
 }
 
-export function Settings() {
+interface Props {
+	boardId: string
+}
+
+export function Settings({ boardId }: Props) {
 	const { t } = useTranslation()
 	const columnList = useColumnListForReminders()
+	useBoardQuery(boardId)
 
 	return (
 		<PageContainer
@@ -30,7 +39,7 @@ export function Settings() {
 			className='px-3 pb-6 grid place-items-center'
 		>
 			<div className='grid gap-4 justify-items-stretch '>
-				<ChangeBoardName />
+				<ChangeBoardName id={boardId} />
 				<ConfigColumns />
 				<CreateReminder columnList={columnList} />
 				<ReminderList />

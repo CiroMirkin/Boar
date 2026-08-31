@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import { useVisibilityChange } from '@uidotdev/usehooks'
 import {
@@ -8,7 +10,6 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from '@/ui/molecules/dropdown-menu'
-import { Button } from '@/ui/atoms/button'
 import {
 	ArchiveIcon,
 	CircleHelpIcon,
@@ -28,7 +29,7 @@ import { useTheme } from '@/common/hooks/useTheme'
 import { useLastDurationPeriod } from '@/modules/UsageHistory/hooks/useLastDurationPeriod'
 import { useTypeOfView } from '@/modules/TypeOfView/useTypeOfView'
 import { TransitionLink } from '../atoms/TransitionLink'
-import { getActualBoardId } from '@/auth/utils/getActualBoardId'
+import { useBoardId } from '@/auth/state/store'
 
 interface HeaderProps {
 	title: string
@@ -42,7 +43,7 @@ export function Header({ title, whereUserIs, showBoardNavigation = true }: Heade
 	const { text } = useTheme()
 	const typeOfView = useTypeOfView()
 
-	const BOARD_ID = getActualBoardId()
+	const BOARD_ID = useBoardId((state) => state.board_id)
 	const URLs = {
 		board: `/board/${BOARD_ID}`,
 		archive: `/archive/${BOARD_ID}`,
@@ -67,10 +68,11 @@ export function Header({ title, whereUserIs, showBoardNavigation = true }: Heade
 			<div className='flex gap-2 items-center'>
 				{showNotes && <Notes />}
 				<DropdownMenu onOpenChange={setIsDropdownOpen}>
-					<DropdownMenuTrigger asChild>
-						<Button variant='ghost' className={text} data-testid='NavBtn'>
-							<MenuIcon />
-						</Button>
+					<DropdownMenuTrigger
+						className={`inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 ${text}`}
+						data-testid='NavBtn'
+					>
+						<MenuIcon />
 					</DropdownMenuTrigger>
 					<DropdownMenuContent>
 						<DropdownMenuLabel

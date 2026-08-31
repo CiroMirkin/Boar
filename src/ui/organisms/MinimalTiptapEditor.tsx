@@ -55,6 +55,7 @@ const MinimalTiptapEditor = ({
 }: MinimalTiptapProps) => {
 	const [isFocused, setIsFocused] = React.useState(false)
 	const editor = useEditor({
+		immediatelyRender: false,
 		extensions: [
 			Document,
 			Paragraph,

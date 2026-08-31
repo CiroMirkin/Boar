@@ -21,6 +21,7 @@ const MinimalTiptapViewer = ({
 	maxRows = 50,
 }: MinimalTiptapViewerProps) => {
 	const editor = useEditor({
+		immediatelyRender: false,
 		extensions: [
 			StarterKit,
 			Underline,
