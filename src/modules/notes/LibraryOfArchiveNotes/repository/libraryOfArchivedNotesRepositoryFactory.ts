@@ -1,36 +1,35 @@
-import { Session } from '@supabase/supabase-js'
+import type { SessionType } from '@/auth/contexts/SessionProvider'
 import { LibraryOfArchivedNotes } from '../model/libraryOfArchivedNotes'
 import LibraryOfArchivedNotesLocalStorageRepository from './libraryOfArchivedNotesLocalStorageRepository'
-import LibraryOfArchivedNotesSupabaseRepository from './libraryOfArchivedNotesSupabaseRepository'
+import LibraryOfArchivedNotesNextjsRepository from './libraryOfArchivedNotesNextjsRepository'
 import { LibraryOfArchiveNotesRepository } from '../model/libraryOfArchivedNotesRepository'
-import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 
 export const libraryOfArchivedNotesRepositoryFactory = (
-	session: Session | null
+	session: SessionType
 ): LibraryOfArchiveNotesRepository => {
 	if (session) {
-		return new LibraryOfArchivedNotesSupabaseRepository()
+		return new LibraryOfArchivedNotesNextjsRepository()
 	}
 	return new LibraryOfArchivedNotesLocalStorageRepository()
 }
 
 export const fetchLibraryOfArchivedNotes = async (
-	session: Session | null
+	session: SessionType,
+	boardId: string
 ): Promise<LibraryOfArchivedNotes> => {
 	const repository = libraryOfArchivedNotesRepositoryFactory(session)
-	const boardId = getActualBoardId()
-	const notes = await repository.getAll(boardId)
-	return notes
+	return repository.getAll(boardId)
 }
 
 export const saveLibraryOfArchivedNotes = async ({
 	notes,
 	session,
+	boardId,
 }: {
 	notes: LibraryOfArchivedNotes
-	session: Session | null
+	session: SessionType
+	boardId: string
 }): Promise<void> => {
 	const repository = libraryOfArchivedNotesRepositoryFactory(session)
-	const boardId = getActualBoardId()
 	await repository.save(notes, boardId)
 }

@@ -8,25 +8,25 @@ import {
 	fetchLibraryOfArchivedNotes,
 	saveLibraryOfArchivedNotes,
 } from '../repository/libraryOfArchivedNotesRepositoryFactory'
-import { getActualBoardId } from '@/auth/utils/getActualBoardId'
+import { useBoardId } from '@/auth/state/store'
 
 const libraryOfArchivedNotesQueryKey = ['libraryOfArchivedNotes']
 
 export const useLibraryOfArchivedNotesQuery = () => {
 	const { session } = useSession()
 	const queryClient = useQueryClient()
-	const boardId = getActualBoardId()
+	const boardId = useBoardId((state) => state.board_id)
 	const fullQueryKey = [...libraryOfArchivedNotesQueryKey, session?.user.id, boardId]
 
 	const { data: archivedNotes, isLoading } = useQuery({
 		queryKey: fullQueryKey,
-		queryFn: () => fetchLibraryOfArchivedNotes(session),
+		queryFn: () => fetchLibraryOfArchivedNotes(session, boardId),
 		initialData: defaultLibraryOfArchivedNotes,
 	})
 
 	const { mutate: updateArchivedNotes, isPending: isSaving } = useMutation({
 		mutationFn: (updatedNotes: LibraryOfArchivedNotes) =>
-			saveLibraryOfArchivedNotes({ notes: updatedNotes, session }),
+			saveLibraryOfArchivedNotes({ notes: updatedNotes, session, boardId }),
 		onMutate: async (updatedNotes: LibraryOfArchivedNotes) => {
 			await queryClient.cancelQueries({ queryKey: fullQueryKey })
 			const previousNotes = queryClient.getQueryData(fullQueryKey)

@@ -1,31 +1,30 @@
-import { Session } from '@supabase/supabase-js'
+import type { SessionType } from '@/auth/contexts/SessionProvider'
 import { ArchiveRepository } from './archiveRepository'
-import SupabaseArchivedTasksRepository from './SupabaseArchivedTasksRepository'
+import NextjsArchiveRepository from './nextjsArchiveRepository'
 import LocalStorageArchiveRepository from './localStorageArchive'
 import { Archive } from '../models/archive'
-import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 
-const getArchivedTasksRepository = (session: Session | null): ArchiveRepository => {
+const getArchivedTasksRepository = (session: SessionType): ArchiveRepository => {
 	if (session) {
-		return new SupabaseArchivedTasksRepository()
+		return new NextjsArchiveRepository()
 	}
 	return new LocalStorageArchiveRepository()
 }
 
-export const fetchArchivedTasks = async (session: Session | null): Promise<Archive> => {
+export const fetchArchivedTasks = async (session: SessionType, boardId: string): Promise<Archive> => {
 	const repository = getArchivedTasksRepository(session)
-	const boardId = getActualBoardId()
 	return repository.getAll(boardId)
 }
 
 export const saveArchivedTasks = async ({
 	session,
 	archivedTasks,
+	boardId,
 }: {
-	session: Session | null
+	session: SessionType
 	archivedTasks: Archive
+	boardId: string
 }): Promise<void> => {
 	const repository = getArchivedTasksRepository(session)
-	const boardId = getActualBoardId()
 	await repository.save(archivedTasks, boardId)
 }

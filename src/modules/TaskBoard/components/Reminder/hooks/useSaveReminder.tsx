@@ -1,21 +1,21 @@
+'use client'
+
 import LocalStorageReminderRepository from '../repository/LocalStorageReminder'
+import NextjsReminderRepository from '../repository/nextjsReminderRepository'
 import { Reminder } from '../model/reminder'
 import { useReminderStore } from '../state/store'
 import { useSession } from '@/auth/hooks/useSession'
-import SupabaseReminderRepository from '../repository/SupabaseReminderRepository'
-import { getActualBoardId } from '@/auth/utils/getActualBoardId'
+import { useBoardId } from '@/auth/state/store'
 
 type UseSaveReminderReturn = (reminder: Reminder) => void
 
 export const useSaveReminder = (): UseSaveReminderReturn => {
 	const { session } = useSession()
+	const actualBoardId = useBoardId((state) => state.board_id)
+
 	const saveInRepository = (reminder: Reminder) => {
-		if (session) {
-			const localReminder = new LocalStorageReminderRepository().getAll()
-			if (JSON.stringify(localReminder) !== JSON.stringify(reminder)) {
-				const actualBoardId = getActualBoardId()
-				new SupabaseReminderRepository().save(reminder, actualBoardId)
-			}
+		if (session && actualBoardId) {
+			new NextjsReminderRepository().save(reminder, actualBoardId)
 		} else {
 			new LocalStorageReminderRepository().save(reminder)
 		}
