@@ -1,3 +1,5 @@
+'use client'
+
 import { Input } from '@/ui/atoms/input'
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { Button } from '@/ui/atoms/button'
@@ -12,10 +14,14 @@ import { useTranslation } from 'react-i18next'
 import { SettingSection } from '@/ui/organisms/SettingSection'
 import { useTheme } from '@/common/hooks/useTheme'
 
-export function ChangeBoardName() {
-	const { board, updateBoard } = useBoardQuery()
-	const color = useTheme()
+interface Props {
+	id: string
+}
 
+export function ChangeBoardName({ id }: Props) {
+	const { board, updateBoard } = useBoardQuery(id)
+
+	const color = useTheme()
 	const [boardName, setBoardName] = useState(board?.name || '')
 	const [inputDisabled, setInputDisabled] = useState(true)
 

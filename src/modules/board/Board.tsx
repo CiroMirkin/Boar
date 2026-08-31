@@ -2,8 +2,13 @@ import { WelcomeDialog } from './components/WelcomeDialog'
 import { useBoardQuery } from '@/modules/board/hooks/useBoardQuery'
 import { useDocumentTitle } from '@uidotdev/usehooks'
 
-export function Board({ children }: { children: React.ReactNode }) {
-	const { board, isError } = useBoardQuery()
+interface Props {
+	children: React.ReactNode
+	id: string
+}
+
+export function Board({ children, id }: Props) {
+	const { board, isError } = useBoardQuery(id)
 	useDocumentTitle(board ? `${board.name} - Boar` : 'Boar')
 
 	if (isError) {

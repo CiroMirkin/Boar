@@ -1,37 +1,34 @@
 import { boardModel } from '../models/board'
 import LocalStorageBoardRepository from './localstorageBoardRepository'
-import SupabaseBoardRepository from './supabaseBoardRepository'
-import { Session } from '@supabase/supabase-js'
-import { getActualBoardId } from '@/auth/utils/getActualBoardId'
+import NextjsBoardRepository from './nextjsBoardRepository'
+import type { SessionType } from '@/auth/contexts/SessionProvider'
 
 export interface BoardRepository {
 	save(board: boardModel, boardId: string): Promise<void>
 	get(boardId: string): Promise<boardModel>
 }
 
-// Factory para obtener el repositorio correcto
-const getBoardRepository = (session: Session | null): BoardRepository => {
+const getBoardRepository = (session: SessionType): BoardRepository => {
 	if (session) {
-		return new SupabaseBoardRepository()
+		return new NextjsBoardRepository()
 	}
 	return new LocalStorageBoardRepository()
 }
 
-// Funciones que usarán los hooks de React Query
-export const fetchBoard = async (session: Session | null): Promise<boardModel> => {
+export const fetchBoard = async (session: SessionType, boardId: string): Promise<boardModel> => {
 	const repository = getBoardRepository(session)
-	const boardId = getActualBoardId()
 	return repository.get(boardId)
 }
 
 export const saveBoard = async ({
 	board,
 	session,
+	boardId,
 }: {
 	board: boardModel
-	session: Session | null
+	session: SessionType
+	boardId: string
 }): Promise<void> => {
 	const repository = getBoardRepository(session)
-	const boardId = getActualBoardId()
 	await repository.save(board, boardId)
 }
