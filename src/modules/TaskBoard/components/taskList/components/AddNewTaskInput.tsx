@@ -1,3 +1,5 @@
+'use client'
+
 import { getNewTask, isThisTaskDescriptionValid } from '@/modules/TaskBoard/model/task'
 import { toast } from 'sonner'
 import getErrorMessageForTheUser from '@/common/utils/getErrorMessageForTheUser'

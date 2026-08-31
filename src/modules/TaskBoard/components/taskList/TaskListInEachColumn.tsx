@@ -1,3 +1,5 @@
+'use client'
+
 import { TaskList } from './components/TaskList'
 import { useTaskListInEachColumn } from './hooks/useTaskListInEachColumn'
 import { useTranslation } from 'react-i18next'

@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from '@/ui/atoms/button'
 import { toast } from 'sonner'
 import { PlusIcon } from '@/ui/atoms/icons'

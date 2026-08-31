@@ -1,3 +1,5 @@
+'use client'
+
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { fetchTaskBoard, saveTaskBoard } from '@/modules/TaskBoard/repository'
 import { useSession } from '@/auth/hooks/useSession'
@@ -13,7 +15,7 @@ import {
 } from '../model/taskBoard'
 import { useTranslation } from 'react-i18next'
 import { useCallback } from 'react'
-import { getActualBoardId } from '@/auth/utils/getActualBoardId'
+import { useBoardId } from '@/auth/state/store'
 
 const taskBoardQueryKey = ['taskBoard']
 
@@ -22,7 +24,7 @@ export const useTaskBoardQuery = () => {
 	const queryClient = useQueryClient()
 
 	const userId = session?.user.id ?? 'guest'
-	const boardId = getActualBoardId()
+	const boardId = useBoardId((state) => state.board_id)
 	const fullQueryKey = [...taskBoardQueryKey, userId, boardId] as const
 
 	const { t, i18n } = useTranslation()
@@ -37,7 +39,7 @@ export const useTaskBoardQuery = () => {
 			}
 			return data
 		},
-		[t, i18n.language] // eslint-disable-line react-hooks/exhaustive-deps
+		[t, i18n.language, userId] // eslint-disable-line react-hooks/exhaustive-deps
 	)
 
 	const {
@@ -47,7 +49,7 @@ export const useTaskBoardQuery = () => {
 		error,
 	} = useQuery({
 		queryKey: fullQueryKey,
-		queryFn: () => fetchTaskBoard(session),
+		queryFn: () => fetchTaskBoard(session, boardId),
 		staleTime: 30000,
 		select,
 	})
@@ -65,12 +67,14 @@ export const useTaskBoardQuery = () => {
 				return saveTaskBoard({
 					taskBoard: newUpdated,
 					session,
+					boardId,
 				})
 			}
 
 			return saveTaskBoard({
 				taskBoard: updatedTaskBoard as TaskBoard,
 				session,
+				boardId,
 			})
 		},
 		onMutate: async (updatedTaskBoard: TaskListInEachColumn | TaskBoard) => {

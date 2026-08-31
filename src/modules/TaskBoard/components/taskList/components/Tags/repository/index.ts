@@ -1,20 +1,21 @@
-import { Session } from '@supabase/supabase-js'
+import type { SessionType } from '@/auth/contexts/SessionProvider'
 import { AvailableTags, TagGroup } from '../model/tags'
 import LocalStorageTagRepository from './localstorageTagRepository'
-import SupabaseTagRepository from './supabaseTagRepository'
+import NextjsTagRepository from './nextjsTagRepository'
 import { TagRepository, TagRepositoryGetReturn } from './tagRepository'
-import { getActualBoardId } from '@/auth/utils/getActualBoardId'
 
-const getTagRepository = (session: Session | null): TagRepository => {
+const getTagRepository = (session: SessionType): TagRepository => {
 	if (session) {
-		return new SupabaseTagRepository()
+		return new NextjsTagRepository()
 	}
 	return new LocalStorageTagRepository()
 }
 
-export const fetchTags = async (session: Session | null): Promise<TagRepositoryGetReturn> => {
+export const fetchTags = async (
+	session: SessionType,
+	boardId: string
+): Promise<TagRepositoryGetReturn> => {
 	const repository = getTagRepository(session)
-	const boardId = getActualBoardId()
 	return repository.get(boardId)
 }
 
@@ -22,13 +23,17 @@ export const saveTags = async ({
 	tags,
 	actualTags,
 	session,
+	boardId,
 }: {
 	tags: AvailableTags
 	actualTags: TagGroup
-	session: Session | null
+	session: SessionType
+	boardId: string
 }): Promise<void> => {
+	console.log(boardId)
+	console.log(actualTags)
+
 	const repository = getTagRepository(session)
-	const boardId = getActualBoardId()
 	await repository.save({
 		actualTagGroup: actualTags,
 		tags,

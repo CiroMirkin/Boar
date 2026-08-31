@@ -1,8 +1,10 @@
+'use client'
+
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { fetchTags, saveTags } from '../repository'
 import { useSession } from '@/auth/hooks/useSession'
 import { TagRepositoryGetReturn } from '../repository/tagRepository'
-import { getActualBoardId } from '@/auth/utils/getActualBoardId'
+import { useBoardId } from '@/auth/state/store'
 
 const tagsQueryKey = ['tags']
 
@@ -11,7 +13,8 @@ export const useTagsQuery = () => {
 	const queryClient = useQueryClient()
 
 	const userId = session?.user.id ?? 'guest'
-	const boardId = getActualBoardId()
+	const boardId = useBoardId((state) => state.board_id)
+
 	const fullQueryKey = [...tagsQueryKey, userId, boardId] as const
 
 	const {
@@ -21,7 +24,7 @@ export const useTagsQuery = () => {
 		error,
 	} = useQuery({
 		queryKey: fullQueryKey,
-		queryFn: () => fetchTags(session),
+		queryFn: () => fetchTags(session, boardId),
 	})
 
 	const { mutate: updateTags, isPending: isSaving } = useMutation({
@@ -30,6 +33,7 @@ export const useTagsQuery = () => {
 				session,
 				tags: updatedTags.tags,
 				actualTags: updatedTags.actualTagGroup,
+				boardId,
 			}),
 		onMutate: async (updatedTags: TagRepositoryGetReturn) => {
 			await queryClient.cancelQueries({ queryKey: fullQueryKey })

@@ -11,7 +11,10 @@ const getArchivedTasksRepository = (session: SessionType): ArchiveRepository => 
 	return new LocalStorageArchiveRepository()
 }
 
-export const fetchArchivedTasks = async (session: SessionType, boardId: string): Promise<Archive> => {
+export const fetchArchivedTasks = async (
+	session: SessionType,
+	boardId: string
+): Promise<Archive> => {
 	const repository = getArchivedTasksRepository(session)
 	return repository.getAll(boardId)
 }

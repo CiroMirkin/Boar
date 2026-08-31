@@ -1,3 +1,5 @@
+'use client'
+
 import { toast } from 'sonner'
 import { Button } from '@/ui/atoms/button'
 import getErrorMessageForTheUser from '@/common/utils/getErrorMessageForTheUser'

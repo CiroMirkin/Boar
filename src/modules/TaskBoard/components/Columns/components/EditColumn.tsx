@@ -1,3 +1,5 @@
+'use client'
+
 import { KeyboardEvent, useState } from 'react'
 import { Button } from '@/ui/atoms/button'
 import { PencilIcon } from '@/ui/atoms/icons'
@@ -7,7 +9,9 @@ import { isThisColumnNameWithinTheLimitOfLetters } from '@/modules/TaskBoard/mod
 import { Column } from '../model/column'
 import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 import { changeStatusName } from '@/modules/TaskBoard/useCase/changeStatusName'
+import { useTranslation } from 'react-i18next'
 import DeleteColumnBtn from './DeleteColumnBtn'
+import { DEFAULT_COLUMN_IDS } from '@/modules/TaskBoard/model/taskBoard'
 
 interface EditColumnParams {
 	column: Column
@@ -15,10 +19,15 @@ interface EditColumnParams {
 
 export function EditColumn({ column }: EditColumnParams) {
 	const id = column.id
+	const { t } = useTranslation()
 	const [showChangeColumnNameInput, setShowChangeColumnNameInput] = useState(false)
 	const [columnName, setColumnName] = useState(column.name)
 
-	const nameToShow = showChangeColumnNameInput ? columnName : column.name
+	const displayName = DEFAULT_COLUMN_IDS.includes(column.name)
+		? t(`default_columns.${column.name}`)
+		: column.name
+
+	const nameToShow = showChangeColumnNameInput ? columnName : displayName
 	const { updateTaskBoard, taskBoard } = useTaskBoardQuery()
 
 	const editColumnNameHandle = () => {
@@ -43,10 +52,7 @@ export function EditColumn({ column }: EditColumnParams) {
 
 	const { task } = useTheme()
 	return (
-		<li
-			key={column.id}
-			className={'w-full p-4 grid grid-cols-4 gap-2 justify-between rounded-lg ' + task}
-		>
+		<li className={'w-full p-4 grid grid-cols-4 gap-2 justify-between rounded-lg ' + task}>
 			<Input
 				className='md:col-span-3 col-span-2'
 				value={nameToShow}

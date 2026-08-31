@@ -4,20 +4,22 @@ import { TaskListInEachColumn as TaskLists } from '@/modules/TaskBoard/component
 
 export type TaskBoard = TaskColumn[]
 
+export const DEFAULT_COLUMN_IDS = ['c1', 'c2', 'c3']
+
 export const emptyTaskBoard: TaskBoard = [
 	{
-		id: 'c1',
-		status: 'default_columns.c1',
+		id: DEFAULT_COLUMN_IDS[0],
+		status: `default_columns.${DEFAULT_COLUMN_IDS[0]}`,
 		tasks: [],
 	},
 	{
-		id: 'c2',
-		status: 'default_columns.c2',
+		id: DEFAULT_COLUMN_IDS[1],
+		status: `default_columns.${DEFAULT_COLUMN_IDS[1]}`,
 		tasks: [],
 	},
 	{
-		id: 'c3',
-		status: 'default_columns.c3',
+		id: DEFAULT_COLUMN_IDS[3],
+		status: `default_columns.${DEFAULT_COLUMN_IDS[2]}`,
 		tasks: [],
 	},
 ]
