@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef } from 'react'
 import { toast } from 'sonner'
 import { TaskListArray } from '../model/reminder'

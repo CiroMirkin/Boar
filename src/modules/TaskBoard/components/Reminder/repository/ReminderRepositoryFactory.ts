@@ -1,31 +1,30 @@
 import { Reminder } from '../model/reminder'
 import LocalStorageReminderRepository from './LocalStorageReminder'
-import SupabaseReminderRepository from './SupabaseReminderRepository'
-import { Session } from '@supabase/supabase-js'
-import { getActualBoardId } from '@/auth/utils/getActualBoardId'
+import NextjsReminderRepository from './nextjsReminderRepository'
+import type { SessionType } from '@/auth/contexts/SessionProvider'
 import { ReminderRepository } from './ReminderRepository'
 
-const getReminderRepository = (session: Session | null): ReminderRepository => {
+const getReminderRepository = (session: SessionType): ReminderRepository => {
 	if (session) {
-		return new SupabaseReminderRepository()
+		return new NextjsReminderRepository()
 	}
 	return new LocalStorageReminderRepository()
 }
 
-export const fetchReminder = async (session: Session | null): Promise<Reminder> => {
+export const fetchReminder = async (session: SessionType, boardId: string): Promise<Reminder> => {
 	const repository = getReminderRepository(session)
-	const boardId = getActualBoardId()
 	return repository.getAll(boardId)
 }
 
 export const saveReminder = async ({
 	reminder,
 	session,
+	boardId,
 }: {
 	reminder: Reminder
-	session: Session | null
+	session: SessionType
+	boardId: string
 }): Promise<void> => {
 	const repository = getReminderRepository(session)
-	const boardId = getActualBoardId()
 	await repository.save(reminder, boardId)
 }

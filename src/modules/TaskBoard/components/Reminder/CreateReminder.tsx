@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, ChangeEvent, useEffect } from 'react'
 import { Button } from '@/ui/atoms/button'
 import { Input } from '@/ui/atoms/input'

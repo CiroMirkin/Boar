@@ -3,15 +3,19 @@ import { UserSessionTracking } from './useTimeTracking'
 const STORAGE_KEY = 'timeTracking'
 
 export const getUserSessionTracking = () => {
+	if (typeof window === 'undefined') return
 	return sessionStorage.getItem(STORAGE_KEY)
 }
 
 export const saveUserSessionTracking = (updated: UserSessionTracking) => {
+	if (typeof window === 'undefined') return
 	sessionStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
 }
 
-export const resetUserSessionTracking = () => sessionStorage.removeItem(STORAGE_KEY)
-
+export const resetUserSessionTracking = () => {
+	if (typeof window === 'undefined') return
+	sessionStorage.removeItem(STORAGE_KEY)
+}
 export const getCurrentTimeFromStorage = (): number => {
 	try {
 		const saved = getUserSessionTracking()

@@ -1,3 +1,5 @@
+'use client'
+
 import { MinimalTiptapEditor } from '@/ui/organisms/MinimalTiptapEditor'
 import { maxLengthOfNotes } from '../model/notes'
 import { toast } from 'sonner'
