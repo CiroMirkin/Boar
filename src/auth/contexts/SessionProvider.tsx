@@ -1,52 +1,73 @@
-import { Session } from '@supabase/supabase-js'
-import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from 'react'
-import { supabase } from '../../lib/supabase'
+'use client'
 
-export type SessionType = Session | null
+import {
+	SessionProvider as NextAuthSessionProvider,
+	useSession as useNextAuthSession,
+} from 'next-auth/react'
+import { createContext, type ReactNode, useContext } from 'react'
+
+export type SessionUser = {
+	id: string
+	email?: string | null
+	name?: string | null
+	image?: string | null
+}
+
+export type SessionType = {
+	user: SessionUser
+	expires: string
+} | null
 
 interface SessionContextValue {
 	session: SessionType
-	setSession: Dispatch<SetStateAction<SessionType>>
-	isSupabaseConfigured: boolean
 	isLoading: boolean
+	update: ReturnType<typeof useNextAuthSession>['update']
 }
 
-export const SessionContext = createContext({
+export const SessionContext = createContext<SessionContextValue>({
 	session: null,
-	setSession: () => {},
-	isSupabaseConfigured: false,
 	isLoading: true,
-} as SessionContextValue)
+	update: async () => null,
+})
 
-export default function SessionProvider({ children }: { children: ReactNode }) {
-	const [session, setSession] = useState<SessionType>(null)
-	const [isLoading, setIsLoading] = useState(true)
-	const isSupabaseConfigured = supabase !== null
+function SessionBridge({ children }: { children: ReactNode }) {
+	const { data: nextAuthSession, status, update } = useNextAuthSession()
+	const isLoading = status === 'loading'
 
-	useEffect(() => {
-		if (!isSupabaseConfigured || !supabase) {
-			console.warn('Supabase no está configurado. La autenticación no estará disponible.')
-			setIsLoading(false)
-			return
-		}
-
-		supabase.auth.getSession().then(({ data: { session } }) => {
-			setSession(session)
-			setIsLoading(false)
-		})
-
-		const {
-			data: { subscription },
-		} = supabase.auth.onAuthStateChange((_event, session) => {
-			setSession(session)
-		})
-
-		return () => subscription.unsubscribe()
-	}, [isSupabaseConfigured])
+	const session: SessionType = nextAuthSession?.user
+		? {
+				user: {
+					id:
+						nextAuthSession.user.id ??
+						(() => {
+							if (process.env.NODE_ENV !== 'production') {
+								console.error(
+									'session.user.id ausente: revisar el callback session() en auth.ts'
+								)
+							}
+							return ''
+						})(),
+					email: nextAuthSession.user.email,
+					name: nextAuthSession.user.name,
+					image: nextAuthSession.user.image,
+				},
+				expires: nextAuthSession.expires,
+			}
+		: null
 
 	return (
-		<SessionContext.Provider value={{ session, setSession, isSupabaseConfigured, isLoading }}>
+		<SessionContext.Provider value={{ session, isLoading, update }}>
 			{children}
 		</SessionContext.Provider>
 	)
 }
+
+export default function SessionProvider({ children }: { children: ReactNode }) {
+	return (
+		<NextAuthSessionProvider>
+			<SessionBridge>{children}</SessionBridge>
+		</NextAuthSessionProvider>
+	)
+}
+
+export const useSessionContext = () => useContext(SessionContext)

@@ -1,5 +1,7 @@
-import { useState } from 'react'
-import { Navigate } from 'react-router'
+'use client'
+
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/molecules/card'
 import { Button } from '@/ui/atoms/button'
@@ -11,6 +13,7 @@ import { useDefaultBoardCheck } from './hooks/useDefaultBoardCheck'
 export default function AuthCard() {
 	const [isRegister, setIsRegister] = useState(false)
 	const [isSubmitted, setIsSubmitted] = useState(false)
+	const router = useRouter()
 
 	const { t } = useTranslation()
 
@@ -26,8 +29,14 @@ export default function AuthCard() {
 		resetForm()
 	}
 
+	useEffect(() => {
+		if (isSubmitted) {
+			router.replace('/')
+		}
+	}, [isSubmitted, router])
+
 	if (isSubmitted) {
-		return <Navigate to='/' replace />
+		return null
 	}
 
 	const title = isRegister ? t('log_in_form_title') : t('sing_in')

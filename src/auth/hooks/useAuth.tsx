@@ -1,8 +1,9 @@
+'use client'
+
 import { useState, type FormEvent } from 'react'
 import { toast } from 'sonner'
-import { supabase, isSupabaseConfigured } from '@/lib/supabase'
+import { signIn, signOut } from 'next-auth/react'
 import { useTranslation } from 'react-i18next'
-import type { AuthUnknownError } from '@supabase/supabase-js'
 
 interface FormState {
 	loading: boolean
@@ -31,30 +32,43 @@ export function useAuth(isRegister: boolean, setIsSubmitted: (submitted: boolean
 		setFormState((prev) => ({ ...prev, loading: true }))
 
 		const authPromise = async () => {
-			if (!isSupabaseConfigured || !supabase) {
-				throw new Error('Supabase no configurado')
+			if (isRegister) {
+				// Registration: call our API route that creates user with Prisma then signs in
+				const res = await fetch('/api/auth/register', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						email: formState.email,
+						password: formState.password,
+					}),
+				})
+				if (!res.ok) {
+					const data = await res.json()
+					throw new Error(data.error || 'Error al registrarse')
+				}
+				// Auto sign-in after registration
+				const result = await signIn('credentials', {
+					email: formState.email,
+					password: formState.password,
+					redirect: false,
+				})
+				if (result?.error) throw new Error(result.error)
+			} else {
+				const result = await signIn('credentials', {
+					email: formState.email,
+					password: formState.password,
+					redirect: false,
+				})
+				if (result?.error) throw new Error(result.error)
 			}
 
-			const { data, error } = isRegister
-				? await supabase.auth.signUp({
-						email: formState.email,
-						password: formState.password,
-					})
-				: await supabase.auth.signInWithPassword({
-						email: formState.email,
-						password: formState.password,
-					})
-
-			if (error) throw error
-
 			setIsSubmitted(true)
-			return data
 		}
 
 		toast.promise(authPromise(), {
 			loading: t('loading', { defaultValue: 'Cargando...' }),
 			success: isRegister ? t('successful_log_in_toast') : t('sing_in_toast'),
-			error: (error: AuthUnknownError) => {
+			error: (error: Error) => {
 				return error.message || t('auth_error', { defaultValue: 'Error de autenticación' })
 			},
 			finally: () => {
@@ -75,33 +89,24 @@ export function useAuth(isRegister: boolean, setIsSubmitted: (submitted: boolean
 		setFormState((prev) => ({ ...prev, loading: true }))
 
 		const authPromise = async () => {
-			if (!isSupabaseConfigured || !supabase) {
-				throw new Error('Supabase no configurado')
-			}
-
-			const { data, error } = await supabase.auth.signInWithOAuth({
-				provider: 'github',
-				options: {
-					redirectTo: `${window.location.origin}/`,
-				},
-			})
-
-			if (error) throw error
-
+			await signIn('github', { callbackUrl: '/' })
 			setIsSubmitted(true)
-			return data
 		}
 
 		toast.promise(authPromise(), {
 			loading: t('loading', { defaultValue: 'Cargando...' }),
 			success: t('sing_in_toast'),
-			error: (error: AuthUnknownError) => {
+			error: (error: Error) => {
 				return error.message || t('auth_error', { defaultValue: 'Error de autenticación' })
 			},
 			finally: () => {
 				setFormState((prev) => ({ ...prev, loading: false }))
 			},
 		})
+	}
+
+	const handleSignOut = async () => {
+		await signOut({ callbackUrl: '/auth' })
 	}
 
 	const resetForm = () => {
@@ -120,6 +125,7 @@ export function useAuth(isRegister: boolean, setIsSubmitted: (submitted: boolean
 		formData,
 		handleAuth,
 		handleGitHubAuth,
+		handleSignOut,
 		resetForm,
 	}
 }
