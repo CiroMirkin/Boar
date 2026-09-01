@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { fetchReminder, saveReminder } from '../repository/ReminderRepositoryFactory'
 import { useSession } from '@/auth/hooks/useSession'
-import { Reminder } from '../model/reminder'
+import { blankReminder, Reminder } from '../model/reminder'
 import { useBoardId } from '@/auth/state/store'
 
 const reminderQueryKey = ['reminder']
@@ -19,6 +19,7 @@ export const useReminderQuery = () => {
 	} = useQuery({
 		queryKey: [...reminderQueryKey, session?.user.id, boardId],
 		queryFn: () => fetchReminder(session, boardId),
+		placeholderData: blankReminder,
 	})
 
 	const { mutate: updateReminder, isPending: isSaving } = useMutation({

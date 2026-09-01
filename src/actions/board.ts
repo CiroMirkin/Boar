@@ -95,7 +95,9 @@ export async function createBoard({ name }: { name: string }): Promise<void> {
 
 		// Create board accessories
 		await tx.note.create({ data: { boardId: board.id, content: '' } })
-		await tx.reminder.create({ data: { boardId: board.id, data: {} } })
+		await tx.reminder.create({
+			data: { boardId: board.id, data: { columnPosition: '', text: '' } },
+		})
 		await tx.archive.create({ data: { boardId: board.id } })
 	})
 }
@@ -118,8 +120,10 @@ export async function getReminders({ boardId }: { boardId: string }): Promise<Re
 	await requireBoardOwnership(boardId, userId)
 
 	const reminder = await prisma.reminder.findUnique({ where: { boardId } })
-	const data = reminder?.data as Reminder | null
-	return data ?? { columnPosition: '', text: '' }
+	// `data` puede ser `{}` (así lo siembra un board nuevo) o parcial: normalizar
+	// siempre a la forma completa para no romper los inputs controlados del cliente.
+	const data = (reminder?.data ?? {}) as Partial<Reminder>
+	return { columnPosition: data.columnPosition ?? '', text: data.text ?? '' }
 }
 
 export async function saveReminders({
