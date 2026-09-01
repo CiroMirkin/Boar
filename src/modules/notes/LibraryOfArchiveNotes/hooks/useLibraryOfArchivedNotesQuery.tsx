@@ -22,6 +22,7 @@ export const useLibraryOfArchivedNotesQuery = () => {
 		queryKey: fullQueryKey,
 		queryFn: () => fetchLibraryOfArchivedNotes(session, boardId),
 		initialData: defaultLibraryOfArchivedNotes,
+		enabled: !!boardId,
 	})
 
 	const { mutate: updateArchivedNotes, isPending: isSaving } = useMutation({

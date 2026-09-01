@@ -2,9 +2,11 @@ import { USER_IS_IN } from '@/ui/organisms/userIsIn'
 import PageContainer from './PageContainer'
 import UsageHistory from '@/modules/UsageHistory/UsageHistory'
 import { useTranslation } from 'react-i18next'
+import { useSyncBoardIdFromRoute } from '@/auth/state/useSyncBoardIdFromRoute'
 
 export function TimeTracking() {
 	const { t } = useTranslation()
+	useSyncBoardIdFromRoute()
 	return (
 		<PageContainer
 			title={t('usage_history.title')}

@@ -31,7 +31,9 @@ export const useUsageHistoryQuery = ({ onSuccess, onError }: UseUsageHistoryQuer
 			if (session && boardId) return nextjsUsageHistoryRepository.getAll(boardId)
 			return localStorageUsageHistoryRepository.getAll()
 		},
-		enabled: !!userId,
+		// Un usuario logueado debe esperar al boardId de la ruta antes de consultar
+		// (si no, lee/escribe datos de invitado en localStorage por error).
+		enabled: !!userId && (!session || !!boardId),
 		placeholderData: [],
 	})
 

@@ -23,6 +23,7 @@ export const useArchivedTasksQuery = () => {
 		queryKey: fullQueryKey,
 		queryFn: () => fetchArchivedTasks(session, boardId),
 		initialData: emptyArchivedTasks,
+		enabled: !!boardId,
 	})
 
 	const { mutate: updateArchivedTasks, isPending: isSaving } = useMutation({

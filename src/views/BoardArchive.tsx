@@ -4,9 +4,11 @@ import { USER_IS_IN } from '@/ui/organisms/userIsIn'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/ui/atoms/tabs'
 import { useTranslation } from 'react-i18next'
 import PageContainer from './PageContainer'
+import { useSyncBoardIdFromRoute } from '@/auth/state/useSyncBoardIdFromRoute'
 
 export function BoardArchive() {
 	const { t } = useTranslation()
+	useSyncBoardIdFromRoute()
 	return (
 		<PageContainer
 			title={t('menu.archive')}
