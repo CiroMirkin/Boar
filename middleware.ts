@@ -5,27 +5,19 @@ import { authConfig } from './auth.config'
 
 const { auth } = NextAuth(authConfig)
 
-const PUBLIC_ROUTES = [
-	'/auth',
-	'/help',
-	'/board/1', // guest board
-]
-
-function isPublicRoute(pathname: string): boolean {
-	return PUBLIC_ROUTES.some((route) => pathname === route || pathname.startsWith(route + '/'))
-}
+// The guest board without login.
+const GUEST_BOARD = '/board/1'
 
 export default auth((req: NextRequest & { auth: unknown }) => {
 	const { pathname } = req.nextUrl
+	const isAuthenticated = !!req.auth
 
-	if (pathname.startsWith('/api/') || pathname.startsWith('/_next/')) {
-		return NextResponse.next()
+	if (!isAuthenticated && pathname === '/') {
+		return NextResponse.redirect(new URL(GUEST_BOARD, req.url))
 	}
 
-	const isAuthenticated = !!req.auth
-	if (!isAuthenticated && !isPublicRoute(pathname)) {
-		const authUrl = new URL('/auth', req.url)
-		return NextResponse.redirect(authUrl)
+	if (isAuthenticated && pathname === '/auth') {
+		return NextResponse.redirect(new URL('/', req.url))
 	}
 
 	return NextResponse.next()

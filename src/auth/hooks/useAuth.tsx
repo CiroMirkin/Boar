@@ -33,7 +33,6 @@ export function useAuth(isRegister: boolean, setIsSubmitted: (submitted: boolean
 
 		const authPromise = async () => {
 			if (isRegister) {
-				// Registration: call our API route that creates user with Prisma then signs in
 				const res = await fetch('/api/auth/register', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
@@ -63,6 +62,7 @@ export function useAuth(isRegister: boolean, setIsSubmitted: (submitted: boolean
 			}
 
 			setIsSubmitted(true)
+			window.location.assign('/')
 		}
 
 		toast.promise(authPromise(), {
