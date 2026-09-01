@@ -1,4 +1,4 @@
-# Boar
+# Capo
 <p align="center"><b>Un tablero personal para organizarte sin distracciones.</b></p>
 <p align="center">
     <a href="https://github.com/CiroMirkin/Boar/stargazers"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/CiroMirkin/Boar"></a><a href="https://cm-boar.netlify.app/"><img alt="Deploy Status" src="https://img.shields.io/badge/Demo-Live_Preview-success?style=flat&logo=netlify&logoColor=white"></a><a href="https://github.com/CiroMirkin/Boar/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
@@ -7,12 +7,12 @@
 
 ## 🎯 Problematica e Impacto
 
-En entornos de alta carga mental, la fragmentación de la información reduce la productividad. Boar nace para centralizar el flujo de trabajo (tablero), la memoria a largo plazo (notas) y la auditoría de rendimiento (registro de uso) en una sola interfaz cohesiva.
+En entornos de alta carga mental, la fragmentación de la información reduce la productividad. Capo nace para centralizar el flujo de trabajo (tablero), la memoria a largo plazo (notas) y la auditoría de rendimiento (registro de uso) en una sola interfaz cohesiva.
 
 
-![Boar](./public//Boar_OG.png)
+![Capo](./public//Boar_OG.png)
 
-### Impacto clave de Boar:
+### Impacto clave de Capo:
 
 * **Reducción de Fatiga Visual:** Interfaz minimalista con temas adaptativos.
 * **Trazabilidad Total:** Sistema de archivo con exportación PDF/JSON para auditorías de productividad.
