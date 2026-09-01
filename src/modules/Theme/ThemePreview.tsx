@@ -1,5 +1,5 @@
 import { useTheme } from '@/common/hooks/useTheme'
-import { useMediaQuery } from '@uidotdev/usehooks'
+import { useMediaQuery } from '@/common/hooks/useMediaQuery'
 import { useTranslation } from 'react-i18next'
 
 function ThemePreview() {

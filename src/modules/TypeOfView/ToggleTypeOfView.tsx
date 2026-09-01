@@ -1,7 +1,7 @@
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
 import { defaultView, TypeOfView, typeOfViewLocalStorageKey } from './typeOfView'
-import { useLocalStorage } from '@uidotdev/usehooks'
+import { useLocalStorage } from '@/common/hooks/useLocalStorage'
 import { CheckView } from './CheckView'
 import { SettingSection } from '@/ui/organisms/SettingSection'
 

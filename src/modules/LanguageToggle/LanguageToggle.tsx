@@ -9,7 +9,8 @@ import {
 import { LanguagesIcon } from '@/ui/atoms/icons'
 import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
-import { useLocalStorage, usePreferredLanguage } from '@uidotdev/usehooks'
+import { usePreferredLanguage } from '@/common/hooks/usePreferredLanguage'
+import { useLocalStorage } from '@/common/hooks/useLocalStorage'
 import { LANGUAGE_LOCALSTORAGE_KEY } from './language'
 
 export function LanguageToggle() {

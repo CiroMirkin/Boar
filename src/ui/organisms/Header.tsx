@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useVisibilityChange } from '@uidotdev/usehooks'
+import { useVisibilityChange } from '@/common/hooks/useVisibilityChange'
 import {
 	DropdownMenu,
 	DropdownMenuContent,
