@@ -1,4 +1,4 @@
-import { BoardPage } from "@/pages/BoardPage"
+import { BoardPage } from "@/views/BoardPage"
 
 interface Props {
 	params: Promise<{ id: string }>

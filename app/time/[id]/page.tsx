@@ -1,6 +1,6 @@
 'use client'
 
-import { TimeTracking } from '@/pages/TimeTracking'
+import { TimeTracking } from '@/views/TimeTracking'
 
 export default function TimeRoute() {
 	return <TimeTracking />

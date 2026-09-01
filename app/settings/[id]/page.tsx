@@ -1,4 +1,4 @@
-import { Settings } from '@/pages/Settings'
+import { Settings } from '@/views/Settings'
 
 interface Props {
 	params: Promise<{ id: string }>

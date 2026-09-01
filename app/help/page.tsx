@@ -1,6 +1,6 @@
 'use client'
 
-import { Help } from '@/pages/Help'
+import { Help } from '@/views/Help'
 
 export default function HelpRoute() {
 	return <Help />

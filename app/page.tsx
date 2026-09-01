@@ -1,6 +1,6 @@
 'use client'
 
-import UserDashboard from '@/pages/UserDashboard'
+import UserDashboard from '@/views/UserDashboard'
 
 export default function HomePage() {
 	return <UserDashboard />

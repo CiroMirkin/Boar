@@ -1,6 +1,6 @@
 'use client'
 
-import Auth from '@/pages/Auth'
+import Auth from '@/views/Auth'
 
 export default function AuthRoute() {
 	return <Auth />
