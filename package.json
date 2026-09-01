@@ -73,6 +73,7 @@
     "react-hook-form": "^7.58.1",
     "react-i18next": "^15.4.0",
     "react-magic-motion": "^1.1.2",
+    "server-only": "^0.0.1",
     "sonner": "^2.0.3",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
