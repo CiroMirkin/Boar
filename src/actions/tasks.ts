@@ -70,6 +70,9 @@ export async function getTaskBoard({ boardId }: { boardId: string }): Promise<Ta
 	}))
 }
 
+// Placeholder column IDs from emptyTaskBoard — resolved to real rows by position.
+const DEFAULT_COLUMN_IDS = ['c1', 'c2', 'c3']
+
 /**
  * Full-sync: upserts all columns and tasks from a TaskBoard snapshot.
  * Columns not in the new snapshot are deleted (cascade deletes their tasks).
@@ -86,41 +89,59 @@ export async function saveTaskBoard({
 	await requireBoardOwnership(boardId, userId)
 
 	await prisma.$transaction(async (tx) => {
+		// Reject client-supplied IDs that belong to another user's board.
 		const incomingColumnIds = taskBoard
 			.map((c) => c.id)
-			.filter((id) => id && !id.startsWith('c')) // skip default key IDs
+			.filter((id) => id && !DEFAULT_COLUMN_IDS.includes(id))
+		const incomingTaskIds = taskBoard.flatMap((c) => c.tasks.map((t) => t.id)).filter(Boolean)
 
-		// Upsert columns
+		const foreignColumn = await tx.column.findFirst({
+			where: { id: { in: incomingColumnIds }, boardId: { not: boardId } },
+			select: { id: true },
+		})
+		const foreignTask = await tx.task.findFirst({
+			where: { id: { in: incomingTaskIds }, column: { boardId: { not: boardId } } },
+			select: { id: true },
+		})
+		if (foreignColumn || foreignTask) throw new Error('No autorizado')
+
+		// Upsert columns and their tasks, tracking the real column IDs we keep.
+		const persistedColumnIds: string[] = []
+
 		for (let i = 0; i < taskBoard.length; i++) {
 			const col = taskBoard[i]
-			const isDefaultId = col.id === 'c1' || col.id === 'c2' || col.id === 'c3'
 
-			if (isDefaultId) {
-				// These are placeholder IDs from emptyTaskBoard — look up by order
-				await tx.column.updateMany({
-					where: { boardId, order: i },
-					data: { name: col.status, order: i },
-				})
+			let realColumnId: string
+			if (DEFAULT_COLUMN_IDS.includes(col.id)) {
+				// Placeholder ID from emptyTaskBoard — match the existing column by position.
+				const existing = await tx.column.findFirst({ where: { boardId, order: i } })
+				if (existing) {
+					await tx.column.update({
+						where: { id: existing.id },
+						data: { name: col.status, order: i },
+					})
+					realColumnId = existing.id
+				} else {
+					const created = await tx.column.create({
+						data: { name: col.status, order: i, boardId },
+					})
+					realColumnId = created.id
+				}
 			} else {
 				await tx.column.upsert({
 					where: { id: col.id },
 					create: { id: col.id, name: col.status, order: i, boardId },
 					update: { name: col.status, order: i },
 				})
+				realColumnId = col.id
 			}
+			persistedColumnIds.push(realColumnId)
 
-			// Get the real column id after upsert
-			const realCol = isDefaultId
-				? await tx.column.findFirst({ where: { boardId, order: i } })
-				: { id: col.id }
-
-			if (!realCol) continue
-
-			const incomingTaskIds = col.tasks.map((t) => t.id)
+			const columnTaskIds = col.tasks.map((t) => t.id)
 
 			// Delete tasks removed from this column
 			await tx.task.deleteMany({
-				where: { columnId: realCol.id, id: { notIn: incomingTaskIds } },
+				where: { columnId: realColumnId, id: { notIn: columnTaskIds } },
 			})
 
 			// Upsert tasks
@@ -130,14 +151,14 @@ export async function saveTaskBoard({
 					create: {
 						id: task.id,
 						descriptionText: task.descriptionText,
-						columnId: realCol.id,
+						columnId: realColumnId,
 						tags: (task.tags as object) ?? undefined,
 						notesAndComments: task.notesAndComments ?? undefined,
 						timelineHistory: (task.timelineHistory as object) ?? undefined,
 					},
 					update: {
 						descriptionText: task.descriptionText,
-						columnId: realCol.id,
+						columnId: realColumnId,
 						tags: (task.tags as object) ?? undefined,
 						notesAndComments: task.notesAndComments ?? undefined,
 						timelineHistory: (task.timelineHistory as object) ?? undefined,
@@ -146,12 +167,10 @@ export async function saveTaskBoard({
 			}
 		}
 
-		// Delete columns that were removed from the board
-		if (incomingColumnIds.length > 0) {
-			await tx.column.deleteMany({
-				where: { boardId, id: { notIn: incomingColumnIds } },
-			})
-		}
+		// Delete columns that were removed from the board (cascade deletes their tasks).
+		await tx.column.deleteMany({
+			where: { boardId, id: { notIn: persistedColumnIds } },
+		})
 	})
 }
 
