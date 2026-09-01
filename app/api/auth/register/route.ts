@@ -1,16 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
+import { Prisma, prisma } from '@/lib/prisma'
+import { isRateLimited } from '@/lib/rateLimit'
 import bcrypt from 'bcryptjs'
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export async function POST(req: NextRequest) {
 	try {
+		const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
+		if (isRateLimited(`register:${ip}`, 5, 60_000)) {
+			return NextResponse.json(
+				{ error: 'Demasiados intentos. Probá de nuevo en un minuto.' },
+				{ status: 429 }
+			)
+		}
+
 		const body = await req.json()
-		// Normalizado para coincidir con el lookup de auth.ts, que hace toLowerCase()
 		const email = typeof body?.email === 'string' ? body.email.trim().toLowerCase() : ''
 		const password = typeof body?.password === 'string' ? body.password : ''
 
 		if (!email || !password) {
 			return NextResponse.json({ error: 'Email y contraseña son requeridos' }, { status: 400 })
+		}
+
+		if (!EMAIL_RE.test(email)) {
+			return NextResponse.json({ error: 'El email no es válido' }, { status: 400 })
 		}
 
 		if (password.length < 6) {
@@ -26,7 +40,6 @@ export async function POST(req: NextRequest) {
 		}
 
 		const hashedPassword = await bcrypt.hash(password, 12)
-
 		const user = await prisma.user.create({
 			data: {
 				email,
@@ -35,7 +48,14 @@ export async function POST(req: NextRequest) {
 		})
 
 		return NextResponse.json({ id: user.id, email: user.email }, { status: 201 })
-	} catch (error) {
+	}
+	catch (error) {
+		/*
+		Violación de unicidad: otro request creó el mismo email en la carrera entre el findUnique de arriba y este create.
+		*/
+		if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
+			return NextResponse.json({ error: 'El email ya está registrado' }, { status: 409 })
+		}
 		console.error('Error al registrar usuario:', error)
 		return NextResponse.json({ error: 'Error interno del servidor' }, { status: 500 })
 	}
