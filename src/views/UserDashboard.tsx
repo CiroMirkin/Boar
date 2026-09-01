@@ -11,7 +11,7 @@ import PageContainer from './PageContainer'
 import { useDocumentTitle } from '@uidotdev/usehooks'
 
 function UserDashboard() {
-	useDocumentTitle('Tableros - Boar')
+	useDocumentTitle('Tableros - Capo')
 	const { bg } = useTheme()
 	const whereUserIs = USER_IS_IN.DASHBOARD
 	const { session, isLoading } = useSession()
@@ -25,7 +25,7 @@ function UserDashboard() {
 
 	if (isLoading) {
 		return (
-			<PageContainer title='Boar' whereUserIs={whereUserIs}>
+			<PageContainer title='Capo' whereUserIs={whereUserIs}>
 				<div className='min-w-48 min-h-64 md:min-h-[60vh] flex items-center justify-center'>
 					<Spinner size={30} />
 				</div>
@@ -39,7 +39,7 @@ function UserDashboard() {
 
 	return (
 		<div className={`${bg}`}>
-			<PageContainer title='Boar' whereUserIs={whereUserIs} showBoardNavigation={false}>
+			<PageContainer title='Capo' whereUserIs={whereUserIs} showBoardNavigation={false}>
 				<section className='min-h-[calc(100vh-5rem)] px-4 md:px-8'>
 					<Dashboard />
 				</section>

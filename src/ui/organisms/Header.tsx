@@ -83,7 +83,7 @@ export function Header({ title, whereUserIs, showBoardNavigation = true }: Heade
 									Inicio
 								</TransitionLink>
 							)}
-							{!showDashboardLink && 'Boar'}
+							{!showDashboardLink && 'Capo'}
 						</DropdownMenuLabel>
 						<DropdownMenuSeparator />
 						{!showBoardLinks && (

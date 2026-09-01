@@ -106,7 +106,7 @@ export const downloadArchiveLikePDF = ({
 		isFirstEntry = false
 	})
 
-	doc.save('archivo_Boar.pdf')
+	doc.save('archivo_Capo.pdf')
 }
 
 const setupBrutalistaDocument = (

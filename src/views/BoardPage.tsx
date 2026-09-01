@@ -41,7 +41,7 @@ export function BoardPage({ boardId }: { boardId: string }) {
 
 	if (isLoadingSession || showSpinner) {
 		return (
-			<PageContainer title='Board' whereUserIs={USER_IS_IN.BOARD}>
+			<PageContainer title='Capo' whereUserIs={USER_IS_IN.BOARD}>
 				<div className='min-w-48 min-h-64 md:min-h-[60vh] flex items-center justify-center'>
 					<Spinner size={30} />
 				</div>
@@ -50,7 +50,7 @@ export function BoardPage({ boardId }: { boardId: string }) {
 	}
 
 	return (
-		<PageContainer title={board?.name || 'Board'} whereUserIs={USER_IS_IN.BOARD}>
+		<PageContainer title={board?.name || 'Capo'} whereUserIs={USER_IS_IN.BOARD}>
 			<Board id={boardId}>
 				<ColumnsFooterContentProvider value={columnsData}>
 					{typeOfView == 'LIST' && (

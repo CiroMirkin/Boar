@@ -9,7 +9,7 @@ interface Props {
 
 export function Board({ children, id }: Props) {
 	const { board, isError } = useBoardQuery(id)
-	useDocumentTitle(board ? `${board.name} - Boar` : 'Boar')
+	useDocumentTitle(board ? `${board.name} - Capo` : 'Capo')
 
 	if (isError) {
 		return <div>Ha ocurrido un error al cargar el tablero.</div>

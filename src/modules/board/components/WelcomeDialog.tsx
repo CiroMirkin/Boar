@@ -10,9 +10,10 @@ import {
 	DialogTitle,
 } from '@/ui/molecules/dialog'
 import { Button } from '@/ui/atoms/button'
-import { DescriptionOfBoar } from '../../../ui/atoms/DescriptionOfBoar'
+import { DescriptionOfCapo } from '../../../ui/atoms/DescriptionOfCapo'
 
 export function WelcomeDialog() {
+	// clave 'boar-welcome-dialog' (nombre anterior del proyecto): no renombrar para no invalidar el localStorage de usuarios existentes
 	const open = localStorage.getItem('boar-welcome-dialog')
 		? JSON.parse(localStorage.getItem('boar-welcome-dialog') as string)
 		: false
@@ -26,7 +27,7 @@ export function WelcomeDialog() {
 				<DialogHeader>
 					<DialogTitle>¡Bienvenido!</DialogTitle>
 				</DialogHeader>
-				<DescriptionOfBoar />
+				<DescriptionOfCapo />
 				<DialogFooter className='sm:justify-start'>
 					<DialogClose asChild>
 						<Button type='button' variant='default'>

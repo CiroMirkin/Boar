@@ -4,6 +4,7 @@ import { BoardRepository } from '@/modules/board/repository/boardRepository'
 export default class LocalStorageBoardRepository implements BoardRepository {
 	key
 	constructor() {
+		// prefijo 'boar' (nombre anterior del proyecto): no renombrar para no invalidar el localStorage de usuarios existentes
 		this.key = 'board-boar'
 	}
 	async save(board: boardModel): Promise<void> {

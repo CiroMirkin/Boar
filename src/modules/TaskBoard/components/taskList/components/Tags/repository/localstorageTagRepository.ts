@@ -4,6 +4,7 @@ import { TagRepository, TagRepositoryGetReturn, TagRepositorySaveParams } from '
 export default class LocalStorageTagRepository implements TagRepository {
 	key
 	constructor() {
+		// sufijo 'boar' (nombre anterior del proyecto): no renombrar para no invalidar el localStorage de usuarios existentes
 		this.key = 'tags-boar'
 	}
 	async save(allTagsInfo: TagRepositorySaveParams): Promise<void> {

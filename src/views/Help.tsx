@@ -1,5 +1,5 @@
 import { Separator } from '@/ui/atoms/separator'
-import { DescriptionOfBoar } from '../ui/atoms/DescriptionOfBoar'
+import { DescriptionOfCapo } from '../ui/atoms/DescriptionOfCapo'
 import { Header } from '../ui/organisms/Header'
 import { USER_IS_IN } from '../ui/organisms/userIsIn'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/ui/atoms/accordion'
@@ -19,7 +19,7 @@ export function Help() {
 			<div className='w-full px-6 md:px-11'>
 				<section className='mb-4'>
 					<h2 className='mb-2 text-2xl'>{t('help.h2')}</h2>
-					<DescriptionOfBoar />
+					<DescriptionOfCapo />
 				</section>
 				<Separator />
 				<section className='my-4'>
@@ -214,7 +214,7 @@ export function Help() {
 							<AccordionTrigger>Bienvenida</AccordionTrigger>
 							<AccordionContent>
 								<p>
-									La primera vez que uses Boar, te daremos una cálida bienvenida
+									La primera vez que uses Capo, te daremos una cálida bienvenida
 									para que conozcas la aplicación.
 								</p>
 							</AccordionContent>
@@ -223,7 +223,7 @@ export function Help() {
 							<AccordionTrigger>Idiomas</AccordionTrigger>
 							<AccordionContent>
 								<p>
-									Configura Boar en tu idioma preferido: Inglés o Español. La
+									Configura Capo en tu idioma preferido: Inglés o Español. La
 									aplicación intentará ajustarse automáticamente al idioma de tu
 									navegador.
 								</p>
@@ -233,7 +233,7 @@ export function Help() {
 							<AccordionTrigger>Temas</AccordionTrigger>
 							<AccordionContent>
 								<p>
-									Personaliza la apariencia de Boar con diferentes temas de color.
+									Personaliza la apariencia de Capo con diferentes temas de color.
 									¡Elige el que más te guste!
 								</p>
 							</AccordionContent>

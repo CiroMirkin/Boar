@@ -24,6 +24,7 @@ function AppInit({ children }: { children: ReactNode }) {
 	const mounted = useIsHydrated()
 
 	const defaultTheme = useUserSystemTheme()
+	// clave 'boar-theme' (nombre anterior del proyecto): no renombrar para no invalidar el localStorage de usuarios existentes
 	const [theme, setTheme] = useLocalStorage('boar-theme', defaultTheme)
 
 	return (

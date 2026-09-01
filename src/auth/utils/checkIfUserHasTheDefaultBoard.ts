@@ -9,6 +9,7 @@ import { emptyTaskBoard } from '@/modules/TaskBoard/model/taskBoard'
 export const checkIfUserHasTheDefaultBoard = async (): Promise<boolean> => {
 	if (typeof window === 'undefined') return true
 
+	// claves con 'boar' (nombre anterior del proyecto): no renombrar para no invalidar el localStorage de usuarios existentes
 	const rawBoard = localStorage.getItem('board-boar')
 	const board = rawBoard ? JSON.parse(rawBoard) : null
 	const boardName: string = board?.name ?? ''

@@ -4,6 +4,7 @@ import { UsageHistoryRepository } from './usageHistoryRepository'
 export class LocalStorageUsageHistoryRepository implements UsageHistoryRepository {
 	key
 	constructor() {
+		// prefijo 'boar-' (nombre anterior del proyecto): no renombrar para no invalidar el localStorage de usuarios existentes
 		this.key = 'boar-usage-history'
 	}
 	async getAll(): Promise<UsageHistory> {

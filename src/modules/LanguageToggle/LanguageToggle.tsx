@@ -21,7 +21,7 @@ export function LanguageToggle() {
 	if (i18n.language !== language) {
 		if (i18n.language === 'en' && preferredLanguage == 'en') {
 			// La preferencia de idioma del usuario es ingles y debe actualizarse el toggle
-			// Al entrar a Boar el idioma se cambia a ingles según las preferencias del usuario, este cambio de hace en App.tsx
+			// Al entrar a Capo el idioma se cambia a ingles según las preferencias del usuario, este cambio de hace en App.tsx
 			setLanguage('en')
 		}
 	}

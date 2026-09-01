@@ -14,7 +14,7 @@ interface PageContainerProps {
 export default function PageContainer({
 	children,
 	whereUserIs,
-	title = 'Boar',
+	title = 'Capo',
 	className = '',
 	showBoardNavigation = true,
 }: PageContainerProps) {
