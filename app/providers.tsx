@@ -3,10 +3,10 @@
 import '../src/i18next/index'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster as SonnerToaster } from 'sonner'
-import { useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import SessionProvider from '@/auth/contexts/SessionProvider'
 import { ThemeProvider } from '@/modules/Theme/ThemeContext'
-import { useUserSystemTheme } from '@/modules/Theme/useUserSystemTheme'
+import { darkTheme, lightTheme, type Theme } from '@/modules/Theme/themesList'
 import { useLocalStorage } from '@/common/hooks/useLocalStorage'
 import { useIsHydrated } from '@/common/hooks/useIsHydrated'
 import { useUserPreffedLanguage } from '@/modules/LanguageToggle/useUserPreffedLanguage'
@@ -23,9 +23,19 @@ function ClientOnlyInit() {
 function AppInit({ children }: { children: ReactNode }) {
 	const mounted = useIsHydrated()
 
-	const defaultTheme = useUserSystemTheme()
 	// clave 'boar-theme' (nombre anterior del proyecto): no renombrar para no invalidar el localStorage de usuarios existentes
-	const [theme, setTheme] = useLocalStorage('boar-theme', defaultTheme)
+	const [theme, setTheme] = useLocalStorage<Theme>('boar-theme', lightTheme)
+
+	useEffect(() => {
+		try {
+			if (window.localStorage.getItem('boar-theme') !== null) return
+		} catch {
+			return
+		}
+		if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) {
+			setTheme(darkTheme)
+		}
+	}, [setTheme])
 
 	return (
 		<ThemeProvider theme={theme} changeTheme={setTheme}>
