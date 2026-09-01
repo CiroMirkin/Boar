@@ -5,8 +5,6 @@ import { prisma } from '@/lib/prisma'
 import type { TaskBoard } from '@/modules/TaskBoard/model/taskBoard'
 import type { taskModel } from '@/modules/TaskBoard/model/task'
 
-// ─── Auth helpers ─────────────────────────────────────────────────────────────
-
 async function requireAuth() {
 	const session = await auth()
 	if (!session?.user?.id) throw new Error('No autorizado')
@@ -42,8 +40,6 @@ async function requireTaskOwnership(taskId: string, userId: string) {
 	return task
 }
 
-// ─── TaskBoard (full board shape) ─────────────────────────────────────────────
-
 /**
  * Returns the board as a TaskBoard (TaskColumn[]) shape expected by the client.
  * Columns are ordered by `order`, tasks by `createdAt`.
@@ -66,9 +62,10 @@ export async function getTaskBoard({ boardId }: { boardId: string }): Promise<Ta
 		tasks: col.tasks.map((t) => ({
 			id: t.id,
 			descriptionText: t.descriptionText,
-			tags: (t.tags as taskModel['tags']) ?? undefined,
+			tags: (t.tags as unknown as taskModel['tags']) ?? undefined,
 			notesAndComments: t.notesAndComments ?? undefined,
-			timelineHistory: (t.timelineHistory as taskModel['timelineHistory']) ?? undefined,
+			timelineHistory:
+				(t.timelineHistory as unknown as taskModel['timelineHistory']) ?? undefined,
 		})),
 	}))
 }
@@ -158,8 +155,6 @@ export async function saveTaskBoard({
 	})
 }
 
-// ─── Column actions ───────────────────────────────────────────────────────────
-
 export async function createColumn({
 	boardId,
 	name,
@@ -200,8 +195,6 @@ export async function updateColumnName({
 	await requireColumnOwnership(columnId, userId)
 	await prisma.column.update({ where: { id: columnId }, data: { name } })
 }
-
-// ─── Task actions ─────────────────────────────────────────────────────────────
 
 export async function createTask({
 	columnId,

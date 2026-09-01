@@ -26,7 +26,7 @@ export async function getArchive({ boardId }: { boardId: string }): Promise<Arch
 	await requireBoardOwnership(boardId, userId)
 
 	const archive = await prisma.archive.findUnique({ where: { boardId } })
-	return (archive?.taskList as Archive) ?? []
+	return (archive?.taskList as unknown as Archive) ?? []
 }
 
 export async function saveArchive({
@@ -57,7 +57,7 @@ export async function getArchivedNotes({
 	await requireBoardOwnership(boardId, userId)
 
 	const archive = await prisma.archive.findUnique({ where: { boardId } })
-	return (archive?.notes as LibraryOfArchivedNotes) ?? { archive: [] }
+	return (archive?.notes as unknown as LibraryOfArchivedNotes) ?? { archive: [] }
 }
 
 export async function saveArchivedNotes({

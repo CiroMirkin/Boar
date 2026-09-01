@@ -46,7 +46,7 @@ export async function getActiveTagGroup({
 		availableTagGroups.length > 0
 			? availableTagGroups.map((g) => ({
 					id: g.id,
-					tags: g.tags as TagGroup['tags'],
+					tags: g.tags as unknown as TagGroup['tags'],
 				}))
 			: defaultAvialableTags
 
@@ -54,7 +54,7 @@ export async function getActiveTagGroup({
 		return {
 			actualTagGroup: {
 				id: board.activeTagGroup.id,
-				tags: board.activeTagGroup.tags as TagGroup['tags'],
+				tags: board.activeTagGroup.tags as unknown as TagGroup['tags'],
 			},
 			tags,
 		}
@@ -89,6 +89,6 @@ export async function getAvailableTagGroups(): Promise<AvailableTags> {
 	if (groups.length === 0) return defaultAvialableTags
 	return groups.map((g) => ({
 		id: g.id,
-		tags: g.tags as TagGroup['tags'],
+		tags: g.tags as unknown as TagGroup['tags'],
 	}))
 }
