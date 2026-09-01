@@ -1,4 +1,3 @@
-import BusinessError from '@/common/errors/businessError'
 import { TaskColumn } from './taskColumn'
 import { TaskListInEachColumn as TaskLists } from '@/modules/TaskBoard/components/taskList/models/taskListInEachColumn'
 
@@ -18,7 +17,7 @@ export const emptyTaskBoard: TaskBoard = [
 		tasks: [],
 	},
 	{
-		id: DEFAULT_COLUMN_IDS[3],
+		id: DEFAULT_COLUMN_IDS[2],
 		status: `default_columns.${DEFAULT_COLUMN_IDS[2]}`,
 		tasks: [],
 	},
@@ -44,12 +43,4 @@ export const joinTaskListsAndTaskBoard = (
 			tasks: taskLists[index] || [],
 		}
 	})
-}
-
-const LIMIT_OF_COLUMNS = 6
-
-export const isItWithinTheLimitOfColumns = (taskBoard: TaskBoard): true | BusinessError => {
-	if (taskBoard.length > LIMIT_OF_COLUMNS)
-		throw new BusinessError('Alcanzaste el limite de columnas.')
-	return true
 }

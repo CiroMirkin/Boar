@@ -11,20 +11,11 @@ import {
 	LogOut,
 	Pencil,
 	Trash2,
-	Bold,
-	Italic,
-	Underline,
-	List,
-	ListOrdered,
-	Undo,
-	Redo,
-	Save,
 	ArrowRight,
 	ArrowLeft,
 	Clipboard,
 	CircleCheck,
 	MessageSquareText,
-	Clock4,
 	Hourglass,
 	Eye,
 	EyeOff,
@@ -73,30 +64,6 @@ export const PencilIcon = ({ className = '' }: IconProps) => (
 export const TrashIcon = ({ className = '' }: IconProps) => (
 	<Trash2 size={iconSize} className={className} />
 )
-export const BoldIcon = ({ className = '' }: IconProps) => (
-	<Bold size={iconSize} className={className} />
-)
-export const ItalicIcon = ({ className = '' }: IconProps) => (
-	<Italic size={iconSize} className={className} />
-)
-export const UnderlineIcon = ({ className = '' }: IconProps) => (
-	<Underline size={iconSize} className={className} />
-)
-export const ListIcon = ({ className = '' }: IconProps) => (
-	<List size={iconSize} className={className} />
-)
-export const ListOrderedIcon = ({ className = '' }: IconProps) => (
-	<ListOrdered size={iconSize} className={className} />
-)
-export const UndoIcon = ({ className = '' }: IconProps) => (
-	<Undo size={iconSize} className={className} />
-)
-export const RedoIcon = ({ className = '' }: IconProps) => (
-	<Redo size={iconSize} className={className} />
-)
-export const SaveIcon = ({ className = '' }: IconProps) => (
-	<Save size={iconSize} className={className} />
-)
 export const ArrowRightIcon = ({ className = '' }: IconProps) => (
 	<ArrowRight size={iconSize} className={className} />
 )
@@ -111,9 +78,6 @@ export const CheckIcon = ({ className = '' }: IconProps) => (
 )
 export const MessageSquareTextIcon = ({ className = '' }: IconProps) => (
 	<MessageSquareText size={iconSize} className={className} />
-)
-export const ClockIcon = ({ className = '' }: IconProps) => (
-	<Clock4 size={iconSize} className={className} />
 )
 export const HourglassIcon = ({ className = '' }: IconProps) => (
 	<Hourglass size={iconSize} className={className} />

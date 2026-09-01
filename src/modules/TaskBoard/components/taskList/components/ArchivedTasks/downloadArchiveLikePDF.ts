@@ -267,7 +267,3 @@ const stripHtmlTags = (html: string): string => {
 		.replace(/\s+/g, ' ')
 		.trim()
 }
-
-export const downloadArchiveLikePDFSimple = ({ archive }: { archive: Archive }): void => {
-	downloadArchiveLikePDF({ archive })
-}

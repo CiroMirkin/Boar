@@ -4,7 +4,7 @@ import {
 	SessionProvider as NextAuthSessionProvider,
 	useSession as useNextAuthSession,
 } from 'next-auth/react'
-import { createContext, type ReactNode, useContext } from 'react'
+import { createContext, type ReactNode } from 'react'
 
 export type SessionUser = {
 	id: string
@@ -69,5 +69,3 @@ export default function SessionProvider({ children }: { children: ReactNode }) {
 		</NextAuthSessionProvider>
 	)
 }
-
-export const useSessionContext = () => useContext(SessionContext)
