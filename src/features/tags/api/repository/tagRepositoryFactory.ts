@@ -30,9 +30,6 @@ export const saveTags = async ({
 	session: SessionType
 	boardId: string
 }): Promise<void> => {
-	console.log(boardId)
-	console.log(actualTags)
-
 	const repository = getTagRepository(session)
 	await repository.save({
 		actualTagGroup: actualTags,
