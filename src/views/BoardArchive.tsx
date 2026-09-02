@@ -1,5 +1,5 @@
 import { LibraryOfArchivedNotes as LibraryOfArchiveNotes } from '@/features/notes'
-import { ArchivedTasks } from '@/modules/TaskBoard/components/taskList/components/ArchivedTasks/ArchivedTasks'
+import { ArchivedTasks } from '@/features/archived-tasks'
 import { USER_IS_IN } from '@/shared/ui/organisms/userIsIn'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/atoms/tabs'
 import { useTranslation } from 'react-i18next'

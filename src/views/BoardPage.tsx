@@ -1,19 +1,21 @@
 'use client'
 
 import { Board } from '@/features/boards'
-import { ColumnsFooterContentProvider } from '@/modules/TaskBoard/components/Columns/context/ColumnsFooter/ColumnsFooterContentProvider'
-import { ColumnsFooterContent } from '@/modules/TaskBoard/components/Columns/context/ColumnsFooter/columnsFooterContent'
-import { ArchiveTaskListButton } from '@/modules/TaskBoard/components/taskList/components/ArchivedTasks/components/ArchiveTaskListButton'
-import { AddNewTaskInput } from '@/modules/TaskBoard/components/taskList/components/AddNewTaskInput'
-import { TaskListInEachColumn } from '@/modules/TaskBoard/components/taskList/TaskListInEachColumn'
+import {
+	ColumnsFooterContentProvider,
+	ColumnsFooterContent,
+	AddNewTaskInput,
+	TaskListInEachColumn,
+	ListView,
+	TableView,
+	useTaskBoardQuery,
+} from '@/features/tasks'
+import { ArchiveTaskListButton } from '@/features/archived-tasks'
 import PageContainer from './PageContainer'
 import { useBoardQuery } from '@/features/boards'
 import { USER_IS_IN } from '@/shared/ui/organisms/userIsIn'
-import { ListView } from '@/modules/TaskBoard/components/ListView'
-import { TableView } from '@/modules/TaskBoard/components/TableView'
 import { useTypeOfView } from '@/shared/preferences/view-mode'
 import { NoteInput } from '@/features/notes'
-import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 import { useReminder } from '@/features/reminders'
 import { useSession } from '@/auth/hooks/useSession'
 import { Spinner } from '@/shared/ui/atoms/spinner'

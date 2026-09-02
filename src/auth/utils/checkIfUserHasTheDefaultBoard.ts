@@ -1,6 +1,6 @@
 import { isDefaultBoardName } from '@/features/boards'
 import { defaultNotes } from '@/features/notes'
-import { emptyTaskBoard } from '@/modules/TaskBoard/model/taskBoard'
+import { emptyTaskBoard } from '@/features/tasks/model/taskBoard'
 
 /**
  * Checks localStorage to see if the user still has the default (empty) guest board.

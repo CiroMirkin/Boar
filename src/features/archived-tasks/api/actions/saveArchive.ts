@@ -1,0 +1,21 @@
+'use server'
+
+import { prisma } from '@/shared/lib/prisma'
+import type { Archive } from '@/features/archived-tasks/model/archive'
+import { requireBoardAccess } from '@/shared/lib/serverAuth'
+
+export async function saveArchive({
+	boardId,
+	taskList,
+}: {
+	boardId: string
+	taskList: Archive
+}): Promise<void> {
+	await requireBoardAccess(boardId)
+
+	await prisma.archive.upsert({
+		where: { boardId },
+		create: { boardId, taskList: taskList as object[] },
+		update: { taskList: taskList as object[] },
+	})
+}

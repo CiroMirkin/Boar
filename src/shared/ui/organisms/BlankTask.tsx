@@ -1,7 +1,7 @@
 'use client'
 
 import React, { createContext, useState } from 'react'
-import { taskModel, emptyTask } from '@/modules/TaskBoard/model/task'
+import { taskModel, emptyTask } from '@/features/tasks/model/task'
 import { Card, CardContent, CardFooter } from '../molecules/card'
 import { TextWithURL } from '@/shared/ui/atoms/TextWithURL'
 import { useTheme } from '@/shared/hooks/useTheme'
