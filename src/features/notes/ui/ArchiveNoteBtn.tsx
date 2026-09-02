@@ -7,7 +7,6 @@ import { ArchiveIcon } from '@/shared/ui/atoms/icons'
 import { useNotesQuery } from '../hooks/useNotesQuery'
 import { useLibraryOfArchivedNotesQuery } from '../hooks/useLibraryOfArchivedNotesQuery'
 import { ArchivedNote } from '../model/archivedNote'
-import { v4 as uuidv4 } from 'uuid'
 
 interface ArchiveNoteBtnProps {
 	setNotesValue: (text: string) => void
@@ -23,7 +22,7 @@ export function ArchiveNoteBtn({ setNotesValue }: ArchiveNoteBtnProps) {
 		if (!notes || notes === '' || notes === '<br>' || !archivedNotes) return
 
 		const newArchivedNote: ArchivedNote = {
-			id: uuidv4(),
+			id: crypto.randomUUID(),
 			note: notes,
 			date: new Date(),
 		}
