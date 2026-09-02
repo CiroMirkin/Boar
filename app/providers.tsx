@@ -9,8 +9,8 @@ import { ThemeProvider } from '@/shared/preferences/theme'
 import { darkTheme, lightTheme, type Theme } from '@/shared/preferences/theme'
 import { useLocalStorage } from '@/shared/hooks/useLocalStorage'
 import { useIsHydrated } from '@/shared/hooks/useIsHydrated'
-import { useUserPreffedLanguage } from '@/modules/LanguageToggle/useUserPreffedLanguage'
-import { useSetLanguageSaved } from '@/modules/LanguageToggle/useSetLanguageSaved'
+import { useUserPreffedLanguage } from '@/shared/preferences/language'
+import { useSetLanguageSaved } from '@/shared/preferences/language'
 import { useSaveTimeTracking } from '@/modules/UsageHistory/hooks/useSaveTimeTracking'
 
 function ClientOnlyInit() {

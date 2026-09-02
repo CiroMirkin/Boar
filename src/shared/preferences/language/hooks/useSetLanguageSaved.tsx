@@ -1,6 +1,6 @@
 'use client'
 import { useTranslation } from 'react-i18next'
-import { LANGUAGE_LOCALSTORAGE_KEY } from './language'
+import { LANGUAGE_LOCALSTORAGE_KEY } from '../model/language'
 import { useEffect } from 'react'
 
 export const useSetLanguageSaved = () => {

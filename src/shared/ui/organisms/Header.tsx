@@ -20,9 +20,9 @@ import {
 	SettingsIcon,
 } from '@/shared/ui/atoms/icons'
 import { USER_IS_IN } from './userIsIn'
-import { LanguageToggle } from '../../../modules/LanguageToggle/LanguageToggle'
+import { LanguageToggle } from '@/shared/preferences/language'
 import { useTranslation } from 'react-i18next'
-import LogInAndLogOutMenuItem from '../../../modules/LanguageToggle/LogInAndLogOutMenuItem'
+import { LogInAndLogOutMenuItem } from '@/shared/preferences/language'
 import { useSession } from '@/auth/hooks/useSession'
 import { Notes } from '@/features/notes'
 import { useTheme } from '@/shared/hooks/useTheme'

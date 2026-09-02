@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
 import { usePreferredLanguage } from '@/shared/hooks/usePreferredLanguage'
 import { useLocalStorage } from '@/shared/hooks/useLocalStorage'
-import { LANGUAGE_LOCALSTORAGE_KEY } from './language'
+import { LANGUAGE_LOCALSTORAGE_KEY } from '../model/language'
 
 export function LanguageToggle() {
 	const [language, setLanguage] = useLocalStorage(LANGUAGE_LOCALSTORAGE_KEY, 'es')
