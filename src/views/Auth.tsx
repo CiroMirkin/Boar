@@ -1,4 +1,4 @@
-import AuthCard from '@/auth/AuthCard'
+import { AuthCard } from '@/features/auth'
 import PageContainer from './PageContainer'
 import { USER_IS_IN } from '@/shared/ui/organisms/userIsIn'
 

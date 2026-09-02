@@ -1,7 +1,7 @@
 import { boardModel } from '../../model/board'
 import LocalStorageBoardRepository from './localstorageBoardRepository'
 import NextjsBoardRepository from './nextjsBoardRepository'
-import type { SessionType } from '@/auth/contexts/SessionProvider'
+import type { SessionType } from '@/features/auth'
 
 export interface BoardRepository {
 	save(board: boardModel, boardId: string): Promise<void>

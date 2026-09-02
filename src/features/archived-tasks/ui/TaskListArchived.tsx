@@ -1,6 +1,6 @@
 import React from 'react'
 import { TaskList as taskList } from '@/features/tasks'
-import { BlankTask } from '@/shared/ui/organisms/BlankTask'
+import { BlankTask } from '@/features/tasks'
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/molecules/card'
 import { useTheme } from '@/shared/hooks/useTheme'
 import { MinimalTiptapViewer } from '@/shared/ui/organisms/MinimalTiptapViewer'

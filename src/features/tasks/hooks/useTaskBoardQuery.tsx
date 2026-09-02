@@ -2,7 +2,7 @@
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { fetchTaskBoard, saveTaskBoard } from '@/features/tasks/api/repository'
-import { useSession } from '@/auth/hooks/useSession'
+import { useSession, useBoardId } from '@/features/auth'
 import {
 	isThisArrayOfTypeTaskListInEachColumn,
 	TaskListInEachColumn,
@@ -15,7 +15,6 @@ import {
 } from '../model/taskBoard'
 import { useTranslation } from 'react-i18next'
 import { useCallback } from 'react'
-import { useBoardId } from '@/auth/state/store'
 
 const taskBoardQueryKey = ['taskBoard']
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useSession } from '@/auth/hooks/useSession'
+import { useSession } from '@/features/auth'
 import { useTheme } from '@/shared/hooks/useTheme'
 import { Dashboard } from '@/features/dashboard'
 import { Spinner } from '@/shared/ui/atoms/spinner'

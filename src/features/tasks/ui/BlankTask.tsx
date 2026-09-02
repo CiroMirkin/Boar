@@ -1,13 +1,13 @@
 'use client'
 
 import React, { createContext, useState } from 'react'
-import { taskModel, emptyTask } from '@/features/tasks/model/task'
-import { Card, CardContent, CardFooter } from '../molecules/card'
+import { taskModel, emptyTask } from '../model/task'
+import { Card, CardContent, CardFooter } from '@/shared/ui/molecules/card'
 import { TextWithURL } from '@/shared/ui/atoms/TextWithURL'
 import { useTheme } from '@/shared/hooks/useTheme'
-import { Badge } from '../atoms/badge'
+import { Badge } from '@/shared/ui/atoms/badge'
 import { useAvailableTags } from '@/features/tags'
-import { CollapseTransition } from '../atoms/CollapseTransition'
+import { CollapseTransition } from '@/shared/ui/atoms/CollapseTransition'
 
 export const TaskContext = createContext(emptyTask)
 

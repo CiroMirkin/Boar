@@ -1,6 +1,6 @@
 'use client'
 
-import { useSession } from '@/auth/hooks/useSession'
+import { useSession } from '@/features/auth'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import NextjsDashboardRepository from '../api/repository/nextjsDashboardRepository'
 import BusinessError from '@/shared/errors/businessError'

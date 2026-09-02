@@ -1,4 +1,4 @@
-import type { SessionType } from '@/auth/contexts/SessionProvider'
+import type { SessionType } from '@/features/auth'
 import { Notes } from '../../model/notes'
 import LocalStorageNotesRepository from './LocalStorageNotesRepository'
 import { NotesRepository } from './notesRepository'

@@ -2,7 +2,7 @@ import { USER_IS_IN } from '@/shared/ui/organisms/userIsIn'
 import PageContainer from './PageContainer'
 import { UsageHistory } from '@/features/usage-history'
 import { useTranslation } from 'react-i18next'
-import { useSyncBoardIdFromRoute } from '@/auth/state/useSyncBoardIdFromRoute'
+import { useSyncBoardIdFromRoute } from '@/features/auth'
 
 export function TimeTracking() {
 	const { t } = useTranslation()

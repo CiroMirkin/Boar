@@ -1,6 +1,6 @@
 import { Separator } from '@/shared/ui/atoms/separator'
 import { DescriptionOfCapo } from '../shared/ui/atoms/DescriptionOfCapo'
-import { Header } from '../shared/ui/organisms/Header'
+import { Header } from './Header'
 import { USER_IS_IN } from '../shared/ui/organisms/userIsIn'
 import {
 	Accordion,

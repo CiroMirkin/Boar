@@ -19,17 +19,15 @@ import {
 	MenuIcon,
 	SettingsIcon,
 } from '@/shared/ui/atoms/icons'
-import { USER_IS_IN } from './userIsIn'
+import { USER_IS_IN } from '@/shared/ui/organisms/userIsIn'
 import { LanguageToggle } from '@/shared/preferences/language'
 import { useTranslation } from 'react-i18next'
-import { LogInAndLogOutMenuItem } from '@/shared/preferences/language'
-import { useSession } from '@/auth/hooks/useSession'
+import { LogInAndLogOutMenuItem, useSession, useBoardId } from '@/features/auth'
 import { Notes } from '@/features/notes'
 import { useTheme } from '@/shared/hooks/useTheme'
 import { useLastDurationPeriod } from '@/features/usage-history'
 import { useTypeOfView } from '@/shared/preferences/view-mode'
-import { TransitionLink } from '../atoms/TransitionLink'
-import { useBoardId } from '@/auth/state/store'
+import { TransitionLink } from '@/shared/ui/atoms/TransitionLink'
 
 interface HeaderProps {
 	title: string

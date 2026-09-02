@@ -2,11 +2,10 @@
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { fetchBoard, saveBoard } from '../api/repository/boardRepository'
-import { useSession } from '@/auth/hooks/useSession'
+import { useSession, useBoardId } from '@/features/auth'
 import { boardModel, defaultBoard, isDefaultBoardName } from '../model/board'
 import { useTranslation } from 'react-i18next'
 import { useCallback, useEffect } from 'react'
-import { useBoardId } from '@/auth/state/store'
 
 const boardQueryKey = ['board']
 

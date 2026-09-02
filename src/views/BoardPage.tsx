@@ -17,7 +17,7 @@ import { USER_IS_IN } from '@/shared/ui/organisms/userIsIn'
 import { useTypeOfView } from '@/shared/preferences/view-mode'
 import { NoteInput } from '@/features/notes'
 import { useReminder } from '@/features/reminders'
-import { useSession } from '@/auth/hooks/useSession'
+import { useSession } from '@/features/auth'
 import { Spinner } from '@/shared/ui/atoms/spinner'
 import { useLoadingTimeout } from '@/shared/hooks/useLoadingTimeout'
 

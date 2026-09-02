@@ -2,9 +2,8 @@
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { fetchTags, saveTags } from '../api/repository/tagRepositoryFactory'
-import { useSession } from '@/auth/hooks/useSession'
+import { useSession, useBoardId } from '@/features/auth'
 import { TagRepositoryGetReturn } from '../api/repository/tagRepository'
-import { useBoardId } from '@/auth/state/store'
 
 const tagsQueryKey = ['tags']
 

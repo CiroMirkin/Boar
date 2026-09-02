@@ -1,8 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { useSession } from '@/auth/hooks/useSession'
+import { useSession, useBoardId } from '@/features/auth'
 import { Archive, emptyArchivedTasks } from '../model/archive'
 import { fetchArchivedTasks, saveArchivedTasks } from '../api/repository'
-import { useBoardId } from '@/auth/state/store'
 
 const archivedTasksQueryKey = ['archived-tasks']
 

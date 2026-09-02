@@ -1,4 +1,4 @@
-import type { SessionType } from '@/auth/contexts/SessionProvider'
+import type { SessionType } from '@/features/auth'
 import { ArchiveRepository } from './archiveRepository'
 import NextjsArchiveRepository from './nextjsArchiveRepository'
 import LocalStorageArchiveRepository from './localStorageArchive'

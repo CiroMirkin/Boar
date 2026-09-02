@@ -1,5 +1,5 @@
 import { useTheme } from '@/shared/hooks/useTheme'
-import { Header } from '@/shared/ui/organisms/Header'
+import { Header } from './Header'
 import { USER_IS_IN } from '@/shared/ui/organisms/userIsIn'
 import { ReactNode } from 'react'
 

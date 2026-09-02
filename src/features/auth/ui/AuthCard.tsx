@@ -4,10 +4,10 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/shared/ui/molecules/card'
 import { Button } from '@/shared/ui/atoms/button'
-import { AuthForm } from './components/AuthForm'
-import { OAuthProviders } from './components/OAuthProviders'
-import { useAuth } from './hooks/useAuth'
-import { useDefaultBoardCheck } from './hooks/useDefaultBoardCheck'
+import { AuthForm } from './AuthForm'
+import { OAuthProviders } from './OAuthProviders'
+import { useAuth } from '../hooks/useAuth'
+import { useDefaultBoardCheck } from '../hooks/useDefaultBoardCheck'
 
 export default function AuthCard() {
 	const [isRegister, setIsRegister] = useState(false)

@@ -24,6 +24,7 @@ export { useDataOfTheTask } from './ui/taskList/hooks/useDataOfTheTask'
 export { useCheckForTasksInLastColumn } from './ui/Columns/hooks/useCheckForTasksInLastColumn'
 
 // ui
+export { BlankTask, TaskContext } from './ui/BlankTask'
 export { TaskListInEachColumn } from './ui/taskList/TaskListInEachColumn'
 export { AddNewTaskInput } from './ui/taskList/components/AddNewTaskInput'
 export { ListView } from './ui/ListView'

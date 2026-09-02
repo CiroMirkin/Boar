@@ -2,8 +2,7 @@ import { useEffect, useRef } from 'react'
 import { useTimeTracking } from './useTimeTracking'
 import { useUsageHistoryQuery } from './useUsageHistoryQuery'
 import { updateDailyUsageRecord } from '../useCase/updateDailyUsageRecord'
-import { useBoardId } from '@/auth/state/store'
-import { useSession } from '@/auth/hooks/useSession'
+import { useSession, useBoardId } from '@/features/auth'
 
 export const useSaveTimeTracking = () => {
 	const { getTotalTime, resetTimeTracking } = useTimeTracking({ pauseOnTabHidden: false })

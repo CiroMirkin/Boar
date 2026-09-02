@@ -1,4 +1,4 @@
-import type { SessionType } from '@/auth/contexts/SessionProvider'
+import type { SessionType } from '@/features/auth'
 import { LibraryOfArchivedNotes } from '../../model/libraryOfArchivedNotes'
 import LibraryOfArchivedNotesLocalStorageRepository from './libraryOfArchivedNotesLocalStorageRepository'
 import LibraryOfArchivedNotesNextjsRepository from './libraryOfArchivedNotesNextjsRepository'

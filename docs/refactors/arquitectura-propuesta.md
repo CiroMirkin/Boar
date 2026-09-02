@@ -1,6 +1,18 @@
 # Capo — Propuesta de reorganización a arquitectura screaming modular
 
-Documento generado a partir del análisis del repo con codegraph. Los pasos 1 (`shared/`), 2 (features chicas + `shared/preferences/`) y 3 (romper `TaskBoard`) están **COMPLETOS**. Siguiente: paso 4 (`auth` → `features/auth` + cortar violaciones `shared/* → {features,auth}`).
+Documento generado a partir del análisis del repo con codegraph. Los pasos 1 (`shared/`), 2 (features chicas + `shared/preferences/`), 3 (romper `TaskBoard`) y 4 (`auth` → `features/auth`) están **COMPLETOS**. Siguiente: paso 5 (eliminar `src/views/`).
+
+> **Revisión 2026-09-02 (paso 4 COMPLETO):** `src/auth/` **ya no existe** — es `src/features/auth/` (`ui/ model/ hooks/ state/ contexts/` + `index.ts` como única API pública). Rama `refactor/paso-4-auth`. `tsc --noEmit` limpio, 75/75 tests, `next build` exit 0.
+> - **Todas las dependencias invertidas de la sección 1 resueltas** (`grep -rn "@/features/\|@/auth" src/shared/` → 0):
+>   - `shared/ui/organisms/BlankTask.tsx` → `features/tasks/ui/BlankTask.tsx` (expuesto en el barril con `TaskContext`). Consumidores en `archived-tasks` usan `@/features/tasks`; los internos de `tasks` usan ruta relativa.
+>   - `shared/ui/organisms/Header.tsx` → `src/views/Header.tsx` (chrome de página; solo lo usan `views/`). Se irá a `app/` en el paso 5.
+>   - `shared/preferences/language/ui/LogInAndLogOutMenuItem.tsx` → `features/auth/ui/` (estaba mal ubicada; no tiene nada de idioma). `Header` la importa de `@/features/auth`.
+>   - `shared/hooks/useLoadingTimeout.tsx`: prop `session` pasó a tipo estructural local (`{ user?: { id?: string } } | null`), sin import de auth.
+> - **Ciclo aceptado:** `features/auth/model/checkIfUserHasTheDefaultBoard.ts` importa los barriles de `features/{boards,notes,tasks}` (constantes puras `isDefaultBoardName`/`defaultNotes`/`emptyTaskBoard`). Esas features importan `@/features/auth` (`useSession`/`useBoardId`) → ciclo `auth` ⇄ `{boards,notes,tasks}`, inherente al chequeo cross-feature, mismo criterio que `tasks` ⇄ `archived-tasks` (paso 3). Sin hooks en la ruta → sin hazard de init; `next build` OK.
+> - `getUserId.ts` (stub muerto, 0 consumidores) eliminado.
+> - Las 8 features siguen consumiendo `useSession`/`useBoardId`/`SessionType` — ahora vía el barril `@/features/auth` en vez de rutas profundas a `@/auth/*`.
+> - Conteos: `features/` 221 (`auth` 12, `tasks` 81, resto igual); `shared/` 71 (`ui/` 33); `views/` 11 (+`Header.tsx`).
+> - codegraph **pendiente de reindexar** (`codegraph sync`).
 
 > **Revisión 2026-09-02 (paso 3 COMPLETO):** `src/modules/` y `src/actions/` **ya no existen**. `TaskBoard` se partió en:
 > - **`src/features/tasks/`** (80) — el board Kanban: núcleo de `taskList` + `Columns` plegado adentro. Layout `ui/ model/ api/{actions,repository}/ hooks/ useCase/` + `index.ts`. `Columns` quedó como `ui/Columns/` (con sus `model/ hooks/`), no feature propia: el acoplamiento con `tasks` es circular y el agregado raíz es el board.
@@ -42,16 +54,15 @@ Documento generado a partir del análisis del repo con codegraph. Los pasos 1 (`
 
 ## 1. Diagnóstico de la estructura actual
 
-`src/` se divide hoy así (tras pasos 1, 2 y 3):
+`src/` se divide hoy así (tras pasos 1, 2, 3 y 4):
 
 | Carpeta | Archivos | Rol |
 |---|---|---|
-| `features/` | 208 | Features autocontenidas — `tasks` 80, `archived-tasks` 27, `notes` 24, `usage-history` 21, `tags` 19, `reminders` 13, `boards` 13, `dashboard` 11 |
-| `shared/` | 74 | Capa compartida — `ui/` 35, `preferences/` 17 (`theme` 6, `language` 6, `view-mode` 5), `lib/` 9, `hooks/` 8, `i18n/` 4, `errors/` 1 |
-| `auth/` | 11 | Autenticación — se mueve a `features/auth` en el paso 4 |
-| `views/` (ex `pages/`) | 10 | Composición de páginas (envueltas por `app/*/page.tsx`) — se elimina en el paso 5 |
+| `features/` | 221 | Features autocontenidas — `tasks` 81, `archived-tasks` 27, `notes` 24, `usage-history` 21, `tags` 19, `reminders` 13, `boards` 13, `auth` 12, `dashboard` 11 |
+| `shared/` | 71 | Capa compartida — `ui/` 33, `preferences/` 16 (`theme` 6, `language` 5, `view-mode` 5), `lib/` 9, `hooks/` 8, `i18n/` 4, `errors/` 1 |
+| `views/` (ex `pages/`) | 11 | Composición de páginas (envueltas por `app/*/page.tsx`) — incluye `Header.tsx` (ex `shared/ui/organisms/`); se elimina en el paso 5 |
 
-`src/modules/` y `src/actions/` **ya no existen** (paso 3). El único módulo que quedaba, `TaskBoard`, se partió en `features/tasks/` (núcleo `taskList` + `Columns` plegado) y `features/archived-tasks/`.
+`src/modules/`, `src/actions/` y `src/auth/` (paso 4) **ya no existen**. `TaskBoard` se partió (paso 3) en `features/tasks/` (núcleo `taskList` + `Columns` plegado) y `features/archived-tasks/`. `auth` es ahora `features/auth/` con `index.ts` como única API pública.
 
 **El diagnóstico central original (`modules/TaskBoard` concentraba ~64% del código de dominio en una jerarquía técnica anidada 6-7 niveles) está resuelto.** Contexto histórico de la estructura previa:
 
@@ -65,21 +76,19 @@ modules/TaskBoard/components/Reminder/repository/nextjsReminderRepository.ts
 
 ### Violaciones de dependencia detectadas (vía grafo de imports)
 
-Aparecen dependencias invertidas — capas que deberían ser "hoja" (sin conocer al dominio) importando desde el dominio. Estado al 2026-09-02 tras el paso 2 (grep sobre el árbol). El paso 2 resolvió una (`shared/hooks -> modules/Theme`); las de `shared/ui` y `auth` bajaron de ocurrencias pero siguen (ahora apuntan a `features/` en vez de `modules/`, mismo problema conceptual).
+Aparecían dependencias invertidas — capas "hoja" (sin conocer al dominio) importando desde el dominio. **El paso 4 las resolvió todas** (grep sobre el árbol: `grep -rn "@/features/" src/shared/` y `grep -rn "@/auth" src/shared/` → 0).
 
-| Origen | Destino | Ocurrencias | Estado | Problema |
-|---|---|---|---|---|
-| `shared/ui` | `modules/TaskBoard/model/task` + `features/tags` (`organisms/BlankTask.tsx`, 2); `features/notes` + `features/usage-history` (`organisms/Header.tsx`, 2) | 4 | pendiente | El design system (shadcn) no debería conocer features de negocio |
-| `shared/ui` | `auth` — `useSession`, `useBoardId` (`organisms/Header.tsx`) | 2 | pendiente | Mismo caso: `ui` es hoja, no conoce sesión |
-| `shared/hooks` | `auth` — `SessionType` en `useLoadingTimeout.tsx` (type-only) | 1 | pendiente | Utilidad transversal dependiendo de una feature |
-| `shared/hooks` | `modules/Theme` (`useTheme.tsx`) | 0 | ✅ resuelto (paso 2: `→ shared/preferences/theme`) | — |
-| `auth` | `features/boards`, `features/notes`, `modules/TaskBoard/model/taskBoard` (todo en `utils/checkIfUserHasTheDefaultBoard.ts`) | 3 | pendiente | Auth debería ser consumido por las features, no al revés |
-| `actions` | `views` | 0 | ✅ resuelto (PR #179 / fix boardId por ruta) | — |
-| `ui` | `views` | 0 | ✅ resuelto | — |
+| Origen | Destino | Estado | Cómo se resolvió |
+|---|---|---|---|
+| `shared/ui/organisms/BlankTask` | `features/tasks/model/task`, `features/tags` | ✅ paso 4 | `BlankTask` era UI de tarea, no design system → `features/tasks/ui/BlankTask.tsx` (expuesto en el barril con `TaskContext`) |
+| `shared/ui/organisms/Header` | `auth`, `features/notes`, `features/usage-history` | ✅ paso 4 | `Header` es chrome de página (solo lo usa `views/`) → `src/views/Header.tsx` |
+| `shared/preferences/language/ui/LogInAndLogOutMenuItem` | `auth` (`useBoardId`, `SessionType`) | ✅ paso 4 | Ítem de menú de auth mal ubicado en `language/` → `features/auth/ui/`; `Header` lo importa de `@/features/auth` |
+| `shared/hooks/useLoadingTimeout` | `auth` — `SessionType` (type-only) | ✅ paso 4 | El hook solo mira `user?.id` → tipo local `{ user?: { id?: string } } \| null`, sin import |
+| `shared/hooks/useTheme` | `modules/Theme` | ✅ paso 2 | `→ shared/preferences/theme` |
+| `auth/utils/checkIfUserHasTheDefaultBoard` | `features/{boards,notes,tasks}` | ⚠️ ciclo aceptado (paso 4) | Ver "Decisiones ya tomadas": chequeo inherentemente cross-feature; usa solo los barriles públicos, mismo criterio que `tasks` ⇄ `archived-tasks` en paso 3 |
+| `actions -> views` / `ui -> views` | | ✅ paso previo | PR #179 / fix boardId por ruta |
 
-No cuentan como violación bajo la arquitectura destino: `auth -> shared/ui` (6 — `AuthCard`, `AuthForm`, `OAuthProviders`; una feature puede usar `shared/ui`) y `actions -> modules/*/model` (~18, casi todas `import type`; la regla de dependencia propuesta permite explícitamente que `actions/` importe `model/` de las features).
-
-Ninguna de las pendientes es grave hoy (son pocas ocurrencias), pero son la semilla de ciclos de dependencia a medida que el repo crezca, y contradicen la regla básica de screaming/clean architecture: **las capas compartidas y el backend no conocen features concretas; las features conocen lo compartido.**
+No cuentan como violación bajo la arquitectura destino: `features/auth -> shared/ui` (una feature puede usar `shared/ui`) y `actions -> */model` type-only.
 
 ### Capa `views/` (ex `pages/`) duplicada
 
@@ -101,17 +110,16 @@ src/
 │   │   ├── hooks/
 │   │   ├── useCase/
 │   │   └── index.ts
-│   ├── columns/             ⬜ (ex TaskBoard/components/Columns — paso 3)
-│   ├── tasks/                ⬜ (ex TaskBoard/components/taskList, sin ArchivedTasks/Tags — paso 3)
-│   ├── archived-tasks/       ⬜ (ex TaskBoard/.../ArchivedTasks — paso 3)
+│   ├── tasks/                ✅ (ex TaskBoard/components/taskList + Columns plegado + BlankTask — pasos 3 y 4)
+│   ├── archived-tasks/       ✅ (ex TaskBoard/.../ArchivedTasks — paso 3)
 │   ├── tags/                 ✅ (ex TaskBoard/.../Tags — subió a top-level en el paso 2)
-│   ├── reminders/            ⬜ (ex TaskBoard/components/Reminder — paso 3; sus actions ya están en src/actions/reminders/)
+│   ├── reminders/            ✅ (ex TaskBoard/components/Reminder — paso 3)
 │   ├── notes/                ✅ (incluye LibraryOfArchiveNotes aplanado como ui/model/api)
 │   ├── usage-history/        ✅
 │   ├── dashboard/            ✅ (listado de boards del usuario)
-│   └── auth/                 ⬜ (ex src/auth — paso 4)
-├── shared/                   ✅ (pasos 1 y 2) — falta solo cortar los imports invertidos de shared/ui
-│   ├── ui/                   ✅ (ex src/ui — design system; todavía con 4 imports a features + 2 a auth, hay que cortarlos)
+│   └── auth/                 ✅ (ex src/auth — paso 4; ui/ model/ hooks/ state/ contexts/ + index.ts)
+├── shared/                   ✅ (pasos 1, 2 y 4) — sin imports invertidos
+│   ├── ui/                   ✅ (ex src/ui — design system puro, ya no conoce features ni auth)
 │   ├── i18n/                 ✅ (ex i18next)
 │   ├── lib/                  ✅ (prisma, utils, rate-limit, serverAuth; ex src/lib + common/utils + actions/{auth,shared}.ts)
 │   ├── errors/               ✅ (ex common/errors)
@@ -209,8 +217,8 @@ Igual que en `migration.md`, conviene ir feature por feature dejando la app siem
 3. ~~**Romper `TaskBoard`**~~ — **COMPLETO** (2026-09-02, ver revisión al inicio de este doc). `TaskBoard` → `features/tasks/` (núcleo `taskList` + `Columns` plegado como `ui/Columns/`) + `features/archived-tasks/`. `Tags` ya había salido en el paso 2. `src/modules/` y `src/actions/` eliminados. `src/actions/{tasks,archive}/` → `features/{tasks,archived-tasks}/api/actions/`.
    - ~~PR 1 `reminders`~~ — rama `refactor/paso-3-reminders`. Hooks muertos `useGetReminder`/`useSaveReminder` eliminados.
    - ~~PR 2 `tasks` + `archived-tasks`~~ — rama `refactor/paso-3-tasks`. Juntos porque `ArchivedTasks` estaba físicamente dentro de `taskList/components/`. `Columns` plegado en `tasks`. Bridge `ArchiveTaskButton` → `features/archived-tasks/ui/`. Ciclo `tasks` ⇄ `archived-tasks` inherente (ESM lo resuelve). `tsc` limpio, 75/75 tests, `next build` OK.
-4. **`auth`** → `features/auth`, resolviendo `auth -> features/{boards,notes,tasks}` (3, en `checkIfUserHasTheDefaultBoard.ts` — ahora apunta a `@/features/tasks`) y de paso `shared/ui -> auth` (2, mover `useSession`/`useBoardId` fuera de `Header` o inyectarlos por props), `shared/hooks -> auth` (1, `SessionType` type-only en `useLoadingTimeout`) y `shared/ui -> features/{notes,usage-history,tags,tasks}` (`Header`/`BlankTask` — `BlankTask` importa `@/features/tasks`).
-5. **Eliminar `src/views/`** (ex `src/pages/`), mover composición a `app/` o a la feature dueña.
+4. ~~**`auth`** → `features/auth`~~ — **COMPLETO** (2026-09-02, rama `refactor/paso-4-auth`). `src/auth/` → `src/features/auth/` (`ui/ model/ hooks/ state/ contexts/` + `index.ts`; `getUserId.ts` muerto eliminado). Violaciones invertidas cortadas: `BlankTask` → `features/tasks/ui/`, `Header` → `views/`, `LogInAndLogOutMenuItem` → `features/auth/ui/`, `useLoadingTimeout` con tipo `session` local. Queda el ciclo `features/auth` ⇄ `features/{boards,notes,tasks}` en `checkIfUserHasTheDefaultBoard.ts`, aceptado como inherente (solo barriles públicos, mismo criterio que `tasks` ⇄ `archived-tasks`). `tsc` limpio, 75/75 tests, `next build` exit 0.
+5. **Eliminar `src/views/`** (ex `src/pages/`, 11 archivos incl. `Header.tsx`), mover composición a `app/` o a la feature dueña.
 6. ~~**Decidir `actions/`**~~ — **COMPLETO**: split por dominio (PR #179), luego cada dominio a su feature (pasos 2-3). `src/actions/` eliminado. Guards de auth en `shared/lib/serverAuth.ts`.
 7. **Sincronizar codegraph** (`codegraph sync`) después de cada paso/PR y verificar que las dependencias invertidas de la sección 1 desaparecieron. El índice se desactualiza con cualquier `git mv`, así que conviene sincronizar antes de leerlo.
 
@@ -228,5 +236,11 @@ Cada paso se puede validar con `npm run build`, `npm run test` y `npm run test:e
 - **`Columns` plegado dentro de `features/tasks/`** (paso 3) — no es feature propia. El acoplamiento `tasks`↔`columns` es circular y el agregado raíz es el board (`TaskBoard = TaskColumn[]`, cada columna contiene sus tareas). Diverge de la sección 2 original, que lo listaba como `features/columns/`.
 - **`ArchivedTasks` → `features/archived-tasks/`** (paso 3), pero con ciclo `tasks` ⇄ `archived-tasks` aceptado como inherente al dominio (el bridge `ArchiveTaskButton` vive en `archived-tasks`; `archived-tasks` consume `@/features/tasks`). Ambos barriles son solo re-exports, ESM resuelve el ciclo.
 - **`TaskBoard` → COMPLETO** (paso 3): `src/modules/` y `src/actions/` eliminados.
+- **`auth` → `features/auth` → COMPLETO** (paso 4): `ui/ model/ hooks/ state/ contexts/` + `index.ts`. `getUserId.ts` (stub muerto, 0 consumidores) eliminado. Las features siguen consumiendo `useSession`/`useBoardId`/`SessionType` — ahora vía el barril `@/features/auth`.
+- **`checkIfUserHasTheDefaultBoard` se queda en `features/auth/model/`** (paso 4) con el ciclo `features/auth` ⇄ `features/{boards,notes,tasks}` aceptado como inherente: el chequeo "¿el invitado perdería datos al iniciar sesión?" abarca 3 dominios por naturaleza y solo importa 3 constantes puras (`isDefaultBoardName`, `defaultNotes`, `emptyTaskBoard`) de los barriles públicos, sin hooks → sin hazard de init. Mismo criterio que `tasks` ⇄ `archived-tasks` (paso 3).
+- **`Header` → `src/views/`** (paso 4): es chrome de página (solo lo montan `views/PageContainer`, `404`, `Help`), no design system. Se irá a `app/` en el paso 5.
+- **`BlankTask` → `features/tasks/ui/`** (paso 4): tarjeta de tarea, no primitiva de UI. Expuesta en `features/tasks/index.ts` junto con `TaskContext`.
+- **`LogInAndLogOutMenuItem` → `features/auth/ui/`** (paso 4): estaba mal ubicada en `shared/preferences/language/ui/` (no tiene nada de idioma). `Header` la importa de `@/features/auth`.
+- **`useLoadingTimeout` sin dependencia de auth** (paso 4): el hook solo lee `session?.user?.id`, así que su prop `session` pasó a un tipo estructural local (`{ user?: { id?: string } } | null`).
 
-Estado: **pasos 1, 2 y 3 completos.** Siguiente: paso 4 (`auth` → `features/auth`, y cortar las violaciones `shared/ui → features`, `shared/* → auth`) y paso 5 (eliminar `src/views/`).
+Estado: **pasos 1, 2, 3 y 4 completos.** Siguiente: paso 5 (eliminar `src/views/`, mover composición —incluido `Header`— a `app/` o a la feature dueña). Falta reindexar codegraph (`codegraph sync`).

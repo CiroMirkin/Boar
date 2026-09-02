@@ -1,4 +1,4 @@
-import type { SessionType } from '@/auth/contexts/SessionProvider'
+import type { SessionType } from '@/features/auth'
 import { TaskBoard } from '@/features/tasks/model/taskBoard'
 import { TaskListInEachColumnRepository } from './taskListInEachColumnRepository'
 import LocalStorageTaskListInEachColumnRepository from './localStorageTaskListsRepository'

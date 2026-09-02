@@ -1,10 +1,10 @@
 'use client'
 
-import { SessionType } from '@/auth/contexts/SessionProvider'
 import { useEffect, useState } from 'react'
 
 interface UseLoadingTimeoutParams {
-	session: SessionType
+	/** Sesión actual: solo se mira `user?.id`. Tipo local para no depender de `features/auth`. */
+	session: { user?: { id?: string } } | null
 	isLoading: boolean
 	timeout?: number
 }

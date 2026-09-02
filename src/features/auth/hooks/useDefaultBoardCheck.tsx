@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
-import { checkIfUserHasTheDefaultBoard } from '../utils/checkIfUserHasTheDefaultBoard'
+import { checkIfUserHasTheDefaultBoard } from '../model/checkIfUserHasTheDefaultBoard'
 
 export function useDefaultBoardCheck() {
 	const { t } = useTranslation()

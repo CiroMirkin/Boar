@@ -1,7 +1,7 @@
 import { Reminder } from '../../model/reminder'
 import LocalStorageReminderRepository from './LocalStorageReminder'
 import NextjsReminderRepository from './nextjsReminderRepository'
-import type { SessionType } from '@/auth/contexts/SessionProvider'
+import type { SessionType } from '@/features/auth'
 import { ReminderRepository } from './ReminderRepository'
 
 const getReminderRepository = (session: SessionType): ReminderRepository => {

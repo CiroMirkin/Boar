@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { useSession } from '@/auth/hooks/useSession'
+import { useSession, useBoardId } from '@/features/auth'
 import {
 	defaultLibraryOfArchivedNotes,
 	LibraryOfArchivedNotes,
@@ -8,7 +8,6 @@ import {
 	fetchLibraryOfArchivedNotes,
 	saveLibraryOfArchivedNotes,
 } from '../api/repository/libraryOfArchivedNotesRepositoryFactory'
-import { useBoardId } from '@/auth/state/store'
 
 const libraryOfArchivedNotesQueryKey = ['libraryOfArchivedNotes']
 

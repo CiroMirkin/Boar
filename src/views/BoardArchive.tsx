@@ -4,7 +4,7 @@ import { USER_IS_IN } from '@/shared/ui/organisms/userIsIn'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/atoms/tabs'
 import { useTranslation } from 'react-i18next'
 import PageContainer from './PageContainer'
-import { useSyncBoardIdFromRoute } from '@/auth/state/useSyncBoardIdFromRoute'
+import { useSyncBoardIdFromRoute } from '@/features/auth'
 
 export function BoardArchive() {
 	const { t } = useTranslation()

@@ -2,9 +2,8 @@
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { fetchNotes, saveNotes } from '../api/repository/notesRepositoryFactory'
-import { useSession } from '@/auth/hooks/useSession'
+import { useSession, useBoardId } from '@/features/auth'
 import { defaultNotes, Notes } from '../model/notes'
-import { useBoardId } from '@/auth/state/store'
 
 const notesQueryKey = ['notes']
 

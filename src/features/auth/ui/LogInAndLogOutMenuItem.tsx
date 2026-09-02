@@ -7,8 +7,8 @@ import { LogInIcon, LogOutIcon } from '@/shared/ui/atoms/icons'
 import { useTranslation } from 'react-i18next'
 import { signOut } from 'next-auth/react'
 import { toast } from 'sonner'
-import { useBoardId } from '@/auth/state/store'
-import type { SessionType } from '@/auth/contexts/SessionProvider'
+import { useBoardId } from '../state/store'
+import type { SessionType } from '../contexts/SessionProvider'
 
 interface LogInAndLogOutMenuItemProps {
 	whereUserIs?: USER_IS_IN
