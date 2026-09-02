@@ -1,5 +1,5 @@
 import BusinessError from '@/shared/errors/businessError'
-import { boardModel } from '../models/board'
+import { boardModel } from '../model/board'
 
 interface changeNameParams {
 	board: boardModel

@@ -1,4 +1,4 @@
-import { boardModel } from '../models/board'
+import { boardModel } from '../../model/board'
 import LocalStorageBoardRepository from './localstorageBoardRepository'
 import NextjsBoardRepository from './nextjsBoardRepository'
 import type { SessionType } from '@/auth/contexts/SessionProvider'

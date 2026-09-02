@@ -1,7 +1,7 @@
 'use server'
 
 import { prisma } from '@/shared/lib/prisma'
-import type { boardModel } from '@/modules/board/models/board'
+import type { boardModel } from '../../model/board'
 import { requireAuth } from '@/shared/lib/serverAuth'
 
 export async function getBoardById({ boardId }: { boardId: string }): Promise<boardModel | null> {

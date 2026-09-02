@@ -1,4 +1,4 @@
-import { isDefaultBoardName } from '@/modules/board/models/board'
+import { isDefaultBoardName } from '@/features/boards'
 import { defaultNotes } from '@/features/notes'
 import { emptyTaskBoard } from '@/modules/TaskBoard/model/taskBoard'
 

@@ -1,9 +1,9 @@
 'use client'
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { fetchBoard, saveBoard } from '../repository/boardRepository'
+import { fetchBoard, saveBoard } from '../api/repository/boardRepository'
 import { useSession } from '@/auth/hooks/useSession'
-import { boardModel, defaultBoard, isDefaultBoardName } from '../models/board'
+import { boardModel, defaultBoard, isDefaultBoardName } from '../model/board'
 import { useTranslation } from 'react-i18next'
 import { useCallback, useEffect } from 'react'
 import { useBoardId } from '@/auth/state/store'

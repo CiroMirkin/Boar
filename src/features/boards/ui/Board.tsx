@@ -1,5 +1,5 @@
-import { WelcomeDialog } from './components/WelcomeDialog'
-import { useBoardQuery } from '@/modules/board/hooks/useBoardQuery'
+import { WelcomeDialog } from './WelcomeDialog'
+import { useBoardQuery } from '../hooks/useBoardQuery'
 import { useDocumentTitle } from '@uidotdev/usehooks'
 
 interface Props {

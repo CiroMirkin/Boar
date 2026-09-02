@@ -1,4 +1,4 @@
-import { boardModel } from '@/modules/board/models/board'
+import { boardModel } from '../model/board'
 import { changeBoardName } from './changeBoardName'
 import { expect } from 'vitest'
 
