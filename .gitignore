@@ -1,4 +1,9 @@
+# Docs
+docs/ignore
+
 .env
+
+# IA
 .agents
 .claude
 .windsurf
