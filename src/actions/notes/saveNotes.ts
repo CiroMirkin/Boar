@@ -1,0 +1,21 @@
+'use server'
+
+import { prisma } from '@/lib/prisma'
+import type { Notes } from '@/modules/notes/model/notes'
+import { requireBoardAccess } from '../shared'
+
+export async function saveNotes({
+	boardId,
+	notes,
+}: {
+	boardId: string
+	notes: Notes
+}): Promise<void> {
+	await requireBoardAccess(boardId)
+
+	await prisma.note.upsert({
+		where: { boardId },
+		create: { boardId, content: notes },
+		update: { content: notes },
+	})
+}
