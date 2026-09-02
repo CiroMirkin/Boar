@@ -5,13 +5,13 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster as SonnerToaster } from 'sonner'
 import { useEffect, useState, type ReactNode } from 'react'
 import SessionProvider from '@/auth/contexts/SessionProvider'
-import { ThemeProvider } from '@/modules/Theme/ThemeContext'
-import { darkTheme, lightTheme, type Theme } from '@/modules/Theme/themesList'
+import { ThemeProvider } from '@/shared/preferences/theme'
+import { darkTheme, lightTheme, type Theme } from '@/shared/preferences/theme'
 import { useLocalStorage } from '@/shared/hooks/useLocalStorage'
 import { useIsHydrated } from '@/shared/hooks/useIsHydrated'
-import { useUserPreffedLanguage } from '@/modules/LanguageToggle/useUserPreffedLanguage'
-import { useSetLanguageSaved } from '@/modules/LanguageToggle/useSetLanguageSaved'
-import { useSaveTimeTracking } from '@/modules/UsageHistory/hooks/useSaveTimeTracking'
+import { useUserPreffedLanguage } from '@/shared/preferences/language'
+import { useSetLanguageSaved } from '@/shared/preferences/language'
+import { useSaveTimeTracking } from '@/features/usage-history'
 
 function ClientOnlyInit() {
 	useSaveTimeTracking()

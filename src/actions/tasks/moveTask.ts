@@ -1,7 +1,7 @@
 'use server'
 
 import { prisma } from '@/shared/lib/prisma'
-import { requireColumnAccess, requireTaskAccess } from '../shared'
+import { requireColumnAccess, requireTaskAccess } from '@/shared/lib/serverAuth'
 
 export async function moveTask({
 	taskId,

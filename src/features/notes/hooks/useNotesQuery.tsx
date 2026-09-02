@@ -1,0 +1,47 @@
+'use client'
+
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { fetchNotes, saveNotes } from '../api/repository/notesRepositoryFactory'
+import { useSession } from '@/auth/hooks/useSession'
+import { defaultNotes, Notes } from '../model/notes'
+import { useBoardId } from '@/auth/state/store'
+
+const notesQueryKey = ['notes']
+
+export const useNotesQuery = () => {
+	const { session } = useSession()
+	const queryClient = useQueryClient()
+	const boardId = useBoardId((state) => state.board_id)
+	const fullQueryKey = [...notesQueryKey, session?.user.id, boardId]
+
+	const { data: notes = defaultNotes, isLoading } = useQuery({
+		queryKey: fullQueryKey,
+		queryFn: () => fetchNotes(session, boardId),
+		placeholderData: defaultNotes,
+	})
+
+	const { mutate: updateNotes, isPending: isSaving } = useMutation({
+		mutationFn: (updatedNotes: Notes) => saveNotes({ notes: updatedNotes, session, boardId }),
+		onMutate: async (updatedNotes: Notes) => {
+			await queryClient.cancelQueries({ queryKey: fullQueryKey })
+			const previousNotes = queryClient.getQueryData(fullQueryKey)
+			queryClient.setQueryData(fullQueryKey, updatedNotes)
+			return { previousNotes }
+		},
+		onError: (_err, _newNotes, context) => {
+			if (context?.previousNotes) {
+				queryClient.setQueryData(fullQueryKey, context.previousNotes)
+			}
+		},
+		onSettled: () => {
+			queryClient.invalidateQueries({ queryKey: fullQueryKey })
+		},
+	})
+
+	return {
+		notes,
+		isLoading,
+		updateNotes,
+		isSaving,
+	}
+}

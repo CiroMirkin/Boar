@@ -2,7 +2,7 @@
 
 import { useSession } from '@/auth/hooks/useSession'
 import { useTheme } from '@/shared/hooks/useTheme'
-import Dashboard from '@/modules/Dashboard/Dashboard'
+import { Dashboard } from '@/features/dashboard'
 import { Spinner } from '@/shared/ui/atoms/spinner'
 import { USER_IS_IN } from '@/shared/ui/organisms/userIsIn'
 import { useRouter } from 'next/navigation'

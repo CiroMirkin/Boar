@@ -6,7 +6,7 @@ import { Card, CardContent, CardFooter } from '../molecules/card'
 import { TextWithURL } from '@/shared/ui/atoms/TextWithURL'
 import { useTheme } from '@/shared/hooks/useTheme'
 import { Badge } from '../atoms/badge'
-import { useAvailableTags } from '@/modules/TaskBoard/components/taskList/components/Tags/hooks/useAvailableTags'
+import { useAvailableTags } from '@/features/tags'
 import { CollapseTransition } from '../atoms/CollapseTransition'
 
 export const TaskContext = createContext(emptyTask)

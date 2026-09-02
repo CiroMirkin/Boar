@@ -1,4 +1,4 @@
-import LibraryOfArchiveNotes from '@/modules/notes/LibraryOfArchiveNotes/LibraryOfArchivedNotes'
+import { LibraryOfArchivedNotes as LibraryOfArchiveNotes } from '@/features/notes'
 import { ArchivedTasks } from '@/modules/TaskBoard/components/taskList/components/ArchivedTasks/ArchivedTasks'
 import { USER_IS_IN } from '@/shared/ui/organisms/userIsIn'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/atoms/tabs'

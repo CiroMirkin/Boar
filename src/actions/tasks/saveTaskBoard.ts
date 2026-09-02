@@ -2,7 +2,7 @@
 
 import { prisma } from '@/shared/lib/prisma'
 import type { TaskBoard } from '@/modules/TaskBoard/model/taskBoard'
-import { requireBoardAccess } from '../shared'
+import { requireBoardAccess } from '@/shared/lib/serverAuth'
 
 // Placeholder column IDs from emptyTaskBoard — resolved to real rows by position.
 const DEFAULT_COLUMN_IDS = ['c1', 'c2', 'c3']

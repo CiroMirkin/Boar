@@ -1,7 +1,7 @@
 'use server'
 
 import { prisma } from '@/shared/lib/prisma'
-import { requireColumnAccess } from '../shared'
+import { requireColumnAccess } from '@/shared/lib/serverAuth'
 
 export async function updateColumnName({
 	columnId,

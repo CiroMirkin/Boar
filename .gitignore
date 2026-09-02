@@ -21,6 +21,7 @@ dist-ssr
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
 .idea
 .DS_Store
 *.suo
@@ -41,5 +42,9 @@ dist-ssr
 # Next.js
 .next/
 out/
+tsconfig.tsbuildinfo
+
+# codegraph local index
+.codegraph/
 
 /generated/prisma
