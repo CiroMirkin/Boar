@@ -2,7 +2,7 @@
 
 import { useSession } from '@/auth/hooks/useSession'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import NextjsDashboardRepository from '../repository/nextjsDashboardRepository'
+import NextjsDashboardRepository from '../api/repository/nextjsDashboardRepository'
 import BusinessError from '@/shared/errors/businessError'
 import { useTranslation } from 'react-i18next'
 

@@ -1,4 +1,4 @@
-import { Board } from '../model/board'
+import { Board } from '../../model/board'
 
 export interface DashboardRepository {
 	getBoards(): Promise<Board[]>
