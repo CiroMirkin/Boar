@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, Dispatch, SetStateAction } from 'react'
-import { Theme, lightTheme } from './themesList'
+import { Theme, lightTheme } from '../model/themesList'
 
 interface ThemeContextContent {
 	theme: Theme

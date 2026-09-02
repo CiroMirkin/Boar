@@ -1,11 +1,11 @@
 'use client'
 
-import { themesList, Theme as Theme } from '@/modules/Theme/themesList'
+import { themesList, Theme as Theme } from '../model/themesList'
 import { Card, CardContent } from '@/shared/ui/molecules/card'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { MouseEvent, useEffect, useState } from 'react'
-import { useChangeTheme } from './useChangeTheme'
+import { useChangeTheme } from '../hooks/useChangeTheme'
 import { useTheme } from '@/shared/hooks/useTheme'
 import { CheckIcon } from '@/shared/ui/atoms/icons'
 import { SettingSection } from '@/shared/ui/organisms/SettingSection'
