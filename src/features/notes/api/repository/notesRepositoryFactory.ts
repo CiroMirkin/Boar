@@ -1,5 +1,5 @@
 import type { SessionType } from '@/auth/contexts/SessionProvider'
-import { Notes } from '../model/notes'
+import { Notes } from '../../model/notes'
 import LocalStorageNotesRepository from './LocalStorageNotesRepository'
 import { NotesRepository } from './notesRepository'
 import NextjsNotesRepository from './nextjsNotesRepository'

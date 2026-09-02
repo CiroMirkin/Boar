@@ -7,7 +7,7 @@ import {
 import {
 	fetchLibraryOfArchivedNotes,
 	saveLibraryOfArchivedNotes,
-} from '../api/libraryOfArchivedNotesRepositoryFactory'
+} from '../api/repository/libraryOfArchivedNotesRepositoryFactory'
 import { useBoardId } from '@/auth/state/store'
 
 const libraryOfArchivedNotesQueryKey = ['libraryOfArchivedNotes']

@@ -1,4 +1,4 @@
-import { Notes } from '../model/notes'
+import { Notes } from '../../model/notes'
 
 export interface NotesRepository {
 	save(notes: Notes, boardId: string): Promise<void>

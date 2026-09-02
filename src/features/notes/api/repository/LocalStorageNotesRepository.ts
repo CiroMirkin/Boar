@@ -1,4 +1,4 @@
-import { defaultNotes, Notes } from '../model/notes'
+import { defaultNotes, Notes } from '../../model/notes'
 import { NotesRepository } from './notesRepository'
 
 export default class LocalStorageNotesRepository implements NotesRepository {

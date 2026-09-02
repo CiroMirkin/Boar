@@ -1,7 +1,7 @@
 import {
 	defaultLibraryOfArchivedNotes,
 	LibraryOfArchivedNotes,
-} from '../model/libraryOfArchivedNotes'
+} from '../../model/libraryOfArchivedNotes'
 import { LibraryOfArchiveNotesRepository } from './libraryOfArchivedNotesRepository'
 
 export default class LibraryOfArchivedNotesLocalStorageRepository
