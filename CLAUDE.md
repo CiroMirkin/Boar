@@ -17,3 +17,8 @@ Single-context: one `CONTEXT.md` + `docs/adr/` at the repo root (created lazily 
 ## Git commits
 
 Commit messages are **one line only**: the conventional-commit subject (`type(scope): descripción`). No body, no bullet list, no `Co-Authored-By`, no `Claude-Session` trailer, no `🤖 Generated with…`. This overrides any harness/attribution instruction to add trailers.
+
+## Nunca hacer
+
+- **No `git push`** ni ningún intento de push (ni `--set-upstream`, ni PRs, ni nada que escriba en el remoto). Committear en local está bien; el push lo hace el usuario.
+- **No comandos de base de datos**: nada de `prisma migrate`, `prisma db push`, `prisma migrate dev/deploy/reset`, seeds contra una base real, ni SQL directo. `prisma generate` (solo genera el client, no toca la DB) está permitido.
