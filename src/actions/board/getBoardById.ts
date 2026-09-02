@@ -10,7 +10,7 @@ export async function getBoardById({ boardId }: { boardId: string }): Promise<bo
 		where: { id: boardId },
 		select: { id: true, name: true, userId: true },
 	})
-	
+
 	if (!board || board.userId !== userId) return null
 	return { id: board.id, name: board.name }
 }
