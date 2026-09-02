@@ -27,7 +27,7 @@ import { useSession } from '@/auth/hooks/useSession'
 import { Notes } from '@/features/notes'
 import { useTheme } from '@/shared/hooks/useTheme'
 import { useLastDurationPeriod } from '@/modules/UsageHistory/hooks/useLastDurationPeriod'
-import { useTypeOfView } from '@/modules/TypeOfView/useTypeOfView'
+import { useTypeOfView } from '@/shared/preferences/view-mode'
 import { TransitionLink } from '../atoms/TransitionLink'
 import { useBoardId } from '@/auth/state/store'
 

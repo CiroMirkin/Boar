@@ -1,4 +1,9 @@
-import { defaultView, isValidTypeOfView, TypeOfView, typeOfViewLocalStorageKey } from './typeOfView'
+import {
+	defaultView,
+	isValidTypeOfView,
+	TypeOfView,
+	typeOfViewLocalStorageKey,
+} from '../model/typeOfView'
 import { useLocalStorage } from '@/shared/hooks/useLocalStorage'
 
 export const useTypeOfView = (): TypeOfView => {

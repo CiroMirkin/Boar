@@ -7,7 +7,7 @@ import CreateReminder from '@/modules/TaskBoard/components/Reminder/CreateRemind
 import { ThemeSelection } from '@/shared/preferences/theme'
 import { ReminderList } from '@/modules/TaskBoard/components/Reminder/ReminderList'
 import PageContainer from './PageContainer'
-import { ToggleTypeOfView } from '@/modules/TypeOfView/ToggleTypeOfView'
+import { ToggleTypeOfView } from '@/shared/preferences/view-mode'
 import { EnableTags } from '@/features/tags'
 
 import { ConfigColumns } from '@/modules/TaskBoard/components/Columns/components/ConfigColumns'
