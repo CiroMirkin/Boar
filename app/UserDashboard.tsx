@@ -7,7 +7,7 @@ import { Spinner } from '@/shared/ui/atoms/spinner'
 import { USER_IS_IN } from '@/shared/ui/organisms/userIsIn'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
-import PageContainer from './PageContainer'
+import PageContainer from './_components/PageContainer'
 import { useDocumentTitle } from '@uidotdev/usehooks'
 
 function UserDashboard() {

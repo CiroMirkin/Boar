@@ -1,6 +1,14 @@
 # Capo — Propuesta de reorganización a arquitectura screaming modular
 
-Documento generado a partir del análisis del repo con codegraph. Los pasos 1 (`shared/`), 2 (features chicas + `shared/preferences/`), 3 (romper `TaskBoard`) y 4 (`auth` → `features/auth`) están **COMPLETOS**. Siguiente: paso 5 (eliminar `src/views/`).
+Documento generado a partir del análisis del repo con codegraph. Los pasos 1 (`shared/`), 2 (features chicas + `shared/preferences/`), 3 (romper `TaskBoard`), 4 (`auth` → `features/auth`) y 5 (eliminar `src/views/`) están **COMPLETOS**. Siguiente: paso 7 (`codegraph sync`).
+
+> **Revisión 2026-09-02 (paso 5 COMPLETO):** `src/views/` **ya no existe**. Los 11 archivos se movieron al árbol de `app/`:
+> - **Chrome de página compartido → `app/_components/`** (carpeta privada de Next, fuera del routing): `Header.tsx`, `PageContainer.tsx`, `Erro404.tsx` (ex `404.tsx`, renombrado a identificador válido).
+> - **Composición de cada página → co-locada con su ruta**: `Auth.tsx`, `BoardArchive.tsx`, `BoardPage.tsx`, `Settings.tsx`, `TimeTracking.tsx` junto a su `page.tsx`; `UserDashboard.tsx` en `app/`, `UserDashboardSettings.tsx` en `app/settings/`, `Help.tsx` en `app/help/`. Cada `page.tsx` sigue siendo un wrapper fino (`import` relativo `./X` en vez de `@/views/X`).
+> - No se movió composición a `features/<feature>/ui/` (opción que daba la sección 3): toda página monta el chrome de `app/_components/`, y una feature no puede importar de `app/` sin invertir la dependencia. Las páginas de una sola feature (`TimeTracking` → usage-history) igual quedan en `app/` por eso.
+> - Imports a chrome desde las páginas co-locadas: relativos (`../_components/…`, `../../_components/…`). `@/*` sigue mapeando solo a `src/*`.
+> - **Verificación:** `tsc --noEmit` limpio · 75/75 tests · `next build` OK · `grep -rn "@/views\|views/" src app e2e` → 0 resultados.
+> - codegraph **pendiente de reindexar** (`codegraph sync`).
 
 > **Revisión 2026-09-02 (paso 4 COMPLETO):** `src/auth/` **ya no existe** — es `src/features/auth/` (`ui/ model/ hooks/ state/ contexts/` + `index.ts` como única API pública). Rama `refactor/paso-4-auth`. `tsc --noEmit` limpio, 75/75 tests, `next build` exit 0.
 > - **Todas las dependencias invertidas de la sección 1 resueltas** (`grep -rn "@/features/\|@/auth" src/shared/` → 0):
@@ -54,15 +62,14 @@ Documento generado a partir del análisis del repo con codegraph. Los pasos 1 (`
 
 ## 1. Diagnóstico de la estructura actual
 
-`src/` se divide hoy así (tras pasos 1, 2, 3 y 4):
+`src/` se divide hoy así (tras pasos 1, 2, 3, 4 y 5):
 
 | Carpeta | Archivos | Rol |
 |---|---|---|
 | `features/` | 221 | Features autocontenidas — `tasks` 81, `archived-tasks` 27, `notes` 24, `usage-history` 21, `tags` 19, `reminders` 13, `boards` 13, `auth` 12, `dashboard` 11 |
 | `shared/` | 71 | Capa compartida — `ui/` 33, `preferences/` 16 (`theme` 6, `language` 5, `view-mode` 5), `lib/` 9, `hooks/` 8, `i18n/` 4, `errors/` 1 |
-| `views/` (ex `pages/`) | 11 | Composición de páginas (envueltas por `app/*/page.tsx`) — incluye `Header.tsx` (ex `shared/ui/organisms/`); se elimina en el paso 5 |
 
-`src/modules/`, `src/actions/` y `src/auth/` (paso 4) **ya no existen**. `TaskBoard` se partió (paso 3) en `features/tasks/` (núcleo `taskList` + `Columns` plegado) y `features/archived-tasks/`. `auth` es ahora `features/auth/` con `index.ts` como única API pública.
+`src/modules/`, `src/actions/`, `src/auth/` (paso 4) y `src/views/` (paso 5) **ya no existen**. `TaskBoard` se partió (paso 3) en `features/tasks/` (núcleo `taskList` + `Columns` plegado) y `features/archived-tasks/`. `auth` es ahora `features/auth/` con `index.ts` como única API pública. La composición de páginas y el chrome (`Header`, `PageContainer`) viven en `app/` (paso 5): chrome compartido en `app/_components/`, composición co-locada con cada `page.tsx`.
 
 **El diagnóstico central original (`modules/TaskBoard` concentraba ~64% del código de dominio en una jerarquía técnica anidada 6-7 niveles) está resuelto.** Contexto histórico de la estructura previa:
 
@@ -90,9 +97,9 @@ Aparecían dependencias invertidas — capas "hoja" (sin conocer al dominio) imp
 
 No cuentan como violación bajo la arquitectura destino: `features/auth -> shared/ui` (una feature puede usar `shared/ui`) y `actions -> */model` type-only.
 
-### Capa `views/` (ex `pages/`) duplicada
+### Capa `views/` (ex `pages/`) duplicada — ✅ resuelta (paso 5)
 
-`src/views/*.tsx` (10 archivos — carpeta renombrada desde `src/pages/` después de la primera versión de este documento; los imports en `app/*/page.tsx` ya apuntan a `@/views/...`) sigue existiendo como capa intermedia envuelta por `app/*/page.tsx` — es un remanente de la migración de React Router a App Router (`migration.md`, Task 10). El renombre saca la ambigüedad con el Pages Router de Next.js, pero no resuelve la indirección: sigue sin cumplir ninguna función que el propio App Router no resuelva.
+`src/views/*.tsx` era una capa intermedia envuelta por `app/*/page.tsx`, remanente de la migración de React Router a App Router (`migration.md`, Task 10). El paso 5 la eliminó: la composición de cada página se co-locó con su `page.tsx` y el chrome compartido (`Header`, `PageContainer`, `Erro404`) se movió a `app/_components/`. Cada `page.tsx` quedó como wrapper fino con `import` relativo.
 
 ---
 
@@ -128,7 +135,7 @@ src/
 │       ├── theme/             transversales, no son dominio Kanban en sí)
 │       ├── language/
 │       └── view-mode/
-└── (se elimina src/views/, ex src/pages/ — ver punto 3, paso 5)
+└── (src/views/ eliminado en el paso 5 — composición en app/, chrome en app/_components/)
 
 app/                          (Next.js App Router — solo compone features/, sin lógica propia)
 ├── board/[id]/page.tsx
@@ -186,7 +193,7 @@ features/tags/
 
 ## 3. Qué hacer con `src/views/` y `src/actions/`
 
-**`src/views/`** (ex `src/pages/`): dado que Task 10 de la migración ya está completa y todas las rutas viven en `app/`, esta capa intermedia puede desaparecer. La lógica de composición de cada página (`BoardPage.tsx`, `UserDashboard.tsx`, etc.) se mueve directamente a `app/*/page.tsx`, o si preferís mantener los componentes de página separados de los archivos de ruta por testeabilidad, a `features/<feature>/ui/<Feature>Page.tsx` cuando la página pertenece claramente a una sola feature (ej. `TimeTracking.tsx` → `features/usage-history/ui/UsageHistoryPage.tsx`).
+**`src/views/`** (ex `src/pages/`): **eliminado en el paso 5.** La composición de cada página se co-locó con su `page.tsx` (ej. `app/board/[id]/BoardPage.tsx`), y el chrome compartido (`Header`, `PageContainer`, `Erro404`) se movió a `app/_components/` (carpeta privada de Next). No se usó `features/<feature>/ui/<Feature>Page.tsx` — que la sección planteaba como alternativa — porque toda página monta el chrome de `app/_components/` y una feature no puede importar de `app/` sin invertir la dependencia.
 
 **`src/actions/`** (PR #179 + pasos 1 y 2): pasó de 5 archivos planos a un directorio por dominio; en el paso 2, cada dominio de una feature migrada se movió a `features/<feature>/api/actions/`. Lo que queda pertenece a `TaskBoard` (paso 3):
 
@@ -218,7 +225,7 @@ Igual que en `migration.md`, conviene ir feature por feature dejando la app siem
    - ~~PR 1 `reminders`~~ — rama `refactor/paso-3-reminders`. Hooks muertos `useGetReminder`/`useSaveReminder` eliminados.
    - ~~PR 2 `tasks` + `archived-tasks`~~ — rama `refactor/paso-3-tasks`. Juntos porque `ArchivedTasks` estaba físicamente dentro de `taskList/components/`. `Columns` plegado en `tasks`. Bridge `ArchiveTaskButton` → `features/archived-tasks/ui/`. Ciclo `tasks` ⇄ `archived-tasks` inherente (ESM lo resuelve). `tsc` limpio, 75/75 tests, `next build` OK.
 4. ~~**`auth`** → `features/auth`~~ — **COMPLETO** (2026-09-02, rama `refactor/paso-4-auth`). `src/auth/` → `src/features/auth/` (`ui/ model/ hooks/ state/ contexts/` + `index.ts`; `getUserId.ts` muerto eliminado). Violaciones invertidas cortadas: `BlankTask` → `features/tasks/ui/`, `Header` → `views/`, `LogInAndLogOutMenuItem` → `features/auth/ui/`, `useLoadingTimeout` con tipo `session` local. Queda el ciclo `features/auth` ⇄ `features/{boards,notes,tasks}` en `checkIfUserHasTheDefaultBoard.ts`, aceptado como inherente (solo barriles públicos, mismo criterio que `tasks` ⇄ `archived-tasks`). `tsc` limpio, 75/75 tests, `next build` exit 0.
-5. **Eliminar `src/views/`** (ex `src/pages/`, 11 archivos incl. `Header.tsx`), mover composición a `app/` o a la feature dueña.
+5. ~~**Eliminar `src/views/`**~~ — **COMPLETO** (2026-09-02, ver revisión al inicio de este doc). Los 11 archivos → árbol de `app/`: chrome compartido (`Header`, `PageContainer`, `Erro404`) → `app/_components/`; composición de página co-locada con cada `page.tsx`. No se usó `features/<feature>/ui/` porque toda página monta el chrome de `app/_components/` y una feature no puede importar de `app/`. `tsc` limpio, 75/75 tests, `next build` OK.
 6. ~~**Decidir `actions/`**~~ — **COMPLETO**: split por dominio (PR #179), luego cada dominio a su feature (pasos 2-3). `src/actions/` eliminado. Guards de auth en `shared/lib/serverAuth.ts`.
 7. **Sincronizar codegraph** (`codegraph sync`) después de cada paso/PR y verificar que las dependencias invertidas de la sección 1 desaparecieron. El índice se desactualiza con cualquier `git mv`, así que conviene sincronizar antes de leerlo.
 
@@ -242,5 +249,6 @@ Cada paso se puede validar con `npm run build`, `npm run test` y `npm run test:e
 - **`BlankTask` → `features/tasks/ui/`** (paso 4): tarjeta de tarea, no primitiva de UI. Expuesta en `features/tasks/index.ts` junto con `TaskContext`.
 - **`LogInAndLogOutMenuItem` → `features/auth/ui/`** (paso 4): estaba mal ubicada en `shared/preferences/language/ui/` (no tiene nada de idioma). `Header` la importa de `@/features/auth`.
 - **`useLoadingTimeout` sin dependencia de auth** (paso 4): el hook solo lee `session?.user?.id`, así que su prop `session` pasó a un tipo estructural local (`{ user?: { id?: string } } | null`).
+- **`src/views/` eliminado** (paso 5): chrome compartido (`Header`, `PageContainer`, `Erro404`) → `app/_components/`; composición de página co-locada con cada `page.tsx`. Cada `page.tsx` quedó como wrapper fino con `import` relativo. No se movió nada a `features/<feature>/ui/`: toda página monta el chrome de `app/_components/` y una feature no puede importar de `app/`.
 
-Estado: **pasos 1, 2, 3 y 4 completos.** Siguiente: paso 5 (eliminar `src/views/`, mover composición —incluido `Header`— a `app/` o a la feature dueña). Falta reindexar codegraph (`codegraph sync`).
+Estado: **pasos 1, 2, 3, 4 y 5 completos.** Siguiente: paso 7 (`codegraph sync` y verificar que las dependencias invertidas de la sección 1 desaparecieron).

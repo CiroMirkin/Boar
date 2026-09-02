@@ -1,5 +1,5 @@
 import { USER_IS_IN } from '@/shared/ui/organisms/userIsIn'
-import PageContainer from './PageContainer'
+import PageContainer from '../_components/PageContainer'
 import { useTranslation } from 'react-i18next'
 import { ThemeSelection } from '@/shared/preferences/theme'
 

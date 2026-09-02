@@ -1,11 +1,11 @@
 'use client'
 
 import { useTranslation } from 'react-i18next'
-import { USER_IS_IN } from '../shared/ui/organisms/userIsIn'
+import { USER_IS_IN } from '@/shared/ui/organisms/userIsIn'
 import { ChangeBoardName } from '@/features/boards'
 import { CreateReminder, ReminderList } from '@/features/reminders'
 import { ThemeSelection } from '@/shared/preferences/theme'
-import PageContainer from './PageContainer'
+import PageContainer from '../../_components/PageContainer'
 import { ToggleTypeOfView } from '@/shared/preferences/view-mode'
 import { EnableTags } from '@/features/tags'
 

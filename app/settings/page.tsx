@@ -1,6 +1,6 @@
 'use client'
 
-import UserDashboardSettings from '@/views/UserDashboardSettings'
+import UserDashboardSettings from './UserDashboardSettings'
 
 export default function DashboardSettingsRoute() {
 	return <UserDashboardSettings />

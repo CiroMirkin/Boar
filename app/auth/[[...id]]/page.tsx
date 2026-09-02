@@ -1,6 +1,6 @@
 'use client'
 
-import Auth from '@/views/Auth'
+import Auth from './Auth'
 
 export default function AuthRoute() {
 	return <Auth />

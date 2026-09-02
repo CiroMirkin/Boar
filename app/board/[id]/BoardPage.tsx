@@ -11,7 +11,7 @@ import {
 	useTaskBoardQuery,
 } from '@/features/tasks'
 import { ArchiveTaskListButton } from '@/features/archived-tasks'
-import PageContainer from './PageContainer'
+import PageContainer from '../../_components/PageContainer'
 import { useBoardQuery } from '@/features/boards'
 import { USER_IS_IN } from '@/shared/ui/organisms/userIsIn'
 import { useTypeOfView } from '@/shared/preferences/view-mode'
