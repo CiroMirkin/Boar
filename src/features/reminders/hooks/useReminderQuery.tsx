@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { fetchReminder, saveReminder } from '../repository/ReminderRepositoryFactory'
+import { fetchReminder, saveReminder } from '../api/repository/ReminderRepositoryFactory'
 import { useSession } from '@/auth/hooks/useSession'
 import { blankReminder, Reminder } from '../model/reminder'
 import { useBoardId } from '@/auth/state/store'

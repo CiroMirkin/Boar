@@ -1,4 +1,4 @@
-import { Reminder } from '../model/reminder'
+import { Reminder } from '../../model/reminder'
 import LocalStorageReminderRepository from './LocalStorageReminder'
 import NextjsReminderRepository from './nextjsReminderRepository'
 import type { SessionType } from '@/auth/contexts/SessionProvider'
