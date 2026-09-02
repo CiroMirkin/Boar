@@ -1,6 +1,13 @@
 # Capo — Propuesta de reorganización a arquitectura screaming modular
 
-Documento generado a partir del análisis del repo con codegraph. Los pasos 1 (`shared/`), 2 (features chicas + `shared/preferences/`), 3 (romper `TaskBoard`), 4 (`auth` → `features/auth`) y 5 (eliminar `src/views/`) están **COMPLETOS**. Siguiente: paso 7 (`codegraph sync`).
+Documento generado a partir del análisis del repo con codegraph. **Todos los pasos del plan (1-7) están COMPLETOS.** El repo quedó en `src/features/` + `src/shared/` + `app/`, sin `src/{modules,actions,auth,views}/` y sin ninguna dependencia invertida.
+
+> **Revisión 2026-09-02 (paso 7 COMPLETO — codegraph resincronizado):** `codegraph index` (v1.5.0) sobre el árbol tras el paso 5: **336 archivos, 2.133 nodos, 4.634 edges, 1.085 imports, 8 rutas**. Verificación de que las dependencias invertidas de la sección 1 desaparecieron:
+> - `grep -rn "@/features/" src/shared/` → 0 · `grep -rn "@/auth" src/shared/` → 0
+> - `grep -rn "@/views\|views/" src app e2e` → 0 (alias muerto)
+> - Ningún import `src/ → app/` (grep + `codegraph node app/_components/Header.tsx` → usado solo por 3 archivos de `app/`, importa solo `@/shared/*` y `@/features/*`)
+> - `src/{modules,actions,views}/` no existen en disco (se borró el directorio vacío `src/views/` que quedó tras los `git mv`)
+> - Único ciclo aceptado: `features/auth` ⇄ `features/{boards,notes,tasks}` en `checkIfUserHasTheDefaultBoard.ts` (barriles públicos, sin hooks — ver paso 4)
 
 > **Revisión 2026-09-02 (paso 5 COMPLETO):** `src/views/` **ya no existe**. Los 11 archivos se movieron al árbol de `app/`:
 > - **Chrome de página compartido → `app/_components/`** (carpeta privada de Next, fuera del routing): `Header.tsx`, `PageContainer.tsx`.
@@ -8,7 +15,7 @@ Documento generado a partir del análisis del repo con codegraph. Los pasos 1 (`
 > - No se movió composición a `features/<feature>/ui/` (opción que daba la sección 3): toda página monta el chrome de `app/_components/`, y una feature no puede importar de `app/` sin invertir la dependencia. Las páginas de una sola feature (`TimeTracking` → usage-history) igual quedan en `app/` por eso.
 > - Imports a chrome desde las páginas co-locadas: relativos (`../_components/…`, `../../_components/…`). `@/*` sigue mapeando solo a `src/*`.
 > - **Verificación:** `tsc --noEmit` limpio · 75/75 tests · `next build` OK · `grep -rn "@/views\|views/" src app e2e` → 0 resultados.
-> - codegraph **pendiente de reindexar** (`codegraph sync`).
+> - codegraph reindexado en el paso 7 (ver revisión de arriba).
 
 > **Revisión 2026-09-02 (paso 4 COMPLETO):** `src/auth/` **ya no existe** — es `src/features/auth/` (`ui/ model/ hooks/ state/ contexts/` + `index.ts` como única API pública). Rama `refactor/paso-4-auth`. `tsc --noEmit` limpio, 75/75 tests, `next build` exit 0.
 > - **Todas las dependencias invertidas de la sección 1 resueltas** (`grep -rn "@/features/\|@/auth" src/shared/` → 0):
@@ -20,7 +27,7 @@ Documento generado a partir del análisis del repo con codegraph. Los pasos 1 (`
 > - `getUserId.ts` (stub muerto, 0 consumidores) eliminado.
 > - Las 8 features siguen consumiendo `useSession`/`useBoardId`/`SessionType` — ahora vía el barril `@/features/auth` en vez de rutas profundas a `@/auth/*`.
 > - Conteos: `features/` 221 (`auth` 12, `tasks` 81, resto igual); `shared/` 71 (`ui/` 33); `views/` 11 (+`Header.tsx`).
-> - codegraph **pendiente de reindexar** (`codegraph sync`).
+> - codegraph reindexado en el paso 7.
 
 > **Revisión 2026-09-02 (paso 3 COMPLETO):** `src/modules/` y `src/actions/` **ya no existen**. `TaskBoard` se partió en:
 > - **`src/features/tasks/`** (80) — el board Kanban: núcleo de `taskList` + `Columns` plegado adentro. Layout `ui/ model/ api/{actions,repository}/ hooks/ useCase/` + `index.ts`. `Columns` quedó como `ui/Columns/` (con sus `model/ hooks/`), no feature propia: el acoplamiento con `tasks` es circular y el agregado raíz es el board.
@@ -227,7 +234,7 @@ Igual que en `migration.md`, conviene ir feature por feature dejando la app siem
 4. ~~**`auth`** → `features/auth`~~ — **COMPLETO** (2026-09-02, rama `refactor/paso-4-auth`). `src/auth/` → `src/features/auth/` (`ui/ model/ hooks/ state/ contexts/` + `index.ts`; `getUserId.ts` muerto eliminado). Violaciones invertidas cortadas: `BlankTask` → `features/tasks/ui/`, `Header` → `views/`, `LogInAndLogOutMenuItem` → `features/auth/ui/`, `useLoadingTimeout` con tipo `session` local. Queda el ciclo `features/auth` ⇄ `features/{boards,notes,tasks}` en `checkIfUserHasTheDefaultBoard.ts`, aceptado como inherente (solo barriles públicos, mismo criterio que `tasks` ⇄ `archived-tasks`). `tsc` limpio, 75/75 tests, `next build` exit 0.
 5. ~~**Eliminar `src/views/`**~~ — **COMPLETO** (2026-09-02, ver revisión al inicio de este doc). Los 11 archivos → árbol de `app/`: chrome compartido (`Header`, `PageContainer`) → `app/_components/`; composición de página co-locada con cada `page.tsx`; `404.tsx` integrado en `app/not-found.tsx`. No se usó `features/<feature>/ui/` porque toda página monta el chrome de `app/_components/` y una feature no puede importar de `app/`. `tsc` limpio, 75/75 tests, `next build` OK.
 6. ~~**Decidir `actions/`**~~ — **COMPLETO**: split por dominio (PR #179), luego cada dominio a su feature (pasos 2-3). `src/actions/` eliminado. Guards de auth en `shared/lib/serverAuth.ts`.
-7. **Sincronizar codegraph** (`codegraph sync`) después de cada paso/PR y verificar que las dependencias invertidas de la sección 1 desaparecieron. El índice se desactualiza con cualquier `git mv`, así que conviene sincronizar antes de leerlo.
+7. ~~**Sincronizar codegraph**~~ — **COMPLETO** (2026-09-02). `codegraph index` full tras el paso 5: 336 archivos, 2.133 nodos, 4.634 edges, 1.085 imports, 8 rutas. Verificado por grep + grafo que las dependencias invertidas de la sección 1 desaparecieron (`@/features/`/`@/auth` en `src/shared/` → 0; `@/views` → 0; sin imports `src/ → app/`). Se borró el directorio vacío `src/views/` que quedó tras los `git mv`. El índice se desactualiza con cualquier `git mv`, así que conviene reindexar antes de leerlo.
 
 Cada paso se puede validar con `npm run build`, `npm run test` y `npm run test:e2e` antes de pasar al siguiente, igual que hicieron en la migración a Next.js.
 
@@ -251,4 +258,6 @@ Cada paso se puede validar con `npm run build`, `npm run test` y `npm run test:e
 - **`useLoadingTimeout` sin dependencia de auth** (paso 4): el hook solo lee `session?.user?.id`, así que su prop `session` pasó a un tipo estructural local (`{ user?: { id?: string } } | null`).
 - **`src/views/` eliminado** (paso 5): chrome compartido (`Header`, `PageContainer`) → `app/_components/`; composición de página co-locada con cada `page.tsx`; `404.tsx` integrado en `app/not-found.tsx`. Cada `page.tsx` quedó como wrapper fino con `import` relativo. No se movió nada a `features/<feature>/ui/`: toda página monta el chrome de `app/_components/` y una feature no puede importar de `app/`.
 
-Estado: **pasos 1, 2, 3, 4 y 5 completos.** Siguiente: paso 7 (`codegraph sync` y verificar que las dependencias invertidas de la sección 1 desaparecieron).
+- **codegraph resincronizado** (paso 7): `codegraph index` full tras el paso 5 (336 archivos, 2.133 nodos, 4.634 edges, 1.085 imports, 8 rutas). Todas las dependencias invertidas de la sección 1 verificadas como ausentes por grep + grafo.
+
+Estado: **todos los pasos (1-7) completos.** El repo quedó en `src/features/` + `src/shared/` + `app/`, sin `src/{modules,actions,auth,views}/` y sin dependencias invertidas. Único ciclo aceptado: `features/auth` ⇄ `features/{boards,notes,tasks}` (`checkIfUserHasTheDefaultBoard.ts`, barriles públicos).
