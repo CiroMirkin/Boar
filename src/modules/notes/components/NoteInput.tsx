@@ -1,11 +1,11 @@
 'use client'
 
-import { MinimalTiptapEditor } from '@/ui/organisms/MinimalTiptapEditor'
+import { MinimalTiptapEditor } from '@/shared/ui/organisms/MinimalTiptapEditor'
 import { maxLengthOfNotes } from '../model/notes'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
 import { useNotesQuery } from '../hooks/useNotesQuery'
-import { Spinner } from '@/ui/atoms/spinner'
+import { Spinner } from '@/shared/ui/atoms/spinner'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { ArchiveNoteBtn } from './ArchiveNoteBtn'
 import { useTheme } from '@/shared/hooks/useTheme'

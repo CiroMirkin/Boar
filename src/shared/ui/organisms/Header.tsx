@@ -9,7 +9,7 @@ import {
 	DropdownMenuLabel,
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
-} from '@/ui/molecules/dropdown-menu'
+} from '@/shared/ui/molecules/dropdown-menu'
 import {
 	ArchiveIcon,
 	CircleHelpIcon,
@@ -18,11 +18,11 @@ import {
 	HourglassIcon,
 	MenuIcon,
 	SettingsIcon,
-} from '@/ui/atoms/icons'
+} from '@/shared/ui/atoms/icons'
 import { USER_IS_IN } from './userIsIn'
-import { LanguageToggle } from '../../modules/LanguageToggle/LanguageToggle'
+import { LanguageToggle } from '../../../modules/LanguageToggle/LanguageToggle'
 import { useTranslation } from 'react-i18next'
-import LogInAndLogOutMenuItem from '../../modules/LanguageToggle/LogInAndLogOutMenuItem'
+import LogInAndLogOutMenuItem from '../../../modules/LanguageToggle/LogInAndLogOutMenuItem'
 import { useSession } from '@/auth/hooks/useSession'
 import Notes from '@/modules/notes/Notes'
 import { useTheme } from '@/shared/hooks/useTheme'

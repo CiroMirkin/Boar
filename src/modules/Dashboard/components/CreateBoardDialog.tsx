@@ -1,6 +1,6 @@
 import { useDashboardQuery } from '../hooks/useDashboardQuery'
-import { PlusIcon } from '@/ui/atoms/icons'
-import { Button } from '@/ui/atoms/button'
+import { PlusIcon } from '@/shared/ui/atoms/icons'
+import { Button } from '@/shared/ui/atoms/button'
 import {
 	Dialog,
 	DialogClose,
@@ -10,9 +10,9 @@ import {
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from '@/ui/molecules/dialog'
-import { Label } from '@/ui/atoms/label'
-import { Input } from '@/ui/atoms/input'
+} from '@/shared/ui/molecules/dialog'
+import { Label } from '@/shared/ui/atoms/label'
+import { Input } from '@/shared/ui/atoms/input'
 import { useState } from 'react'
 import { useTheme } from '@/shared/hooks/useTheme'
 import { toast } from 'sonner'

@@ -7,11 +7,11 @@ import {
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from '@/ui/molecules/dialog'
-import { Button } from '@/ui/atoms/button'
-import { MinimalTiptapEditor } from '@/ui/organisms/MinimalTiptapEditor'
+} from '@/shared/ui/molecules/dialog'
+import { Button } from '@/shared/ui/atoms/button'
+import { MinimalTiptapEditor } from '@/shared/ui/organisms/MinimalTiptapEditor'
 import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
-import { MessageSquareTextIcon } from '@/ui/atoms/icons'
+import { MessageSquareTextIcon } from '@/shared/ui/atoms/icons'
 import { checkMaxLengthOfNotesAndComments } from '../models/NotesAndComments'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'

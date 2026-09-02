@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import { TaskContext } from '@/ui/organisms/BlankTask'
-import { Button } from '@/ui/atoms/button'
+import { TaskContext } from '@/shared/ui/organisms/BlankTask'
+import { Button } from '@/shared/ui/atoms/button'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
 import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'

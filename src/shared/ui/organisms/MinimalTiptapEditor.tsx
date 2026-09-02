@@ -12,9 +12,9 @@ import OrderedList from '@tiptap/extension-ordered-list'
 import ListItem from '@tiptap/extension-list-item'
 import Underline from '@tiptap/extension-underline'
 import Placeholder from '@tiptap/extension-placeholder'
-import { Button } from '@/ui/atoms/button'
-import { Separator } from '@/ui/atoms/separator'
-import { Toggle } from '@/ui/atoms/toggle'
+import { Button } from '@/shared/ui/atoms/button'
+import { Separator } from '@/shared/ui/atoms/separator'
+import { Toggle } from '@/shared/ui/atoms/toggle'
 import {
 	Bold as BoldIcon,
 	Italic as ItalicIcon,

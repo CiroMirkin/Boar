@@ -1,7 +1,7 @@
 import { useArchive } from '@/modules/TaskBoard/components/taskList/components/ArchivedTasks/hooks/useArchive'
 import { useTranslation } from 'react-i18next'
 import { Content } from './components/Content'
-import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
+import { EmptySpaceText } from '@/shared/ui/atoms/EmptySpaceText'
 import Footer from './components/Footer'
 
 export function ArchivedTasks() {

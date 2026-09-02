@@ -1,6 +1,6 @@
 import { useTheme } from '@/shared/hooks/useTheme'
-import { Header } from '@/ui/organisms/Header'
-import { USER_IS_IN } from '@/ui/organisms/userIsIn'
+import { Header } from '@/shared/ui/organisms/Header'
+import { USER_IS_IN } from '@/shared/ui/organisms/userIsIn'
 import { ReactNode } from 'react'
 
 interface PageContainerProps {

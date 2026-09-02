@@ -1,6 +1,6 @@
 import { EditColumn } from './EditColumn'
 import { useTranslation } from 'react-i18next'
-import { SettingSection } from '@/ui/organisms/SettingSection'
+import { SettingSection } from '@/shared/ui/organisms/SettingSection'
 import { AddNewColumnForm } from './AddNewColumnForm'
 import { useColumnList } from '../hooks/useColumnList'
 

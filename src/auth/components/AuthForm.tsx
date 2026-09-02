@@ -1,8 +1,8 @@
 import { type FormEvent } from 'react'
-import { Button } from '@/ui/atoms/button'
-import { Input } from '@/ui/atoms/input'
-import { Label } from '@/ui/atoms/label'
-import { PasswordInput } from '@/ui/molecules/password-input'
+import { Button } from '@/shared/ui/atoms/button'
+import { Input } from '@/shared/ui/atoms/input'
+import { Label } from '@/shared/ui/atoms/label'
+import { PasswordInput } from '@/shared/ui/molecules/password-input'
 import { useTranslation } from 'react-i18next'
 import type { AuthFormData } from '../hooks/useAuth'
 

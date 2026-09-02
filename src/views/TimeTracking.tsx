@@ -1,4 +1,4 @@
-import { USER_IS_IN } from '@/ui/organisms/userIsIn'
+import { USER_IS_IN } from '@/shared/ui/organisms/userIsIn'
 import PageContainer from './PageContainer'
 import UsageHistory from '@/modules/UsageHistory/UsageHistory'
 import { useTranslation } from 'react-i18next'

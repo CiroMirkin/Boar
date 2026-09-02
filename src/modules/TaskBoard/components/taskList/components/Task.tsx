@@ -1,4 +1,4 @@
-import { BlankTask } from '@/ui/organisms/BlankTask'
+import { BlankTask } from '@/shared/ui/organisms/BlankTask'
 import { taskModel } from '@/modules/TaskBoard/model/task'
 import { TaskInBoardActions } from './TaskInBoardActions'
 import { DragEvent } from 'react'

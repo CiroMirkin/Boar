@@ -1,4 +1,4 @@
-import { Button } from '@/ui/atoms/button'
+import { Button } from '@/shared/ui/atoms/button'
 import { useTranslation } from 'react-i18next'
 
 interface OAuthProvidersProps {

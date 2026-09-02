@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Button } from '@/ui/atoms/button'
+import { Button } from '@/shared/ui/atoms/button'
 import { useTheme } from '@/shared/hooks/useTheme'
 import { toast } from 'sonner'
 import { downloadArchiveLikePDF } from '@/modules/TaskBoard/components/taskList/components/ArchivedTasks/downloadArchiveLikePDF'

@@ -1,8 +1,8 @@
-import { Button } from '@/ui/atoms/button'
+import { Button } from '@/shared/ui/atoms/button'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
 import { useDataOfTheTask } from '../hooks/useDataOfTheTask'
-import { ClipboardIcon } from '@/ui/atoms/icons'
+import { ClipboardIcon } from '@/shared/ui/atoms/icons'
 
 export function CopyTextButton() {
 	const { t } = useTranslation()

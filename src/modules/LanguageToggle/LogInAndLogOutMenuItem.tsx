@@ -1,9 +1,9 @@
 'use client'
 
-import { DropdownMenuItem } from '@/ui/molecules/dropdown-menu'
-import { USER_IS_IN } from '../../ui/organisms/userIsIn'
-import { TransitionLink } from '@/ui/atoms/TransitionLink'
-import { LogInIcon, LogOutIcon } from '@/ui/atoms/icons'
+import { DropdownMenuItem } from '@/shared/ui/molecules/dropdown-menu'
+import { USER_IS_IN } from '../../shared/ui/organisms/userIsIn'
+import { TransitionLink } from '@/shared/ui/atoms/TransitionLink'
+import { LogInIcon, LogOutIcon } from '@/shared/ui/atoms/icons'
 import { useTranslation } from 'react-i18next'
 import { signOut } from 'next-auth/react'
 import { toast } from 'sonner'

@@ -8,7 +8,7 @@ import { AddNewTaskInput } from '@/modules/TaskBoard/components/taskList/compone
 import { TaskListInEachColumn } from '@/modules/TaskBoard/components/taskList/TaskListInEachColumn'
 import PageContainer from './PageContainer'
 import { useBoardQuery } from '@/modules/board/hooks/useBoardQuery'
-import { USER_IS_IN } from '@/ui/organisms/userIsIn'
+import { USER_IS_IN } from '@/shared/ui/organisms/userIsIn'
 import { ListView } from '@/modules/TaskBoard/components/ListView'
 import { TableView } from '@/modules/TaskBoard/components/TableView'
 import { useTypeOfView } from '@/modules/TypeOfView/useTypeOfView'
@@ -16,7 +16,7 @@ import { NoteInput } from '@/modules/notes/components/NoteInput'
 import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 import { useReminder } from '@/modules/TaskBoard/components/Reminder/hooks/useReminder'
 import { useSession } from '@/auth/hooks/useSession'
-import { Spinner } from '@/ui/atoms/spinner'
+import { Spinner } from '@/shared/ui/atoms/spinner'
 import { useLoadingTimeout } from '@/shared/hooks/useLoadingTimeout'
 
 const columnsData: ColumnsFooterContent = {

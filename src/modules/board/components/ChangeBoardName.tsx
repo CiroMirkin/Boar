@@ -1,17 +1,17 @@
 'use client'
 
-import { Input } from '@/ui/atoms/input'
+import { Input } from '@/shared/ui/atoms/input'
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
-import { Button } from '@/ui/atoms/button'
-import { PencilIcon } from '@/ui/atoms/icons'
-import { Label } from '@/ui/atoms/label'
+import { Button } from '@/shared/ui/atoms/button'
+import { PencilIcon } from '@/shared/ui/atoms/icons'
+import { Label } from '@/shared/ui/atoms/label'
 import { isThisBoardNameWithinTheLimitOfLetters } from '@/modules/board/models/board'
 import { changeBoardName } from '@/modules/board/useCase/changeBoardName'
 import getErrorMessageForTheUser from '@/shared/lib/getErrorMessageForTheUser'
 import { toast } from 'sonner'
 import { useBoardQuery } from '@/modules/board/hooks/useBoardQuery'
 import { useTranslation } from 'react-i18next'
-import { SettingSection } from '@/ui/organisms/SettingSection'
+import { SettingSection } from '@/shared/ui/organisms/SettingSection'
 import { useTheme } from '@/shared/hooks/useTheme'
 
 interface Props {

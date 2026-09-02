@@ -1,11 +1,11 @@
 'use client'
 
 import { toast } from 'sonner'
-import { Button } from '@/ui/atoms/button'
+import { Button } from '@/shared/ui/atoms/button'
 import getErrorMessageForTheUser from '@/shared/lib/getErrorMessageForTheUser'
 import { useCheckForTasksInLastColumn } from '@/modules/TaskBoard/components/Columns/hooks/useCheckForTasksInLastColumn'
 import { useTranslation } from 'react-i18next'
-import { ArchiveIcon } from '@/ui/atoms/icons'
+import { ArchiveIcon } from '@/shared/ui/atoms/icons'
 import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 import { cleanLastTaskList } from '@/modules/TaskBoard/useCase/deleteTaskList'
 import { archiveTaskListInTheLastColumn } from '../useCase/archiveTaskList'

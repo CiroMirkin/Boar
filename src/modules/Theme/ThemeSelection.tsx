@@ -1,14 +1,14 @@
 'use client'
 
 import { themesList, Theme as Theme } from '@/modules/Theme/themesList'
-import { Card, CardContent } from '@/ui/molecules/card'
+import { Card, CardContent } from '@/shared/ui/molecules/card'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { MouseEvent, useEffect, useState } from 'react'
 import { useChangeTheme } from './useChangeTheme'
 import { useTheme } from '@/shared/hooks/useTheme'
-import { CheckIcon } from '@/ui/atoms/icons'
-import { SettingSection } from '@/ui/organisms/SettingSection'
+import { CheckIcon } from '@/shared/ui/atoms/icons'
+import { SettingSection } from '@/shared/ui/organisms/SettingSection'
 import ThemePreview from './ThemePreview'
 
 const getColorThemeFromId = (id: string): Theme => JSON.parse(id)

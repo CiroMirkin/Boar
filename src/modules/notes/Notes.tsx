@@ -1,5 +1,5 @@
-import { Button } from '@/ui/atoms/button'
-import { ScrollArea } from '@/ui/atoms/scroll-area'
+import { Button } from '@/shared/ui/atoms/button'
+import { ScrollArea } from '@/shared/ui/atoms/scroll-area'
 import {
 	Sheet,
 	SheetContent,
@@ -7,7 +7,7 @@ import {
 	SheetHeader,
 	SheetTitle,
 	SheetTrigger,
-} from '@/ui/molecules/sheet'
+} from '@/shared/ui/molecules/sheet'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from '@/shared/hooks/useTheme'
 import { NoteInput } from './components/NoteInput'

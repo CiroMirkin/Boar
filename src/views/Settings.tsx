@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslation } from 'react-i18next'
-import { USER_IS_IN } from '../ui/organisms/userIsIn'
+import { USER_IS_IN } from '../shared/ui/organisms/userIsIn'
 import { ChangeBoardName } from '../modules/board/components/ChangeBoardName'
 import CreateReminder from '@/modules/TaskBoard/components/Reminder/CreateReminder'
 import { ThemeSelection } from '../modules/Theme/ThemeSelection'

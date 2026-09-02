@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/molecules/card'
-import { Button } from '@/ui/atoms/button'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/shared/ui/molecules/card'
+import { Button } from '@/shared/ui/atoms/button'
 import { AuthForm } from './components/AuthForm'
 import { OAuthProviders } from './components/OAuthProviders'
 import { useAuth } from './hooks/useAuth'

@@ -1,10 +1,10 @@
 'use client'
 
-import { Button } from '@/ui/atoms/button'
+import { Button } from '@/shared/ui/atoms/button'
 import { toast } from 'sonner'
-import { PlusIcon } from '@/ui/atoms/icons'
+import { PlusIcon } from '@/shared/ui/atoms/icons'
 import getErrorMessageForTheUser from '@/shared/lib/getErrorMessageForTheUser'
-import { Input } from '@/ui/atoms/input'
+import { Input } from '@/shared/ui/atoms/input'
 import { ChangeEvent, KeyboardEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { isThisColumnNameWithinTheLimitOfLetters } from '@/modules/TaskBoard/model/taskColumn'

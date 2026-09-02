@@ -1,10 +1,10 @@
 import { useAvailableTags } from '../hooks/useAvailableTags'
-import { Badge } from '@/ui/atoms/badge'
+import { Badge } from '@/shared/ui/atoms/badge'
 import { TagGroup } from '../model/tags'
 import { toast } from 'sonner'
 import { useTheme } from '@/shared/hooks/useTheme'
 import { useTranslation } from 'react-i18next'
-import { SettingSection } from '@/ui/organisms/SettingSection'
+import { SettingSection } from '@/shared/ui/organisms/SettingSection'
 import { useTagsQuery } from '../hooks/useTagsQuery'
 import { useActualTagGroup } from '../hooks/useActualTagGroup'
 

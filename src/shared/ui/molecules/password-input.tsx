@@ -1,7 +1,7 @@
 import { forwardRef, useState } from 'react'
-import { Button } from '@/ui/atoms/button'
-import { Input, InputProps } from '@/ui/atoms/input'
-import { EyeIcon, EyeOffIcon } from '@/ui/atoms/icons'
+import { Button } from '@/shared/ui/atoms/button'
+import { Input, InputProps } from '@/shared/ui/atoms/input'
+import { EyeIcon, EyeOffIcon } from '@/shared/ui/atoms/icons'
 import { useTranslation } from 'react-i18next'
 
 interface PasswordInputProps extends Omit<InputProps, 'type'> {

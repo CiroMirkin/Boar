@@ -1,5 +1,11 @@
 import { DailyUsage } from '../model/usageHistory'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/ui/molecules/card'
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from '@/shared/ui/molecules/card'
 import { formatDate } from '@/shared/lib/formatDate'
 import Period from './Period'
 import { useTheme } from '@/shared/hooks/useTheme'

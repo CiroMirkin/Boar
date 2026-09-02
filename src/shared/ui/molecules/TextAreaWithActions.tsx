@@ -1,5 +1,5 @@
 import { useEffect, useRef, useCallback, KeyboardEvent, MouseEvent, ReactNode } from 'react'
-import { Textarea } from '@/ui/atoms/textarea'
+import { Textarea } from '@/shared/ui/atoms/textarea'
 import { cn } from '@/shared/lib/utils'
 import { Plus } from 'lucide-react'
 

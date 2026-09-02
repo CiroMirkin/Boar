@@ -1,15 +1,21 @@
 'use client'
 
 import { useState, ChangeEvent, useEffect } from 'react'
-import { Button } from '@/ui/atoms/button'
-import { Input } from '@/ui/atoms/input'
-import { Label } from '@/ui/atoms/label'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/ui/atoms/select'
+import { Button } from '@/shared/ui/atoms/button'
+import { Input } from '@/shared/ui/atoms/input'
+import { Label } from '@/shared/ui/atoms/label'
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from '@/shared/ui/atoms/select'
 import { Reminder as reminder } from './model/reminder'
 import { toast } from 'sonner'
 import getErrorMessageForTheUser from '@/shared/lib/getErrorMessageForTheUser'
 import { useTranslation } from 'react-i18next'
-import { SettingSection } from '@/ui/organisms/SettingSection'
+import { SettingSection } from '@/shared/ui/organisms/SettingSection'
 import { useReminderQuery } from './hooks/useReminderQuery'
 import { useTheme } from '@/shared/hooks/useTheme'
 

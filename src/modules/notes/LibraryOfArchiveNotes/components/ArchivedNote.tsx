@@ -1,7 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/ui/molecules/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/molecules/card'
 import { ArchivedNote as ArchivedNoteModel } from '../model/archivedNote'
 import { useTheme } from '@/shared/hooks/useTheme'
-import { MinimalTiptapViewer } from '@/ui/organisms/MinimalTiptapViewer'
+import { MinimalTiptapViewer } from '@/shared/ui/organisms/MinimalTiptapViewer'
 import { format } from '@formkit/tempo'
 
 interface ArchivedNoteProps {

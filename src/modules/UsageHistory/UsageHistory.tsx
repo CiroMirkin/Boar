@@ -1,7 +1,7 @@
 import { useUsageHistoryQuery } from './hooks/useUsageHistoryQuery'
 import UsageRecord from './components/UsageRecord'
-import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
-import { Spinner } from '@/ui/atoms/spinner'
+import { EmptySpaceText } from '@/shared/ui/atoms/EmptySpaceText'
+import { Spinner } from '@/shared/ui/atoms/spinner'
 import { useTranslation } from 'react-i18next'
 
 export default function UsageHistory() {

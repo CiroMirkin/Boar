@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { defaultView, TypeOfView, typeOfViewLocalStorageKey } from './typeOfView'
 import { useLocalStorage } from '@/shared/hooks/useLocalStorage'
 import { CheckView } from './CheckView'
-import { SettingSection } from '@/ui/organisms/SettingSection'
+import { SettingSection } from '@/shared/ui/organisms/SettingSection'
 
 export function ToggleTypeOfView() {
 	const [actualTypeOfView, changeView] = useLocalStorage(typeOfViewLocalStorageKey, defaultView)

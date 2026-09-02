@@ -2,9 +2,9 @@ import { ReactNode } from 'react'
 import ArchivedNote from './ArchivedNote'
 import { ArchivedNote as ArchivedNoteModel } from '../model/archivedNote'
 import { useTranslation } from 'react-i18next'
-import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
+import { EmptySpaceText } from '@/shared/ui/atoms/EmptySpaceText'
 import { useLibraryOfArchivedNotesQuery } from '../hooks/useLibraryOfArchivedNotesQuery'
-import { Spinner } from '@/ui/atoms/spinner'
+import { Spinner } from '@/shared/ui/atoms/spinner'
 
 export function ListOfArchivedNotes() {
 	const { archivedNotes, isLoading } = useLibraryOfArchivedNotesQuery()

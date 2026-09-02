@@ -1,7 +1,7 @@
 'use client'
 
 import React, { createContext, DragEvent, useContext, useState } from 'react'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/molecules/card'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/shared/ui/molecules/card'
 import { useTheme } from '@/shared/hooks/useTheme'
 import { ColumnsFooterContext } from '../context/ColumnsFooter/ColumnsFooterContext'
 import { ColumnPosition } from '../model/columnPosition'

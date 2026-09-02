@@ -1,5 +1,5 @@
-import { Button } from '@/ui/atoms/button'
-import { TrashIcon } from '@/ui/atoms/icons'
+import { Button } from '@/shared/ui/atoms/button'
+import { TrashIcon } from '@/shared/ui/atoms/icons'
 import { useTranslation } from 'react-i18next'
 import { deleteThisTaskColumn } from '@/modules/TaskBoard/useCase/deleteTaskList'
 import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'

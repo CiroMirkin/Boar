@@ -8,9 +8,9 @@ import {
 	DialogFooter,
 	DialogHeader,
 	DialogTitle,
-} from '@/ui/molecules/dialog'
-import { Button } from '@/ui/atoms/button'
-import { DescriptionOfCapo } from '../../../ui/atoms/DescriptionOfCapo'
+} from '@/shared/ui/molecules/dialog'
+import { Button } from '@/shared/ui/atoms/button'
+import { DescriptionOfCapo } from '../../../shared/ui/atoms/DescriptionOfCapo'
 
 export function WelcomeDialog() {
 	// clave 'boar-welcome-dialog' (nombre anterior del proyecto): no renombrar para no invalidar el localStorage de usuarios existentes

@@ -1,10 +1,15 @@
-import { Separator } from '@/ui/atoms/separator'
-import { DescriptionOfCapo } from '../ui/atoms/DescriptionOfCapo'
-import { Header } from '../ui/organisms/Header'
-import { USER_IS_IN } from '../ui/organisms/userIsIn'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/ui/atoms/accordion'
-import { Button } from '@/ui/atoms/button'
-import { GithubIcon } from '@/ui/atoms/icons'
+import { Separator } from '@/shared/ui/atoms/separator'
+import { DescriptionOfCapo } from '../shared/ui/atoms/DescriptionOfCapo'
+import { Header } from '../shared/ui/organisms/Header'
+import { USER_IS_IN } from '../shared/ui/organisms/userIsIn'
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from '@/shared/ui/atoms/accordion'
+import { Button } from '@/shared/ui/atoms/button'
+import { GithubIcon } from '@/shared/ui/atoms/icons'
 import { useTranslation } from 'react-i18next'
 
 export function Help() {

@@ -1,9 +1,9 @@
 'use client'
 
 import { KeyboardEvent, useState } from 'react'
-import { Button } from '@/ui/atoms/button'
-import { PencilIcon } from '@/ui/atoms/icons'
-import { Input } from '@/ui/atoms/input'
+import { Button } from '@/shared/ui/atoms/button'
+import { PencilIcon } from '@/shared/ui/atoms/icons'
+import { Input } from '@/shared/ui/atoms/input'
 import { useTheme } from '@/shared/hooks/useTheme'
 import { isThisColumnNameWithinTheLimitOfLetters } from '@/modules/TaskBoard/model/taskColumn'
 import { Column } from '../model/column'

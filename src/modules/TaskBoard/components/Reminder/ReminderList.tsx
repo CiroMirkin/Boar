@@ -1,11 +1,11 @@
-import { Button } from '@/ui/atoms/button'
-import { TrashIcon } from '@/ui/atoms/icons'
+import { Button } from '@/shared/ui/atoms/button'
+import { TrashIcon } from '@/shared/ui/atoms/icons'
 import { blankReminder } from './model/reminder'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { useTheme } from '@/shared/hooks/useTheme'
-import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
-import { SettingSection } from '@/ui/organisms/SettingSection'
+import { EmptySpaceText } from '@/shared/ui/atoms/EmptySpaceText'
+import { SettingSection } from '@/shared/ui/organisms/SettingSection'
 import { useReminderQuery } from './hooks/useReminderQuery'
 
 export function ReminderList() {
