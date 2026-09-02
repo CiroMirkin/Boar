@@ -1,7 +1,7 @@
 'use server'
 
 import { prisma } from '@/shared/lib/prisma'
-import i18next from '@/i18next/server'
+import i18next from '@/shared/i18n/server'
 import { requireAuth } from '../auth'
 
 // Default column names stored as i18n keys (same as emptyTaskBoard)

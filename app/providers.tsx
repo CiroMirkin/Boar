@@ -1,6 +1,6 @@
 'use client'
 
-import '../src/i18next/index'
+import '../src/shared/i18n/index'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster as SonnerToaster } from 'sonner'
 import { useEffect, useState, type ReactNode } from 'react'
