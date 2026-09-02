@@ -2,7 +2,7 @@
 
 import { prisma } from '@/shared/lib/prisma'
 import type { Notes } from '@/modules/notes/model/notes'
-import { requireBoardAccess } from '../shared'
+import { requireBoardAccess } from '@/shared/lib/serverAuth'
 
 export async function saveNotes({
 	boardId,

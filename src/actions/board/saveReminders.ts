@@ -2,7 +2,7 @@
 
 import { prisma } from '@/shared/lib/prisma'
 import type { Reminder } from '@/modules/TaskBoard/components/Reminder/model/reminder'
-import { requireBoardAccess } from '../shared'
+import { requireBoardAccess } from '@/shared/lib/serverAuth'
 
 export async function saveReminders({
 	boardId,

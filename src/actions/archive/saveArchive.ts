@@ -2,7 +2,7 @@
 
 import { prisma } from '@/shared/lib/prisma'
 import type { Archive } from '@/modules/TaskBoard/components/taskList/components/ArchivedTasks/models/archive'
-import { requireBoardAccess } from '../shared'
+import { requireBoardAccess } from '@/shared/lib/serverAuth'
 
 export async function saveArchive({
 	boardId,

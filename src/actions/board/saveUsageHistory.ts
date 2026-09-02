@@ -3,7 +3,7 @@
 import { prisma } from '@/shared/lib/prisma'
 import type { UsageHistory } from '@/modules/UsageHistory/model/usageHistory'
 import { migrateUsageHistory } from '@/modules/UsageHistory/model/usageHistory'
-import { requireBoardAccess } from '../shared'
+import { requireBoardAccess } from '@/shared/lib/serverAuth'
 
 export async function saveUsageHistory({
 	boardId,

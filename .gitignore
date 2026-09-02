@@ -41,5 +41,9 @@ dist-ssr
 # Next.js
 .next/
 out/
+tsconfig.tsbuildinfo
+
+# codegraph local index
+.codegraph/
 
 /generated/prisma

@@ -2,7 +2,7 @@
 
 import { prisma } from '@/shared/lib/prisma'
 import type { boardModel } from '@/modules/board/models/board'
-import { requireAuth } from '../auth'
+import { requireAuth } from '@/shared/lib/serverAuth'
 
 export async function getBoardById({ boardId }: { boardId: string }): Promise<boardModel | null> {
 	const userId = await requireAuth()

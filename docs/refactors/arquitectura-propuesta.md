@@ -1,7 +1,14 @@
 # Capo — Propuesta de reorganización a arquitectura screaming modular
 
-Documento generado a partir del análisis del repo con codegraph. No se movió ningún archivo todavía; esto es la propuesta para revisar antes de tocar código.
+Documento generado a partir del análisis del repo con codegraph. La reorganización arrancó (paso 1, `shared/`, ya está); el resto es propuesta para revisar antes de tocar código.
 
+> **Revisión 2026-09-02 (paso 1 `shared/` COMPLETO):** verificado contra el árbol real + codegraph resincronizado, `tsc --noEmit` limpio, 75/75 tests unitarios en verde.
+> - **El paso 1 del plan (sección 4) está terminado** (commits `187728c0`, `bb236571`, `0bf3168b`, `216ea90d` + este cambio): `src/ui/`, `src/common/`, `src/lib/`, `src/i18next/` **ya no existen como carpetas top-level** — se consolidaron en `src/shared/{ui,hooks,lib,errors,i18n}`. El layout resultante coincide con el propuesto en la sección 2 (`shared/hooks` ← `common/hooks`; `common/utils` → `shared/lib`; `common/errors` → `shared/errors`).
+> - **`src/actions/auth.ts` + `src/actions/shared.ts` → `src/shared/lib/serverAuth.ts`** (un solo archivo con los 4 guards de servidor: `requireAuth`, `requireBoardAccess`, `requireColumnAccess`, `requireTaskAccess`). 26 imports reescritos a `@/shared/lib/serverAuth`. `src/actions/` bajó de 33 a 31 archivos.
+> - El movimiento de `shared/` fue mecánico (solo `git mv` + imports), así que **las violaciones de dependencia viajaron con los archivos sin resolverse**: siguen las mismas, con los paths reescritos (`ui/` → `shared/ui/`, `common/` → `shared/hooks/`). Se resuelven en los pasos 2-4. Ver tabla en sección 1.
+> - `src/shared/` = 57 archivos. Falta (fuera del alcance del paso 1): `shared/preferences/` (Theme / LanguageToggle / TypeOfView siguen en `src/modules/`).
+> - **codegraph resincronizado el 2026-09-02** (v1.5.0): 333 archivos, 2165 nodos, 4611 edges, 1115 imports.
+>
 > **Revisión 2026-09-02:** verificado contra el árbol de archivos real (rama `capo`). Cambios desde la revisión anterior:
 > - **El proyecto se renombró de `Boar` a `Capo`** (`package.json`, app, rama). El documento se actualizó; el repo todavía se llama `Boar` en disco.
 > - **`src/actions/` ya se refactorizó** (PR #179): pasó de 5 archivos planos a un directorio por dominio con barril (`board/`, `tasks/`, `tags/`, `notes/`, `archive/`), más `auth.ts` (`requireAuth`) y `shared.ts` (`requireBoardAccess` / `requireColumnAccess` / `requireTaskAccess`). Es una realización parcial de la sección 3 — ver notas ahí.
@@ -20,13 +27,10 @@ Documento generado a partir del análisis del repo con codegraph. No se movió n
 | Carpeta | Archivos | Rol |
 |---|---|---|
 | `modules/` | 190 | Dominio de negocio (bien encaminado hacia screaming) |
-| `ui/` | 35 | Design system (shadcn: atoms/molecules/organisms) |
+| `shared/` | 57 | Capa compartida (paso 1 completo) — `ui/` 35 (ex `src/ui`), `hooks/` 8 (ex `common/hooks`), `lib/` 9 (ex `src/lib` + `common/utils` + `serverAuth.ts`), `i18n/` 4 (ex `i18next`), `errors/` 1 (ex `common/errors`) |
+| `actions/` | 31 | Server Actions (backend) — split por dominio + barril; guards de auth ahora en `shared/lib/serverAuth.ts` |
 | `auth/` | 11 | Autenticación |
 | `views/` (ex `pages/`) | 10 | Composición de páginas (envueltas por `app/*/page.tsx`) |
-| `common/` | 13 | Utilidades transversales (hooks + utils) |
-| `actions/` | 33 | Server Actions (backend) — ya split por dominio + barril |
-| `i18next/` | 4 | Configuración de idioma (cliente + server) |
-| `lib/` | 4 | Prisma client + utils + rate-limit |
 
 Y dentro de `modules/`:
 
@@ -53,18 +57,18 @@ modules/TaskBoard/components/Reminder/repository/nextjsReminderRepository.ts
 
 ### Violaciones de dependencia detectadas (vía grafo de imports)
 
-Aparecen dependencias invertidas — capas que deberían ser "hoja" (sin conocer al dominio) importando desde el dominio. Estado al 2026-09-02 (grep sobre el árbol + grafo reindexado):
+Aparecen dependencias invertidas — capas que deberían ser "hoja" (sin conocer al dominio) importando desde el dominio. Estado al 2026-09-02 tras mover todo a `shared/` (grep sobre el árbol + codegraph resincronizado). **El refactor de `shared/` no tocó ninguna de estas — solo reescribió los paths.**
 
 | Origen | Destino | Ocurrencias | Estado | Problema |
 |---|---|---|---|---|
-| `ui` | `modules/TaskBoard` model + Tags hook (`BlankTask.tsx`); `modules/notes` + `UsageHistory` + `TypeOfView` + `LanguageToggle` (`Header.tsx`) | 7 | pendiente | El design system (shadcn) no debería conocer features de negocio |
-| `ui` | `auth` — `useSession`, `useBoardId` (`Header.tsx`) | 2 | pendiente (no estaba listada) | Mismo caso: `ui` es hoja, no conoce sesión |
-| `common` | `auth` — `SessionType` en `useLoadingTimeout` (type-only); `modules/Theme` en `useTheme` | 3 | pendiente | Utilidades transversales dependiendo de features específicas |
-| `auth` | `modules/board`, `modules/notes`, `modules/TaskBoard` (todo en `checkIfUserHasTheDefaultBoard.ts`) | 3 | pendiente | Auth debería ser consumido por los módulos, no al revés |
+| `shared/ui` (ex `ui`) | `modules/TaskBoard` model + Tags hook (`organisms/BlankTask.tsx`, 2); `modules/LanguageToggle` (×2) + `notes` + `UsageHistory` + `TypeOfView` (`organisms/Header.tsx`, 5) | 7 | pendiente | El design system (shadcn) no debería conocer features de negocio |
+| `shared/ui` (ex `ui`) | `auth` — `useSession`, `useBoardId` (`organisms/Header.tsx`) | 2 | pendiente | Mismo caso: `ui` es hoja, no conoce sesión |
+| `shared/hooks` (ex `common`) | `auth` — `SessionType` en `useLoadingTimeout.tsx` (type-only); `modules/Theme` en `useTheme.tsx` (`ThemeContext` + `Theme`, 2) | 3 | pendiente | Utilidades transversales dependiendo de features específicas |
+| `auth` | `modules/board`, `modules/notes`, `modules/TaskBoard` (todo en `utils/checkIfUserHasTheDefaultBoard.ts`) | 3 | pendiente | Auth debería ser consumido por los módulos, no al revés |
 | `actions` | `views` | 0 | ✅ resuelto (PR #179 / fix boardId por ruta) | — |
 | `ui` | `views` | 0 | ✅ resuelto | — |
 
-No cuentan como violación bajo la arquitectura destino: `auth -> ui` (6 — `AuthCard`, `AuthForm`, `OAuthProviders`; una feature puede usar `shared/ui`) y `actions -> modules/*/model` (~18, casi todas `import type`; la regla de dependencia propuesta permite explícitamente que `actions/` importe `model/` de las features).
+No cuentan como violación bajo la arquitectura destino: `auth -> shared/ui` (6 — `AuthCard`, `AuthForm`, `OAuthProviders`; una feature puede usar `shared/ui`) y `actions -> modules/*/model` (~18, casi todas `import type`; la regla de dependencia propuesta permite explícitamente que `actions/` importe `model/` de las features).
 
 Ninguna de las pendientes es grave hoy (son pocas ocurrencias), pero son la semilla de ciclos de dependencia a medida que el repo crezca, y contradicen la regla básica de screaming/clean architecture: **las capas compartidas y el backend no conocen features concretas; las features conocen lo compartido.**
 
@@ -96,13 +100,13 @@ src/
 │   ├── usage-history/
 │   ├── dashboard/            (listado de boards del usuario)
 │   └── auth/                 (ex src/auth)
-├── shared/
-│   ├── ui/                   (ex src/ui — design system, CERO imports desde features/)
-│   ├── i18n/                 (ex i18next)
-│   ├── lib/                  (prisma client, utils)
-│   ├── errors/
-│   ├── hooks/                (ex common/hooks)
-│   └── preferences/          (ex modules/Theme, modules/LanguageToggle, modules/TypeOfView —
+├── shared/                   ✅ YA EXISTE (paso 1) — falta solo preferences/ y limpiar los imports invertidos
+│   ├── ui/                   ✅ (ex src/ui — design system; todavía con 9 imports a features, hay que cortarlos)
+│   ├── i18n/                 ✅ (ex i18next)
+│   ├── lib/                  ✅ (prisma, utils, rate-limit, serverAuth; ex src/lib + common/utils + actions/{auth,shared}.ts)
+│   ├── errors/               ✅ (ex common/errors)
+│   ├── hooks/                ✅ (ex common/hooks)
+│   └── preferences/          ⬜ (ex modules/Theme, modules/LanguageToggle, modules/TypeOfView —
 │       ├── theme/             transversales, no son dominio Kanban en sí)
 │       ├── language/
 │       └── view-mode/
@@ -172,12 +176,10 @@ src/actions/
 │              moveTask, createColumn, deleteColumn, updateColumnName)
 ├── tags/     (getActiveTagGroup, setActiveTagGroup)
 ├── notes/    (getNotes, saveNotes)
-├── archive/  (getArchive, saveArchive, getArchivedNotes, saveArchivedNotes)
-├── auth.ts   (requireAuth)
-└── shared.ts (requireBoardAccess, requireColumnAccess, requireTaskAccess — auth + ownership por fila)
+└── archive/  (getArchive, saveArchive, getArchivedNotes, saveArchivedNotes)
 ```
 
-Los helpers compartidos ya están centralizados (`auth.ts` + `shared.ts`), que era el punto clave. Falta la última mitad de la propuesta: cuando se haga la migración a `features/`, cada `src/actions/<dominio>/` se mueve a `features/<feature>/api/` y `src/actions/shared.ts` a `shared/lib/`. El split por dominio actual hace ese movimiento casi un `git mv` por carpeta.
+Los guards de auth (`requireAuth` + `require{Board,Column,Task}Access`) ya se sacaron de `actions/` a **`src/shared/lib/serverAuth.ts`** (paso 1). Falta la última mitad de la propuesta: cuando se haga la migración a `features/`, cada `src/actions/<dominio>/` se mueve a `features/<feature>/api/`. El split por dominio actual hace ese movimiento casi un `git mv` por carpeta.
 
 ---
 
@@ -185,12 +187,12 @@ Los helpers compartidos ya están centralizados (`auth.ts` + `shared.ts`), que e
 
 Igual que en `migration.md`, conviene ir feature por feature dejando la app siempre demoable, en vez de un big-bang. Orden sugerido (de menor a mayor riesgo/tamaño):
 
-1. **`shared/`**: mover `ui/`, `common/`, `lib/`, `i18next/` sin cambiar su contenido, solo actualizar imports. Es mecánico y no toca lógica.
+1. ~~**`shared/`**: mover `ui/`, `common/`, `lib/`, `i18next/` sin cambiar su contenido, solo actualizar imports.~~ — **COMPLETO** (2026-09-02, commits `187728c0` `bb236571` `0bf3168b` `216ea90d` + move de guards). Quedó `src/shared/{ui,hooks,lib,errors,i18n}`; `src/actions/{auth,shared}.ts` → `src/shared/lib/serverAuth.ts`. `tsc` limpio, 75/75 tests. Los imports invertidos que el `git mv` arrastró (`shared/ui -> modules` ×7, `shared/ui -> auth` ×2, `shared/hooks -> {auth,modules/Theme}` ×3) se cortan en los pasos 2-4, no acá.
 2. **Features chicas y ya aisladas**: `Theme`, `LanguageToggle`, `TypeOfView`, `Dashboard`, `UsageHistory`, `notes`, `board` → renombrar `modules/X` a `features/x` (kebab-case) y reordenar internamente a `ui/model/api/hooks`.
 3. **Romper `TaskBoard`**: extraer `Columns`, `Reminder`, `Tags`, `ArchivedTasks` como features top-level (y dejar el núcleo de `taskList` como la feature `tasks`). Es el paso de mayor superficie: de los 8 módulos actuales, este único módulo (`TaskBoard`, el 64% del código de dominio) se parte en 5 features nuevas, pero cada una ya tiene sus límites claros (modelo + repo + useCase propios), así que es más mecánico de lo que parece.
-4. **`auth`** → `features/auth`, resolviendo `auth -> modules/*` (3) y de paso `ui -> auth` (2, mover `useSession`/`useBoardId` fuera de `Header` o inyectarlos por props) y `common -> auth` (1).
+4. **`auth`** → `features/auth`, resolviendo `auth -> modules/*` (3) y de paso `shared/ui -> auth` (2, mover `useSession`/`useBoardId` fuera de `Header` o inyectarlos por props) y `shared/hooks -> auth` (1, `SessionType` type-only en `useLoadingTimeout`).
 5. **Eliminar `src/views/`** (ex `src/pages/`), mover composición a `app/` o a la feature dueña.
-6. ~~**Decidir `actions/`**~~ — hecho (PR #179): split por dominio + helpers centralizados. Resta mover cada `src/actions/<dominio>/` a `features/<feature>/api/` junto con su feature en los pasos 2-3, y `shared.ts` a `shared/lib/` en el paso 1.
+6. ~~**Decidir `actions/`**~~ — hecho (PR #179 + paso 1): split por dominio; guards de auth en `shared/lib/serverAuth.ts`. Resta mover cada `src/actions/<dominio>/` a `features/<feature>/api/` junto con su feature en los pasos 2-3.
 7. **Reindexar codegraph** (`codegraph index`) después de cada paso y verificar que las dependencias invertidas de la sección 1 desaparecieron. El índice se desactualiza con cualquier `git mv`, así que conviene reindexar antes de leerlo.
 
 Cada paso se puede validar con `npm run build`, `npm run test` y `npm run test:e2e` antes de pasar al siguiente, igual que hicieron en la migración a Next.js.
@@ -199,7 +201,8 @@ Cada paso se puede validar con `npm run build`, `npm run test` y `npm run test:e
 
 ## 5. Decisiones ya tomadas
 
-- `Theme` / `LanguageToggle` / `TypeOfView` → `shared/preferences/` (transversal, no son dominio Kanban).
-- `actions/` → distribuido por dominio. **Primer paso ya aplicado** (PR #179): `src/actions/<dominio>/` con barril + `auth.ts` / `shared.ts` centralizados. El destino final sigue siendo `features/<feature>/api/`.
+- `Theme` / `LanguageToggle` / `TypeOfView` → `shared/preferences/` (transversal, no son dominio Kanban). Siguen en `src/modules/` — pendiente.
+- `actions/` → distribuido por dominio. **Aplicado** (PR #179): `src/actions/<dominio>/` con barril. Los guards de auth se movieron a `shared/lib/serverAuth.ts` (paso 1). El destino final de cada dominio sigue siendo `features/<feature>/api/`.
+- **`shared/` → COMPLETO** (2026-09-02): `src/ui` `src/common` `src/lib` `src/i18next` consolidados en `src/shared/`; `actions/{auth,shared}.ts` → `shared/lib/serverAuth.ts`. `tsc` limpio, 75/75 tests.
 
-Con esto el plan del punto 4 queda cerrado. Falta decidir cómo arrancar: migración feature por feature (empezando por `shared/`), o generar antes el árbol de carpetas completo como checklist para ir tildando.
+Estado: **paso 1 completo**. Siguiente: paso 2 (features chicas — `Theme`/`LanguageToggle`/`TypeOfView` a `shared/preferences/`, después `Dashboard`/`UsageHistory`/`notes`/`board` a `features/`).

@@ -1,7 +1,7 @@
 'use server'
 
 import { prisma } from '@/shared/lib/prisma'
-import { requireTaskAccess } from '../shared'
+import { requireTaskAccess } from '@/shared/lib/serverAuth'
 
 export async function updateTask({
 	taskId,

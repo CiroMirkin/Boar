@@ -2,7 +2,7 @@
 
 import { prisma } from '@/shared/lib/prisma'
 import i18next from '@/shared/i18n/server'
-import { requireAuth } from '../auth'
+import { requireAuth } from '@/shared/lib/serverAuth'
 
 // Default column names stored as i18n keys (same as emptyTaskBoard)
 const DEFAULT_COLUMN_KEYS = [

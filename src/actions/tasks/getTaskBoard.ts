@@ -3,7 +3,7 @@
 import { prisma } from '@/shared/lib/prisma'
 import type { TaskBoard } from '@/modules/TaskBoard/model/taskBoard'
 import type { taskModel } from '@/modules/TaskBoard/model/task'
-import { requireBoardAccess } from '../shared'
+import { requireBoardAccess } from '@/shared/lib/serverAuth'
 
 /**
  * Returns the board as a TaskBoard (TaskColumn[]) shape expected by the client.
