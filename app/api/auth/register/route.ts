@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Prisma, prisma } from '@/lib/prisma'
-import { isRateLimited } from '@/lib/rateLimit'
+import { Prisma, prisma } from '@/shared/lib/prisma'
+import { isRateLimited } from '@/shared/lib/rateLimit'
 import bcrypt from 'bcryptjs'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/

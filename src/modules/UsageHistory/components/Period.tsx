@@ -1,6 +1,6 @@
 import { UsageSession } from '../model/usageHistory'
 import { parseDuration } from '../utils/parseDuration'
-import { formatTime } from '@/common/utils/formatTime'
+import { formatTime } from '@/shared/lib/formatTime'
 
 interface PeriodProps {
 	period: UsageSession

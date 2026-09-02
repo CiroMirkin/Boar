@@ -1,6 +1,6 @@
-import BusinessError from '@/common/errors/businessError'
+import BusinessError from '@/shared/errors/businessError'
 import { TaskList } from '@/modules/TaskBoard/model/TaskList'
-import { getFullDate } from '@/common/utils/getTime'
+import { getFullDate } from '@/shared/lib/getTime'
 import {
 	Archive,
 	isItWithinTheArchiveLimit,

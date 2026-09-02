@@ -1,6 +1,6 @@
 'use server'
 
-import { prisma } from '@/lib/prisma'
+import { prisma } from '@/shared/lib/prisma'
 import { requireBoardAccess } from '../shared'
 
 export async function createColumn({

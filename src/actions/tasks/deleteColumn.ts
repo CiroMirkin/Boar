@@ -1,6 +1,6 @@
 'use server'
 
-import { prisma } from '@/lib/prisma'
+import { prisma } from '@/shared/lib/prisma'
 import { requireColumnAccess } from '../shared'
 
 export async function deleteColumn({ columnId }: { columnId: string }): Promise<void> {

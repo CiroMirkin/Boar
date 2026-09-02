@@ -3,7 +3,7 @@
 import { useSession } from '@/auth/hooks/useSession'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import NextjsDashboardRepository from '../repository/nextjsDashboardRepository'
-import BusinessError from '@/common/errors/businessError'
+import BusinessError from '@/shared/errors/businessError'
 import { useTranslation } from 'react-i18next'
 
 const queryKey = ['board-dashboard']

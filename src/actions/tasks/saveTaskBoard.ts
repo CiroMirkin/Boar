@@ -1,6 +1,6 @@
 'use server'
 
-import { prisma } from '@/lib/prisma'
+import { prisma } from '@/shared/lib/prisma'
 import type { TaskBoard } from '@/modules/TaskBoard/model/taskBoard'
 import { requireBoardAccess } from '../shared'
 
@@ -54,15 +54,13 @@ export async function saveTaskBoard({
 						data: { name: col.status, order: i },
 					})
 					realColumnId = existing.id
-				}
-				else {
+				} else {
 					const created = await tx.column.create({
 						data: { name: col.status, order: i, boardId },
 					})
 					realColumnId = created.id
 				}
-			}
-			else {
+			} else {
 				await tx.column.upsert({
 					where: { id: col.id },
 					create: { id: col.id, name: col.status, order: i, boardId },

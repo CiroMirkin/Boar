@@ -1,4 +1,4 @@
-import BusinessError from '@/common/errors/businessError'
+import BusinessError from '@/shared/errors/businessError'
 import { taskModel } from '@/modules/TaskBoard/model/task'
 import {
 	TaskTimelineHistory,

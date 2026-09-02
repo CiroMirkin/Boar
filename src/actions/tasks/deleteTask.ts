@@ -1,6 +1,6 @@
 'use server'
 
-import { prisma } from '@/lib/prisma'
+import { prisma } from '@/shared/lib/prisma'
 import { requireTaskAccess } from '../shared'
 
 export async function deleteTask({ taskId }: { taskId: string }): Promise<void> {

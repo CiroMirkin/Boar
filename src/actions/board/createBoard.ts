@@ -1,6 +1,6 @@
 'use server'
 
-import { prisma } from '@/lib/prisma'
+import { prisma } from '@/shared/lib/prisma'
 import i18next from '@/i18next/server'
 import { requireAuth } from '../auth'
 

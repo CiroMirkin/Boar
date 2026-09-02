@@ -1,6 +1,6 @@
 'use server'
 
-import { prisma } from '@/lib/prisma'
+import { prisma } from '@/shared/lib/prisma'
 import type { Notes } from '@/modules/notes/model/notes'
 import { requireBoardAccess } from '../shared'
 

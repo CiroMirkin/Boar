@@ -1,11 +1,11 @@
-import { prisma } from '@/lib/prisma'
+import { prisma } from '@/shared/lib/prisma'
 import { requireAuth } from './auth'
 
 /*
  Auth + ownership por fila en una sola llamada. 
  Tiran 'No autorizado' / 'Tablero|Columna|Tarea no encontrada'.
  El cliente solo distingue el prefijo.
-*/ 
+*/
 
 export async function requireBoardAccess(boardId: string) {
 	const userId = await requireAuth()

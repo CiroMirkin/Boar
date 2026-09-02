@@ -2,7 +2,7 @@
 
 import { toast } from 'sonner'
 import { Button } from '@/ui/atoms/button'
-import getErrorMessageForTheUser from '@/common/utils/getErrorMessageForTheUser'
+import getErrorMessageForTheUser from '@/shared/lib/getErrorMessageForTheUser'
 import { useCheckForTasksInLastColumn } from '@/modules/TaskBoard/components/Columns/hooks/useCheckForTasksInLastColumn'
 import { useTranslation } from 'react-i18next'
 import { ArchiveIcon } from '@/ui/atoms/icons'

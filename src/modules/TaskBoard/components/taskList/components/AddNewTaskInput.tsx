@@ -2,7 +2,7 @@
 
 import { getNewTask, isThisTaskDescriptionValid } from '@/modules/TaskBoard/model/task'
 import { toast } from 'sonner'
-import getErrorMessageForTheUser from '@/common/utils/getErrorMessageForTheUser'
+import getErrorMessageForTheUser from '@/shared/lib/getErrorMessageForTheUser'
 import { KeyboardEvent, useState } from 'react'
 import { useTagStore } from './Tags/state/store'
 import { useTranslation } from 'react-i18next'

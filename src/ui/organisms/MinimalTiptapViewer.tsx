@@ -5,7 +5,7 @@ import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
 import Underline from '@tiptap/extension-underline'
 import Highlight from '@tiptap/extension-highlight'
-import { cn } from '@/lib/utils'
+import { cn } from '@/shared/lib/utils'
 
 interface MinimalTiptapViewerProps {
 	value?: string
