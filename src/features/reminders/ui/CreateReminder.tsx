@@ -11,12 +11,12 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/shared/ui/atoms/select'
-import { Reminder as reminder } from './model/reminder'
+import { Reminder as reminder } from '../model/reminder'
 import { toast } from 'sonner'
 import getErrorMessageForTheUser from '@/shared/lib/getErrorMessageForTheUser'
 import { useTranslation } from 'react-i18next'
 import { SettingSection } from '@/shared/ui/organisms/SettingSection'
-import { useReminderQuery } from './hooks/useReminderQuery'
+import { useReminderQuery } from '../hooks/useReminderQuery'
 import { useTheme } from '@/shared/hooks/useTheme'
 
 interface ReminderColumn {

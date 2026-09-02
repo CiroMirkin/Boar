@@ -1,4 +1,4 @@
-import { Reminder } from '../model/reminder'
+import { Reminder } from '../../model/reminder'
 
 export interface ReminderRepository {
 	save(reminder: Reminder, boardId: string): Promise<void>
