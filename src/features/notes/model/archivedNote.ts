@@ -1,4 +1,4 @@
-import { Notes } from '@/modules/notes/model/notes'
+import { Notes } from './notes'
 
 export interface ArchivedNote {
 	id: string

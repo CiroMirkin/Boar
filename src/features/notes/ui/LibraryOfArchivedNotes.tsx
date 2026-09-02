@@ -1,5 +1,5 @@
 import { useTheme } from '@/shared/hooks/useTheme'
-import { ListOfArchivedNotes } from './components/ListOfArchivedNotes'
+import { ListOfArchivedNotes } from './ListOfArchivedNotes'
 
 export default function LibraryOfArchiveNotes() {
 	const { bg } = useTheme()

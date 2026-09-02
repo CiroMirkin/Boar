@@ -10,7 +10,7 @@ import {
 } from '@/shared/ui/molecules/sheet'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from '@/shared/hooks/useTheme'
-import { NoteInput } from './components/NoteInput'
+import { NoteInput } from './NoteInput'
 
 export default function Notes() {
 	const { t } = useTranslation()

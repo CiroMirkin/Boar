@@ -1,5 +1,5 @@
 import { isDefaultBoardName } from '@/modules/board/models/board'
-import { defaultNotes } from '@/modules/notes/model/notes'
+import { defaultNotes } from '@/features/notes'
 import { emptyTaskBoard } from '@/modules/TaskBoard/model/taskBoard'
 
 /**

@@ -1,7 +1,7 @@
 'use server'
 
 import { prisma } from '@/shared/lib/prisma'
-import type { LibraryOfArchivedNotes } from '@/modules/notes/LibraryOfArchiveNotes/model/libraryOfArchivedNotes'
+import type { LibraryOfArchivedNotes } from '../model/libraryOfArchivedNotes'
 import { requireBoardAccess } from '@/shared/lib/serverAuth'
 
 export async function saveArchivedNotes({

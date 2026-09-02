@@ -2,7 +2,7 @@ import type { SessionType } from '@/auth/contexts/SessionProvider'
 import { LibraryOfArchivedNotes } from '../model/libraryOfArchivedNotes'
 import LibraryOfArchivedNotesLocalStorageRepository from './libraryOfArchivedNotesLocalStorageRepository'
 import LibraryOfArchivedNotesNextjsRepository from './libraryOfArchivedNotesNextjsRepository'
-import { LibraryOfArchiveNotesRepository } from '../model/libraryOfArchivedNotesRepository'
+import { LibraryOfArchiveNotesRepository } from './libraryOfArchivedNotesRepository'
 
 export const libraryOfArchivedNotesRepositoryFactory = (
 	session: SessionType

@@ -5,8 +5,8 @@ import { toast } from 'sonner'
 import { Button } from '@/shared/ui/atoms/button'
 import { ArchiveIcon } from '@/shared/ui/atoms/icons'
 import { useNotesQuery } from '../hooks/useNotesQuery'
-import { useLibraryOfArchivedNotesQuery } from '../LibraryOfArchiveNotes/hooks/useLibraryOfArchivedNotesQuery'
-import { ArchivedNote } from '../LibraryOfArchiveNotes/model/archivedNote'
+import { useLibraryOfArchivedNotesQuery } from '../hooks/useLibraryOfArchivedNotesQuery'
+import { ArchivedNote } from '../model/archivedNote'
 import { v4 as uuidv4 } from 'uuid'
 
 interface ArchiveNoteBtnProps {
