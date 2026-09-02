@@ -1,6 +1,6 @@
 import { taskModel } from '@/modules/TaskBoard/model/task'
 import { TaskListInEachColumn } from '../models/taskListInEachColumn'
-import { Tag } from '../components/Tags/model/tags'
+import { Tag } from '@/features/tags/model/tags'
 
 interface addTagInThisTaskParams {
 	taskListByColumns: TaskListInEachColumn

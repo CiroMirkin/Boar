@@ -6,7 +6,7 @@ import {
 	emptyTagGroup,
 	type TagGroup,
 	type AvailableTags,
-} from '@/modules/TaskBoard/components/taskList/components/Tags/model/tags'
+} from '@/features/tags/model/tags'
 import { requireBoardAccess } from '@/shared/lib/serverAuth'
 
 export async function getActiveTagGroup({
