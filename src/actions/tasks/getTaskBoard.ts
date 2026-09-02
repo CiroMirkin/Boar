@@ -1,0 +1,35 @@
+'use server'
+
+import { prisma } from '@/lib/prisma'
+import type { TaskBoard } from '@/modules/TaskBoard/model/taskBoard'
+import type { taskModel } from '@/modules/TaskBoard/model/task'
+import { requireBoardAccess } from '../shared'
+
+/**
+ * Returns the board as a TaskBoard (TaskColumn[]) shape expected by the client.
+ * Columns are ordered by `order`, tasks by `createdAt`.
+ */
+export async function getTaskBoard({ boardId }: { boardId: string }): Promise<TaskBoard> {
+	await requireBoardAccess(boardId)
+
+	const columns = await prisma.column.findMany({
+		where: { boardId },
+		orderBy: { order: 'asc' },
+		include: {
+			tasks: { orderBy: { createdAt: 'asc' } },
+		},
+	})
+
+	return columns.map((col) => ({
+		id: col.id,
+		status: col.name,
+		tasks: col.tasks.map((t) => ({
+			id: t.id,
+			descriptionText: t.descriptionText,
+			tags: (t.tags as unknown as taskModel['tags']) ?? undefined,
+			notesAndComments: t.notesAndComments ?? undefined,
+			timelineHistory:
+				(t.timelineHistory as unknown as taskModel['timelineHistory']) ?? undefined,
+		})),
+	}))
+}

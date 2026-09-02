@@ -23,7 +23,7 @@ export async function setActiveTagGroup({
 	await prisma.board.update({
 		where: { id: boardId },
 		data: {
-			activeTagGroupId: tagGroupId === 'none' ? null : tagGroupId
+			activeTagGroupId: tagGroupId === 'none' ? null : tagGroupId,
 		},
 	})
 }
