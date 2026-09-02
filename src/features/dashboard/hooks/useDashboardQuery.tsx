@@ -2,12 +2,13 @@
 
 import { useSession } from '@/features/auth'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import NextjsDashboardRepository from '../api/repository/nextjsDashboardRepository'
+import { getBoards } from '../api/actions/getBoards'
+import { createBoard } from '../api/actions/createBoard'
+import { deleteBoard as deleteBoardAction } from '../api/actions/deleteBoard'
 import BusinessError from '@/shared/errors/businessError'
 import { useTranslation } from 'react-i18next'
 
 const queryKey = ['board-dashboard']
-const dashboardRepo = new NextjsDashboardRepository()
 
 export const useDashboardQuery = () => {
 	const { t } = useTranslation()
@@ -22,7 +23,7 @@ export const useDashboardQuery = () => {
 		queryKey,
 		queryFn: async () => {
 			if (!session) return []
-			return dashboardRepo.getBoards()
+			return getBoards()
 		},
 		enabled: !!session,
 	})
@@ -31,7 +32,7 @@ export const useDashboardQuery = () => {
 		mutationFn: async (boardId: string) => {
 			if (!session) throw new BusinessError(t('dashboard.no_active_session'))
 			if (!boardId.trim()) throw new BusinessError(t('dashboard.board_id_required'))
-			return dashboardRepo.deleteBoard({ boardId })
+			return deleteBoardAction({ boardId })
 		},
 		onSuccess: () => queryClient.invalidateQueries({ queryKey }),
 	})
@@ -40,7 +41,7 @@ export const useDashboardQuery = () => {
 		mutationFn: async (boardName: string) => {
 			if (!session) throw new BusinessError(t('dashboard.no_active_session'))
 			if (!boardName.trim()) throw new BusinessError(t('dashboard.board_name_required'))
-			return dashboardRepo.createAnEmptyBoard({ name: boardName })
+			return createBoard({ name: boardName })
 		},
 		onSuccess: () => queryClient.invalidateQueries({ queryKey }),
 	})
