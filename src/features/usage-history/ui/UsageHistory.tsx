@@ -1,5 +1,5 @@
-import { useUsageHistoryQuery } from './hooks/useUsageHistoryQuery'
-import UsageRecord from './components/UsageRecord'
+import { useUsageHistoryQuery } from '../hooks/useUsageHistoryQuery'
+import UsageRecord from './UsageRecord'
 import { EmptySpaceText } from '@/shared/ui/atoms/EmptySpaceText'
 import { Spinner } from '@/shared/ui/atoms/spinner'
 import { useTranslation } from 'react-i18next'

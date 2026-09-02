@@ -1,4 +1,4 @@
-import { UsageHistory, migrateUsageHistory } from '../model/usageHistory'
+import { UsageHistory, migrateUsageHistory } from '../../model/usageHistory'
 import { UsageHistoryRepository } from './usageHistoryRepository'
 
 export class LocalStorageUsageHistoryRepository implements UsageHistoryRepository {

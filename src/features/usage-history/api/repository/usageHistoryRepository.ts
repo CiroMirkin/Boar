@@ -1,4 +1,4 @@
-import { UsageHistory } from '../model/usageHistory'
+import { UsageHistory } from '../../model/usageHistory'
 
 export interface UsageHistoryRepository {
 	getAll(boardId: string): Promise<UsageHistory>

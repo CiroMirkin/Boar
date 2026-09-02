@@ -1,6 +1,6 @@
 import { USER_IS_IN } from '@/shared/ui/organisms/userIsIn'
 import PageContainer from './PageContainer'
-import UsageHistory from '@/modules/UsageHistory/UsageHistory'
+import { UsageHistory } from '@/features/usage-history'
 import { useTranslation } from 'react-i18next'
 import { useSyncBoardIdFromRoute } from '@/auth/state/useSyncBoardIdFromRoute'
 

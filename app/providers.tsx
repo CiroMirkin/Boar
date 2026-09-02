@@ -11,7 +11,7 @@ import { useLocalStorage } from '@/shared/hooks/useLocalStorage'
 import { useIsHydrated } from '@/shared/hooks/useIsHydrated'
 import { useUserPreffedLanguage } from '@/shared/preferences/language'
 import { useSetLanguageSaved } from '@/shared/preferences/language'
-import { useSaveTimeTracking } from '@/modules/UsageHistory/hooks/useSaveTimeTracking'
+import { useSaveTimeTracking } from '@/features/usage-history'
 
 function ClientOnlyInit() {
 	useSaveTimeTracking()

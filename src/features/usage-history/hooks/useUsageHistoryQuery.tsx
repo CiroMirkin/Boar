@@ -2,8 +2,8 @@
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { UsageHistory } from '../model/usageHistory'
-import { localStorageUsageHistoryRepository } from '../repository/localstorageUsageHistoryRepository'
-import { nextjsUsageHistoryRepository } from '../repository/nextjsUsageHistoryRepository'
+import { localStorageUsageHistoryRepository } from '../api/repository/localstorageUsageHistoryRepository'
+import { nextjsUsageHistoryRepository } from '../api/repository/nextjsUsageHistoryRepository'
 import { useSession } from '@/auth/hooks/useSession'
 import { useBoardId } from '@/auth/state/store'
 
