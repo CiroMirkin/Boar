@@ -1,7 +1,7 @@
 'use client'
 
 import { useSession } from '@/auth/hooks/useSession'
-import { useTheme } from '@/common/hooks/useTheme'
+import { useTheme } from '@/shared/hooks/useTheme'
 import Dashboard from '@/modules/Dashboard/Dashboard'
 import { Spinner } from '@/ui/atoms/spinner'
 import { USER_IS_IN } from '@/ui/organisms/userIsIn'

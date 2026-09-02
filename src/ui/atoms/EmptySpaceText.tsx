@@ -1,4 +1,4 @@
-import { useTheme } from '@/common/hooks/useTheme'
+import { useTheme } from '@/shared/hooks/useTheme'
 
 interface EmptySpaceTextProps {
 	className?: string

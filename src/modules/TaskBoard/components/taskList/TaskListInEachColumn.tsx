@@ -4,7 +4,7 @@ import { TaskList } from './components/TaskList'
 import { useTaskListInEachColumn } from './hooks/useTaskListInEachColumn'
 import { useTranslation } from 'react-i18next'
 import { EmptySpaceText } from '@/ui/atoms/EmptySpaceText'
-import { useTheme } from '@/common/hooks/useTheme'
+import { useTheme } from '@/shared/hooks/useTheme'
 
 /** La propiedad columnPosition es el indice de la columna mas uno */
 const getColumnPosition = (taskListIndex: number): string => `${taskListIndex + 1}`

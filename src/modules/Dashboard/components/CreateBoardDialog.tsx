@@ -14,7 +14,7 @@ import {
 import { Label } from '@/ui/atoms/label'
 import { Input } from '@/ui/atoms/input'
 import { useState } from 'react'
-import { useTheme } from '@/common/hooks/useTheme'
+import { useTheme } from '@/shared/hooks/useTheme'
 import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
 

@@ -11,7 +11,7 @@ import getErrorMessageForTheUser from '@/shared/lib/getErrorMessageForTheUser'
 import { useTranslation } from 'react-i18next'
 import { SettingSection } from '@/ui/organisms/SettingSection'
 import { useReminderQuery } from './hooks/useReminderQuery'
-import { useTheme } from '@/common/hooks/useTheme'
+import { useTheme } from '@/shared/hooks/useTheme'
 
 interface ReminderColumn {
 	name: string

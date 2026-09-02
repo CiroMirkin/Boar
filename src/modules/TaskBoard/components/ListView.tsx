@@ -1,4 +1,4 @@
-import { useTheme } from '@/common/hooks/useTheme'
+import { useTheme } from '@/shared/hooks/useTheme'
 import { ListOfColumn, ColumnsContent } from '@/modules/TaskBoard/components/Columns/ListOfColumns'
 import { useTaskBoardQuery } from '../hooks/useTaskBoardQuery'
 

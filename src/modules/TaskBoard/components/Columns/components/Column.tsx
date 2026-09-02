@@ -2,7 +2,7 @@
 
 import React, { createContext, DragEvent, useContext, useState } from 'react'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/ui/molecules/card'
-import { useTheme } from '@/common/hooks/useTheme'
+import { useTheme } from '@/shared/hooks/useTheme'
 import { ColumnsFooterContext } from '../context/ColumnsFooter/ColumnsFooterContext'
 import { ColumnPosition } from '../model/columnPosition'
 import { useTranslation } from 'react-i18next'

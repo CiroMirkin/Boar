@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { TypeOfView } from './typeOfView'
-import { useTheme } from '@/common/hooks/useTheme'
+import { useTheme } from '@/shared/hooks/useTheme'
 
 interface CheckViewProps {
 	actualTypeOfView: TypeOfView

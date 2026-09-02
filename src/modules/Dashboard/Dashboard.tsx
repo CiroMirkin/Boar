@@ -3,7 +3,7 @@ import { useDashboardQuery } from './hooks/useDashboardQuery'
 import CreateBoardDialog from './components/CreateBoardDialog'
 import { Spinner } from '@/ui/atoms/spinner'
 import { Layout } from 'lucide-react'
-import { useTheme } from '@/common/hooks/useTheme'
+import { useTheme } from '@/shared/hooks/useTheme'
 import { useTranslation } from 'react-i18next'
 
 function Dashboard() {

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useVisibilityChange } from '@/common/hooks/useVisibilityChange'
+import { useVisibilityChange } from '@/shared/hooks/useVisibilityChange'
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -25,7 +25,7 @@ import { useTranslation } from 'react-i18next'
 import LogInAndLogOutMenuItem from '../../modules/LanguageToggle/LogInAndLogOutMenuItem'
 import { useSession } from '@/auth/hooks/useSession'
 import Notes from '@/modules/notes/Notes'
-import { useTheme } from '@/common/hooks/useTheme'
+import { useTheme } from '@/shared/hooks/useTheme'
 import { useLastDurationPeriod } from '@/modules/UsageHistory/hooks/useLastDurationPeriod'
 import { useTypeOfView } from '@/modules/TypeOfView/useTypeOfView'
 import { TransitionLink } from '../atoms/TransitionLink'

@@ -1,4 +1,4 @@
-import { useTheme } from '@/common/hooks/useTheme'
+import { useTheme } from '@/shared/hooks/useTheme'
 import { Button } from '@/ui/atoms/button'
 import { TrashIcon } from '@/ui/atoms/icons'
 import { useMemo } from 'react'

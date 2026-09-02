@@ -12,7 +12,7 @@ import { archiveTaskListInTheLastColumn } from '../useCase/archiveTaskList'
 import { useArchivedTasksQuery } from '../hooks/useArchivedTasksQuery'
 import { addChangeToEachTaskInList } from '@/modules/TaskBoard/components/taskList/useCase/addChangeToEachTaskInList'
 import { useTaskListInEachColumn } from '@/modules/TaskBoard/components/taskList/hooks/useTaskListInEachColumn'
-import { useTheme } from '@/common/hooks/useTheme'
+import { useTheme } from '@/shared/hooks/useTheme'
 
 export function ArchiveTaskListButton() {
 	const { t } = useTranslation()

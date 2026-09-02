@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { usePreferredLanguage } from '@/common/hooks/usePreferredLanguage'
+import { usePreferredLanguage } from '@/shared/hooks/usePreferredLanguage'
 import { useTranslation } from 'react-i18next'
 
 export const useUserPreffedLanguage = () => {

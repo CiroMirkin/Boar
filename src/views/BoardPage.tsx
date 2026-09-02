@@ -17,7 +17,7 @@ import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'
 import { useReminder } from '@/modules/TaskBoard/components/Reminder/hooks/useReminder'
 import { useSession } from '@/auth/hooks/useSession'
 import { Spinner } from '@/ui/atoms/spinner'
-import { useLoadingTimeout } from '@/common/hooks/useLoadingTimeout'
+import { useLoadingTimeout } from '@/shared/hooks/useLoadingTimeout'
 
 const columnsData: ColumnsFooterContent = {
 	firstColumnFooterContent: <AddNewTaskInput />,

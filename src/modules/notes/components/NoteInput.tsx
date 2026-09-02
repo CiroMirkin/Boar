@@ -8,7 +8,7 @@ import { useNotesQuery } from '../hooks/useNotesQuery'
 import { Spinner } from '@/ui/atoms/spinner'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { ArchiveNoteBtn } from './ArchiveNoteBtn'
-import { useTheme } from '@/common/hooks/useTheme'
+import { useTheme } from '@/shared/hooks/useTheme'
 
 export function NoteInput() {
 	const { t } = useTranslation()

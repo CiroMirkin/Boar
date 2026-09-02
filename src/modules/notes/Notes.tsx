@@ -9,7 +9,7 @@ import {
 	SheetTrigger,
 } from '@/ui/molecules/sheet'
 import { useTranslation } from 'react-i18next'
-import { useTheme } from '@/common/hooks/useTheme'
+import { useTheme } from '@/shared/hooks/useTheme'
 import { NoteInput } from './components/NoteInput'
 
 export default function Notes() {

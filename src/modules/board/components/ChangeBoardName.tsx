@@ -12,7 +12,7 @@ import { toast } from 'sonner'
 import { useBoardQuery } from '@/modules/board/hooks/useBoardQuery'
 import { useTranslation } from 'react-i18next'
 import { SettingSection } from '@/ui/organisms/SettingSection'
-import { useTheme } from '@/common/hooks/useTheme'
+import { useTheme } from '@/shared/hooks/useTheme'
 
 interface Props {
 	id: string
