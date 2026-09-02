@@ -1,5 +1,5 @@
 import type { SessionType } from '@/auth/contexts/SessionProvider'
-import { AvailableTags, TagGroup } from '../model/tags'
+import { AvailableTags, TagGroup } from '../../model/tags'
 import LocalStorageTagRepository from './localstorageTagRepository'
 import NextjsTagRepository from './nextjsTagRepository'
 import { TagRepository, TagRepositoryGetReturn } from './tagRepository'

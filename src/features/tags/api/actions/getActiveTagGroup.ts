@@ -6,7 +6,7 @@ import {
 	emptyTagGroup,
 	type TagGroup,
 	type AvailableTags,
-} from '@/features/tags/model/tags'
+} from '../../model/tags'
 import { requireBoardAccess } from '@/shared/lib/serverAuth'
 
 export async function getActiveTagGroup({

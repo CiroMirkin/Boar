@@ -1,4 +1,4 @@
-import { getHighestPriority } from '@/features/tags/model/getHighestPriority'
+import { getHighestPriority } from '@/features/tags'
 import { taskModel } from '@/modules/TaskBoard/model/task'
 
 /**

@@ -1,5 +1,5 @@
 import { defaultAvialableTags, emptyTagGroup } from '../model/tags'
-import { TagRepositoryGetReturn } from '../repository/tagRepository'
+import { TagRepositoryGetReturn } from '../api/repository/tagRepository'
 import { useTagsQuery } from './useTagsQuery'
 
 export const useActualTagGroup = (): TagRepositoryGetReturn => {

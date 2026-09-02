@@ -1,4 +1,4 @@
-import { defaultAvialableTags, emptyTagGroup } from '../model/tags'
+import { defaultAvialableTags, emptyTagGroup } from '../../model/tags'
 import { TagRepository, TagRepositoryGetReturn, TagRepositorySaveParams } from './tagRepository'
 
 export default class LocalStorageTagRepository implements TagRepository {

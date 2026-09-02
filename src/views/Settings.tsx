@@ -8,7 +8,7 @@ import { ThemeSelection } from '../modules/Theme/ThemeSelection'
 import { ReminderList } from '@/modules/TaskBoard/components/Reminder/ReminderList'
 import PageContainer from './PageContainer'
 import { ToggleTypeOfView } from '@/modules/TypeOfView/ToggleTypeOfView'
-import { EnableTags } from '@/features/tags/components/EnableTags'
+import { EnableTags } from '@/features/tags'
 
 import { ConfigColumns } from '@/modules/TaskBoard/components/Columns/components/ConfigColumns'
 import { useTaskBoardQuery } from '@/modules/TaskBoard/hooks/useTaskBoardQuery'

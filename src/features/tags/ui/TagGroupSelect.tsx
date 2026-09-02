@@ -6,7 +6,7 @@ import { useActualTagGroup } from '../hooks/useActualTagGroup'
 import { useTagStore } from '../state/store'
 import { Tag } from '../model/tags'
 import { useUserSelectedTags } from '../hooks/useUserSelectedTags'
-import { translateTagGroup } from '../utils/translateTagGroup'
+import { translateTagGroup } from '../model/translateTagGroup'
 import { useTranslation } from 'react-i18next'
 
 export default function TagGroupSelect() {

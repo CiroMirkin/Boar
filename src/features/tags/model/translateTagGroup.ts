@@ -1,6 +1,6 @@
 import { TFunction } from 'i18next'
-import { eisenhowerTagGroup, devTagGroup } from '../model/defaultTags'
-import { TagGroup } from '../model/tags'
+import { eisenhowerTagGroup, devTagGroup } from './defaultTags'
+import { TagGroup } from './tags'
 
 export const translateTagGroup = (tagGroup: TagGroup, t: TFunction) => {
 	if (tagGroup.id == eisenhowerTagGroup.id) {

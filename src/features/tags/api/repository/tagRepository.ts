@@ -1,4 +1,4 @@
-import { AvailableTags, TagGroup } from '../model/tags'
+import { AvailableTags, TagGroup } from '../../model/tags'
 
 export interface TagRepositorySaveParams {
 	actualTagGroup: TagGroup
