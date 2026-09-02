@@ -1,5 +1,11 @@
 # Paso 3 — Romper `TaskBoard` en features
 
+> **ESTADO: COMPLETO (2026-09-02).** PR 1 `reminders` (rama `refactor/paso-3-reminders`).
+> PR 2 `tasks` + `archived-tasks` juntos (rama `refactor/paso-3-tasks`) — se unieron
+> porque `ArchivedTasks` estaba físicamente dentro de `taskList/components/`.
+> `Columns` plegado en `features/tasks/ui/Columns/`. `src/modules/` y `src/actions/`
+> eliminados. `tsc` limpio, 75/75 tests, `next build` exit 0.
+
 Plan de ejecución del **paso 3** de `arquitectura-propuesta.md`. Tras los pasos 1
 y 2, `src/modules/` quedó con un solo módulo (`TaskBoard`, ~106 archivos) que por
 dentro vuelve a una organización técnica anidada 6-7 niveles. Este paso lo parte

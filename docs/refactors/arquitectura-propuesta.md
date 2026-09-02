@@ -1,10 +1,14 @@
 # Capo — Propuesta de reorganización a arquitectura screaming modular
 
-Documento generado a partir del análisis del repo con codegraph. Los pasos 1 (`shared/`) y 2 (features chicas + `shared/preferences/`) ya están hechos; el paso 3 (romper `TaskBoard`) está en curso — ver plan de ejecución en `paso-3-plan.md`.
+Documento generado a partir del análisis del repo con codegraph. Los pasos 1 (`shared/`) y 2 (features chicas + `shared/preferences/`) ya están hechos; el **paso 3 (romper `TaskBoard`) está COMPLETO** — ver plan de ejecución en `paso-3-plan.md`.
 
-> **Revisión 2026-09-02 (paso 3 — PR 1 `reminders` COMPLETO):** `Reminder/` extraído de `TaskBoard` a `src/features/reminders/` (layout `ui/ model/ api/{actions,repository}/ hooks/ state/` + `index.ts`). `src/actions/reminders/` movido a `features/reminders/api/actions/` (sin barril; `nextjsReminderRepository` usa `await import('../actions/<file>')`). Hooks muertos `useGetReminder` / `useSaveReminder` eliminados. `tsc` limpio, 75/75 tests, `next build` exit 0. Rama `refactor/paso-3-reminders`.
-> - **Decisión:** `Columns` NO será feature propia — se pliega dentro de `features/tasks/` (el acoplamiento con `tasks` es circular; el agregado raíz es el board). Ver `paso-3-plan.md`.
-> - Conteos: `modules/` 94, `features/` 101 (`reminders` 13), `actions/` 13 (`tasks/` 10, `archive/` 3).
+> **Revisión 2026-09-02 (paso 3 COMPLETO):** `src/modules/` y `src/actions/` **ya no existen**. `TaskBoard` se partió en:
+> - **`src/features/tasks/`** (80) — el board Kanban: núcleo de `taskList` + `Columns` plegado adentro. Layout `ui/ model/ api/{actions,repository}/ hooks/ useCase/` + `index.ts`. `Columns` quedó como `ui/Columns/` (con sus `model/ hooks/`), no feature propia: el acoplamiento con `tasks` es circular y el agregado raíz es el board.
+> - **`src/features/archived-tasks/`** (27) — subdominio del archivo, con modelo/repo/useCase/actions propios. Depende de `features/tasks` vía su `index.ts`. El bridge `ArchiveTaskButton` (archivar una tarea del board) vive acá; `taskList/TaskInBoardActions` lo importa vía `@/features/archived-tasks`. Hay un ciclo `tasks` ⇄ `archived-tasks` inherente al dominio (ESM lo resuelve; ambos barriles son solo re-exports).
+> - `src/actions/{tasks,archive}/` → `features/{tasks,archived-tasks}/api/actions/` (sin barril; `nextjs*Repository` usa `await import('../actions/<file>')`).
+> - PRs: `refactor/paso-3-reminders` (PR 1) + `refactor/paso-3-tasks` (PR 2, `tasks` + `archived-tasks` juntos por estar `ArchivedTasks` físicamente dentro de `taskList/components/`). `tsc` limpio, 75/75 tests, `next build` exit 0.
+> - **Pendiente (paso 4):** `shared/ui/organisms/BlankTask.tsx` y `auth/utils/checkIfUserHasTheDefaultBoard.ts` ahora importan `@/features/tasks` (paths reescritos; la violación de dependencia se resuelve de fondo en el paso 4).
+> - Conteos: `features/` 208 (`tasks` 80, `archived-tasks` 27, `notes` 24, `usage-history` 21, `tags` 19, `reminders` 13, `boards` 13, `dashboard` 11).
 
 > **Revisión 2026-09-02 (paso 2 COMPLETO):** verificado contra el árbol real, `tsc --noEmit` limpio, 75/75 tests unitarios en verde, `next build` exit 0. Rama `refactor/arquitectura` (7 commits: `5038972a` `7f88dcb5` `45f391f9` `8417e7ab` `7b095814` `1a710a60` `610a144f`).
 > - **El paso 2 del plan (sección 4) está terminado.** `src/modules/` quedó **solo con `TaskBoard`** (se parte en el paso 3).
@@ -35,24 +39,18 @@ Documento generado a partir del análisis del repo con codegraph. Los pasos 1 (`
 
 ## 1. Diagnóstico de la estructura actual
 
-`src/` se divide hoy así (tras pasos 1 y 2):
+`src/` se divide hoy así (tras pasos 1, 2 y 3):
 
 | Carpeta | Archivos | Rol |
 |---|---|---|
-| `modules/` | 94 | Solo `TaskBoard` — se parte en el paso 3 (PR 1 `reminders` ya salió) |
-| `features/` | 101 | Features autocontenidas — `notes` 24, `usage-history` 21, `tags` 19, `reminders` 13, `boards` 13, `dashboard` 11 |
+| `features/` | 208 | Features autocontenidas — `tasks` 80, `archived-tasks` 27, `notes` 24, `usage-history` 21, `tags` 19, `reminders` 13, `boards` 13, `dashboard` 11 |
 | `shared/` | 74 | Capa compartida — `ui/` 35, `preferences/` 17 (`theme` 6, `language` 6, `view-mode` 5), `lib/` 9, `hooks/` 8, `i18n/` 4, `errors/` 1 |
-| `actions/` | 13 | Server Actions que aún pertenecen a `TaskBoard` (paso 3) — `tasks/` 10, `archive/` 3 |
-| `auth/` | 11 | Autenticación |
+| `auth/` | 11 | Autenticación — se mueve a `features/auth` en el paso 4 |
 | `views/` (ex `pages/`) | 10 | Composición de páginas (envueltas por `app/*/page.tsx`) — se elimina en el paso 5 |
 
-Y dentro de `modules/` queda un único módulo:
+`src/modules/` y `src/actions/` **ya no existen** (paso 3). El único módulo que quedaba, `TaskBoard`, se partió en `features/tasks/` (núcleo `taskList` + `Columns` plegado) y `features/archived-tasks/`.
 
-| Módulo | Archivos |
-|---|---|
-| `TaskBoard` | 106 |
-
-**El diagnóstico central: `modules/` ya screams a nivel 1** (tras el paso 2, `board`/`notes`/`usage-history`/`dashboard` son features en `features/`, con nombres de dominio). El problema restante es `TaskBoard`: concentra ~el 64% del código de dominio y adentro vuelve a una organización técnica clásica (`components/`, `hooks/`, `model/`, `useCase/`, `repository/`, `state/`) anidada hasta 6-7 niveles de profundidad:
+**El diagnóstico central original (`modules/TaskBoard` concentraba ~64% del código de dominio en una jerarquía técnica anidada 6-7 niveles) está resuelto.** Contexto histórico de la estructura previa:
 
 ```
 modules/TaskBoard/components/taskList/components/ArchivedTasks/repository/nextjsArchiveRepository.ts
@@ -205,11 +203,12 @@ Igual que en `migration.md`, conviene ir feature por feature dejando la app siem
 
 1. ~~**`shared/`**: mover `ui/`, `common/`, `lib/`, `i18next/` sin cambiar su contenido, solo actualizar imports.~~ — **COMPLETO** (2026-09-02, commits `187728c0` `bb236571` `0bf3168b` `216ea90d` + move de guards). Quedó `src/shared/{ui,hooks,lib,errors,i18n}`; `src/actions/{auth,shared}.ts` → `src/shared/lib/serverAuth.ts`. `tsc` limpio, 75/75 tests. Los imports invertidos que el `git mv` arrastró (`shared/ui -> modules` ×7, `shared/ui -> auth` ×2, `shared/hooks -> {auth,modules/Theme}` ×3) se cortan en los pasos 2-4, no acá.
 2. ~~**Features chicas y ya aisladas**: `Theme`, `LanguageToggle`, `TypeOfView`, `Dashboard`, `UsageHistory`, `notes`, `board` → `features/x` / `shared/preferences/x` con layout `ui/model/api/hooks`.~~ — **COMPLETO** (2026-09-02, 7 commits `5038972a`…`610a144f`). `Theme`/`LanguageToggle`/`TypeOfView` → `shared/preferences/`; `Dashboard`/`UsageHistory`/`notes`/`board`(→`boards`)/`tags` → `features/`. Cada `src/actions/<dominio>/` de esas features → `features/<feature>/api/actions/`. `src/actions/board/` → `src/actions/reminders/`. `tsc` limpio, 75/75 tests, `next build` OK.
-3. **Romper `TaskBoard`** (EN CURSO — ver `paso-3-plan.md`): extraer `Reminder`, `ArchivedTasks` como features top-level y dejar el núcleo de `taskList` + `Columns` como la feature `tasks`. `Tags` ya salió en el paso 2. **`Columns` NO es feature propia** — se pliega dentro de `features/tasks/` (acoplamiento circular con `tasks`). Un PR por sub-feature: `reminders` → `archived-tasks` → `tasks`. Mover también `src/actions/{tasks,archive}/` a sus features.
-   - ~~PR 1 `reminders`~~ — **COMPLETO** (2026-09-02, rama `refactor/paso-3-reminders`). `tsc` limpio, 75/75 tests, `next build` OK.
-4. **`auth`** → `features/auth`, resolviendo `auth -> features/{boards,notes}` + `auth -> modules/TaskBoard` (3, en `checkIfUserHasTheDefaultBoard.ts`) y de paso `shared/ui -> auth` (2, mover `useSession`/`useBoardId` fuera de `Header` o inyectarlos por props), `shared/hooks -> auth` (1, `SessionType` type-only en `useLoadingTimeout`) y `shared/ui -> features/{notes,usage-history,tags}` (4, en `Header`/`BlankTask`).
+3. ~~**Romper `TaskBoard`**~~ — **COMPLETO** (2026-09-02, ver `paso-3-plan.md`). `TaskBoard` → `features/tasks/` (núcleo `taskList` + `Columns` plegado como `ui/Columns/`) + `features/archived-tasks/`. `Tags` ya había salido en el paso 2. `src/modules/` y `src/actions/` eliminados. `src/actions/{tasks,archive}/` → `features/{tasks,archived-tasks}/api/actions/`.
+   - ~~PR 1 `reminders`~~ — rama `refactor/paso-3-reminders`. Hooks muertos `useGetReminder`/`useSaveReminder` eliminados.
+   - ~~PR 2 `tasks` + `archived-tasks`~~ — rama `refactor/paso-3-tasks`. Juntos porque `ArchivedTasks` estaba físicamente dentro de `taskList/components/`. `Columns` plegado en `tasks`. Bridge `ArchiveTaskButton` → `features/archived-tasks/ui/`. Ciclo `tasks` ⇄ `archived-tasks` inherente (ESM lo resuelve). `tsc` limpio, 75/75 tests, `next build` OK.
+4. **`auth`** → `features/auth`, resolviendo `auth -> features/{boards,notes,tasks}` (3, en `checkIfUserHasTheDefaultBoard.ts` — ahora apunta a `@/features/tasks`) y de paso `shared/ui -> auth` (2, mover `useSession`/`useBoardId` fuera de `Header` o inyectarlos por props), `shared/hooks -> auth` (1, `SessionType` type-only en `useLoadingTimeout`) y `shared/ui -> features/{notes,usage-history,tags,tasks}` (`Header`/`BlankTask` — `BlankTask` importa `@/features/tasks`).
 5. **Eliminar `src/views/`** (ex `src/pages/`), mover composición a `app/` o a la feature dueña.
-6. ~~**Decidir `actions/`**~~ — hecho (PR #179 + pasos 1-2): split por dominio; guards de auth en `shared/lib/serverAuth.ts`; las actions de las features migradas en el paso 2 ya están en `features/<feature>/api/actions/`. Resta mover `src/actions/{tasks,archive,reminders}/` en el paso 3.
+6. ~~**Decidir `actions/`**~~ — **COMPLETO**: split por dominio (PR #179), luego cada dominio a su feature (pasos 2-3). `src/actions/` eliminado. Guards de auth en `shared/lib/serverAuth.ts`.
 7. **Sincronizar codegraph** (`codegraph sync`) después de cada paso/PR y verificar que las dependencias invertidas de la sección 1 desaparecieron. El índice se desactualiza con cualquier `git mv`, así que conviene sincronizar antes de leerlo.
 
 Cada paso se puede validar con `npm run build`, `npm run test` y `npm run test:e2e` antes de pasar al siguiente, igual que hicieron en la migración a Next.js.
@@ -223,6 +222,8 @@ Cada paso se puede validar con `npm run build`, `npm run test` y `npm run test:e
 - Dentro de `api/`: subdividido en **`actions/`** (Server Actions) y **`repository/`** (puertos + adaptadores + factory). Decidido y aplicado en el paso 2 (`notes` primero, después el resto).
 - **`shared/` → COMPLETO** (paso 1): `src/ui` `src/common` `src/lib` `src/i18next` consolidados en `src/shared/`; `actions/{auth,shared}.ts` → `shared/lib/serverAuth.ts`.
 - **features chicas + `shared/preferences/` → COMPLETO** (paso 2): `notes`, `tags`, `dashboard`, `usage-history`, `boards` en `src/features/`; `theme`, `language`, `view-mode` en `src/shared/preferences/`. `tsc` limpio, 75/75 tests, `next build` OK.
-- **`Columns` se pliega dentro de `features/tasks/`** (paso 3) — no es feature propia. El acoplamiento `tasks`↔`columns` es circular y el agregado raíz es el board (`TaskBoard = TaskColumn[]`, cada columna contiene sus tareas). Diverge de la sección 2 original, que lo listaba como `features/columns/`.
+- **`Columns` plegado dentro de `features/tasks/`** (paso 3) — no es feature propia. El acoplamiento `tasks`↔`columns` es circular y el agregado raíz es el board (`TaskBoard = TaskColumn[]`, cada columna contiene sus tareas). Diverge de la sección 2 original, que lo listaba como `features/columns/`.
+- **`ArchivedTasks` → `features/archived-tasks/`** (paso 3), pero con ciclo `tasks` ⇄ `archived-tasks` aceptado como inherente al dominio (el bridge `ArchiveTaskButton` vive en `archived-tasks`; `archived-tasks` consume `@/features/tasks`). Ambos barriles son solo re-exports, ESM resuelve el ciclo.
+- **`TaskBoard` → COMPLETO** (paso 3): `src/modules/` y `src/actions/` eliminados.
 
-Estado: **pasos 1 y 2 completos; paso 3 en curso** (PR 1 `reminders` mergeable). Siguiente en paso 3: PR `archived-tasks` y PR `tasks` (núcleo + Columns). Ver `paso-3-plan.md`.
+Estado: **pasos 1, 2 y 3 completos.** Siguiente: paso 4 (`auth` → `features/auth`, y cortar las violaciones `shared/ui → features`, `shared/* → auth`) y paso 5 (eliminar `src/views/`).
