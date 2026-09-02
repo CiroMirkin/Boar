@@ -11,6 +11,7 @@
     "lint": "next lint",
     "seed": "prisma db seed",
     "format": "prettier --write --ignore-unknown ./src ./e2e",
+    "format:check": "prettier --check --ignore-unknown ./src ./e2e",
     "test": "vitest run",
     "test:watch": "vitest",
     "test-ui": "vitest --ui",
