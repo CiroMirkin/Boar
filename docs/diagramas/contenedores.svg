@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1000 580" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="contenedores-title contenedores-desc">
+      <title id="contenedores-title">Arquitectura de contenedores de Capo</title>
+      <desc id="contenedores-desc">El navegador ejecuta un cliente React que invoca server actions de Next.js; Auth.js resuelve la sesión, Prisma habla con PostgreSQL, y sin sesión el cliente persiste en localStorage.</desc>
+
+      <defs>
+        <style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap');</style>
+        <marker id="c-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+        <marker id="c-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker>
+        <marker id="c-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/></marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#f5f5f5"/>
+
+      <!-- Zones (bg -> zones -> arrows -> nodes) -->
+      <rect x="40" y="82" width="300" height="412" rx="8" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+      <rect x="150" y="86" width="80" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="190" y="95" fill="rgba(45,49,66,0.40)" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.14em">NAVEGADOR</text>
+
+      <rect x="424" y="72" width="252" height="404" rx="8" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+      <rect x="484" y="76" width="132" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="550" y="85" fill="rgba(45,49,66,0.40)" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.14em">SERVIDOR · NEXT.JS</text>
+
+      <!-- Arrows -->
+      <!-- 1. Usuario -> Cliente React -->
+      <path d="M 135,170 V 202 Q 135,210 143,210 H 222 Q 230,210 230,218 V 250" fill="none" stroke="#2e5aa8" stroke-width="1.2" marker-end="url(#c-arrow-link)"/>
+      <rect x="161" y="190" width="48" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="185" y="199" fill="#2e5aa8" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">HTTPS</text>
+
+      <!-- 2. Cliente React -> Server Actions -->
+      <line x1="320" y1="282" x2="450" y2="282" stroke="#eb6c36" stroke-width="1.4" marker-end="url(#c-arrow-accent)"/>
+      <rect x="341" y="262" width="88" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="385" y="271" fill="#eb6c36" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">SERVER ACTION</text>
+
+      <!-- 3. Cliente React -> Auth.js -->
+      <path d="M 290,250 V 146 Q 290,138 298,138 H 460" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#c-arrow)"/>
+      <rect x="242" y="192" width="42" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="263" y="201" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">SIGN IN</text>
+
+      <!-- 4. Server Actions -> Auth.js -->
+      <line x1="550" y1="250" x2="550" y2="162" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#c-arrow)"/>
+      <rect x="560" y="198" width="72" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="596" y="207" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">AUTH GUARD</text>
+
+      <!-- 5. Server Actions -> Prisma -->
+      <line x1="550" y1="314" x2="550" y2="400" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#c-arrow)"/>
+      <rect x="558" y="350" width="44" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="580" y="359" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">QUERY</text>
+
+      <!-- 6. Prisma -> PostgreSQL -->
+      <line x1="640" y1="432" x2="760" y2="432" stroke="#eb6c36" stroke-width="1.4" marker-end="url(#c-arrow-accent)"/>
+      <rect x="676" y="412" width="28" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="690" y="421" fill="#eb6c36" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">SQL</text>
+
+      <!-- 7. Cliente React -> localStorage (offline) -->
+      <path d="M 230,318 V 366 Q 230,374 222,374 H 158 Q 150,374 150,382 V 430" fill="none" stroke="#4f5d75" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#c-arrow)"/>
+      <rect x="156" y="354" width="68" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="190" y="363" fill="#7a8399" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">SIN SESIÓN</text>
+
+      <!-- Nodes -->
+      <!-- Usuario -->
+      <rect x="60" y="110" width="150" height="60" rx="6" fill="#f5f5f5"/>
+      <rect x="60" y="110" width="150" height="60" rx="6" fill="rgba(79,93,117,0.10)" stroke="#7a8399" stroke-width="1"/>
+      <rect x="68" y="118" width="28" height="12" rx="2" fill="transparent" stroke="rgba(122,131,153,0.40)" stroke-width="0.8"/>
+      <text x="82" y="127" fill="#7a8399" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">USR</text>
+      <text x="135" y="146" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Usuario</text>
+      <text x="135" y="160" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">navegador</text>
+
+      <!-- Cliente React -->
+      <rect x="140" y="250" width="180" height="68" rx="6" fill="#f5f5f5"/>
+      <rect x="140" y="250" width="180" height="68" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="148" y="258" width="28" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+      <text x="162" y="267" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">SPA</text>
+      <text x="230" y="288" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Cliente React</text>
+      <text x="230" y="303" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">app/ · TanStack Query</text>
+
+      <!-- localStorage -->
+      <rect x="60" y="430" width="180" height="56" rx="6" fill="#f5f5f5"/>
+      <rect x="60" y="430" width="180" height="56" rx="6" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.20)" stroke-width="1" stroke-dasharray="4,3"/>
+      <rect x="68" y="438" width="28" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.22)" stroke-width="0.8"/>
+      <text x="82" y="447" fill="#7a8399" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">WEB</text>
+      <text x="150" y="462" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">localStorage</text>
+      <text x="150" y="476" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">modo invitado</text>
+
+      <!-- Auth.js -->
+      <rect x="460" y="100" width="180" height="60" rx="6" fill="#f5f5f5"/>
+      <rect x="460" y="100" width="180" height="60" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="468" y="108" width="32" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+      <text x="484" y="117" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">AUTH</text>
+      <text x="550" y="136" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Auth.js</text>
+      <text x="550" y="150" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">next-auth · JWT</text>
+
+      <!-- Server Actions (focal) -->
+      <rect x="450" y="250" width="200" height="64" rx="6" fill="#f5f5f5"/>
+      <rect x="450" y="250" width="200" height="64" rx="6" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1"/>
+      <rect x="458" y="258" width="28" height="12" rx="2" fill="transparent" stroke="rgba(235,108,54,0.50)" stroke-width="0.8"/>
+      <text x="472" y="267" fill="#eb6c36" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">RPC</text>
+      <text x="550" y="286" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Server Actions</text>
+      <text x="550" y="301" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">'use server' · api/actions</text>
+
+      <!-- Prisma -->
+      <rect x="460" y="400" width="180" height="64" rx="6" fill="#f5f5f5"/>
+      <rect x="460" y="400" width="180" height="64" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="468" y="408" width="28" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+      <text x="482" y="417" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">ORM</text>
+      <text x="550" y="436" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Prisma ORM</text>
+      <text x="550" y="450" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">@prisma/adapter-pg</text>
+
+      <!-- PostgreSQL (focal store) -->
+      <rect x="760" y="396" width="180" height="72" rx="6" fill="#f5f5f5"/>
+      <rect x="760" y="396" width="180" height="72" rx="6" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1"/>
+      <rect x="768" y="404" width="24" height="12" rx="2" fill="transparent" stroke="rgba(235,108,54,0.50)" stroke-width="0.8"/>
+      <text x="780" y="413" fill="#eb6c36" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">DB</text>
+      <text x="850" y="434" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">PostgreSQL</text>
+      <text x="850" y="448" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">fuente de verdad</text>
+      <text x="850" y="461" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">8 modelos + Auth.js</text>
+
+      <!-- Legend -->
+      <line x1="40" y1="504" x2="960" y2="504" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+      <text x="40" y="528" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.14em">LEYENDA</text>
+
+      <rect x="112" y="519" width="14" height="10" rx="2" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1"/>
+      <text x="132" y="528" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Núcleo</text>
+
+      <rect x="200" y="519" width="14" height="10" rx="2" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <text x="220" y="528" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Servidor Next.js</text>
+
+      <rect x="340" y="519" width="14" height="10" rx="2" fill="rgba(79,93,117,0.10)" stroke="#7a8399" stroke-width="1"/>
+      <text x="360" y="528" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Cliente</text>
+
+      <rect x="428" y="519" width="14" height="10" rx="2" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.20)" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="448" y="528" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Offline</text>
+
+      <line x1="520" y1="524" x2="548" y2="524" stroke="#eb6c36" stroke-width="1.4" marker-end="url(#c-arrow-accent)"/>
+      <text x="556" y="528" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Flujo principal</text>
+
+      <line x1="672" y1="524" x2="700" y2="524" stroke="#4f5d75" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#c-arrow)"/>
+      <text x="708" y="528" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Sin sesión / retorno</text>
+    </svg>

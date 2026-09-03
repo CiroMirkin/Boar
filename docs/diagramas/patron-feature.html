@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capo · Patrón de feature y repositorio dual</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper:  #f5f5f5;
+      --color-ink:    #2d3142;
+      --color-muted:  #4f5d75;
+      --color-accent: #eb6c36;
+      --font-sans:  'Geist', system-ui, sans-serif;
+      --font-serif: 'Instrument Serif', serif;
+      --font-mono:  'Geist Mono', ui-monospace, monospace;
+    }
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+    }
+    .frame { max-width: 1000px; width: 100%; }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 0.5rem;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.4vw + 0.75rem, 2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+    svg { width: 100%; min-width: 840px; display: block; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <p class="eyebrow">Arquitectura · C4 nivel 3 (componentes)</p>
+    <h1>Una feature por dentro: repositorio dual</h1>
+
+    <svg viewBox="0 0 960 750" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="patron-title patron-desc">
+      <title id="patron-title">Patrón de feature de Capo con repositorio dual</title>
+      <desc id="patron-desc">Un componente usa un hook de TanStack Query y casos de uso puros; el hook pide datos a una fábrica de repositorio que elige, según haya sesión, entre el repositorio Next.js (server action a Prisma y PostgreSQL) y el repositorio localStorage (JSON en el navegador).</desc>
+
+      <defs>
+        <marker id="p-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+        <marker id="p-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker>
+        <marker id="p-arrow-rev" markerWidth="8" markerHeight="6" refX="1" refY="3" orient="auto"><polygon points="8 0, 0 3, 8 6" fill="#4f5d75"/></marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#f5f5f5"/>
+
+      <!-- Zones -->
+      <rect x="140" y="44" width="690" height="202" rx="8" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+      <rect x="150" y="48" width="96" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="198" y="57" fill="rgba(45,49,66,0.40)" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.14em">UI + ESTADO</text>
+
+      <rect x="140" y="256" width="690" height="210" rx="8" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+      <rect x="150" y="260" width="132" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="216" y="269" fill="rgba(45,49,66,0.40)" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.14em">CAPA REPOSITORIO</text>
+
+      <rect x="140" y="476" width="690" height="194" rx="8" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+      <rect x="150" y="480" width="108" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="204" y="489" fill="rgba(45,49,66,0.40)" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.14em">PERSISTENCIA</text>
+
+      <!-- Arrows -->
+      <!-- a. Component -> hook -->
+      <line x1="460" y1="136" x2="460" y2="180" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#p-arrow)"/>
+      <rect x="468" y="150" width="30" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="483" y="159" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">USA</text>
+
+      <!-- b. Component -> Use case -->
+      <path d="M 550,96 H 697 Q 705,96 705,104 V 180" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#p-arrow)"/>
+      <rect x="606" y="76" width="72" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="642" y="85" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">LÓGICA PURA</text>
+
+      <!-- c. Use case -> hook -->
+      <line x1="620" y1="222" x2="552" y2="222" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#p-arrow)"/>
+      <rect x="556" y="202" width="58" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="585" y="211" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">RESULTADO</text>
+
+      <!-- d. hook -> factory -->
+      <line x1="460" y1="240" x2="460" y2="290" stroke="#eb6c36" stroke-width="1.4" marker-end="url(#p-arrow-accent)"/>
+      <rect x="468" y="255" width="78" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="507" y="264" fill="#eb6c36" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">FETCH / SAVE</text>
+
+      <!-- e. factory -> Next.js repo -->
+      <path d="M 410,350 V 372 Q 410,380 402,380 H 275 Q 267,380 267,388 V 400" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#p-arrow)"/>
+      <rect x="299" y="360" width="64" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="331" y="369" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">CON SESIÓN</text>
+
+      <!-- f. factory -> localStorage repo -->
+      <path d="M 510,350 V 372 Q 510,380 518,380 H 649 Q 657,380 657,388 V 400" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#p-arrow)"/>
+      <rect x="549" y="360" width="62" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="580" y="369" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">SIN SESIÓN</text>
+
+      <!-- g. Next.js repo -> Server action -->
+      <line x1="267" y1="460" x2="267" y2="510" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#p-arrow)"/>
+      <rect x="275" y="475" width="54" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="302" y="484" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">IMPORT()</text>
+
+      <!-- h. Server action -> Prisma / PG -->
+      <line x1="267" y1="570" x2="267" y2="606" stroke="#eb6c36" stroke-width="1.4" marker-end="url(#p-arrow-accent)"/>
+      <rect x="275" y="580" width="66" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="308" y="589" fill="#eb6c36" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">AUTH · SQL</text>
+
+      <!-- i. localStorage repo -> Browser localStorage -->
+      <line x1="657" y1="460" x2="657" y2="510" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#p-arrow)"/>
+      <rect x="665" y="475" width="34" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="682" y="484" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">JSON</text>
+
+      <!-- Nodes -->
+      <!-- Component -->
+      <rect x="370" y="76" width="180" height="60" rx="6" fill="#f5f5f5"/>
+      <rect x="370" y="76" width="180" height="60" rx="6" fill="rgba(79,93,117,0.10)" stroke="#7a8399" stroke-width="1"/>
+      <rect x="378" y="84" width="34" height="12" rx="2" fill="transparent" stroke="rgba(122,131,153,0.40)" stroke-width="0.8"/>
+      <text x="395" y="93" fill="#7a8399" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">COMP</text>
+      <text x="460" y="110" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Componente UI</text>
+      <text x="460" y="124" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">features/*/ui</text>
+
+      <!-- Query hook (focal) -->
+      <rect x="370" y="180" width="180" height="60" rx="6" fill="#f5f5f5"/>
+      <rect x="370" y="180" width="180" height="60" rx="6" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1"/>
+      <rect x="378" y="188" width="34" height="12" rx="2" fill="transparent" stroke="rgba(235,108,54,0.50)" stroke-width="0.8"/>
+      <text x="395" y="197" fill="#eb6c36" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">HOOK</text>
+      <text x="460" y="214" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Query hook</text>
+      <text x="460" y="228" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">TanStack Query</text>
+
+      <!-- Use case -->
+      <rect x="620" y="180" width="170" height="60" rx="6" fill="#f5f5f5"/>
+      <rect x="620" y="180" width="170" height="60" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="628" y="188" width="34" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+      <text x="645" y="197" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">PURE</text>
+      <text x="705" y="214" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Casos de uso</text>
+      <text x="705" y="228" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">useCase/ · +tests</text>
+
+      <!-- Repo factory -->
+      <rect x="370" y="290" width="180" height="60" rx="6" fill="#f5f5f5"/>
+      <rect x="370" y="290" width="180" height="60" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="378" y="298" width="30" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+      <text x="393" y="307" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">PICK</text>
+      <text x="460" y="324" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Fábrica de repo</text>
+      <text x="460" y="338" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">api/repository</text>
+
+      <!-- Next.js repo -->
+      <rect x="175" y="400" width="185" height="60" rx="6" fill="#f5f5f5"/>
+      <rect x="175" y="400" width="185" height="60" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="183" y="408" width="30" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+      <text x="198" y="417" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">REPO</text>
+      <text x="267" y="434" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Repo Next.js</text>
+      <text x="267" y="448" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">nextjs*Repository</text>
+
+      <!-- localStorage repo -->
+      <rect x="560" y="400" width="195" height="60" rx="6" fill="#f5f5f5"/>
+      <rect x="560" y="400" width="195" height="60" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="568" y="408" width="30" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+      <text x="583" y="417" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">REPO</text>
+      <text x="657" y="434" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Repo localStorage</text>
+      <text x="657" y="448" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">localStorage*Repository</text>
+
+      <!-- Server action (focal) -->
+      <rect x="175" y="510" width="185" height="60" rx="6" fill="#f5f5f5"/>
+      <rect x="175" y="510" width="185" height="60" rx="6" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1"/>
+      <rect x="183" y="518" width="28" height="12" rx="2" fill="transparent" stroke="rgba(235,108,54,0.50)" stroke-width="0.8"/>
+      <text x="197" y="527" fill="#eb6c36" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">RPC</text>
+      <text x="267" y="544" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Server action</text>
+      <text x="267" y="558" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">api/actions · 'use server'</text>
+
+      <!-- Prisma / PG -->
+      <rect x="167" y="606" width="200" height="60" rx="6" fill="#f5f5f5"/>
+      <rect x="167" y="606" width="200" height="60" rx="6" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+      <rect x="175" y="614" width="24" height="12" rx="2" fill="transparent" stroke="rgba(79,93,117,0.50)" stroke-width="0.8"/>
+      <text x="187" y="623" fill="#4f5d75" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">DB</text>
+      <text x="267" y="640" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Prisma → PostgreSQL</text>
+      <text x="267" y="654" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">requireAuth + query</text>
+
+      <!-- Browser localStorage -->
+      <rect x="560" y="510" width="195" height="60" rx="6" fill="#f5f5f5"/>
+      <rect x="560" y="510" width="195" height="60" rx="6" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+      <rect x="568" y="518" width="30" height="12" rx="2" fill="transparent" stroke="rgba(79,93,117,0.50)" stroke-width="0.8"/>
+      <text x="583" y="527" fill="#4f5d75" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">WEB</text>
+      <text x="657" y="544" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">localStorage</text>
+      <text x="657" y="558" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">navegador · sin backend</text>
+
+      <!-- Legend -->
+      <line x1="140" y1="690" x2="830" y2="690" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+      <text x="140" y="712" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.14em">LEYENDA</text>
+
+      <rect x="212" y="703" width="14" height="10" rx="2" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1"/>
+      <text x="232" y="712" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Punto clave</text>
+
+      <rect x="320" y="703" width="14" height="10" rx="2" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <text x="340" y="712" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Código de la feature</text>
+
+      <rect x="470" y="703" width="14" height="10" rx="2" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+      <text x="490" y="712" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Almacenamiento</text>
+
+      <rect x="600" y="703" width="14" height="10" rx="2" fill="rgba(79,93,117,0.10)" stroke="#7a8399" stroke-width="1"/>
+      <text x="620" y="712" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Entrada</text>
+    </svg>
+  </div>
+</body>
+</html>
