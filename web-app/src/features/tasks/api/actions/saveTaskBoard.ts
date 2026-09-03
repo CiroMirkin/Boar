@@ -1,11 +1,10 @@
 'use server'
 
 import { prisma } from '@/shared/lib/prisma'
-import type { TaskBoard } from '@/features/tasks/model/taskBoard'
+import { DEFAULT_COLUMN_IDS, type TaskBoard } from '@/features/tasks/model/taskBoard'
 import { requireBoardAccess } from '@/shared/lib/serverAuth'
 
-// Placeholder column IDs from emptyTaskBoard — resolved to real rows by position.
-const DEFAULT_COLUMN_IDS = ['c1', 'c2', 'c3']
+// DEFAULT_COLUMN_IDS son los IDs placeholder de emptyTaskBoard — se resuelven a filas reales por posición.
 
 /**
  * Full-sync: upserts all columns and tasks from a TaskBoard snapshot.

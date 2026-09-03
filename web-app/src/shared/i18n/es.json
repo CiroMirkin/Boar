@@ -149,9 +149,9 @@
 	},
 
 	"default_columns": {
-		"c1": "Pendientes",
-		"c2": "Procesando",
-		"c3": "Terminado"
+		"todo": "Pendientes",
+		"in_progress": "Procesando",
+		"done": "Terminado"
 	},
 	"task_notes": {
 		"title": "Notas y comentarios",

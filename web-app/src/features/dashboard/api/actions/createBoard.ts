@@ -3,13 +3,7 @@
 import { prisma } from '@/shared/lib/prisma'
 import i18next from '@/shared/i18n/server'
 import { requireAuth } from '@/shared/lib/serverAuth'
-
-// Default column names stored as i18n keys (same as emptyTaskBoard)
-const DEFAULT_COLUMN_KEYS = [
-	{ key: 'c1', order: 0 },
-	{ key: 'c2', order: 1 },
-	{ key: 'c3', order: 2 },
-]
+import { DEFAULT_COLUMN_IDS } from '@/features/tasks/model/taskBoard'
 
 export async function createBoard({ name }: { name: string }): Promise<void> {
 	const userId = await requireAuth()
@@ -27,11 +21,11 @@ export async function createBoard({ name }: { name: string }): Promise<void> {
 			data: { name, userId },
 		})
 
-		// Create default columns
+		// Create default columns — el nombre se guarda como clave i18n, se traduce en el cliente
 		await tx.column.createMany({
-			data: DEFAULT_COLUMN_KEYS.map((col) => ({
-				name: col.key, // stored as i18n key, translated on client
-				order: col.order,
+			data: DEFAULT_COLUMN_IDS.map((key, order) => ({
+				name: key,
+				order,
 				boardId: board.id,
 			})),
 		})

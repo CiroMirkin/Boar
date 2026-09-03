@@ -1,6 +1,9 @@
 import { useTheme } from '@/shared/hooks/useTheme'
 import { useMediaQuery } from '@/shared/hooks/useMediaQuery'
 import { useTranslation } from 'react-i18next'
+import { DEFAULT_COLUMN_IDS } from '@/features/tasks/model/taskBoard'
+
+const [FIRST_COLUMN, SECOND_COLUMN, THIRD_COLUMN] = DEFAULT_COLUMN_IDS
 
 function ThemePreview() {
 	const { bg, column, task, taskText, columnText } = useTheme()
@@ -17,7 +20,7 @@ function ThemePreview() {
 			<div className={boardClass}>
 				{!isSmallDevice && (
 					<div className={columnClass}>
-						<div className={`text-sm ${columnText}`}>{t('default_columns.c1')}</div>
+						<div className={`text-sm ${columnText}`}>{t(`default_columns.${FIRST_COLUMN}`)}</div>
 						<div className='mt-1 flex flex-col gap-2'>
 							<div className={cardClass}>
 								<div className={cardTextClass}>
@@ -35,7 +38,7 @@ function ThemePreview() {
 				)}
 
 				<div className={columnClass}>
-					<div className={`text-sm ${columnText}`}>{t('default_columns.c2')}</div>
+					<div className={`text-sm ${columnText}`}>{t(`default_columns.${SECOND_COLUMN}`)}</div>
 					<div className='mt-1 flex flex-col gap-2'>
 						<div className={cardClass}>
 							<div className={cardTextClass}>
@@ -57,7 +60,7 @@ function ThemePreview() {
 				</div>
 				{!isSmallDevice && (
 					<div className={columnClass}>
-						<div className={`text-sm ${columnText}`}>{t('default_columns.c3')}</div>
+						<div className={`text-sm ${columnText}`}>{t(`default_columns.${THIRD_COLUMN}`)}</div>
 						<div className='mt-1 flex flex-col gap-2'>
 							<div className={cardClass}>
 								<div

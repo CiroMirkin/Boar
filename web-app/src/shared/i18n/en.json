@@ -150,9 +150,9 @@
 	},
 
 	"default_columns": {
-		"c1": "Pending",
-		"c2": "Processing",
-		"c3": "Finished"
+		"todo": "Pending",
+		"in_progress": "Processing",
+		"done": "Finished"
 	},
 	"task_notes": {
 		"title": "Notes and comments",

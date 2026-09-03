@@ -3,7 +3,7 @@ import { TaskListInEachColumn as TaskLists } from '@/features/tasks/ui/taskList/
 
 export type TaskBoard = TaskColumn[]
 
-export const DEFAULT_COLUMN_IDS = ['c1', 'c2', 'c3']
+export const DEFAULT_COLUMN_IDS = ['todo', 'in_progress', 'done']
 
 export const emptyTaskBoard: TaskBoard = [
 	{
