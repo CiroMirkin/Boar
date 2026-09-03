@@ -103,7 +103,13 @@
 			"change_board_name_input_label": "Nombre",
 			"change_board_name_input_placeholder": "Tablero básico",
 			"board_theme_section_title": "Tema del tablero",
-			"set_board_theme_toast": "¡Tema establecido!"
+			"set_board_theme_toast": "¡Tema establecido!",
+			"delete_board_section_title": "Eliminar tablero",
+			"delete_board_section_description": "Esta acción no se puede deshacer. Se eliminarán todas las tareas y columnas del tablero.",
+			"delete_board_confirm_checkbox": "Quiero eliminar el tablero",
+			"delete_board_name_input_label": "Confirma escribiendo el nombre del tablero.",
+			"delete_board_name_input_placeholder": "Escribe el nombre del tablero",
+			"delete_board_button": "Eliminar tablero"
 		},
 		"type_of_view": {
 			"section_title": "Tipo de vista",
