@@ -1,0 +1,2 @@
+cd web-app || exit 1
+npm run lint

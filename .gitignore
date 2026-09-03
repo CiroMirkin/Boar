@@ -1,8 +1,6 @@
 # Docs
 docs/ignore
 
-.env
-
 # IA
 .agents
 .claude
@@ -12,16 +10,6 @@ docs/ignore
 # Logs
 logs
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
 
 # Editor directories and files
 .vscode/*
@@ -30,26 +18,9 @@ dist-ssr
 .idea
 .DS_Store
 *.suo
-*.ntvs*
-*.njsproj
 *.sln
 *.sw?
 .gitpod.yml
 
-# Playwright
-
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/playwright/.auth/
-
-# Next.js
-.next/
-out/
-tsconfig.tsbuildinfo
-
 # codegraph local index
 .codegraph/
-
-/generated/prisma

@@ -1,5 +1,10 @@
 # Capo
 
+## Estructura del repo
+
+- `web-app/` — la app Next.js (código, config, tests). Los comandos (`npm ...`) se corren desde ahí.
+- `docs/` — documentación. `.scratch/` y los issues son relativos a la raíz del repo.
+
 ## Agent skills
 
 ### Issue tracker

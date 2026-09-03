@@ -39,7 +39,11 @@ En entornos de alta carga mental, la fragmentación de la información reduce la
 
 Instalación:
 
+La app vive en `web-app/` (la documentación en `docs/`).
+
 ```
+cd web-app
+
 # Instalar dependencias
 npm install
 
