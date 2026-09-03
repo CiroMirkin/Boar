@@ -10,13 +10,21 @@ Esquema Prisma (`web-app/prisma/schema.prisma`), provider `postgresql`.
   (`boardId` único).
 - **`TagGroup`** es compartible: muchos tableros pueden tener el mismo grupo
   como activo (`activeTagGroupId`).
+- **`Theme`** es el catálogo de temas de color, seeded desde `prisma/seed.ts`
+  (`upsert` por `id`). `userId` nullable: `null` = tema integrado, seteado =
+  tema del usuario (a futuro). Lo referencian `Board.themeId` y
+  `User.dashboardThemeId` (FK, default `"retro"`) — cada tablero tiene su tema y
+  el dashboard el suyo.
+- **`Board.cardCanvas`** (`Int`) es el índice del patrón de fondo de la card en
+  el dashboard; se asigna al azar al crear el tablero y se puede cambiar.
 - Campos `Json` (`tags`, `timelineHistory`, `usageHistory`, `taskList`, …)
   guardan estructuras que no necesitan consultarse por separado.
 - `Account`, `Session` y `VerificationToken` son las tablas que pide el
   `PrismaAdapter` de Auth.js (no se dibujan).
 
 El modo invitado replica estas mismas formas en `localStorage`, una clave por
-feature.
+feature. Excepción: el tema es uno solo y global (`boar-theme`), no hay tema por
+tablero ni catálogo para invitados.
 
 ---
 
