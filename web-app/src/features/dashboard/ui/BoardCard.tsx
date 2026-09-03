@@ -1,10 +1,6 @@
 import { useTheme } from '@/shared/hooks/useTheme'
-import { Button } from '@/shared/ui/atoms/button'
-import { TrashIcon } from '@/shared/ui/atoms/icons'
 import { useMemo } from 'react'
 import { TransitionLink } from '@/shared/ui/atoms/TransitionLink'
-import { useDashboardQuery } from '../hooks/useDashboardQuery'
-import { toast } from 'sonner'
 import { useTranslation } from 'react-i18next'
 
 interface Board {
@@ -16,23 +12,6 @@ function BoardCard({ board }: { board: Board }) {
 	const { t } = useTranslation()
 	const color = useTheme()
 	const hero = useMemo(RandomHero, [])
-
-	const { deleteBoard } = useDashboardQuery()
-	const handleDeleteBoard = () => {
-		toast.warning(t('dashboard.delete_warning'), {
-			action: {
-				label: t('dashboard.delete_button'),
-				onClick: () => {
-					const promise = deleteBoard(board.id)
-					toast.promise(promise, {
-						loading: t('dashboard.deleting_board'),
-						success: () => t('dashboard.delete_success'),
-						error: (e) => e.message || t('dashboard.delete_error'),
-					})
-				},
-			},
-		})
-	}
 
 	const boardUrl = `/board/${board.id}`
 
@@ -49,24 +28,14 @@ function BoardCard({ board }: { board: Board }) {
 				</TransitionLink>
 			</div>
 			<div className={`text-left ${color.task} ${color.taskText} rounded-b-md`}>
-				<div className='flex justify-between items-center pr-3'>
-					<TransitionLink
-						to={boardUrl}
-						title={t('dashboard.open_board', { boardName: board.name })}
-					>
-						<h2 className='w-[12rem] py-4 pl-4 text-base font-semibold rounded-b-md hover:underline'>
-							{board.name}
-						</h2>
-					</TransitionLink>
-					<Button
-						className='py-1 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300'
-						variant='destructiveGhost'
-						title={t('dashboard.delete_board_title')}
-						onClick={handleDeleteBoard}
-					>
-						<TrashIcon />
-					</Button>
-				</div>
+				<TransitionLink
+					to={boardUrl}
+					title={t('dashboard.open_board', { boardName: board.name })}
+				>
+					<h2 className='py-4 px-4 text-base font-semibold rounded-b-md hover:underline'>
+						{board.name}
+					</h2>
+				</TransitionLink>
 			</div>
 		</li>
 	)
