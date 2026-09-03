@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { useSession } from '@/features/auth'
-import { useBoardQuery } from '@/features/boards'
+import { useBoardQuery, boardKey } from '@/features/boards'
 import { SettingSection } from '@/shared/ui/organisms/SettingSection'
 import { CheckIcon } from '@/shared/ui/atoms/icons'
 import { heros } from './heros'
@@ -18,7 +18,7 @@ export function CanvasSelection({ boardId }: Props) {
 	const { board } = useBoardQuery(boardId)
 	const { session } = useSession()
 	const queryClient = useQueryClient()
-	const boardKey = ['board', session?.user.id, boardId]
+	const cacheKey = boardKey(session?.user.id, boardId)
 
 	const current = board?.cardCanvas ?? 0
 
@@ -28,15 +28,15 @@ export function CanvasSelection({ boardId }: Props) {
 			await setBoardCardCanvas({ boardId, index })
 		},
 		onMutate: async (index: number) => {
-			await queryClient.cancelQueries({ queryKey: boardKey })
-			const previous = queryClient.getQueryData(boardKey)
-			queryClient.setQueryData(boardKey, (old: Record<string, unknown> | undefined) =>
+			await queryClient.cancelQueries({ queryKey: cacheKey })
+			const previous = queryClient.getQueryData(cacheKey)
+			queryClient.setQueryData(cacheKey, (old: Record<string, unknown> | undefined) =>
 				old ? { ...old, cardCanvas: index } : old
 			)
 			return { previous }
 		},
-		onError: (_e, _i, ctx) => queryClient.setQueryData(boardKey, ctx?.previous),
-		onSettled: () => queryClient.invalidateQueries({ queryKey: boardKey }),
+		onError: (_e, _i, ctx) => queryClient.setQueryData(cacheKey, ctx?.previous),
+		onSettled: () => queryClient.invalidateQueries({ queryKey: cacheKey }),
 	})
 
 	// Los invitados no tienen tablero en la DB ni board cards; el canvas no aplica.

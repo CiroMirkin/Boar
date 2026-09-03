@@ -9,6 +9,9 @@ import { useCallback, useEffect } from 'react'
 
 const boardQueryKey = ['board']
 
+/** Clave de react-query para un tablero. Única fuente para no desincronizar caches. */
+export const boardKey = (userId?: string, boardId?: string) => [...boardQueryKey, userId, boardId]
+
 export const useBoardQuery = (boardId: string) => {
 	const { session, isLoading: isSessionLoading } = useSession()
 	const queryClient = useQueryClient()
@@ -38,7 +41,7 @@ export const useBoardQuery = (boardId: string) => {
 		isError,
 		error,
 	} = useQuery({
-		queryKey: [...boardQueryKey, session?.user.id, boardId],
+		queryKey: boardKey(session?.user.id, boardId),
 		queryFn: () => fetchBoard(session, boardId),
 		select,
 		enabled: !!boardId && !isSessionLoading,

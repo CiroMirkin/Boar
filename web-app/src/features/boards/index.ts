@@ -7,4 +7,4 @@ export {
 export { Board } from './ui/Board'
 export { ChangeBoardName } from './ui/ChangeBoardName'
 export { DeleteBoard } from './ui/DeleteBoard'
-export { useBoardQuery } from './hooks/useBoardQuery'
+export { useBoardQuery, boardKey } from './hooks/useBoardQuery'
