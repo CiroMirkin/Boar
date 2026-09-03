@@ -10,7 +10,7 @@ export function ListView({
 	className?: string
 }) {
 	const { taskBoard } = useTaskBoardQuery()
-	const columns = taskBoard.map((list) => ({
+	const columns = (taskBoard ?? []).map((list) => ({
 		name: list.status,
 		id: list.id,
 	}))

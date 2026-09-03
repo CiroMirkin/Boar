@@ -32,6 +32,7 @@ export function EditColumn({ column }: EditColumnParams) {
 
 	const editColumnNameHandle = () => {
 		if (showChangeColumnNameInput) {
+			if (!taskBoard) return
 			const updatedColumnList = changeStatusName({
 				taskBoard,
 				id,

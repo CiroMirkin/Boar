@@ -21,24 +21,25 @@ export const useBoardQuery = (boardId: string) => {
 
 	const select = useCallback(
 		(rawData: boardModel | undefined) => {
-			const data = rawData ?? defaultBoard
-			if (isDefaultBoardName(data.name)) {
-				return { ...data, name: t('board_name') }
+			if (!rawData) {
+				return null
 			}
-			return data
+			if (isDefaultBoardName(rawData.name)) {
+				return { ...rawData, name: t('board_name') }
+			}
+			return rawData
 		},
 		[t, i18n.language] // eslint-disable-line react-hooks/exhaustive-deps
 	)
 
 	const {
-		data: board,
+		data: board = null,
 		isLoading,
 		isError,
 		error,
 	} = useQuery({
 		queryKey: [...boardQueryKey, session?.user.id, boardId],
 		queryFn: () => fetchBoard(session, boardId),
-		placeholderData: defaultBoard,
 		select,
 		enabled: !!boardId && !isSessionLoading,
 	})

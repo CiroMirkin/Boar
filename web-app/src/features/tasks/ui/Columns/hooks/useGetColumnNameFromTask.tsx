@@ -5,6 +5,7 @@ export const useGetColumnNameFromTask = (): ((task: taskModel) => string) => {
 	const { taskBoard } = useTaskBoardQuery()
 
 	return (task: taskModel) => {
+		if (!taskBoard) return ''
 		const columnIndex = taskBoard.findIndex((column) =>
 			column.tasks.some((t) => t.id === task.id)
 		)

@@ -29,20 +29,22 @@ export const useTaskBoardQuery = () => {
 	const { t, i18n } = useTranslation()
 	const select = useCallback(
 		(rawData: TaskBoard | undefined) => {
-			const data = rawData ?? emptyTaskBoard
-			if (isDefaultTaskBoard(data)) {
-				return data.map((taskColumn) => ({
+			if (!rawData) {
+				return null
+			}
+			if (isDefaultTaskBoard(rawData)) {
+				return rawData.map((taskColumn) => ({
 					...taskColumn,
 					status: t(`default_columns.${taskColumn.id}`),
 				}))
 			}
-			return data
+			return rawData
 		},
 		[t, i18n.language, userId] // eslint-disable-line react-hooks/exhaustive-deps
 	)
 
 	const {
-		data: taskBoard = emptyTaskBoard,
+		data: taskBoard = null,
 		isLoading,
 		isError,
 		error,

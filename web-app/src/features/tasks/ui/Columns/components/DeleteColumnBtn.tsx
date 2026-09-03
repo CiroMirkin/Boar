@@ -11,6 +11,7 @@ function DeleteColumnBtn({ column }: { column: Column }) {
 	const { updateTaskBoard, taskBoard } = useTaskBoardQuery()
 
 	const deleteColumnHandle = () => {
+		if (!taskBoard) return
 		const updatedTaskBoard = deleteThisTaskColumn({ id: column.id, taskBoard })
 		updateTaskBoard(updatedTaskBoard)
 	}

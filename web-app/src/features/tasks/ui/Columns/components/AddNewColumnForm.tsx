@@ -20,6 +20,7 @@ export function AddNewColumnForm() {
 	const theNewColumnNameIsValid = theNewColumnNameIsBlank || theNewColumnNameIsOffLimits
 
 	const handleAddNewColumn = () => {
+		if (!taskBoard) return
 		try {
 			const updatedTaskBoard = addNewTaskColumn({
 				status: newColumnName,

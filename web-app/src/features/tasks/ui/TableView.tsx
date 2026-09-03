@@ -3,7 +3,7 @@ import { ListOfColumn, ColumnsContent } from '@/features/tasks/ui/Columns/ListOf
 
 export function TableView({ children }: { children: () => ColumnsContent }) {
 	const { taskBoard } = useTaskBoardQuery()
-	const columns = taskBoard.map((list) => ({
+	const columns = (taskBoard ?? []).map((list) => ({
 		name: list.status,
 		id: list.id,
 	}))

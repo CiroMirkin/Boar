@@ -14,7 +14,7 @@ import { useBoardQuery } from '@/features/boards'
 
 const useColumnListForReminders = (): { name: string; id: string; position: string }[] => {
 	const { taskBoard } = useTaskBoardQuery()
-	return taskBoard.map((list, i) => ({
+	return (taskBoard ?? []).map((list, i) => ({
 		name: list.status,
 		id: list.id,
 		position: i + 1 + '',
