@@ -20,7 +20,9 @@ function ThemePreview() {
 			<div className={boardClass}>
 				{!isSmallDevice && (
 					<div className={columnClass}>
-						<div className={`text-sm ${columnText}`}>{t(`default_columns.${FIRST_COLUMN}`)}</div>
+						<div className={`text-sm ${columnText}`}>
+							{t(`default_columns.${FIRST_COLUMN}`)}
+						</div>
 						<div className='mt-1 flex flex-col gap-2'>
 							<div className={cardClass}>
 								<div className={cardTextClass}>
@@ -38,7 +40,9 @@ function ThemePreview() {
 				)}
 
 				<div className={columnClass}>
-					<div className={`text-sm ${columnText}`}>{t(`default_columns.${SECOND_COLUMN}`)}</div>
+					<div className={`text-sm ${columnText}`}>
+						{t(`default_columns.${SECOND_COLUMN}`)}
+					</div>
 					<div className='mt-1 flex flex-col gap-2'>
 						<div className={cardClass}>
 							<div className={cardTextClass}>
@@ -60,7 +64,9 @@ function ThemePreview() {
 				</div>
 				{!isSmallDevice && (
 					<div className={columnClass}>
-						<div className={`text-sm ${columnText}`}>{t(`default_columns.${THIRD_COLUMN}`)}</div>
+						<div className={`text-sm ${columnText}`}>
+							{t(`default_columns.${THIRD_COLUMN}`)}
+						</div>
 						<div className='mt-1 flex flex-col gap-2'>
 							<div className={cardClass}>
 								<div
