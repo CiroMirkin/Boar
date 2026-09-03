@@ -16,8 +16,11 @@ const BOARD_ROUTE = /^\/(?:board|settings)\/([^/]+)/
 
 type ChangeTheme = (value: Theme | ((prev: Theme) => Theme)) => void
 
-/** Resuelve el tema activo según la ruta y la sesión. Invitado: `localStorage`
- * (comportamiento actual). Logueado: tema del tablero o del dashboard. */
+/** 
+ * Resuelve el tema activo según la ruta y la sesión. 
+ * Invitado: `localStorage` (comportamiento actual).
+ * Logueado: tema del tablero o del dashboard.
+ */
 export const useResolvedTheme = (): { theme: Theme; changeTheme: ChangeTheme } => {
 	const { session } = useSession()
 	const pathname = usePathname()
