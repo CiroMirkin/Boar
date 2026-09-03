@@ -11,15 +11,18 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(cuid())
-  email     String    @unique
-  name      String?
-  image     String?
-  password  String?
-  accounts  Account[]
-  sessions  Session[]
-  boards    Board[]
-  createdAt DateTime  @default(now())
+  id               String    @id @default(cuid())
+  email            String    @unique
+  name             String?
+  image            String?
+  password         String?
+  accounts         Account[]
+  sessions         Session[]
+  boards           Board[]
+  dashboardThemeId String    @default("retro")
+  dashboardTheme   Theme     @relation("UserDashboardTheme", fields: [dashboardThemeId], references: [id])
+  themes           Theme[]
+  createdAt        DateTime  @default(now())
 }
 
 model Board {
@@ -34,7 +37,28 @@ model Board {
   reminders        Reminder?
   archive          Archive?
   usageHistory     Json      @default("[]")
-  createdAt        DateTime  @default(now())
+
+  themeId    String @default("retro")
+  theme      Theme  @relation(fields: [themeId], references: [id])
+  cardCanvas Int    @default(0)
+
+  createdAt DateTime @default(now())
+}
+
+model Theme {
+  id         String  @id
+  bg         String
+  task       String
+  column     String
+  text       String
+  taskText   String?
+  columnText String?
+  reminder   String?
+  order      Int     @default(0)
+  userId     String?
+  user       User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  boards     Board[]
+  dashboards User[]  @relation("UserDashboardTheme")
 }
 
 model Column {
