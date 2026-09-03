@@ -5,8 +5,8 @@ import { useSession } from '@/features/auth'
 
 export const dashboardThemeKey = (userId?: string) => ['dashboard-theme', userId]
 
-/** 
- * @returns Id del tema del dashboard del usuario logueado. 
+/**
+ * @returns Id del tema del dashboard del usuario logueado.
  * @default 'retro' es el Id mientras carga y por defecto.
  * */
 export const useDashboardTheme = () => {

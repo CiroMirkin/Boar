@@ -15,7 +15,7 @@ import { useDashboardTheme } from './useDashboardTheme'
 const BOARD_ROUTE = /^\/(?:board|settings)\/([^/]+)/
 
 /**
- * Resuelve el tema activo según la ruta y la sesión. 
+ * Resuelve el tema activo según la ruta y la sesión.
  * Invitado: `localStorage` (comportamiento actual).
  * Logueado: tema del tablero o del dashboard.
  */
