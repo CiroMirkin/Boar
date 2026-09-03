@@ -15,7 +15,7 @@ export function NoteInput() {
 	const { text: textColor } = useTheme()
 
 	const { notes, updateNotes, isLoading } = useNotesQuery()
-	const [notesValue, setNotesValue] = useState(notes)
+	const [notesValue, setNotesValue] = useState(notes ?? '')
 	const isFirstRender = useRef(true)
 
 	const saveNotes = useCallback(() => {
@@ -33,17 +33,25 @@ export function NoteInput() {
 	}, [notesValue, t, updateNotes])
 
 	useEffect(() => {
-		if (notesValue !== notes) {
+		if (notes !== null && notesValue !== notes) {
 			const timeoutId = setTimeout(saveNotes, 100)
 			return () => clearTimeout(timeoutId)
 		}
 	}, [notesValue, notes, saveNotes])
 
 	useEffect(() => {
-		setNotesValue(notes)
+		if (notes !== null) {
+			setNotesValue(notes)
+		}
 	}, [notes])
 
-	if (isLoading) return <Spinner size={30} />
+	if (isLoading || notes === null) {
+		return (
+			<div className='w-full flex items-center justify-center py-8'>
+				<Spinner size={30} />
+			</div>
+		)
+	}
 
 	return (
 		<>

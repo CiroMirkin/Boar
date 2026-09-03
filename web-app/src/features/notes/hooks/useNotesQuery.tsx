@@ -13,17 +13,16 @@ export const useNotesQuery = () => {
 	const boardId = useBoardId((state) => state.board_id)
 	const fullQueryKey = [...notesQueryKey, session?.user.id, boardId]
 
-	const { data: notes = defaultNotes, isLoading } = useQuery({
+	const { data: notes = null, isLoading } = useQuery({
 		queryKey: fullQueryKey,
 		queryFn: () => fetchNotes(session, boardId),
-		placeholderData: defaultNotes,
 	})
 
 	const { mutate: updateNotes, isPending: isSaving } = useMutation({
 		mutationFn: (updatedNotes: Notes) => saveNotes({ notes: updatedNotes, session, boardId }),
 		onMutate: async (updatedNotes: Notes) => {
 			await queryClient.cancelQueries({ queryKey: fullQueryKey })
-			const previousNotes = queryClient.getQueryData(fullQueryKey)
+			const previousNotes = queryClient.getQueryData(fullQueryKey) ?? defaultNotes
 			queryClient.setQueryData(fullQueryKey, updatedNotes)
 			return { previousNotes }
 		},
