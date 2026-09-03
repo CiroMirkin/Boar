@@ -8,14 +8,21 @@ export async function getThemes(): Promise<Theme[]> {
 	const themes = await prisma.theme.findMany({
 		where: { userId: null },
 		orderBy: { order: 'asc' },
+		select: {
+			id: true,
+			bg: true,
+			task: true,
+			column: true,
+			text: true,
+			taskText: true,
+			columnText: true,
+			reminder: true,
+		},
 	})
 
+	// Prisma devuelve `null` en los opcionales; `Theme` los quiere `undefined`.
 	return themes.map((t) => ({
-		id: t.id,
-		bg: t.bg,
-		task: t.task,
-		column: t.column,
-		text: t.text,
+		...t,
 		taskText: t.taskText ?? undefined,
 		columnText: t.columnText ?? undefined,
 		reminder: t.reminder ?? undefined,
