@@ -19,7 +19,7 @@ export const useBoardQuery = (boardId: string) => {
 
 	const setBoardId = useBoardId((s) => s.setBoardId)
 	useEffect(() => {
-		setBoardId(boardId)
+		if (boardId) setBoardId(boardId)
 	}, [boardId, setBoardId])
 
 	const select = useCallback(
