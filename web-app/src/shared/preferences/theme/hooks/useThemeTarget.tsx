@@ -2,6 +2,7 @@
 
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useSession, useBoardId } from '@/features/auth'
+import { boardKey } from '@/features/boards/hooks/useBoardQuery'
 import { useChangeTheme } from './useChangeTheme'
 import { useThemesQuery } from './useThemesQuery'
 import { resolveTheme } from '../model/resolveTheme'
@@ -19,9 +20,7 @@ export const useThemeTarget = (target: Target) => {
 	const changeGuestTheme = useChangeTheme()
 	const { themes } = useThemesQuery()
 
-	const boardKey = ['board', userId, boardId]
-	const dashboardKey = dashboardThemeKey(userId)
-	const key = target === 'board' ? boardKey : dashboardKey
+	const key = target === 'board' ? boardKey(userId, boardId) : dashboardThemeKey(userId)
 
 	const { mutate } = useMutation({
 		mutationFn: async (themeId: string) => {
@@ -35,20 +34,15 @@ export const useThemeTarget = (target: Target) => {
 				await setDashboardTheme(themeId)
 			}
 		},
-		onMutate: async (themeId: string) => {
-			await queryClient.cancelQueries({ queryKey: key })
-			const previous = queryClient.getQueryData(key)
+		// Optimista sin rollback: un save fallido se auto-corrige al invalidar en onSettled.
+		onMutate: (themeId: string) => {
 			if (target === 'board') {
-				queryClient.setQueryData(boardKey, (old: Record<string, unknown> | undefined) =>
+				queryClient.setQueryData(key, (old: Record<string, unknown> | undefined) =>
 					old ? { ...old, themeId } : old
 				)
 			} else {
-				queryClient.setQueryData(dashboardKey, themeId)
+				queryClient.setQueryData(key, themeId)
 			}
-			return { previous }
-		},
-		onError: (_e, _themeId, ctx) => {
-			if (ctx) queryClient.setQueryData(key, ctx.previous)
 		},
 		onSettled: () => queryClient.invalidateQueries({ queryKey: key }),
 	})
