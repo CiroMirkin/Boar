@@ -52,6 +52,7 @@ export const useTaskBoardQuery = () => {
 		queryKey: fullQueryKey,
 		queryFn: () => fetchTaskBoard(session, boardId),
 		staleTime: 30000,
+		enabled: !!boardId,
 		select,
 	})
 

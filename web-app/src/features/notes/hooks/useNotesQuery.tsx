@@ -16,6 +16,7 @@ export const useNotesQuery = () => {
 	const { data: notes = null, isLoading } = useQuery({
 		queryKey: fullQueryKey,
 		queryFn: () => fetchNotes(session, boardId),
+		enabled: !!boardId,
 	})
 
 	const { mutate: updateNotes, isPending: isSaving } = useMutation({

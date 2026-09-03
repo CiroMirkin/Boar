@@ -24,6 +24,7 @@ export const useTagsQuery = () => {
 	} = useQuery({
 		queryKey: fullQueryKey,
 		queryFn: () => fetchTags(session, boardId),
+		enabled: !!boardId,
 	})
 
 	const { mutate: updateTags, isPending: isSaving } = useMutation({

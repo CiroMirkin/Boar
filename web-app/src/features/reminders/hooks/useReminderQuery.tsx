@@ -18,6 +18,7 @@ export const useReminderQuery = () => {
 	} = useQuery({
 		queryKey: [...reminderQueryKey, session?.user.id, boardId],
 		queryFn: () => fetchReminder(session, boardId),
+		enabled: !!boardId,
 		placeholderData: blankReminder,
 	})
 
