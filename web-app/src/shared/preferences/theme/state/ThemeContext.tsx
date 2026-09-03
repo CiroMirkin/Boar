@@ -3,9 +3,11 @@
 import { createContext, Dispatch, SetStateAction } from 'react'
 import { Theme, lightTheme } from '../model/themesList'
 
+export type ChangeTheme = Dispatch<SetStateAction<Theme>>
+
 interface ThemeContextContent {
 	theme: Theme
-	changeTheme: Dispatch<SetStateAction<Theme>>
+	changeTheme: ChangeTheme
 }
 
 const defaultThemeContextValue: ThemeContextContent = {
@@ -19,7 +21,7 @@ interface ThemeProviderProps {
 	children: React.ReactNode
 	// value and dispatch of a useState Hook
 	theme: Theme
-	changeTheme: Dispatch<SetStateAction<Theme>>
+	changeTheme: ChangeTheme
 }
 
 export const ThemeProvider = ({ children, theme, changeTheme }: ThemeProviderProps) => {
