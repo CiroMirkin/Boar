@@ -1,6 +1,8 @@
 export interface boardModel {
 	id: string
 	name: string
+	themeId?: string
+	cardCanvas?: number
 }
 
 export const defaultBoard: boardModel = {

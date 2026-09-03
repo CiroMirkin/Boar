@@ -8,9 +8,20 @@ export async function getBoardById({ boardId }: { boardId: string }): Promise<bo
 	const userId = await requireAuth()
 	const board = await prisma.board.findUnique({
 		where: { id: boardId },
-		select: { id: true, name: true, userId: true },
+		select: {
+			id: true,
+			name: true,
+			userId: true,
+			themeId: true,
+			cardCanvas: true,
+		},
 	})
 
 	if (!board || board.userId !== userId) return null
-	return { id: board.id, name: board.name }
+	return {
+		id: board.id,
+		name: board.name,
+		themeId: board.themeId,
+		cardCanvas: board.cardCanvas,
+	}
 }

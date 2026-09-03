@@ -4,6 +4,7 @@ import { prisma } from '@/shared/lib/prisma'
 import i18next from '@/shared/i18n/server'
 import { requireAuth } from '@/shared/lib/serverAuth'
 import { DEFAULT_COLUMN_IDS } from '@/features/tasks/model/taskBoard'
+import { HERO_COUNT } from '../../model/heros'
 
 export async function createBoard({ name }: { name: string }): Promise<void> {
 	const userId = await requireAuth()
@@ -18,7 +19,11 @@ export async function createBoard({ name }: { name: string }): Promise<void> {
 
 	await prisma.$transaction(async (tx) => {
 		const board = await tx.board.create({
-			data: { name, userId },
+			data: {
+				name,
+				userId,
+				cardCanvas: Math.floor(Math.random() * HERO_COUNT),
+			},
 		})
 
 		// Create default columns — el nombre se guarda como clave i18n, se traduce en el cliente

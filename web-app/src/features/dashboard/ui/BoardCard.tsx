@@ -1,17 +1,18 @@
 import { useTheme } from '@/shared/hooks/useTheme'
-import { useMemo } from 'react'
 import { TransitionLink } from '@/shared/ui/atoms/TransitionLink'
 import { useTranslation } from 'react-i18next'
+import { heros } from './heros'
 
 interface Board {
 	name: string
 	id: string
+	cardCanvas?: number
 }
 
 function BoardCard({ board }: { board: Board }) {
 	const { t } = useTranslation()
 	const color = useTheme()
-	const hero = useMemo(RandomHero, [])
+	const hero = heros[board.cardCanvas ?? 0] ?? heros[0]
 
 	const boardUrl = `/board/${board.id}`
 
@@ -42,62 +43,3 @@ function BoardCard({ board }: { board: Board }) {
 }
 
 export default BoardCard
-
-function RandomHero() {
-	const heros = [
-		<div className='h-full w-full bg-transparent relative text-gray-800'>
-			<div
-				className='absolute inset-0 z-0 pointer-events-none'
-				style={{
-					backgroundImage: `
-        repeating-linear-gradient(22.5deg, transparent, transparent 2px, rgba(75, 85, 99, 0.06) 2px, rgba(75, 85, 99, 0.06) 3px, transparent 3px, transparent 8px),
-        repeating-linear-gradient(67.5deg, transparent, transparent 2px, rgba(107, 114, 128, 0.05) 2px, rgba(107, 114, 128, 0.05) 3px, transparent 3px, transparent 8px),
-        repeating-linear-gradient(112.5deg, transparent, transparent 2px, rgba(55, 65, 81, 0.04) 2px, rgba(55, 65, 81, 0.04) 3px, transparent 3px, transparent 8px),
-        repeating-linear-gradient(157.5deg, transparent, transparent 2px, rgba(31, 41, 55, 0.03) 2px, rgba(31, 41, 55, 0.03) 3px, transparent 3px, transparent 8px)
-      `,
-				}}
-			/>
-		</div>,
-		<div className='h-full w-full bg-transparent relative text-gray-900'>
-			<div
-				className='absolute inset-0 z-0 pointer-events-none'
-				style={{
-					backgroundImage: `
-          repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 20px),
-        repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 20px)
-        `,
-					backgroundSize: '30px 30px',
-				}}
-			/>
-		</div>,
-		<div className='h-full w-full bg-transparent relative text-gray-900'>
-			<div
-				className='absolute inset-0 z-0 pointer-events-none'
-				style={{
-					backgroundImage: `
-          repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 20px),
-        repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.1) 0, rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 20px)
-        `,
-					backgroundSize: '40px 40px',
-				}}
-			/>
-		</div>,
-		<div className='h-full w-full bg-transparent relative text-gray-800'>
-			<div
-				className='absolute inset-0 z-0 pointer-events-none'
-				style={{
-					backgroundImage: `
-        repeating-linear-gradient(0deg, transparent, transparent 5px, rgba(75, 85, 99, 0.06) 5px, rgba(75, 85, 99, 0.06) 6px, transparent 6px, transparent 15px),
-        repeating-linear-gradient(90deg, transparent, transparent 5px, rgba(75, 85, 99, 0.06) 5px, rgba(75, 85, 99, 0.06) 6px, transparent 6px, transparent 15px),
-        repeating-linear-gradient(0deg, transparent, transparent 10px, rgba(107, 114, 128, 0.04) 10px, rgba(107, 114, 128, 0.04) 11px, transparent 11px, transparent 30px),
-        repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(107, 114, 128, 0.04) 10px, rgba(107, 114, 128, 0.04) 11px, transparent 11px, transparent 30px)
-      `,
-				}}
-			/>
-		</div>,
-	]
-	const rnd = Math.random()
-	const item = Math.floor(rnd * heros.length)
-
-	return heros[item]
-}

@@ -13,7 +13,7 @@ function UserDashboardSettings() {
 			className='px-3 pb-6 grid place-items-center'
 		>
 			<div className='grid gap-4 justify-items-stretch '>
-				<ThemeSelection />
+				<ThemeSelection target='dashboard' />
 			</div>
 		</PageContainer>
 	)

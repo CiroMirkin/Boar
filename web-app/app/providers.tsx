@@ -3,11 +3,10 @@
 import '../src/shared/i18n/index'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster as SonnerToaster } from 'sonner'
-import { useEffect, useState, type ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 import { SessionProvider } from '@/features/auth'
 import { ThemeProvider } from '@/shared/preferences/theme'
-import { darkTheme, lightTheme, type Theme } from '@/shared/preferences/theme'
-import { useLocalStorage } from '@/shared/hooks/useLocalStorage'
+import { useResolvedTheme } from '@/shared/preferences/theme'
 import { useIsHydrated } from '@/shared/hooks/useIsHydrated'
 import { useUserPreffedLanguage } from '@/shared/preferences/language'
 import { useSetLanguageSaved } from '@/shared/preferences/language'
@@ -22,23 +21,10 @@ function ClientOnlyInit() {
 
 function AppInit({ children }: { children: ReactNode }) {
 	const mounted = useIsHydrated()
-
-	// clave 'boar-theme' (nombre anterior del proyecto): no renombrar para no invalidar el localStorage de usuarios existentes
-	const [theme, setTheme] = useLocalStorage<Theme>('boar-theme', lightTheme)
-
-	useEffect(() => {
-		try {
-			if (window.localStorage.getItem('boar-theme') !== null) return
-		} catch {
-			return
-		}
-		if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) {
-			setTheme(darkTheme)
-		}
-	}, [setTheme])
+	const { theme, changeTheme } = useResolvedTheme()
 
 	return (
-		<ThemeProvider theme={theme} changeTheme={setTheme}>
+		<ThemeProvider theme={theme} changeTheme={changeTheme}>
 			{mounted && <ClientOnlyInit />}
 			{children}
 			<SonnerToaster position='top-center' richColors closeButton />

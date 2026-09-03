@@ -105,12 +105,19 @@
 			"change_board_name_input_placeholder": "Basic board",
 			"board_theme_section_title": "Board theme",
 			"set_board_theme_toast": "Theme established!",
+			"card_canvas_section_title": "Card background",
+			"card_canvas_section_description": "This will be the background pattern of the board's card on the dashboard.",
+			"set_card_canvas_toast": "Background updated!",
 			"delete_board_section_title": "Delete board",
 			"delete_board_section_description": "This action cannot be undone. All tasks and columns of the board will be deleted.",
 			"delete_board_confirm_checkbox": "I want to delete the board",
 			"delete_board_name_input_label": "Confirm by typing the board name.",
 			"delete_board_name_input_placeholder": "Type the board name",
 			"delete_board_button": "Delete board"
+		},
+		"dashboard": {
+			"theme_section_title": "Dashboard theme",
+			"set_theme_toast": "Theme established!"
 		},
 		"type_of_view": {
 			"section_title": "View type",

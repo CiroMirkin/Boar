@@ -9,12 +9,18 @@ export async function getBoards(): Promise<Board[]> {
 	const boards = await prisma.board.findMany({
 		where: { userId },
 		orderBy: { createdAt: 'asc' },
-		select: { id: true, name: true, createdAt: true },
+		select: {
+			id: true,
+			name: true,
+			createdAt: true,
+			cardCanvas: true,
+		},
 	})
 
 	return boards.map((b) => ({
 		id: b.id,
 		name: b.name,
 		date: b.createdAt,
+		cardCanvas: b.cardCanvas,
 	}))
 }

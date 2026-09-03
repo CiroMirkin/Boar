@@ -3,6 +3,7 @@
 import { useTranslation } from 'react-i18next'
 import { USER_IS_IN } from '@/shared/ui/organisms/userIsIn'
 import { ChangeBoardName, DeleteBoard } from '@/features/boards'
+import { CanvasSelection } from '@/features/dashboard'
 import { CreateReminder, ReminderList } from '@/features/reminders'
 import { ThemeSelection } from '@/shared/preferences/theme'
 import PageContainer from '../../_components/PageContainer'
@@ -43,7 +44,8 @@ export function Settings({ boardId }: Props) {
 				<ReminderList />
 				<EnableTags />
 				<ToggleTypeOfView />
-				<ThemeSelection />
+				<ThemeSelection target='board' />
+				<CanvasSelection boardId={boardId} />
 				<DeleteBoard id={boardId} />
 			</div>
 		</PageContainer>

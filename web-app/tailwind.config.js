@@ -6,6 +6,9 @@ module.exports = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
+    // El catálogo de temas vive en la DB pero sus clases Tailwind se definen acá:
+    // sin este archivo, Tailwind no genera el CSS de los temas que no están en themesList.ts.
+    './prisma/seed.ts',
   ],
   prefix: "",
   theme: {

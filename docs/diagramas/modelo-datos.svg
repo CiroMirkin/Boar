@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg viewBox="0 0 1160 740" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="datos-title datos-desc">
       <title id="datos-title">Modelo de datos de Capo</title>
-      <desc id="datos-desc">Un usuario tiene varios tableros; cada tablero tiene columnas con tareas y, como accesorios uno a uno, una nota, un recordatorio y un archivo; muchos tableros pueden apuntar al mismo grupo de etiquetas activo.</desc>
+      <desc id="datos-desc">Un usuario tiene varios tableros; cada tablero tiene columnas con tareas y, como accesorios uno a uno, una nota, un recordatorio y un archivo; muchos tableros pueden apuntar al mismo grupo de etiquetas activo. Board y User referencian un Theme del catálogo de temas.</desc>
 
       <defs>
         <style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap');</style>
@@ -27,24 +27,34 @@
       <text x="884" y="160" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">N</text>
 
       <!-- 4. Board -> Note -->
-      <line x1="430" y1="296" x2="430" y2="360" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#d-arrow)"/>
-      <text x="436" y="312" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">1</text>
-      <text x="436" y="352" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">0..1</text>
+      <line x1="430" y1="332" x2="430" y2="360" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#d-arrow)"/>
+      <text x="436" y="346" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">1</text>
+      <text x="436" y="356" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">0..1</text>
 
       <!-- 5. Board -> Reminder -->
-      <path d="M 534,296 V 322 Q 534,330 542,330 H 552 Q 560,330 560,338 V 482 Q 560,490 552,490 H 520" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#d-arrow)"/>
-      <text x="540" y="314" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">1</text>
+      <path d="M 534,332 V 344 Q 534,352 542,352 H 552 Q 560,352 560,360 V 482 Q 560,490 552,490 H 520" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#d-arrow)"/>
+      <text x="540" y="344" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">1</text>
       <text x="524" y="486" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">0..1</text>
 
       <!-- 6. Board -> Archive -->
-      <path d="M 518,296 V 336 Q 518,344 526,344 H 568 Q 576,344 576,352 V 602 Q 576,610 568,610 H 520" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#d-arrow)"/>
-      <text x="500" y="314" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">1</text>
+      <path d="M 518,332 V 348 Q 518,356 526,356 H 568 Q 576,356 576,364 V 602 Q 576,610 568,610 H 520" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#d-arrow)"/>
+      <text x="500" y="344" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">1</text>
       <text x="524" y="606" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">0..1</text>
 
       <!-- 7. TagGroup -> Board -->
       <path d="M 240,128 H 352 Q 360,128 360,136 V 180" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#d-arrow)"/>
       <text x="246" y="124" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">0..1</text>
       <text x="366" y="176" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">N</text>
+
+      <!-- 8. Theme -> User (dashboardThemeId) -->
+      <path d="M 150,400 V 358" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#d-arrow)"/>
+      <text x="136" y="396" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">1</text>
+      <text x="136" y="374" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">N</text>
+
+      <!-- 9. Theme -> Board (themeId) -->
+      <path d="M 260,430 H 300 Q 308,430 308,422 V 328 Q 308,320 316,320 H 340" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#d-arrow)"/>
+      <text x="246" y="426" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">1</text>
+      <text x="320" y="316" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">N</text>
 
       <!-- Entities -->
       <!-- TagGroup -->
@@ -59,8 +69,8 @@
       <text x="72" y="162" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">tags : Json</text>
 
       <!-- User -->
-      <rect x="60" y="250" width="180" height="92" rx="6" fill="#f5f5f5"/>
-      <rect x="60" y="250" width="180" height="92" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="60" y="250" width="180" height="108" rx="6" fill="#f5f5f5"/>
+      <rect x="60" y="250" width="180" height="108" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
       <text x="72" y="268" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif">User</text>
       <rect x="206" y="256" width="26" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.35)" stroke-width="0.8"/>
       <text x="219" y="265" fill="#4f5d75" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">USR</text>
@@ -69,10 +79,11 @@
       <text x="72" y="306" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">email · unique</text>
       <text x="72" y="322" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">name?</text>
       <text x="72" y="338" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">password?</text>
+      <text x="72" y="354" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace">&#8594; dashboardThemeId</text>
 
       <!-- Board (focal) -->
-      <rect x="340" y="180" width="200" height="116" rx="6" fill="#f5f5f5"/>
-      <rect x="340" y="180" width="200" height="116" rx="6" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1"/>
+      <rect x="340" y="180" width="200" height="152" rx="6" fill="#f5f5f5"/>
+      <rect x="340" y="180" width="200" height="152" rx="6" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1"/>
       <text x="352" y="199" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif">Board</text>
       <rect x="500" y="188" width="32" height="12" rx="2" fill="transparent" stroke="rgba(235,108,54,0.55)" stroke-width="0.8"/>
       <text x="516" y="197" fill="#eb6c36" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">ROOT</text>
@@ -81,7 +92,9 @@
       <text x="352" y="238" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">name</text>
       <text x="352" y="254" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace">&#8594; userId</text>
       <text x="352" y="270" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace">&#8594; activeTagGroupId?</text>
-      <text x="352" y="286" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">usageHistory : Json</text>
+      <text x="352" y="286" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace">&#8594; themeId</text>
+      <text x="352" y="302" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">cardCanvas : Int</text>
+      <text x="352" y="318" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">usageHistory : Json</text>
 
       <!-- Column -->
       <rect x="640" y="120" width="180" height="92" rx="6" fill="#f5f5f5"/>
@@ -143,6 +156,19 @@
       <text x="352" y="652" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">notes : Json</text>
       <text x="352" y="668" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace">&#8594; boardId · unique</text>
 
+      <!-- Theme -->
+      <rect x="60" y="400" width="200" height="124" rx="6" fill="#f5f5f5"/>
+      <rect x="60" y="400" width="200" height="124" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <text x="72" y="418" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif">Theme</text>
+      <rect x="226" y="406" width="26" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.35)" stroke-width="0.8"/>
+      <text x="239" y="415" fill="#4f5d75" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">THM</text>
+      <line x1="60" y1="424" x2="260" y2="424" stroke="rgba(45,49,66,0.18)" stroke-width="0.8"/>
+      <text x="72" y="440" fill="#eb6c36" font-size="9" font-family="'Geist Mono', monospace"># id</text>
+      <text x="72" y="456" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">bg · task · column · text</text>
+      <text x="72" y="472" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">taskText? · columnText? · reminder?</text>
+      <text x="72" y="488" fill="#2d3142" font-size="9" font-family="'Geist Mono', monospace">order : Int</text>
+      <text x="72" y="504" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace">&#8594; userId?</text>
+
       <!-- Legend -->
       <line x1="60" y1="700" x2="1110" y2="700" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
       <text x="60" y="722" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.14em">LEYENDA</text>
@@ -153,4 +179,4 @@
       <text x="386" y="722" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">1:1  accesorio del tablero  ·  Json  campo serializado  ·  ?  opcional</text>
       <rect x="760" y="713" width="14" height="10" rx="2" fill="rgba(235,108,54,0.08)" stroke="#eb6c36" stroke-width="1"/>
       <text x="780" y="722" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">raíz del agregado</text>
-    </svg>
+</svg>
