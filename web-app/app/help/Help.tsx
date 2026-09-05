@@ -247,7 +247,7 @@ export function Help() {
 				</section>
 				<section className='mb-4'>
 					<h2 className='mb-2 text-2xl'>{t('help.found_a_problem_section')}</h2>
-					<a href='https://github.com/CiroMirkin/Boar/issues' target='_blank'>
+					<a href='https://github.com/CiroMirkin/Capo/issues' target='_blank'>
 						<Button variant='link' className='pl-0'>
 							<GithubIcon className='mr-2' /> {t('help.report_btn')}
 						</Button>

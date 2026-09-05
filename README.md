@@ -1,7 +1,7 @@
 # Capo
 <p align="center"><b>Un tablero personal para organizarte sin distracciones.</b></p>
 <p align="center">
-    <a href="https://github.com/CiroMirkin/Boar/stargazers"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/CiroMirkin/Boar"></a><a href="https://cm-boar.netlify.app/"><img alt="Deploy Status" src="https://img.shields.io/badge/Demo-Live_Preview-success?style=flat&logo=netlify&logoColor=white"></a><a href="https://github.com/CiroMirkin/Boar/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
+    <a href="https://github.com/CiroMirkin/Capo/stargazers"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/CiroMirkin/Capo"></a><a href="https://cm-boar.netlify.app/"><img alt="Deploy Status" src="https://img.shields.io/badge/Demo-Live_Preview-success?style=flat&logo=netlify&logoColor=white"></a><a href="https://github.com/CiroMirkin/Capo/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
 </p>
 
 
@@ -63,7 +63,7 @@ npx playwright test
 
 ## 📖 Documentación
 
-Puedes leer la documentación completa dentro de las [wikis](https://github.com/CiroMirkin/Boar/wiki) del repositorio.
+Puedes leer la documentación completa dentro de las [wikis](https://github.com/CiroMirkin/Capo/wiki) del repositorio.
 
 ## 🛡️ Seguridad (RLS)
 
@@ -75,4 +75,4 @@ El acceso a los datos está protegido mediante Row Level Security en PostgreSQL.
 
 ## Licencia
 
-Licenciado bajo la [licencia MIT](https://github.com/CiroMirkin/Boar/blob/main/LICENSE).
+Licenciado bajo la [licencia MIT](https://github.com/CiroMirkin/Capo/blob/main/LICENSE).

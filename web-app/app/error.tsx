@@ -19,7 +19,7 @@ export default function Error({
 			<p>Lo sentimos. Hubo un error inesperado. &#x1F641;</p>
 			<div className='flex items-center gap-2'>
 				<Button onClick={reset}>Reintentar</Button>
-				<a href='https://github.com/CiroMirkin/Boar/issues' target='_blank' rel='noreferrer'>
+				<a href='https://github.com/CiroMirkin/Capo/issues' target='_blank' rel='noreferrer'>
 					<Button variant='link' className='pl-0'>
 						Reportar en GitHub
 					</Button>

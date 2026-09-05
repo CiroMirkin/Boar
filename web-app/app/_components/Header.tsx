@@ -131,7 +131,7 @@ export function Header({ title, whereUserIs, showBoardNavigation = true }: Heade
 						</DropdownMenuItem>
 						<DropdownMenuItem>
 							<a
-								href='https://github.com/CiroMirkin/Boar'
+								href='https://github.com/CiroMirkin/Capo'
 								className='px-2 py-1.5 flex items-center'
 							>
 								<GithubIcon className='mr-2' /> GitHub
