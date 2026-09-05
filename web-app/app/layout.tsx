@@ -5,6 +5,7 @@ import Providers from './providers'
 export const metadata: Metadata = {
 	title: 'Capo',
 	description: 'Tablero Kanban',
+	icons: { icon: '/capo.svg' },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
