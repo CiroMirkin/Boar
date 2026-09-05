@@ -7,6 +7,8 @@ import { isRateLimited } from '@/shared/lib/rateLimit'
 import bcrypt from 'bcryptjs'
 import { authConfig } from './auth.config'
 
+const DUMMY_HASH = '$2a$12$CwTycUXWue0Thq9StjUM0uJ8Hkm7hxWQlkUdmMkQ8tQ3P8xzeqTr.'
+
 export const { handlers, auth } = NextAuth({
 	...authConfig,
 	adapter: PrismaAdapter(prisma),
@@ -39,7 +41,11 @@ export const { handlers, auth } = NextAuth({
 					where: { email },
 				})
 
-				if (!user || !user.password) return null
+				if (!user || !user.password) {
+					// gasta el mismo tiempo que una comparacion con un hash real
+					await bcrypt.compare(password, DUMMY_HASH)
+					return null
+				}
 
 				const passwordMatch = await bcrypt.compare(password, user.password)
 
