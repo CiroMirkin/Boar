@@ -3,6 +3,7 @@ import Credentials from 'next-auth/providers/credentials'
 import GitHub from 'next-auth/providers/github'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import { prisma } from '@/shared/lib/prisma'
+import { isRateLimited } from '@/shared/lib/rateLimit'
 import bcrypt from 'bcryptjs'
 import { authConfig } from './auth.config'
 
@@ -22,6 +23,8 @@ export const { handlers, auth } = NextAuth({
 			async authorize(credentials) {
 				const email = (credentials.email as string).toLowerCase()
 				if (!email || !credentials?.password) return null
+
+				if (isRateLimited(`login:${email}`, 5, 60_000)) return null
 
 				const user = await prisma.user.findUnique({
 					where: { email: email.toLowerCase() },
