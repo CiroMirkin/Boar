@@ -21,21 +21,27 @@ export const { handlers, auth } = NextAuth({
 				password: { label: 'Password', type: 'password' },
 			},
 			async authorize(credentials) {
-				const email = (credentials.email as string).toLowerCase()
-				if (!email || !credentials?.password) return null
+				const emailRaw = credentials?.email
+				const password = credentials?.password
+				if (
+					typeof emailRaw !== 'string' ||
+					typeof password !== 'string' ||
+					!emailRaw ||
+					!password
+				) {
+					return null
+				}
+				const email = emailRaw.toLowerCase()
 
 				if (isRateLimited(`login:${email}`, 5, 60_000)) return null
 
 				const user = await prisma.user.findUnique({
-					where: { email: email.toLowerCase() },
+					where: { email },
 				})
 
 				if (!user || !user.password) return null
 
-				const passwordMatch = await bcrypt.compare(
-					credentials.password as string,
-					user.password
-				)
+				const passwordMatch = await bcrypt.compare(password, user.password)
 
 				if (!passwordMatch) return null
 
