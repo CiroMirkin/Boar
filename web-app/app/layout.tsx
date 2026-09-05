@@ -14,13 +14,13 @@ export const metadata: Metadata = {
 		siteName: 'Capo',
 		type: 'website',
 		locale: 'es',
-		images: ['/Boar_OG.png'],
+		images: ['/Capo_OG.png'],
 	},
 	twitter: {
 		card: 'summary_large_image',
 		title: 'Capo',
 		description: 'Tablero Kanban',
-		images: ['/Boar_OG.png'],
+		images: ['/Capo_OG.png'],
 	},
 }
 

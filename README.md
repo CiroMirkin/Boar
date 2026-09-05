@@ -10,7 +10,7 @@
 En entornos de alta carga mental, la fragmentación de la información reduce la productividad. Capo nace para centralizar el flujo de trabajo (tablero), la memoria a largo plazo (notas) y la auditoría de rendimiento (registro de uso) en una sola interfaz cohesiva.
 
 
-![Capo](./public//Boar_OG.png)
+![Capo](./public/Capo_OG.png)
 
 ### Impacto clave de Capo:
 
