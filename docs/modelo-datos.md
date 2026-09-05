@@ -23,7 +23,7 @@ Esquema Prisma (`web-app/prisma/schema.prisma`), provider `postgresql`.
   `PrismaAdapter` de Auth.js (no se dibujan).
 
 El modo invitado replica estas mismas formas en `localStorage`, una clave por
-feature. Excepción: el tema es uno solo y global (`boar-theme`), no hay tema por
+feature. Excepción: el tema es uno solo y global (`capo-theme`), no hay tema por
 tablero ni catálogo para invitados.
 
 ---

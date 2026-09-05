@@ -111,7 +111,7 @@ RootLayout
     └── SessionProvider              # contexto de sesión Auth.js
         └── QueryClientProvider      # TanStack Query
             └── AppInit
-                ├── ThemeProvider    # tema desde localStorage ('boar-theme')
+                ├── ThemeProvider    # tema desde localStorage ('capo-theme')
                 ├── ClientOnlyInit   # useSaveTimeTracking · i18n del usuario
                 └── children + <Toaster/>  (sonner)
 ```

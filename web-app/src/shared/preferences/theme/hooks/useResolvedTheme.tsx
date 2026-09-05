@@ -23,11 +23,10 @@ export const useResolvedTheme = (): { theme: Theme; changeTheme: ChangeTheme } =
 	const { session } = useSession()
 	const pathname = usePathname()
 
-	// clave 'boar-theme' (nombre anterior del proyecto): no renombrar para no invalidar el localStorage existente
-	const [guestTheme, setGuestTheme] = useLocalStorage<Theme>('boar-theme', lightTheme)
+	const [guestTheme, setGuestTheme] = useLocalStorage<Theme>('capo-theme', lightTheme)
 	useEffect(() => {
 		try {
-			if (window.localStorage.getItem('boar-theme') !== null) return
+			if (window.localStorage.getItem('capo-theme') !== null) return
 		} catch {
 			return
 		}

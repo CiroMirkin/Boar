@@ -13,12 +13,11 @@ import { Button } from '@/shared/ui/atoms/button'
 import { DescriptionOfCapo } from '@/shared/ui/atoms/DescriptionOfCapo'
 
 export function WelcomeDialog() {
-	// clave 'boar-welcome-dialog' (nombre anterior del proyecto): no renombrar para no invalidar el localStorage de usuarios existentes
-	const open = localStorage.getItem('boar-welcome-dialog')
-		? JSON.parse(localStorage.getItem('boar-welcome-dialog') as string)
+	const open = localStorage.getItem('capo-welcome-dialog')
+		? JSON.parse(localStorage.getItem('capo-welcome-dialog') as string)
 		: false
 	useEffect(() => {
-		open == false && localStorage.setItem('boar-welcome-dialog', 'true')
+		open == false && localStorage.setItem('capo-welcome-dialog', 'true')
 	}, [open])
 
 	return (

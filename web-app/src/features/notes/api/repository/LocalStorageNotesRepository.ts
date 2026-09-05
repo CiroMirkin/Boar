@@ -4,8 +4,7 @@ import { NotesRepository } from './notesRepository'
 export default class LocalStorageNotesRepository implements NotesRepository {
 	key
 	constructor() {
-		// prefijo 'boar-' (nombre anterior del proyecto): no renombrar para no invalidar el localStorage de usuarios existentes
-		this.key = 'boar-notes'
+		this.key = 'capo-notes'
 	}
 	async save(notes: Notes): Promise<void> {
 		const notesForSave = { notes }

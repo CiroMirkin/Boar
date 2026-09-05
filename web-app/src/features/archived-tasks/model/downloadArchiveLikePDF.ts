@@ -121,7 +121,7 @@ const setupBrutalistaDocument = (
 	doc.setTextColor(255, 255, 255)
 	doc.setFontSize(config.headerFontSize)
 	doc.setFont('helvetica', 'bold')
-	doc.text('BOAR', config.pageMargin, 17)
+	doc.text('CAPO', config.pageMargin, 17)
 
 	doc.setDrawColor(0, 0, 0)
 	doc.setLineWidth(3)

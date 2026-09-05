@@ -9,15 +9,14 @@ import { emptyTaskBoard } from '@/features/tasks'
 export const checkIfUserHasTheDefaultBoard = async (): Promise<boolean> => {
 	if (typeof window === 'undefined') return true
 
-	// claves con 'boar' (nombre anterior del proyecto): no renombrar para no invalidar el localStorage de usuarios existentes
-	const rawBoard = localStorage.getItem('board-boar')
+	const rawBoard = localStorage.getItem('board-capo')
 	const board = rawBoard ? JSON.parse(rawBoard) : null
 	const boardName: string = board?.name ?? ''
 
 	const rawTasks = localStorage.getItem('taskListInEachColumn')
 	const taskList = rawTasks ? JSON.parse(rawTasks) : emptyTaskBoard
 
-	const notes = localStorage.getItem('boar-notes') ?? defaultNotes
+	const notes = localStorage.getItem('capo-notes') ?? defaultNotes
 
 	return (
 		isDefaultBoardName(boardName) &&
