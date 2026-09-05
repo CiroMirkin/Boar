@@ -18,7 +18,8 @@
     "test:e2e": "playwright test --project=chromium --project=firefox",
     "test:e2e-ui": "playwright test --ui",
     "test:all": "vitest run && playwright test --project=chromium --project=firefox",
-    "prepare": "cd .. && husky web-app/.husky"
+    "prepare": "cd .. && husky web-app/.husky",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.3",
