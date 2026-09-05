@@ -2,7 +2,7 @@
   "name": "capo",
   "author": "Ciro Mirkin",
   "private": true,
-  "version": "2.5.4",
+  "version": "3.0.0",
   "type": "module",
   "scripts": {
     "dev": "next dev",
