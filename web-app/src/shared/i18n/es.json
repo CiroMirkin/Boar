@@ -4,6 +4,11 @@
 		"p2": "Está diseñada para uso individual, no para equipos. Organiza tus tareas en un tablero simple y mantente enfocado en lo que importa."
 	},
 
+	"welcome_dialog": {
+		"title": "¡Bienvenido!",
+		"start": "Empezar"
+	},
+
 	"sing_in": "Iniciar Sesión",
 	"log_out": "Cerrar Sesión",
 	"sing_in_toast": "Inicio exitoso!",

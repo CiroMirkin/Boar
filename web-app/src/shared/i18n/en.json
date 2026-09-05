@@ -4,6 +4,11 @@
 		"p2": "It's designed for individual use, not for teams. Organize your tasks on a simple board and stay focused on what matters."
 	},
 
+	"welcome_dialog": {
+		"title": "Welcome!",
+		"start": "Get started"
+	},
+
 	"sing_in": "Sing in",
 	"log_out": "Sing out",
 	"sing_in_toast": "Successful!",
