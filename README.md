@@ -16,15 +16,16 @@ En entornos de alta carga mental, la fragmentación de la información reduce la
 
 * **Reducción de Fatiga Visual:** Interfaz minimalista con temas adaptativos.
 * **Trazabilidad Total:** Sistema de archivo con exportación PDF/JSON para auditorías de productividad.
-* **Consistencia de Datos:** Arquitectura híbrida (Local-First/Cloud) que garantiza disponibilidad sin conexión.
+* **Consistencia de Datos:** Persistencia en PostgreSQL vía Prisma, con aislamiento por cuenta verificado en el servidor.
 
 ## 🧬 Stack Tecnológico
 
-* Core: React 18 + TypeScript (Tipado estricto para reducir errores en runtime). 
-* Tooling: Vite + i18next (Internacionalización automática por idioma del SO).
-* Styling: Tailwind CSS + Shadcn/ui (Sistemas de diseño consistentes).
-* Backend & Auth: Supabase (PostgreSQL con políticas RLS para seguridad a nivel de fila).
-* Testing: Playwright (E2E) para flujos críticos y Vitest para lógica de dominio.
+* Core: Next.js 15 (App Router) + React 18 + TypeScript (tipado estricto para reducir errores en runtime).
+* Datos y estado: Prisma ORM sobre PostgreSQL + TanStack Query y Zustand en el cliente.
+* Auth: NextAuth (Auth.js) v5 con adaptador de Prisma y hash de contraseñas con bcrypt.
+* Styling: Tailwind CSS + shadcn/ui (Radix UI) para un sistema de diseño consistente.
+* i18n: i18next / react-i18next (internacionalización por idioma del SO).
+* Testing: Playwright (E2E) para flujos críticos y Vitest + Testing Library para lógica de dominio.
 
 ## 🔥 Capacidades del Sistema (KPIs Técnicos)
 
@@ -65,9 +66,9 @@ npx playwright test
 
 Puedes leer la documentación completa dentro de las [wikis](https://github.com/CiroMirkin/Capo/wiki) del repositorio.
 
-## 🛡️ Seguridad (RLS)
+## 🛡️ Seguridad
 
-El acceso a los datos está protegido mediante Row Level Security en PostgreSQL. Un usuario solo puede interactuar con sus propios UUIDs, garantizando privacidad total entre cuentas.
+El acceso a los datos se valida en el servidor: cada Server Action exige una sesión de NextAuth y comprueba que el recurso (tablero, columna o tarea) pertenezca al usuario autenticado antes de leer o escribir. Ninguna cuenta puede acceder a datos de otra.
 
 # Estadisticas
 
