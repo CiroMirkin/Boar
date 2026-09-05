@@ -2,7 +2,8 @@
 
 import { useTranslation } from 'react-i18next'
 import { USER_IS_IN } from '@/shared/ui/organisms/userIsIn'
-import { ChangeBoardName, DeleteBoard } from '@/features/boards'
+import { ChangeBoardName, DeleteBoard, ResetBoard } from '@/features/boards'
+import { useSession } from '@/features/auth'
 import { CanvasSelection } from '@/features/dashboard'
 import { CreateReminder, ReminderList } from '@/features/reminders'
 import { ThemeSelection } from '@/shared/preferences/theme'
@@ -28,6 +29,7 @@ interface Props {
 
 export function Settings({ boardId }: Props) {
 	const { t } = useTranslation()
+	const { session } = useSession()
 	const columnList = useColumnListForReminders()
 	useBoardQuery(boardId)
 
@@ -46,7 +48,7 @@ export function Settings({ boardId }: Props) {
 				<ToggleTypeOfView />
 				<ThemeSelection target='board' />
 				<CanvasSelection boardId={boardId} />
-				<DeleteBoard id={boardId} />
+				{session ? <DeleteBoard id={boardId} /> : <ResetBoard />}
 			</div>
 		</PageContainer>
 	)
